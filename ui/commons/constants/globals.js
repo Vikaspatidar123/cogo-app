@@ -246,10 +246,8 @@ const GLOBAL_CONSTANTS = {
 	regex: {
 		ends_with_star_char        : /\*[^0-9a-zA-Z]/,
 		ends_with_star_space_regex : /\* /,
-	},
-	bot_visibility_for_known_user: {
-		'6fd98605-9d5d-479d-9fac-cf905d292b88' : true,
-		'b67d40b1-616c-4471-b77b-de52b4c9f2ff' : false,
+		white_space_regex          : /\s+/,
+		asterisk_regex             : /\*/g,
 	},
 	urls: {
 		whatsapp_get_started_link: 'https://wa.me/message/N4CI7UNDFE2ZM1',
@@ -276,6 +274,8 @@ const GLOBAL_CONSTANTS = {
 		},
 		AIRWAY_BILL_NO: /^\d{3}-\d{8}$/,
 	},
+	fetch_emoji_list:
+	'https://cogoport-testing.sgp1.digitaloceanspaces.com/b3949cf1f8cd3366d0272bd60c87c930/emoji-list.json',
 };
 
 export default GLOBAL_CONSTANTS;

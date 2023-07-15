@@ -1,15 +1,17 @@
 import { useState, useEffect, useCallback } from 'react';
 
+import GLOBAL_CONSTANTS from '../constants/globals';
+
 import { useRequest } from '@/packages/request';
 
-const EMOJIS = 'https://cogoport-testing.sgp1.digitaloceanspaces.com/b3949cf1f8cd3366d0272bd60c87c930/emoji-list.json';
+const EMOJIS_URL = GLOBAL_CONSTANTS.fetch_emoji_list;
 
 const useGetEmojiList = () => {
 	const [onClicked, setOnClicked] = useState(false);
 
 	const [{ data: emojisList }, trigger] = useRequest(
 		{
-			url: EMOJIS,
+			url: EMOJIS_URL,
 		},
 	);
 
@@ -17,7 +19,7 @@ const useGetEmojiList = () => {
 		try {
 			trigger();
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	}, [trigger]);
 

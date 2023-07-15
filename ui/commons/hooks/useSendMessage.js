@@ -30,7 +30,7 @@ const useSendMessage = ({
 
 		try {
 			await trigger({
-				data: { ...payload },
+				data: payload,
 			});
 			updateFirestore();
 		} catch (err) {

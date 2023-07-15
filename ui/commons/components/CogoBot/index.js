@@ -23,11 +23,7 @@ function CogoBot() {
 
 	const [showIntelligence, setShowIntelligence] = useState(false);
 	const [cogobotLoading, setCogobotLoading] = useState(true);
-	const [cogoBotState, setCogoBotState] = useState({
-		isOpen          : false,
-		roomId          : '',
-		newMessageCount : 0,
-	});
+
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const [createLoading, setCreateLoading] = useState(false);
 
@@ -56,8 +52,6 @@ function CogoBot() {
 
 	const firestore = getFirestore(app);
 
-	const { isOpen, roomId, newMessageCount } = cogoBotState || {};
-
 	const {
 		sendMessage:sendMessageFromUnknownUser = () => {},
 		loading: sendMessageLoadingFromUnknown,
@@ -72,19 +66,18 @@ function CogoBot() {
 		lead_user_id,
 	});
 
-	const { toggleUserChat, mountCountSnapShot, closeBot } = useFetchRoom({
+	const { toggleUserChat, mountCountSnapShot, closeBot, cogoBotState, setCogoBotState } = useFetchRoom({
 		firestore,
 		profile,
 		isUnKnownUser,
-		setCogoBotState,
-		isOpen,
-		roomId,
 		sendMessage: isUnKnownUser ? sendMessageFromUnknownUser : sendMessageFromknownUser,
 		// setShowIntelligence,
 		setCogobotLoading,
 	});
 
 	const { onStop, onDrag } = useGetRefHandlers({ toggleUserChat, setCreateLoading, createLoading });
+
+	const { isOpen, roomId, newMessageCount } = cogoBotState || {};
 
 	useEffect(() => {
 		clearTimeout(timeoutRef?.current);

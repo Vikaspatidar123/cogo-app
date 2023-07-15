@@ -17,7 +17,7 @@ const replaceStarSpace = (txt = '') => txt
 	.join('');
 
 const replaceStarChar = (txt = '') => {
-	if (txt.match(/\*/g).length === 1) {
+	if (txt.match(GLOBAL_CONSTANTS.regex.asterisk_regex).length === 1) {
 		return txt
 			.split('*')
 			.map((str, i) => {

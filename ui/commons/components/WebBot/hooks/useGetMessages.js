@@ -117,7 +117,7 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const sortedMessageData =		Object.keys(messagesHash || {})
+	const sortedMessageData = Object.keys(messagesHash || {})
 		.sort((a, b) => Number(a) - Number(b))
 		.map((eachkey) => messagesHash[eachkey]) || [];
 

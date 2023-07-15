@@ -30,8 +30,7 @@ function WebBot({
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [botRef]);
+	}, [botRef, closeBot, isOpen]);
 
 	return (
 		<div ref={botRef}>

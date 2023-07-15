@@ -13,8 +13,6 @@ import { UploadController, useForm } from '@/packages/forms';
 import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const getUploadIcon = () => <IcMAttach className={styles.uploaded_icon} />;
-
 function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 	const [messageData, setMessageData] = useState({
 		message       : '',
@@ -25,27 +23,29 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 	const { control } = useForm();
 
 	const handleChange = (obj) => {
-		if (!isEmpty(obj)) {
-			setMessageData((item) => ({
-				...item,
-				uploadingFile : false,
-				file          : {
-					name : obj?.split('/')?.slice(-1)?.join(''),
-					url  : obj,
-				},
-			}));
-			toggleHeight({ isFileDivPresent: true });
+		if (isEmpty(obj)) {
+			return;
 		}
+		setMessageData((item) => ({
+			...item,
+			uploadingFile : false,
+			file          : {
+				name : obj?.split('/')?.slice(-1)?.join(''),
+				url  : obj,
+			},
+		}));
+		toggleHeight({ isFileDivPresent: true });
 	};
 
 	const handleProgress = (obj) => {
-		if (obj?.type === 'progress') {
-			setMessageData((data) => ({
-				...data,
-				uploadingFile: true,
-			}));
-			toggleHeight({ isFileDivPresent: false });
+		if (obj.type !== 'progress') {
+			return;
 		}
+		setMessageData((data) => ({
+			...data,
+			uploadingFile: true,
+		}));
+		toggleHeight({ isFileDivPresent: false });
 	};
 
 	const setEmojis = (val) => {
@@ -121,7 +121,7 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 						showIconAlways
 						handleProgress={handleProgress}
 						handleChange={(e) => handleChange(e)}
-						uploadIcon={getUploadIcon}
+						uploadIcon={<IcMAttach className={styles.uploaded_icon} />}
 						drag
 						name="attachment_uploader"
 						control={control}

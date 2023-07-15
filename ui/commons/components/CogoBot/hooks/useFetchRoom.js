@@ -9,7 +9,7 @@ import {
 	doc,
 	updateDoc,
 } from 'firebase/firestore';
-import { useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { v1 as uuid } from 'uuid';
 
 import getRoomHelpers from '../helpers/roomHelpers';
@@ -22,13 +22,18 @@ const useFetchRoom = ({
 	firestore,
 	profile,
 	isUnKnownUser,
-	setCogoBotState,
-	roomId,
 	sendMessage,
 	setCogobotLoading,
-	isOpen,
 }) => {
 	const snapshotRef = useRef(null);
+
+	const [cogoBotState, setCogoBotState] = useState({
+		isOpen          : false,
+		roomId          : '',
+		newMessageCount : 0,
+	});
+
+	const { isOpen, roomId } = cogoBotState || {};
 
 	const platformChatCollection = collection(firestore, PLATFORM_CHAT_PATH);
 
@@ -123,13 +128,13 @@ const useFetchRoom = ({
 		});
 	};
 
-	const closeBot = async () => {
+	const closeBot = useCallback(async () => {
 		setCogoBotState((p) => ({ ...p, isOpen: false }));
 		const messageFireBase = doc(firestore, `${PLATFORM_CHAT_PATH}/${roomId}`);
 		updateDoc(messageFireBase, {
 			new_user_message_count: 0,
 		});
-	};
+	}, [firestore, roomId]);
 
 	const toggleUserChat = async () => {
 		// setShowIntelligence(false);
@@ -149,6 +154,8 @@ const useFetchRoom = ({
 		toggleUserChat,
 		mountCountSnapShot,
 		closeBot,
+		cogoBotState,
+		setCogoBotState,
 	};
 };
 export default useFetchRoom;

@@ -8,12 +8,12 @@ const getPayloadForSendMessage = ({
 	let extraPayload = {};
 	if (conversation_type === 'outward') {
 		extraPayload = { user_id, lead_user_id, organization_id };
-	} else {
-		extraPayload = {
-			sender_user_id      : user_id,
-			sender_lead_user_id : lead_user_id,
-		};
+		return null;
 	}
+	extraPayload = {
+		sender_user_id      : user_id,
+		sender_lead_user_id : lead_user_id,
+	};
 
 	return {
 		type              : 'platform_chat',

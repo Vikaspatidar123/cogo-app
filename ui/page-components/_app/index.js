@@ -1,8 +1,5 @@
 /* eslint-disable no-undef */
-/* eslint-disable import/order */
-/* eslint-disable react-hooks/rules-of-hooks */
-
-import { dynamic, Router } from '@/packages/next';
+import { setCookie, getCookie } from '@cogoport/utils';
 import { appWithTranslation } from 'next-i18next';
 import pageProgessBar from 'nprogress';
 import { useEffect } from 'react';
@@ -10,15 +7,14 @@ import { useEffect } from 'react';
 import withStore from './store';
 
 import { routeConfig } from '@/packages/navigation-configs';
-
+import { dynamic, Router } from '@/packages/next';
 import 'nprogress/nprogress.css';
 import { Provider } from '@/packages/store';
 import { setGeneralStoreState } from '@/packages/store/store/general';
+import getGeoConstants from '@/ui/commons/constants/geo';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
 import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
-import { setCookie, getCookie } from '@cogoport/utils';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getGeoConstants from '@/ui/commons/constants/geo';
 
 const KEY_MAPPING = {
 	COUNTRY: {

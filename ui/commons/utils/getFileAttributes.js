@@ -1,13 +1,13 @@
 import { IcMDocument, IcMImage } from '@cogoport/icons-react';
 
-const fileIconMapping = {
+const FILE_TYPE_ICONS_MAPPING = {
 	document : <IcMDocument height={22} width={22} />,
 	img      : <IcMImage height={22} width={25} />,
 };
 
-const { img, document } = fileIconMapping;
+const { img, document } = FILE_TYPE_ICONS_MAPPING;
 
-const FILE_ICON_MAPPING = {
+const FILE_TYPE_ICON_MAPPING = {
 	jpeg    : img,
 	jpg     : img,
 	png     : img,
@@ -45,7 +45,7 @@ function getFileAttributes({ fileName = '', finalUrl }) {
 	}
 
 	const fileType = FILE_TYPE_MAPPING[fileExtension] || FILE_TYPE_MAPPING.default;
-	const fileIcon = FILE_ICON_MAPPING[fileExtension] || FILE_ICON_MAPPING.default;
+	const fileIcon = FILE_TYPE_ICON_MAPPING[fileExtension] || FILE_TYPE_ICON_MAPPING.default;
 
 	return {
 		uploadedFileName,

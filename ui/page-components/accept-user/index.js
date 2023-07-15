@@ -4,13 +4,12 @@ import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
-import acceptPassword from './useAcceptPassword';
 
 import PublicPageNav from '@/ui/commons/components/PublicPageNav';
-import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 function AcceptUser({ errorMessage }) {
 	const { t } = useTranslation(['common']);
+
 	if (!errorMessage) {
 		return <p>{t('common:loading_text')}</p>;
 	}
@@ -38,26 +37,5 @@ function AcceptUser({ errorMessage }) {
 		</div>
 	);
 }
-
-AcceptUser.getInitialProps = async (ctx) => {
-	const { query } = ctx;
-	const { id } = query;
-	let errorMessage = false;
-	try {
-		const res = await acceptPassword({ token: id });
-		const { hasError } = res || {};
-
-		if (!hasError) {
-			const { token } = (res || {}).data || {};
-			setCookieAndRedirect(token, ctx, '/onboarding?from_signup=true');
-		} else {
-			errorMessage = true;
-		}
-	} catch (e) {
-		errorMessage = true;
-		console.log(e.toString());
-	}
-	return { layout: 'none', errorMessage };
-};
 
 export default AcceptUser;

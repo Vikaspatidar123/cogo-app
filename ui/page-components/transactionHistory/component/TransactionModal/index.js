@@ -11,10 +11,6 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 const SERVICES_MODAL = {
 	QUOTATION : QuotationModal,
 	DEFAULT   : CommonServicesModal,
-	// DUTIES    : DutiesTaxesModal,
-	// SCREENING : TraderEligibilityModal,
-	// DOCUMENTS : IEDocumentsModal,
-	// CONTROLS  : IEControlsModal,
 };
 
 const TITLE_MAPPING = {
@@ -24,6 +20,8 @@ const TITLE_MAPPING = {
 	DOCUMENTS : 'Import/Export Documents',
 	CONTROLS  : 'Import/Export Controls',
 };
+
+const LOADER_ARR = [...Array(4).keys()];
 
 function ServiceDetailModal({
 	setPaymentSuccess,
@@ -40,18 +38,20 @@ function ServiceDetailModal({
 			onClose={() => setPaymentSuccess(false)}
 			size="xl"
 		>
-			{(loading) && (
-				<div className={styles.flex}>
-					<Placeholder height="50px" />
-				</div>
+			{loading && (
+				LOADER_ARR.map((ele) => (
+					<div key={ele} className={styles.flex}>
+						<Placeholder height="50px" />
+					</div>
+				))
 			)}
 
 			{!loading && isEmpty(transactionData) && (
 				<>
 					<div className={styles.empty_div}>
 						<Image
-							height={100}
-							width={100}
+							height={250}
+							width={250}
 							alt="No Data"
 							src={GLOBAL_CONSTANTS.image_url.empty_state}
 						/>

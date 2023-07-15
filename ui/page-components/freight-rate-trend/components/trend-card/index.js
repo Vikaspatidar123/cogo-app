@@ -1,4 +1,5 @@
 import { IcMCrossInCircle, IcMArrowNext } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import DeleteModal from '../../common/DeleteModal';
@@ -11,6 +12,7 @@ import { useRouter } from '@/packages/next';
 
 function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 	const { origin_port = {}, destination_port = {} } = trend || {};
+	const { t } = useTranslation(['frt']);
 	const { push } = useRouter();
 
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -55,7 +57,7 @@ function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 						)}
 					>
 						<div className={styles.text} size="12px" color="#4f4f4f">
-							View details
+							{t('frt:search_card_view_detail')}
 						</div>
 						<IcMArrowNext style={{ height: 14, width: 14, marginLeft: 8 }} />
 					</div>
@@ -77,27 +79,23 @@ function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 }
 
 function EmptyTrendCard() {
+	const { t } = useTranslation(['frt']);
 	return (
 		<div className={styles.container}>
 			<div>
-				<div className={styles.title} title>Welcome to Freight Rate Trends</div>
-				<h4>What is it?</h4>
-				<p>
-					Freight Rate Trends feature helps you visualise the historical trends of basic
-					freight.
-				</p>
-				<h4>What is it important?</h4>
-				<p>
-					Freight Rate Trends gives you the historical trends of basic freight for your
-					requested port pair. You can also add in your rates to see what could be the
-					savings if you would have booked the containers on Cogoport.
-				</p>
-				<h4>How do you search for Freight Rate Trends?</h4>
+				<div className={styles.title}>{t('frt:empty_state_main_title')}</div>
+				<h4>{t('frt:empty_state_label_1')}</h4>
+				<p>{t('frt:empty_state_value_1')}</p>
+
+				<h4>{t('frt:empty_state_label_2')}</h4>
+				<p>{t('frt:empty_state_value_2')}</p>
+
+				<h4>{t('frt:empty_state_label_3')}</h4>
 				<ul>
-					<li>Enter the Port of Origin and Port of Destination</li>
-					<li>Click on Search New Freight Trend</li>
+					<li>{t('frt:empty_state_value_3')}</li>
+					<li>{t('frt:empty_state_value_4')}</li>
 				</ul>
-				<p>You are done, and the historical data will be with you in seconds</p>
+				<p>{t('frt:empty_state_value_5')}</p>
 			</div>
 		</div>
 	);

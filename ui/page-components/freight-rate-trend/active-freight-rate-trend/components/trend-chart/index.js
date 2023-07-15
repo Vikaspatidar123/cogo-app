@@ -1,10 +1,13 @@
 import { ResponsiveLine } from '@cogoport/charts/line';
 import { format } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 import ToolTipComponent from './tooltipComponent';
 
 function TrendChart({ labels, datasets = [] }) {
+	const { t } = useTranslation(['frt']);
+
 	const data = (datasets || []).map((item) => {
 		const id = item.name;
 		const temp_data = item.values.map((val, index) => ({
@@ -19,15 +22,15 @@ function TrendChart({ labels, datasets = [] }) {
 			<div className={styles.legend}>
 				<div className={styles.legend_list}>
 					<div className={styles.circle1} />
-					<div className={styles.legend_text}>Avg</div>
+					<div className={styles.legend_text}>{t('frt:chart_avg')}</div>
 				</div>
 				<div className={styles.legend_list}>
 					<div className={styles.circle2} />
-					<div className={styles.legend_text}>Min</div>
+					<div className={styles.legend_text}>{t(':chart_min')}</div>
 				</div>
 				<div className={styles.legend_list}>
 					<div className={styles.circle3} />
-					<div className={styles.legend_text}>Max</div>
+					<div className={styles.legend_text}>{t(':chart_max')}</div>
 				</div>
 			</div>
 			<div className={styles.chart_container}>

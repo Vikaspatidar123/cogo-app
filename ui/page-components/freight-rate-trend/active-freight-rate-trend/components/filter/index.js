@@ -1,8 +1,9 @@
 import { Select, DateRangepicker, Popover } from '@cogoport/components';
 import { IcCFcrossInCircle, IcMArrowDown, IcMArrowUp, IcMFilter } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
-import { COMMODITY_OPTIONS_MAPPING } from '../../common/commodity-mappings';
+import { getCommodityOptionMapping } from '../../common/commodity-mappings';
 
 import filterControls from './filter-controls';
 import styles from './styles.module.css';
@@ -20,8 +21,12 @@ function FilterForm({
 	setContainerType,
 	setShippingLine,
 }) {
+	const { t } = useTranslation(['frt']);
 	const [dropDown, setDropDown] = useState(false);
 	const now = new Date();
+
+	const COMMODITY_OPTIONS_MAPPING = getCommodityOptionMapping({ t });
+
 	const handleClear = () => {
 		setCommodity('');
 		setDateRangePickerValue({
@@ -38,7 +43,7 @@ function FilterForm({
 		<div className={styles.filter_item}>
 			<div className={styles.container1}>
 				<div className={styles.select_div}>
-					<div className={styles.input_title_text}>Container Size</div>
+					<div className={styles.input_title_text}>{t('frt:filter_container_size')}</div>
 					<Select
 						placeholder="Size"
 						value={containerSize}
@@ -48,7 +53,7 @@ function FilterForm({
 					/>
 				</div>
 				<div className={styles.select_div}>
-					<div className={styles.input_title_text}>Container type</div>
+					<div className={styles.input_title_text}>{t('frt:filter_container_type')}</div>
 					<Select
 						placeholder="type"
 						value={containerType}
@@ -61,7 +66,7 @@ function FilterForm({
 			<div className={styles.container1}>
 				<div className={styles.select_div}>
 					<div className={styles.input_title_text} />
-					Commodity
+					{t('frt:filter_commodity')}
 					<Select
 						placeholder="commodity"
 						value={commodity}
@@ -71,7 +76,7 @@ function FilterForm({
 					/>
 				</div>
 				<div className={styles.select_div}>
-					<div className={styles.input_title_text}>Currency</div>
+					<div className={styles.input_title_text}>{t('frt:filter_currency')}</div>
 					<Select
 						placeholder="USD"
 						value={filteredCurrency}
@@ -83,7 +88,7 @@ function FilterForm({
 			</div>
 			<div className={styles.container1}>
 				<div className={styles.select_date}>
-					<div className={styles.input_title_text}>Date Range</div>
+					<div className={styles.input_title_text}>{t('frt:filter_data_range')}</div>
 					<DateRangepicker
 						style={{ marginRight: '10px' }}
 						value={dateRangePickerValue || new Date(now.setMonth(now.getMonth() - 6))}
@@ -99,7 +104,9 @@ function FilterForm({
 					size={2}
 					fill="#f75620"
 				/>
-				<div role="presentation" className={styles.Clear_button_text} onClick={handleClear}>CLEAR ALL</div>
+				<div role="presentation" className={styles.Clear_button_text} onClick={handleClear}>
+					{t('frt:filter_clear_all')}
+				</div>
 			</div>
 		</div>
 
@@ -127,7 +134,7 @@ function FilterForm({
 						<div className={styles.filter_icon}>
 							<IcMFilter />
 						</div>
-						<div className={styles.filter_text}>Filter</div>
+						<div className={styles.filter_text}>{t('frt:filter')}</div>
 					</div>
 					<div className={styles.direction_icon}>{dropDown ? <IcMArrowUp /> : <IcMArrowDown />}</div>
 				</div>

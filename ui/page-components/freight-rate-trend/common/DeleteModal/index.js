@@ -1,5 +1,6 @@
 import { Modal } from '@cogoport/components';
 import { IcMTick, IcMCross, IcMDelete } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -9,6 +10,7 @@ function DeleteModal({
 	trendId,
 	deleteTrend,
 }) {
+	const { t } = useTranslation(['frt']);
 	return (
 		<Modal
 			size="sm"
@@ -21,7 +23,7 @@ function DeleteModal({
 				<div className={styles.icon_container}>
 					<IcMDelete width={50} height={50} />
 				</div>
-				<div className={styles.txt}>Are you sure to delete this Freight Rate Trend ?</div>
+				<div className={styles.txt}>{t('frt:delete_modal_title')}</div>
 				<div className={styles.footer}>
 					<div
 						className={styles.no}

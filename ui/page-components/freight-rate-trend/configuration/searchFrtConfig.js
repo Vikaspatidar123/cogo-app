@@ -1,10 +1,10 @@
-const searchFrtConfig = [
+const getFrtConfig = ({ t }) => [
 	{
 		name        : 'origin',
 		type        : 'async_select',
 		asyncKey    : 'locations',
 		initialCall : true,
-		placeholder : 'Search origin port',
+		placeholder : t('frt:form_origin_placeholder'),
 		params      : { filters: { type: ['seaport'] } },
 		rules       : { required: 'Please enter value' },
 	},
@@ -14,10 +14,10 @@ const searchFrtConfig = [
 		type        : 'async_select',
 		asyncKey    : 'locations',
 		initialCall : true,
-		placeholder : 'Search destination port',
+		placeholder : t('frt:form_destination_placeholder'),
 		params      : { filters: { type: ['seaport'] } },
 		rules       : { required: 'Please enter value' },
 	},
 ];
 
-export default searchFrtConfig;
+export default getFrtConfig;

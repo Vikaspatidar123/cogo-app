@@ -1,6 +1,9 @@
+import { useTranslation } from 'next-i18next';
+
 import styles from './styles.module.css';
 
 function Stepper({ originPort = {}, destinationPort = {} }) {
+	const { t } = useTranslation(['frt']);
 	return (
 		<>
 			<div className={styles.dot_circle}>
@@ -10,8 +13,8 @@ function Stepper({ originPort = {}, destinationPort = {} }) {
 			</div>
 
 			<div className={styles.port_code}>
-				<span>{originPort?.port_code || 'Origin'}</span>
-				<span>{destinationPort?.port_code || 'Destination' }</span>
+				<span>{originPort?.port_code || t('frt:stepper_origin')}</span>
+				<span>{destinationPort?.port_code || t('frt:stepper_origin') }</span>
 			</div>
 		</>
 	);

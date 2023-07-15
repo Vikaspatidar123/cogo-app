@@ -1,5 +1,6 @@
 import { Pagination } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect } from 'react';
 
 import Loading from './common/Loading';
@@ -9,6 +10,7 @@ import useFetchTrends from './hooks/useFetchTrends';
 import styles from './styles.module.css';
 
 function FreightRateTrend() {
+	const { t } = useTranslation(['frt']);
 	const {
 		loading,
 		pagination,
@@ -26,7 +28,7 @@ function FreightRateTrend() {
 
 	return (
 		<>
-			<div className={styles.heading}>Freight Rate Trends</div>
+			<div className={styles.heading}>{t('frt:main_title')}</div>
 
 			<SearchCard />
 

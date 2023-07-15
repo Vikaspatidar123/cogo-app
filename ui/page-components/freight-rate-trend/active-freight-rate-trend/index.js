@@ -1,6 +1,7 @@
 import { Button, Popover, Placeholder } from '@cogoport/components';
 import { IcMArrowBack, IcMPortArrow } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import FilterForm from './components/filter';
@@ -27,6 +28,7 @@ function RenderSkeleton() {
 function ActiveFreightRateTrend() {
 	const { back, query } = useRouter();
 	const id = query.trend_id;
+	const { t } = useTranslation(['frt']);
 	const { organization } = useSelector((state) => state.profile);
 
 	const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
@@ -79,7 +81,7 @@ function ActiveFreightRateTrend() {
 	function Graph() {
 		return Object?.keys(datasets || {}).length > 2 ? (
 			<>
-				<div className={styles.heading}>Trend Chart</div>
+				<div className={styles.heading}>{t('frt:trend_chart_title')}</div>
 				<TrendChart
 					labels={labels || []}
 					datasets={datasets || []}
@@ -117,9 +119,9 @@ function ActiveFreightRateTrend() {
 				</Popover>
 
 				<div className={styles.routes}>
-					<p className="origin">{origin_port?.name || 'Origin'}</p>
+					<p className="origin">{origin_port?.name || t('frt:stepper_origin')}</p>
 					<IcMPortArrow height={30} width={40} style={{ margin: '0px 16px' }} />
-					<p className="origin">{destination_port?.name || 'Destination'}</p>
+					<p className="origin">{destination_port?.name || t('frt:stepper_destination')}</p>
 				</div>
 			</div>
 
@@ -147,7 +149,7 @@ function ActiveFreightRateTrend() {
 			<div className={styles.container}>{loading ? <RenderSkeleton /> : Graph()}</div>
 			<div className={styles.filter_mobile_view}>
 				<Button variant="secondary" size="sm" onClick={handleFilterModal}>
-					Filter
+					{t('frt:filter')}
 				</Button>
 			</div>
 

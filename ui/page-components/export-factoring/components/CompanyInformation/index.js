@@ -25,7 +25,7 @@ function CompanyInformation({
 	const [updatedValues, setUpdatedValues] = useState({});
 
 	const getTurnOverSlab = () => {
-		const { minAmount, maxAmount, minAmountUnit, maxAmountUnit, currency } = data.turn_over_slab || {};
+		const { minAmount, maxAmount, minAmountUnit, maxAmountUnit, currency } = data?.turn_over_slab || {};
 		if (data.turn_over_slab.max_amount === 0) {
 			return updatedValues.turn_over_slab;
 		}
@@ -69,7 +69,6 @@ function CompanyInformation({
 			refetch();
 		}
 
-		console.log(request, 'aaa');
 	};
 
 	if (loading || !data) {
@@ -97,7 +96,7 @@ function CompanyInformation({
 				<Button
 					onClick={handleGetOfferLetter}
 					loading={updateCreditLoading}
-					disabled={updateCreditLoading || Object.keys(updatedValues.address || {}).length === 0}
+					disabled={updateCreditLoading}
 				>
 					Get Offer Letter
 

@@ -4,12 +4,15 @@ import { useState } from 'react';
 
 import styles from './styles.module.css';
 
-function Details({ director = {}, setShowEdit = () => {}, showEdit }) {
+function Details({ director = {}, setShowEdit = () => {}, showEdit, constitutionMapping = {} }) {
 	const [showDetails, setShowDetails] = useState(false);
 	const {
 		name = '', registration_number = '',
 		gender = '', din = '', date_of_birth = '', address = '',
+		
 	} = director || {};
+
+	console.log(director, 'aaa');
 
 	return (
 		<div className={styles.container}>
@@ -52,7 +55,9 @@ function Details({ director = {}, setShowEdit = () => {}, showEdit }) {
 					</div>
 					<div className={styles.description}>
 						<div className={styles.title}>
-							Shareholder (%)
+							{constitutionMapping.share_percent_label}
+							{' '}
+							(%)
 						</div>
 						<div className={styles.value}>
 							-

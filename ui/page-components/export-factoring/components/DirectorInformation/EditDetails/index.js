@@ -10,12 +10,11 @@ import getField from '@/packages/forms/Controlled';
 
 function EditDetails({
 	setShowEdit = () => { }, showEdit = {}, data = {}, setUpdatedValues = () => { },
-	updatedValues,
-	getCreditRequestResponse = {},
+
 }) {
-	console.log(data, showEdit, 'data');
 	const {
 		directors = {},
+		constitution_of_business = '',
 	} = data || {};
 	const {
 		name,
@@ -26,15 +25,15 @@ function EditDetails({
 		pincode,
 		city,
 		state,
-		email,
 		din,
-		designation,
 	} = directors.find((item) => item.registration_number === showEdit.registration_number);
 
 	const { show = '', type = '' } = showEdit || {};
 
 	const saveValues = (values) => {
+		console.log(values, 'aaa');
 		setUpdatedValues((prev) => ({ ...prev, [type]: values }));
+		setShowEdit((prev) => ({ ...prev, show: !prev.show }));
 	};
 
 	const { control, handleSubmit, formState: { errors } } = useForm({
@@ -55,7 +54,7 @@ function EditDetails({
 		<Modal show={show} onClose={() => setShowEdit({ show: false })} closable>
 			<Modal.Body>
 				<form className={styles.form}>
-					{getDirectorControls().map((item) => {
+					{getDirectorControls(constitution_of_business).map((item) => {
 						const Element = getField(item.type);
 						return (
 							<div className={styles.field} key={item.name}>

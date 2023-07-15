@@ -18,13 +18,33 @@ function DirectorInformation({
 	const [showAddDirectors, setShowAddDirectors] = useState(false);
 	const { data = {}, loading } = useGetCompanyFinanceData({ id: getCreditRequestResponse?.id });
 	const { updateCredit, loading:updateCreditLoading } = useUpdateCredit();
-	const { directors = [] } = data || {};
-	const { date_of_incorporation, entity_id } = data;
+	const { date_of_incorporation, directors = [], entity_id, constitution_of_business = '' } = data;
 	const [updatedValues, setUpdatedValues] = useState({});
 
-	const saveDirectorAndReport = async () => {
-		console.log(updatedValues, 'finacial');
+	const constitutionMapping = {
+		PROPRIETORSHIP: {
+			label               : 'Proprietorship',
+			identity_number     : 'CIN',
+			share_percent_label : 'Partnership',
+		},
+		PARTNERSHIP: {
+			label               : 'Partners',
+			identity_number     : 'CIN',
+			share_percent_label : 'Partnership',
+		},
+		'PRIVATE LIMITED COMPANY': {
+			label               : 'Directors',
+			identity_number     : 'DIN',
+			share_percent_label : 'Shareholding',
+		},
+		'PUBLIC LIMITED COMPANY': {
+			label               : 'Directors',
+			identity_number     : 'DIN',
+			share_percent_label : 'Shareholding',
+		},
+	}[constitution_of_business];
 
+	const saveDirectorAndReport = async () => {
 		const financial_reports = updatedValues.financial_data.map((item) => ({
 			start_year         : item.select_year.split('-')[0].trim(),
 			end_year           : item.select_year.split('-')[1].trim(),
@@ -64,11 +84,19 @@ function DirectorInformation({
 
 	return (
 		<div className={styles.director_details}>
-			<div className={styles.heading}>Director Details</div>
+			<div className={styles.heading}>
+				{constitutionMapping?.label}
+				{' '}
+				Details
+			</div>
 			<div className={styles.sub_heading}>
-				Edit and verify your director details
+				Edit and verify your
+				{' '}
+				{constitutionMapping?.label}
+				{' '}
+				details
 				<Button onClick={setShowAddDirectors}>
-					Add Directors
+					Add
 				</Button>
 			</div>
 			{(directors || []).map((director) => (
@@ -77,6 +105,8 @@ function DirectorInformation({
 					key={director.name}
 					setShowEdit={setShowEdit}
 					showEdit={showEdit}
+					data={data}
+					constitutionMapping={constitutionMapping}
 				/>
 			))}
 			<div className={styles.financial_div}>
@@ -94,6 +124,7 @@ function DirectorInformation({
 					data={data}
 					setUpdatedValues={setUpdatedValues}
 					updatedValues={updatedValues}
+
 				/>
 			)}
 			{showAddDirectors && (

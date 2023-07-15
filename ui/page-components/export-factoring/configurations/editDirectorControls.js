@@ -1,4 +1,4 @@
-export const getDirectorControls = (gst_list, setUpdatedValues) => [
+export const getDirectorControls = (constitution_of_business) => [
 
 	{
 		name  : 'registration_number',

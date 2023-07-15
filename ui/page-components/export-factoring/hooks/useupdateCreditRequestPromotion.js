@@ -16,7 +16,7 @@ const useUpdateCreditRequestPromotion = ({
 	const updateCreditPromotion = useCallback(async ({ type, coupon }) => {
 		try {
 			await trigger({
-				data: {
+				params: {
 					credit_id    : getCreditRequestResponse?.credit_id,
 					promotion_id : coupon?.id,
 					status       : type === 'applied' ? 'active' : 'inactive',

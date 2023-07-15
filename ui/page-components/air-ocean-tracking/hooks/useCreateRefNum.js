@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 const { useRequest } = require('@/packages/request');
 
@@ -8,6 +9,8 @@ const TRACKER_ID_KEY = {
 };
 
 const useCreateRefNum = ({ shipmentId = '', refetchTrackerList, closeHandler, activeTab = 'ocean' }) => {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
 	const [{ loading }, trigger] = useRequest({
 		method : 'post',
 		url    : 'update_external_reference_number',
@@ -26,11 +29,11 @@ const useCreateRefNum = ({ shipmentId = '', refetchTrackerList, closeHandler, ac
 					],
 				},
 			});
-			Toast.success('Updated Reference Number');
+			Toast.success(t('airOceanTracking:tracking_updated_reference_number_toast'));
 			refetchTrackerList();
 			closeHandler();
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 

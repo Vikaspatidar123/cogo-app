@@ -1,4 +1,4 @@
-const shipmentConfig = [
+const getShipmentConfig = ({ t }) => [
 	{
 		key   : 'checkbox',
 		title : '',
@@ -7,31 +7,31 @@ const shipmentConfig = [
 	},
 	{
 		key   : 'shipper',
-		title : 'Shipper',
+		title : t('airOceanTracking:tracking_shipment_config_label_1'),
 		func  : 'renderShipperConsignee',
 		width : '19%',
 
 	},
 	{
 		key   : 'consignee',
-		title : 'Consignee',
+		title : t('airOceanTracking:tracking_shipment_config_label_2'),
 		func  : 'renderShipperConsignee',
 		width : '18%',
 
 	},
 	{
 		key   : 'portPair',
-		title : 'Port Pair',
+		title : t('airOceanTracking:tracking_shipment_config_label_3'),
 		func  : 'renderPortPair',
 		width : '28%',
 
 	},
 	{
 		key   : 'input',
-		title : 'BL No/ Container No',
+		title : t('airOceanTracking:tracking_shipment_config_label_4'),
 		width : '25%',
 
 	},
 ];
 
-export default shipmentConfig;
+export default getShipmentConfig;

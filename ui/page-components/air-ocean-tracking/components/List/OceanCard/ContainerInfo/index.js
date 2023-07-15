@@ -1,8 +1,9 @@
 import { cl, Placeholder, Tooltip } from '@cogoport/components';
 import { IcMAlert, IcMArrowLeft, IcMArrowRight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useMemo } from 'react';
 
-import GET_MAPPING from '../../../../constant/card';
+import getMappingObject from '../../../../constant/card';
 
 import styles from './styles.module.css';
 
@@ -27,6 +28,10 @@ function ContainerInfo({
 	loading = true, activeTab,
 }) {
 	const { container_length = 0, container_description = '' } = currentContainer || {};
+
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const GET_MAPPING = getMappingObject({ t });
 
 	const MAPPING = GET_MAPPING?.[activeTab];
 	const { SHIPMENT_TITLE, SHIPMENT_INFO, LOADING_ICON } = MAPPING;

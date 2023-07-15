@@ -1,19 +1,19 @@
 import { IcMListView, IcMMap } from '@cogoport/icons-react';
 
-const TAB_MAPPING = {
-	ocean : 'Ocean',
-	air   : 'Air',
-};
+const getTabMapping = ({ t }) => ({
+	ocean : t('airOceanTracking:ocean_toggle_label'),
+	air   : t('airOceanTracking:air_toggle_label'),
+});
 
-const VIEW_MAPPING = {
-	All                : 'All',
-	CONTAINER_NO       : 'Container View',
-	'BOOKING_NO/BL_NO' : 'BL View',
-};
+const getViewMapping = ({ t }) => ({
+	All                : t('airOceanTracking:tracking_table_view_option_1'),
+	CONTAINER_NO       : t('airOceanTracking:tracking_table_view_option_2'),
+	'BOOKING_NO/BL_NO' : t('airOceanTracking:tracking_table_view_option_3'),
+});
 
 const DASHBOARD_VIEW_MAPPING = {
 	list : <IcMListView width={20} height={20} />,
 	map  : <IcMMap width={20} height={20} />,
 };
 
-export { TAB_MAPPING, VIEW_MAPPING, DASHBOARD_VIEW_MAPPING };
+export { getTabMapping, getViewMapping, DASHBOARD_VIEW_MAPPING };

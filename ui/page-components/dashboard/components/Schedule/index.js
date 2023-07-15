@@ -1,4 +1,5 @@
 import { IcMArrowNext } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -6,10 +7,11 @@ import { useRouter } from '@/packages/next';
 
 function Schedule() {
 	const { push } = useRouter();
+	const { t } = useTranslation(['dashboard']);
 
 	return (
 		<div className={styles.header}>
-			<p>Schedules</p>
+			<p>{t('dashboard:schedule_schedules_text')}</p>
 			<div className={styles.total}>
 				<div>
 					<div className={styles.container}>
@@ -22,7 +24,7 @@ function Schedule() {
 						</div>
 						<div>
 							<p className={styles.new_img}>
-								Ocean Schedule
+								{t('dashboard:schedule_activeSchedules_text_3')}
 								<IcMArrowNext
 									role="presentation"
 									onClick={() => push('/saas/ocean-schedules')}
@@ -32,7 +34,7 @@ function Schedule() {
 							<p
 								className={styles.plan}
 							>
-								Plan an Upcoming shipment using comprehensive shipping schedules
+								{t('dashboard:common_oceanCard_text_2')}
 							</p>
 
 						</div>
@@ -47,7 +49,7 @@ function Schedule() {
 						</div>
 						<div>
 							<p className={styles.new_img}>
-								Air Schedule
+								{t('dashboard:common_airCard_text_1')}
 								<IcMArrowNext
 									role="presentation"
 									onClick={() => push('/saas/air-schedules')}
@@ -57,7 +59,7 @@ function Schedule() {
 							<p
 								className={styles.plan}
 							>
-								Plan an Upcoming shipment using comprehensive airschedules
+								{t('dashboard:common_airCard_text_2')}
 							</p>
 						</div>
 					</div>

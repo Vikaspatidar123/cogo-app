@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -6,13 +7,14 @@ import { useRouter } from '@/packages/next';
 
 function Elgibility() {
 	const { push } = useRouter();
+	const { t } = useTranslation(['dashboard']);
 
 	return (
 		<div className={styles.header}>
 			<div className={styles.body}>
-				Ship Now,
-				<span className={styles.blue}>Pay Later</span>
-				Easily apply online in just a few minutes
+				{t('dashboard:pay_later_text_1')}
+				<span className={styles.blue}>{t('dashboard:pay_later_text')}</span>
+				{t('dashboard:pay_later_text_2')}
 			</div>
 			<div className={styles.mainBody}>
 				<div className={styles.sub}>
@@ -24,18 +26,13 @@ function Elgibility() {
 
 				</div>
 				<p className={styles.text}>
-					Pay up to 90 days later for shipments, local
-					transport, and other trade services without additional charges.
+					{t('dashboard:pay_later_text_3')}
 				</p>
 
 			</div>
 			<div className={styles.Bottom}>
-				<Button
-					className={styles.button}
-					onClick={() => push('/pay-later')}
-					type="button"
-				>
-					CHECK ELIGIBILITY NOW
+				<Button className={styles.button} type="button" onClick={() => push('/pay-later')}>
+					{t('dashboard:pay_later_text_4')}
 				</Button>
 			</div>
 		</div>

@@ -1,4 +1,5 @@
 import { isEmpty, upperCase } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useCallback, useEffect, useState } from 'react';
 
 import headerFormControls, { defaultValues } from '../configuration/headerFormControls';
@@ -30,6 +31,9 @@ const API_MAPPING = {
 
 const useCreateTracker = ({ operatorData }) => {
 	const { query } = useRouter();
+
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
 	const [trackingType, setTrackingType] = useState('ocean');
 
 	const { branch_id } = query || {};
@@ -52,7 +56,7 @@ const useCreateTracker = ({ operatorData }) => {
 	const { watch, reset, setValue } = formHook;
 	const shipmentNumber = watch('shipmentNumber');
 
-	const controls = headerFormControls({ trackingType, operatorData });
+	const controls = headerFormControls({ trackingType, operatorData, t });
 
 	const getOperatorInfo = useCallback(({ shipmentNo }) => {
 		try {
@@ -62,7 +66,7 @@ const useCreateTracker = ({ operatorData }) => {
 				},
 			});
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	}, [payloadKey, trigger]);
 
@@ -77,7 +81,7 @@ const useCreateTracker = ({ operatorData }) => {
 			const { id } = res?.data || {};
 			redirectToTracker({ type: trackingType, id, isFirst: true });
 		} catch (err) {
-			console.log(err, 'err');
+			console.error(err, 'err');
 		}
 	};
 

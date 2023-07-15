@@ -24,9 +24,9 @@ export async function getServerSideProps(ctx) {
     return {
         props: {
             ...(await serverSideTranslations(locale, ['common'])),
+            errorMessage,
 
         },
-        errorMessage,
     };
 }
 

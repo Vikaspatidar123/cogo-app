@@ -3,11 +3,9 @@ import { IcMLock } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
-import draftAirwayBill from './useDraftAirwayBill';
 
 import { Link } from '@/packages/next';
 import PublicPageNav from '@/ui/commons/components/PublicPageNav';
-import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 const CONTENT = ({ t }) => ({
 	heading: t('common:email_verification'),
@@ -44,39 +42,5 @@ function DraftAirwayBill({ res }) {
 		</div>
 	);
 }
-
-DraftAirwayBill.getInitialProps = async (ctx) => {
-	const { query } = ctx;
-	const { id } = query;
-
-	try {
-		const res = await draftAirwayBill({
-			email_token: id,
-			platform: 'app',
-			auth_scope: 'organization',
-		});
-		const { hasError } = res || {};
-
-		if (!hasError) {
-			const {
-				token,
-				organization_id = '',
-				organization_branch_id = '',
-				shipment_id = '',
-			} = (res || {}).data || {};
-
-			setCookieAndRedirect(
-				token,
-				ctx,
-				`${organization_id}/${organization_branch_id}/shipments/${shipment_id}`,
-			);
-		} else {
-			return { layout: 'none', res };
-		}
-	} catch (e) {
-		console.log(e.toString());
-	}
-	return { layout: 'none' };
-};
 
 export default DraftAirwayBill;

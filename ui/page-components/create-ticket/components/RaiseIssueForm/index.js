@@ -2,7 +2,7 @@ import useGetAsyncOptions from '../../hooks/useGetAsyncOptions';
 
 import styles from './styles.module.css';
 
-import { AsyncSelectController, SelectController } from '@/packages/forms';
+import { SelectController, AsyncSelectController } from '@/packages/forms';
 import FileUploader from '@/packages/forms/Business/FileUploader';
 import TextAreaController from '@/packages/forms/Controlled/TextAreaController';
 
@@ -17,7 +17,7 @@ function RaiseIssueForm({
 	const { loadOptions, defaultOptions } = useGetAsyncOptions({
 		isTicketNotUtlilized,
 	});
-	console.log(loadOptions, 'loadOptions');
+
 	return (
 		<div
 			className={`${styles.container} 

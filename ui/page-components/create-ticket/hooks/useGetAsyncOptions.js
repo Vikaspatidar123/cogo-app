@@ -23,11 +23,6 @@ const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
 	const { token, type = '' } = query || {};
 	const { debounceQuery, query:searchQuery } = useDebounceQuery();
 
-	// const { trigger } = useRequest(
-	// 	'get',
-	// 	false,
-	// 	'cogocare',
-	// )('/token_ticket_types');
 	const [{ loading }, trigger] = useRequestBf({
 		url     : '/token_ticket_types',
 		method  : 'get',
@@ -57,12 +52,14 @@ const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
 			setDefaultOptions(formatOptions(list));
 		}
 	};
+
 	const loadOptions = (inputValue = '') => {
 		debounceQuery(inputValue);
 	};
 
 	useEffect(() => {
 		getOptions();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return {

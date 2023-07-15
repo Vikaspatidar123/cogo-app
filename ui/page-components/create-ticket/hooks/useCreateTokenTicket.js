@@ -1,33 +1,44 @@
+import { useCallback, useEffect } from 'react';
+
 import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
 let isTicketNotUtlilized = false;
 
-const useCreateTokenTicket = () => {
-	const {
-		general: { query = {} },
-	} = useSelector((state) => state);
+const getPayload = ({ query }) => {
+	const { token = '', source = '', agent_id = '', type = '' } = query || {};
 
-	const { push } = useRouter();
-	const { token, type, source } = query || {};
+	return {
+		TicketToken    : token,
+		Type           : type,
+		Source         : source || 'client',
+		NotifyCustomer : true,
+		ReviewerUserId : agent_id || undefined,
+	};
+};
+
+const useCreateTokenTicket = () => {
+	const { query, push } = useRouter();
+
+	const { token = '', source = '', type = '' } = query || {};
 
 	const [{ data, loading }, trigger] = useRequestBf({
-		url     : 'tickets/token_ticket',
+		url     : 'token_ticket',
 		method  : 'post',
 		scope   : 'cogocare',
 		authKey : 'post_tickets_token_ticket',
 		data    : { TicketToken: token, Type: type, Source: source || 'client' },
 	}, { manual: false });
 
-	const pushToDetailsPage = () => {
+	const pushToDetailsPage = useCallback(() => {
 		push('/ticket-details/[token]', `/ticket-details/${token}`, false);
-	};
+	}, [push, token]);
 
-	const createTokenTicket = async () => {
+	const createTokenTicket = useCallback(async () => {
 		const res = await trigger({
-			data: { TicketToken: token, Type: type, Source: source || 'client' },
+			data: getPayload({ query }),
 		});
+
 		if (res?.data) {
 			const { Status = '' } = res?.data || {};
 			if (Status === 'utilized' && token) {
@@ -35,7 +46,11 @@ const useCreateTokenTicket = () => {
 			}
 			isTicketNotUtlilized = Status !== 'utilized' || false;
 		}
-	};
+	}, [pushToDetailsPage, query, token, trigger]);
+
+	useEffect(() => {
+		createTokenTicket();
+	}, [createTokenTicket]);
 
 	return {
 		loading,

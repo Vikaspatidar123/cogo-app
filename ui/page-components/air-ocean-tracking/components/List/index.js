@@ -1,5 +1,6 @@
 import { Pagination } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import useGetListTracker from '../../hooks/useGetListTracker';
@@ -24,6 +25,7 @@ const EMPTY_STATE_IMG = {
 };
 
 function List() {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
 	const [modalInfo, setModalInfo] = useState({
 		show: false,
 	});
@@ -67,7 +69,7 @@ function List() {
 						height={300}
 						alt="empty"
 					/>
-					<p>No Tracking Data Found</p>
+					<p>{t('airOceanTracking:tracking_data_not_found_text')}</p>
 				</div>
 			) : (
 				<div className={styles.pagination_container}>

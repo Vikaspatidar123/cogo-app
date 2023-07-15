@@ -30,7 +30,7 @@ const useCsvUpload = ({ trackingType = 'ocean', closeModalHandler }) => {
 			});
 			closeModalHandler();
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 

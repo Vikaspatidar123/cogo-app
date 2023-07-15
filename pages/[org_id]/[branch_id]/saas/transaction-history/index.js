@@ -5,7 +5,8 @@ import TransactionHistory from '@/ui/page-components/transactionHistory/componen
 export async function getServerSideProps({ locale }) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common', 'iecResult', 'iedResult', 'tecResult', 'dtResult'])),
+			...(await serverSideTranslations(locale, ['common', 'iecResult', 'iedResult', 'tecResult', 'dtResult',
+				'transactionHistory'])),
 
 		},
 	};

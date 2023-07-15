@@ -1,5 +1,6 @@
 import { Placeholder, Modal } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import CommonServicesModal from './CommonServicesModal';
 import QuotationModal from './QuotationModal';
@@ -30,6 +31,7 @@ function ServiceDetailModal({
 	loading = false,
 	requestType,
 }) {
+	const { t } = useTranslation(['transactionHistory']);
 	const ServiceComponent = SERVICES_MODAL?.[requestType] || SERVICES_MODAL.DEFAULT;
 
 	return (
@@ -52,12 +54,12 @@ function ServiceDetailModal({
 						<Image
 							height={250}
 							width={250}
-							alt="No Data"
+							alt={t('transactionHistory:result_empty_state_alt')}
 							src={GLOBAL_CONSTANTS.image_url.empty_state}
 						/>
 					</div>
 					<div className={styles.text}>
-						Something Went Wrong
+						{t('transactionHistory:result_empty_state')}
 					</div>
 				</>
 			)}

@@ -1,10 +1,13 @@
 import { Toggle } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import DrillDown from './DrillDown';
 import styles from './styles.module.css';
 
 function Document({ documents = [], hsNumber = '' }) {
+	const { t } = useTranslation(['transactionHistory']);
+
 	const [labeledValue, setLabeledValue] = useState('IMPORT');
 	const [importDoc, setImportDoc] = useState([]);
 	const [exportDoc, setExportDoc] = useState([]);
@@ -17,7 +20,7 @@ function Document({ documents = [], hsNumber = '' }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.title_container}>
-				<div className={styles.name}>Import/Export Documents</div>
+				<div className={styles.name}>{t('transactionHistory:result_title_docs')}</div>
 				<div className={styles.toggle}>
 					<Toggle
 						name="a1"
@@ -37,7 +40,7 @@ function Document({ documents = [], hsNumber = '' }) {
 				</div>
 			) : (
 				<div className={styles.section4}>
-					<div className={styles.text_total}>Not Subscribed</div>
+					<div className={styles.text_total}>{t('transactionHistory:result_quotation_not_sub')}</div>
 				</div>
 			)}
 		</div>

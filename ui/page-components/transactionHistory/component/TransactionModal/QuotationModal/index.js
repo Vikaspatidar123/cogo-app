@@ -1,5 +1,6 @@
 import { cl } from '@cogoport/components';
 import { IcCFcrossInCircle, IcCFtick, IcMArrowDown, IcMPaste } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import Controls from '../Controls';
@@ -10,7 +11,6 @@ import LandedCost from '../landedCost';
 import styles from './styles.module.css';
 
 const MAX_DESC_LENGTH = 100;
-const MAX_DESC_LENGTH_MOBILE = 40;
 
 const TRADER_CHECK_MAPPING = {
 	true: {
@@ -23,18 +23,17 @@ const TRADER_CHECK_MAPPING = {
 	},
 };
 
-const description = ({ sectionDescription = '', isMobile, showDrill }) => {
-	if (showDrill) return sectionDescription;
-	if (sectionDescription?.length > MAX_DESC_LENGTH_MOBILE && isMobile) {
-		return `${sectionDescription?.substring(0, MAX_DESC_LENGTH_MOBILE)}....`;
+const description = ({ name = '', showDrill }) => {
+	if (showDrill) return name;
+	if (name?.length > MAX_DESC_LENGTH) {
+		return `${name?.substring(0, MAX_DESC_LENGTH)}....`;
 	}
-	if (sectionDescription?.length > MAX_DESC_LENGTH) {
-		return `${sectionDescription?.substring(0, MAX_DESC_LENGTH)}....`;
-	}
-	return sectionDescription;
+	return name;
 };
 
 function Container({ item, resultCurrency }) {
+	const { t } = useTranslation(['transactionHistory']);
+
 	const [showDrill, setShowDrill] = useState(false);
 
 	const {
@@ -47,9 +46,9 @@ function Container({ item, resultCurrency }) {
 
 	return (
 		<>
-			<div className={styles.card_line} role="presentation" onClick={() => setShowDrill(!showDrill)}>
+			<div className={styles.card_line} role="presentation" onClick={() => setShowDrill((prev) => !prev)}>
 				<div className={styles.title}>
-					{description(productName)}
+					{description({ name: productName, showDrill })}
 					/
 					{hsNumber}
 				</div>
@@ -65,7 +64,7 @@ function Container({ item, resultCurrency }) {
 			<div className={`${styles.card_body} ${showDrill && styles.display_drill}`}>
 				<div className={styles.title}>
 					<IcMPaste height={22} width={22} />
-					Duties & Taxes
+					{t('transactionHistory:result_title_duties')}
 				</div>
 				<div className={styles.footer}>
 					<div className={styles.landedcost}>
@@ -86,12 +85,11 @@ function Container({ item, resultCurrency }) {
 }
 
 function QuotationModal({ tradeEngineResponse = {} }) {
+	const { t } = useTranslation(['transactionHistory']);
+
 	const {
 		lineItem = [],
-		incoterm = '',
-		consignmentValue = '',
 		resultCurrency = '',
-		totalDutiesAndTaxes = '',
 		screeningPartyName = '',
 		restrictedPartyScreening = false,
 	} = tradeEngineResponse || {};
@@ -102,7 +100,7 @@ function QuotationModal({ tradeEngineResponse = {} }) {
 		<div>
 			<div className={styles.main_card}>
 				<div className={styles.card}>
-					<div className={styles.trader}>Trader eligibility check:</div>
+					<div className={styles.trader}>{t('transactionHistory:result_title_screening')}</div>
 					{tecIcon}
 					<div>
 						<div className={styles.trader}>{screeningPartyName}</div>
@@ -110,20 +108,18 @@ function QuotationModal({ tradeEngineResponse = {} }) {
 					</div>
 				</div>
 			</div>
-			<Duties
-				incoterm={incoterm}
-				consignmentValue={consignmentValue}
-				resultCurrency={resultCurrency}
-				totalDutiesAndTaxes={totalDutiesAndTaxes}
-				transactionData={tradeEngineResponse}
-			/>
-			{(lineItem || []).map((item) => (
-				<Container
-					key={item?.hsNumber}
-					item={item}
-					resultCurrency={resultCurrency}
-				/>
-			))}
+			<Duties transactionData={tradeEngineResponse} />
+
+			<div className={styles.line_item_container}>
+				{(lineItem || []).map((item) => (
+					<Container
+						key={item?.hsNumber}
+						item={item}
+						resultCurrency={resultCurrency}
+					/>
+				))}
+			</div>
+
 		</div>
 	);
 }

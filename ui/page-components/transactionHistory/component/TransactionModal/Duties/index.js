@@ -26,23 +26,26 @@ function Duties({ transactionData }) {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [transactionData]);
 	return (
-		<div className={styles.container}>
-			<div className={styles.styled_row}>
-				{(controls || []).map((item) => {
-					const Element = getField(item.type);
-					return (
-						<div className={styles.row} style={{ margin: 0 }}>
-							<FormItem label={item?.label} className={item?.name} key={item.id}>
-								<Element {...item} control={control} />
-							</FormItem>
-						</div>
+		<>
+			<div className={styles.container}>
+				<div className={styles.styled_row}>
+					{(controls || []).map((item) => {
+						const Element = getField(item.type);
+						return (
+							<div className={styles.row} style={{ margin: 0 }}>
+								<FormItem label={item?.label} className={item?.name} key={item.id}>
+									<Element {...item} control={control} />
+								</FormItem>
+							</div>
 
-					);
-				})}
+						);
+					})}
 
+				</div>
 			</div>
 			<div className={styles.hr} />
-		</div>
+		</>
+
 	);
 }
 export default Duties;

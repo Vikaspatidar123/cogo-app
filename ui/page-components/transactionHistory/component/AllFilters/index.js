@@ -1,10 +1,13 @@
 import { Input } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import FilterSection from './Filter';
 import styles from './styles.module.css';
 
 function AllFilters({ filters, setFilters }) {
+	const { t } = useTranslation(['transactionHistory']);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.button_div}>
@@ -17,7 +20,7 @@ function AllFilters({ filters, setFilters }) {
 							searchTerm : e,
 							page       : 1,
 						}))}
-						placeholder="Search by Transaction No."
+						placeholder={t('transactionHistory:filter_search_placeholder')}
 						suffix={<IcMSearchlight height={15} width={20} />}
 					/>
 				</div>

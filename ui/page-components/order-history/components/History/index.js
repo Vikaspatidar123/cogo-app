@@ -1,8 +1,9 @@
 import { Input } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import CONTROLS from '../../configurations/controls';
+import getConfig from '../../configurations/controls';
 import useList from '../../hooks/useList';
 
 import List from './List';
@@ -10,7 +11,11 @@ import FilterSection from './List/Filter';
 import styles from './styles.module.css';
 
 function OrderHistory() {
-	const [sort, setSort] = useState();
+	const { t } = useTranslation(['orderHistory']);
+	const [sort, setSort] = useState({});
+
+	const config = getConfig({ t });
+
 	const {
 		setGlobalFilters = () => { },
 		filters = {},
@@ -19,12 +24,11 @@ function OrderHistory() {
 	} = useList({
 		sort,
 	});
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.head}>
 				<div className={styles.title_section}>
-					<h1 className={styles.title}>Order History</h1>
+					<h1 className={styles.title}>{t('orderHistory:main_title')}</h1>
 					<div className={styles.line_wrapper}>
 						<div className={styles.line} />
 					</div>
@@ -34,7 +38,7 @@ function OrderHistory() {
 
 					<div className={styles.input}>
 						<Input
-							placeholder="Search by order number"
+							placeholder={t('orderHistory:search_placeholder')}
 							onChange={(e) => {
 								setGlobalFilters((prev) => ({
 									...prev,
@@ -53,7 +57,7 @@ function OrderHistory() {
 			</div>
 
 			<List
-				config={CONTROLS}
+				config={config}
 				data={apiData || {}}
 				loading={apiLoading}
 				setGlobalFilters={setGlobalFilters}

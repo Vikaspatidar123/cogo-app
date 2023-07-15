@@ -1,6 +1,7 @@
 import { Modal, Button, ButtonIcon } from '@cogoport/components';
 import { IcMCross } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import csvUploadControls from '../../../../configuration/csvUploadControls';
 import { CSV_SAMPLE_FILE } from '../../../../constant/csvSampleFile';
@@ -16,7 +17,9 @@ const downloadSampleHandler = ({ trackingType }) => {
 };
 
 function ImportCsvModal({ csvModal, setCsvModal, trackingType = 'ocean', operatorData = {} }) {
-	const controls = csvUploadControls({ trackingType, operatorData });
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const controls = csvUploadControls({ trackingType, operatorData, t });
 	const { control, handleSubmit, formState:{ errors } } = useForm();
 
 	const closeModalHandler = () => setCsvModal(false);
@@ -34,7 +37,6 @@ function ImportCsvModal({ csvModal, setCsvModal, trackingType = 'ocean', operato
 					{controls.map((config) => {
 						const { name, type, width } = config || {};
 						const Element = getField(type);
-
 						return (
 							<div key={name} className={styles.col} style={{ width }}>
 								<Element control={control} {...config} type="card" />
@@ -48,7 +50,7 @@ function ImportCsvModal({ csvModal, setCsvModal, trackingType = 'ocean', operato
 						themeType="linkUi"
 						onClick={() => downloadSampleHandler({ trackingType })}
 					>
-						Download the sample file here
+						{t('airOceanTracking:air_ocean_tracking_download_button_label')}
 					</Button>
 
 					<Button
@@ -58,8 +60,7 @@ function ImportCsvModal({ csvModal, setCsvModal, trackingType = 'ocean', operato
 						onClick={handleSubmit(submitHandler)}
 						loading={loading}
 					>
-						Import
-
+						{t('airOceanTracking:air_ocean_tracking_import_button_label')}
 					</Button>
 				</div>
 

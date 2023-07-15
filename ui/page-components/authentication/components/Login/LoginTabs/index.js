@@ -6,12 +6,20 @@ import MobileLoginForm from '../MobileLoginForm';
 
 import styles from './styles.module.css';
 
-function LoginTabs({ setMode = () => {}, setMobileNumber = () => {}, setOtpId = () => {}, mobileNumber = {} }) {
+function LoginTabs({
+	setMode = () => {},
+	setMobileNumber = () => {},
+	setOtpId = () => {},
+	mobileNumber = {},
+	t = () => {},
+}) {
+	const translationKey = 'common:loginField';
+
 	const [activeTab, setActiveTab] = useState('email');
 
 	return (
 		<>
-			<h1 className={styles.card_heading}>Welcome back to Cogoport</h1>
+			<h1 className={styles.card_heading}>{t(`${translationKey}_title`)}</h1>
 
 			<Tabs
 				activeTab={activeTab}
@@ -21,7 +29,7 @@ function LoginTabs({ setMode = () => {}, setMobileNumber = () => {}, setOtpId = 
 			>
 
 				<TabPanel name="email" title="Email">
-					<EmailLoginForm setMode={setMode} />
+					<EmailLoginForm setMode={setMode} t={t} />
 				</TabPanel>
 
 				<TabPanel name="mobile" title="Mobile">
@@ -30,6 +38,7 @@ function LoginTabs({ setMode = () => {}, setMobileNumber = () => {}, setOtpId = 
 						setMobileNumber={setMobileNumber}
 						setOtpId={setOtpId}
 						mobileNumber={mobileNumber}
+						t={t}
 					/>
 				</TabPanel>
 

@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import useResetUserPassword from '../../hooks/useResetUserPassword';
@@ -14,6 +15,8 @@ const FORGOT_FLOW_MAPPING = {
 };
 
 function ForgotPassword() {
+	const { t } = useTranslation(['common']);
+
 	const [mode, setMode] = useState('email_form');
 	const [emailId, setEmailId] = useState('');
 
@@ -42,6 +45,7 @@ function ForgotPassword() {
 					{Component && (
 						<Component
 							key={mode}
+							t={t}
 							{...(componentProps[mode] || {})}
 						/>
 					)}

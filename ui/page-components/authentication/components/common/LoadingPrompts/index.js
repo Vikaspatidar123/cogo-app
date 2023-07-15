@@ -5,10 +5,10 @@ import { prompts } from '../../../configurations/loading-prompts';
 
 import styles from './styles.module.css';
 
-function LoadingPrompts({ type = '' }) {
+function LoadingPrompts({ type = '', t = () => {} }) {
 	const [currentPromptIndex, setCurrentPromptIndex] = useState(0);
 
-	const modifiedPrompts = prompts[type] || [];
+	const modifiedPrompts = prompts(t)[type] || [];
 
 	const { length } = modifiedPrompts;
 

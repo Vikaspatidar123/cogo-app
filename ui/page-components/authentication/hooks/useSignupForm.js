@@ -5,15 +5,16 @@ import { checkMobileInput } from '../utils/check-mobile-input';
 import { getCountryDetailsByCountryCode } from '../utils/get-country-details';
 
 const useSignupForm = ({
-	setCustomError,
-	trigger,
-	errors,
-	setValue,
-	formValues,
-	onLeadUserDetails,
-	leadUserId,
-	setUserDetails,
-	signupAuthentication,
+	setCustomError = () => {},
+	trigger = () => {},
+	errors = {},
+	setValue = () => {},
+	formValues = {},
+	onLeadUserDetails = () => {},
+	leadUserId = '',
+	setUserDetails = () => {},
+	onSignupAuthentication = () => {},
+	t = () => {},
 }) => {
 	const checkMobileDetails = (val) => {
 		const hasMobileValues = checkMobileInput(val);
@@ -21,7 +22,7 @@ const useSignupForm = ({
 		if (hasMobileValues) {
 			setCustomError('');
 		} else {
-			setCustomError('Mobile Details are required.');
+			setCustomError(t('authentication:signupField_mobile_error'));
 		}
 
 		return hasMobileValues;
@@ -48,7 +49,7 @@ const useSignupForm = ({
 
 		if (hasMobileValues) {
 			setUserDetails({ ...formValues });
-			signupAuthentication(values, e);
+			onSignupAuthentication(values, e);
 		}
 	};
 

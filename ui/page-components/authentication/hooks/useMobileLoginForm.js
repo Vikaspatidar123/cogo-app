@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { checkMobileInput } from '../utils/check-mobile-input';
 import { getCountryDetailsByCountryCode } from '../utils/get-country-details';
 
-const useMobileLoginForm = ({ formValues = {}, onSendOtp = () => {}, setValue = () => {} }) => {
+const useMobileLoginForm = ({ formValues = {}, onSendOtp = () => {}, setValue = () => {}, t = () => {} }) => {
 	const [customError, setCustomError] = useState('');
 
 	const onOtpApiCall = (values, e) => {
@@ -14,7 +14,7 @@ const useMobileLoginForm = ({ formValues = {}, onSendOtp = () => {}, setValue = 
 			setCustomError('');
 			onSendOtp(values, e);
 		} else {
-			setCustomError('Mobile Details are required.');
+			setCustomError(t('common:loginField_mobile_error'));
 		}
 	};
 

@@ -1,43 +1,45 @@
 import styles from './styles.module.css';
 
-function SuccessMessage({ resetUserPassword = () => {}, emailId = '' }) {
+function SuccessMessage({ resetUserPassword = () => { }, emailId = '', t = () => { } }) {
+	const translationKey = 'common:forgotPassword_success';
+
 	return (
 		<>
-			<h2 className={styles.card_heading}>Password Reset Link Sent</h2>
+			<h2 className={styles.card_heading}>{t(`${translationKey}_title`)}</h2>
 
 			<p className={styles.card_body}>
-				Check your email
+				{t(`${translationKey}_body_1`)}
 				{' '}
 				<b>
 					{emailId}
 				</b>
 				{' '}
-				for a link to reset your password.
+				{t(`${translationKey}_body_2`)}
 				<br />
 				<br />
-				Simply click on the link to proceed with resetting your password.
+				{t(`${translationKey}_body_3`)}
 			</p>
 
 			<h4 className={styles.info}>
-				Please Note:
+				{t(`${translationKey}_note_title`)}
 				<ul>
 					<li>
-						Please be sure that the Email ID you entered is correct.
+						{t(`${translationKey}_note_1`)}
 					</li>
 					<li>
-						Please wait for some time as your email provider can be a little slow some times.
+						{t(`${translationKey}_note_2`)}
 					</li>
 					<li>
-						Please check your spam inbox if you are still unable to receive the email
+						{t(`${translationKey}_note_3`)}
 					</li>
 				</ul>
 			</h4>
 
 			<p className={styles.links}>
-				Didn&#39;t receive the password reset link?
+				{t(`${translationKey}_reset_text`)}
 				{' '}
 				<h4 className={styles.reset_link} onClick={() => resetUserPassword(emailId)} role="presentation">
-					Resend Reset Email
+					{t(`${translationKey}_resendEmail_link`)}
 				</h4>
 			</p>
 		</>

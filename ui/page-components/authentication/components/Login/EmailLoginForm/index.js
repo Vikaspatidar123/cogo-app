@@ -8,7 +8,9 @@ import styles from './styles.module.css';
 
 import { useForm, InputController } from '@/packages/forms';
 
-function EmailLoginForm({ setMode = () => {} }) {
+function EmailLoginForm({ setMode = () => { }, t = () => { } }) {
+	const translationKey = 'common:loginField';
+
 	const [showPassword, setShowPassword] = useState(false);
 
 	const { onSubmit = () => { }, loginLoading = false } = useLoginEmailAuthentication({ setMode });
@@ -28,26 +30,26 @@ function EmailLoginForm({ setMode = () => {} }) {
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
 
-			<div className={styles.label}>Email address</div>
+			<div className={styles.label}>{t(`${translationKey}_email_label`)}</div>
 			<InputController
 				control={control}
 				name="email"
 				type="email"
-				placeholder="Enter your Email"
-				rules={{ required: 'Email is required.' }}
+				placeholder={t(`${translationKey}_email_placeholder`)}
+				rules={{ required: t(`${translationKey}_email_error`) }}
 			/>
 			<span className={styles.errors}>
 				{errors?.email?.message || ' '}
 			</span>
 
-			<div className={styles.label}>Password</div>
+			<div className={styles.label}>{t(`${translationKey}_password_label`)}</div>
 			<InputController
 				control={control}
 				name="password"
 				type={showPassword ? 'text' : 'password'}
 				suffix={renderSuffix(showPassword, setShowPassword)}
-				placeholder="Enter your Password"
-				rules={{ required: 'Password is required.' }}
+				placeholder={t(`${translationKey}_password_placeholder`)}
+				rules={{ required: t(`${translationKey}_password_error`) }}
 			/>
 			<span className={styles.errors}>
 				{errors?.password?.message || ' '}
@@ -59,12 +61,12 @@ function EmailLoginForm({ setMode = () => {} }) {
 				type="submit"
 				size="lg"
 			>
-				Login
+				{t(`${translationKey}_submit_button`)}
 			</Button>
 
 			<div className={styles.links}>
-				<a href="/forgot-password">Forgot Password?</a>
-				<a href="/signup">Create a New Account</a>
+				<a href="/forgot-password">{t('common:loginFooter_forgot_password')}</a>
+				<a href="/signup">{t('common:loginFooter_signup')}</a>
 			</div>
 
 		</form>

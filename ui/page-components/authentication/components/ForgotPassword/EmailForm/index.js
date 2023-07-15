@@ -6,7 +6,9 @@ import styles from './styles.module.css';
 import { InputController, useForm } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
 
-function EmailForm({ resetUserPassword = () => {}, resetPasswordLoading = false }) {
+function EmailForm({ resetUserPassword = () => { }, resetPasswordLoading = false, t = () => { } }) {
+	const translationKey = 'common:forgotPassword';
+
 	const { handleSubmit, formState: { errors }, control } = useForm();
 
 	const router = useRouter();
@@ -20,20 +22,20 @@ function EmailForm({ resetUserPassword = () => {}, resetPasswordLoading = false 
 				/>
 			</span>
 
-			<h2 className={styles.card_heading}>Forgot your Password?</h2>
+			<h2 className={styles.card_heading}>{t(`${translationKey}_title`)}</h2>
 			<p className={styles.card_sub_heading}>
-				We will send you a link to Reset your Password
+				{t(`${translationKey}_subtitle`)}
 			</p>
 
 			<form className={styles.form_container} onSubmit={handleSubmit(resetUserPassword)}>
 
-				<p className={styles.label}>Email address</p>
+				<p className={styles.label}>{t(`${translationKey}_email_label`)}</p>
 				<InputController
 					control={control}
 					name="email"
 					type="email"
-					placeholder="Enter your Email"
-					rules={{ required: 'Email is required.' }}
+					placeholder={t(`${translationKey}_email_placeholder`)}
+					rules={{ required: t(`${translationKey}_email_error`) }}
 				/>
 				<span className={styles.errors}>
 					{errors?.email?.message || ' '}
@@ -45,7 +47,7 @@ function EmailForm({ resetUserPassword = () => {}, resetPasswordLoading = false 
 					type="submit"
 					size="lg"
 				>
-					Reset Password
+					{t(`${translationKey}_submit_button`)}
 				</Button>
 
 			</form>

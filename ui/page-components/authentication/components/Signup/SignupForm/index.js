@@ -19,13 +19,16 @@ import CountrySelectController from '@/packages/forms/Controlled/CountrySelectCo
 import { useRouter } from '@/packages/next';
 import patterns from '@/ui/commons/configurations/patterns';
 
-function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = () => { } }) {
+function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = () => {}, t = () => {} }) {
+	const translationKey = 'authentication:signupField';
+
 	const { locale } = useRouter();
+
 	const [customError, setCustomError] = useState('');
 	const [leadUserId, setLeadUserId] = useState('');
 
 	const {
-		signupAuthentication,
+		onSignupAuthentication,
 		loading,
 		recaptchaRef,
 	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId });
@@ -60,21 +63,24 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 		onLeadUserDetails,
 		leadUserId,
 		setUserDetails,
-		signupAuthentication,
+		onSignupAuthentication,
+		t,
 	});
 
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onSignupApiCall)}>
-			<h2 className={styles.card_heading}>Welcome to Cogoport </h2>
+			<h2 className={styles.card_heading}>
+				{t(`${translationKey}_title`)}
+			</h2>
 
 			<div className={styles.field}>
-				<div className={styles.label}>Full Name</div>
+				<div className={styles.label}>{t(`${translationKey}_name_label`)}</div>
 				<InputController
 					control={control}
 					name="name"
 					type="text"
-					placeholder="Enter your Full Name"
-					rules={{ required: 'Name is required.' }}
+					placeholder={t(`${translationKey}_name_placeholder`)}
+					rules={{ required: t(`${translationKey}_name_error`) }}
 				/>
 				<span className={styles.errors}>
 					{errors?.name?.message || ' '}
@@ -82,17 +88,17 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 			</div>
 
 			<div className={styles.field}>
-				<div className={styles.label}>Email Address</div>
+				<div className={styles.label}>{t(`${translationKey}_email_label`)}</div>
 				<InputController
 					control={control}
 					name="email"
 					type="email"
-					placeholder="Enter your Email"
+					placeholder={t(`${translationKey}_email_placeholder`)}
 					rules={{
-						required : 'Email is required.',
+						required : t(`${translationKey}_email_error`),
 						pattern  : {
 							value   : patterns.EMAIL,
-							message : 'Email is invalid.',
+							message : t(`${translationKey}_email_error_1`),
 						},
 					}}
 					mode="onBlur"
@@ -104,13 +110,13 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 			</div>
 
 			<div className={styles.field}>
-				<div className={styles.label}>Mobile Number</div>
+				<div className={styles.label}>{t(`${translationKey}_mobile_label`)}</div>
 				<MobileNumberSelectController
 					control={control}
 					name="mobile_number"
-					placeholder="Enter your Mobile Number"
+					placeholder={t(`${translationKey}_mobile_placeholder`)}
 					rules={{
-						required: 'Mobile Number is required.',
+						required: t(`${translationKey}_mobile_error`),
 					}}
 					mode="onBlur"
 					onBlur={makeApiCallForMobile}
@@ -127,7 +133,7 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 						name="is_whatsapp_number"
 						className={styles.checkbox}
 					/>
-					Number also available on
+					{t(`${translationKey}_whatsapp_text`)}
 					{' '}
 					<IcCWhatsapp height={20} width={20} />
 					{' '}
@@ -137,13 +143,13 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 			</div>
 
 			<div className={styles.field}>
-				<div className={styles.label}>Company Name</div>
+				<div className={styles.label}>{t(`${translationKey}_company_label`)}</div>
 				<InputController
 					control={control}
 					name="business_name"
 					type="text"
-					placeholder="Enter your Company Name"
-					rules={{ required: 'Company Name is required.' }}
+					placeholder={t(`${translationKey}_company_placeholder`)}
+					rules={{ required: t(`${translationKey}_company_error`) }}
 				/>
 				<span className={styles.errors}>
 					{errors?.business_name?.message || ' '}
@@ -152,12 +158,12 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 			</div>
 
 			<div className={styles.field}>
-				<div className={styles.label}>Country of Registration</div>
+				<div className={styles.label}>{t(`${translationKey}_country_label`)}</div>
 				<CountrySelectController
 					control={control}
 					name="country_id"
-					placeholder="Enter Country of Registration"
-					rules={{ required: 'Country is required.' }}
+					placeholder={t(`${translationKey}_country_placeholder`)}
+					rules={{ required: t(`${translationKey}_company_error`) }}
 				/>
 				<span className={styles.errors}>
 					{errors?.country_id?.message || ' '}
@@ -175,7 +181,7 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 			</div>
 
 			<div className={styles.tnc_link}>
-				By signing up, you are accepting the
+				{t('authentication:signup_footer_text')}
 				{'  '}
 				<a
 					href={`https://www.cogoport.com/${locale}/terms-and-conditions/`}
@@ -202,13 +208,13 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 				type="submit"
 				size="lg"
 			>
-				Get Started
+				{t('authentication:signup_submitButton_label')}
 				{' '}
 				<IcMArrowRight />
 			</Button>
 
 			<div className={styles.links}>
-				<a href="/login">Already have an Account?</a>
+				<a href="/login">{t('authentication:signup_link_login_label')}</a>
 			</div>
 		</form>
 	);

@@ -8,17 +8,19 @@ const NAME = GLOBAL_CONSTANTS.onboarding_specialist.name;
 const PHONE_NUMBER = GLOBAL_CONSTANTS.onboarding_specialist.phone_number;
 const EMAIL_ID = GLOBAL_CONSTANTS.onboarding_specialist.email_id;
 
-function HelpCard() {
+function HelpCard({ t = () => {} }) {
+	const translationKey = 'common:helpButton';
+
 	return (
 		<div className={styles.help_card}>
 
-			<span>Need some personal assistance?</span>
+			<span>{t(`${translationKey}_title`)}</span>
 
 			<hr className={styles.line} />
 
 			<h4>{NAME}</h4>
 
-			<span className={styles.designation}>Onboarding Specialist</span>
+			<span className={styles.designation}>{t(`${translationKey}_designation`)}</span>
 
 			<div className={styles.links}>
 				<IcMEmail style={{ marginRight: '8px' }} />

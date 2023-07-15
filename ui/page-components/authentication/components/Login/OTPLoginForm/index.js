@@ -12,7 +12,9 @@ import OTPLayout from '@/packages/forms/Business/OTPLayout';
 
 const OTP_LENGTH = 4;
 
-function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {} }) {
+function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {}, t = () => {} }) {
+	const translationKey = 'common:loginOtpField';
+
 	const [otpValue, setOtpValue] = useState('');
 
 	const {
@@ -38,13 +40,13 @@ function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {} }) {
 				/>
 			</span>
 
-			<h2 className={styles.card_heading}>Verify your mobile</h2>
+			<h2 className={styles.card_heading}>{t(`${translationKey}_title`)}</h2>
 			<h4 className={styles.card_subheading}>
-				Verification code is sent to
+				{t(`${translationKey}_subtitle`)}
 				{isEmpty(mobileNumber?.number) ? (
 					<>
 						{' '}
-						the mobile number.
+						{t(`${translationKey}_subtitle_null`)}
 					</>
 				) : (
 					<>
@@ -70,7 +72,7 @@ function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {} }) {
 				onClick={onLoginWithOtp}
 				disabled={otpValue.length !== OTP_LENGTH}
 			>
-				Verify
+				{t(`${translationKey}_submit_button`)}
 			</Button>
 
 		</div>

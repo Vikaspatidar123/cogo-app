@@ -12,7 +12,9 @@ import OTPLayout from '@/packages/forms/Business/OTPLayout';
 
 const OTP_LENGTH = 4;
 
-function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
+function OTPSignupForm({ userDetails = {}, setMode = () => {}, t = () => {} }) {
+	const translationKey = 'authentication:signupOtp';
+
 	const { id = '', mobile_number = {}, email = '' } = userDetails;
 	const [otpValue, setOtpValue] = useState('');
 
@@ -39,14 +41,14 @@ function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 				/>
 			</span>
 
-			<h2 className={styles.card_heading}>Verify your mobile</h2>
+			<h2 className={styles.card_heading}>{t(`${translationKey}_title`)}</h2>
 
 			<h4 className={styles.card_subheading}>
-				Verification code is sent to
+				{t(`${translationKey}_subtitle`)}
 				{isEmpty(mobile_number?.number) ? (
 					<>
 						{' '}
-						the mobile number.
+						{t(`${translationKey}_subtitle_null`)}
 					</>
 				) : (
 					<>
@@ -72,11 +74,11 @@ function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 				onClick={onSignupWithOtp}
 				disabled={otpValue.length !== OTP_LENGTH}
 			>
-				Verify
+				{t(`${translationKey}_submitButton_label`)}
 			</Button>
 
 			<div className={styles.footer_container}>
-				Please check your email
+				{t(`${translationKey}_footer_1`)}
 				{'  '}
 
 				{email ? (
@@ -88,14 +90,10 @@ function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 				) : ('')}
 
 				{'  '}
-				and follow the instructions to
-				{' '}
-				<b>verify</b>
-				{' '}
-				your account.
+				{t(`${translationKey}_footer_2`)}
 				<br />
 				<br />
-				If you haven&#39;t received the email within a few minutes, please check your spam folder or
+				{t(`${translationKey}_footer_3`)}
 				{'  '}
 
 				<h4
@@ -103,7 +101,7 @@ function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 					role="presentation"
 					onClick={() => onClickResendEmail(id)}
 				>
-					resend email.
+					{t(`${translationKey}_footer_resend_mail`)}
 				</h4>
 			</div>
 		</div>

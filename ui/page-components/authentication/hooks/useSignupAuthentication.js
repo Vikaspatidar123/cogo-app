@@ -31,7 +31,7 @@ const useSignupAuthentication = ({
 		method : 'post',
 	}, { manual: true });
 
-	const signupAuthentication = async (val, e) => {
+	const onSignupAuthentication = async (val, e) => {
 		e.preventDefault();
 
 		try {
@@ -62,7 +62,7 @@ const useSignupAuthentication = ({
 
 	return {
 		loading: signupLoading || captchaLoading,
-		signupAuthentication,
+		onSignupAuthentication,
 		recaptchaRef,
 	};
 };

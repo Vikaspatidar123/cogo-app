@@ -12,7 +12,10 @@ function MobileLoginForm({
 	setMobileNumber = () => {},
 	setOtpId = () => {},
 	mobileNumber = {},
+	t = () => {},
 }) {
+	const translationKey = 'common:loginField';
+
 	const {
 		onSendOtp = () => {},
 		otpLoading = false,
@@ -25,17 +28,17 @@ function MobileLoginForm({
 	const {
 		customError = '',
 		onOtpApiCall = () => {},
-	} = useMobileLoginForm({ formValues, onSendOtp, setValue });
+	} = useMobileLoginForm({ formValues, onSendOtp, setValue, t });
 
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onOtpApiCall)}>
 
-			<div className={styles.label}>Mobile Number</div>
+			<div className={styles.label}>{t(`${translationKey}_mobile_label`)}</div>
 			<MobileNumberSelectController
 				control={control}
 				name="mobile_number"
-				placeholder="Enter your Mobile Number"
-				rules={{ required: 'Mobile Number is required.' }}
+				placeholder={t(`${translationKey}_mobile_placeholder`)}
+				rules={{ required: t(`${translationKey}_mobile_error`) }}
 			/>
 			<div className={styles.errors}>
 				{customError || ''}
@@ -47,11 +50,11 @@ function MobileLoginForm({
 				type="submit"
 				size="lg"
 			>
-				Get OTP
+				{t(`${translationKey}_submit_otp_button`)}
 			</Button>
 
 			<div className={styles.links}>
-				<a href="/signup">Create a New Account</a>
+				<a href="/signup">{t('common:loginFooter_signup')}</a>
 			</div>
 		</form>
 	);

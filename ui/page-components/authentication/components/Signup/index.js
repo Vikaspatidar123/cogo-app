@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import LayoutHelp from '../common/LayoutHelp';
@@ -15,6 +16,8 @@ const SIGNUP_FLOW_MAPPING = {
 };
 
 function Signup() {
+	const { t } = useTranslation(['authentication']);
+
 	const [mode, setMode] = useState('signup_form');
 
 	const [userDetails, setUserDetails] = useState({
@@ -53,6 +56,7 @@ function Signup() {
 					{Component && (
 						<Component
 							key={mode}
+							t={t}
 							{...(componentProps[mode] || {})}
 						/>
 					)}

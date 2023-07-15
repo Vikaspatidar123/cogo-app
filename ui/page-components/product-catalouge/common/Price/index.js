@@ -17,6 +17,8 @@ const TextController = getField('text');
 const TextAreaController = getField('textarea');
 const FileUploaderController = getField('file');
 
+const THRESHOLD_VALUE = 0;
+
 function Pricing({
 	productDetailsfromAPi,
 	addProductLoading,
@@ -96,11 +98,11 @@ function Pricing({
 	};
 
 	const renderProfit = () => {
-		if (profitpercentage > 0) {
+		if (profitpercentage > THRESHOLD_VALUE) {
 			return `${t('productCatalogue:product_catalogue_add_product_modal_price_text_1')} 
 			${Math.round(Math.abs(profitpercentage))}%`;
 		}
-		if (profitpercentage === 0) {
+		if (profitpercentage === THRESHOLD_VALUE) {
 			return `${t('productCatalogue:product_catalogue_add_product_modal_price_text_2')} 0% `;
 		}
 		return `${t('productCatalogue:product_catalogue_add_product_modal_price_text_2')}

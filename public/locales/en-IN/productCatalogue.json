@@ -61,6 +61,7 @@
     "product_catalogue_toast_3":"Product Edited Successfully !!",
     "product_catalogue_toast_4":"Product Created Successfully !!",
     "product_catalogue_toast_5":"Product Deleted Successfully !!",
-    "product_catalogue_toast_6":"Product UnArchive Successfully !!"
+    "product_catalogue_toast_6":"Product UnArchive Successfully !!",
+    "product_catalogue_icon_alt_text":"logo"
 
 }

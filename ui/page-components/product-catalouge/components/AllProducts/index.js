@@ -15,6 +15,11 @@ import ArchiveModal from './ArchiveModal';
 import styles from './styles.module.css';
 
 import HsCodeIcon from '@/ui/commons/components/HsCodeIcon';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const SUB_CATEGORY_STRING_MAX_LENGTH = 40;
+
+const CATEGORY_STRING_MAX_LENGTH = 16;
 
 function AllProducts({
 	setShowProduct,
@@ -41,9 +46,7 @@ function AllProducts({
 		productClassificationId : productClassification,
 		card                    : true,
 	});
-	const {
-		list = [], pageNo = 1, totalRecords = 0, pageSize = 0,
-	} = apiData || {};
+	const { list = [], pageNo = 1, totalRecords = 0, pageSize = 0 } = apiData || {};
 
 	const [pagination, setPagination] = useState(pageNo);
 
@@ -114,13 +117,19 @@ function AllProducts({
 										<>
 											<div>{MAPPING[categoryCode]}</div>
 											<div className={styles.display_name}>
-												{categoryDisplayName?.length > 16 ? (
+												{categoryDisplayName?.length > CATEGORY_STRING_MAX_LENGTH ? (
 													<Tooltip
 														theme="light"
 														placement="top"
 														content={categoryDisplayName}
 													>
-														<div>{`${categoryDisplayName.substring(0, 16)}..`}</div>
+														<div>
+															{`${categoryDisplayName
+																.substring(
+																	GLOBAL_CONSTANTS.zeroth_index,
+																	CATEGORY_STRING_MAX_LENGTH,
+																)}..`}
+														</div>
 													</Tooltip>
 												) : (
 													<div>{categoryDisplayName}</div>
@@ -151,13 +160,20 @@ function AllProducts({
 								<div className={cl`${styles.row}${styles.second}`}>
 									{!loading && (
 										<div className={`${styles.sub_category}`}>
-											{subCategoryDisplayName?.length > 40 ? (
+											{subCategoryDisplayName?.length > SUB_CATEGORY_STRING_MAX_LENGTH ? (
 												<Tooltip
 													theme="light"
 													placement="top"
 													content={subCategoryDisplayName}
 												>
-													<div>{`${subCategoryDisplayName.substring(0, 40)}..`}</div>
+													<div>
+														{`${subCategoryDisplayName
+															.substring(
+																GLOBAL_CONSTANTS.zeroth_index,
+																SUB_CATEGORY_STRING_MAX_LENGTH,
+															)}..`}
+
+													</div>
 												</Tooltip>
 											) : (
 												<div>{subCategoryDisplayName}</div>

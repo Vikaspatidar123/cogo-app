@@ -14,6 +14,10 @@ import ArchiveModal from '../../AllProducts/ArchiveModal';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const DESCRIPTION_MAX_LENGTH = 10;
+
 function ListView({
 	item,
 	activeSubTab,
@@ -49,10 +53,10 @@ function ListView({
 	});
 
 	const renderDescription = (record) => {
-		if (record?.length > 10) {
+		if (record?.length > DESCRIPTION_MAX_LENGTH) {
 			return (
 				<Tooltip placement="top" content={record}>
-					<div>{`${record?.substring(0, 10)}...`}</div>
+					<div>{`${record?.substring(GLOBAL_CONSTANTS.zeroth_index, DESCRIPTION_MAX_LENGTH)}...`}</div>
 				</Tooltip>
 			);
 		}

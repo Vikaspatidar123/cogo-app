@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { merge } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
@@ -10,20 +8,23 @@ import styles from './styles.module.css';
 import { useForm, asyncFieldsHsCodeCountries, useGetAsyncOptionsBf } from '@/packages/forms';
 import ControlledSelect from '@/packages/forms/Controlled/SelectController';
 
-const Options = useGetAsyncOptionsBf(merge(
-	asyncFieldsHsCodeCountries(),
-	{ params: { filters: { type: ['country'] } } },
-));
-
 function GetCountriesFilter({ setCountryforHsCode, setSelectedCountry }) {
 	const { t } = useTranslation(['common', 'productCatalogue']);
+
+	const Options = useGetAsyncOptionsBf(merge(
+		asyncFieldsHsCodeCountries(),
+		{ params: { filters: { type: ['country'] } } },
+	));
+
 	const countryOptions = Options;
 	const controls = getControls({ setSelectedCountry, countryOptions, t });
 	const { watch, control } = useForm();
 
 	const watchCountry = watch('country');
+
 	useEffect(() => {
 		setCountryforHsCode(watchCountry);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [watchCountry]);
 
 	return (

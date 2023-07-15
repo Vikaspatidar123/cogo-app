@@ -3,7 +3,6 @@ import { Toast } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
-// import { useSaasState } from '../../../common/context';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
@@ -52,7 +51,7 @@ const useProductCatalogue = ({ archive = false, fetch = () => { }, setActiveTab 
 			if (sub) fetch();
 			return response.data?.list;
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 			return null;
 		}
 	};

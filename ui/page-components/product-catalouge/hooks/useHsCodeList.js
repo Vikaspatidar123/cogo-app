@@ -25,7 +25,7 @@ const useHSCodelist = () => {
 			});
 			setHsList(resp.data);
 		} catch (error) {
-			console.log(error?.message || t('productCatalogue:product_catalogue_toast_2'));
+			console.error(error?.message || t('productCatalogue:product_catalogue_toast_2'));
 		}
 	};
 	useEffect(() => {

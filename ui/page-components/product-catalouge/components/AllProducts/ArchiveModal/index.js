@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function ArchiveModal({ archive, setArchive, refetchArchive }) {
 	const { t } = useTranslation(['common', 'productCatalogue']);
@@ -13,8 +14,8 @@ function ArchiveModal({ archive, setArchive, refetchArchive }) {
 			<div className={styles.container}>
 				<div className={styles.icon_div}>
 					<Image
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg"
-						alt="logo"
+						src={GLOBAL_CONSTANTS.image_url.archive_icon}
+						alt={t('productCatalogue:product_catalogue_icon_alt_text')}
 						height={70}
 						width={70}
 					/>

@@ -1,11 +1,12 @@
 const { IcMAppDocumentUpload } = require('@cogoport/icons-react');
 
-const OPERATOR = {
-	ocean : 'Shipping',
-	air   : 'Air',
-};
-const csvUploadControls = ({ trackingType = 'ocean', operatorData = {} }) => {
+const csvUploadControls = ({ trackingType = 'ocean', operatorData = {}, t }) => {
 	const { shippingLineData = [], airLineData = [] } = operatorData || {};
+
+	const OPERATOR = {
+		ocean : t('airOceanTracking:tracking_csv_upload_controls_label_text_5'),
+		air   : t('airOceanTracking:tracking_csv_upload_controls_label_text_6'),
+	};
 
 	const OPTION_MAPPING = {
 		ocean : shippingLineData,
@@ -17,19 +18,24 @@ const csvUploadControls = ({ trackingType = 'ocean', operatorData = {} }) => {
 			{
 				name       : 'fileValue',
 				type       : 'file',
-				uploadDesc : 'Drag your files here or browse',
+				uploadDesc : t('airOceanTracking:tracking_csv_upload_controls_label_1'),
 				uploadIcon : <IcMAppDocumentUpload width={50} height={50} />,
 				accept     : '.csv',
 				width      : '100%',
 			},
 			{
-				name        : 'operatorLine',
-				label       : `${OPERATOR[trackingType]} line`,
+				name  : 'operatorLine',
+				label : `${OPERATOR[trackingType]}
+				 ${t('airOceanTracking:tracking_csv_upload_controls_label_text_1')}`,
 				type        : 'select',
 				options     : OPTION_MAPPING[trackingType],
-				placeholder : `Enter ${OPERATOR[trackingType]} Line`,
-				rules       : { required: `Please select ${OPERATOR[trackingType]} line` },
-				width       : '50%',
+				placeholder : `${t('airOceanTracking:tracking_csv_upload_controls_label_text_2')}
+				 ${OPERATOR[trackingType]} ${t('airOceanTracking:tracking_csv_upload_controls_label_text_3')}`,
+				rules: {
+					required: `${t('airOceanTracking:tracking_csv_upload_controls_label_text_4')} 
+				${OPERATOR[trackingType]} ${t('airOceanTracking:tracking_csv_upload_controls_label_text_1')}`,
+				},
+				width: '50%',
 
 			},
 		]

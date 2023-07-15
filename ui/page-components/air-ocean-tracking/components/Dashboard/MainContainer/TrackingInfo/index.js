@@ -1,5 +1,6 @@
 import { Pagination } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import dashboardTableConfig from '../../../../configuration/dashboardTableConfig';
 import useRedirectFn from '../../../../hooks/useRedirectFn';
@@ -19,6 +20,9 @@ function TrackingInfo({ summaryHook, view }) {
 		page_limit = 0, total_count = 0, on_track = 0,
 		delayed = 0, attention_required = 0, list = [],
 	} = data || {};
+
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
 	const { redirectToTracker } = useRedirectFn();
 
 	const itmFunction = {
@@ -40,7 +44,7 @@ function TrackingInfo({ summaryHook, view }) {
 				<>
 
 					<Table
-						configs={dashboardTableConfig({ type: activeTab })}
+						configs={dashboardTableConfig({ type: activeTab, t })}
 						data={data}
 						loading={loading}
 						isClickable={false}
@@ -59,7 +63,7 @@ function TrackingInfo({ summaryHook, view }) {
 								height={200}
 								alt="empty"
 							/>
-							<p className={styles.empty_state_txt}>Create Shipment to view tracking</p>
+							<p className={styles.empty_state_txt}>{t('airOceanTracking:create_shipment_text')}</p>
 						</div>
 					)}
 				</>

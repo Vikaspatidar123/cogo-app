@@ -1,54 +1,55 @@
 import patterns from '@/ui/commons/configurations/patterns';
 
-const headerFormOceanControls = [
-	{
-		name        : 'shipmentNumber',
-		type        : 'text',
-		placeholder : 'Enter Container No/ BL no',
-		rules       : { required: true },
-	},
-	{
-		name        : 'shippingLine',
-		type        : 'select',
-		asyncKey    : 'shippingline_list',
-		initialCall : true,
-		placeholder : 'Select Shipping Line',
-		rules       : { required: true },
-	},
-];
-
-const headerFormAirControls = [
-	{
-		name        : 'shipmentNumber',
-		type        : 'text',
-		placeholder : 'Enter Airway bill number',
-		rules       : {
-			required : true,
-			pattern  : {
-				value   : patterns.AIRWAY_BILL_NO,
-				message : 'Invalid AirLine Number',
-			},
-		},
-	},
-	{
-		name        : 'airLine',
-		type        : 'select',
-		asyncKey    : 'airline_list',
-		initialCall : true,
-		placeholder : 'Select Airway Line',
-		rules       : { required: 'required' },
-
-	},
-];
-
 const defaultValues = {
 	shipmentNumber : '',
 	shippingLine   : '',
 	airLine        : '',
 };
 
-const headerFormControls = ({ trackingType = 'ocean',	operatorData = {} }) => {
+const headerFormControls = ({ trackingType = 'ocean',	operatorData = {}, t }) => {
 	const { shippingLineData = [], airLineData = [] } = operatorData || {};
+
+	const headerFormOceanControls = [
+		{
+			name        : 'shipmentNumber',
+			type        : 'text',
+			placeholder : t('airOceanTracking:tracking_header_form_control_label_1'),
+			rules       : { required: t('airOceanTracking:tracking_header_form_control_required_text') },
+		},
+		{
+			name        : 'shippingLine',
+			type        : 'select',
+			asyncKey    : 'shippingline_list',
+			initialCall : true,
+			placeholder : t('airOceanTracking:tracking_header_form_control_label_2'),
+			rules       : { required: t('airOceanTracking:tracking_header_form_control_required_text') },
+		},
+	];
+
+	const headerFormAirControls = [
+		{
+			name        : 'shipmentNumber',
+			type        : 'text',
+			placeholder : t('airOceanTracking:tracking_header_form_control_label_3'),
+			rules       : {
+				required : t('airOceanTracking:tracking_header_form_control_required_text'),
+				pattern  : {
+					value   : patterns.AIRWAY_BILL_NO,
+					message : t('airOceanTracking:tracking_header_form_control_invalid_airline_text'),
+				},
+			},
+		},
+		{
+			name        : 'airLine',
+			type        : 'select',
+			asyncKey    : 'airline_list',
+			initialCall : true,
+			placeholder : t('airOceanTracking:tracking_header_form_control_label_4'),
+			rules       : { required: t('airOceanTracking:tracking_header_form_control_required_text') },
+
+		},
+	];
+
 	const OPTION_MAPPING = {
 		ocean : shippingLineData,
 		air   : airLineData,

@@ -14,7 +14,7 @@ const useCreateShipment = ({ closeHandler = () => {}, refetchTrackerList }) => {
 			refetchTrackerList();
 			closeHandler();
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 

@@ -22,7 +22,7 @@ function CardHeader({ plans = {} }) {
 					<div
 						className={cl`${styles.col} ${styles.planCol} ${styles[`planCol${index}`]}`}
 						key={display_name}
-						style={{ minWidth: '170px' }}
+						style={{ minWidth: '70px' }}
 					>
 						{display_name}
 					</div>

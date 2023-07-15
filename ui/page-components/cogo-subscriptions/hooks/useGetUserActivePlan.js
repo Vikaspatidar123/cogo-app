@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useCallback, useEffect, useState } from 'react';
 
 import { MIN_POPPULAR_SEQUENCE } from '../constants/dimensions';
@@ -39,7 +40,7 @@ const useGetUSerActivePlan = () => {
 	}, [profile?.organization?.id, trigger]);
 
 	useEffect(() => {
-		if (Object.keys(item_plans).length > 0) {
+		if (!isEmpty(Object.keys(item_plans))) {
 			if (checkPlanType) {
 				setActiveTab('annual');
 				setSubscribeTab('annual');

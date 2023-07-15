@@ -31,7 +31,6 @@
 
 		@media screen and (max-width: 767px) {
 			flex-wrap: wrap;
-			gap: 1rem;
 			width: fit-content;
 			height: auto;
 		}

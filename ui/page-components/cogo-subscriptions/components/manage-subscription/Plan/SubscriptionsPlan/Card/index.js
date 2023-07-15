@@ -55,7 +55,7 @@ function Card({
 	const subscribeActivate = (
 		<div className={cl`${styles.center_div} ${styles.subscribe}`}>
 			<div>
-				{!is_free_plan && (
+				{!is_free_plan ? (
 					<div className={styles.amount_div}>
 						<div className={cl`${styles.styled_row} ${styles.priceRow}`}>
 							<div className={styles.price}>
@@ -84,12 +84,12 @@ function Card({
 							</div>
 						)}
 					</div>
-				)}
+				) : null}
 			</div>
 			{!displayPricing?.activate_later ? (
 				displayPricing?.show_button && (
 					<Button
-						className={cl`${styles.red_button} ${styles.button}`}
+						className={cl`${styles.button}`}
 						onClick={() => onSubmit(item)}
 						type="button"
 					>
@@ -99,7 +99,7 @@ function Card({
 			) : (
 				<div className={styles.activate}>
 					<Button
-						className={cl`${styles.red_button} ${styles.button}`}
+						className={cl`${styles.button}`}
 						onClick={() => setShowActivateModal(true)}
 						type="button"
 					>
@@ -120,22 +120,22 @@ function Card({
 			}}
 			className={`${styles.container} ${prioritySequence === activeHover && styles.hover_card}`}
 		>
-			{active && (
+			{active ? (
 				<div className={styles.cr_inner}>
-					<span className={styles.active_plan}>
+					<span>
 						{' '}
 						{t('subscriptions:active_text')}
 					</span>
 				</div>
-			)}
+			) : null}
 			{/* img tag use for height width is not fix */}
-			{prioritySequence === activeHover && (
+			{prioritySequence === activeHover ? (
 				<img
 					className={`${styles.back_ground_image} ${styles.line_img}`}
 					src={GLOBAL_CONSTANTS.image_url.card_background_line_image}
 					alt={t('subscriptions:cogo_text')}
 				/>
-			)}
+			) : null}
 
 			{prioritySequence === MOST_POPPULAR_INDEX && (
 				<div className={styles.row}>
@@ -151,7 +151,7 @@ function Card({
 							{description}
 						</div>
 
-						{displayPricing?.activate_later && (
+						{displayPricing?.activate_later ? (
 							<div className={styles.date_box}>
 								<Image
 									src={GLOBAL_CONSTANTS.image_url.calendar_image}
@@ -167,7 +167,7 @@ function Card({
 									{t('subscriptions:left_activate_text')}
 								</span>
 							</div>
-						)}
+						) : null}
 						{prioritySequence > EXPIRE_DAY
 							&& displayPricing?.is_active_plan
 							&& displayPricing?.expires_in !== undefined ? (
@@ -216,7 +216,7 @@ function Card({
 
 			<div>
 				{' '}
-				{!displayPricing?.is_active_plan && subscribeActivate}
+				{!displayPricing?.is_active_plan ? subscribeActivate : null}
 
 			</div>
 

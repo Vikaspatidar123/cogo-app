@@ -4,12 +4,10 @@
 	justify-content: space-evenly;
 
 	&.info {
-		gap: 2rem;
 		align-items: center;
 
 		.iconContainer {
 			display: flex;
-			gap: 5px;
 			align-items: center;
 			font-size: 15px;
 		}
@@ -24,6 +22,5 @@
 .body {
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
 	padding: 1rem 0;
 }

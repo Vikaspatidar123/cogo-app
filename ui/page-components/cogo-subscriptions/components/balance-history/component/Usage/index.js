@@ -189,7 +189,7 @@ function Usage({ pendingModal, setPendingModal }) {
 							),
 						)}
 				</div>
-				{current_usages?.length > CURRENT_USER_VALUE && (
+				{current_usages?.length ? CURRENT_USER_VALUE && (
 					<div
 						className={cl`${styles.icn_container} ${styles.web_view}`}
 						onClick={scrollHandler}
@@ -198,7 +198,7 @@ function Usage({ pendingModal, setPendingModal }) {
 						<IcMArrowRight className={styles.animated_arrow} width={35} height={35} />
 						<IcMArrowRight width={35} height={35} />
 					</div>
-				)}
+				) : null}
 			</div>
 
 			{addModal && (

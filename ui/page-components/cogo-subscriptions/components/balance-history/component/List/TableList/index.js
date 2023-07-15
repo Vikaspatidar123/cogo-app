@@ -102,8 +102,8 @@ function TableList({ list = [], loading = false }) {
 					) => {
 						const eventType = getEventType(is_credit);
 						return (
-							<div>
-								<div className={cl`${styles.mobile_view} ${styles.card}`} key={event_name}>
+							<div key={created_at}>
+								<div className={cl`${styles.mobile_view} ${styles.card}`}>
 									<div className={styles.date}>
 										{t('subscriptions:dated_text')}
 										:

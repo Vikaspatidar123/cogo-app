@@ -65,22 +65,24 @@
 	}
 }
 
-.request_button {
-	width: 100%;
-	padding: 8px;
-	font-size: 12px;
-	font-weight: 500;
-	color: #333 !important;
-	text-transform: capitalize !important;
-	background-color: white !important;
-	border: 0.7px solid #333 !important;
-
-	.loading {
-		height: 25px !important;
+.subscribe {
+	:global {
+		.ui_button_container {
+			width: 86%;
+			padding: 10px 20px;
+			margin-top: 6px;
+			font-size: 15px;
+			font-weight: 500;
+			color: #000;
+			background-color: #fff;
+			border: 0.7px solid #333;
+		}
 	}
+}
 
-	.disabled {
-		opacity: 0.7 !important;
+.request_button {
+	.loading {
+		height: 25px;
 	}
 }
 

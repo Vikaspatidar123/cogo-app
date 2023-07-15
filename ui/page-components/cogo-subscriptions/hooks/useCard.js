@@ -42,7 +42,7 @@ const useCard = ({
 
 	const { redirectCheckoutSubscription } = useRedirectUrl();
 
-	const [clickedPlan, setClickedPlan] = useState();
+	const [clickedPlan, setClickedPlan] = useState({});
 	const plan_pricing_id = clickedPlan?.display_pricing?.[activeTab]?.id;
 
 	const onSubmit = async (items) => {

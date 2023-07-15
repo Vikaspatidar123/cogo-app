@@ -10,7 +10,7 @@ function TableHeader({ setOrderBy }) {
 	const [sortDate, setSortDate] = useState('asc');
 	const [sortUsage, setSortUsage] = useState('asc');
 
-	const sortfn = (entity) => {
+	const sortFn = (entity) => {
 		if (entity === 'date') {
 			setSortDate((prev) => (prev === 'asc' ? 'desc' : 'asc'));
 			setOrderBy({
@@ -37,9 +37,11 @@ function TableHeader({ setOrderBy }) {
 				<div
 					role="presentation"
 					className={`${sortDate === 'asc' ? styles.asc : styles.desc}`}
-					onClick={() => sortfn('date')}
+					onClick={() => sortFn('date')}
 				>
-					<IcMArrowDown />
+					<div className={styles.icon}>
+						<IcMArrowDown />
+					</div>
 				</div>
 			</div>
 			<div className={`${styles.wd_150} ${styles.flex}`}>
@@ -47,9 +49,11 @@ function TableHeader({ setOrderBy }) {
 				<div
 					role="presentation"
 					className={`${sortUsage === 'asc' ? styles.asc : styles.desc}`}
-					onClick={() => sortfn('usage')}
+					onClick={() => sortFn('usage')}
 				>
-					<IcMArrowDown />
+					<div className={styles.icon}>
+						<IcMArrowDown />
+					</div>
 				</div>
 			</div>
 		</div>

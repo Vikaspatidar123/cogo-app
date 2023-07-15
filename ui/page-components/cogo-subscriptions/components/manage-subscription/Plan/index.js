@@ -18,11 +18,11 @@ import { useSelector } from '@/packages/store';
 
 function Plan() {
 	const { query } = useRouter();
-	const { t } = useTranslation(['subscriptions']);
-	const [modal, setShowModal] = useState(false);
 	const { saas_plan = '' } = query || {};
-
+	const { t } = useTranslation(['subscriptions']);
 	const { profile } = useSelector((s) => s);
+
+	const [modal, setShowModal] = useState(false);
 
 	const {
 		loading,

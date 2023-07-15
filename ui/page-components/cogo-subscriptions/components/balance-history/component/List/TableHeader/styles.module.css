@@ -36,7 +36,6 @@
 
 .flex {
 	display: flex;
-	gap: 4px;
 }
 
 .asc {
@@ -80,4 +79,8 @@
 	@media (max-width: 768px) {
 		display: block;
 	}
+}
+
+.icon {
+	margin-left: 5px;
 }

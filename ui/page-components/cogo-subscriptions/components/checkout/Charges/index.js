@@ -68,7 +68,7 @@ function Charges({
 	};
 
 	const submit = () => {
-		if (checked.length !== 0) {
+		if (!isEmpty(checked)) {
 			completeOrder({ couponCode });
 		} else {
 			Toast.error(t('subscriptions:adderss_select_error_message'));
@@ -107,13 +107,13 @@ function Charges({
 					</div>
 					<div className={styles.styled_col2}>
 						{plan?.metadata?.display_pricing?.[`${query?.period}`]
-							?.prev_value_inr && (
+							?.prev_value_inr ? (
 								<div className={`${styles.crossed_price} ${styles.crossedprice}`}>
 									<div className={styles.flex_div}>
 										{getAmount({ amount: crossedAmount, currency })}
 									</div>
 								</div>
-						)}
+							) : null}
 						<div className={styles.flex_div}>
 							{getAmount({ amount, currency })}
 						</div>
@@ -255,7 +255,6 @@ function Charges({
 					<Button
 						onClick={submit}
 						disabled={loading}
-						className={loading ? 'disabled' : ''}
 					>
 						{completeOrderLoading ? (
 							<Image

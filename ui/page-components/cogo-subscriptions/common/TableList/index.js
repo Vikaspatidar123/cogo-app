@@ -4,6 +4,9 @@ import { useState, useEffect, useCallback } from 'react';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function TableList({ features = {} }) {
 	const [featureArray, setFeatureArray] = useState([]);
 
@@ -22,12 +25,24 @@ function TableList({ features = {} }) {
 
 		if (type === 'text') {
 			if (value === 'unlimited') {
-				return <img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/unlimted.svg" alt="cogo" />;
+				return (
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.unlimted_image}
+						alt="cogo"
+						width={30}
+						height={30}
+					/>
+				);
 			}
 			if (value > 0) {
 				return (
 					<>
-						<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Limited.svg" alt="cogo" />
+						<Image
+							src={GLOBAL_CONSTANTS.image_url.limited_image}
+							alt="cogo"
+							width={30}
+							height={30}
+						/>
 						<div className={styles.value_txt}>{value}</div>
 					</>
 				);
@@ -44,7 +59,12 @@ function TableList({ features = {} }) {
 		);
 
 		return (sortPlanValuesObjArray || []).map(({ type = '', value = '' }) => (
-			<div className={`${styles.col} ${styles.row_value}`}>{renderPlanDetail(type, value)}</div>
+			<div className={`${styles.col} ${styles.row_value}`} key={value}>
+				{
+					renderPlanDetail(type, value)
+				}
+
+			</div>
 		));
 	};
 
@@ -56,7 +76,7 @@ function TableList({ features = {} }) {
 			{(featureArray || []).map(
 				({ display_name = '', description = null, plan_values = {} }) => (
 					<div className={styles.row} key={plan_values}>
-						<div className={`${styles.col} ${styles.feature} ${styles.feature_name}`} width="30%">
+						<div className={`${styles.col} ${styles.feature} ${styles.feature_name}`}>
 							<div className={styles.info_icon}>
 								{description ? (
 									<Tooltip

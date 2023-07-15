@@ -83,6 +83,11 @@
 }
 
 @media screen and (max-width: 767px) {
+	.col {
+		width: auto;
+		min-width: 100px;
+	}
+
 	.col.feature {
 		padding: 0;
 		font-size: 0.75rem;

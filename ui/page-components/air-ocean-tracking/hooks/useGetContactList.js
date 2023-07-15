@@ -24,7 +24,7 @@ const useGetContactList = () => {
 				page_limit : 7,
 			});
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	}, [branch_id, trigger]);
 

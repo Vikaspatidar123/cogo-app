@@ -1,8 +1,9 @@
 import { Toast } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import GET_MAPPING from '../constant/card';
+import getMappingObject from '../constant/card';
 
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
@@ -73,10 +74,14 @@ const useCreateAlert = ({
 }) => {
 	const { query } = useRouter();
 
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
 	const [{ loading }, trigger] = useRequest({
 		method : 'post',
 		url    : CREATE_ALERT_URL[activeTab],
 	}, { manual: true });
+
+	const GET_MAPPING = getMappingObject({ t });
 
 	const { TRACKER_ID_KEY } = GET_MAPPING[activeTab];
 
@@ -153,10 +158,10 @@ const useCreateAlert = ({
 			await trigger({
 				data: payloadData,
 			});
-			Toast.success('Alerts Created Successfully');
+			Toast.success(t('airOceanTracking:tracking_alerts_created_toast'));
 			closeHandler();
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 
@@ -164,7 +169,7 @@ const useCreateAlert = ({
 		const { shipper = [], consignee = [] } = tableValue || {};
 
 		if (isEmpty(shipper) && isEmpty(consignee)) {
-			Toast.error('Please select either shipper or consignee');
+			Toast.error(t('airOceanTracking:tracking_alerts_select_consignee_toast'));
 			return;
 		}
 		createAlertHandler();

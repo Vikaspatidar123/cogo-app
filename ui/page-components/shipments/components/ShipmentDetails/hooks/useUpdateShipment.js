@@ -26,6 +26,7 @@ const useUpdateShipment = ({
 		handleSubmit,
 		onError, errors, formProps, companyDetails,
 		control,
+		register,
 	} = useGetExistingCompanies(
 		{
 			role,
@@ -124,6 +125,7 @@ const useUpdateShipment = ({
 		control,
 		formProps,
 		companyDetails,
+		register,
 	};
 };
 

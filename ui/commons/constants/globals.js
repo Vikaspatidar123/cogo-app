@@ -218,12 +218,51 @@ const GLOBAL_CONSTANTS = {
 		spinner_loader            : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-spinner.svg',
 		logo_without_footer       : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/logo-cogoport.svg',
 		create_ticket_empty_state : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/empty-state.svg',
+		empty_state               : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
+		cogoport_image            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg',
+		kyc_dialog_image          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nogstIcon.svg',
+		secure_icon               : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-icon.svg',
+		heading_icon              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/heading.svg',
+		sub_heading_icon          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/subheading.svg',
+		loading_icon              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg',
+		no_data_icon              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/nodata.svg',
+		payment_icon              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/payment.svg',
+		secure_profile_icon       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/secure-profile-icon.svg',
+		no_schedules_found_image  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
+		globe                     : 'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/globe-language.png',
+		archive_icon              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg',
+		pen_image                 : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg',
+		premium_image             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crown_new.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',
 		phone_number : '+918976851674',
 		email_id     : 'kanira.patel@cogoport.com',
 	},
+	user_specific_email_id: {
+		ajeet: 'ajeet@cogoport.com',
+	},
+	zeroth_index : 0,
+	patterns     : {
+		PAN_NUMBER       : /[A-Za-z]{5}\d{4}[A-Za-z]{1}/g,
+		EMAIL            : /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/,
+		CONTAINER_NUMBER : /^[A-Z]{3}U[0-9]{6,7}$/,
+		MOBILE           : /^[0-9]{10}$/,
+		GST_NUMBER:
+			/\d{2}[A-Za-z]{5}\d{4}[A-Za-z]{1}[A-Za-z\d]{1}[Zz]{1}[A-Za-z\d]{1}/g,
+		VIETNAM_TAX : /^0[1-3]{1}[0-9]{8}$|^0[1-3]{1}[0-9]{8}-?[0-9]{3}$/,
+		PASSWORD    : {
+			PASSWORD_PATTERN : /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/gm,
+			lowercase        : /[a-z]/gm,
+			uppercase        : /[A-Z]/gm,
+			digit            : /[0-9]/gm,
+			special          : /[!@#$%^&*]/gm,
+			minLength        : /[a-zA-Z0-9!@#$%^&*]{8,}/gm,
+		},
+		AIRWAY_BILL_NO: /^\d{3}-\d{8}$/,
+	},
+	customer_support: 'support@cogoport.com',
+
 };
 
 export default GLOBAL_CONSTANTS;

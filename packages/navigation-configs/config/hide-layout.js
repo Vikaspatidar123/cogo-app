@@ -20,5 +20,7 @@ const HIDE_LAYOUT = [
 	'/verify-email/[id]',
 	'/raise-cancellation-ticket',
 	'/create-ticket/[token]',
+	'/draft-airway-bill/[id]',
+	'/accept-invite/[id]',
 ];
 export default HIDE_LAYOUT;

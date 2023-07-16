@@ -1,14 +1,17 @@
 import { IcMArrowRotateRight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import DateArrivalHandler from './DateHandler';
 import styles from './styles.module.css';
 
 function ArrivalFilter({ handleNav, isOpen, arrivalDate, setArrivalDate }) {
+	const { t } = useTranslation(['oceanSchedule']);
+
 	return (
 		<>
 			<div className={styles.header} role="presentation" onClick={() => handleNav('arrival')}>
 				<div className={styles.nav_heading}>
-					Arrival
+					{t('oceanSchedule:arrival_text')}
 				</div>
 				<div className={styles.column}>
 					<IcMArrowRotateRight

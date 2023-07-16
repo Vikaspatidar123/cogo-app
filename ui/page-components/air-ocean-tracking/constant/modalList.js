@@ -3,9 +3,9 @@ export const SIZE_MAPPING = {
 	configure : 'xl',
 };
 
-export const TITLE_MAPPING = {
-	archive   : 'Archive Tracker',
-	delete    : 'Delete Tracker',
-	share     : 'Share via Email',
-	configure : 'Configure',
-};
+export const getTitleMapping = ({ t }) => ({
+	archive   : t('airOceanTracking:tracking_modal_label_1'),
+	delete    : t('airOceanTracking:tracking_modal_label_2'),
+	share     : t('airOceanTracking:tracking_modal_label_3'),
+	configure : t('airOceanTracking:tracking_modal_label_4'),
+});

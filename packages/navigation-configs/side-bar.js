@@ -1,5 +1,8 @@
 import navigationMappings from './navigation-mapping';
 
+// eslint-disable-next-line import/no-unresolved, import/extensions
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const getCondition = (urlItem) => {
 	const condition = {};
 	if (urlItem?.user_email) {
@@ -14,34 +17,39 @@ const getCondition = (urlItem) => {
 	return condition;
 };
 
-const AJEET_EMAIL_ID = 'ajeet@cogoport.com';
+const COE_SUPPORTED_USER = [
+	GLOBAL_CONSTANTS.user_specific_email_id.ajeet,
+];
 
-const getSideBarConfigs = (
+const getSideBarConfigs = ({
 	userData,
 	dashboardUrls = [],
 	pinnedNavKeys = [],
-) => {
+	t = () => { },
+}) => {
+	const navigation = navigationMappings({ t });
+
 	const pNavs = userData?.permissions_navigations || {};
 
-	const modifiedPinnedNavKeys = pinnedNavKeys.filter((key) => Object.keys(navigationMappings).includes(key));
+	const modifiedPinnedNavKeys = pinnedNavKeys.filter((key) => Object.keys(navigation).includes(key));
 
-	const filteredKeys = Object.keys(navigationMappings).filter(
+	const filteredKeys = Object.keys(navigation).filter(
 		(key) => !modifiedPinnedNavKeys.includes(key),
 	);
-	// const filterKeys = Object.keys(navigationMappings);
+
 	const getNavMappings = (navMappingKeys) => {
 		const nav_items = [];
 
 		(navMappingKeys || []).forEach((key) => {
-			const { showInNav = true } = navigationMappings?.[key] || {};
+			const { showInNav = true } = navigation?.[key] || {};
 			if (
 				key
 				&& showInNav
-				&& (pNavs?.[key] || navigationMappings[key]?.options)
+				&& (pNavs?.[key] || navigation[key]?.options)
 			) {
 				if (key === 'dashboards') {
 					nav_items.push({
-						...navigationMappings[key],
+						...navigation[key],
 						options: dashboardUrls.map((urlItem) => ({
 							title     : urlItem.title,
 							type      : 'link',
@@ -50,25 +58,26 @@ const getSideBarConfigs = (
 							condition : getCondition(urlItem),
 						})),
 					});
-				} else if (navigationMappings[key]?.options) {
-					const allOpts = navigationMappings[key]?.options || [];
-					// const selectedSubNavs = Object.keys(pNavs);
+				} else if (navigation[key]?.options) {
+					const allOptions = navigation[key]?.options || [];
+
 					const selectedSubNavs = Object.keys(pNavs).filter(
 						(nav) => nav.split('-')[0] === key,
 					);
-					const filteredOpts = allOpts.filter(
+					const coeFilterOptions = allOptions.filter(
 						(opt) => selectedSubNavs.includes(opt.key)
 							&& (opt.key !== 'coe-booking_tasks'
-								|| userData.email === AJEET_EMAIL_ID),
+								|| COE_SUPPORTED_USER.includes(userData.email)),
+
 					);
-					if (filteredOpts.length) {
+					if (coeFilterOptions.length) {
 						nav_items.push({
-							...navigationMappings[key],
-							options: filteredOpts,
+							...navigation[key],
+							options: coeFilterOptions,
 						});
 					}
 				} else if (pNavs?.[key]) {
-					nav_items.push(navigationMappings[key]);
+					nav_items.push(navigation[key]);
 				}
 			}
 		});

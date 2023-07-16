@@ -30,6 +30,7 @@ const PUBLIC_PATHS = [
 	'/verify-sign-up-saas/[token]',
 	'/raise-cancellation-ticket',
 	'/create-ticket/[token]',
+	'/draft-airway-bill/[id]',
 ];
 const UNAUTHENTICATED = ['/login', '/signup'];
 export default { PUBLIC_PATHS, UNAUTHENTICATED, All };

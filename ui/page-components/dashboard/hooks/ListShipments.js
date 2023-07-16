@@ -1,6 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
+
+const DEFAULT_PAGE = 1;
+const DEFAULT_LINIT = 2;
+
+const getPalyload = () => ({
+	filters: {
+		state: [
+			'shipment_received',
+			'confirmed_by_importer_exporter',
+			'in_progress',
+		],
+	},
+	page       : DEFAULT_PAGE,
+	page_limit : DEFAULT_LINIT,
+});
 
 function ListShipments() {
 	const [{ loading, data }, trigger] = useRequest({
@@ -8,29 +23,22 @@ function ListShipments() {
 		method : 'get',
 	}, { manual: true });
 
-	const shipmentsData = async (shipment_received, confirmed_by_importer_exporter) => {
+	const shipmentsData = useCallback(async () => {
+		const payload = getPalyload();
 		try {
-			const reqData = {
-				shipment_reciever : shipment_received,
-				confirmation      : confirmed_by_importer_exporter,
-				page              : 1,
-				page_limit        : 2,
-			};
-			const res = await trigger({ params: reqData });
+			const res = await trigger({ params: payload });
 			const { datas } = res;
 			return datas;
 		} catch (err) {
-			console.log(
-				err?.message || ' Please try again.',
-			);
+			console.error(err?.message);
 			return null;
 		}
-	};
+	}, [trigger]);
 
 	useEffect(() => {
 		shipmentsData();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [shipmentsData]);
+
 	return { loading, shipmentsData, data };
 }
 export default ListShipments;

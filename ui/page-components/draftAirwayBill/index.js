@@ -8,10 +8,10 @@ import { Link } from '@/packages/next';
 import PublicPageNav from '@/ui/commons/components/PublicPageNav';
 
 const CONTENT = ({ t }) => ({
-	heading: t('common:email_verification'),
-	forgotPasswordCTA: {
-		text: t('common:accept_user_message'),
-		link: '/forgot-password',
+	heading           : t('common:email_verification'),
+	forgotPasswordCTA : {
+		text : t('common:accept_user_message'),
+		link : '/forgot-password',
 	},
 	submitText: t('common:send_email_text'),
 });

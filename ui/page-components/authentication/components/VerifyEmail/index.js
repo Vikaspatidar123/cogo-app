@@ -12,11 +12,11 @@ function VerifyEmail() {
 	const { t } = useTranslation(['verifyAutoLogin']);
 
 	const content = {
-		heading: `${t('verifyAutoLogin:verify_auto_login_content_heading')}`,
-		subheading: `${t('verifyAutoLogin:verify_auto_login_content_sub_heading')}`,
-		forgotPasswordCTA: {
-			text: `${t('verifyAutoLogin:verify_auto_login_content_forgot_password_text')}`,
-			link: '/forgot-password',
+		heading           : `${t('verifyAutoLogin:verify_auto_login_content_heading')}`,
+		subheading        : `${t('verifyAutoLogin:verify_auto_login_content_sub_heading')}`,
+		forgotPasswordCTA : {
+			text : `${t('verifyAutoLogin:verify_auto_login_content_forgot_password_text')}`,
+			link : '/forgot-password',
 		},
 		submitText: `${t('verifyAutoLogin:verify_auto_login_content_submit_text')}`,
 	};
@@ -24,9 +24,9 @@ function VerifyEmail() {
 	return (
 		<HeaderLayout
 			rightParams={{
-				label: `${t('verifyAutoLogin:verify_auto_login_header_layout_right_params_cta')}`,
-				href: '/login',
-				cta: `${t('verifyAutoLogin:verify_auto_login_header_layout_right_params_cta')}`,
+				label : `${t('verifyAutoLogin:verify_auto_login_header_layout_right_params_cta')}`,
+				href  : '/login',
+				cta   : `${t('verifyAutoLogin:verify_auto_login_header_layout_right_params_cta')}`,
 			}}
 		>
 			<div className={styles.container}>

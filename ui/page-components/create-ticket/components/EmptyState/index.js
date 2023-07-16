@@ -1,19 +1,23 @@
-// import React from 'react';
+import { cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
-// import { Container, Content, Wrapper, EmptyCard } from './styles';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function EmptyState({ containerHeight = '' }) {
+	const { t } = useTranslation(['createTicketPublic']);
 	return (
 		<div className={styles.empty_card}>
 			<div className={styles.container}>
-				<div className={`${styles.wrapper} ${containerHeight ? styles.wrapper_height : ''}`}>
+				<div className={cl`${styles.wrapper} ${containerHeight ? styles.wrapper_height : ''}`}>
 					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/empty-state.svg"
-						alt=""
-						className={styles.empty_state}
+						src={GLOBAL_CONSTANTS.image_url.create_ticket_empty_state}
+						alt={t('createTicketPublic:empty_state')}
+						height={360}
+						width={360}
 					/>
-					<div className={styles.content}>No Data Found</div>
+					<div className={styles.content}>{t('createTicketPublic:empty_state')}</div>
 				</div>
 			</div>
 		</div>

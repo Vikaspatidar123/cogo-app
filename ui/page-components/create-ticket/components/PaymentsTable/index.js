@@ -1,4 +1,6 @@
-import PaymentColumns from '../../configurations/payment-table-column';
+import { useTranslation } from 'next-i18next';
+
+import getPaymentCols from '../../configurations/payment-table-column';
 import useGetPayments from '../../hooks/useGetPayments';
 import Filters from '../Filters';
 import List from '../List';
@@ -6,6 +8,8 @@ import List from '../List';
 import styles from './styles.module.css';
 
 function PaymentsTable({ selectedpayments, setSelectedPayments }) {
+	const { t } = useTranslation(['createTicketPublic']);
+	const fields = getPaymentCols({ t });
 	const {
 		paymentsData,
 		paymentListLoading,
@@ -41,14 +45,14 @@ function PaymentsTable({ selectedpayments, setSelectedPayments }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.select_wrapper}>
-				<div className={styles.label}>Please Select Payment</div>
+				<div className={styles.label}>{t('createTicketPublic:payment_title')}</div>
 				<div className={styles.wrap}>
 					<Filters
 						handleInputReset={handleInputReset}
 						handleChange={handleChange}
 						values={searchValue}
 						setValues={setSearchValue}
-						placeholder="Search by Payment Number"
+						placeholder={t('createTicketPublic:payment_search_placeholder')}
 					/>
 				</div>
 			</div>
@@ -59,7 +63,7 @@ function PaymentsTable({ selectedpayments, setSelectedPayments }) {
 				params={params}
 				setOrderBy={setOrderBy}
 				orderBy={orderBy}
-				fields={PaymentColumns}
+				fields={fields}
 				showPagination
 				handleBoxSelect={handleCheckboxSelect}
 				selectedpayments={selectedpayments}

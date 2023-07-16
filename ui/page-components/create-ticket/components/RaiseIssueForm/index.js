@@ -1,4 +1,6 @@
-import useGetAsyncOptions from '../../hooks/useGetAsyncOptions';
+// import useGetAsyncOptions from '../../hooks/useGetAsyncOptions';
+
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -11,12 +13,13 @@ function RaiseIssueForm({
 	errors = {},
 	control,
 	showList = false,
-	isTicketNotUtlilized = false,
+	// isTicketNotUtlilized = false,
 
 }) {
-	const { loadOptions, defaultOptions } = useGetAsyncOptions({
-		isTicketNotUtlilized,
-	});
+	const { t } = useTranslation(['createTicketPublic']);
+	// const { loadOptions, defaultOptions } = useGetAsyncOptions({
+	// 	isTicketNotUtlilized,
+	// });
 
 	return (
 		<div
@@ -25,7 +28,7 @@ function RaiseIssueForm({
 		>
 			<div className={styles.row}>
 				<div className={styles.col}>
-					<div className={styles.label}>Select Issue Type</div>
+					<div className={styles.label}>{t('createTicketPublic:raise_issue_label_1')}</div>
 					<AsyncSelectController
 						{...controls[0]}
 						asyncKey="issue_type"
@@ -33,18 +36,19 @@ function RaiseIssueForm({
 						// defaultOptions={defaultOptions}
 						control={control}
 					/>
-					{errors?.issue_type && <div className={styles.error}>Issue type is required</div>}
+					{errors?.issue_type
+					&& <div className={styles.error}>{t('createTicketPublic:raise_issue_error')}</div>}
 				</div>
 				<div className={styles.col}>
-					<div className={styles.label}>Describe Issue</div>
+					<div className={styles.label}>{t('createTicketPublic:raise_issue_label_2')}</div>
 					<TextAreaController {...controls[1]} control={control} />
 				</div>
 				<div className={styles.col}>
-					<div className={styles.label}>Notification Preferrences</div>
+					<div className={styles.label}>{t('createTicketPublic:raise_issue_label_3')}</div>
 					<SelectController {...controls[2]} control={control} />
 				</div>
 				<div className={styles.col}>
-					<div className={styles.label}>Upload Any Supporting Documents</div>
+					<div className={styles.label}>{t('createTicketPublic:raise_issue_label_4')}</div>
 					<FileUploader {...controls[3]} control={control} multiple type="card" />
 				</div>
 			</div>

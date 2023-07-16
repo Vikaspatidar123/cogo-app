@@ -1,4 +1,6 @@
-import InvoiceColumns from '../../configurations/invoice-table-columns';
+import { useTranslation } from 'next-i18next';
+
+import getInvoiceCol from '../../configurations/invoice-table-columns';
 import useGetSageArInvoices from '../../hooks/useGetSageArInvoices';
 import Filters from '../Filters';
 import List from '../List';
@@ -6,6 +8,8 @@ import List from '../List';
 import styles from './styles.module.css';
 
 function InvoiceTable({ setSelectedInvoices, selectedInvoices }) {
+	const { t } = useTranslation(['createTicketPublic']);
+	const fields = getInvoiceCol({ t });
 	const {
 		loading,
 		setOrderBy,
@@ -45,12 +49,12 @@ function InvoiceTable({ setSelectedInvoices, selectedInvoices }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<div className={styles.label}>Please Select Invoices</div>
+				<div className={styles.label}>{t('createTicketPublic:invoice_title')}</div>
 				<Filters
 					handleChange={handleChange}
 					setValues={setSearchQuery}
 					values={searchQuery}
-					placeholder="Search by Invoice Number/SID"
+					placeholder={t('createTicketPublic:invoice_search_placeholder')}
 					handleInputReset={handleInputReset}
 				/>
 			</div>
@@ -61,7 +65,7 @@ function InvoiceTable({ setSelectedInvoices, selectedInvoices }) {
 				params={params}
 				setOrderBy={setOrderBy}
 				orderBy={orderBy}
-				fields={InvoiceColumns}
+				fields={fields}
 				showPagination
 				handleCheckboxSelect={handleCheckboxSelect}
 				selectedInvoices={selectedInvoices}

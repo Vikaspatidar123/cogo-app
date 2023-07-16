@@ -52,7 +52,6 @@ const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
 			setDefaultOptions(formatOptions(list));
 		}
 	};
-
 	const loadOptions = (inputValue = '') => {
 		debounceQuery(inputValue);
 	};

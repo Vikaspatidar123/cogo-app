@@ -9,6 +9,8 @@ import MobileListItem from '../MobileListItem';
 import ListHeader from './ListHeader';
 import styles from './styles.module.css';
 
+const LOADER_ARR = [...Array(9).keys()];
+
 function List({
 	data = {},
 	fields,
@@ -24,7 +26,7 @@ function List({
 	handleBoxSelect,
 }) {
 	const { list = [], page_limit = 0, total_count = 0, page = 0 } = data || {};
-	const listNew = loading ? [...Array(9).keys()] : list || [];
+	const listNew = loading ? LOADER_ARR : list || [];
 	return (
 		<div className={styles.container}>
 			<ListHeader

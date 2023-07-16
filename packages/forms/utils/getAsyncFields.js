@@ -373,7 +373,7 @@ function asyncFieldsIssueType() {
 		labelKey : 'TicketType',
 		valueKey : 'TicketType',
 		authKey  : 'get_tickets_token_ticket_type',
-		endpoint : 'tickets/token_ticket_types',
+		endpoint : '/token_ticket_types',
 		scope    : 'cogocare',
 	};
 }

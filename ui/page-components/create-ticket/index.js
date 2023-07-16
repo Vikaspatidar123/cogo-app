@@ -1,4 +1,5 @@
 import { Tabs, TabPanel, Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import RaiseIssueForm from './components/RaiseIssueForm';
@@ -15,6 +16,7 @@ import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function CreateTicket() {
+	const { t } = useTranslation(['createTicketPublic']);
 	const {
 		general: { query: { type = '' } = {} },
 	} = useSelector((state) => state);
@@ -62,7 +64,7 @@ function CreateTicket() {
 			<form className={styles.container} onSubmit={handleSubmit(onFormSubmit)}>
 				<div className={styles.logo_div}>
 					<Image width={118} height={25} src={GLOBAL_CONSTANTS.image_url.logo_without_footer} alt="logo" />
-					<div className={styles.heading}>Raise an Issue</div>
+					<div className={styles.heading}>{t('createTicketPublic:main_title')}</div>
 				</div>
 
 				<div className={showList ? styles.layout_div : styles.layout_div_list}>
@@ -82,8 +84,8 @@ function CreateTicket() {
 									themeType="secondary"
 									onChange={setSelectIssue}
 								>
-									<TabPanel name="invoice" title="Invoice" />
-									<TabPanel name="payment" title="Payment" />
+									<TabPanel name="invoice" title={t('createTicketPublic:tab_title_invoice')} />
+									<TabPanel name="payment" title={t('createTicketPublic:tab_title_payment')} />
 								</Tabs>
 								{Component && (
 									<Component
@@ -102,7 +104,7 @@ function CreateTicket() {
 							disabled={loading}
 							onClick={handleSubmit(onFormSubmit)}
 						>
-							Submit
+							{t('createTicketPublic:submit')}
 						</Button>
 					</div>
 				</div>

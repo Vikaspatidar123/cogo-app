@@ -87,12 +87,12 @@ function CreateTicket() {
 									<TabPanel name="invoice" title={t('createTicketPublic:tab_title_invoice')} />
 									<TabPanel name="payment" title={t('createTicketPublic:tab_title_payment')} />
 								</Tabs>
-								{Component && (
+								{Component ? (
 									<Component
 										{...(componentProps[selectIssue] || {})}
 										key={selectIssue}
 									/>
-								)}
+								) : null}
 							</div>
 						)}
 					</div>

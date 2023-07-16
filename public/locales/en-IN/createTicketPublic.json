@@ -25,5 +25,8 @@
     "payment_col_2":"Payment Amount",
     "payment_col_3":"Unused Amount",
     "payment_col_4":"Transaction Date",
-    "payment_col_5":"Utilization Status"
+    "payment_col_5":"Utilization Status",
+    "success_title":"Thank you for your valuable time!",
+    "success_sub_title":"Ticket Raised Sucessfully",
+    "success_btn":"View Details"
 }

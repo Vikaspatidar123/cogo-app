@@ -17,8 +17,6 @@ const controls = [
 		name        : 'additional_information',
 		type        : 'textarea',
 		placeholder : 'Enter Comments',
-		theme       : 'admin',
-		className   : 'primary md',
 	},
 	{
 		label       : 'Notification Preferrences',
@@ -26,9 +24,7 @@ const controls = [
 		type        : 'select',
 		isClearable : true,
 		placeholder : 'Select notification',
-		theme       : 'admin',
 		multiple    : true,
-		className   : 'primary md',
 		options     : [
 			{ label: 'Whatsapp', value: 'whatsapp' },
 			{ label: 'Email', value: 'email' },

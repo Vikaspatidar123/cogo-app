@@ -25,5 +25,8 @@
     "payment_col_2":"Số tiền thanh toán",
     "payment_col_3":"Số tiền không sử dụng",
     "payment_col_4":"Ngày Giao dịch",
-    "payment_col_5":"Trạng thái sử dụng"
+    "payment_col_5":"Trạng thái sử dụng",
+    "success_title":"Cảm ơn bạn vì thời gian quý giá của bạn!",
+    "success_sub_title":"Vé được nâng lên thành công",
+    "success_btn":"Xem chi tiết"
 }

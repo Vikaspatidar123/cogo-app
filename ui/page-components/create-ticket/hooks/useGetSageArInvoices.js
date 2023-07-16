@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const PAGE_LIMIT = 6;
 const useGetSageArInvoices = () => {
 	const {
 		general: { query = {} },
@@ -28,27 +29,30 @@ const useGetSageArInvoices = () => {
 		method : 'post',
 	}, { manual: true });
 
+	const createPayload = useCallback(() => ({
+		...params,
+		page_limit    : PAGE_LIMIT,
+		data_required : 'invoice',
+		sort_type     : orderBy.order || undefined,
+		sort_by       : orderBy.key || undefined,
+		token,
+		filters       : {
+			q              : searchQuery || undefined,
+			sales_agent_id : salesAgentId || undefined,
+			is_precovid    : 'NO',
+		},
+	}), [orderBy, params, salesAgentId, searchQuery, token]);
+
 	const fetchInvoiceList = useCallback(async () => {
+		const payload = createPayload();
 		try {
 			await trigger({
-				data: {
-					...params,
-					page_limit    : 6,
-					data_required : 'invoice',
-					sort_type     : orderBy.order || undefined,
-					sort_by       : orderBy.key || undefined,
-					token,
-					filters       : {
-						q              : searchQuery || undefined,
-						sales_agent_id : salesAgentId || undefined,
-						is_precovid    : 'NO',
-					},
-				},
+				data: payload,
 			});
 		} catch (error) {
 			console.error(error);
 		}
-	}, [orderBy, params, salesAgentId, searchQuery, token, trigger]);
+	}, [createPayload, trigger]);
 
 	useEffect(() => {
 		fetchInvoiceList();

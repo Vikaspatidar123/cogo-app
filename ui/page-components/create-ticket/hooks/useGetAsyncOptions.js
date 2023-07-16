@@ -5,6 +5,8 @@ import { useDebounceQuery } from '@/packages/forms';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const DEFAULT_SIZE = 10;
+
 const formatOptions = (list) => {
 	const newOptions = (list || []).map((item) => {
 		const { TicketType = '' } = item || {};
@@ -35,7 +37,7 @@ const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
 			params: {
 				page        : 0,
 				TicketType  : searchQuery || '',
-				size        : 10,
+				size        : DEFAULT_SIZE,
 				TicketToken : token,
 				Category    : type,
 			},

@@ -45,13 +45,6 @@
 	&.urgent {
 		display: flex;
 	}
-
-	.core-ui-uploaded-file {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 10px 0;
-	}
 }
 
 .label {

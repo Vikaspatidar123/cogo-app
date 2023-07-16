@@ -33,9 +33,6 @@
 	font-size: 12px;
 	font-weight: 500;
 	color: #2f3941;
-
-	/* min-width: ${({ index }) => (index === 0 ? '0' : '50%')};
-	display: ${({ index }) => index === 0 && 'none'}; */
 }
 
 .card_title_zero_index {

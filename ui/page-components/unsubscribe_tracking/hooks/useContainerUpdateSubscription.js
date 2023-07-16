@@ -6,7 +6,7 @@ import { request } from '@/packages/request/helpers/request';
 const useContainerUpdateSubscription = () => {
 	const { query } = useRouter();
 
-	const [status, setStatus] = useState(true);
+	const [status, setStatus] = useState(null);
 
 	const getContainerUpdateSubscription = useCallback(async () => {
 		try {

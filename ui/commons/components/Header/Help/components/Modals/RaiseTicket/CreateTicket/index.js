@@ -51,7 +51,7 @@ function CreateTicket({
 			</Modal.Body>
 			<Modal.Footer>
 				<Button
-					size="md"
+					type="button"
 					themeType="primary"
 					onClick={handleSubmit(onSubmit)}
 					disabled={loading}

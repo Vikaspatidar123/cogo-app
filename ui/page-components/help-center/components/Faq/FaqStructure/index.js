@@ -9,6 +9,7 @@ import useUpdateFaqFeedback from '../../../hooks/useUpdateFaqFeedback';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const translationKey = 'helpCenter:faq_answer';
 
@@ -39,7 +40,7 @@ function FaqStructure({
 		answer = '',
 		id: answerId = '',
 		faq_feedbacks = [],
-	} = answers?.[0] || {};
+	} = answers?.[GLOBAL_CONSTANTS.zeroth_index] || {};
 
 	const recentFeedback = faq_feedbacks?.[faq_feedbacks.length - 1] || {};
 
@@ -115,7 +116,7 @@ function FaqStructure({
 				</div>
 				<div className={styles.feedback_buttons}>
 					<Button
-						size="md"
+						type="button"
 						themeType="secondary"
 						className={
 							feedbackID && (isPositiveReview ? '' : styles.hover_styles)
@@ -126,7 +127,7 @@ function FaqStructure({
 						{t(`${translationKey}_negative_feedback`)}
 					</Button>
 					<Button
-						size="md"
+						type="button"
 						themeType="secondary"
 						className={
 							feedbackID && (isPositiveReview ? styles.hover_styles : '')

@@ -24,6 +24,7 @@ function RaiseTicket({ setModalData = () => {}, isDashboard = false }) {
 
 			<div className={styles.ticket_container}>
 				<Button
+					type="button"
 					size="lg"
 					themeType="primary"
 					className={styles.button_container}

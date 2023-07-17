@@ -14,7 +14,7 @@ const handleClick = () => {
 	const currentUrl = window.location.href;
 	const urlEndRegexExp = new RegExp(GLOBAL_CONSTANTS.regex.url_end_slash);
 	const newUrl = `${currentUrl
-		.split('?')?.[0]
+		.split('?')?.[GLOBAL_CONSTANTS.zeroth_index]
 		.replace(urlEndRegexExp, '')}?showticketslist=true`;
 	window.open(newUrl, '_blank', 'noreferrer');
 };

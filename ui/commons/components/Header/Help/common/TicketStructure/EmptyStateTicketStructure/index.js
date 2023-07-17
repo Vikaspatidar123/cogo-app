@@ -25,6 +25,7 @@ function EmptyStateTicketStructure({
 			<div className={styles.ticket_label}>{listEmptyText}</div>
 			{listType !== 'create' && (
 				<Button
+					type="button"
 					themeType="secondary"
 					className={styles.ticket_raise_button}
 					onClick={() => setModalData({ type: 'raise_a_ticket' })}

@@ -47,7 +47,7 @@ function RateTicket({
 					</div>
 					<div className={styles.button_container}>
 						<Button
-							size="md"
+							type="button"
 							themeType="secondary"
 							disabled={updateLoading}
 							onClick={() => {

@@ -1,4 +1,5 @@
 import { Button, cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import getFilterControls from '../../../../../configuration/filterControls';
@@ -10,6 +11,8 @@ import useFilterContent from '@/ui/page-components/air-ocean-tracking/hooks/useF
 
 function FilterContent({ filterData = {}, activeTab, globalFilter = {}, setGlobalFilter }) {
 	const { shipping_lines, poc_details = [], booked_with_cogoport = [], air_lines } = filterData || {};
+
+	const { t } = useTranslation(['common', 'airOceanTracking']);
 
 	const { clearHandler, submitHandler, formHook, shippersList = [], consigneesList = [] } = useFilterContent({
 		poc_details,
@@ -26,21 +29,24 @@ function FilterContent({ filterData = {}, activeTab, globalFilter = {}, setGloba
 		consigneesList,
 		booked_with_cogoport,
 		activeTab,
+		t,
 	});
 
 	return (
 		<div className={styles.container}>
 			<div className={cl`${styles.flex_box} ${styles.header}`}>
-				<h3>Filters</h3>
+				<h3>{t('airOceanTracking:tracking_filter_section_heading')}</h3>
 				<div className={styles.flex_box}>
-					<Button type="button" themeType="linkUi" onClick={clearHandler}>Clear</Button>
+					<Button type="button" themeType="linkUi" onClick={clearHandler}>
+						{t('airOceanTracking:tracking_filter_section_clear_button')}
+					</Button>
 					<Button
 						type="button"
 						themeType="accent"
 						size="sm"
 						onClick={handleSubmit(submitHandler)}
 					>
-						Apply
+						{t('airOceanTracking:tracking_filter_section_apply_button')}
 					</Button>
 				</div>
 			</div>

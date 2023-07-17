@@ -1,14 +1,20 @@
 import { ButtonIcon, Modal } from '@cogoport/components';
 import { IcMDelete } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import GET_MAPPING from '../../constant/card';
+import getMappingObject from '../../constant/card';
 import ArchiveDelete from '../ArchiveDelete';
 
 import styles from './styles.module.css';
 
 function EmptyCard({ activeTab = '', type = '', input = '', shipmentId = '', refetchTrackerList }) {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
 	const [openModal, setOpenModal] = useState(false);
+
+	const GET_MAPPING = getMappingObject({ t });
+
 	const { CARD_TITLE, EMPTY_STATE_INFO } = GET_MAPPING?.[activeTab] || {};
 
 	const closeHandler = () => setOpenModal(false);
@@ -27,15 +33,15 @@ function EmptyCard({ activeTab = '', type = '', input = '', shipmentId = '', ref
 			</div>
 
 			<div className={styles.info_container}>
-				<h3 className={styles.title}>Retrieving Tracking Data</h3>
+				<h3 className={styles.title}>{t('airOceanTracking:air_ocean_tracking_empty_card_text')}</h3>
 				<p>
-					{`Fetching data on this ${EMPTY_STATE_INFO} is
-					taking longer than usual. We will inform you as soon as its available.`}
+					{`${t('airOceanTracking:air_ocean_tracking_fetching_data_text')} ${EMPTY_STATE_INFO}
+					 ${t('airOceanTracking:air_ocean_tracking_fetching_data_text_2')}`}
 				</p>
 			</div>
 
 			<Modal show={openModal} onClose={closeHandler} closeOnOuterClick>
-				<Modal.Header title="Delete Tracker" />
+				<Modal.Header title={t('airOceanTracking:air_ocean_tracking_delete_tracker')} />
 				<div className={styles.border} />
 				<ArchiveDelete
 					activeTab={activeTab}

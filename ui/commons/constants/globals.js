@@ -233,6 +233,8 @@ const GLOBAL_CONSTANTS = {
 		ef_email_offer_letter  	 : 'https://cdn.cogoport.io/cms-prod/cogo_fintech/vault/original/email_offer',
 		ef_offer_letter_waiting:
 			'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/Document_Offer_letter_icon.svg',
+		pen_image     : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg',
+		premium_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crown_new.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',
@@ -261,6 +263,8 @@ const GLOBAL_CONSTANTS = {
 		},
 		AIRWAY_BILL_NO: /^\d{3}-\d{8}$/,
 	},
+	customer_support: 'support@cogoport.com',
+
 };
 
 export default GLOBAL_CONSTANTS;

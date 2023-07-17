@@ -1,31 +1,31 @@
-const detDemControls = [
+const getDetDemControls = ({ t }) => [
 	{
 		name        : 'origin_detention',
-		label       : 'At Origin',
+		label       : t('airOceanTracking:detention_demurage_controls_label_1'),
 		type        : 'number',
 		arrow       : false,
-		placeholder : 'Enter number of days',
-		suffix      : 'free detention days',
+		placeholder : t('airOceanTracking:detention_demurage_controls_placeholder_1'),
+		suffix      : t('airOceanTracking:detention_demurage_controls_suffix_1'),
 		rules       : {
-			required : 'Please enter origin detention',
+			required : t('airOceanTracking:detention_demurage_controls_required_text_1'),
 			maxValue : {
 				value   : 30,
-				message : 'Entered number cannot greater that 30',
+				message : t('airOceanTracking:detention_demurage_controls_invalid_text_1'),
 			},
 		},
 	},
 	{
 		name        : 'destination_detention',
-		label       : 'At Destination',
+		label       : t('airOceanTracking:detention_demurage_controls_label_2'),
 		type        : 'number',
 		arrow       : false,
-		placeholder : 'Enter number of days',
-		suffix      : 'free detention days',
+		placeholder : t('airOceanTracking:detention_demurage_controls_placeholder_1'),
+		suffix      : t('airOceanTracking:detention_demurage_controls_suffix_1'),
 		rules       : {
-			required : 'Please enter destination detention',
+			required : t('airOceanTracking:detention_demurage_controls_required_text_2'),
 			maxValue : {
 				value   : 30,
-				message : 'Entered number cannot greater that 30',
+				message : t('airOceanTracking:detention_demurage_controls_invalid_text_1'),
 			},
 		},
 	},
@@ -33,16 +33,16 @@ const detDemControls = [
 		name        : 'destination_demurrage',
 		type        : 'number',
 		arrow       : false,
-		placeholder : 'Enter number of days',
-		suffix      : 'free demurrage days',
+		placeholder : t('airOceanTracking:detention_demurage_controls_placeholder_1'),
+		suffix      : t('airOceanTracking:detention_demurage_controls_suffix_2'),
 		rules       : {
-			required : 'Please enter destination demurrage',
+			required : t('airOceanTracking:detention_demurage_controls_required_text_3'),
 			maxValue : {
 				value   : 30,
-				message : 'Entered number cannot greater that 30',
+				message : t('airOceanTracking:detention_demurage_controls_invalid_text_1'),
 			},
 		},
 	},
 ];
 
-export default detDemControls;
+export default getDetDemControls;

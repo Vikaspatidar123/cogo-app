@@ -44,7 +44,7 @@ const useGetShipmentInfo = () => {
 				setApiTries((prev) => prev + 1);
 			}
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	}, [apiTries, trigger]);
 

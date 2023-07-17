@@ -1,8 +1,9 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useCallback } from 'react';
 
+import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
 const TIMER_SETTING = 1000;
@@ -13,17 +14,21 @@ const wait = () => new Promise((res) => {
 	}, TIMER_SETTING);
 });
 
+const getPayLoad = ({ token_value, value }) => ({ token: token_value, cancellation_reason: value });
+
 const useUnsubscribe = ({
-	setSubmit = () => {},
-	setTimer = () => {},
+	setSubmit = () => { },
+	setTimer = () => { },
 	timer = 0,
-	setTicket = () => {},
+	setTicket = () => { },
 	ticket = '',
 }) => {
-	const {
-		general: { query = {} },
-	} = useSelector((state) => state);
+	const { query } = useRouter();
+
 	const { token } = query || {};
+	const token_value = token.replace(/\s/g, '+');
+
+	const { t } = useTranslation(['cancellationTicket']);
 
 	const [{ loading }, trigger] = useRequest({
 		url    : 'raise_subscription_cancellation_request',
@@ -36,15 +41,17 @@ const useUnsubscribe = ({
 	}, [setTimer]);
 
 	const onSubmit = async (value = '') => {
+		const payload = getPayLoad({ token_value, value });
+
 		try {
 			const response = await trigger({
-				data: { token, cancellation_reason: value },
+				data: payload,
 			});
 
 			const { data } = response || {};
 			setTicket(data?.ticket_number);
 
-			Toast.success('Unsubscribe request send successfully');
+			Toast.success(t('cancellationTicket:unsubscribe_successfully_message'));
 
 			setTimer(15);
 			setSubmit(true);
@@ -56,9 +63,9 @@ const useUnsubscribe = ({
 	const copyToClipBoard = () => {
 		try {
 			navigator.clipboard.writeText(ticket);
-			Toast.success('Successfully copied to clipboard');
+			Toast.success(t('cancellationTicket:successfully_message'));
 		} catch (err) {
-			Toast.error('Unable to copy');
+			Toast.error(t('cancellationTicket:unabel_text'));
 		}
 	};
 

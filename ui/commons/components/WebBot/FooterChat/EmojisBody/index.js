@@ -7,8 +7,8 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 function PopBody({ emojisList, updateMessage, setOnClicked = () => {} }) {
 	return (
 		<div className={styles.container}>
-			{(Object.entries(emojisList) || [])
-				.map((group) => Object.entries(group[1]).map((subgroup) => subgroup[1].map((item) => {
+			{(Object.entries(emojisList) || []).map((group) => Object.entries(group[1])
+				.map((subgroup) => subgroup[1].map((item, index) => {
 					const result = item[0].trim().split(GLOBAL_CONSTANTS.regex.white_space_regex);
 					let emoji = '';
 					result.forEach((emojiUnicode) => {
@@ -23,7 +23,7 @@ function PopBody({ emojisList, updateMessage, setOnClicked = () => {} }) {
 								setOnClicked(false);
 							}}
 							className={styles.emoji_button}
-							key={group}
+							key={`${group[0]}_${subgroup[0]}_${index + 1}`}
 						>
 							{emoji}
 						</div>

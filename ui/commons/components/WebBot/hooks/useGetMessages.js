@@ -7,7 +7,7 @@ import {
 	getDocs,
 	collection,
 } from 'firebase/firestore';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
@@ -28,12 +28,12 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 	const [loading, setLoading] = useState(false);
 	const latestMessages = useRef(null);
 
-	const messagesCollection = collection(
-		firestore,
-		`${PLATFORM_CHAT_PATH}/${roomId}/messages`,
-	);
+	const mountSnapShot = useCallback(() => {
+		const messagesCollection = collection(
+			firestore,
+			`${PLATFORM_CHAT_PATH}/${roomId}/messages`,
+		);
 
-	const mountSnapShot = () => {
 		const chatCollectionQuery = query(
 			messagesCollection,
 			where('conversation_type', 'in', ['sent', 'received']),
@@ -63,7 +63,7 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 				setTimeout(scrollToBottom, TIME_TO_SCROLL);
 			},
 		);
-	};
+	}, [firestore, roomId, scrollToBottom]);
 
 	const { messagesHash = {}, islastPage: isLastPageOfMessages } =		messagesState || {};
 
@@ -72,6 +72,11 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 			return;
 		}
 		const prevTimeStamp = Number(messagesState?.lastDocumentTimeStamp);
+
+		const messagesCollection = collection(
+			firestore,
+			`${PLATFORM_CHAT_PATH}/${roomId}/messages`,
+		);
 
 		const chatCollectionQuery = query(
 			messagesCollection,
@@ -109,13 +114,12 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 	};
 
 	useEffect(() => {
-		latestMessages?.current?.();
+		// latestMessages?.current?.();
 		mountSnapShot();
 		return () => {
 			latestMessages?.current?.();
 		};
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [mountSnapShot]);
 
 	const sortedMessageData = Object.keys(messagesHash || {})
 		.sort((a, b) => Number(a) - Number(b))

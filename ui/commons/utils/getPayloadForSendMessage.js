@@ -5,15 +5,13 @@ const getPayloadForSendMessage = ({
 	organization_id = null,
 	messageMetaData,
 }) => {
-	let extraPayload = {};
-	if (conversation_type === 'outward') {
-		extraPayload = { user_id, lead_user_id, organization_id };
-		return null;
-	}
-	extraPayload = {
+	let extraPayload = {
 		sender_user_id      : user_id,
 		sender_lead_user_id : lead_user_id,
 	};
+	if (conversation_type === 'outward') {
+		extraPayload = { user_id, lead_user_id, organization_id };
+	}
 
 	return {
 		type              : 'platform_chat',

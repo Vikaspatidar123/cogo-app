@@ -22,6 +22,12 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 
 	const { control } = useForm();
 
+	const {
+		emojisList = {},
+		setOnClicked = () => {},
+		onClicked,
+	} = useGetEmojiList();
+
 	const handleChange = (obj) => {
 		if (isEmpty(obj)) {
 			return;
@@ -77,12 +83,6 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 		}
 	};
 
-	const {
-		emojisList = {},
-		setOnClicked = () => {},
-		onClicked,
-	} = useGetEmojiList();
-
 	const { fileIcon } = getFileAttributes({
 		fileName : file?.name,
 		finalUrl : file?.url,
@@ -129,7 +129,6 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 					/>
 				)}
 				<Popover
-					theme="light"
 					animation="shift-away"
 					placement="top"
 					content={(

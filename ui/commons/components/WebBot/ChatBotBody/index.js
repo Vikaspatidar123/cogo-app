@@ -1,5 +1,5 @@
 import { IcMRefresh } from '@cogoport/icons-react';
-import React, { useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 
 import FooterChat from '../FooterChat';
 import useGetMessages from '../hooks/useGetMessages';
@@ -17,11 +17,9 @@ function ChatBotBody({ firestore, roomId, sendMessage, sendMessageLoading }) {
 		messageEnd : null,
 	});
 
-	console.log('🚀 ~ file: index.js:19 ~ ChatBotBody ~ refs:', refs);
-
-	const scrollToBottom = () => {
-		refs.current.messageEnd.scrollIntoView({ behavior: 'smooth' });
-	};
+	const scrollToBottom = useCallback(() => {
+		refs.current.messageEnd?.scrollIntoView({ behavior: 'smooth' });
+	}, []);
 
 	const toggleHeight = ({ isFileDivPresent = false }) => {
 		if (refs.current.messageRef !== null) {

@@ -1,6 +1,6 @@
 import { IcMCrossInCircle } from '@cogoport/icons-react';
 
-import { useDynamicIntelligence } from '../../hooks/useDynamicIntelligence';
+import { getDynamicIntelligence } from '../../utils/getDynamicIntelligence';
 
 import styles from './styles.module.css';
 
@@ -10,7 +10,7 @@ const GREETING_OPTIONS = [
 ];
 
 function BotIntelligence({ showIntelligence, setShowIntelligence = () => {} }) {
-	const { chooseIntelligence = '' } = useDynamicIntelligence();
+	const { chooseIntelligence = '' } = getDynamicIntelligence();
 
 	if (!(showIntelligence && chooseIntelligence)) return null;
 

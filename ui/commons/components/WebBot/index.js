@@ -30,7 +30,7 @@ function WebBot({
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [botRef, closeBot, isOpen]);
+	}, [closeBot, isOpen]);
 
 	return (
 		<div ref={botRef}>

@@ -2,26 +2,26 @@ import { useState, useEffect, useCallback } from 'react';
 
 import GLOBAL_CONSTANTS from '../constants/globals';
 
-import { useRequest } from '@/packages/request';
+import { request } from '@/packages/request';
 
 const EMOJIS_URL = GLOBAL_CONSTANTS.fetch_emoji_list;
 
 const useGetEmojiList = () => {
 	const [onClicked, setOnClicked] = useState(false);
+	const [emojisList, setEmojiList] = useState({});
 
-	const [{ data: emojisList }, trigger] = useRequest(
-		{
-			url: EMOJIS_URL,
-		},
-	);
-
-	const emojiListFetch = useCallback(() => {
+	const emojiListFetch = useCallback(async () => {
 		try {
-			trigger();
+			const resp = await request(
+				{
+					url: EMOJIS_URL,
+				},
+			);
+			setEmojiList(resp?.data);
 		} catch (error) {
 			console.error(error);
 		}
-	}, [trigger]);
+	}, []);
 
 	useEffect(() => {
 		emojiListFetch();

@@ -7,7 +7,7 @@ const intelligence = [
 	"👋 Hello! I'm here to help you",
 ];
 
-export function useDynamicIntelligence() {
+export function getDynamicIntelligence() {
 	const intelligenceLabel = Math.floor(Math.random() * intelligence.length);
 	const chooseIntelligence = intelligence[intelligenceLabel];
 

@@ -8,15 +8,10 @@ const FILE_TYPE_ICONS_MAPPING = {
 const { img, document } = FILE_TYPE_ICONS_MAPPING;
 
 const FILE_TYPE_ICON_MAPPING = {
-	jpeg    : img,
-	jpg     : img,
-	png     : img,
-	svg     : img,
-	mp3     : document,
-	aac     : document,
-	mp4     : img,
-	gif     : img,
-	default : document,
+	image : img,
+	audio : document,
+	video : img,
+	document,
 };
 
 const FILE_TYPE_MAPPING = {
@@ -33,19 +28,17 @@ const FILE_TYPE_MAPPING = {
 
 function getFileAttributes({ fileName = '', finalUrl }) {
 	const splitFileName = fileName.split('.');
-	let fileExtension = '';
-	let uploadedFileName = '';
+	let fileExtension = 'document';
+	let uploadedFileName = fileName;
 
 	if (splitFileName.length > 1) {
 		fileExtension = splitFileName.pop();
 		uploadedFileName = splitFileName.join('');
-	} else {
-		fileExtension = 'document';
-		uploadedFileName = fileName;
 	}
 
 	const fileType = FILE_TYPE_MAPPING[fileExtension] || FILE_TYPE_MAPPING.default;
-	const fileIcon = FILE_TYPE_ICON_MAPPING[fileExtension] || FILE_TYPE_ICON_MAPPING.default;
+
+	const fileIcon = FILE_TYPE_ICON_MAPPING[fileType] || FILE_TYPE_ICON_MAPPING.default;
 
 	return {
 		uploadedFileName,

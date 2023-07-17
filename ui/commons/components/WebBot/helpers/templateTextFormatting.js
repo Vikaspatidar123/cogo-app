@@ -6,6 +6,8 @@ const endWithStarSpace = new RegExp(
 );
 const endWithStarChar = new RegExp(GLOBAL_CONSTANTS.regex.ends_with_star_char);
 
+const TEXT_INDEX = 0;
+
 const replaceStarSpace = (txt = '') => txt
 	.split(endWithStarSpace)
 	.map((str, i) => {
@@ -17,18 +19,18 @@ const replaceStarSpace = (txt = '') => txt
 	.join('');
 
 const replaceStarChar = (txt = '') => {
-	if (txt.match(GLOBAL_CONSTANTS.regex.asterisk_regex).length === 1) {
-		return txt
-			.split('*')
-			.map((str, i) => {
-				if (i === 0) {
-					return ` <strong key={${str}}>${str.substring(0, txt.length - 1)}</strong>`;
-				}
-				return str;
-			})
-			.join('');
+	if (txt.match(GLOBAL_CONSTANTS.regex.asterisk_regex).length !== 1) {
+		return txt;
 	}
-	return txt;
+	return txt
+		.split('*')
+		.map((str, i) => {
+			if (i === TEXT_INDEX) {
+				return ` <strong key={${str}}>${str.substring(0, txt.length - 1)}</strong>`;
+			}
+			return str;
+		})
+		.join('');
 };
 
 const addStrongTag = (txt = '') => {

@@ -16,7 +16,7 @@ const useSendMessage = ({
 	);
 
 	const sendMessage = async ({
-		messageMetaData,
+		messageMetaData = {},
 		conversation_type = '',
 		updateFirestore = () => {},
 	}) => {

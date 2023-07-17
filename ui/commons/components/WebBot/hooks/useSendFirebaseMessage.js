@@ -73,6 +73,8 @@ const useSendFirebaseMessage = ({
 		let messageMetaData = {
 			btn_id       : buttonId || undefined,
 			session_type : roomSessionType,
+			message_type : type || 'text',
+			text         : newMessage,
 		};
 
 		if (finalUrl) {
@@ -81,12 +83,6 @@ const useSendFirebaseMessage = ({
 				message_type : fileType,
 				text         : newMessage,
 				media_url    : finalUrl,
-			};
-		} else {
-			messageMetaData = {
-				...messageMetaData,
-				message_type : type || 'text',
-				text         : newMessage,
 			};
 		}
 

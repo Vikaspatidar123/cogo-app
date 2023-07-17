@@ -12,14 +12,12 @@ import patterns from '@/ui/commons/configurations/patterns';
 import { CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const getAddressNewControls = ({ organizationCountryId }) => {
+const getAddressNewControls = () => {
 	const geo = getGeoConstants();
 	const REGISTRATION_PATTERN = geo.others.registration_number;
 	const REGISTRATION_LABEL = geo.others.registration_number.label;
 
-	const configAddressControls = getAddressMappingControls({
-		organizationCountryId,
-	});
+	const configAddressControls = getAddressMappingControls();
 
 	return configAddressControls.map((control) => {
 		let newControl = { ...control };
@@ -142,7 +140,7 @@ const getAddressControls = ({ values, formState = {}, gstinOptions, organization
 	if (!isEmpty(values)) {
 		newValues = values;
 	}
-	const addressControls = getAddressNewControls({ organizationCountryId });
+	const addressControls = getAddressNewControls();
 
 	return addressControls.map((control) => {
 		const { name, type } = control;

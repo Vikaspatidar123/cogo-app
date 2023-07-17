@@ -9,6 +9,21 @@ import { getPanHolderStatusOptions } from './getPanHolderStatus';
 import patterns from '@/ui/commons/configurations/patterns';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
+const OPTION = [
+	{
+		label : 'Office',
+		value : 'office',
+	},
+	{
+		label : 'Factory Address',
+		value : 'factory',
+	},
+	{
+		label : 'Warehouse Address',
+		value : 'warehouse',
+	},
+];
+
 function TradePartyInstructions() {
 	return (
 		<div>
@@ -36,21 +51,8 @@ const getBillingControls = () => {
 			label   : 'Address Type',
 			type    : 'select',
 			span    : 5.8,
-			options : [
-				{
-					label : 'Office',
-					value : 'office',
-				},
-				{
-					label : 'Factory Address',
-					value : 'factory',
-				},
-				{
-					label : 'Warehouse Address',
-					value : 'warehouse',
-				},
-			],
-			rules: { required: true },
+			options : OPTION,
+			rules   : { required: true },
 		},
 		{
 			label       : 'Country of Registration',
@@ -98,7 +100,6 @@ const getBillingControls = () => {
 			drag       : true,
 			uploadIcon : () => <IcMFileUploader />,
 			span       : 5.8,
-			uploadType : 'aws',
 			height     : 45,
 			rules      : { required: true },
 		},
@@ -122,7 +123,6 @@ const getBillingControls = () => {
 			type       : 'file',
 			drag       : true,
 			span       : 12,
-			uploadType : 'aws',
 			height     : 45,
 			uploadIcon : () => <IcMFileUploader />,
 			rules      : { required: true },
@@ -594,10 +594,6 @@ export const getBillingAddressControls = ({ values = {} }) => {
 	const billingAddressControls = getBillingControls();
 	return billingAddressControls.map((control) => {
 		const { name } = control;
-
-		// if (name === 'is_sez') {
-		// 	return { ...control, value: values[name] ? ['jn'] : [] };
-		// }
 
 		return { ...control, value: values[name] || '' };
 	});

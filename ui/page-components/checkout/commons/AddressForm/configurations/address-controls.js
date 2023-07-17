@@ -1,7 +1,21 @@
-import { CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const getAddressMappingControls = ({ organizationCountryId }) => {
+const OPTIONS = [
+	{
+		label : 'Office',
+		value : 'office',
+	},
+	{
+		label : 'Factory',
+		value : 'factory',
+	},
+	{
+		label : 'Warehouse Address',
+		value : 'warehouse',
+	},
+];
+
+const getAddressMappingControls = () => {
 	const geo = getGeoConstants();
 
 	const REGISTRATION_LABEL = geo.others.registration_number.label;
@@ -9,12 +23,11 @@ const getAddressMappingControls = ({ organizationCountryId }) => {
 
 	return [
 		{
-			name      : 'gst_list',
-			type      : 'select',
-			span      : 5.8,
-			className : 'primary md',
-			showIn    : ['billingAddress'],
-			rules     : {
+			name   : 'gst_list',
+			type   : 'select',
+			span   : 5.8,
+			showIn : ['billingAddress'],
+			rules  : {
 				required: true,
 			},
 		},
@@ -32,21 +45,8 @@ const getAddressMappingControls = ({ organizationCountryId }) => {
 			type    : 'select',
 			name    : 'address_type',
 			label   : 'Address Type',
-			options : [
-				{
-					label : 'Office',
-					value : 'office',
-				},
-				{
-					label : 'Factory',
-					value : 'factory',
-				},
-				{
-					label : 'Warehouse Address',
-					value : 'warehouse',
-				},
-			],
-			rules: {
+			options : OPTIONS,
+			rules   : {
 				required: 'Address Required',
 			},
 			span   : 5.8,
@@ -144,35 +144,13 @@ const getAddressMappingControls = ({ organizationCountryId }) => {
 			},
 		},
 		{
-			type  : 'checkbox',
-			name  : 'is_sez',
-			label : (
-				<>
-					Is
-					{' '}
-					<CountrySpecificData
-						country_id={organizationCountryId}
-						accessorType="economic_zone"
-						accessor="label"
-					/>
-					{' '}
-				</>
-			),
-			options: [
+			type    : 'checkbox',
+			name    : 'is_sez',
+			label   : `Is ${ECO_ZONE_LABEl}`,
+			options : [
 				{
 					value : true,
-					label : (
-						<>
-							Is
-							{' '}
-							<CountrySpecificData
-								country_id={organizationCountryId}
-								accessorType="economic_zone"
-								accessor="label"
-							/>
-							{' '}
-						</>
-					),
+					label : `Is ${ECO_ZONE_LABEl}`,
 				},
 			],
 			multiple : true,
@@ -180,19 +158,9 @@ const getAddressMappingControls = ({ organizationCountryId }) => {
 			showIn   : ['billingAddress'],
 		},
 		{
-			type  : 'file',
-			name  : 'sez_proof',
-			label : (
-				<>
-					<CountrySpecificData
-						country_id={organizationCountryId}
-						accessorType="economic_zone"
-						accessor="label"
-					/>
-					{' '}
-					Proof
-				</>
-			),
+			type       : 'file',
+			name       : 'sez_proof',
+			label      : `${ECO_ZONE_LABEl} Proof`,
 			uploadType : 'aws',
 			drag       : true,
 			height     : 45,

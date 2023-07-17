@@ -1,8 +1,11 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useRequest } from '@/packages/request';
 
 const useEmailVerification = () => {
+	const { t } = useTranslation(['authentication']);
+
 	const [{ loading: resendEmailAPILoading }, resendEmailAPItrigger] = useRequest({
 		url    : 'resend_lead_verification_email',
 		method : 'post',
@@ -19,7 +22,7 @@ const useEmailVerification = () => {
 				data: payload,
 			});
 
-			Toast.success('Verification Email has been Resent.');
+			Toast.success(t('authentication:signupOtp_resendMail_success'));
 		} catch (error) {
 			Toast.error(error?.error);
 		}

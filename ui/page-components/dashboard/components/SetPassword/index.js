@@ -1,7 +1,9 @@
 import { Button, Modal } from '@cogoport/components';
 import { IcCTick, IcMEyeclose, IcMEyeopen } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import useSetPassword from '../../hooks/useSetPassword';
 
@@ -12,7 +14,12 @@ import PasswordValidator from '@/ui/commons/components/PasswordValidator';
 import patterns from '@/ui/commons/configurations/patterns';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-function SetPassword({ showModal = false, setShowModal = () => {} }) {
+function SetPassword({ showModal = false, setShowModal = () => { } }) {
+	const { t } = useTranslation(['dashboard']);
+	const translationKey = 'dashboard:setPassword';
+
+	const { profile: { email_verified = false } } = useSelector((state) => state);
+
 	const [showPassword, setShowPassword] = useState(false);
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 	const { handleSubmit, control, watch, formState: { errors, isValid } } = useForm();
@@ -51,27 +58,29 @@ function SetPassword({ showModal = false, setShowModal = () => {} }) {
 			<form onSubmit={handleSubmit(onSetPassword)} className={styles.form_container}>
 				<Modal.Body className={styles.modal_body}>
 					<div>
-						<h3>Set Password</h3>
+						<h3>{t(`${translationKey}_heading`)}</h3>
 
-						<h3 className={styles.verify_text}>
-							<IcCTick height={28} width={28} style={{ marginRight: '4px' }} />
+						{email_verified ? (
+							<h3 className={styles.verify_text}>
+								<IcCTick height={28} width={28} style={{ marginRight: '4px' }} />
 
-							Your email is successfully verified
-						</h3>
+								{t(`${translationKey}_emailVerify_message`)}
+							</h3>
+						) : null}
 
 						<div className={styles.form_container}>
-							<div className={styles.label}>Password</div>
+							<div className={styles.label}>{t(`${translationKey}_password_label`)}</div>
 							<InputController
 								control={control}
 								name="password"
 								type={showPassword ? 'text' : 'password'}
 								suffix={renderSuffix(showPassword, setShowPassword)}
-								placeholder="Type here..."
+								placeholder={t(`${translationKey}_password_placeholder`)}
 								rules={{
-									required : 'Password is required.',
+									required : t(`${translationKey}_password_error_1`),
 									pattern  : {
 										value   : patterns.PASSWORD.PASSWORD_PATTERN,
-										message : 'Password is invalid.',
+										message : t(`${translationKey}_password_error_2`),
 									},
 								}}
 							/>
@@ -79,15 +88,15 @@ function SetPassword({ showModal = false, setShowModal = () => {} }) {
 								{errors?.password?.message || ''}
 							</span>
 
-							<div className={styles.label}>Confirm Password</div>
+							<div className={styles.label}>{t(`${translationKey}_confirmPassword_label`)}</div>
 							<InputController
 								control={control}
 								name="confirm_password"
 								type={showConfirmPassword ? 'text' : 'password'}
 								suffix={renderSuffix(showConfirmPassword, setShowConfirmPassword)}
-								placeholder="Type here..."
+								placeholder={t(`${translationKey}_confirmPassword_placeholder`)}
 								rules={{
-									required: 'Confirm Password is required.',
+									required: t(`${translationKey}_confirmPassword_error`),
 								}}
 							/>
 							<span className={styles.errors}>
@@ -107,7 +116,7 @@ function SetPassword({ showModal = false, setShowModal = () => {} }) {
 						type="submit"
 						size="md"
 					>
-						Submit
+						{t(`${translationKey}_submit_button`)}
 					</Button>
 				</Modal.Footer>
 			</form>

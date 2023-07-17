@@ -1,11 +1,13 @@
 import { Loader } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import { prompts } from '../../../configurations/loading-prompts';
 
 import styles from './styles.module.css';
 
-function LoadingPrompts({ type = '', t = () => {} }) {
+function LoadingPrompts({ type = '' }) {
+	const { t } = useTranslation(['common', 'authentication']);
 	const [currentPromptIndex, setCurrentPromptIndex] = useState(0);
 
 	const modifiedPrompts = prompts(t)[type] || [];

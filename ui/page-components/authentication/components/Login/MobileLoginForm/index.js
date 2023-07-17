@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import useLoginMobileAuthentication from '../../../hooks/useLoginMobileAuthentication';
 import useMobileLoginForm from '../../../hooks/useMobileLoginForm';
@@ -12,8 +13,8 @@ function MobileLoginForm({
 	setMobileNumber = () => {},
 	setOtpId = () => {},
 	mobileNumber = {},
-	t = () => {},
 }) {
+	const { t } = useTranslation(['common']);
 	const translationKey = 'common:loginField';
 
 	const {

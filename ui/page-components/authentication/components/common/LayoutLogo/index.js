@@ -23,7 +23,7 @@ function LayoutLogo() {
 			</a>
 
 			<div className={styles.help_mobile}>
-				<Popover placement="bottom" render={(<HelpCard t={t} />)}>
+				<Popover placement="bottom" render={(<HelpCard />)}>
 					<Button size="md" themeType="accent">
 						<IcMAgentManagement
 							style={{ marginRight: '4px' }}

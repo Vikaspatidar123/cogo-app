@@ -124,5 +124,16 @@
 	"export_factoring_text_1":"Xuất bao thanh toán",
 	"export_factoring_text_2":"là ngay xung quanh góc.",
 	"export_factoring_text_3":"Dễ dàng đăng ký trực tuyến chỉ trong vài phút",
-	"export_factoring_text_4":"Tài chính lên tới 90% giá trị hóa đơn thương mại của bạn và tận dụng giới hạn bảo hiểm miễn phí tài sản thế chấp."
+	"export_factoring_text_4":"Tài chính lên tới 90% giá trị hóa đơn thương mại của bạn và tận dụng giới hạn bảo hiểm miễn phí tài sản thế chấp.",
+	"setPassword_heading": "Đặt mật khẩu",
+	"setPassword_emailVerify_message":"Email của bạn được xác minh thành công",
+	"setPassword_password_label":"Mật khẩu",
+	"setPassword_password_placeholder":"Nhập ở đây...",
+	"setPassword_password_error_1":"Mật khẩu là bắt buộc.",
+	"setPassword_password_error_2":"Mật khẩu không hợp lệ.",
+	"setPassword_confirmPassword_label":"Xác nhận mật khẩu",
+	"setPassword_confirmPassword_placeholder":"Nhập ở đây...",
+	"setPassword_confirmPassword_error":"Xác nhận mật khẩu là bắt buộc.",
+	"setPassword_submit_button":"Nộp",
+	"setPassword_success_message":"Mật khẩu đặt thành công"
 }

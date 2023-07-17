@@ -1,9 +1,11 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useRequest } from '@/packages/request';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
 const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => { }, userDetails = {} }) => {
+	const { t } = useTranslation(['authentication']);
 	const [{ loading: signupLoading }, verifyOtpTrigger] = useRequest({
 		url    : 'verify_sign_up_lead_user',
 		method : 'post',
@@ -31,7 +33,7 @@ const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => { }, userDe
 
 			setCookieAndRedirect(token, {}, redirectUrl);
 
-			Toast?.success('Verification Successful!');
+			Toast?.success(t('authentication:signupOtp_verifyOtp_success'));
 		} catch (error) {
 			Toast.error(error?.data);
 		}
@@ -47,7 +49,7 @@ const useSignupOtpAuthentication = ({ otpValue = '', setMode = () => { }, userDe
 				data: payload,
 			});
 
-			Toast.success('OTP Resent Successfully');
+			Toast.success(t('authentication:signupOtp_resendOtp_success'));
 
 			timer?.restart?.();
 		} catch (error) {

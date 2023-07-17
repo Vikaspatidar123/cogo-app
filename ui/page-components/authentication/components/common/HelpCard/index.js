@@ -1,4 +1,5 @@
 import { IcMCall, IcMEmail } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -8,7 +9,8 @@ const NAME = GLOBAL_CONSTANTS.onboarding_specialist.name;
 const PHONE_NUMBER = GLOBAL_CONSTANTS.onboarding_specialist.phone_number;
 const EMAIL_ID = GLOBAL_CONSTANTS.onboarding_specialist.email_id;
 
-function HelpCard({ t = () => {} }) {
+function HelpCard() {
+	const { t } = useTranslation(['common']);
 	const translationKey = 'common:helpButton';
 
 	return (

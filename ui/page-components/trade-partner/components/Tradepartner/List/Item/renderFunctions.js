@@ -24,9 +24,9 @@ const itemFunctions = ({
 		renderAmount: (itemData, field) => (
 			<Amount currency={itemData.currency} field={itemData[field.key]} />
 		),
-		renderDate: (itemData, field) => <Date itemData={itemData} field={field} />,
-		renderTooltip: (itemData, field) => <RenderTooltip value={itemData[field.key]} />,
-		renderStatus: (itemData) => (
+		renderDate    : (itemData, field) => <Date itemData={itemData} field={field} />,
+		renderTooltip : (itemData, field) => <RenderTooltip value={itemData[field.key]} />,
+		renderStatus  : (itemData) => (
 			<div className={styles.flex_div}>
 				{itemData?.documentStatus === 'SENT' && <IcCGreenCircle width={9} height={9} />}
 				{itemData?.documentStatus === 'DRAFTED' && (

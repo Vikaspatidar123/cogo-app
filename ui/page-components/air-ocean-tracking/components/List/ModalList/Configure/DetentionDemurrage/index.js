@@ -1,7 +1,8 @@
 import { cl, Button } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
-import detDemControls from '../../../../../configuration/detDemControls';
+import getDetDemControls from '../../../../../configuration/detDemControls';
 import useCreateShipment from '../../../../../hooks/useCreateShipment';
 
 import styles from './styles.module.css';
@@ -10,9 +11,13 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function DetentionDemurrage({ closeHandler, shipmentId, refetchTrackerList, shipmentInfo = {} }) {
-	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler, refetchTrackerList });
-
 	const { origin_detention = '', destination_demurrage = '', destination_detention = '' } = shipmentInfo || {};
+
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const detDemControls = getDetDemControls({ t });
+
+	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler, refetchTrackerList });
 
 	const { control, formState:{ errors }, handleSubmit } = useForm({
 		defaultValues: {
@@ -35,12 +40,12 @@ function DetentionDemurrage({ closeHandler, shipmentId, refetchTrackerList, ship
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<h3>Setup detention / demurrage days</h3>
+				<h3>{t('airOceanTracking:tracking_detention_text_1')}</h3>
 			</div>
 			<div className={styles.notif}>
 				<IcMInformation fill="#F68B21" width={20} height={20} />
 				<div className={styles.notif_text}>
-					Get alerted when detention / demurrage free days are about to expire, and when they expire.
+					{t('airOceanTracking:tracking_detention_text_2')}
 				</div>
 			</div>
 			<div className={styles.form_container}>
@@ -59,7 +64,9 @@ function DetentionDemurrage({ closeHandler, shipmentId, refetchTrackerList, ship
 				</div>
 			</div>
 			<div className={styles.footer}>
-				<Button type="button" themeType="secondary" disabled={loading} onClick={closeHandler}>Cancel</Button>
+				<Button type="button" themeType="secondary" disabled={loading} onClick={closeHandler}>
+					{t('airOceanTracking:air_ocean_tracking_cancel_button_label')}
+				</Button>
 				<Button
 					className={styles.submit_btn}
 					themeType="accent"
@@ -67,7 +74,7 @@ function DetentionDemurrage({ closeHandler, shipmentId, refetchTrackerList, ship
 					onClick={handleSubmit(onSubmit)}
 					loading={loading}
 				>
-					Save
+					{t('airOceanTracking:save_button_label')}
 				</Button>
 			</div>
 		</div>

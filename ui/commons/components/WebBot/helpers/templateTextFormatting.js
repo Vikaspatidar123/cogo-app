@@ -6,7 +6,7 @@ const endWithStarSpace = new RegExp(
 );
 const endWithStarChar = new RegExp(GLOBAL_CONSTANTS.regex.ends_with_star_char);
 
-const TEXT_INDEX = 0;
+const TO_BE_BOLD_TEXT_INDEX = 0;
 
 const replaceStarSpace = (txt = '') => txt
 	.split(endWithStarSpace)
@@ -25,7 +25,7 @@ const replaceStarChar = (txt = '') => {
 	return txt
 		.split('*')
 		.map((str, i) => {
-			if (i === TEXT_INDEX) {
+			if (i === TO_BE_BOLD_TEXT_INDEX) {
 				return ` <strong key={${str}}>${str.substring(0, txt.length - 1)}</strong>`;
 			}
 			return str;

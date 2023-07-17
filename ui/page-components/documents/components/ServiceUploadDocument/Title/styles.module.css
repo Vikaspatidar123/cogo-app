@@ -1,0 +1,71 @@
+.title_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 84vw;
+	height: 48px;
+
+	:global {
+		.ui_pill_container {
+			width: 16px;
+			height: 10px;
+			padding: 0;
+		}
+	}
+}
+
+.listTitle {
+	display: flex;
+	width: 45%;
+	margin: 0 80px 0 0;
+	overflow: hidden;
+	font-size: 14px;
+	font-weight: 500;
+	color: #231f20;
+	text-overflow: ellipsis;
+
+	/* justify-content: "start"; */
+	white-space: nowrap;
+}
+
+.sampleLink {
+	display: "flex";
+	width: 45%;
+	margin: "0 80px 0 0";
+	color: #034afd;
+	text-decoration: underline;
+}
+
+.tag {
+	/* border-radius: 2px; */
+	margin: 0 18px 0 0;
+}
+
+.success_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.icon {
+	width: 20px;
+	height: 20px;
+	margin: 0 10px;
+	cursor: pointer;
+}
+
+.success_info {
+	flex-basis: 30%;
+	color: #828282;
+}
+
+.info {
+	color: #231;
+}
+
+.init_title {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}

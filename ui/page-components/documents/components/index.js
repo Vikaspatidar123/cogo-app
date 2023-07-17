@@ -6,6 +6,7 @@ import useGetDocumentsList from '../hooks/useGetDocumentsList';
 
 import AllFiles from './AllFiles';
 import Heading from './Heading';
+import ServiceUploadDocument from './ServiceUploadDocument';
 import Uploader from './Uploader';
 
 function Documents() {
@@ -40,7 +41,7 @@ function Documents() {
 					data={data}
 					loading={loading}
 				/>
-			) : null}
+			) : <ServiceUploadDocument />}
 
 			{show ? (
 				<Uploader

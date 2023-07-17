@@ -52,10 +52,13 @@ function SetPassword({ showModal = false, setShowModal = () => {} }) {
 				<Modal.Body className={styles.modal_body}>
 					<div>
 						<h3>Set Password</h3>
+
 						<h3 className={styles.verify_text}>
 							<IcCTick height={28} width={28} style={{ marginRight: '4px' }} />
+
 							Your email is successfully verified
 						</h3>
+
 						<div className={styles.form_container}>
 							<div className={styles.label}>Password</div>
 							<InputController

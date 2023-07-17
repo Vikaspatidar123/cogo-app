@@ -139,7 +139,6 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 					<IcCWhatsapp height={20} width={20} />
 					{' '}
 					WhatsApp
-
 				</div>
 			</div>
 

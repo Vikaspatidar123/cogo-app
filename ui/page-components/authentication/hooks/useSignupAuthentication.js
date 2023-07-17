@@ -4,15 +4,10 @@ import { useRef, useState } from 'react';
 import { useRequest } from '@/packages/request';
 
 const getFormattedPayload = ({ val, captchaResponse, leadUserId }) => {
-	const { name, email, mobile_number, is_whatsapp_number, business_name, country_id } = val;
+	const { business_name, country_id } = val;
 
 	return {
 		lead_user_id              : leadUserId || undefined,
-		name,
-		email,
-		mobile_country_code       : mobile_number.country_code,
-		mobile_number             : mobile_number.number,
-		is_whatsapp_number,
 		business_name,
 		country_id,
 		google_recaptcha_response : captchaResponse,
@@ -27,7 +22,7 @@ const useSignupAuthentication = ({
 	const recaptchaRef = useRef({});
 
 	const [{ loading: signupLoading }, trigger] = useRequest({
-		url    : 'create_sign_up_lead_user',
+		url    : 'create_lead_organization_on_sign_up',
 		method : 'post',
 	}, { manual: true });
 

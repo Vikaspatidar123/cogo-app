@@ -17,12 +17,12 @@ const List = ({
 				<div>
 					<Radio
 						label=""
-						className="primary lg"
 						checked={checked === item?.card}
 						onChange={() => checkboxHandler(item)}
 					/>
 				</div>
 				<div className={`${styles.col} ${styles.icon}`}>
+					{/* image url is comming from Backend */}
 					{item?.shipping_line?.logo_url || item?.airline?.logo_url ? (
 						<img
 							className={styles.img_icon}

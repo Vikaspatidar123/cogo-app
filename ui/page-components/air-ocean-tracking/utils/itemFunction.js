@@ -14,7 +14,7 @@ const style = {
 const itemFunction = ({
 	status = '', statusChangeHandler = () => {},
 	loading = false, selectedShipments, checkboxChangeHandler, editHandler,
-	activeTab = 'ocean', redirectToTracker = () => {},
+	activeTab = 'ocean', redirectToTracker = () => {}, t,
 }) => ({
 	renderName: (itemData) => {
 		const { poc_details = {} } = itemData || {};
@@ -81,7 +81,7 @@ const itemFunction = ({
 				type="button"
 				onClick={() => redirectToTracker({ type: activeTab, id, fromDashBoard: true })}
 			>
-				View
+				{t('airOceanTracking:tracking_table_view_button_label')}
 			</Button>
 		);
 	},

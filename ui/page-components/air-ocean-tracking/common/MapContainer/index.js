@@ -1,6 +1,7 @@
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
-import { LOADING_TEXT, LOADING_TEXT_COUNT } from '../../constant/loadingText';
+import { getLoadingText, LOADING_TEXT_COUNT } from '../../constant/loadingText';
 import useGetMapRoute from '../../hooks/useGetMapRoute';
 
 import styles from './styles.module.css';
@@ -11,9 +12,14 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 const CogoMaps = dynamic(() => import('./MapsComp'), { ssr: false });
 
 function MapContainer({ height = '60vh', data = {}, activeTab }) {
+	const { list } = data || {};
+
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const LOADING_TEXT = getLoadingText({ t });
+
 	const [count, setCount] = useState(0);
 
-	const { list } = data || {};
 	const { loading, allRoute } = useGetMapRoute({ trackingInfo: list, type: activeTab });
 
 	useEffect(() => {

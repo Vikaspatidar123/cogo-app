@@ -1,9 +1,12 @@
 {
     "text_1":"Not registered yet?",
-    "text_2":"SignUp",
+    "text_2":"Sign Up",
     "text_3":"Please enter your credentials to login",
     "email_groupButton": "Email",
     "mobile_groupButton": "Mobile",
+    "continue":"Continue",
+    "close":"Close",
+    "proceed":"Proceed",
     "login_to_the":"Login to the",
     "cogoport_app_platform":"Cogoport App Platform!",
     "deliver_value_to_your_customers": "Deliver value to your customers",
@@ -34,7 +37,7 @@
     "rightPanel_registration_links_termsAndPrivacyPolicy_links_terms_href": "https://www.cogoport.com/en-IN/terms-and-conditions/",
     "rightPanel_registration_links_termsAndPrivacyPolicy_links_privacyPolicy_href": "https://www.cogoport.com/en-IN/privacy-policy/",
     "rightPanel_registration_mobile_number_is_required":"Number is required.",
-    "rightPanel_signupLink_link": "SignUp",
+    "rightPanel_signupLink_link": "Sign Up",
     "rightPanel_verification_texts_1": "Verify through email or mobile number",
     "rightPanel_verification_texts_2": "You need to verify your email or phone to complete signup.",
     "rightPanel_verification_texts_3": "Verification code has been sent to",
@@ -108,5 +111,14 @@
     "add_new_account_button":"+ Add New Account",
     "kyc_verified":"Verified",
     "kyc_rejected":"KYC Rejected",
-    "kyc_pending":"KYC Pending"
+    "kyc_pending":"KYC Pending",
+    "loading_text":"Loading...",
+    "user_invitation_text":"User Invitation",
+    "accept_user_text":"The link you received in email is already used or expired",
+    "accept_user_message":"Try Setting your Password Again?",
+    "email_verification":"Email Verification Failed!",
+    "send_email_text":"Send Verification Email",
+    "token_invalid_text":"Token is invalid",
+    "token_expired_text":"Token has expired"
+
 }

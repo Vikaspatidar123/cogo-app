@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { IcMArrowBack } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import PendingModal from '../../common/PendingModal';
 import useCheckPaymentStatus from '../../hooks/useCheckPaymentStatus';
 import useTradeEngine from '../../hooks/useTradeEngine';
-import iconUrl from '../../utils/iconUrl.json';
 
 import styles from './styles.module.css';
 
@@ -13,21 +14,35 @@ import { Image, useRouter } from '@/packages/next';
 import DocumentResult from '@/ui/commons/components/ImportExportDoc';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+const clearStorageHandler = () => {
+	if (typeof window === 'undefined') return;
+	const localStorageFormData = JSON.parse(
+		localStorage.getItem('transportDetails'),
+	);
+	if (localStorageFormData) {
+		localStorage.removeItem('transportDetails');
+	}
+};
+
 function EmptyState() {
+	const { t } = useTranslation(['importExportDoc']);
+
 	return (
 		<Image
 			className={styles.empty_state}
 			width={400}
 			height={400}
 			src={GLOBAL_CONSTANTS.image_url.empty_state}
-			alt="logo"
+			alt={t('importExportDoc:result_empty_state')}
 		/>
 	);
 }
 
 function Result() {
 	const { push, query } = useRouter();
-	const { trade_engine_id = '', billId = '', razorpay_payment_id = '' } = query || {};
+	const { trade_engine_id = '', billId = '' } = query || {};
+
+	const { t } = useTranslation(['importExportDoc']);
 
 	const [showPendingModal, setShowPendingModal] = useState(false);
 
@@ -51,25 +66,35 @@ function Result() {
 	const { documents = [] } = lineItem?.[0] || {};
 
 	useEffect(() => {
-		if (razorpay_payment_id) {
-			checkPaymentStatus();
-		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [razorpay_payment_id]);
+		clearStorageHandler();
+	}, []);
 
 	useEffect(() => {
-		if (!razorpay_payment_id && trade_engine_id) {
+		if (billId) {
+			checkPaymentStatus();
+		}
+	}, [billId]);
+
+	useEffect(() => {
+		if (!billId && trade_engine_id) {
 			postTradeEngine(trade_engine_id);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [trade_engine_id, razorpay_payment_id]);
+	}, [trade_engine_id, billId]);
+
+	if (tradeEngineLoading) {
+		return (
+			<Image
+				src={GLOBAL_CONSTANTS.image_url.loading}
+				alt={t('importExportDoc:loading')}
+				className={styles.loader}
+				width={200}
+				height={200}
+			/>
+		);
+	}
 
 	return (
 		<div className={styles.container}>
-			{tradeEngineLoading && (
-				<img src={iconUrl?.loading} alt="loading" className={styles.loader} />
-			)}
-
 			<div className={styles.title_container}>
 				<IcMArrowBack
 					className={styles.back_arrow}
@@ -79,10 +104,11 @@ function Result() {
 						push('/saas/premium-services/import-export-doc');
 					}}
 				/>
-				<h2>Result</h2>
-				{documents.length > 0 && (
+				<h2>{t('importExportDoc:result_title')}</h2>
+				{!isEmpty(documents) && (
 					<div className={styles.doc_count}>
-						Total Documents:
+						{t('importExportDoc:result_total_doc')}
+						:
 						{' '}
 						<span>{documents.length}</span>
 					</div>
@@ -99,11 +125,11 @@ function Result() {
 				setShowPendingModal={setShowPendingModal}
 				stop={stop}
 			/>
-			{!tradeEngineLoading && documents.length === 0 && (
-				<div>
-					<img className={styles.empty_state} src={iconUrl?.emptyState} alt="No Data Found" />
-				</div>
-			)}
+			{
+				!tradeEngineLoading && isEmpty(documents) && (
+					<EmptyState />
+				)
+			}
 		</div>
 	);
 }

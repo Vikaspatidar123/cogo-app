@@ -1,18 +1,23 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function EmptyState() {
+	const { t } = useTranslation(['orderHistory']);
 	return (
 		<div className={styles.container}>
 			<div className={styles.wrapper}>
-				<img
+				<Image
+					src={GLOBAL_CONSTANTS.image_url.empty_state}
 					height={350}
 					width={350}
-					alt=""
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg"
+					alt={t('orderHistory:empty_state_2')}
 				/>
-				<div className={styles.heading}>Looks like you do not have any orders</div>
+				<div className={styles.heading}>{t('orderHistory:empty_state_1')}</div>
 			</div>
 		</div>
 	);

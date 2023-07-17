@@ -1,11 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useTopProducts = () => {
+	const { t } = useTranslation(['common', 'productCatalogue']);
+
 	const [topProduct, setTopProduct] = useState([]);
 	const { profile } = useSelector((state) => state);
 	const { organization } = profile || {};
@@ -26,7 +29,7 @@ const useTopProducts = () => {
 			});
 			setTopProduct(resp.data);
 		} catch (error) {
-			Toast.error(error?.message || 'Something Went Wrong');
+			Toast.error(error?.message || t('productCatalogue:product_catalogue_toast_2'));
 		}
 	};
 

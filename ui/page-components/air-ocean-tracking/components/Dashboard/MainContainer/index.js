@@ -1,7 +1,8 @@
 import { cl, Tabs, TabPanel, Select, Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import { TAB_MAPPING, DASHBOARD_VIEW_MAPPING } from '../../../constant/tabMapping';
+import { getTabMapping, DASHBOARD_VIEW_MAPPING } from '../../../constant/tabMapping';
 import useGetSummary from '../../../hooks/useGetSummary';
 import useRedirectFn from '../../../hooks/useRedirectFn';
 
@@ -14,6 +15,10 @@ const selectOpt = [
 ];
 
 function MainContainer() {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const TAB_MAPPING = getTabMapping({ t });
+
 	const [view, setView] = useState('list');
 	const { redirectToList } = useRedirectFn();
 	const summaryHook = useGetSummary();
@@ -24,7 +29,7 @@ function MainContainer() {
 
 			<div className={cl`${styles.flex_box} ${styles.header}`}>
 				<div className={styles.flex_box}>
-					<div className={styles.title}>Overview</div>
+					<div className={styles.title}>{t('airOceanTracking:dashboard_main_container_text')}</div>
 					<div>
 						<Tabs
 							themeType="tertiary"
@@ -61,14 +66,14 @@ function MainContainer() {
 							...prev,
 							period_in_days: e,
 						}))}
-						placeholder="Select Period"
+						placeholder={t('airOceanTracking:dashboard_select_placeholder')}
 						options={selectOpt}
 						className={styles.select_field}
 						isClearable
 					/>
 
 					<Button type="button" className={styles.shipment_btn} onClick={() => redirectToList({})}>
-						View All Shipments
+						{t('airOceanTracking:view_all_shipments_button_label')}
 					</Button>
 				</div>
 			</div>

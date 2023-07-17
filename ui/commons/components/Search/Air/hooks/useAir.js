@@ -12,7 +12,7 @@ import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
-const INCHCUBE_TO_CBM = 61020;
+const INCH_CUBE_TO_CBM = 61020;
 
 const COUNTRY_SPECIFIC_DATA_OBJ = {
 	accessorType : 'navigations',
@@ -181,7 +181,7 @@ const useAir = ({
               * Number(item.width)
               * Number(item.height)
               * Number(item.quantity))
-            / INCHCUBE_TO_CBM;
+            / INCH_CUBE_TO_CBM;
 
 					length *= 2.54;
 					width *= 2.54;

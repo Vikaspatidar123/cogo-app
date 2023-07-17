@@ -145,39 +145,27 @@ const GLOBAL_CONSTANTS = {
 	zeroth_index: 0,
 
 	service_supported_countries: {
-		feature_supported_service: {
-			common: {
-				services: {
-					air_domestic: {
-						countries           : ['IN'],
-						default_country_id  : COUNTRY_IDS.IN,
-						default_country_ids : [COUNTRY_IDS.IN],
-					},
-					ftl_freight: {
-						countries           : ['IN', 'VN'],
-						default_country_id  : COUNTRY_IDS.IN,
-						default_country_ids : [COUNTRY_IDS.IN, COUNTRY_IDS.VN],
-					},
-					ltl_freight: {
-						countries           : ['IN'],
-						default_country_id  : COUNTRY_IDS.IN,
-						default_country_ids : [COUNTRY_IDS.IN, COUNTRY_IDS.VN],
-					},
-					fcl_freight: {
-						countries: ['IN'],
-					},
-				},
-			},
-			cargo_insurance: {
-				country_id: COUNTRY_IDS.IN,
-			},
-			paylater: {
-				supported_countries: ['IN'],
-			},
+		ftl_freight: {
+			countries: ['IN', 'VN'],
+		},
+		ltl_freight: {
+			countries: ['IN', 'VN'],
+		},
+		fcl_freight: {
+			countries: ['IN'],
+		},
+	},
+	feature_supported_service: {
+		cargo_insurance: {
+			supported_countries : ['IN'],
+			country_id          : COUNTRY_IDS.IN,
+		},
+		paylater: {
+			supported_countries: ['IN'],
+		},
 
-			whatsapp: {
-				supported_countries: ['IN'],
-			},
+		whatsapp: {
+			supported_countries: ['IN'],
 		},
 	},
 

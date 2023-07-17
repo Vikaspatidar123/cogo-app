@@ -1,7 +1,12 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 
-const SUPPORTED_COUNTRY_IDS = GLOBAL_CONSTANTS.service_supported_countries.feature_supported_service.common
-	.services.ltl_freight.default_country_ids;
+const SUPPORTED_COUNTRY_CODE = GLOBAL_CONSTANTS.service_supported_countries.ltl_freight.countries;
+const SUPPORTED_COUNTRY_IDS = SUPPORTED_COUNTRY_CODE.map((code) => {
+	const countryInfo = getCountryDetails({ country_code: code });
+	return countryInfo.id;
+});
+
 const getControls = () => [
 	{
 		label             : 'Origin Location',

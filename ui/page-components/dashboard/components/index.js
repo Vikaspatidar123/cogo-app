@@ -16,8 +16,7 @@ import ActiveTracking from './Tracking/ActiveTracking';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const PAYLATER_SUPPORTED_COUNTRIES = GLOBAL_CONSTANTS.service_supported_countries.feature_supported_service
-	.paylater.supported_countries;
+const PAYLATER_SUPPORTED_COUNTRIES = GLOBAL_CONSTANTS.feature_supported_service.paylater.supported_countries;
 
 function SassDashboard() {
 	const { airTracking, oceanTracking, kyc_status } = GetTracking();

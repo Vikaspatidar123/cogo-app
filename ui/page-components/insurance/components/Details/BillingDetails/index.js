@@ -1,8 +1,8 @@
 import { isEmpty } from '@cogoport/utils';
-import dynamic from 'next/dynamic';
 import { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
+import getControls from '../../../configurations/controls';
 import useSetErrorFunction from '../../../utils/useSetErrorFunction';
 
 import SelectType from './Address';
@@ -13,8 +13,6 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
-
-const getControls = dynamic(() => import('../../../configurations/controls'));
 
 const useBillingDetails = ({
 	formDetails = {},
@@ -41,7 +39,7 @@ const useBillingDetails = ({
 	const { profile } = useSelector((state) => state);
 	const names = profile?.name?.split(' ') || [];
 	const fields = getControls(formDetails, profile, setCityState);
-
+	console.log(fields, 'fields');
 	const {
 		handleSubmit,
 		control,

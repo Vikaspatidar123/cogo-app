@@ -1,9 +1,7 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 
 const get = (formObject = {}, key = '') => formObject[key] || null;
-
-const SUPPORTED_COUNTRY_ID = GLOBAL_CONSTANTS.service_supported_countries.feature_supported_service.cargo_insurance
-	.country_id;
 
 const controls = [
 	{
@@ -46,7 +44,7 @@ const controls = [
 		span        : 4,
 		rules       : {
 			pattern: {
-				value   : GLOBAL_CONSTANTS.country_specific_data.IN.registration_number.pattern,
+				value   : GLOBAL_CONSTANTS.patterns.GST_NUMBER,
 				message : 'Invalid GST',
 			},
 		},
@@ -79,10 +77,10 @@ const controls = [
 		valueKey    : 'postal_code',
 		labelKey    : 'postal_code',
 		params      : {
-			filters: {
-				type       : 'pincode',
-				country_id : SUPPORTED_COUNTRY_ID,
-			},
+			// filters: {
+			// 	type       : 'pincode',
+			// 	country_id : SUPPORTED_COUNTRY_ID,
+			// },
 			includes: {
 				country                 : '',
 				region                  : '',
@@ -120,22 +118,39 @@ const controls = [
 	},
 ];
 
-const getControls = (formDetails = {}, profile = {}, setCityState = () => {}) => controls.map((control) => {
-	if (control.name === 'billingPincode') {
+const getControls = (formDetails = {}, profile = {}, setCityState = () => {}) => {
+	const SUPPORTED_COUNTRY_CODE = GLOBAL_CONSTANTS.feature_supported_service.cargo_insurance.supported_countries;
+
+	const SUPPORTED_COUNTRY_ID = SUPPORTED_COUNTRY_CODE.map((code) => {
+		const countryInfo = getCountryDetails({ country_code: code });
+		return countryInfo.id;
+	});
+
+	return controls.map((control) => {
+		if (control.name === 'billingPincode') {
+			return {
+				...control,
+				handleChange: (e) => {
+					setCityState({
+						city  : e?.display_name || e?.district?.name || e?.city?.name,
+						state : e?.region?.name,
+					});
+				},
+				params: {
+					...control.params,
+					filters: {
+						type       : 'pincode',
+						country_id : SUPPORTED_COUNTRY_ID,
+					},
+				},
+			};
+		}
+
 		return {
 			...control,
-			handleChange: (e) => {
-				setCityState({
-					city  : e?.display_name || e?.district?.name || e?.city?.name,
-					state : e?.region?.name,
-				});
-			},
+			value: get(formDetails, control.name) || profile[control?.profileKey],
 		};
-	}
-	return {
-		...control,
-		value: get(formDetails, control.name) || profile[control?.profileKey],
-	};
-});
+	});
+};
 
 export default getControls;

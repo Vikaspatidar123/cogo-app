@@ -19,7 +19,8 @@ const useContainerUpdateSubscription = () => {
 
 	const onConfirm = () => {
 		const res = request.post('unsubscribe_container_update_subscription', { id: query.id });
-		if (!res.hasError) {
+
+		if (res) {
 			getContainerUpdateSubscription();
 		}
 	};

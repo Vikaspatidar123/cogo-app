@@ -10,6 +10,7 @@ import useListFaqTopics from '../../../hooks/useListFaqTopics';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const translationKey = 'helpCenter:faq_home_page';
 const EMPTY_ARR = [...Array(8).keys()];
@@ -22,7 +23,7 @@ function FaqTopics() {
 		listAll: false,
 	});
 
-	const { list = [], total_count = 0 } = faqTopics;
+	const { list = [], total_count = GLOBAL_CONSTANTS.zeroth_index } = faqTopics;
 
 	return (
 		<div className={styles.container}>

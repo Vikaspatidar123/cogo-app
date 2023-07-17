@@ -6,6 +6,9 @@ import { FILTER_KEYS_MAPPING, NO_OF_TICKETS_TO_BE_SHOWED } from '../constants';
 import { useDebounceQuery } from '@/packages/forms';
 import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const REACH_BOTTOM = 20;
 
 const useListTickets = ({
 	searchValue = '',
@@ -61,8 +64,8 @@ const useListTickets = ({
 	}, [searchValue, debounceQuery]);
 
 	const handleScroll = ({ clientHeight, scrollTop, scrollHeight }) => {
-		const shouldReachBottom = scrollHeight - (clientHeight + scrollTop) <= 20;
-		const hasMoreData = pagination <= (data?.total_pages || 0);
+		const shouldReachBottom = scrollHeight - (clientHeight + scrollTop) <= REACH_BOTTOM;
+		const hasMoreData = pagination <= (data?.total_pages || GLOBAL_CONSTANTS.zeroth_index);
 		if (shouldReachBottom && hasMoreData && !loading) {
 			fetchTickets(pagination);
 		}

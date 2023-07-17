@@ -9,6 +9,7 @@ import styles from './styles.module.css';
 import TicketComment from './TicketComment';
 
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const translationKey = 'common:components_header_tickets_details';
 
@@ -31,9 +32,9 @@ function ChatBody({
 	const { items = [], last, page } = listData;
 
 	const handleScroll = (e) => {
-		const bottom = e.target.scrollTop === 0;
+		const bottom = e.target.scrollTop === GLOBAL_CONSTANTS.zeroth_index;
 		if (!last && bottom && !chatLoading) {
-			getTicketActivity((page || 0) + 1);
+			getTicketActivity((page || GLOBAL_CONSTANTS.zeroth_index) + 1);
 		}
 	};
 
@@ -56,7 +57,7 @@ function ChatBody({
 				&& EMPTY_ARR.map((key, idx) => (
 					<div
 						key={key}
-						className={cl`${idx % 2 !== 0 ? styles.right_align : ''}`}
+						className={cl`${idx % 2 !== GLOBAL_CONSTANTS.zeroth_index ? styles.right_align : ''}`}
 					>
 						<Placeholder className={styles.loading_skeleton} />
 					</div>

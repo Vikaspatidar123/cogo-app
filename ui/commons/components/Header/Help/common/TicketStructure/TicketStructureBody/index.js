@@ -26,7 +26,7 @@ function TicketStructureBody({
 		CreatedAt: createdAt = '',
 		TicketActivity: ticketActivity = {},
 		Type: type = '',
-		ActivityCount: activityCount = 0,
+		ActivityCount: activityCount = GLOBAL_CONSTANTS.zeroth_index,
 	} = item || {};
 
 	const statusLabel = statusLabelTransformation({ t });
@@ -78,7 +78,7 @@ function TicketStructureBody({
 					)}
 				</div>
 				<div className={styles.category_ticket_activity}>
-					{type || description.substring(0, 100)}
+					{type || description.substring(GLOBAL_CONSTANTS.zeroth_index, 100)}
 				</div>
 			</div>
 			<div className={styles.subcontainer_two}>
@@ -103,7 +103,7 @@ function TicketStructureBody({
 				</div>
 				<div className={styles.ticket_reason_box}>
 					<div className={styles.description}>
-						{(ticketActivity?.Description || description).substring(0, 100)}
+						{(ticketActivity?.Description || description).substring(GLOBAL_CONSTANTS.zeroth_index, 100)}
 					</div>
 					{activityCount ? (
 						<div className={styles.messages_nos}>{activityCount}</div>

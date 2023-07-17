@@ -5,9 +5,11 @@ import { MESSAGE_MAPPING } from '../../../../../../../constants';
 import fileViewMapping from './fileViewMapping';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function ShowFile({ messageType = '', mediaUrl = '' }) {
 	const urlArray = decodeURI(mediaUrl)?.split('/');
-	const fileNameFromUrl = urlArray[(urlArray?.length || 0) - 1] || '';
+	const fileNameFromUrl = urlArray[(urlArray?.length || GLOBAL_CONSTANTS.zeroth_index) - 1] || '';
 	const [fileName = '', extension = ''] = fileNameFromUrl.split('.') || [];
 
 	return (

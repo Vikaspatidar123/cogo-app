@@ -8,6 +8,8 @@ import useListFaqTopicQuestions from '../../../hooks/useListFaqTopicQuestions';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const translationKey = 'helpCenter:faq_topics';
 
 const EMPTY_ARR = [...Array(10).keys()];
@@ -31,9 +33,9 @@ function FaqQuestions({
 
 	const {
 		list = [],
-		total_count = 0,
-		total = 0,
-		page_limit = 0,
+		total_count = GLOBAL_CONSTANTS.zeroth_index,
+		total = GLOBAL_CONSTANTS.zeroth_index,
+		page_limit = GLOBAL_CONSTANTS.zeroth_index,
 	} = faqListTopicData || {};
 
 	const loading = topicsLoading || topicLoading;

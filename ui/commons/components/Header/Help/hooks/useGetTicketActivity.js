@@ -4,14 +4,15 @@ import { ACTIVITY_STATUS } from '../constants';
 
 import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const useGetTicketActivity = ({ ticketId }) => {
 	const { profile } = useSelector((state) => state);
 
 	const [listData, setListData] = useState({
 		items       : [],
-		page        : 0,
-		total_pages : 0,
+		page        : GLOBAL_CONSTANTS.zeroth_index,
+		total_pages : GLOBAL_CONSTANTS.zeroth_index,
 	});
 
 	const [{ loading }, trigger] = useTicketsRequest({
@@ -33,8 +34,8 @@ const useGetTicketActivity = ({ ticketId }) => {
 
 			const {
 				items = [],
-				total_pages = 0,
-				page = 0,
+				total_pages = GLOBAL_CONSTANTS.zeroth_index,
+				page = GLOBAL_CONSTANTS.zeroth_index,
 				last = false,
 			} = res?.data || {};
 
@@ -53,10 +54,10 @@ const useGetTicketActivity = ({ ticketId }) => {
 		if (ticketId) {
 			setListData({
 				items       : [],
-				page        : 0,
-				total_pages : 0,
+				page        : GLOBAL_CONSTANTS.zeroth_index,
+				total_pages : GLOBAL_CONSTANTS.zeroth_index,
 			});
-			getTicketActivity(0);
+			getTicketActivity(GLOBAL_CONSTANTS.zeroth_index);
 		}
 	}, [getTicketActivity, ticketId]);
 

@@ -6,13 +6,14 @@ import getSupportOptions from './getSupportOptions';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const translationKey = 'common:components_header_tickets_support';
 
 function SupportTypes({
 	setModalData = () => {},
 	setShowPopover = () => {},
-	unreadCount = 0,
+	unreadCount = GLOBAL_CONSTANTS.zeroth_index,
 }) {
 	const { push } = useRouter();
 

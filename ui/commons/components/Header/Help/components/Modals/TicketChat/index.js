@@ -14,6 +14,10 @@ import RateTicket from './RateTicket';
 import styles from './styles.module.css';
 import TicketSummary from './TicketSummary';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const TIME_INTERVAL = 300;
+
 const chatBodyHeight = (rating, ticketExists, status, file, uploading) => {
 	if (!ticketExists) {
 		return '100%';
@@ -46,7 +50,7 @@ function TicketChat({ modalData = {}, setModalData = () => {} }) {
 					behavior : 'smooth',
 				});
 			}
-		}, 300);
+		}, TIME_INTERVAL);
 	};
 
 	const {
@@ -59,7 +63,7 @@ function TicketChat({ modalData = {}, setModalData = () => {} }) {
 
 	const { TicketFeedback: ticketFeedback = {}, Ticket: ticket = {} } =		ticketData || {};
 
-	const { Rating: rating = 0 } = ticketFeedback || {};
+	const { Rating: rating = GLOBAL_CONSTANTS.zeroth_index } = ticketFeedback || {};
 	const { Status: status = '', ID: id = '' } = ticket || {};
 
 	const {
@@ -74,11 +78,11 @@ function TicketChat({ modalData = {}, setModalData = () => {} }) {
 	const refetchTicket = () => {
 		setListData({
 			items       : [],
-			page        : 0,
-			total_pages : 0,
+			page        : GLOBAL_CONSTANTS.zeroth_index,
+			total_pages : GLOBAL_CONSTANTS.zeroth_index,
 		});
 		getTicketDetails();
-		getTicketActivity(0);
+		getTicketActivity(GLOBAL_CONSTANTS.zeroth_index);
 	};
 
 	const isEmptyChat = isEmpty(listData?.items || {});

@@ -7,11 +7,13 @@ import useUpdateTicketFeedback from '../../../../hooks/useUpdateTicketFeedback';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const translationKey = 'common:components_header_tickets_feedback';
 
 function RateTicket({
 	id = '',
-	ticketRating = 0,
+	ticketRating = GLOBAL_CONSTANTS.zeroth_index,
 	refetchTicket = () => {},
 	status,
 }) {
@@ -31,7 +33,7 @@ function RateTicket({
 
 	return (
 		<div className={styles.container} key={ticketRating}>
-			{ticketRating === 0 ? (
+			{ticketRating === GLOBAL_CONSTANTS.zeroth_index ? (
 				<>
 					<div className={styles.rating_text}>
 						{t(`${translationKey}_question`)}
@@ -42,7 +44,7 @@ function RateTicket({
 							totalStars={5}
 							value={rating}
 							onChange={setRating}
-							disabled={updateLoading || ticketRating > 0}
+							disabled={updateLoading || ticketRating > GLOBAL_CONSTANTS.zeroth_index}
 						/>
 					</div>
 					<div className={styles.button_container}>

@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import useLoginEmailAuthentication from '../../../hooks/useLoginEmailAuthentication';
@@ -8,7 +9,8 @@ import styles from './styles.module.css';
 
 import { useForm, InputController } from '@/packages/forms';
 
-function EmailLoginForm({ setMode = () => { }, t = () => { } }) {
+function EmailLoginForm({ setMode = () => {} }) {
+	const { t } = useTranslation(['common']);
 	const translationKey = 'common:loginField';
 
 	const [showPassword, setShowPassword] = useState(false);

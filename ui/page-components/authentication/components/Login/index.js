@@ -1,4 +1,3 @@
-import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import LayoutHelp from '../common/LayoutHelp';
@@ -16,8 +15,6 @@ const LOGIN_FLOW_MAPPING = {
 };
 
 function Login() {
-	const { t } = useTranslation(['common']);
-
 	const [mode, setMode] = useState('login_tabs');
 	const [mobileNumber, setMobileNumber] = useState({});
 	const [otpId, setOtpId] = useState('');
@@ -50,7 +47,6 @@ function Login() {
 					{Component && (
 						<Component
 							key={mode}
-							t={t}
 							{...(componentProps[mode] || {})}
 						/>
 					)}

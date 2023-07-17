@@ -1,6 +1,9 @@
+import { useTranslation } from 'next-i18next';
+
 import styles from './styles.module.css';
 
-function SuccessMessage({ resetUserPassword = () => { }, emailId = '', t = () => { } }) {
+function SuccessMessage({ resetUserPassword = () => { }, emailId = '' }) {
+	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:forgotPassword_success';
 
 	return (

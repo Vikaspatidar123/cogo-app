@@ -1,12 +1,14 @@
 import { Button } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
 import { InputController, useForm } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
 
-function EmailForm({ resetUserPassword = () => { }, resetPasswordLoading = false, t = () => { } }) {
+function EmailForm({ resetUserPassword = () => { }, resetPasswordLoading = false }) {
+	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:forgotPassword';
 
 	const { handleSubmit, formState: { errors }, control } = useForm();

@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcMArrowRight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import useGetStartedAuthentication from '../../../hooks/useGetStartedAuthentication';
 
@@ -8,7 +9,8 @@ import styles from './styles.module.css';
 import { InputController, useForm } from '@/packages/forms';
 import CountrySelectController from '@/packages/forms/Controlled/CountrySelectController';
 
-function DetailsForm({ setMode = () => { }, t = () => {} }) {
+function DetailsForm({ setMode = () => { } }) {
+	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:getStarted';
 
 	const { onGetStartedApi = () => {}, getStartedLoading } = useGetStartedAuthentication({ setMode });

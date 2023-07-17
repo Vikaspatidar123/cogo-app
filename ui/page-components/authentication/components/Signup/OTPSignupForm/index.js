@@ -1,6 +1,7 @@
 import { Button } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import useEmailVerification from '../../../hooks/useEmailVerification';
@@ -12,7 +13,8 @@ import OTPLayout from '@/packages/forms/Business/OTPLayout';
 
 const OTP_LENGTH = 4;
 
-function OTPSignupForm({ userDetails = {}, setMode = () => {}, t = () => {} }) {
+function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
+	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:signupOtp';
 
 	const { id = '', mobile_number = {}, email = '' } = userDetails;

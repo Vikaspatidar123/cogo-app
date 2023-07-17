@@ -1,4 +1,5 @@
 import { Tabs, TabPanel } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import EmailLoginForm from '../EmailLoginForm';
@@ -11,8 +12,8 @@ function LoginTabs({
 	setMobileNumber = () => {},
 	setOtpId = () => {},
 	mobileNumber = {},
-	t = () => {},
 }) {
+	const { t } = useTranslation(['common']);
 	const translationKey = 'common:loginField';
 
 	const [activeTab, setActiveTab] = useState('email');
@@ -29,7 +30,7 @@ function LoginTabs({
 			>
 
 				<TabPanel name="email" title="Email">
-					<EmailLoginForm setMode={setMode} t={t} />
+					<EmailLoginForm setMode={setMode} />
 				</TabPanel>
 
 				<TabPanel name="mobile" title="Mobile">
@@ -38,7 +39,6 @@ function LoginTabs({
 						setMobileNumber={setMobileNumber}
 						setOtpId={setOtpId}
 						mobileNumber={mobileNumber}
-						t={t}
 					/>
 				</TabPanel>
 

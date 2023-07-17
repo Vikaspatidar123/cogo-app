@@ -1,6 +1,7 @@
 import { Button } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import useLoginMobileAuthentication from '../../../hooks/useLoginMobileAuthentication';
@@ -12,7 +13,8 @@ import OTPLayout from '@/packages/forms/Business/OTPLayout';
 
 const OTP_LENGTH = 4;
 
-function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {}, t = () => {} }) {
+function OTPLoginForm({ setMode = () => {}, otpId = '', mobileNumber = {} }) {
+	const { t } = useTranslation(['common']);
 	const translationKey = 'common:loginOtpField';
 
 	const [otpValue, setOtpValue] = useState('');

@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcCWhatsapp, IcMArrowRight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
@@ -19,7 +20,8 @@ import CountrySelectController from '@/packages/forms/Controlled/CountrySelectCo
 import { useRouter } from '@/packages/next';
 import patterns from '@/ui/commons/configurations/patterns';
 
-function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = () => {}, t = () => {} }) {
+function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = () => {} }) {
+	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:signupField';
 
 	const { locale } = useRouter();

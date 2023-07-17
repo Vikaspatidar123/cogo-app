@@ -39,7 +39,7 @@ const useBillingDetails = ({
 	const { profile } = useSelector((state) => state);
 	const names = profile?.name?.split(' ') || [];
 	const fields = getControls(formDetails, profile, setCityState);
-	console.log(fields, 'fields');
+
 	const {
 		handleSubmit,
 		control,

@@ -4,8 +4,9 @@ import { isEmpty } from '@cogoport/utils';
 import getFormattedValues from '../../freight-rate-trend/active-freight-rate-trend/components/add-rates/common/utility';
 import { FCL_CUSTOMS_CONTAINER_COMMODITY_MAPPING, HAZ_CLASSES } from '../constants/commodities';
 
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import { getCountryCode } from '@/ui/commons/utils/getCountryDetails';
 
 const geo = getGeoConstants();
 
@@ -40,6 +41,9 @@ const formatDataForSingleService = ({
 	service = '',
 	checked = true,
 }) => {
+	const originCountryCode = getCountryCode({ country_id: rawParams?.origin_country_id });
+	const destinationCountryCode = getCountryCode({ country_id: rawParams?.destination_country_id });
+
 	if (mode === 'fcl_freight') {
 		const newValues = (values.containers || []).map((item) => ({
 			origin_port_id      : values.origin_port_id,
@@ -196,56 +200,51 @@ const formatDataForSingleService = ({
 		let cargo_value_currency = null;
 		let address = null;
 		let ad_code = null;
-		const { fcl_customs: { is_origin_country_vn: isOriginVietnam } } = getCountrySpecificData({
-			country_id   : rawParams?.origin_country_id,
-			accessorType : 'navigations',
-			accessor     : 'format_create_search',
-		});
 
-		const { fcl_customs:{ is_destination_country_vn: isDestinationVietnam } } = getCountrySpecificData({
-			country_id   : rawParams?.destination_country_id,
-			accessorType : 'navigations',
-			accessor     : 'format_create_search',
-		});
+		const FCL_CUSTOMS_SUPPORTED_COUNTRY = GLOBAL_CONSTANTS.service_supported_countries
+			.fcl_customs.countries;
 
-		if (values?.trade_type === 'export' || type === 'export') {
-			if (
-				isOriginVietnam
-				&& rawParams?.origin_port?.is_icd === true
+		const isOriginCountrySupported = FCL_CUSTOMS_SUPPORTED_COUNTRY.includes(originCountryCode);
+		const isDestinationCountrySupported = FCL_CUSTOMS_SUPPORTED_COUNTRY.includes(destinationCountryCode);
+		const isExport = values?.trade_type === 'export' || type === 'export';
+		const isImport = values?.trade_type === 'import' || type === 'import';
+
+		if (isExport) {
+			if (isOriginCountrySupported && rawParams?.origin_port?.is_icd === true
 			) {
 				value.country_id = rawParams?.origin_port?.country_id;
 			} else {
 				value.port_id =					rawParams?.source === 'upsell'
-					&& isOriginVietnam
+					&& isOriginCountrySupported
 					&& rawParams?.origin_main_port_id
 					? rawParams?.origin_main_port_id
 					: values?.port_id || values?.origin_port_id;
 			}
 
-			cargo_handling_type =				mode === 'fcl_cfs'
+			cargo_handling_type = mode === 'fcl_cfs'
 				? values?.export_fcl_cfs_cargo_handling_type
 					|| values?.cargo_handling_type
 				: values?.export_transportation_cargo_handling_type
 				|| values?.cargo_handling_type;
-			cargo_value =				mode === 'fcl_cfs'
+			cargo_value = mode === 'fcl_cfs'
 				? values?.export_fcl_cfs_cargo_value
 				: values?.export_transportation_cargo_value;
-			cargo_value_currency =				mode === 'fcl_cfs'
+			cargo_value_currency = mode === 'fcl_cfs'
 				? values?.export_fcl_cfs_cargo_value_currency
 				: values?.export_transportation_cargo_value_currency;
-			address =				mode === 'fcl_cfs'
+			address = mode === 'fcl_cfs'
 				? values?.export_fcl_cfs_address
 				: values?.export_fcl_customs;
 			ad_code = values?.export_fcl_customs_have_add_code || undefined;
-		} else if (values?.trade_type === 'import' || type === 'import') {
+		} else if (isImport) {
 			if (
-				isDestinationVietnam
+				isDestinationCountrySupported
 				&& rawParams?.destination_port?.is_icd === true
 			) {
 				value.country_id = rawParams?.destination_port?.country_id;
 			} else {
 				value.port_id = rawParams?.source === 'upsell'
-					&& isDestinationVietnam
+					&& isDestinationCountrySupported
 					&& rawParams?.destination_main_port_id
 					? rawParams?.destination_main_port_id
 					: values?.port_id || values?.destination_port_id;

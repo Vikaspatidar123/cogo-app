@@ -1,6 +1,6 @@
 import { getCookie } from '@cogoport/utils';
 
-import GetTracking from '../hooks/GetTracking';
+import useGetTracking from '../hooks/useGetTracking';
 
 import DiscoverRates from './DiscoverRates';
 import Elgibility from './Elgibility';
@@ -17,11 +17,11 @@ import ActiveTracking from './Tracking/ActiveTracking';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const PAYLATER_SUPPORTED_COUNTRIES = GLOBAL_CONSTANTS.feature_supported_service.paylater.supported_countries;
+const location = getCookie('location');
+const KYC_PENDING_STATUS = 'pending_verification';
 
 function SassDashboard() {
-	const { airTracking, oceanTracking, kyc_status } = GetTracking();
-
-	const location = getCookie('location');
+	const { airTracking, oceanTracking, kyc_status } = useGetTracking();
 
 	return (
 		<div className={styles.main_class}>
@@ -29,7 +29,7 @@ function SassDashboard() {
 				<div className={styles.part1}>
 					{/* <VerifyEmailMobile /> */}
 
-					{kyc_status !== 'pending_verification' && (
+					{kyc_status !== KYC_PENDING_STATUS && (
 						<div className={styles.top}>
 							<KYCPage />
 						</div>

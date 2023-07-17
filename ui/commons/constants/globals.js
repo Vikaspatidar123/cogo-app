@@ -147,6 +147,9 @@ const GLOBAL_CONSTANTS = {
 		fcl_freight: {
 			countries: ['IN'],
 		},
+		fcl_customs: {
+			countries: ['VN'],
+		},
 	},
 
 	feature_supported_service: {

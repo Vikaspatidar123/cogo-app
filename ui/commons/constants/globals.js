@@ -278,6 +278,19 @@ const GLOBAL_CONSTANTS = {
 	},
 	customer_support: 'support@cogoport.com',
 
+	feature_supported_service: {
+		cargo_insurance: {
+			supported_countries: ['IN'],
+		},
+		paylater: {
+			supported_countries: ['IN'],
+		},
+
+		whatsapp: {
+			supported_countries: ['IN'],
+		},
+	},
+
 	regex: {
 		url_end_slash: /\/$/,
 		website_url:

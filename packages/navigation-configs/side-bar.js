@@ -20,7 +20,13 @@ const getCondition = (urlItem) => {
 const COE_SUPPORTED_USER = [
 	GLOBAL_CONSTANTS.user_specific_email_id.ajeet,
 ];
+const getCheckSupportedCountry = ({ opt, country }) => {
+	if (opt?.supportedCountry) {
+		return opt.supportedCountry?.includes(country.country_code);
+	}
 
+	return true;
+};
 const getSideBarConfigs = ({
 	userData,
 	dashboardUrls = [],
@@ -29,7 +35,11 @@ const getSideBarConfigs = ({
 }) => {
 	const navigation = navigationMappings({ t });
 
-	const pNavs = userData?.permissions_navigations || {};
+	const { organization, permissions_navigations = {} } = userData || {};
+
+	const { country = {} } = organization || {};
+
+	const pNavs = permissions_navigations || {};
 
 	const modifiedPinnedNavKeys = pinnedNavKeys.filter((key) => Object.keys(navigation).includes(key));
 
@@ -67,7 +77,8 @@ const getSideBarConfigs = ({
 					const coeFilterOptions = allOptions.filter(
 						(opt) => selectedSubNavs.includes(opt.key)
 							&& (opt.key !== 'coe-booking_tasks'
-								|| COE_SUPPORTED_USER.includes(userData.email)),
+								|| COE_SUPPORTED_USER.includes(userData.email))
+							&& getCheckSupportedCountry({ opt, country }),
 
 					);
 					if (coeFilterOptions.length) {

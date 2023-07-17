@@ -84,7 +84,7 @@ function BasicDetails({ active = {}, getCreditRequestResponse = {}, refetch = ()
 				<Button
 					onClick={proceedToPay}
 					loading={paymentLoding}
-
+					type="button"
 				>
 					Proceed to pay
 				</Button>

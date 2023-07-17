@@ -69,6 +69,7 @@ function EditDetails({
 			<Modal.Footer>
 
 				<Button
+					type="button"
 					style={{ marginRight: '10px' }}
 					themeType="secondary"
 					onClick={() => setShowEdit({ show: false })}
@@ -76,7 +77,7 @@ function EditDetails({
 					close
 
 				</Button>
-				<Button onClick={handleSubmit(saveValues)}>Save</Button>
+				<Button type="button" onClick={handleSubmit(saveValues)}>Save</Button>
 			</Modal.Footer>
 		</Modal>
 	);

@@ -66,7 +66,7 @@ function FieldArray({
 			))}
 
 			{showButtons && !disabled ? (
-				<Button themeType="secondary" onClick={() => handleAppendChild()}>
+				<Button type="button" themeType="secondary" onClick={() => handleAppendChild()}>
 					+
 					{' '}
 					{buttonText}

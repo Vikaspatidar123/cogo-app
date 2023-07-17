@@ -50,7 +50,7 @@ function AddEditMiInfo({
 					return (
 						item?.type
 						&& (
-							<div className={styles.field}>
+							<div className={styles.field} key={item.name}>
 								<div className={styles.field_name}>{item?.label}</div>
 								<Element control={control} {...item} />
 								<div className={styles.error_text}>

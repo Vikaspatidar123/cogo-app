@@ -16,7 +16,7 @@ function TradeList({ list = [] }) {
 			</div>
 
 			{list.map((item) => (
-				<div className={styles.item_container}>
+				<div className={styles.item_container} key={item?.country?.name}>
 					<div className={styles.row}>
 						<div className={styles.col}>
 							<span>{item?.country?.name}</span>

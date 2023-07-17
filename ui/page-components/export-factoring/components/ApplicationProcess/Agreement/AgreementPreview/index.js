@@ -155,7 +155,7 @@ function AgreementPreview({
 			)}
 			<div className={styles.btn_container}>
 
-				<Button onClick={handleSubmit} loading={loading} disabled={loading}>
+				<Button type="button" onClick={handleSubmit} loading={loading} disabled={loading}>
 					Submit
 				</Button>
 			</div>

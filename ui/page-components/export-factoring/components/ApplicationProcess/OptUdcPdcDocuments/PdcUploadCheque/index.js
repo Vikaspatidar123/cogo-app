@@ -53,7 +53,7 @@ function PdcUploadCheque({ refetch = () => {}, getCreditRequestResponse }) {
 				</form>
 			</div>
 			<div className={styles.btn_container}>
-				<Button onClick={handleSubmit(onSubmit)} loading={loading} disabled={loading}>
+				<Button type="button" onClick={handleSubmit(onSubmit)} loading={loading} disabled={loading}>
 					Submit
 				</Button>
 			</div>

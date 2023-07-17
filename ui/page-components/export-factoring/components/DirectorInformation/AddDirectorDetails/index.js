@@ -44,10 +44,11 @@ function AddDirectorDetails({
 					style={{ marginRight: '10px' }}
 					themeType="secondary"
 					onClick={() => setShowAddDirectors(false)}
+					type="button"
 				>
 					close
 				</Button>
-				<Button onClick={handleSubmit(submit)}>Save</Button>
+				<Button onClick={handleSubmit(submit)} type="button">Save</Button>
 			</Modal.Footer>
 		</Modal>
 	);

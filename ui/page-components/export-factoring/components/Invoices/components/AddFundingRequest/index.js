@@ -66,7 +66,7 @@ function AddFundingRequest({
 		getBuyerDetails();
 	}, []);
 
-	const { control, watch, handleSubmit, formState: { errors } } = useForm();
+	const { control, handleSubmit, formState: { errors } } = useForm();
 	return (
 		<Modal
 			show={openAddFundingRequest}
@@ -82,6 +82,7 @@ function AddFundingRequest({
 						if (item.type === 'fieldArray') {
 							return (
 								<FieldArray
+									key={item?.name}
 									{...item}
 									control={control}
 									name={item.name}
@@ -94,7 +95,7 @@ function AddFundingRequest({
 						return (
 							item?.type
 										&& (
-											<div className={styles.field}>
+											<div className={styles.field} key={item?.name}>
 												<div className={styles.field_name}>{item?.label}</div>
 												<Element control={control} {...item} />
 												<div className={styles.error_text}>

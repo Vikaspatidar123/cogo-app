@@ -1,12 +1,10 @@
 import { Button } from '@cogoport/components';
 import React, { useState } from 'react';
 
-// import ReviewDetails from './components/ReviewDetails';
 import ReviewDetails from './components/ReviewDetails';
 import styles from './styles.module.css';
 
 import StatusTag from '@/ui/page-components/export-factoring/common/StatusTag';
-// import ReviewDetails from './components/ReviewDetails';
 
 function FundingRequest({
 	creditRequest = {},
@@ -44,6 +42,7 @@ function FundingRequest({
 				<StatusTag status={status_offer_receivable} />
 				<Button
 					size="md"
+					type="button"
 					themeType="primary"
 					style={{ marginRight: '20px' }}
 					disabled={

@@ -80,6 +80,7 @@ function AmmedmentHistory({ showAmmedmentView, setShowAmmedmentView = () => {}, 
 					style={{ marginRight: '10px' }}
 					themeType="secondary"
 					onClick={() => setShowAmmedmentView((prev) => !prev)}
+					type="button"
 				>
 					close
 				</Button>

@@ -11,11 +11,13 @@ import TradeList from './TradeList';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
+const MIN_TRADE_DETAILS_VERIFIED = 1;
+
 const getAccordianTitle = ({ placeholder, listLength = 0 }) => (
 	<div className={styles.pill_container}>
 		<div>{`${placeholder} ${listLength}`}</div>
-		<Pill color={listLength >= 1 ? 'green' : 'yellow'} size="sm">
-			{listLength >= 1 ? 'Completed' : 'Pending'}
+		<Pill color={listLength >= MIN_TRADE_DETAILS_VERIFIED ? 'green' : 'yellow'} size="sm">
+			{listLength >= MIN_TRADE_DETAILS_VERIFIED ? 'Completed' : 'Pending'}
 		</Pill>
 	</div>
 );
@@ -75,6 +77,7 @@ function TradeDetails({ getCreditRequestResponse = {}, refetch = () => {} }) {
 						if (item.type === 'fieldArray') {
 							return (
 								<FieldArray
+									key={item.name}
 									{...item}
 									control={control}
 									name={item.name}
@@ -83,7 +86,7 @@ function TradeDetails({ getCreditRequestResponse = {}, refetch = () => {} }) {
 							);
 						}
 						return (
-							<div className={styles.field}>
+							<div className={styles.field} key={item.name}>
 								<div
 									className={styles.field_name}
 									style={item.style}
@@ -101,6 +104,7 @@ function TradeDetails({ getCreditRequestResponse = {}, refetch = () => {} }) {
 				</div>
 				<div className={styles.btn_container}>
 					<Button
+						type="button"
 						loading={loading}
 						disabled={loading}
 						onClick={handleSubmit(onSubmit)}

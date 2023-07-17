@@ -7,6 +7,7 @@ import styles from './styles.module.css';
 import getField from '@/packages/forms/Controlled';
 import FilePreview from '@/ui/page-components/export-factoring/common/FilePreview';
 import useUpdateCreditApplication from '@/ui/page-components/export-factoring/hooks/useUpdateCreditApplication';
+import { isEmpty } from '@cogoport/utils';
 
 const fields = {
 	name        : 'undate_cheque',
@@ -54,11 +55,11 @@ function UndatedCheques({ refetch = () => {}, udcCheque, getCreditRequestRespons
 		}
 	};
 
-	if (undated_cheque.length > 0) {
+	if (!isEmpty(undated_cheque)) {
 		return (
 			<div className={styles.container}>
 				{undated_cheque.map((item) => (
-					<FilePreview name={item.document_type} url={item.document_url} />
+					<FilePreview key={item?.id} name={item.document_type} url={item.document_url} />
 				))}
 			</div>
 		);
@@ -88,7 +89,9 @@ function UndatedCheques({ refetch = () => {}, udcCheque, getCreditRequestRespons
 				</form>
 			</div>
 			<div className={styles.btn_container}>
-				<Button onClick={handleSubmit(submitCheque)} loading={loading} disabled={loading}> Submit</Button>
+				<Button type="button" onClick={handleSubmit(submitCheque)} loading={loading} disabled={loading}>
+					Submit
+				</Button>
 			</div>
 		</div>
 	);

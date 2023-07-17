@@ -94,6 +94,7 @@ function CompanyInformation({
 			)}
 			<div className={styles.btn_container}>
 				<Button
+					type="button"
 					onClick={handleGetOfferLetter}
 					loading={updateCreditLoading}
 					disabled={updateCreditLoading}

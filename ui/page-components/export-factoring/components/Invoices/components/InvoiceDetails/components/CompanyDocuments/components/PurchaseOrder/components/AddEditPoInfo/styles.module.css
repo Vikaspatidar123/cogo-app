@@ -4,7 +4,7 @@
 	border: 1px solid #e0e0e0;
 	border-radius: 8px;
 }
-.formDiv{
+.form_div{
     width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -28,7 +28,7 @@
 	color: red;
 }
 
-.flexDiv {
+.flex_div {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -38,14 +38,14 @@
 	margin-top: 20px;
 }
 
-.errorDiv{
+.error_div{
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	color: #fe473a;
 }
 
-.buttonFlex{
+.button_flex{
 	display: flex;
 	justify-content: flex-end;
 	padding: 10px;

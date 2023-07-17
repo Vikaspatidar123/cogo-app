@@ -71,7 +71,7 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 							? RENDERING_FORM.offer_letter_complete : SubComponent;
 
 						return (
-							<TabPanel name={name} title={title}>
+							<TabPanel name={name} title={title} key={name}>
 								{(active === 'locked' && activeTab === 'application')
 									? (
 										<OfferLetterWaiting

@@ -230,6 +230,9 @@ const GLOBAL_CONSTANTS = {
 		no_schedules_found_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
 		globe                    : 'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/globe-language.png',
 		archive_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg',
+		ef_email_offer_letter  	 : 'https://cdn.cogoport.io/cms-prod/cogo_fintech/vault/original/email_offer',
+		ef_offer_letter_waiting:
+			'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/Document_Offer_letter_icon.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',

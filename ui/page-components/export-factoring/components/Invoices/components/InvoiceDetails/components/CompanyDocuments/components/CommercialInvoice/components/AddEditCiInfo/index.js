@@ -10,9 +10,10 @@ import { getAddInvoiceDocumentsControls } from
 	'@/ui/page-components/export-factoring/configurations/getAddInvoiceDocumentsControls';
 import useSaveCiDocsDetails from '@/ui/page-components/export-factoring/hooks/useSaveCiDocsDetails';
 
+const MIN_NET_INVOICE_VALUE = 0;
+
 function AddEditCiInfo({
 	data = {},
-	showCiForm,
 	creditRequest,
 	setShowCiForm,
 	refetch,
@@ -69,13 +70,12 @@ function AddEditCiInfo({
 	return (
 		<div className={styles.container}>
 			<div className={styles.formDiv}>
-				{/* <form> */}
 				{addInvoiceDocumentsControls.map((item) => {
 					const Element = getField(item?.type);
 					return (
 						item?.type
 						&& (
-							<div className={styles.field}>
+							<div className={styles.field} key={item.name}>
 								<div className={styles.field_name}>{item?.label}</div>
 								<Element control={control} {...item} />
 								<div className={styles.error_text}>
@@ -86,7 +86,6 @@ function AddEditCiInfo({
 						)
 					);
 				})}
-				{/* </form> */}
 			</div>
 			<div className={styles.flexDiv}>
 				<div>
@@ -117,7 +116,7 @@ function AddEditCiInfo({
 				</div>
 			</div>
 			<div className={styles.errorDiv}>
-				{netInvoice < 0 && (
+				{netInvoice < MIN_NET_INVOICE_VALUE && (
 					'Prior Payment Cannot be more than Invoice Amount'
 				)}
 			</div>
@@ -139,7 +138,7 @@ function AddEditCiInfo({
 					onClick={handleSubmit(onCIDocSave)}
 					loading={loading}
 					disabled={
-							loading || netInvoice < 0 || commercial_invoice === 'approved'
+							loading || netInvoice < MIN_NET_INVOICE_VALUE || commercial_invoice === 'approved'
 						}
 				>
 					Save

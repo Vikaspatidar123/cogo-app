@@ -63,6 +63,7 @@ function RequestAmmedment({
 				<Button
 					style={{ marginRight: '10px' }}
 					themeType="secondary"
+					type="button"
 					onClick={() => setShowRequestView((prev) => !prev)}
 				>
 					close
@@ -70,6 +71,7 @@ function RequestAmmedment({
 				</Button>
 				<Button
 					loading={loading}
+					type="button"
 					disabled={loading}
 					onClick={handleSubmit(onSubmit)}
 				>

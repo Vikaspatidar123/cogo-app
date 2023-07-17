@@ -52,19 +52,19 @@ function MiDetailsInfo({
 					rejection_reason={rejection_reason}
 				/>
 			</div>
-			<div className={styles.mainContainer}>
+			<div className={styles.main_container}>
 				{!showEditForm ? (
 					<>
-						<div className={styles.topContainer}>
+						<div className={styles.top_container}>
 							<Tooltip
 								content={<PdfViewer url={document_url} width="100%" />}
 								placement="right"
 								theme="light"
 								interactive
 							>
-								<div className={styles.linkBox}>
+								<div className={styles.link_box}>
 									<IcMPdf height="30px" width="20px" />
-									<div className={styles.mainHead}>Doc</div>
+									<div className={styles.main_head}>Doc</div>
 								</div>
 							</Tooltip>
 							<div style={{ display: 'flex', alignItems: 'center' }}>
@@ -78,7 +78,7 @@ function MiDetailsInfo({
 								)}
 								{(statusTag === 'review_requested' || status === 'active') && (
 									<div
-										className={styles.mainHead}
+										className={styles.main_head}
 										onClick={() => setShowEditForm((pv) => !pv)}
 									>
 										Edit
@@ -86,21 +86,21 @@ function MiDetailsInfo({
 								)}
 							</div>
 						</div>
-						<div className={styles.detailsContainer}>
-							<div className={styles.dataDiv}>
-								<div className={styles.labelText}>
+						<div className={styles.details_container}>
+							<div className={styles.data_div}>
+								<div className={styles.label_text}>
 									MI No:
 								</div>
-								<div className={styles.valueText}>
+								<div className={styles.value_text}>
 									{document_number}
 								</div>
 							</div>
 
-							<div className={styles.dataDiv}>
-								<div className={styles.labelText}>
+							<div className={styles.data_div}>
+								<div className={styles.label_text}>
 									Insuring Party Name:
 								</div>
-								<div className={styles.valueText}>
+								<div className={styles.value_text}>
 									{insuring_party_name}
 								</div>
 							</div>

@@ -81,10 +81,11 @@ function EditDetails({
 					style={{ marginRight: '10px' }}
 					themeType="secondary"
 					onClick={() => setShowEdit({ show: false })}
+					type="button"
 				>
 					close
 				</Button>
-				<Button onClick={handleSubmit(saveValues)}>Save</Button>
+				<Button onClick={handleSubmit(saveValues)} type="button">Save</Button>
 			</Modal.Footer>
 		</Modal>
 	);

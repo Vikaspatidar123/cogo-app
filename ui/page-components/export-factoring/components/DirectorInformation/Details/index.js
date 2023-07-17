@@ -31,6 +31,7 @@ function Details({ director = {}, setShowEdit = () => {}, showEdit, constitution
 							registration_number,
 							show : true,
 						})}
+						type="button"
 					>
 						<IcMEdit />
 						<div className="button_edit">Edit</div>

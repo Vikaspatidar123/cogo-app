@@ -23,7 +23,7 @@ function PocList({ list = [] }) {
 			</div>
 
 			{list.map((poc) => (
-				<div className={styles.poc_container}>
+				<div className={styles.poc_container} key={poc?.id}>
 					<div className={styles.row}>
 						<div className={styles.col}>
 							<span>{poc?.name}</span>

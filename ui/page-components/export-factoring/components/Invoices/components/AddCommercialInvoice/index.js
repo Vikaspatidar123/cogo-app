@@ -61,6 +61,7 @@ function AddCommercialInvoice({
 						if (item.type === 'fieldArray') {
 							return (
 								<FieldArray
+									key={item.name}
 									{...item}
 									control={control}
 									name={item.name}

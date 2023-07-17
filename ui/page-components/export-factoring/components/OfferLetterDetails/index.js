@@ -10,6 +10,7 @@ import RequestAmmedment from './RequestAmmedment';
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function OfferLetterDetails({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }) {
 	const { onSubmit, loading, data } = useSubmitOfferLetter();
@@ -45,7 +46,7 @@ function OfferLetterDetails({ active = {}, getCreditRequestResponse = {}, refetc
 		<div className={styles.container}>
 			<div className={styles.header_div}>
 				<Image
-					src="https://cdn.cogoport.io/cms-prod/cogo_fintech/vault/original/email_offer"
+					src={GLOBAL_CONSTANTS.image_url.ef_email_offer_letter}
 					alt="email-offerLetter"
 				/>
 				<div className={styles.congrats_div}>
@@ -161,12 +162,16 @@ function OfferLetterDetails({ active = {}, getCreditRequestResponse = {}, refetc
 				<div className={styles.amedement_button_wrapper}>
 					{(Object.keys(comments).splice(1).length > 0
 							|| documents?.offer_letter?.rejected_on_review?.id) && (
-								<Button themeType="secondary" onClick={() => setShowAmmedmentView((prev) => !prev)}>
+								<Button
+									themeType="secondary"
+									type="button"
+									onClick={() => setShowAmmedmentView((prev) => !prev)}
+								>
 									View Request
 								</Button>
 
 					)}
-					<Button themeType="secondary" onClick={() => setShowRequestView((prev) => !prev)}>
+					<Button themeType="secondary" type="button" onClick={() => setShowRequestView((prev) => !prev)}>
 						{documents?.offer_letter?.rejected_on_review?.id
 							? 'Re-Request Ammendment'
 							: 'Request Ammendment'}
@@ -195,6 +200,7 @@ function OfferLetterDetails({ active = {}, getCreditRequestResponse = {}, refetc
 							!documents?.offer_letter?.active
 							&& !documents?.signed_offer_letter?.active
 						}
+					type="button"
 					onClick={handleSubmitOfferLetter}
 				>
 					{offer_letter_status === 'signed' ? 'Proceed' : 'Lock Offer Letter'}

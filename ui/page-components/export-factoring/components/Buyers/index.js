@@ -32,6 +32,7 @@ function Buyers({
 			</div>
 			{!isEmpty(buyer_details) && buyer_details?.map((buyers, index) => (
 				<BuyersList
+					key={buyers?.id}
 					refetch={refetch}
 					buyers={buyers}
 					index={index}

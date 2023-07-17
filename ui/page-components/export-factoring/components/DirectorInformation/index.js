@@ -128,7 +128,7 @@ function DirectorInformation({
 				{constitutionMapping?.label}
 				{' '}
 				details
-				<Button onClick={setShowAddDirectors}>
+				<Button type="button" onClick={setShowAddDirectors}>
 					Add
 				</Button>
 			</div>
@@ -172,7 +172,12 @@ function DirectorInformation({
 				/>
 			)}
 			<div className={styles.btn_container}>
-				<Button onClick={saveDirectorAndReport} loading={updateCreditLoading} disabled={updateCreditLoading}>
+				<Button
+					type="button"
+					onClick={saveDirectorAndReport}
+					loading={updateCreditLoading}
+					disabled={updateCreditLoading}
+				>
 					Save & Continue
 				</Button>
 			</div>

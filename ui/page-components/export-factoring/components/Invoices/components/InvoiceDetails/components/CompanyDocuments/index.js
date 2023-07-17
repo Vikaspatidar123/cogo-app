@@ -55,7 +55,7 @@ function CompanyDocuments({
 				const docsField = formMapping[docs];
 				const ChildrenComponent = formMapping[docs].func;
 				return (
-					<div>
+					<div key={docs}>
 						<div className={styles.flexBox}>
 							<div style={{ width: '40%' }}>
 								{docsField?.heading}

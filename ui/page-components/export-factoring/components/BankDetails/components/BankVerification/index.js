@@ -111,9 +111,6 @@ function BankVerification({ refetch, setAddBankModal = () => { }, getCreditReque
 					</div>
 				</div>
 			)}
-			{/* <div className={styles.subHeader}>
-				This is not a mandatory step, this can be done later in the profile section.
-			</div> */}
 			<div className={styles.flexDiv}>
 				<div>
 					<div className={styles.title}>
@@ -164,7 +161,7 @@ function BankVerification({ refetch, setAddBankModal = () => { }, getCreditReque
 											return (
 												item?.type
 												&& (
-													<div className={styles.field}>
+													<div className={styles.field} key={item?.name}>
 														<div className={styles.field_name}>{item?.label}</div>
 														<Element control={control} {...item} />
 														<div className={styles.error_text}>

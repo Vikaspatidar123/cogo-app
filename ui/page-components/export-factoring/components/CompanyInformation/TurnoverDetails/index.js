@@ -62,7 +62,7 @@ function TurnoverDetails({ setUpdatedValues }) {
 			Select Turn Over
 			{controls.map((item) => {
 				const Element = getField(item.type);
-				return <Element control={control} {...item} />;
+				return <Element key={item.name} control={control} {...item} />;
 			})}
 		</div>
 	);

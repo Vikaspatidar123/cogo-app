@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
-import { useSelector } from 'react-redux';
 
 import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useCreateOrganizationCreditRequest = ({ refetch = () => { } }) => {
 	const { profile } = useSelector((state) => state);

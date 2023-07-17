@@ -1,5 +1,4 @@
 import { useEffect, useCallback, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import { useRequest } from '@/packages/request';
 

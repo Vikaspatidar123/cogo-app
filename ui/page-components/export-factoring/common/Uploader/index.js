@@ -34,7 +34,7 @@ function Uploader({ proofUrl = '', setProofUrl = () => { }, show = false, setSho
 				>
 					Cancel
 				</Button>
-				<Button themeType="accent" onClick={() => setShow(false)}>Save</Button>
+				<Button type="button" themeType="accent" onClick={() => setShow(false)}>Save</Button>
 			</Modal.Footer>
 		</Modal>
 

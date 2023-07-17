@@ -139,7 +139,7 @@ function BuyersList({
 				</div>
 				<div>
 					{!isEmpty(poc_details) && poc_details?.map((poc) => (
-						<PocDetails poc={poc} />
+						<PocDetails poc={poc} key={poc.id} />
 					))}
 
 				</div>

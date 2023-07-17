@@ -36,7 +36,7 @@ function AddPocModal({ refetch, openAddPoc, setOpenAddPoc, buyers, getCreditRequ
 						{addPocControls.map((item) => {
 							const Element = getField(item?.type);
 							return (
-								<div className={styles.field}>
+								<div className={styles.field} key={item.name}>
 									<div className={styles.field_name}>{item?.label}</div>
 									<Element control={control} {...item} />
 									<div className={styles.error_text}>

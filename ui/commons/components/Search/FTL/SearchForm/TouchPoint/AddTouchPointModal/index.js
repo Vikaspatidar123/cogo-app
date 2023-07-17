@@ -12,7 +12,8 @@ import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 const Location = getField('async_select');
 
 const SUPPORTED_COUNTRY_CODE =	GLOBAL_CONSTANTS.service_supported_countries.ftl_freight.countries;
-const SUPPORTED_COUNTRY_IDS = SUPPORTED_COUNTRY_CODE.map((code) => {
+
+const getCountryIds = ({ countryCodeArr }) => countryCodeArr.map((code) => {
 	const countryInfo = getCountryDetails({ country_code: code });
 	return countryInfo.id;
 });
@@ -29,7 +30,7 @@ const location_control = [
 			apply_sorting : false,
 			filters       : {
 				type : ['pincode', 'seaport', 'airport', 'city'],
-				id   : SUPPORTED_COUNTRY_IDS,
+				id   : getCountryIds({ countryCodeArr: SUPPORTED_COUNTRY_CODE }),
 			},
 		},
 		size  : 'md',

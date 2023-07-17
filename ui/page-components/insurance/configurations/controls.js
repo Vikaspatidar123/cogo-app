@@ -77,10 +77,6 @@ const controls = [
 		valueKey    : 'postal_code',
 		labelKey    : 'postal_code',
 		params      : {
-			// filters: {
-			// 	type       : 'pincode',
-			// 	country_id : SUPPORTED_COUNTRY_ID,
-			// },
 			includes: {
 				country                 : '',
 				region                  : '',
@@ -121,7 +117,7 @@ const controls = [
 const getControls = (formDetails = {}, profile = {}, setCityState = () => {}) => {
 	const SUPPORTED_COUNTRY_CODE = GLOBAL_CONSTANTS.feature_supported_service.cargo_insurance.supported_countries;
 
-	const SUPPORTED_COUNTRY_ID = SUPPORTED_COUNTRY_CODE.map((code) => {
+	const getCountryIds = ({ countryCodeArr }) => countryCodeArr.map((code) => {
 		const countryInfo = getCountryDetails({ country_code: code });
 		return countryInfo.id;
 	});
@@ -140,7 +136,7 @@ const getControls = (formDetails = {}, profile = {}, setCityState = () => {}) =>
 					...control.params,
 					filters: {
 						type       : 'pincode',
-						country_id : SUPPORTED_COUNTRY_ID,
+						country_id : getCountryIds({ countryCodeArr: SUPPORTED_COUNTRY_CODE }),
 					},
 				},
 			};

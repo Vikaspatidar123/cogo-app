@@ -278,7 +278,6 @@ const GLOBAL_CONSTANTS = {
 	},
 	customer_support: 'support@cogoport.com',
 
-
 	regex: {
 		url_end_slash: /\/$/,
 		website_url:

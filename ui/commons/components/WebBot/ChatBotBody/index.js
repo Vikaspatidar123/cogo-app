@@ -12,18 +12,15 @@ import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function ChatBotBody({ firestore, roomId, sendMessage, sendMessageLoading }) {
-	const refs = useRef({
-		messageRef : null,
-		messageEnd : null,
-	});
+	const ref = useRef([]);
 
 	const scrollToBottom = useCallback(() => {
-		refs.current.messageEnd?.scrollIntoView({ behavior: 'smooth' });
+		ref?.current?.[0].scrollIntoView({ behavior: 'smooth' });
 	}, []);
 
 	const toggleHeight = ({ isFileDivPresent = false }) => {
-		if (refs.current.messageRef !== null) {
-			refs.current.messageRef.current.style.height = isFileDivPresent ? '70%' : '78%';
+		if (ref?.current?.[1] !== null) {
+			ref.current[1].style.height = isFileDivPresent ? '70%' : '78%';
 		}
 	};
 
@@ -44,7 +41,13 @@ function ChatBotBody({ firestore, roomId, sendMessage, sendMessageLoading }) {
 
 	return (
 		<>
-			<div className={styles.body_container} ref={refs.messageRef} onScroll={handleScroll}>
+			<div
+				className={styles.body_container}
+				ref={(ele) => {
+					ref.current.push(ele);
+				}}
+				onScroll={handleScroll}
+			>
 				{!isLastPageOfMessages && (
 					<div className={styles.loader}>
 						{loading ? (
@@ -62,7 +65,7 @@ function ChatBotBody({ firestore, roomId, sendMessage, sendMessageLoading }) {
 						sendMessageLoading={sendMessageLoading}
 					/>
 				))}
-				<div ref={refs.messageEnd} />
+				<div ref={(ele) => ref.current.push(ele)} />
 			</div>
 			<FooterChat
 				sendMessageLoading={sendMessageLoading}

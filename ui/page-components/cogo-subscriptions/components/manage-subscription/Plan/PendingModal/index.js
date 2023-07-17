@@ -70,7 +70,7 @@ function PendingModal({
 			closeOnOuterClick={false}
 			showCloseIcon={false}
 		>
-			{apiTries > PAINTING_TIME && status !== 'active' && (
+			{apiTries < PAINTING_TIME && status !== 'active' && (
 				<div className={styles.container}>
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.loading_banner}
@@ -89,7 +89,7 @@ function PendingModal({
 				</div>
 			)}
 
-			{apiTries < CLOSE_TIME && (
+			{apiTries > CLOSE_TIME && (
 				<div className={styles.container}>
 					<Icon width={52} height={52} fill="#FBDC00" />
 					<div className={`${styles.txt} ${styles.error}`}>

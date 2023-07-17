@@ -92,6 +92,8 @@
     "active_conformation_message":"Bạn có chắc chắn bạn muốn kích hoạt",
     "plan_text":"Kế hoạch",
     "now_text":"Hiện nay?",
-    "panding_message":"Treo lên!Kích hoạt kế hoạch của bạn ..."
-
+    "panding_message":"Treo lên!Kích hoạt kế hoạch của bạn ...",
+    "payment_due_text":"Thanh toán đến hạn",
+    "payment_failed_status_text":"Xin lỗi, nhưng khoản thanh toán của bạn đã thất bại.Vui lòng đảm bảo rằng các chi tiết thanh toán là chính xác và thử lại.",
+    "payment_pending_status_text":"Cảm ơn bạn đã thanh toán!Chúng tôi đã nhận được nó và sẽ sớm kích hoạt đăng ký của bạn.Nếu bạn cần sửa đổi bất kỳ chi tiết đăng ký nào, xin vui lòng cho chúng tôi biết và chúng tôi sẽ sẵn lòng hỗ trợ bạn."
 }

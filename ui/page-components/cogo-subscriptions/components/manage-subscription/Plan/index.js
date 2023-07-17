@@ -2,10 +2,12 @@ import { Toggle } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
+import RecurringPaymentFailedRibbon from '../../../common/RecurringPaymentFailedRibbon';
 import SuccessModal from '../../../common/SuccessModal';
 import useGetPlanFeatures from '../../../hooks/useGetPlanFeatures';
 import useGetUSerActivePlan from '../../../hooks/useGetUserActivePlan';
 import useVerifyRazor from '../../../hooks/useVerifyRazorPayStatus';
+import getUserActivePlan from '../../../utils/getUserActivePlan';
 
 import HeaderContainer from './HeaderContainer';
 import PendingModal from './PendingModal';
@@ -39,7 +41,11 @@ function Plan() {
 		apiTries,
 	} = useVerifyRazor();
 
-	const { saas_product_family_id = '' } = userPlan || {};
+	const { saas_product_family_id = '', item_plans = [] } = userPlan || {};
+
+	const activePlan = getUserActivePlan({ item_plans, activeTab });
+
+	const { extended_days = 0 } = activePlan || {};
 
 	const { planFeatureData = {} } = useGetPlanFeatures({
 		saas_product_family_id,
@@ -47,63 +53,70 @@ function Plan() {
 
 	return (
 		<div>
-			<HeaderContainer />
+			{extended_days ? <RecurringPaymentFailedRibbon /> : null}
 
-			<div className={styles.container}>
+			<div
+				className={extended_days ? styles.extended_padding : ''}
+			>
 
-				<Toggle
-					offLabel={t('subscriptions:bill_monthly_text')}
-					onLabel={(
-						<div>
-							{t('subscriptions:bill_yearly_text')}
-							<span className={styles.save}>
-								{' '}
-								(
-								{t('subscriptions:save_text')}
-								)
-							</span>
-						</div>
-					)}
-					value={activeTab}
-					onChange={(e) => {
-						setActiveTab(e.target.checked ? 'monthly' : 'annual');
-					}}
-				/>
-			</div>
-			<SubscriptionsPlan
-				userplan={userPlan}
-				activeTab={activeTab}
-				subscribeTab={subscribeTab}
-				loading={loading}
-			/>
+				<HeaderContainer />
 
-			<div className={styles.feature_line}>
-				<div>
-					<div className={styles.features}>{t('subscriptions:detailed_text')}</div>
+				<div className={styles.container}>
+
+					<Toggle
+						offLabel={t('subscriptions:bill_monthly_text')}
+						onLabel={(
+							<div>
+								{t('subscriptions:bill_yearly_text')}
+								<span className={styles.save}>
+									{' '}
+									(
+									{t('subscriptions:save_text')}
+									)
+								</span>
+							</div>
+						)}
+						value={activeTab}
+						onChange={(e) => {
+							setActiveTab(e.target.checked ? 'annual' : 'monthly');
+						}}
+					/>
 				</div>
-			</div>
-			<CardTable
-				planFeatureData={planFeatureData}
-			/>
+				<SubscriptionsPlan
+					userplan={userPlan}
+					activeTab={activeTab}
+					subscribeTab={subscribeTab}
+					loading={loading}
+				/>
 
-			{modal && (
-				<SuccessModal
-					query={query}
-					modal={modal}
-					setShowModal={setShowModal}
-					getPlan={getPlan}
-					name={saas_plan}
+				<div className={styles.feature_line}>
+					<div>
+						<div className={styles.features}>{t('subscriptions:detailed_text')}</div>
+					</div>
+				</div>
+				<CardTable
+					planFeatureData={planFeatureData}
 				/>
-			)}
-			{razorLoading && (
-				<PendingModal
-					razorLoading={razorLoading}
-					setRazorLoading={setRazorLoading}
-					apiTries={apiTries}
-					paymentStatus={paymentStatus}
-					setAddModal={setShowModal}
-				/>
-			)}
+
+				{modal && (
+					<SuccessModal
+						query={query}
+						modal={modal}
+						setShowModal={setShowModal}
+						getPlan={getPlan}
+						name={saas_plan}
+					/>
+				)}
+				{razorLoading && (
+					<PendingModal
+						razorLoading={razorLoading}
+						setRazorLoading={setRazorLoading}
+						apiTries={apiTries}
+						paymentStatus={paymentStatus}
+						setAddModal={setShowModal}
+					/>
+				)}
+			</div>
 		</div>
 	);
 }

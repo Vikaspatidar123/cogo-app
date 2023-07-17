@@ -7,7 +7,7 @@ function CheckoutPageLoader() {
 		<div className={styles.loader_container}>
 			{[...Array(3).keys()].map(() => (
 				<Placeholder
-					height="600px"
+					height="490px"
 					width="96%"
 					margin="30px 10px 20px 10px"
 					className={styles.loader}

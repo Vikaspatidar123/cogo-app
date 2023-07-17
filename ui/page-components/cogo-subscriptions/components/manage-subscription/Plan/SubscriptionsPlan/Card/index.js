@@ -42,6 +42,7 @@ function Card({
 		item,
 		priority_sequence_active_plan,
 	});
+
 	const {
 		description = '',
 		priority_sequence: prioritySequence = '',
@@ -150,18 +151,19 @@ function Card({
 
 						{displayPricing?.activate_later && (
 							<div className={styles.date_box}>
+								<span className={styles.date}>{t('subscriptions:payment_due_text')}</span>
 								<Image
 									src={GLOBAL_CONSTANTS.image_url.calendar_image}
 									alt={t('subscriptions:cogo_text')}
 									width={25}
 									height={25}
+									className={styles.calender_image}
 								/>
 								<span className={styles.days}>{displayPricing?.activates_in}</span>
 								<span className={styles.date}>
 									{displayPricing?.activates_in === 1 ? t('subscriptions:day_text')
 										: t('subscriptions:days_text')}
 									{' '}
-									{t('subscriptions:left_activate_text')}
 								</span>
 							</div>
 						)}
@@ -169,18 +171,19 @@ function Card({
 							&& displayPricing?.is_active_plan
 							&& displayPricing?.expires_in !== undefined ? (
 								<div className={styles.date_box}>
+									<span className={styles.date}>{t('subscriptions:payment_due_text')}</span>
 									<Image
 										src={GLOBAL_CONSTANTS.image_url.calendar_image}
 										alt={t('subscriptions:cogo_text')}
 										width={25}
 										height={25}
+										className={styles.calender_image}
 									/>
 									<span className={styles.days}>{displayPricing?.expires_in}</span>
 									<span className={styles.date}>
 										{displayPricing?.expires_in === 1 ? t('subscriptions:day_text')
 											: t('subscriptions:days_text')}
 										{' '}
-										{t('subscriptions:expire_text')}
 									</span>
 								</div>
 							) : (

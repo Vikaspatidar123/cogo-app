@@ -1,5 +1,5 @@
 import { Modal, Button } from '@cogoport/components';
-import { IcMInformation } from '@cogoport/icons-react';
+import { IcCSad, IcCVeryHappy, IcMInformation } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 import { useCallback, useEffect } from 'react';
 
@@ -14,6 +14,26 @@ import styles from './styles.module.css';
 import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+const textForSubscriptionStatusMapping = ({ status, t }) => {
+	const Mapping = {
+		failed             : t('subscriptions:payment_failed_status_text'),
+		activation_pending : t('subscriptions:payment_pending_status_text'),
+		pending            : t('subscriptions:checking_payment_description_text'),
+		default            : t('subscriptions:checking_payment_description_text'),
+	};
+	return Mapping[status] || Mapping.default;
+};
+
+const iconForSubscriptionStatusMapping = ({ status }) => {
+	const Mapping = {
+		failed             : IcCSad,
+		activation_pending : IcCVeryHappy,
+		pending            : IcMInformation,
+		default            : IcMInformation,
+	};
+	return Mapping[status] || Mapping.default;
+};
+
 function PendingModal({
 	razorLoading,
 	paymentStatus,
@@ -23,6 +43,8 @@ function PendingModal({
 }) {
 	const { status = '' } = paymentStatus || {};
 	const { t } = useTranslation(['subscriptions']);
+
+	const Icon = iconForSubscriptionStatusMapping({ status });
 
 	const closeModalHandler = useCallback(() => {
 		setRazorLoading(false);
@@ -48,7 +70,7 @@ function PendingModal({
 			closeOnOuterClick={false}
 			showCloseIcon={false}
 		>
-			{apiTries < PAINTING_TIME && status !== 'active' && (
+			{apiTries > PAINTING_TIME && status !== 'active' && (
 				<div className={styles.container}>
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.loading_banner}
@@ -67,11 +89,11 @@ function PendingModal({
 				</div>
 			)}
 
-			{apiTries > CLOSE_TIME && (
+			{apiTries < CLOSE_TIME && (
 				<div className={styles.container}>
-					<IcMInformation fill="#FBDC00" width={52} height={52} />
+					<Icon width={52} height={52} fill="#FBDC00" />
 					<div className={`${styles.txt} ${styles.error}`}>
-						{t('subscriptions:checking_payment_description_text')}
+						{textForSubscriptionStatusMapping({ t, status })}
 					</div>
 					<Button
 						size="md"

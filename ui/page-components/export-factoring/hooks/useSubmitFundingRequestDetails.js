@@ -46,8 +46,8 @@ const useSubmitFundingRequestDetails = ({
 			}));
 
 			const payload = {
-				// shipment_serial_id       : values?.sid,
-				shipment_serial_id       : 150435,
+				shipment_serial_id       : values?.sid,
+				// shipment_serial_id       : 150435,
 				buyer_id                 : values?.buyer_name,
 				exporter_bank_account_id : values?.exporter_bank_account_id,
 				invoice_params,

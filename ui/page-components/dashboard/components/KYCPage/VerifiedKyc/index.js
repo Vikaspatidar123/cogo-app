@@ -1,4 +1,5 @@
 import { IcCFtick, IcMArrowNext } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -6,22 +7,24 @@ import { useRouter } from '@/packages/next';
 
 function VerifiedKyc({ is_free_plan, plan_name }) {
 	const { push } = useRouter();
+	const { t } = useTranslation(['dashboard']);
+
 	return (
 		<div className={styles.image}>
 
 			<div className={styles.inner}>
 				<IcCFtick width={34} height={34} />
 				<div className={styles.status_text}>
-					<strong>Verified</strong>
+					<strong>{t('dashboard:kycStatus_text_6')}</strong>
 				</div>
 				<div className={styles.image2}>
-					Your Account details are verified for Booking Logistics
+					{t('dashboard:kycStatus_text_1')}
 				</div>
 			</div>
 			<div className={styles.line}>
 				<div className={styles.sub_line}>
 					<div className={styles.lines}>
-						<p className={styles.Account}>Your Account</p>
+						<p className={styles.Account}>{t('dashboard:kycStatus_text_2')}</p>
 						<div>
 							{is_free_plan === false && (
 								<img
@@ -39,8 +42,8 @@ function VerifiedKyc({ is_free_plan, plan_name }) {
 					>
 						<p className={styles.text}>
 							{is_free_plan === false
-								? 'View Benefits'
-								: 'Upgrade'}
+								? t('dashboard:kycStatus_text_4')
+								: t('dashboard:kycStatus_text_5')}
 
 						</p>
 						<IcMArrowNext className={styles.arrow} />

@@ -1,29 +1,29 @@
-const listConfig = {
+const getlistConfig = ({ t }) => ({
 	fields: [
 		{
 			key   : 'name',
-			label : 'Name',
+			label : t('productCatalogue:product_catalogue_sub_categorylist_column_title_1'),
 		},
 		{
 			key   : 'categoryDisplayName',
-			label : 'Category',
+			label : t('productCatalogue:product_catalogue_sub_categorylist_column_title_2'),
 		},
 		{
 			key     : 'subCategoryDisplayName',
-			label   : 'SubCategory',
+			label   : t('productCatalogue:product_catalogue_sub_categorylist_column_title_3'),
 			toolTip : true,
 		},
 		{
 			key   : 'hsCode',
-			label : 'HsCode',
+			label : t('productCatalogue:product_catalogue_sub_categorylist_column_title_4'),
 		},
 		{
 			key   : 'costPrice',
-			label : 'Cost Price',
+			label : t('productCatalogue:product_catalogue_sub_categorylist_column_title_5'),
 		},
 		{
 			key   : 'sellingPrice',
-			label : 'Selling Price',
+			label : t('productCatalogue:product_catalogue_sub_categorylist_column_title_6'),
 		},
 		{
 			key   : '',
@@ -32,6 +32,6 @@ const listConfig = {
 			func  : 'renderIcon',
 		},
 	],
-};
+});
 
-export default listConfig;
+export default getlistConfig;

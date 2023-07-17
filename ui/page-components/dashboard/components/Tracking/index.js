@@ -1,6 +1,6 @@
-import { IcMArrowNext } from '@cogoport/icons-react';
-
 // import GetTracking from '../../hooks/GetTracking';
+import { IcMArrowNext } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -9,11 +9,13 @@ import { useRouter } from '@/packages/next';
 function Tracking() {
 	// const { loading, schedulesData, air_track } = GetTracking();
 	const { push } = useRouter();
+	const { t } = useTranslation(['dashboard']);
+
 	return (
 		<div className={styles.header}>
 			<div className={styles.track}>
 				<div>
-					<p className={styles.trace}>Track & Trace</p>
+					<p className={styles.trace}>{t('dashboard:common_trackTraceHeader_text_1')}</p>
 				</div>
 
 			</div>
@@ -24,7 +26,7 @@ function Tracking() {
 				</div>
 				<div>
 					<p className={styles.symbols}>
-						Air Cargo
+						{t('dashboard:tracknTrace_card_text_1')}
 						{/* <img
 							className={styles.arrow}
 							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/another.svg"
@@ -33,7 +35,7 @@ function Tracking() {
 						<IcMArrowNext className={styles.arrow} />
 
 					</p>
-					<p className={styles.bill}>Track and Trace Your Air Shipments by Airway Bill Number.</p>
+					<p className={styles.bill}>{t('dashboard:tracknTrace_card_text_2')}</p>
 				</div>
 
 			</div>
@@ -46,7 +48,7 @@ function Tracking() {
 				</div>
 				<div>
 					<p className={styles.containerTracking}>
-						Container Tracking
+						{t('dashboard:tracknTrace_card_text_3')}
 						<img
 							className={styles.arrow}
 							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/another.svg"
@@ -57,7 +59,7 @@ function Tracking() {
 					<p
 						className={styles.Trace}
 					>
-						Track and Trace your Ocean shipments by Bill of Loading,Booking,or Container Number
+						{t('dashboard:tracknTrace_card_text_4')}
 
 					</p>
 				</div>

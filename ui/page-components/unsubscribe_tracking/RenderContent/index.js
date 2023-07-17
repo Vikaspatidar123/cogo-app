@@ -11,16 +11,16 @@ function RenderContent({ status, onConfirm }) {
 	return (
 		<div>
 			{
-                status ? (
-	<div className={styles.box}>
-		<h3 className={styles.h3}>{t('unSubscribeTracking:unsubscribe_text_1')}</h3>
-		<Button className={styles.button} type="button" onClick={onConfirm}>
-			{t('unSubscribeTracking:unsubscribe_text_2')}
-		</Button>
-	</div>
-                ) : <h3 className={styles.h3}>{t('unSubscribeTracking:unsubscribe_text_3')}</h3>
+				status ? (
+					<div className={styles.box}>
+						<h3 className={styles.h3}>{t('unSubscribeTracking:unsubscribe_text_1')}</h3>
+						<Button className={styles.button} type="button" onClick={onConfirm}>
+							{t('unSubscribeTracking:unsubscribe_text_2')}
+						</Button>
+					</div>
+				) : <h3 className={styles.h3}>{t('unSubscribeTracking:unsubscribe_text_3')}</h3>
 
-            }
+			}
 		</div>
 	);
 }

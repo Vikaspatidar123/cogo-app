@@ -155,7 +155,8 @@ const navigationMappings = ({ t = () => { } }) => {
 						as               : '/saas/insurance/list',
 						icon             : <IcAInsurance width={55} height={55} fill="#fbd221" />,
 						description      : t(`${translationKey}_premium_services_options_insurance_description`),
-						supportedCountry : GLOBAL_CONSTANTS.feature_supported_service.cargo_insurance.supported_countries,
+						supportedCountry : GLOBAL_CONSTANTS.feature_supported_service
+							.cargo_insurance.supported_countries,
 
 					},
 					{

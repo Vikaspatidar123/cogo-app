@@ -1,6 +1,6 @@
-// import useGetAsyncOptions from '../../hooks/useGetAsyncOptions';
-
 import { useTranslation } from 'next-i18next';
+
+import useGetAsyncOptions from '../../hooks/useGetAsyncOptions';
 
 import styles from './styles.module.css';
 
@@ -13,13 +13,13 @@ function RaiseIssueForm({
 	errors = {},
 	control,
 	showList = false,
-	// isTicketNotUtlilized = false,
+	isTicketNotUtlilized = false,
 
 }) {
 	const { t } = useTranslation(['createTicketPublic']);
-	// const { loadOptions, defaultOptions } = useGetAsyncOptions({
-	// 	isTicketNotUtlilized,
-	// });
+	const { loadOptions, defaultOptions, ...rest } = useGetAsyncOptions({
+		isTicketNotUtlilized,
+	});
 
 	return (
 		<div
@@ -29,12 +29,17 @@ function RaiseIssueForm({
 			<div className={styles.row}>
 				<div className={styles.col}>
 					<div className={styles.label}>{t('createTicketPublic:raise_issue_label_1')}</div>
-					<AsyncSelectController
+					{/* <AsyncSelectController
 						{...controls[0]}
 						asyncKey="issue_type"
 						// getModifiedOptions={loadOptions}
 						// defaultOptions={defaultOptions}
 						control={control}
+					/> */}
+					<SelectController
+						{...controls[0]}
+						{...rest}
+						options={defaultOptions}
 					/>
 					{errors?.issue_type
 					&& <div className={styles.error}>{t('createTicketPublic:raise_issue_error')}</div>}

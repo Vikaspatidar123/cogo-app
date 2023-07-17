@@ -1,9 +1,9 @@
-import { isEmpty } from '@cogoport/utils';
+import { isEmpty, debounce } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import { useDebounceQuery } from '@/packages/forms';
+import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
 const DEFAULT_SIZE = 10;
 
@@ -16,9 +16,7 @@ const formatOptions = (list) => {
 };
 
 const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
-	const {
-		general: { query = {} },
-	} = useSelector((state) => state);
+	const { query } = useRouter();
 
 	const [defaultOptions, setDefaultOptions] = useState([]);
 
@@ -32,11 +30,20 @@ const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
 		scope   : 'cogocare',
 	}, { manual: true });
 
-	const listAsyncOptions = async () => {
+	const [{ loading: load, data }] = useRequestBf({
+		url     : '/token_ticket_types',
+		method  : 'get',
+		authKey : 'get_token_ticket_types',
+		scope   : 'cogocare',
+	}, { manual: !searchQuery });
+
+	const listAsyncOptions = async (inputValue = '') => {
 		const res = await trigger({
 			params: {
-				page        : 0,
-				TicketType  : searchQuery || '',
+				page       : 0,
+				TicketType : !isEmpty(inputValue?.trim())
+					? inputValue?.trim()
+					: undefined,
 				size        : DEFAULT_SIZE,
 				TicketToken : token,
 				Category    : type,
@@ -48,14 +55,24 @@ const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
 		return null;
 	};
 
+	const onSearch = (inputValue) => {
+		debounceQuery(inputValue);
+	};
+
 	const getOptions = async () => {
 		const list = await listAsyncOptions();
 		if (!isEmpty(list) && isTicketNotUtlilized) {
 			setDefaultOptions(formatOptions(list));
 		}
 	};
-	const loadOptions = (inputValue = '') => {
-		debounceQuery(inputValue);
+
+	const loadOptions = debounce(async (inputValue, callback) => {
+		callback(formatOptions(await listAsyncOptions(inputValue)));
+	}, 500);
+
+	const onHydrateValue = async (val) => {
+		const list = await listAsyncOptions(val);
+		setDefaultOptions(formatOptions(list));
 	};
 
 	useEffect(() => {
@@ -63,10 +80,18 @@ const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	useEffect(() => {
+		if (!isEmpty(data)) {
+			setDefaultOptions(formatOptions(data?.list));
+		}
+	}, [data]);
+
 	return {
 		loadOptions,
 		defaultOptions,
 		loading,
+		onSearch,
+		onHydrateValue,
 	};
 };
 export default useGetAsyncOptions;

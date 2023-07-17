@@ -16,7 +16,7 @@ const useUpdateTokenTicket = () => {
 	const [showSuccessPage, setShowSuccessPage] = useState(false);
 
 	const [{ loading }, trigger] = useRequestBf({
-		url     : 'tickets/token_ticket',
+		url     : '/token_ticket',
 		method  : 'put',
 		authKey : 'put_tickets_token_ticket',
 		scope   : 'cogocare',
@@ -27,7 +27,7 @@ const useUpdateTokenTicket = () => {
 		selectedInvoices = {},
 		selectedpayments = [],
 	}) => {
-		const { payload = {} } = formatPayload({
+		const payload = formatPayload({
 			val,
 			selectedInvoices,
 			selectedpayments,
@@ -38,7 +38,7 @@ const useUpdateTokenTicket = () => {
 			});
 			setShowSuccessPage(true);
 		} catch (error) {
-			Toast.error(error?.error);
+			Toast.error(error?.response?.data);
 		}
 	};
 

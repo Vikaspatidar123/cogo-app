@@ -368,16 +368,6 @@ function asyncFieldsShippingLineList() {
 	};
 }
 
-function asyncFieldsIssueType() {
-	return {
-		labelKey : 'TicketType',
-		valueKey : 'TicketType',
-		authKey  : 'get_tickets_token_ticket_type',
-		endpoint : '/token_ticket_types',
-		scope    : 'cogocare',
-	};
-}
-
 export {
 	asyncFieldsLocations,
 	asyncFieldsLocations2,
@@ -410,5 +400,4 @@ export {
 	asyncFieldsAirLineList,
 	asyncFieldsShippingLineList,
 	asyncFieldsShippingLines,
-	asyncFieldsIssueType,
 };

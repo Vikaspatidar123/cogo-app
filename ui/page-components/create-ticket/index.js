@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import RaiseIssueForm from './components/RaiseIssueForm';
 import SuccessPage from './components/SucessPage';
-import controls from './configurations/raise-ticket-controls';
+import getControls from './configurations/raise-ticket-controls';
 import { ISSUE_COMPONENT_MAPPING, typeOptions } from './constants';
 import useCreateTokenTicket from './hooks/useCreateTokenTicket';
 import useUpdateTokenTicket from './hooks/useUpdateTokenTicket';
@@ -31,10 +31,7 @@ function CreateTicket() {
 		handleSubmit,
 	} = useForm();
 
-	const {
-		loading: createLoading,
-		isTicketNotUtlilized,
-	} = useCreateTokenTicket();
+	const controls = getControls({ t });
 
 	const componentProps = {
 		invoice : { selectedInvoices, setSelectedInvoices },
@@ -43,13 +40,18 @@ function CreateTicket() {
 
 	const Component = ISSUE_COMPONENT_MAPPING[selectIssue] || null;
 
+	const showList = typeOptions.includes(type);
+
+	const {
+		loading: createLoading,
+		isTicketNotUtlilized,
+	} = useCreateTokenTicket();
+
 	const { updateTokenTicket, showSuccessPage, loading } =	useUpdateTokenTicket();
 
 	const onFormSubmit = (val) => {
 		updateTokenTicket({ val, selectedInvoices, selectedpayments });
 	};
-
-	const showList = typeOptions.includes(type);
 
 	if (createLoading) {
 		return (
@@ -77,7 +79,7 @@ function CreateTicket() {
 							isTicketNotUtlilized={isTicketNotUtlilized}
 						/>
 
-						{showList && isTicketNotUtlilized && (
+						{(showList && isTicketNotUtlilized) && (
 							<div className={styles.table_wrapper}>
 								<Tabs
 									activeTab={selectIssue}

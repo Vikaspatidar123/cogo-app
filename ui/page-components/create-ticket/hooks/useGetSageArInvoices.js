@@ -1,22 +1,21 @@
-// import { useRequest } from '@cogo/commons/hooks';
-// import { useSelector } from '@cogo/store';
 import { useCallback, useEffect, useState } from 'react';
 
+import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
 const PAGE_LIMIT = 6;
+
 const useGetSageArInvoices = () => {
-	const {
-		general: { query = {} },
-	} = useSelector((state) => state);
+	const { query } = useRouter();
 
 	const { token } = query || {};
+
 	const [params, setParams] = useState({
 		page                     : 1,
 		page_limit               : 10,
 		pagination_data_required : true,
 	});
+
 	const [orderBy, setOrderBy] = useState({
 		key   : '',
 		order : '',

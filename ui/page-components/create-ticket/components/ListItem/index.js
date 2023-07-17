@@ -1,4 +1,4 @@
-import { Placeholder } from '@cogoport/components';
+import { Placeholder, cl } from '@cogoport/components';
 
 import ItemFunctions from '../../utils/RenderFunctions';
 
@@ -26,7 +26,7 @@ function ListItem({
 		<div className={styles.row}>
 			{(fields || []).map((singleItem) => (
 				<div
-					className={styles.col}
+					className={cl`${styles.col} ${styles?.[singleItem.key]}`}
 					key={singleItem?.key}
 				>
 					{!loading ? (

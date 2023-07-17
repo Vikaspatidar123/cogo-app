@@ -1,15 +1,8 @@
 .container {
 	display: flex;
 	justify-content: flex-end;
+	width: 266px;
 	padding: 0 10px;
-
-	.core-ui-input-root {
-		width: 266px;
-	}
-
-	svg {
-		margin-top: 5px;
-	}
 
 	@media (max-width: 768px) {
 		width: 100%;

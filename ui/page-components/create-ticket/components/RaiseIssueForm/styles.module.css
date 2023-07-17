@@ -11,35 +11,25 @@
 	box-shadow:
 		rgb(0 0 0 / 10%) 0 0 5px 0,
 		rgb(0 0 0 / 10%) 0 0 1px 0;
+}
 
-	.ui-textarea-root {
-		font-size: 14px !important;
-
-		textarea::placeholder {
-			padding: 4px;
-			font-size: 14px;
-			color: #cbcff5;
-		}
-	}
+.container_show_list {
+	width: 28%;
 
 	@media (max-width: 768px) {
 		width: 100%;
 	}
 }
 
-.container_show_list {
-	width: 28% !important;
-}
-
 .row {
 	width: 100%;
-	padding: 0 8px 0 0 !important;
-	margin: 0 !important;
+	padding: 0 8px 0 0;
+	margin: 0;
 }
 
 .col {
 	width: 100%;
-	padding-left: 0 !important;
+	padding-left: 0;
 	margin-bottom: 32px;
 
 	&.urgent {

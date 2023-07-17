@@ -25,7 +25,7 @@ function MobileListItem({
 	return (
 		<div className={styles.row}>
 			{(fields || []).map((singleItem, index) => (
-				<div className={styles.col}>
+				<div key={singleItem?.key} className={styles.col}>
 					{!loading ? (
 						<div className={styles.flex_div}>
 							<div

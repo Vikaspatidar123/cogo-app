@@ -1,29 +1,28 @@
 import { IcMCloudUpload } from '@cogoport/icons-react';
 
-const controls = [
+const getControls = ({ t }) => [
 	{
-		label       : 'Select issue type',
+		label       : t('createTicketPublic:raise_issue_label_1'),
 		name        : 'issue_type',
-		type        : 'async_select',
-		placeholder : 'Select Type',
+		type        : 'select',
+		placeholder : t('createTicketPublic:raise_issue_placeholder_1'),
 		rules       : {
 			required: true,
 		},
-		defaultOptions : true,
-		showOptional   : false,
+		defaultOptions: true,
 	},
 	{
-		label       : 'Enter additional information',
+		label       : t('createTicketPublic:raise_issue_label_2'),
 		name        : 'additional_information',
 		type        : 'textarea',
-		placeholder : 'Enter Comments',
+		placeholder : t('createTicketPublic:raise_issue_placeholder_2'),
 	},
 	{
-		label       : 'Notification Preferrences',
+		label       : t('createTicketPublic:raise_issue_label_3'),
 		name        : 'notification_perferrences',
 		type        : 'select',
 		isClearable : true,
-		placeholder : 'Select notification',
+		placeholder : t('createTicketPublic:raise_issue_placeholder_3'),
 		multiple    : true,
 		options     : [
 			{ label: 'Whatsapp', value: 'whatsapp' },
@@ -31,14 +30,13 @@ const controls = [
 		],
 	},
 	{
-		label      : 'Upload any supporting documents',
+		label      : t('createTicketPublic:raise_issue_label_4'),
 		name       : 'file_url',
 		type       : 'file',
 		drag       : true,
-		// showOptional : false,
+		multiple   : true,
 		uploadIcon : <IcMCloudUpload fill="#DED7FC" height="62px" width="44px" />,
-		// showProgress : true,
 	},
 ];
 
-export default controls;
+export default getControls;

@@ -4,6 +4,43 @@
 	background: #fff;
 	border-bottom: 1px solid rgb(233 235 237);
 
+	.invoice_id,
+	.id {
+		width: 5%;
+	}
+
+	.invoice_number {
+		width: 16.7%;
+	}
+
+	.shipment_serial_id {
+		width: 11.6%;
+	}
+
+	.open_invoice_amount,
+	.ledger_invoice_amount {
+		width: 15%;
+	}
+
+	.invoice_date {
+		width: 13.3%;
+	}
+
+	.due_date,
+	.due_days {
+		width: 11.6%;
+	}
+
+	.payment_num,
+	.account_util_amt_led,
+	.transaction_date {
+		width: 19.16%;
+	}
+
+	.utilization_status {
+		width: 18.3%;
+	}
+
 	@media screen and (max-width: 767px) {
 		display: none;
 	}

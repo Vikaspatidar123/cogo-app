@@ -1,4 +1,3 @@
-import { cl } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
@@ -11,12 +10,15 @@ function EmptyState({ containerHeight = '' }) {
 	return (
 		<div className={styles.empty_card}>
 			<div className={styles.container}>
-				<div className={cl`${styles.wrapper} ${containerHeight ? styles.wrapper_height : ''}`}>
+				<div
+					style={{ height: containerHeight }}
+					className={styles.wrapper}
+				>
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.create_ticket_empty_state}
 						alt={t('createTicketPublic:empty_state')}
-						height={360}
-						width={360}
+						height={250}
+						width={250}
 					/>
 					<div className={styles.content}>{t('createTicketPublic:empty_state')}</div>
 				</div>

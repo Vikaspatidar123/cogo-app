@@ -18,17 +18,17 @@ function Filters({
 			<Input
 				placeholder={placeholder || t('createTicketPublic:search_placeholder_default')}
 				value={values}
+				size="sm"
 				onChange={(e) => handleChange(e, setValues)}
 				suffix={(
 					<IcMCross
 						onClick={handleInputReset}
-						size={1.3}
 						cursor="pointer"
-						width={20}
-						height={20}
+						width={12}
+						height={12}
 					/>
 				)}
-				prefix={<IcMSearchdark width={20} height={20} />}
+				prefix={<IcMSearchdark width={12} height={12} />}
 			/>
 		</div>
 	);

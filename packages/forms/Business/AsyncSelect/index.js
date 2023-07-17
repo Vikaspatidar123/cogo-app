@@ -29,7 +29,6 @@ import {
 	asyncFieldsAirPocDetails,
 	asyncFieldsAirLineList,
 	asyncFieldsShippingLineList,
-	asyncFieldsIssueType,
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
@@ -59,7 +58,6 @@ const keyAsyncFieldsParamsMapping = {
 	list_air_poc_details       : asyncFieldsAirPocDetails,
 	airline_list               : asyncFieldsAirLineList,
 	shippingline_list          : asyncFieldsShippingLineList,
-	issue_type                 : asyncFieldsIssueType,
 };
 
 function AsyncSelect(props) {

@@ -67,7 +67,7 @@ function List({
 					))}
 				</div>
 			)}
-			{showPagination && (
+			{showPagination && !isEmpty(list) && (
 				<div className={styles.card_div}>
 					<div className={styles.pagination_wrapper}>
 						<Pagination

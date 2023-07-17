@@ -10,6 +10,7 @@ import styles from './styles.module.css';
 function PaymentsTable({ selectedpayments, setSelectedPayments }) {
 	const { t } = useTranslation(['createTicketPublic']);
 	const fields = getPaymentCols({ t });
+
 	const {
 		paymentsData,
 		paymentListLoading,

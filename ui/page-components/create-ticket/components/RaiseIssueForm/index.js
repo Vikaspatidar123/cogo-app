@@ -4,9 +4,10 @@ import useGetAsyncOptions from '../../hooks/useGetAsyncOptions';
 
 import styles from './styles.module.css';
 
-import { SelectController, AsyncSelectController } from '@/packages/forms';
-import FileUploader from '@/packages/forms/Business/FileUploader';
-import TextAreaController from '@/packages/forms/Controlled/TextAreaController';
+import { SelectController } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
+
+const OPTION_KEY = 'TicketType';
 
 function RaiseIssueForm({
 	controls = [],
@@ -17,7 +18,7 @@ function RaiseIssueForm({
 
 }) {
 	const { t } = useTranslation(['createTicketPublic']);
-	const { loadOptions, defaultOptions, ...rest } = useGetAsyncOptions({
+	const { defaultOptions, ...rest } = useGetAsyncOptions({
 		isTicketNotUtlilized,
 	});
 
@@ -29,33 +30,29 @@ function RaiseIssueForm({
 			<div className={styles.row}>
 				<div className={styles.col}>
 					<div className={styles.label}>{t('createTicketPublic:raise_issue_label_1')}</div>
-					{/* <AsyncSelectController
-						{...controls[0]}
-						asyncKey="issue_type"
-						// getModifiedOptions={loadOptions}
-						// defaultOptions={defaultOptions}
-						control={control}
-					/> */}
 					<SelectController
 						{...controls[0]}
 						{...rest}
 						options={defaultOptions}
+						labelKey={OPTION_KEY}
+						valueKey={OPTION_KEY}
+						control={control}
 					/>
 					{errors?.issue_type
 					&& <div className={styles.error}>{t('createTicketPublic:raise_issue_error')}</div>}
 				</div>
-				<div className={styles.col}>
-					<div className={styles.label}>{t('createTicketPublic:raise_issue_label_2')}</div>
-					<TextAreaController {...controls[1]} control={control} />
-				</div>
-				<div className={styles.col}>
-					<div className={styles.label}>{t('createTicketPublic:raise_issue_label_3')}</div>
-					<SelectController {...controls[2]} control={control} />
-				</div>
-				<div className={styles.col}>
-					<div className={styles.label}>{t('createTicketPublic:raise_issue_label_4')}</div>
-					<FileUploader {...controls[3]} control={control} multiple type="card" />
-				</div>
+				{controls.map((config) => {
+					const { type, label, name } = config;
+					const Element = getField(type);
+
+					if (name === 'issue_type') return null;
+					return (
+						<div key={name} className={styles.col}>
+							<div className={styles.label}>{label}</div>
+							<Element {...config} control={control} type="card" />
+						</div>
+					);
+				})}
 			</div>
 		</div>
 	);

@@ -20,7 +20,7 @@ function ForgotPassword() {
 	const [mode, setMode] = useState('email_form');
 	const [emailId, setEmailId] = useState('');
 
-	const { resetUserPassword, resetPasswordLoading } = useResetUserPassword(setMode, setEmailId);
+	const { resetUserPassword, resetPasswordLoading } = useResetUserPassword({ setMode, setEmailId });
 
 	const componentProps = {
 		email_form: {
@@ -37,7 +37,6 @@ function ForgotPassword() {
 
 	return (
 		<div className={styles.authentication_layout}>
-
 			<LayoutLogo />
 
 			<div className={styles.card_container}>
@@ -53,7 +52,6 @@ function ForgotPassword() {
 			</div>
 
 			<LayoutHelp />
-
 		</div>
 
 	);

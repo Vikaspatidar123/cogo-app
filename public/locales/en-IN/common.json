@@ -17,6 +17,9 @@
     "loginOtpField_subtitle": "Verification code is sent to",
     "loginOtpField_subtitle_null": "the mobile number.",
     "loginOtpField_submit_button": "Verify",
+    "loginOtp_failedOtp":"Failed to send OTP, Please try again",
+    "loginOtp_resendOtp_success":"OTP resent successfully",
+    "loginOtp_resendOtp_fail":"Failed to resend OTP, Please try again.",
     "helpButton_label":"Help",
     "helpButton_title": "Need some personal assistance?",
     "helpButton_designation": "Onboarding Specialist",
@@ -146,5 +149,4 @@
     "send_email_text":"Send Verification Email",
     "token_invalid_text":"Token is invalid",
     "token_expired_text":"Token has expired"
-
 }

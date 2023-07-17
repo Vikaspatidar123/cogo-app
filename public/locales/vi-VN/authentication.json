@@ -28,6 +28,9 @@
     "signupOtp_footer_2":"và làm theo các hướng dẫn để xác minh tài khoản của bạn.",
     "signupOtp_footer_3": "Nếu bạn chưa nhận được email trong vòng vài phút, vui lòng kiểm tra thư mục thư rác của bạn hoặc",
     "signupOtp_footer_resend_mail": "Gửi lại email.",
+    "signupOtp_resendMail_success":"Email xác minh đã phẫn nộ.",
+    "signupOtp_verifyOtp_success":"Xác minh thành công!",
+    "signupOtp_resendOtp_success":"OTP phẫn nộ thành công",
     "signupLoading_prompt_1":"Tạo tài khoản của bạn, vui lòng đợi ...",
     "signupLoading_prompt_2":"Chuẩn bị mọi thứ chỉ cho bạn ...",
     "signupLoading_prompt_3":"Thiết lập bảng điều khiển được cá nhân hóa của bạn ...",
@@ -70,5 +73,7 @@
     "forgotPassword_success_note_2":"Vui lòng đợi một thời gian vì nhà cung cấp email của bạn có thể hơi chậm một chút.",
     "forgotPassword_success_note_3":"Vui lòng kiểm tra hộp thư đến thư rác của bạn nếu bạn vẫn không thể nhận được email.",
     "forgotPassword_success_reset_text":"Không nhận được liên kết đặt lại mật khẩu?",
-    "forgotPassword_success_resendEmail_link":"Đặt lại email đặt lại"
+    "forgotPassword_success_resendEmail_link":"Đặt lại email đặt lại",
+    "forgotPassword_success_message":"Một liên kết đã được gửi đến địa chỉ email của bạn.",
+    "forgotPassword_error_message":"Có gì đó đã sai"
 }

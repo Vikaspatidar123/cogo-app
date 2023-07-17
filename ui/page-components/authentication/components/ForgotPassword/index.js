@@ -20,7 +20,7 @@ function ForgotPassword() {
 	const [mode, setMode] = useState('email_form');
 	const [emailId, setEmailId] = useState('');
 
-	const { resetUserPassword, resetPasswordLoading } = useResetUserPassword(setMode, setEmailId);
+	const { resetUserPassword, resetPasswordLoading } = useResetUserPassword({ setMode, setEmailId });
 
 	const componentProps = {
 		email_form: {

@@ -28,6 +28,9 @@
     "signupOtp_footer_2":"and follow the instructions to verify your account.",
     "signupOtp_footer_3": "If you haven't received the email within a few minutes, please check your spam folder or",
     "signupOtp_footer_resend_mail": "resend email.",
+    "signupOtp_resendMail_success":"Verification Email has been Resent.",
+    "signupOtp_verifyOtp_success":"Verification Successful!",
+    "signupOtp_resendOtp_success":"OTP Resent Successfully",
     "signupLoading_prompt_1":"Creating your account, please wait...",
     "signupLoading_prompt_2":"Preparing everything just for you...",
     "signupLoading_prompt_3":"Setting up your personalized dashboard...",
@@ -70,5 +73,7 @@
     "forgotPassword_success_note_2":"Please wait for some time as your email provider can be a little slow some times.",
     "forgotPassword_success_note_3":"Please check your spam inbox if you are still unable to receive the email.",
     "forgotPassword_success_reset_text":"Didn't receive the password reset link?",
-    "forgotPassword_success_resendEmail_link":"Resend Reset Email"
+    "forgotPassword_success_resendEmail_link":"Resend Reset Email",
+    "forgotPassword_success_message":"A link has been sent to your email address.",
+    "forgotPassword_error_message":"Something went wrong"
 }

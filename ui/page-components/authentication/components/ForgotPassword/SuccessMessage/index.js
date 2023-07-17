@@ -1,7 +1,7 @@
 import styles from './styles.module.css';
 
 function SuccessMessage({ resetUserPassword = () => { }, emailId = '', t = () => { } }) {
-	const translationKey = 'common:forgotPassword_success';
+	const translationKey = 'authentication:forgotPassword_success';
 
 	return (
 		<>
@@ -20,7 +20,7 @@ function SuccessMessage({ resetUserPassword = () => { }, emailId = '', t = () =>
 				{t(`${translationKey}_body_3`)}
 			</p>
 
-			<h4 className={styles.info}>
+			<div className={styles.info}>
 				{t(`${translationKey}_note_title`)}
 				<ul>
 					<li>
@@ -33,14 +33,14 @@ function SuccessMessage({ resetUserPassword = () => { }, emailId = '', t = () =>
 						{t(`${translationKey}_note_3`)}
 					</li>
 				</ul>
-			</h4>
+			</div>
 
 			<p className={styles.links}>
 				{t(`${translationKey}_reset_text`)}
 				{' '}
-				<h4 className={styles.reset_link} onClick={() => resetUserPassword(emailId)} role="presentation">
+				<div className={styles.reset_link} onClick={() => resetUserPassword(emailId)} role="presentation">
 					{t(`${translationKey}_resendEmail_link`)}
-				</h4>
+				</div>
 			</p>
 		</>
 	);

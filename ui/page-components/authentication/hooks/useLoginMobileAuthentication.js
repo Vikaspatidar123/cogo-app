@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
@@ -9,6 +10,8 @@ const useLoginMobileAuthentication = ({
 	setOtpId = () => {},
 	mobileNumber = {},
 }) => {
+	const { t } = useTranslation(['common']);
+
 	const [{ loading: otpLoading }, trigger] = useRequest(
 		{
 			url    : 'send_login_otp',
@@ -34,7 +37,7 @@ const useLoginMobileAuthentication = ({
 			setMode('otp_form');
 		} catch (err) {
 			Toast.error(
-				getApiErrorString(err?.response?.data) || 'Failed to send OTP, Please try again',
+				getApiErrorString(err?.response?.data) || t('common:loginOtp_failedOtp'),
 			);
 		}
 	};
@@ -50,12 +53,12 @@ const useLoginMobileAuthentication = ({
 
 			setOtpId(response?.data?.id);
 
-			Toast.success('OTP resent successfully');
+			Toast.success(t('common:loginOtp_resendOtp_success'));
 
 			timer?.restart?.();
 		} catch (err) {
 			Toast.error(
-				getApiErrorString(err?.response?.data) || 'Failed to resend OTP, Please try again.',
+				getApiErrorString(err?.response?.data) || t('common:loginOtp_resendOtp_fail'),
 			);
 		}
 	};

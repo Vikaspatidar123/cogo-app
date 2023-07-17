@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
@@ -7,6 +8,8 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useSetPassword = ({ password = '', confirm_password = '', setShowModal = () => { } }) => {
+	const { t } = useTranslation(['dashboard']);
+
 	const router = useRouter();
 
 	const {
@@ -42,7 +45,7 @@ const useSetPassword = ({ password = '', confirm_password = '', setShowModal = (
 				data: payload,
 			});
 
-			Toast.success('Password Set Successfully');
+			Toast.success(t('dashboard:setPassword_success_message'));
 
 			router.push(`/dashboard?mail_verify=${false}`, '/dashboard?mail_verify=false');
 

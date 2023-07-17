@@ -12,6 +12,7 @@
 .info {
 	padding: 24px;
 	margin: 24px 0;
+	font-weight: 600;
 	color: var(--color-secondary-greyscale-1);
 	background: rgb(255 250 230);
 	border: 1px solid rgb(255 171 0);
@@ -33,6 +34,7 @@
 }
 
 .reset_link {
+	font-weight: 600;
 	text-decoration-line: underline;
 	cursor: pointer;
 }

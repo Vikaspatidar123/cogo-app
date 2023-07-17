@@ -41,8 +41,7 @@
 .dot {
 	width: 8px;
 	height: 4px;
+	padding: 4px;
 	background-color: var(--color-secondary-greyscale-4);
 	border-radius: 20px;
-
-	padding: 4px;
 }

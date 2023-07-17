@@ -3,7 +3,7 @@ const ASYNC_KEY_MAPPING = {
 	air   : 'list_air_poc_details',
 };
 
-const customizeAlertControls = ({ branch_id = '', activeTab = 'ocean' }) => [
+const customizeAlertControls = ({ branch_id = '', activeTab = 'ocean', t }) => [
 	{
 		name        : 'contactName',
 		type        : 'async_select',
@@ -24,7 +24,7 @@ const customizeAlertControls = ({ branch_id = '', activeTab = 'ocean' }) => [
 				</div>
 			),
 		})),
-		rules: { required: 'Please Select Contact' },
+		rules: { required: t('airOceanTracking:tracking_daily_report_toast_2') },
 	},
 ];
 

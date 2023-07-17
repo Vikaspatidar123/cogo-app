@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useRequestBf } from '@/packages/request';
 
@@ -7,10 +8,11 @@ const useArchive = ({
 	setArchive,
 	refetchProduct,
 	productClassificationId = undefined,
-	subCategoryCount = 0,
 	setActiveTab,
 	card = false,
 }) => {
+	const { t } = useTranslation(['common', 'productCatalogue']);
+
 	const [{ loading: putArchiveLoading }, PutArchiveTrigger] = useRequestBf({
 		method  : 'put',
 		url     : 'saas/product/archive',
@@ -24,18 +26,13 @@ const useArchive = ({
 			});
 			if (response?.data?.message === 'Success') {
 				setArchive(false);
-				Toast.success('Product Archive Successfully !!');
-
-				if (subCategoryCount > 1) {
-					refetchProduct({ productClassificationId });
-				} else {
-					const productClassification = (!card && productClassificationId) || undefined;
-					refetchProduct({ productClassificationId: productClassification });
-					if (!card) setActiveTab('allProducts');
-				}
+				Toast.success(t('productCatalogue:product_catalogue_toast_1'));
+				const productClassification = (!card && productClassificationId) || undefined;
+				refetchProduct({ productClassificationId: productClassification });
+				if (!card) setActiveTab('allProducts');
 			}
 		} catch (error) {
-			Toast.error(error?.message || 'Something Went Wrong');
+			Toast.error(error?.message || t('productCatalogue:product_catalogue_toast_2'));
 		}
 	};
 	return {

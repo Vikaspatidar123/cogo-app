@@ -1,8 +1,9 @@
 import { Modal, ButtonIcon } from '@cogoport/components';
 import { IcMCross } from '@cogoport/icons-react';
+import { useTranslation } from 'react-i18next';
 
 import ArchiveDelete from '../../../common/ArchiveDelete';
-import { SIZE_MAPPING, TITLE_MAPPING } from '../../../constant/modalList';
+import { SIZE_MAPPING, getTitleMapping } from '../../../constant/modalList';
 
 import Configure from './Configure';
 import Share from './Share';
@@ -17,6 +18,10 @@ const COMPONENT_MAPPING = {
 
 function ModalList({ modalInfo = {}, setModalInfo, activeTab, refetchTrackerList }) {
 	const { show, name = 'archive', shipmentId = '', shipmentInfo = {} } = modalInfo || {};
+
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const TITLE_MAPPING = getTitleMapping({ t });
 
 	const Component = name ? COMPONENT_MAPPING?.[name] : <div />;
 	const closeHandler = () => {

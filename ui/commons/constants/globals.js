@@ -1,11 +1,5 @@
 import IMAGE_URLS from './imageUrl';
 
-const COUNTRY_IDS = {
-	IN : '541d1232-58ce-4d64-83d6-556a42209eb7',
-	VN : '177fcbad-8ef7-4324-871c-6c31745f4411',
-	GB : '222d4b9d-56a8-4580-b761-a71c653263fb',
-};
-
 const GLOBAL_CONSTANTS = {
 	country_entity_ids: {
 		IN : '6fd98605-9d5d-479d-9fac-cf905d292b88',
@@ -27,7 +21,6 @@ const GLOBAL_CONSTANTS = {
 		USD : 'en-US',
 		VND : 'vi-VN',
 	},
-	country_ids: COUNTRY_IDS,
 
 	cargo_insurance: {
 		IN: ['fcl_freight', 'lcl_freight', 'air_freight'],
@@ -155,10 +148,10 @@ const GLOBAL_CONSTANTS = {
 			countries: ['IN'],
 		},
 	},
+
 	feature_supported_service: {
 		cargo_insurance: {
-			supported_countries : ['IN'],
-			country_id          : COUNTRY_IDS.IN,
+			supported_countries: ['IN'],
 		},
 		paylater: {
 			supported_countries: ['IN'],

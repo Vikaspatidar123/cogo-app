@@ -61,7 +61,7 @@ const useCreateAddCompany = ({
 		}
 	});
 
-	const { control, handleSubmit, watch, setValue, reset } = useForm();
+	const { control, handleSubmit, watch, setValue, reset, register } = useForm();
 
 	const firstFormProps = watch();
 
@@ -247,6 +247,7 @@ const useCreateAddCompany = ({
 		firstFormProps,
 		loading,
 		load,
+		register,
 	};
 };
 

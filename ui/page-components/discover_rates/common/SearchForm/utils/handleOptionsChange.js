@@ -4,7 +4,7 @@ const customsModes = ['fcl_customs', 'lcl_customs', 'air_customs'];
 
 export const getControls = (controls, formValues, mode, location) => {
 	const geo = getGeoConstants();
-	const { is_export_tradeType } = geo.others.navigations.search_form;
+	const isExportTradeType = geo.others.navigations.search_form.is_export_tradeType;
 
 	const newControls = [];
 
@@ -31,7 +31,7 @@ export const getControls = (controls, formValues, mode, location) => {
 			newControls.push({
 				...control,
 				showMessage     : false,
-				activeTradeType : is_export_tradeType ? 'export' : 'import',
+				activeTradeType : isExportTradeType ? 'export' : 'import',
 			});
 		} else {
 			newControls.push({

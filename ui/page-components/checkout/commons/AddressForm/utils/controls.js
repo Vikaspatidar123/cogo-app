@@ -14,7 +14,8 @@ import getGeoConstants from '@/ui/commons/constants/geo';
 
 const getAddressNewControls = ({ organizationCountryId }) => {
 	const geo = getGeoConstants();
-	const { label, pattern } = geo.others.registration_number;
+	const REGISTRATION_PATTERN = geo.others.registration_number;
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
 
 	const configAddressControls = getAddressMappingControls({
 		organizationCountryId,
@@ -38,8 +39,8 @@ const getAddressNewControls = ({ organizationCountryId }) => {
 				rules: {
 					...getValue(newControl, 'rules', {}),
 					pattern: {
-						value   : pattern,
-						message : `${label} is invalid`,
+						value   : REGISTRATION_PATTERN,
+						message : `${REGISTRATION_LABEL} is invalid`,
 					},
 				},
 			};

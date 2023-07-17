@@ -5,7 +5,7 @@ export const countriesHash = COUNTRIES.reduce(
 	(pv, acc) => ({ ...pv, [acc.id]: acc }),
 	{},
 );
-export const countrieCodeHash = COUNTRIES.reduce(
+export const countriesCodeHash = COUNTRIES.reduce(
 	(pv, acc) => ({ ...pv, [acc.country_code]: acc }),
 	{},
 );

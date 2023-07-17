@@ -6,7 +6,7 @@ import getGeoConstants from '@/ui/commons/constants/geo';
 function ContactDetails() {
 	const { profile = {} } = useSelector((state) => state);
 	const geo = getGeoConstants();
-	const { show_whatsapp } = geo.others.navigations.profile_details;
+	const showWhatsapp = geo.others.navigations.profile_details.show_whatsapp;
 
 	return (
 		<div className={styles.container}>
@@ -20,7 +20,7 @@ function ContactDetails() {
 				</div>
 			</div>
 
-			{show_whatsapp && (
+			{showWhatsapp && (
 				<div className={styles.sub_container}>
 					<div className={styles.label_text}>WhatsApp Number</div>
 					<div className={styles.value_text}>

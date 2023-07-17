@@ -20,7 +20,8 @@ function TradePartyInstructions() {
 
 const getBillingControls = () => {
 	const geo = getGeoConstants();
-	const { label:REGISTRATION_LABEL, pattern:REGISTRATION_PATTERN } = geo.others.registration_number;
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+	const REGISTRATION_PATTERN = geo.others.registration_number.pattern;
 	const ECO_ZONE_LABEl = geo.others.economic_zone.label;
 	return [
 		{

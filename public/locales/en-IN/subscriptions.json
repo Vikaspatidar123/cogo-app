@@ -95,6 +95,7 @@
     "now_text":"now ?",
     "panding_message":"Hang on! Activating your plan ...",
     "payment_failed_status_text":"Apologies, but your payment has failed. Please ensure that the payment details are correct and try again.",
-    "payment_pending_status_text":"Thank you for your payment! We have received it and will activate your subscription shortly. If you need to modify any subscription details, please let us know, and we'll be happy to assist you."
-
+    "payment_pending_status_text":"Thank you for your payment! We have received it and will activate your subscription shortly. If you need to modify any subscription details, please let us know, and we'll be happy to assist you.",
+    "feature_text":"Feature",
+    "limited_text":"Limited"
 }

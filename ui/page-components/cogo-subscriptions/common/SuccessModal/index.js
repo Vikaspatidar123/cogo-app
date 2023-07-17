@@ -41,9 +41,9 @@ function SuccessModal({
 				</div>
 				<div className={styles.style_div}>
 					{t('subscriptions:explore_text')}
-					<u className={styles.click} role="presentation" onClick={closeModal}>
+					<span className={styles.click} role="presentation" onClick={closeModal}>
 						{t('subscriptions:click_here_text')}
-					</u>
+					</span>
 				</div>
 			</div>
 		</Modal>

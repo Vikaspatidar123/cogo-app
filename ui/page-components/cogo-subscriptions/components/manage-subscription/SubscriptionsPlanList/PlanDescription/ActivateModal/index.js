@@ -31,49 +31,47 @@ function ActivateModal({
 			closable={false}
 		>
 
-			<div>
-				<Modal.Body>
-					<div className={styles.image_container}>
-						<div className={styles.image}>
-							<Image
-								src={GLOBAL_CONSTANTS.image_url.active_image}
-								alt={t('subscriptions:cogo_text')}
-								width={200}
-								height={120}
-							/>
-						</div>
+			<Modal.Body>
+				<div className={styles.image_container}>
+					<div className={styles.image}>
+						<Image
+							src={GLOBAL_CONSTANTS.image_url.active_image}
+							alt={t('subscriptions:cogo_text')}
+							width={200}
+							height={120}
+						/>
 					</div>
-					<div className={styles.div_title}>{t('subscriptions:activating_plan_text')}</div>
-					<div className={styles.div_title}>
-						{t('subscriptions:active_conformation_message')}
-						<div className={styles.plan_text}>
-							{description}
-							{' '}
-							{t('subscriptions:plan_text')}
-						</div>
-						{t('subscriptions:now_text')}
+				</div>
+				<div className={styles.div_title}>{t('subscriptions:activating_plan_text')}</div>
+				<div className={styles.div_title}>
+					{t('subscriptions:active_conformation_message')}
+					<div className={styles.plan_text}>
+						{description}
+						{' '}
+						{t('subscriptions:plan_text')}
 					</div>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button
-						size="md"
-						themeType="primary"
-						onClick={() => setShowActivateModal(false)}
-						className={styles.button}
-						type="button"
-					>
-						{t('subscriptions:cancel_text')}
-					</Button>
-					<Button
-						size="md"
-						themeType="accent"
-						onClick={() => onActive()}
-						type="button"
-					>
-						{t('subscriptions:activate_button_text')}
-					</Button>
-				</Modal.Footer>
-			</div>
+					{t('subscriptions:now_text')}
+				</div>
+			</Modal.Body>
+			<Modal.Footer>
+				<Button
+					size="md"
+					themeType="primary"
+					onClick={() => setShowActivateModal(false)}
+					className={styles.button}
+					type="button"
+				>
+					{t('subscriptions:cancel_text')}
+				</Button>
+				<Button
+					size="md"
+					themeType="accent"
+					onClick={() => onActive()}
+					type="button"
+				>
+					{t('subscriptions:activate_button_text')}
+				</Button>
+			</Modal.Footer>
 		</Modal>
 	);
 }

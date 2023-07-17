@@ -33,7 +33,7 @@ function Coupons({
 	const termsConditionsContent = ({ item = {} }) => (
 		<ul className={styles.list_wrapper}>
 			{(item?.terms_and_conditions || []).map((tc) => (
-				<li className={styles.list}>{startCase(tc)}</li>
+				<li className={styles.list} key={tc}>{startCase(tc)}</li>
 			))}
 		</ul>
 	);
@@ -149,8 +149,7 @@ function Coupons({
 										size="md"
 										type="button"
 										themeType="accent"
-										role="presentation"
-										className="couponButton"
+										className={styles.couponButton}
 										onClick={() => {
 											setShowCoupons(false);
 											setCouponCode(item);

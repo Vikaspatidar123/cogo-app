@@ -6,7 +6,7 @@
 	width: 100%;
 	padding: 15px;
 	margin-right: 10px;
-	overflow: visible;
+	overflow: hidden;
 	border-radius: 26px;
 
 	.icon {
@@ -30,13 +30,6 @@
 		display: flex;
 		padding: 5px;
 	}
-
-	/* .center_div {
-		display: flex !important;
-		justify-content: center !important;
-		width: 100%;
-		margin-bottom: 15px;
-	} */
 
 	.active_div {
 		display: flex;
@@ -91,7 +84,7 @@
 
 	.row {
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-end;
 	}
 
 	.card {
@@ -100,14 +93,6 @@
 
 	.annually_not {
 		padding-top: 20px;
-	}
-
-	.active_plan {
-		display: inline-block;
-		padding: 4px 0 4px 22px;
-		font-size: 14px;
-		font-weight: 600;
-		transform: rotate(316deg) translateY(0.1em) translateX(-1.8em);
 	}
 
 	.date {
@@ -129,16 +114,20 @@
 	.date_box {
 		position: relative;
 		display: flex;
-		align-items: end;
+		align-items: flex-end;
 	}
 
 	.cr_inner {
 		position: absolute;
-		inset: 0;
-		clip-path: polygon(12% -1%, 32% -6%, -46% 45%);
+		top: -4px;
+		left: -20px;
+		width: 120px;
+		font-size: 14px;
+		font-weight: 600;
 		color: white;
+		text-align: center;
 		background: #ee3425;
-		border-radius: 16px 8px 0;
+		transform: rotate(315deg) translateY(0.1em) translateX(-1.8em);
 	}
 
 	.line_img {
@@ -163,13 +152,13 @@
 	background: #333;
 	border-radius: 26px;
 	box-shadow: 0 42px 34px rgb(219 106 106 / 29.6%);
-	transition: transform 0.8s !important;
+	transition: transform 0.8s;
 	transform: scale(1.01, 1.02);
 
 	@media screen and (max-width: 768px) {
 		z-index: auto;
-		transition: transform 0.3s !important;
-		transform: scale(1.01) !important;
+		transition: transform 0.3s;
+		transform: scale(1.01);
 	}
 
 	.date {
@@ -177,33 +166,24 @@
 	}
 
 	.head_text {
-		color: #fff !important;
+		color: #fff;
 	}
 
 	.active_text {
-		color: #f68b21 !important;
+		color: #f68b21;
 	}
 
 	.text {
-		color: #fff !important;
+		color: #fff;
 	}
 
 	.value {
 		padding-right: 5px;
-		color: #fff !important;
-	}
-
-	.subheading {
-		color: #fff !important;
-	}
-
-	.button {
-		color: #fff !important;
-		background-color: red !important;
+		color: #fff;
 	}
 
 	.ribbon_wrapper {
-		color: #000 !important;
+		color: #000;
 		background: #fcdc00;
 	}
 
@@ -213,7 +193,7 @@
 		margin-right: 5px;
 		border-radius: 50px;
 		mix-blend-mode: normal;
-		fill: #fcdc00 !important;
+		fill: #fcdc00;
 	}
 
 	.custom {
@@ -223,6 +203,11 @@
 		background-image: url("https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/reshot-icon-checklist-YUWL2XGFTQ 1.svg");
 		background-repeat: no-repeat;
 		background-size: cover;
+	}
+
+	.button {
+		color: #fff !important;
+		background-color: red !important;
 	}
 }
 
@@ -234,17 +219,17 @@
 .styled_row {
 	display: flex;
 	justify-content: space-between;
-	padding: 5px !important;
-	margin-top: 5px !important;
+	padding: 5px;
+	margin-top: 5px;
 
 	&.priceRow {
-		padding-top: 0 !important;
-		padding-bottom: 0 !important;
-		margin-top: 0 !important;
+		padding-top: 0;
+		padding-bottom: 0;
+		margin-top: 0;
 	}
 
 	&.heading {
-		align-items: flex-start !important;
+		align-items: flex-start;
 	}
 
 	.annuallyTxt {
@@ -258,13 +243,8 @@
 
 	.row {
 		display: flex;
-		align-items: center !important;
-		justify-content: space-between;
-
-		&.subheading {
-			font-size: 11px;
-			color: #828282;
-		}
+		align-items: center;
+		justify-content: flex-end;
 	}
 
 	.crossed_price {
@@ -284,10 +264,6 @@
 		color: #bdbdbd;
 	}
 
-	.subheading {
-		color: #828282;
-	}
-
 	.currency {
 		padding-right: 6px;
 		font-size: 16px;
@@ -300,29 +276,31 @@
 	font-weight: 700;
 
 	&.active_text {
-		color: #828282 !important;
+		color: #828282;
 	}
 }
 
 .center_div {
-	display: flex !important;
+	display: flex;
 	flex-direction: column;
-	justify-content: center !important;
+	justify-content: center;
 	width: 100%;
 	margin: 10px 0 8px 15px;
 }
 
-.red_button {
-	width: 86% !important;
-	padding: 10px 20px !important;
-	margin-top: 6px;
-	font-size: 15px !important;
-	font-weight: 500 !important;
-	color: #000 !important;
-	text-transform: capitalize !important;
-	background-color: #fff !important;
-	border: 0.7px solid #333 !important;
-	border: #db4634;
+.subscribe {
+	:global {
+		.ui_button_container {
+			width: 86%;
+			padding: 10px 20px;
+			margin-top: 6px;
+			font-size: 15px;
+			font-weight: 500;
+			color: #000;
+			background-color: #fff;
+			border: 0.7px solid #333;
+		}
+	}
 }
 
 .back_ground_image {

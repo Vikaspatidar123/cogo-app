@@ -5,7 +5,7 @@ import { useCallback, useEffect } from 'react';
 
 import {
 	SET_TIME,
-	PAINTING_TIME,
+	MAX_API_TRIES,
 	CLOSE_TIME,
 } from '../../../../constants/dimensions';
 
@@ -51,11 +51,11 @@ function PendingModal({
 	}, [setRazorLoading]);
 
 	useEffect(() => {
-		if (apiTries < PAINTING_TIME && status === 'active') {
+		if (apiTries < MAX_API_TRIES && status === 'active') {
 			setAddModal(true);
 			setRazorLoading(false);
 		}
-		if (apiTries > PAINTING_TIME) {
+		if (apiTries > MAX_API_TRIES) {
 			setTimeout(() => {
 				closeModalHandler();
 			}, SET_TIME);
@@ -70,7 +70,7 @@ function PendingModal({
 			closeOnOuterClick={false}
 			showCloseIcon={false}
 		>
-			{apiTries < PAINTING_TIME && status !== 'active' && (
+			{apiTries < MAX_API_TRIES && status !== 'active' && (
 				<div className={styles.container}>
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.loading_banner}

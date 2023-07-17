@@ -50,7 +50,7 @@ const getEventType = (type) => {
 
 function TableList({ list = [], loading = false }) {
 	const { t } = useTranslation(['subscriptions']);
-	if (loading && isEmpty(list?.length)) {
+	if (loading && isEmpty(list)) {
 		return <div className={styles.empty}>{t('subscriptions:no_data_text')}</div>;
 	}
 	return (
@@ -102,7 +102,7 @@ function TableList({ list = [], loading = false }) {
 					) => {
 						const eventType = getEventType(is_credit);
 						return (
-							<div>
+							<div key={created_at}>
 								<div className={cl`${styles.mobile_view} ${styles.card}`}>
 									<div className={styles.date}>
 										{t('subscriptions:dated_text')}

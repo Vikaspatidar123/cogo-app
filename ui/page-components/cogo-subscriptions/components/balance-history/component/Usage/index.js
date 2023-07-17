@@ -20,7 +20,9 @@ import { Image } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-function RenderCount({ count, totalCount, addon, unlimited, t }) {
+function RenderCount({ count, totalCount, addon, unlimited }) {
+	const { t } = useTranslation(['subscriptions']);
+
 	if (unlimited) return <div className={styles.count}>{t('subscriptions:unlimited_text')}</div>;
 	return (
 		<>
@@ -81,7 +83,6 @@ function Usage({ pendingModal, setPendingModal }) {
 				</div>
 				<div className={styles.web_view}>
 					<Button
-						className="md"
 						onClick={redirectManageSubscription}
 						type="button"
 					>
@@ -143,7 +144,6 @@ function Usage({ pendingModal, setPendingModal }) {
 														totalCount={total_quota}
 														addon={addon_quota}
 														unlimited={is_unlimited}
-														t={t}
 													/>
 												</div>
 												<div className={styles.mobile_view}>
@@ -178,7 +178,7 @@ function Usage({ pendingModal, setPendingModal }) {
 									{(!is_unlimited && calculatePercentage(left_quota, addon_quota, total_quota)) ? (
 										<div className={styles.warning}>
 											<IcMError fill="#DB4634" width={13} height={13} />
-											<div className="txt">
+											<div className={styles.txt}>
 												{t('subscriptions:only_text')}
 												{+left_quota + +addon_quota}
 												{t('subscriptions:reminder_message')}
@@ -189,7 +189,7 @@ function Usage({ pendingModal, setPendingModal }) {
 							),
 						)}
 				</div>
-				{current_usages?.length > CURRENT_USER_VALUE && (
+				{current_usages?.length ? CURRENT_USER_VALUE && (
 					<div
 						className={cl`${styles.icn_container} ${styles.web_view}`}
 						onClick={scrollHandler}
@@ -198,7 +198,7 @@ function Usage({ pendingModal, setPendingModal }) {
 						<IcMArrowRight className={styles.animated_arrow} width={35} height={35} />
 						<IcMArrowRight width={35} height={35} />
 					</div>
-				)}
+				) : null}
 			</div>
 
 			{addModal && (
@@ -213,7 +213,6 @@ function Usage({ pendingModal, setPendingModal }) {
 
 			<div className={cl`${styles.footer} ${styles.mobile_view}`}>
 				<Button
-					className="md"
 					type="button"
 					onClick={redirectManageSubscription}
 				>

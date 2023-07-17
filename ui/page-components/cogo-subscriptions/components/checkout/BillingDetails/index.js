@@ -100,6 +100,7 @@ function BillingDetails({
 											{tax_number}
 										</div>
 									</div>
+									{/* do not remove code */}
 									{/* {address_type && (
 										<div className={`${styles.row}`}>
 											<div className="icons">{Icons?.[address_type]}</div>

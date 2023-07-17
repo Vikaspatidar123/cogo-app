@@ -6,6 +6,7 @@ import { useState } from 'react';
 import {
 	MOST_POPPULAR_INDEX,
 	EXPIRE_DAY,
+	START_COUNT,
 } from '../../../../../constants/dimensions';
 import useCard from '../../../../../hooks/useCard';
 import useSubscriptionActivateNow from '../../../../../hooks/useSubscriptionActivateNow';
@@ -36,7 +37,7 @@ function Card({
 
 	const { activateLoading, subscriptionActivateNow } = useSubscriptionActivateNow();
 
-	const { onSubmit, subscribed, active, currency, totalAmt } = useCard({
+	const { onSubmit, active, currency, totalAmt } = useCard({
 		activeTab,
 		subscribeTab,
 		item,
@@ -55,14 +56,18 @@ function Card({
 	const subscribeActivate = (
 		<div className={cl`${styles.center_div} ${styles.subscribe}`}>
 			<div>
-				{!is_free_plan && (
+				{!is_free_plan ? (
 					<div className={styles.amount_div}>
 						<div className={cl`${styles.styled_row} ${styles.priceRow}`}>
-							<div className={styles.price} color={subscribed ? '#1f1945' : '#bdbdbd'}>
+							<div className={styles.price}>
 								<div className={styles.currency}>{currency}</div>
 								{formatAmount({
-									amount: totalAmt || DEFAULT_MONTHLY_AMOUNT,
+									amount  : totalAmt || DEFAULT_MONTHLY_AMOUNT,
 									currency,
+									options : {
+										notation : 'standard',
+										style    : 'currency',
+									},
 								})}
 								<div className={styles.per_period}>
 									{' '}
@@ -80,12 +85,12 @@ function Card({
 							</div>
 						)}
 					</div>
-				)}
+				) : null}
 			</div>
 			{!displayPricing?.activate_later ? (
 				displayPricing?.show_button && (
 					<Button
-						className={cl`${styles.red_button} ${styles.button}`}
+						className={cl`${styles.button}`}
 						onClick={() => onSubmit(item)}
 						type="button"
 					>
@@ -95,7 +100,7 @@ function Card({
 			) : (
 				<div className={styles.activate}>
 					<Button
-						className={cl`${styles.red_button} ${styles.button}`}
+						className={cl`${styles.button}`}
 						onClick={() => setShowActivateModal(true)}
 						type="button"
 					>
@@ -116,26 +121,25 @@ function Card({
 			}}
 			className={`${styles.container} ${prioritySequence === activeHover && styles.hover_card}`}
 		>
-			{active && (
+			{active ? (
 				<div className={styles.cr_inner}>
-					<span className={styles.active_plan}>
+					<span>
 						{' '}
 						{t('subscriptions:active_text')}
 					</span>
 				</div>
-			)}
+			) : null}
 			{/* img tag use for height width is not fix */}
-			{prioritySequence === activeHover && (
+			{prioritySequence === activeHover ? (
 				<img
 					className={`${styles.back_ground_image} ${styles.line_img}`}
 					src={GLOBAL_CONSTANTS.image_url.card_background_line_image}
 					alt={t('subscriptions:cogo_text')}
 				/>
-			)}
+			) : null}
 
 			{prioritySequence === MOST_POPPULAR_INDEX && (
 				<div className={styles.row}>
-					<div />
 					<div className={styles.ribbon_wrapper}>{t('subscriptions:most_popular_text')}</div>
 				</div>
 			)}
@@ -144,12 +148,11 @@ function Card({
 					<div className={styles.styled_col}>
 						<div
 							className={`${styles.heading} ${active ? styles.head_text : styles.head_text}`}
-							color="#1f1945"
 						>
 							{description}
 						</div>
 
-						{displayPricing?.activate_later && (
+						{displayPricing?.activate_later ? (
 							<div className={styles.date_box}>
 								<span className={styles.date}>{t('subscriptions:payment_due_text')}</span>
 								<Image
@@ -161,12 +164,12 @@ function Card({
 								/>
 								<span className={styles.days}>{displayPricing?.activates_in}</span>
 								<span className={styles.date}>
-									{displayPricing?.activates_in === 1 ? t('subscriptions:day_text')
+									{displayPricing?.activates_in === START_COUNT ? t('subscriptions:day_text')
 										: t('subscriptions:days_text')}
 									{' '}
 								</span>
 							</div>
-						)}
+						) : null}
 						{prioritySequence > EXPIRE_DAY
 							&& displayPricing?.is_active_plan
 							&& displayPricing?.expires_in !== undefined ? (
@@ -181,7 +184,7 @@ function Card({
 									/>
 									<span className={styles.days}>{displayPricing?.expires_in}</span>
 									<span className={styles.date}>
-										{displayPricing?.expires_in === 1 ? t('subscriptions:day_text')
+										{displayPricing?.expires_in === START_COUNT ? t('subscriptions:day_text')
 											: t('subscriptions:days_text')}
 										{' '}
 									</span>
@@ -216,7 +219,7 @@ function Card({
 
 			<div>
 				{' '}
-				{!displayPricing?.is_active_plan && subscribeActivate}
+				{!displayPricing?.is_active_plan ? subscribeActivate : null}
 
 			</div>
 

@@ -4,6 +4,8 @@ import {
 	IcAWarehouse,
 } from '@cogoport/icons-react';
 
+import formatAmount from '@/ui/commons/utils/formatAmount';
+
 export const dimensions = {
 	0 : ['310px', 'auto'],
 	1 : ['340px', 'auto'],
@@ -72,3 +74,17 @@ export const calculatePercentage = (count, addon, total) => {
 	const percentage = (+leftCount * 100) / +totalCount;
 	return percentage < PERCENTAGE_COUNT;
 };
+
+export const getAmount = ({ amount, currency }) => formatAmount({
+	amount,
+	currency,
+	options: {
+		notation : 'standard',
+		style    : 'currency',
+	},
+});
+
+const CURRENT_DATE = new Date();
+
+export const MIN_DATE = new Date(CURRENT_DATE.setDate(CURRENT_DATE.getDate() + 1));
+export const MAX_DATE = new Date(CURRENT_DATE.setMonth(CURRENT_DATE.getMonth() + 2));

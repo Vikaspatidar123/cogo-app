@@ -54,7 +54,7 @@ function ReviewDetails({
 			{currentStep === 'review_details' ? (
 				<>
 					<Modal.Body>
-						
+
 						<div style={{ display: 'flex', margin: '10px 0px' }}>
 							<Checkbox
 								checked={isPrivacyPolicyChecked}

@@ -49,6 +49,7 @@ function PdcDetailsInfo({
 						</Tooltip>
 						{(statusTag === 'review_requested' || status === 'active') && (
 							<div
+								role="presentation"
 								className={styles.mainHead}
 								onClick={() => setShowEditForm((pv) => !pv)}
 							>

@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-function OfferLetterWaiting({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }) {
+function OfferLetterWaiting({ getCreditRequestResponse = {} }) {
 	const { documents = {}, status = '' } = getCreditRequestResponse || {};
 	const { offer_letter = {} } = documents;
 	return (

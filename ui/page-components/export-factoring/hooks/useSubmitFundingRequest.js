@@ -1,7 +1,5 @@
 import { Toast } from '@cogoport/components';
 
-import { TERMS_AND_CONDITIONS } from '../components/Invoices/components/InvoiceDetails/common/constant';
-
 import { useRequest } from '@/packages/request';
 
 const getDocExtention = (url) => url.split('.').pop();
@@ -11,7 +9,6 @@ const useSubmitFundingRequest = ({
 	data: invoiceData,
 	exporterSignatory,
 	signingMode,
-	receivableModal,
 	creditRequest,
 	setReceivableModal,
 }) => {
@@ -23,7 +20,7 @@ const useSubmitFundingRequest = ({
 		exporter_signed_offer_receivable = {},
 	} = offer_receivable_details;
 
-	const [{ data, loading }, trigger] = useRequest(
+	const [{ loading }, trigger] = useRequest(
 		{
 			method : 'post',
 			url    : 'update_credit_application',

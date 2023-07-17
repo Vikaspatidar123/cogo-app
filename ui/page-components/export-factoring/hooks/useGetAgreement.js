@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 

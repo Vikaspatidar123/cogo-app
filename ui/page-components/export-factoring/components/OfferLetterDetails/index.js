@@ -12,8 +12,8 @@ import styles from './styles.module.css';
 import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-function OfferLetterDetails({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }) {
-	const { onSubmit, loading, data } = useSubmitOfferLetter();
+function OfferLetterDetails({ getCreditRequestResponse = {}, refetch = () => {} }) {
+	const { onSubmit } = useSubmitOfferLetter();
 	const {
 		offer_letter_status = '', approved_credit_details = {},
 		documents = {}, comments = {},

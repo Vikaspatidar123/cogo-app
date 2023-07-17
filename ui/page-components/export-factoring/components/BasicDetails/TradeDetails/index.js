@@ -2,7 +2,7 @@ import { Pill, Accordion, Button } from '@cogoport/components';
 import React from 'react';
 
 import FieldArray from '../../../common/FieldArray';
-import { tradeControls } from '../../../configurations/gettradeControls';
+import { tradeControls } from '../../../configurations/getTradeControls';
 import useTradeDetails from '../../../hooks/useTradeDetails';
 
 import styles from './styles.module.css';

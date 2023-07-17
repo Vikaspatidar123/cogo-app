@@ -34,7 +34,7 @@ function AddEditPdcInfo({
 		if (id) {
 			setValue('postdated_cheque', document_url);
 		}
-	}, [doc]);
+	}, [doc, document_url, id, setValue]);
 
 	return (
 		<div className={styles.container}>

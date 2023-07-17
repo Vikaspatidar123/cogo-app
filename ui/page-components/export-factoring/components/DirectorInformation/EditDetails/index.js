@@ -1,5 +1,4 @@
-import { Modal, Button, Toast } from '@cogoport/components';
-import { useEffect } from 'react';
+import { Modal, Button } from '@cogoport/components';
 
 import { getDirectorControls } from '../../../configurations/editDirectorControls';
 
@@ -11,7 +10,6 @@ import getField from '@/packages/forms/Controlled';
 function EditDetails({
 	setShowEdit = () => { }, showEdit = {}, data = {}, setUpdatedValues = () => { },
 	constitutionMapping,
-	updatedValues = {},
 }) {
 	const {
 		directors = {},
@@ -66,7 +64,7 @@ function EditDetails({
 								<Element
 									control={control}
 									{...item}
-									disabled={!!control._defaultValues[item?.name]}
+									disabled={!!control.defaultValues[item?.name]}
 								/>
 								<div className={styles.error_text}>
 									{errors?.[item?.name]?.message || errors?.[item?.name]?.type }

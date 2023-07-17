@@ -12,16 +12,9 @@ function FundingRequest({
 	refetch,
 }) {
 	const {
-		created_at = '',
-		invoice_number = '',
-		invoice_amount = '',
-		currency = '',
 		documents = {},
 		overall_document_status = {},
 		status = '',
-		buyer_name = '',
-		offer_receivable_details = {},
-		noa_details = {},
 	} = data || {};
 
 	const { offer_receivable: status_offer_receivable = '', ...rest } = overall_document_status;

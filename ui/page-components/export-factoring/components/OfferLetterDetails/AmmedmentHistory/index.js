@@ -7,11 +7,8 @@ import styles from './styles.module.css';
 
 function AmmedmentHistory({ showAmmedmentView, setShowAmmedmentView = () => {}, getCreditRequestResponse }) {
 	const {
-		offer_letter_status = '',
-		approved_credit_details = {},
 		documents = {}, comments = {},
 	} = getCreditRequestResponse;
-	const { offer_letter = {} } = documents;
 
 	return (
 		<Modal size="lg" show={showAmmedmentView} onClose={() => setShowAmmedmentView((prev) => !prev)} closable>

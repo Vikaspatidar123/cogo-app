@@ -31,7 +31,7 @@ function AddEditSbInfo({
 			setValue('sb_number', document_number);
 			setValue('marine_insurance', document_url);
 		}
-	}, [doc]);
+	}, [doc, document_date, document_number, document_url, id, setValue]);
 
 	const { loading, onSbDocSave } = useSaveSbDocsDetails({
 		doc,

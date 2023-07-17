@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -14,7 +14,7 @@ const useFetchInvoiceDetails = ({ showCiDetails, creditRequest }) => {
 		},
 	);
 
-	const fetchInvoiceDetails = async () => {
+	const fetchInvoiceDetails = useCallback(async () => {
 		try {
 			await trigger({
 				params: {
@@ -26,11 +26,11 @@ const useFetchInvoiceDetails = ({ showCiDetails, creditRequest }) => {
 		} catch (error) {
 			console.error(error, 'err');
 		}
-	};
+	}, [creditRequest, showCiDetails, trigger]);
 
 	useEffect(() => {
 		fetchInvoiceDetails();
-	}, []);
+	}, [fetchInvoiceDetails]);
 
 	return {
 		fetchInvoiceDetails,

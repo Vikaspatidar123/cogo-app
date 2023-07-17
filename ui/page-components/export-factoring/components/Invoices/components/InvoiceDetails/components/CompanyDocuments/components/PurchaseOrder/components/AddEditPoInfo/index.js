@@ -31,7 +31,7 @@ function AddEditPoInfo({
 			setValue('po_date', new Date(document_date));
 			setValue('purchase_order', document_url);
 		}
-	}, [doc]);
+	}, [doc, document_date, document_number, document_url, id, setValue]);
 
 	const { loading, onPoDocSave } = useSavePoDocsDetails({
 		doc,

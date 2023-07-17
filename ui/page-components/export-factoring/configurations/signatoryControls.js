@@ -1,4 +1,4 @@
-import patterns from "@/ui/commons/configurations/patterns";
+import patterns from '@/ui/commons/configurations/patterns';
 
 const SIGNATORY_CONTROLS = [
 	{

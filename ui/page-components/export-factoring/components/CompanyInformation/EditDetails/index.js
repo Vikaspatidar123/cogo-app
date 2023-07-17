@@ -46,7 +46,7 @@ function EditDetails({
 		if (updatedValues.address) {
 			clearErrors('company_address');
 		}
-	}, [updatedValues, setValue]);
+	}, [updatedValues, setValue, clearErrors]);
 
 	return (
 		<Modal size="lg" show={show} onClose={() => setShowEdit({ show: false })} closable>

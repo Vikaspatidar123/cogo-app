@@ -48,7 +48,7 @@ function CompanyDocuments({
 	creditRequest,
 }) {
 	const [openDocsModal, setOpenDocsModal] = useState('');
-	const { overall_document_status, status = '', documents = {} } = data || {};
+	const { overall_document_status, status = '' } = data || {};
 	return (
 		<div>
 			{DOCS_ARRAY.map((docs) => {

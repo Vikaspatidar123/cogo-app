@@ -78,6 +78,7 @@ function MiDetailsInfo({
 								)}
 								{(statusTag === 'review_requested' || status === 'active') && (
 									<div
+										role="presentation"
 										className={styles.main_head}
 										onClick={() => setShowEditForm((pv) => !pv)}
 									>

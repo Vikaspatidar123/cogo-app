@@ -8,7 +8,7 @@ const useSubmitPocDetails = ({
 	setOpenAddPoc,
 	getCreditRequestResponse,
 }) => {
-	const [{ data, loading }, trigger] = useRequest(
+	const [{ loading }, trigger] = useRequest(
 		{
 			method : 'post',
 			url    : 'add_buyer_poc',

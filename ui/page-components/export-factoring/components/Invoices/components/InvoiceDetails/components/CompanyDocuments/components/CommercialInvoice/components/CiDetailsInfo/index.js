@@ -62,6 +62,7 @@ function CiDetailsInfo({
 							</Tooltip>
 							{(status === 'active' || commercial_invoice === 'rejected') && (
 								<div
+									role="presentation"
 									className={styles.mainHead}
 									onClick={() => setShowEditForm((pv) => !pv)}
 								>

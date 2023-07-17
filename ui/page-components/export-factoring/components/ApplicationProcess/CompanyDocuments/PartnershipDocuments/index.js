@@ -1,5 +1,5 @@
 import { Button } from '@cogoport/components';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React from 'react';
 
 import styles from './styles.module.css';
 

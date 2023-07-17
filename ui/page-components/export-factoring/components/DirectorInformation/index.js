@@ -16,7 +16,7 @@ function DirectorInformation({
 }) {
 	const [showEdit, setShowEdit] = useState({ show: false, type: '', registration_number: '' });
 	const [showAddDirectors, setShowAddDirectors] = useState(false);
-	const { data = {}, loading } = useGetCompanyFinanceData({ id: getCreditRequestResponse?.id });
+	const { data = {} } = useGetCompanyFinanceData({ id: getCreditRequestResponse?.id });
 	const { updateCredit, loading:updateCreditLoading } = useUpdateCredit();
 	const { date_of_incorporation, directors = [], entity_id, constitution_of_business = '' } = data;
 	const [updatedValues, setUpdatedValues] = useState({ director: [] });

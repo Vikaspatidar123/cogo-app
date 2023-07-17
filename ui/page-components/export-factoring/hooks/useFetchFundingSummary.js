@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -17,7 +17,7 @@ const useFetchFundingSummary = ({
 		},
 	);
 
-	const fetchInvoiceList = async () => {
+	const fetchInvoiceList = useCallback(async () => {
 		try {
 			await trigger({
 				params: {
@@ -28,11 +28,11 @@ const useFetchFundingSummary = ({
 		} catch (error) {
 			console.error(error, 'err');
 		}
-	};
+	}, [creditRequest, invoice, trigger]);
 
 	useEffect(() => {
 		fetchInvoiceList();
-	}, []);
+	}, [fetchInvoiceList]);
 
 	return {
 		loading,

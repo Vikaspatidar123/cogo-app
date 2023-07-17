@@ -45,6 +45,7 @@ function CommercialInvoiceList({
 				<div className={styles.tableHeader} style={{ width: '30%' }}>{company_name}</div>
 				<div className={styles.tableHeader} style={{ width: '20%' }}><StatusTag status={status} /></div>
 				<div
+					role="presentation"
 					className={styles.tableHeader}
 					style={{ width: '3%', cursor: 'pointer' }}
 					onClick={() => {

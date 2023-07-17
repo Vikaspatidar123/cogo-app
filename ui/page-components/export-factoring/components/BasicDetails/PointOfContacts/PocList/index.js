@@ -1,4 +1,4 @@
-import { Tags, Pill } from '@cogoport/components';
+import { Pill } from '@cogoport/components';
 import React from 'react';
 
 import styles from './styles.module.css';

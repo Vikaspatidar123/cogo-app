@@ -50,7 +50,7 @@ function SigningModal({
 	const fundingRequestSignatoryControls = getFundingRequestSignatoryControls();
 
 	const {
-		control, watch, handleSubmit, setValue, formState: { errors },
+		control, handleSubmit, setValue, formState: { errors },
 	} = useForm();
 
 	const { loading, onSubmit } = useSubmitFundingRequest({
@@ -73,7 +73,7 @@ function SigningModal({
 				number       : mobile_number,
 			});
 		}
-	}, [signatoryDetails]);
+	}, [designation, email, mobile_country_code, mobile_number, name, setValue, signatoryDetails]);
 
 	return (
 		<>

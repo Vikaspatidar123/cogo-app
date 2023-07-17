@@ -1,14 +1,14 @@
 import { RadioGroup, Button, Tooltip } from '@cogoport/components';
 import { IcMInfo, IcMPdf } from '@cogoport/icons-react';
 import { isEmpty, startCase } from '@cogoport/utils';
-import { useState, useEffect } from 'react';
-import { useForm } from '@/packages/forms';
+import { useState, useEffect, useMemo } from 'react';
 
 import { getAddBankControls } from '../../../../configurations/getAddBankControls';
 import useSubmitBankDetails from '../../../../hooks/useSubmitBankDetails';
 
 import styles from './styles.module.css';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import PdfViewer from '@/ui/page-components/export-factoring/common/PdfViewer';
 
@@ -34,10 +34,10 @@ const OPTIONS = [
 	},
 ];
 
-function BankVerification({ refetch, setAddBankModal = () => { }, getCreditRequestResponse = {} }) {
+function BankVerification({ refetch, getCreditRequestResponse = {} }) {
 	const { exporter_account_infos = [] } = getCreditRequestResponse || {};
 
-	const banksDetails = exporter_account_infos?.[0] || {};
+	const banksDetails = useMemo(() => exporter_account_infos?.[0] || {}, [exporter_account_infos]);
 
 	const {
 		exporter_bank_account_id = '',
@@ -72,8 +72,10 @@ function BankVerification({ refetch, setAddBankModal = () => { }, getCreditReque
 			setValue('corresponding_swift_code', corresponding_swift_code);
 			setValue('ifsc_number', ifsc_number);
 			setValue('swift_code', swift_code);
+			setValue('corresponding_bank_name', corresponding_bank_name);
 		}
-	}, [banksDetails]);
+	}, [banksDetails, currency, account_number, aba_routing_number, bank_name, corresponding_bank_name,
+		corresponding_swift_code, ifsc_number, swift_code, setValue, account_holder_name]);
 
 	const { onSubmit, loading } = useSubmitBankDetails({
 		accountType,

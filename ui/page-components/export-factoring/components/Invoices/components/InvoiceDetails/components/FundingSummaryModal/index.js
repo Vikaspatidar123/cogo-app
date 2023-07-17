@@ -1,4 +1,4 @@
-import { Modal, Skeleton, Placeholder } from '@cogoport/components';
+import { Modal, Placeholder } from '@cogoport/components';
 
 import styles from './styles.module.css';
 

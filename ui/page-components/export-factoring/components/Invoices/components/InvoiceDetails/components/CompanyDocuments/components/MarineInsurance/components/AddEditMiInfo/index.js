@@ -31,7 +31,7 @@ function AddEditMiInfo({
 			setValue('mi_number', document_number);
 			setValue('marine_insurance', document_url);
 		}
-	}, [doc]);
+	}, [doc, document_number, document_url, id, insuring_party_name, setValue]);
 
 	const { loading, onMiDocSave } = useSaveMiDocsDetails({
 		doc,

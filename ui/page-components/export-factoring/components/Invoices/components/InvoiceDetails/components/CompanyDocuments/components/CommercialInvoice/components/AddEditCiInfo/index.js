@@ -57,15 +57,16 @@ function AddEditCiInfo({
 			setValue('due_date', new Date(due_date));
 			setValue('commercial_invoice', document_url);
 		}
-	}, [data]);
+	}, [data, setValue, document_url]);
 
 	useEffect(() => {
-		const amt = (advance_rate
-			* (watchValues?.invoice_amount?.price - watchValues?.prior_payment))
-			/ 100;
-		setNetInvoice(watchValues?.invoice_amount?.price - watchValues?.prior_payment);
+		const invoiceAmount = watchValues?.invoice_amount?.price || 0;
+		const priorPayment = watchValues?.prior_payment || 0;
+
+		const amt = (advance_rate * (invoiceAmount - priorPayment)) / 100;
+		setNetInvoice(invoiceAmount - priorPayment);
 		setAmount(amt);
-	}, [watchValues]);
+	}, [watchValues, advance_rate]);
 
 	return (
 		<div className={styles.container}>

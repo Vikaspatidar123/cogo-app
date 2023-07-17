@@ -35,6 +35,9 @@ const KEY_MAPPING = {
 		[GLOBAL_CONSTANTS.country_entity_ids.VN]: {
 			isBotVisible: false,
 		},
+		[GLOBAL_CONSTANTS.country_entity_ids.SG]: {
+			isBotVisible: false,
+		},
 	},
 };
 

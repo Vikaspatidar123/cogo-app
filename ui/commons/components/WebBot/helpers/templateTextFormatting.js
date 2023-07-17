@@ -1,10 +1,10 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const urlRegex = new RegExp(GLOBAL_CONSTANTS.regex.website_url);
+const urlRegex = new RegExp(GLOBAL_CONSTANTS.patterns.WEBSITE_URL);
 const endWithStarSpace = new RegExp(
-	GLOBAL_CONSTANTS.regex.ends_with_star_space_regex,
+	GLOBAL_CONSTANTS.patterns.ENDS_WITH_STAR_SPACE,
 );
-const endWithStarChar = new RegExp(GLOBAL_CONSTANTS.regex.ends_with_star_char);
+const endWithStarChar = new RegExp(GLOBAL_CONSTANTS.patterns.ENDS_WITH_STAR_CHAR);
 
 const TO_BE_BOLD_TEXT_INDEX = 0;
 
@@ -19,7 +19,7 @@ const replaceStarSpace = (txt = '') => txt
 	.join('');
 
 const replaceStarChar = (txt = '') => {
-	if (txt.match(GLOBAL_CONSTANTS.regex.asterisk_regex).length !== 1) {
+	if (txt.match(GLOBAL_CONSTANTS.patterns.ASTERISK).length !== 1) {
 		return txt;
 	}
 	return txt

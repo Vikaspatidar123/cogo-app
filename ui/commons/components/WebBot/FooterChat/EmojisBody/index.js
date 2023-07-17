@@ -9,7 +9,7 @@ function PopBody({ emojisList, updateMessage, setOnClicked = () => {} }) {
 		<div className={styles.container}>
 			{(Object.entries(emojisList) || []).map((group) => Object.entries(group[1])
 				.map((subgroup) => subgroup[1].map((item, index) => {
-					const result = item[0].trim().split(GLOBAL_CONSTANTS.regex.white_space_regex);
+					const result = item[0].trim().split(GLOBAL_CONSTANTS.patterns.WHITE_SPACE);
 					let emoji = '';
 					result.forEach((emojiUnicode) => {
 						emoji += String.fromCodePoint(`0x${emojiUnicode}`);

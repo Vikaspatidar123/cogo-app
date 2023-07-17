@@ -34,6 +34,7 @@ import {
 	IcARfq,
 } from '@cogoport/icons-react';
 
+// eslint-disable-next-line import/no-unresolved, import/extensions
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const navigationMappings = ({ t = () => { } }) => {

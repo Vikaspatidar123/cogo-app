@@ -44,7 +44,7 @@ function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 					<div className={cl`${styles.txt} ${styles.error}`}>
 						{t('dutiesTaxesCalculator:pending_modal_failed')}
 					</div>
-					<Button themeType="linkUi" onClick={closeModalHandler}>
+					<Button themeType="linkUi" type="button" onClick={closeModalHandler}>
 						{t('common:close')}
 					</Button>
 				</div>

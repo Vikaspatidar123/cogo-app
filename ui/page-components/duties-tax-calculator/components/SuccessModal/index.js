@@ -7,7 +7,7 @@ import { SuccessGif } from '../../configuration/icon-configuration';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { Image, useRouter } from '@/packages/next';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const CHARGE_MAPPING = {
@@ -77,7 +77,7 @@ function SuccessModal({ tradeEngineResp }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.icon_container_div}>
-				<img src={SuccessGif} alt="cogo" className={styles.icon_img} />
+				<Image src={SuccessGif} alt="success" height={130} width={130} />
 			</div>
 			<div className={styles.header_container}>
 				<div className={styles.title}>{t('dutiesTaxesCalculator:success_modal_title')}</div>

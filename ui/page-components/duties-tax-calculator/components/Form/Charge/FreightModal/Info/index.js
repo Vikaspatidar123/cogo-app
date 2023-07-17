@@ -4,6 +4,11 @@ import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const MAX_NAME_LENGTH = 16;
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+
 const getTagMapping = ({ t, transportMode }) => {
 	const TAG_MAPPING = {
 		OCEAN: [t('dutiesTaxesCalculator:freight_modal_ocean_tag_1'),
@@ -14,26 +19,27 @@ const getTagMapping = ({ t, transportMode }) => {
 	return TAG_MAPPING[transportMode];
 };
 
+function RenderName({ name }) {
+	if (name.length > MAX_NAME_LENGTH) {
+		return (
+			<Tooltip theme="light-border" content={name}>
+				<div className={styles.tooltip_name}>
+					{' '}
+					{name.slice(ZEROTH_INDEX, MAX_NAME_LENGTH)}
+					...
+				</div>
+			</Tooltip>
+		);
+	}
+
+	return name;
+}
+
 function Info({ transportMode, portDetails }) {
 	const { t } = useTranslation(['dutiesTaxesCalculator']);
 	const { origin = '', destination = '' } = portDetails || {};
 	const TAG_MAPPING = getTagMapping({ transportMode, t });
 
-	const renderName = (name) => {
-		if (name.length > 16) {
-			return (
-				<Tooltip theme="light-border" content={name}>
-					<div className={styles.tooltip_name}>
-						{' '}
-						{name.slice(0, 16)}
-						...
-					</div>
-				</Tooltip>
-			);
-		}
-
-		return name;
-	};
 	return (
 		<div className={styles.row}>
 			<div className={`${styles.col} ${styles.transport_details}`}>
@@ -48,9 +54,9 @@ function Info({ transportMode, portDetails }) {
 			</div>
 			<div className={`${styles.row} ${styles.section}`}>
 				<div className={`${styles.col} ${styles.port_detail}`}>
-					<div className={styles.port_name}>{renderName(origin?.name)}</div>
+					<div className={styles.port_name}><RenderName name={origin?.name} /></div>
 					<IcMPortArrow width={15} height={15} />
-					<div className={styles.port_name}>{renderName(destination?.name)}</div>
+					<div className={styles.port_name}><RenderName name={destination?.name} /></div>
 				</div>
 
 				<div className={styles.col}>

@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
@@ -63,11 +64,11 @@ const useVerifyHscode = () => {
 				},
 			});
 
-			if (!resp?.data?.status && resp?.data?.recommendations.length === 0) {
+			if (!resp?.data?.status && isEmpty(resp?.data?.recommendations)) {
 				Toast.info(t('dutiesTaxesCalculator:api_hscode_err_msg'));
 				setValidateInProgress(true);
 			}
-			if (!resp?.data?.status && resp?.data?.recommendations.length > 0) {
+			if (!resp?.data?.status && !isEmpty(resp?.data?.recommendations)) {
 				setValidateInProgress(true);
 			}
 

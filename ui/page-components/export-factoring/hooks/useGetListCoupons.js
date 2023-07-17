@@ -25,7 +25,7 @@ const useGetListCoupons = ({ getCreditRequestResponse = {} }) => {
 				},
 			});
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 		}
 	}, [application_fee, application_fee_currency, organization?.id, trigger]);
 

@@ -38,7 +38,6 @@ function RequestAmmedment({
 		if (resp) {
 			refetch();
 		}
-		console.log('val', values, payload);
 	};
 	return (
 		<Modal size="lg" show={showRequestView} onClose={() => setShowRequestView((prev) => !prev)} closable>

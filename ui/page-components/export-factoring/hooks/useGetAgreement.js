@@ -2,7 +2,6 @@ import { useEffect, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useRequest } from '@/packages/request';
-// import { useSelector } from '@/packages/store';
 
 const useGetAgreement = () => {
 	const [{ loading, data }, trigger] = useRequest(
@@ -25,7 +24,7 @@ const useGetAgreement = () => {
 				},
 			});
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 		}
 	}, [trigger]);
 

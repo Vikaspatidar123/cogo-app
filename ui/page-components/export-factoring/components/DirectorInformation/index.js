@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, Toast } from '@cogoport/components';
 import { useState } from 'react';
 
 import useGetCompanyFinanceData from '../../hooks/useGetCompanyFinanceData';
@@ -18,13 +18,67 @@ function DirectorInformation({
 	const [showAddDirectors, setShowAddDirectors] = useState(false);
 	const { data = {}, loading } = useGetCompanyFinanceData({ id: getCreditRequestResponse?.id });
 	const { updateCredit, loading:updateCreditLoading } = useUpdateCredit();
-	const { directors = [] } = data || {};
-	const { date_of_incorporation, entity_id } = data;
-	const [updatedValues, setUpdatedValues] = useState({});
+	const { date_of_incorporation, directors = [], entity_id, constitution_of_business = '' } = data;
+	const [updatedValues, setUpdatedValues] = useState({ director: [] });
+
+	const constitutionMapping = {
+		PROPRIETORSHIP: {
+			label               : 'Proprietorship',
+			identity_number     : 'CIN',
+			share_percent_label : 'Partnership',
+		},
+		PARTNERSHIP: {
+			label               : 'Partners',
+			identity_number     : 'CIN',
+			share_percent_label : 'Partnership',
+		},
+		'PRIVATE LIMITED COMPANY': {
+			label               : 'Directors',
+			identity_number     : 'DIN',
+			share_percent_label : 'Shareholding',
+		},
+		'PUBLIC LIMITED COMPANY': {
+			label               : 'Directors',
+			identity_number     : 'DIN',
+			share_percent_label : 'Shareholding',
+		},
+	}[constitution_of_business];
+
+	// Function to check if the total share holdings exceed 100
+	function checkShareHoldersPercent(shareholders) {
+		let totalShareHoldings = 0;
+
+		shareholders.forEach((element) => {
+			totalShareHoldings += parseFloat(element.shareholder_percentage);
+		});
+
+		// Check if total share holdings exceed 100
+		if (totalShareHoldings > 100) {
+			return false; // Share holdings exceed 100
+		}
+
+		return true; // Share holdings are within the limit
+	}
+	function removeDuplicatesByPan(values) {
+		const panSet = new Set();
+		const uniqueData = [];
+
+		values.forEach((item) => {
+			if (!panSet.has(item.pan)) {
+				panSet.add(item.pan);
+				uniqueData.push(item);
+			}
+		});
+		return uniqueData;
+	}
 
 	const saveDirectorAndReport = async () => {
-		console.log(updatedValues, 'finacial');
+		const filterDirector = removeDuplicatesByPan(updatedValues.director);
 
+		if (!checkShareHoldersPercent(filterDirector)) {
+			Toast.error('Share holder percentage exceed 100 ');
+			return false;
+		}
 		const financial_reports = updatedValues.financial_data.map((item) => ({
 			start_year         : item.select_year.split('-')[0].trim(),
 			end_year           : item.select_year.split('-')[1].trim(),
@@ -46,13 +100,11 @@ function DirectorInformation({
 			identity_number                     : data?.gst_number,
 			get_cogoscore                       : true,
 			export_factoring_service_attributes : {
-				status    : 'locked',
+				status            : 'locked',
 				date_of_incorporation,
 				entity_id,
-				directors : [
-					updatedValues.director,
-				],
-				financial_reports: final_report,
+				directors         : updatedValues.director,
+				financial_reports : final_report,
 			},
 		};
 
@@ -60,15 +112,24 @@ function DirectorInformation({
 		if (resp) {
 			refetch();
 		}
+		return true;
 	};
 
 	return (
 		<div className={styles.director_details}>
-			<div className={styles.heading}>Director Details</div>
+			<div className={styles.heading}>
+				{constitutionMapping?.label}
+				{' '}
+				Details
+			</div>
 			<div className={styles.sub_heading}>
-				Edit and verify your director details
+				Edit and verify your
+				{' '}
+				{constitutionMapping?.label}
+				{' '}
+				details
 				<Button onClick={setShowAddDirectors}>
-					Add Directors
+					Add
 				</Button>
 			</div>
 			{(directors || []).map((director) => (
@@ -77,6 +138,9 @@ function DirectorInformation({
 					key={director.name}
 					setShowEdit={setShowEdit}
 					showEdit={showEdit}
+					data={data}
+					constitutionMapping={constitutionMapping}
+					updatedValues={updatedValues}
 				/>
 			))}
 			<div className={styles.financial_div}>
@@ -94,6 +158,7 @@ function DirectorInformation({
 					data={data}
 					setUpdatedValues={setUpdatedValues}
 					updatedValues={updatedValues}
+					constitutionMapping={constitutionMapping}
 				/>
 			)}
 			{showAddDirectors && (
@@ -102,6 +167,8 @@ function DirectorInformation({
 					setShowAddDirectors={setShowAddDirectors}
 					showAddDirectors={showAddDirectors}
 					data={data}
+					setUpdatedValues={setUpdatedValues}
+					setShowEdit={setShowEdit}
 				/>
 			)}
 			<div className={styles.btn_container}>

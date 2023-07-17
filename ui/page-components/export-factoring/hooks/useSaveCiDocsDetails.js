@@ -56,7 +56,7 @@ const useSaveCiDocsDetails = ({
 			Toast.success('CI Details Saved');
 			refetch();
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 			Toast.error(err.data);
 		}
 	};

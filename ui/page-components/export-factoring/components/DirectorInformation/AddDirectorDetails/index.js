@@ -1,21 +1,24 @@
 import { Modal, Button } from '@cogoport/components';
 import React from 'react';
-import { useForm } from '@/packages/forms';
 
 import { getDirectorControls } from '../../../configurations/editDirectorControls';
 
 import styles from './styles.module.css';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function AddDirectorDetails({
-	getCreditRequestResponse,
 	setShowAddDirectors,
 	showAddDirectors,
+	setUpdatedValues = () => {},
+	setShowEdit = () => {},
 }) {
 	const { control, handleSubmit, formState: { errors } } = useForm({});
 	const submit = (values) => {
-		console.log(values);
+		setUpdatedValues((prev) => ({ ...prev, director: [...prev.director, values] }));
+
+		setShowEdit((prev) => ({ ...prev, show: !prev.show }));
 	};
 
 	return (

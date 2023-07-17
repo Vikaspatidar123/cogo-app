@@ -20,8 +20,6 @@ const controls = [
 		placeholder : 'Enter Designation',
 		span        : 6,
 		type        : 'select',
-		// value       : designation,
-		// disabled    : designation,
 		options     : [
 			{
 				label : 'Owner',
@@ -96,11 +94,6 @@ const controls = [
 		name        : 'mobile_number',
 		label       : 'Mobile Number',
 		placeholder : 'Mobile Number',
-		// value       : {
-		// 	country_code : mobile_country_code,
-		// 	number       : mobile_number,
-		// },
-		// disabled  : mobile_number,
 		type        : 'mobile_number',
 		inputType   : 'number',
 		select2     : 'new',

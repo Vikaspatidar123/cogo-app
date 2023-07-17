@@ -5,6 +5,8 @@ import FilePreview from '../../../common/FilePreview';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+
 function OfferLetterWaiting({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }) {
 	const { documents = {}, status = '' } = getCreditRequestResponse || {};
 	const { offer_letter = {} } = documents;
@@ -12,7 +14,7 @@ function OfferLetterWaiting({ active = {}, getCreditRequestResponse = {}, refetc
 		<div className={styles.container}>
 			<div className={styles.header}>
 				<div className={styles.doc_icon}>
-					<img
+					<Image
 						src="https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/Document_Offer_letter_icon.svg"
 						alt="document-offer-letter-waiting"
 						width="150px"

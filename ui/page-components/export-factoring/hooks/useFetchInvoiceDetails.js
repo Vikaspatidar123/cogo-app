@@ -24,7 +24,7 @@ const useFetchInvoiceDetails = ({ showCiDetails, creditRequest }) => {
 				},
 			});
 		} catch (error) {
-			console.log(error, 'err');
+			console.error(error, 'err');
 		}
 	};
 

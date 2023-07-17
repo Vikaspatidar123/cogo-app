@@ -1,23 +1,3 @@
-// const getLetterHeadLabel = (accountType) => {
-// 	return (
-// 	accountType === 'eefc_account' ? (
-// 		<div style={{ display: 'flex', gap: '2px' }}>
-// 			Bank details on Bank&apos;s letter head
-// 			<div style={{ fontSize: '10px', fontWeight: 'normal' }}>
-// 				(Signed & Stamped)
-// 			</div>
-// 		</div>
-// 	) : (
-// 		<div style={{ display: 'flex', gap: '5px' }}>
-// 			Bank details on Exporter&apos;s letter head
-// 			<div style={{ fontSize: '8px', fontWeight: 'normal' }}>
-// 				(Signed & Stamped)
-// 			</div>
-// 		</div>
-// 	),
-// 	)
-// }
-
 const BANK_CONTROLS = [
 	{
 		name        : 'currency',

@@ -32,7 +32,7 @@ const useFetchInvoiceList = ({
 				},
 			});
 		} catch (error) {
-			console.log(error, 'err');
+			console.error(error, 'err');
 		}
 	};
 

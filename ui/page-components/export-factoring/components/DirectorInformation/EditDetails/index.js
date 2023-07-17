@@ -1,4 +1,4 @@
-import { Modal, Button } from '@cogoport/components';
+import { Modal, Button, Toast } from '@cogoport/components';
 import { useEffect } from 'react';
 
 import { getDirectorControls } from '../../../configurations/editDirectorControls';
@@ -10,12 +10,12 @@ import getField from '@/packages/forms/Controlled';
 
 function EditDetails({
 	setShowEdit = () => { }, showEdit = {}, data = {}, setUpdatedValues = () => { },
-	updatedValues,
-	getCreditRequestResponse = {},
+	constitutionMapping,
+	updatedValues = {},
 }) {
-	console.log(data, showEdit, 'data');
 	const {
 		directors = {},
+
 	} = data || {};
 	const {
 		name,
@@ -26,15 +26,16 @@ function EditDetails({
 		pincode,
 		city,
 		state,
-		email,
 		din,
-		designation,
 	} = directors.find((item) => item.registration_number === showEdit.registration_number);
 
 	const { show = '', type = '' } = showEdit || {};
 
 	const saveValues = (values) => {
-		setUpdatedValues((prev) => ({ ...prev, [type]: values }));
+		setUpdatedValues((prev) => ({ ...prev, [type]: [...prev.director, values] }));
+
+		setShowEdit((prev) => ({ ...prev, show: !prev.show }));
+		return true;
 	};
 
 	const { control, handleSubmit, formState: { errors } } = useForm({
@@ -55,7 +56,7 @@ function EditDetails({
 		<Modal show={show} onClose={() => setShowEdit({ show: false })} closable>
 			<Modal.Body>
 				<form className={styles.form}>
-					{getDirectorControls().map((item) => {
+					{getDirectorControls(constitutionMapping).map((item) => {
 						const Element = getField(item.type);
 						return (
 							<div className={styles.field} key={item.name}>

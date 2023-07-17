@@ -1,4 +1,4 @@
-export const getDirectorControls = (gst_list, setUpdatedValues) => [
+export const getDirectorControls = (constitutionMapping = '') => [
 
 	{
 		name  : 'registration_number',
@@ -11,7 +11,7 @@ export const getDirectorControls = (gst_list, setUpdatedValues) => [
 	},
 	{
 		name  : 'shareholder_percentage',
-		label : 'Shareholder Percentage (%)',
+		label : `${constitutionMapping.share_percent_label} (%)`,
 		type  : 'text',
 
 	},

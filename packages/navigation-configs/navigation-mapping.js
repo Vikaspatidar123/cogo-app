@@ -32,6 +32,7 @@ import {
 	IcATradePartner,
 	IcAPlanningTools,
 	IcARfq,
+	IcATradeFinance,
 } from '@cogoport/icons-react';
 
 const navigationMappings = ({ t = () => { } }) => {
@@ -153,6 +154,15 @@ const navigationMappings = ({ t = () => { } }) => {
 						as          : '/saas/insurance/list',
 						icon        : <IcAInsurance width={55} height={55} fill="#fbd221" />,
 						description : t(`${translationKey}_premium_services_options_insurance_description`),
+
+					},
+					{
+						key         : 'saas_premium_services-export-factoring',
+						title       : t(`${translationKey}_premium_services_options_exportFactoring_label`),
+						href        : '/export-factoring',
+						as          : '/export-factoring',
+						icon        : <IcATradeFinance width={55} height={55} fill="#fbd221" />,
+						description : t(`${translationKey}_premium_services_options_exportFactoring_description`),
 
 					},
 					{

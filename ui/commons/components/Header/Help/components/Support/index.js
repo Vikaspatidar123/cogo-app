@@ -9,7 +9,6 @@ import { useEffect } from 'react';
 import useGetTicketsUnreadCount from '../../hooks/useGetTicketsUnreadCount';
 
 import styles from './styles.module.css';
-import SupportTypes from './SupportTypes';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
@@ -28,13 +27,11 @@ const default_agent = ({ t }) => ({
 function Support({
 	agent = {},
 	showPopover = false,
-	setModalData = () => {},
-	setShowPopover = () => {},
 }) {
 	const { t } = useTranslation(['common']);
 
 	const agentKey = isEmpty(agent) ? default_agent({ t }) : agent;
-	const { getUnreadTicketsCount = () => {}, unreadCount = 0 } = useGetTicketsUnreadCount();
+	const { getUnreadTicketsCount = () => {} } = useGetTicketsUnreadCount();
 
 	useEffect(() => {
 		if (showPopover) {
@@ -90,11 +87,6 @@ function Support({
 					</Tooltip>
 				</div>
 			</div>
-			<SupportTypes
-				setModalData={setModalData}
-				setShowPopover={setShowPopover}
-				unreadCount={unreadCount}
-			/>
 		</div>
 	);
 }

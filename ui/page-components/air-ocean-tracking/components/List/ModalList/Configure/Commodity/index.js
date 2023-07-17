@@ -1,8 +1,9 @@
 import { Button } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
-import commodityControls from '../../../../../configuration/commodityControls';
+import getCommodityControls from '../../../../../configuration/commodityControls';
 import useCreateShipment from '../../../../../hooks/useCreateShipment';
 
 import styles from './styles.module.css';
@@ -11,9 +12,12 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 function Commodity({ closeHandler, shipmentId = '', refetchTrackerList, shipmentInfo = {} }) {
-	const [commodityValue, setCommodityValue] = useState('');
-
 	const { hs_code = '' } = shipmentInfo || {};
+
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const commodityControls = getCommodityControls({ t });
+	const [commodityValue, setCommodityValue] = useState('');
 
 	const { control, handleSubmit, setValue, formState:{ errors } } = useForm({
 		defaultValues: {
@@ -41,7 +45,7 @@ function Commodity({ closeHandler, shipmentId = '', refetchTrackerList, shipment
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<h3>Select Commodity</h3>
+				<h3>{t('airOceanTracking:tracking_list_modal_list_select_commodity_text')}</h3>
 			</div>
 			<div className={styles.form_container}>
 				{commodityControls.map((config) => {
@@ -57,7 +61,9 @@ function Commodity({ closeHandler, shipmentId = '', refetchTrackerList, shipment
 				})}
 			</div>
 			<div className={styles.footer}>
-				<Button type="button" themeType="secondary" disabled={loading} onClick={closeHandler}>Cancel</Button>
+				<Button type="button" themeType="secondary" disabled={loading} onClick={closeHandler}>
+					{t('airOceanTracking:air_ocean_tracking_cancel_button_label')}
+				</Button>
 				<Button
 					className={styles.submit_btn}
 					themeType="accent"
@@ -65,7 +71,7 @@ function Commodity({ closeHandler, shipmentId = '', refetchTrackerList, shipment
 					onClick={handleSubmit(onSubmit)}
 					loading={loading}
 				>
-					Save
+					{t('airOceanTracking:save_button_label')}
 				</Button>
 			</div>
 		</div>

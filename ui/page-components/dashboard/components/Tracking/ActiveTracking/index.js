@@ -1,4 +1,5 @@
 import { IcMArrowNext } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -7,12 +8,14 @@ import { useRouter } from '@/packages/next';
 const trackUrl = 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/delayClock.svg';
 function ActiveTracking({ airTracking, oceanTracking }) {
 	const { push } = useRouter();
+	const { t } = useTranslation(['dashboard']);
+
 	return (
 		<div className={styles.header}>
 			<div className={styles.first}>
 				<div>
-					<p className={styles.trace}>Track & Trace</p>
-					<p className={styles.track}>Easily track containers across all major shipping lines</p>
+					<p className={styles.trace}>{t('dashboard:common_trackTraceHeader_text_1')}</p>
+					<p className={styles.track}>{t('dashboard:common_trackTraceHeader_text_2')}</p>
 				</div>
 				<img
 					className={styles.image}
@@ -23,13 +26,13 @@ function ActiveTracking({ airTracking, oceanTracking }) {
 			<div className={styles.second}>
 				<div className={styles.left}>
 					<div className={styles.left_top}>
-						<p className={styles.text}>Air Tracking</p>
+						<p className={styles.text}>{t('dashboard:trackAndTrace_airTracking')}</p>
 						<IcMArrowNext onClick={() => push('/saas/air-tracking')} className={styles.arrow} />
 					</div>
 					<div className={styles.left_bottom}>
 						<div className={styles.inner}>
 							<div className={styles.inner_left}>
-								<p className={styles.Shipments}>All Shipments</p>
+								<p className={styles.Shipments}>{t('dashboard:common_trackingCard_text_1')}</p>
 								<div className={styles.down}>
 									<img
 										src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/green_clock.svg"
@@ -40,7 +43,7 @@ function ActiveTracking({ airTracking, oceanTracking }) {
 							</div>
 							<div className={styles.inner_right}>
 								<div>
-									<p className={styles.new}>On Track Shipments</p>
+									<p className={styles.new}>{t('dashboard:common_trackingCard_text_2')}</p>
 									<div className={styles.down}>
 										<img
 											src={trackUrl}
@@ -56,13 +59,13 @@ function ActiveTracking({ airTracking, oceanTracking }) {
 				</div>
 				<div className={styles.left}>
 					<div className={styles.left_top}>
-						<p className={styles.text}>Ocean Tracking</p>
+						<p className={styles.text}>{t('dashboard:trackAndTrace_oceanTracking')}</p>
 						<IcMArrowNext onClick={() => push('/saas/ocean-tracking')} className={styles.arrow} />
 					</div>
 					<div className={styles.left_bottom}>
 						<div className={styles.inner}>
 							<div className={styles.inner_left}>
-								<p className={styles.Shipments}>All Shipments</p>
+								<p className={styles.Shipments}>{t('dashboard:common_trackingCard_text_1')}</p>
 								<div className={styles.down}>
 									<img
 										src="https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/green_clock.svg"
@@ -73,7 +76,7 @@ function ActiveTracking({ airTracking, oceanTracking }) {
 							</div>
 							<div className={styles.inner_right}>
 								<div>
-									<p className={styles.new}>On Track Shipments</p>
+									<p className={styles.new}>{t('dashboard:common_trackingCard_text_2')}</p>
 									<div className={styles.down}>
 										<img
 											src={trackUrl}

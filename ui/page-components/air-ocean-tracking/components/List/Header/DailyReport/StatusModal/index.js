@@ -1,6 +1,7 @@
 import { Modal, ButtonIcon, Stepper } from '@cogoport/components';
 import { IcMCross } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import AllContact from './AllContact';
@@ -8,17 +9,19 @@ import SelectSchedule from './SelectSchedule';
 import Shipments from './SelectShipment';
 import styles from './styles.module.css';
 
-const items = [
-	{ title: 'Select Shipment', key: 'shipments' },
-	{ title: 'Select Schedule', key: 'schedule' },
-];
-
 const renderTitle = ({ isSingleReport, name }) => {
 	if (isSingleReport) return `Status report for ${startCase(name)}`;
 	return 'Create New Schedule Status';
 };
 
 function StatusModal({ statusModal, setStatusModal, dsrList = [], getDsrList, activeTab = 'ocean' }) {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const items = [
+		{ title: t('airOceanTracking:status_modal_select_shipment_title'), key: 'shipments' },
+		{ title: t('airOceanTracking:status_modal_select_schedule_title'), key: 'schedule' },
+	];
+
 	const [selectedContact, setSelectedContact] = useState('');
 	const [isSingleReport, setIsSingleReport] = useState(false);
 	const [activeStepper, setActiveStepper] = useState('shipments');

@@ -1,5 +1,6 @@
 import { Button, Modal } from '@cogoport/components';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { FIRST_VISIT_MAPPING } from '../../constant/trackingInfo';
@@ -13,6 +14,7 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function EmptyState() {
 	const { query } = useRouter();
+	const { t } = useTranslation(['common', 'airOceanTracking']);
 	const { trackingType = '', trackingId = '', isFirstVisit: firstVisitBool = 'false' } = query;
 
 	const isFirstVisit = FIRST_VISIT_MAPPING[firstVisitBool];
@@ -37,10 +39,9 @@ function EmptyState() {
 			/>
 
 			<div>
-				<h3>Retrieving Tracking Data</h3>
+				<h3>{t('airOceanTracking:air_ocean_tracking_empty_card_text')}</h3>
 				<p>
-					Fetching data on this container / shipment is taking longer than usual.
-					We will inform you as soon as it&apos;s available.
+					{t('airOceanTracking:air_ocean_tracking_fetching_data_text')}
 				</p>
 			</div>
 			{isFirstVisit && (
@@ -50,21 +51,19 @@ function EmptyState() {
 						onClick={redirectToDashboard}
 						type="button"
 					>
-						GO BACK &amp; KEEP TRACKING
-
+						{t('airOceanTracking:air_ocean_tracking_back_button_label')}
 					</Button>
 					<Button
 						themeType="linkUi"
 						onClick={() => setDeleteModal(true)}
 						type="button"
 					>
-						Delete tracker &amp; restore balance
-
+						{t('airOceanTracking:air_ocean_tracking_delete_button_label')}
 					</Button>
 				</div>
 			)}
 			<Modal show={deleteModal} closeOnOuterClick onClose={closeHandler}>
-				<Modal.Header title="Delete Tracker" />
+				<Modal.Header title={t('airOceanTracking:air_ocean_tracking_delete_tracker')} />
 				<div className={styles.line} />
 				<ArchiveDelete
 					shipmentId={trackingId}

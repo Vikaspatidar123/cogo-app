@@ -119,5 +119,13 @@
     "email_verification":"Xác minh email không thành công!",
     "send_email_text":"Gửi email xác minh",
     "token_invalid_text":"Mã thông báo không hợp lệ",
-    "token_expired_text":"Mã thông báo đã hết hạn"
+    "token_expired_text":"Mã thông báo đã hết hạn",
+    "alt_empty_text":"trống",
+    "account_settings_subscription_status_text":"Trạng thái",
+    "account_settings_subscription_active_text":"Tích cực",
+    "account_settings_subscription_text_2":"Thành viên kể từ",
+    "account_settings_subscription_text_3":"Nâng cấp",
+    "account_settings_subscription_text_4":"Hủy đăng ký",
+    "account_settings_subscription_text_5":"Kế hoạch hiện tại",
+    "account_settings_subscription_text_6":"/ tháng"
 }

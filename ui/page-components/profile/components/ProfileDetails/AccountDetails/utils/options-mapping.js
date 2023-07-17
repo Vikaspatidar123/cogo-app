@@ -3,6 +3,7 @@ import AlertsPreferences from '../DetailsTabs/AlertsPreferences';
 // import DocumentsWallet from '../DetailsTabs/DocumentsWallet';
 import MyProfile from '../DetailsTabs/MyProfile';
 import OrganizationDetails from '../DetailsTabs/OrganizationDetails';
+import Subscription from '../DetailsTabs/Subscription';
 
 const getOptions = () => ({
 	organization_details: {
@@ -29,6 +30,11 @@ const getOptions = () => ({
 		key                : 'alerts_preferences',
 		title              : 'Alerts and Preferences',
 		containerComponent : AlertsPreferences,
+	},
+	subscription: {
+		key                : 'subscription',
+		title              : 'Subscription',
+		containerComponent : Subscription,
 	},
 });
 

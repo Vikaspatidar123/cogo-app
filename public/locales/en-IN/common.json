@@ -119,6 +119,13 @@
     "email_verification":"Email Verification Failed!",
     "send_email_text":"Send Verification Email",
     "token_invalid_text":"Token is invalid",
-    "token_expired_text":"Token has expired"
-
+    "token_expired_text":"Token has expired",
+    "alt_empty_text":"empty",
+    "account_settings_subscription_status_text":"Status",
+    "account_settings_subscription_active_text":"Active",
+    "account_settings_subscription_text_2":"Member since",
+    "account_settings_subscription_text_3":"Upgrade",
+    "account_settings_subscription_text_4":"Cancel Subscription",
+    "account_settings_subscription_text_5":"Current Plan",
+    "account_settings_subscription_text_6":"/ month"
 }

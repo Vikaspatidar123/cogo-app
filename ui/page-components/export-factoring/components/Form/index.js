@@ -45,7 +45,6 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 	const Component = flags?.offer_letter === 'complete' && active === 'awaiting_offer_letter'
 		? RENDERING_FORM.offer_letter_complete : RENDERING_FORM[active];
 
-	console.log(activeTab, 'activeTab');
 
 	return (
 		<div className={styles.form}>

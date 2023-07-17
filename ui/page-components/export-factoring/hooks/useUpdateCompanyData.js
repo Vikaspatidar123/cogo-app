@@ -24,7 +24,7 @@ const useUpdateCompanyData = ({
 			setAction(type);
 		} catch (e) {
 			setAction('removed');
-			console.log(e);
+			console.error(e);
 		}
 	}, [getCreditRequestResponse?.id, setAction, trigger]);
 

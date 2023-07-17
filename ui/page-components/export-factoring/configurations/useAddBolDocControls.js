@@ -59,13 +59,6 @@ const controls = [
 		placeholder : 'Type Here',
 		span        : 6,
 		rules       : { required: true },
-		// handleChange   : (obj) => {
-		// 	setCountry({
-		// 		...country,
-		// 		shipping_line_id   : obj?.id,
-		// 		shipping_line_name : obj?.short_name,
-		// 	});
-		// },
 	},
 	{
 		name        : 'vessel_name',
@@ -132,13 +125,7 @@ const controls = [
 		defaultOptions : true,
 		placeholder    : 'Select Country',
 		rules          : { required: 'Country is required' },
-		// handleChange   : (obj) => {
-		// 	setCountry({
-		// 		...country,
-		// 		consignee_country_id   : obj?.country_id,
-		// 		consignee_country_name : obj?.name,
-		// 	});
-		// },
+
 	},
 	{
 		name       : 'bill_loading',

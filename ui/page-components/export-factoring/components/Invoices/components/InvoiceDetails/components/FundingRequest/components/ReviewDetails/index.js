@@ -8,14 +8,6 @@ import SigningModal from '../SigningModal';
 import useFetchOfferReceivablesReports from
 	'@/ui/page-components/export-factoring/hooks/useFetchOfferReceivablesReports';
 
-// const componentMapping = {
-// 	CommercialInvoiceCard,
-// 	PurchaseInvoiceCard,
-// 	BillofLadingCard,
-// 	MarineInsuranceCard,
-// 	ShippingBillCard,
-// };
-
 const stepperContent = [
 	{
 		title : 'Review Details',
@@ -62,21 +54,7 @@ function ReviewDetails({
 			{currentStep === 'review_details' ? (
 				<>
 					<Modal.Body>
-						{/* {Object.entries(componentMapping).map(([componentName, Component]) => (
-							<Component
-								key={componentName}
-								data={data}
-								refetch={refetch}
-								// creditRequest={creditRequest}
-							/>
-						))}
-						{(postdated_cheque || []).length > 0 && (
-							<PostdatedChequeCard
-								data={data}
-								refetch={refetch}
-								// creditRequest={creditRequest}
-							/>
-						)} */}
+						
 						<div style={{ display: 'flex', margin: '10px 0px' }}>
 							<Checkbox
 								checked={isPrivacyPolicyChecked}

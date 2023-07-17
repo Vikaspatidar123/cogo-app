@@ -20,7 +20,7 @@ const useUpdateCreditRequirement = ({ getCreditRequestResponse = {}, refetch = (
 			});
 			refetch();
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 		}
 	};
 

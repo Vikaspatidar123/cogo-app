@@ -1,3 +1,5 @@
+import { Image } from '@/packages/next';
+
 export const tradeControls = (setSelectedCountry) => [
 
 	{
@@ -69,7 +71,7 @@ export const tradeControls = (setSelectedCountry) => [
 					value : x.id,
 					label : (
 						<div style={{ display: 'flex' }}>
-							<img src={x.flag_icon_url} alt="" />
+							<Image src={x.flag_icon_url} alt="" />
 							<div style={{ marginLeft: '5px' }}>{x.name}</div>
 						</div>
 					),

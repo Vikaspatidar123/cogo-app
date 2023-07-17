@@ -35,7 +35,7 @@ const useCreateOrganizationCreditRequest = ({ refetch = () => { } }) => {
 			});
 			refetch();
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 		}
 	}, [organization?.id, profile?.name, refetch, trigger]);
 

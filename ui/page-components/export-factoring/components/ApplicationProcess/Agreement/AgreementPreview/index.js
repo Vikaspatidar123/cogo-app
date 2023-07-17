@@ -26,7 +26,7 @@ function AgreementPreview({
 }) {
 	const { updateCreditApplication } = useUpdateCreditApplication();
 	const { control, formState:{ errors } } = useForm();
-	const {  documents = {} } = getCreditRequestResponse || {};
+	const { documents = {} } = getCreditRequestResponse || {};
 	const {
 		offer_letter = {}, exportfactoring_agreement = {},
 		signed_exportfactoring_agreement = {}, signed_offer_letter,
@@ -39,7 +39,6 @@ function AgreementPreview({
 		}
 	};
 	const Element = getField('file');
-
 
 	const handleUpload = async ({ url, type, section }) => {
 		const payload = {

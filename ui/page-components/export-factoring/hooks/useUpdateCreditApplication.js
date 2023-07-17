@@ -17,7 +17,7 @@ const useUpdateCreditApplication = () => {
 			}
 			return false;
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 			return false;
 		}
 	};

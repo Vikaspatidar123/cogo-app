@@ -167,6 +167,8 @@ function DirectorInformation({
 					setShowAddDirectors={setShowAddDirectors}
 					showAddDirectors={showAddDirectors}
 					data={data}
+					setUpdatedValues={setUpdatedValues}
+					setShowEdit={setShowEdit}
 				/>
 			)}
 			<div className={styles.btn_container}>

@@ -6,6 +6,8 @@ import useUpdateCreditRequestPromotion from '../../../hooks/useupdateCreditReque
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+
 function Coupons({ getCreditRequestResponse = {} }) {
 	const { data, loading } = useGetListCoupons({ getCreditRequestResponse });
 
@@ -22,7 +24,7 @@ function Coupons({ getCreditRequestResponse = {} }) {
 		<div className={styles.coupons}>
 			{(list || []).map((coupon) => (
 				<div className={styles.coupon}>
-					<img src={coupon.thumbnail_image} width="auto" height="auto" alt="coupon" />
+					<Image src={coupon.thumbnail_image} width="auto" height="auto" alt="coupon" />
 					<div className={styles.name}>{coupon.name}</div>
 					{action !== 'applied'
 						? (

@@ -29,7 +29,7 @@ const useSubmitFundingRequestDetails = ({
 	const getBuyerDetails = async () => {
 		try {
 			await getBuyerDetailsApi({
-				params: { organization_id: '3d7c2e98-14e2-4a05-8104-a133eddc8eb6' },
+				params: { organization_id },
 			});
 			return true;
 		} catch (error) {
@@ -46,8 +46,7 @@ const useSubmitFundingRequestDetails = ({
 			}));
 
 			const payload = {
-				// shipment_serial_id       : values?.sid,
-				shipment_serial_id       : 150435,
+				shipment_serial_id       : values.sid,
 				buyer_id                 : values?.buyer_name,
 				exporter_bank_account_id : values?.exporter_bank_account_id,
 				invoice_params,

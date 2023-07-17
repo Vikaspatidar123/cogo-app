@@ -42,14 +42,14 @@ const useApplyCreditRequestCouponCode = ({ getCreditRequestResponse = {}, refetc
 						}, 3000);
 					})
 					.catch((error) => {
-						console.log(error);
+						console.error(error);
 					});
 				return null;
 			}
 			refetch();
 			return null;
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 			return null;
 		}
 	};

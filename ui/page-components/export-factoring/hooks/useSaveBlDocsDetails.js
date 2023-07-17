@@ -28,7 +28,7 @@ const useSaveBlDocsDetails = ({
 		invoice_document_details = {
 			shipment_serial_id : invoiceData?.shipment_details?.shipment_serial_id,
 			invoice_id         : invoiceData?.id,
-			// purchase_order     : [filterinvoice(is_deleted, value)],
+
 		};
 
 		try {

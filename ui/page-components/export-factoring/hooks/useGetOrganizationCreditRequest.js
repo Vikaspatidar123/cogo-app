@@ -1,7 +1,7 @@
 import { useEffect, useCallback, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const useGetOrganizationCreditRequest = () => {
 	const [active, setActive] = useState('');

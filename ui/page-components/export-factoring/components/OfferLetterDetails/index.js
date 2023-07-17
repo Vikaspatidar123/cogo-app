@@ -9,6 +9,8 @@ import AmmedmentHistory from './AmmedmentHistory';
 import RequestAmmedment from './RequestAmmedment';
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+
 function OfferLetterDetails({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }) {
 	const { onSubmit, loading, data } = useSubmitOfferLetter();
 	const {
@@ -42,7 +44,7 @@ function OfferLetterDetails({ active = {}, getCreditRequestResponse = {}, refetc
 	return (
 		<div className={styles.container}>
 			<div className={styles.header_div}>
-				<img
+				<Image
 					src="https://cdn.cogoport.io/cms-prod/cogo_fintech/vault/original/email_offer"
 					alt="email-offerLetter"
 				/>

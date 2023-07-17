@@ -22,7 +22,6 @@ function EditDetails({
 	const { show = '', type = '' } = showEdit || {};
 
 	const saveValues = (values) => {
-		console.log(values, 'aaqq');
 		setUpdatedValues((prev) => ({ ...prev, type, ...values }));
 		setShowEdit(false);
 	};

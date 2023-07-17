@@ -1,37 +1,34 @@
-const dailyStatusConfig = [
+const getDailyStatusConfig = ({ t }) => [
 	{
 		key   : 'name',
-		title : 'Name',
+		title : t('airOceanTracking:tracking_daily_status_config_label_1'),
 		func  : 'renderName',
 		width : '20%',
 	},
 	{
 		key   : 'schedule',
-		title : 'Schedule',
+		title : t('airOceanTracking:tracking_daily_status_config_label_1'),
 		func  : 'renderEdit',
 		width : '35%',
 	},
 	{
 		key   : 'shipments',
-		title : 'Shipments',
+		title : t('airOceanTracking:tracking_daily_status_config_label_2'),
 		func  : 'renderEdit',
 		width : '15%',
-
 	},
 	{
 		key   : 'report_update',
-		title : 'Last Sent',
+		title : t('airOceanTracking:tracking_daily_status_config_label_3'),
 		func  : 'renderDate',
 		width : '15%',
-
 	},
 	{
 		key   : 'status',
-		title : 'Status',
+		title : t('airOceanTracking:tracking_daily_status_config_label_4'),
 		func  : 'renderStatus',
 		width : '10%',
-
 	},
 ];
 
-export default dailyStatusConfig;
+export default getDailyStatusConfig;

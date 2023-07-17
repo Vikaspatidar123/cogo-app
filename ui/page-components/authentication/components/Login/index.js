@@ -14,6 +14,7 @@ const MAPPING = {
 	emailId  : <LoginForm />,
 	mobileNo : <MobileLoginForm />,
 };
+
 function Login() {
 	const { t } = useTranslation(['common']);
 	const {
@@ -50,7 +51,7 @@ function Login() {
 							onClick={() => setLoginType('emailId')}
 							role="presentation"
 						>
-							Email
+							{t('common:rightPanel_tabs_email_title')}
 						</div>
 						<div
 							className={cl`${styles.group_by_button}
@@ -58,7 +59,7 @@ function Login() {
 							onClick={() => setLoginType('mobileNo')}
 							role="presentation"
 						>
-							Mobile
+							{t('common:rightPanel_tabs_mobile_title')}
 						</div>
 					</div>
 					{MAPPING[loginType]}

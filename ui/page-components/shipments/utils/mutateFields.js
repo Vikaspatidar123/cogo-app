@@ -1,7 +1,7 @@
 import { getDetails } from './formatTradeParty';
 
 export const mutateFields = ({
-	fields = {},
+	fields = [],
 	companyDetails = {},
 	setValue = () => {},
 	setCompanyDetails = () => {},
@@ -10,12 +10,12 @@ export const mutateFields = ({
 	const newFields = [...fields];
 	newFields.forEach((field) => {
 		if (
-			field === 'business_name'
+			field.name === 'business_name'
 			&& (companyDetails?.business_list || []).length
 			&& compType !== 'booking_party'
 		) {
-			newFields.business_name = {
-				...fields.business_name,
+			newFields[0] = {
+				...fields[0],
 				options      : companyDetails.business_list,
 				handleChange : (obj) => {
 					const tradePartyData = (companyDetails?.details || []).find(
@@ -38,12 +38,12 @@ export const mutateFields = ({
 				},
 			};
 		}
-		if ((companyDetails.address_details || []).length && field === 'address') {
-			newFields.address = {
-				...fields.address,
-				options      : companyDetails.address_details,
+		if ((companyDetails.address_details || []).length && field.name === 'address') {
+			newFields[2] = {
+				...fields[2],
+				options      : companyDetails?.address_details,
 				handleChange : (obj) => {
-					const address =						(companyDetails.address_list || []).find(
+					const address =	(companyDetails?.address_list || []).find(
 						(item) => item?.address === obj.value,
 					) || {};
 					setValue('pincode', address.pincode);
@@ -57,14 +57,14 @@ export const mutateFields = ({
 				},
 			};
 		}
-		if ((companyDetails.poc_data || []).length && field === 'name') {
+		if ((companyDetails.poc_data || []).length && field.name === 'name') {
 			const poc_options = companyDetails.poc_data.map((item) => ({
 				label : item.name,
 				value : item.name,
 			}));
 
-			newFields.name = {
-				...fields.name,
+			newFields[4] = {
+				...fields[4],
 				options      : poc_options,
 				handleChange : (obj) => {
 					const poc =						(companyDetails.poc_data || []).find(

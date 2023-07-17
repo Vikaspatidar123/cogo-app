@@ -1,17 +1,21 @@
 import { cl } from '@cogoport/components';
-import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 
 import { DEFAULT_STATUS } from '../../../../constant/card';
 import { getMilestone } from '../../../../utils/getMilestone';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+
 function Stepper({ activeTab, currentMilestone = {}, lineInfo = {}, airCargoDetails = {} }) {
 	const { short_name = '', logo_url = '' } = lineInfo || {};
 	const { container_status = {} } = currentMilestone || {};
 	const { bool_status = DEFAULT_STATUS?.[activeTab] } = container_status || {};
 
-	const MILESTONE_MAPPING = getMilestone({ airCargoDetails });
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const MILESTONE_MAPPING = getMilestone({ airCargoDetails, t });
 
 	return (
 		<div className={styles.container}>

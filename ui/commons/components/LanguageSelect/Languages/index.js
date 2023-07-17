@@ -15,7 +15,7 @@ function Languages() {
 	return (
 		<div className={`${styles.main}`}>
 			{Object.values(LANGUAGE_MAPPING).map((lang) => {
-				const { language, key, icon: Icon } = lang || {};
+				const { language, key } = lang || {};
 				return (
 					<Link
 						key={lang.key}
@@ -26,11 +26,9 @@ function Languages() {
 						locale={key}
 					>
 						<div
-							className={cl`${styles.item} ${
-								locale === key ? styles.active : ''
+							className={cl`${styles.item} ${locale === key ? styles.active : ''
 							} ${locale === key ? styles.active_fixed : styles.item}`}
 						>
-							<Icon width={20} height={20} />
 							<div className={styles.country_content}>{language}</div>
 						</div>
 					</Link>

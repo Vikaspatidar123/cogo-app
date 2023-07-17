@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import useGetProductCode from './useGetProductCodes';
@@ -9,14 +10,20 @@ import { useSelector } from '@/packages/store';
 import paymentInitiation from '@/ui/commons/components/PaymentInitiation';
 
 const usePayment = ({ hsCode = '', address = {} }) => {
-	const { profile } = useSelector((state) => state);
 	const { query } = useRouter();
+
+	const { t } = useTranslation(['importExportDoc']);
+
+	const { profile } = useSelector((state) => state);
 	const { id, name, email, mobile_number, mobile_country_code } = profile || {};
 	const { org_id = '', branch_id = '', trade_engine_id } = query || {};
-	// eslint-disable-next-line max-len
-	const callBackUrl1 = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}/saas/premium-services/import-export-doc`;
-	// eslint-disable-next-line max-len
-	const callBackUrl2 = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}/saas/premium-services/import-export-doc/${trade_engine_id}/result`;
+
+	const callBackUrl1 = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}`
+		+ '/saas/premium-services/import-export-doc';
+
+	const callBackUrl2 = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}`
+		+ `/saas/premium-services/import-export-doc/${trade_engine_id}/result`;
+
 	const [buttonLoading, setButtonLoading] = useState(false);
 	const [modal, setModal] = useState({});
 
@@ -91,10 +98,7 @@ const usePayment = ({ hsCode = '', address = {} }) => {
 				});
 			}
 		} catch (err) {
-			Toast.error('Something went wrong! Please try after sometime', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error(t('importExportDoc:api_error'));
 		}
 	};
 

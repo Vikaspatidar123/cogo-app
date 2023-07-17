@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -9,6 +10,7 @@ const useGetProductClassificationId = ({
 	setProductDetailsfromApi,
 	prefiledValues,
 }) => {
+	const { t } = useTranslation(['common', 'productCatalogue']);
 	const [{ loading }, trigger] = useRequestBf({
 		url     : 'saas/product/category',
 		method  : 'get',
@@ -25,7 +27,7 @@ const useGetProductClassificationId = ({
 			setProductClassificationId(response?.data?.productClassificationId);
 			setProductDetailsfromApi(response?.data);
 		} catch (error) {
-			Toast.error(error?.error?.message || 'Something Went Wrong');
+			Toast.error(error?.error?.message || t('productCatalogue:product_catalogue_toast_2'));
 		}
 	};
 

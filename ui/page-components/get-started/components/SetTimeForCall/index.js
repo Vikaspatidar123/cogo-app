@@ -1,5 +1,6 @@
 import { Button, Timepicker } from '@cogoport/components';
 import { IcCFtick } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import useCreateOrganizationCommunicationDetail from '../../hooks/useCreateOrganizationCommunicationDetail';
@@ -7,8 +8,9 @@ import useCreateOrganizationCommunicationDetail from '../../hooks/useCreateOrgan
 import styles from './styles.module.css';
 
 function SetTimeForCall({ orgId, orgBranchId }) {
-	const [startTime, setStartTime] = useState();
-	const [endTime, setEndTime] = useState();
+	const { t } = useTranslation(['common', 'getStarted']);
+	const [startTime, setStartTime] = useState(new Date());
+	const [endTime, setEndTime] = useState(new Date());
 
 	const {
 		onClickCreateOrganizationCommunicationDetail,
@@ -49,17 +51,19 @@ function SetTimeForCall({ orgId, orgBranchId }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header_container}>
-				<span className={styles.header_container_bold}>Account Created</span>
-				Your Cogoport Account has been set up.
+				<span className={styles.header_container_bold}>
+					{t('getStarted:rightPanel_get_started_call_setup_text_1')}
+				</span>
+				{t('getStarted:rightPanel_get_started_call_setup_text_2')}
 			</div>
 			<div className={styles.icon_container}>
 				<IcCFtick width="120px" height="120px" />
 			</div>
 			<div className={styles.text}>
-				An agent might reach out to you over phone for business verification.
+				{t('getStarted:rightPanel_get_started_call_setup_text_3')}
 			</div>
 			<div className={styles.text}>
-				Please select your preferred time slot in a day when you are available for a call.
+				{t('getStarted:rightPanel_get_started_call_setup_text_4')}
 			</div>
 			<div className={styles.time_picker_container}>
 				<div className={styles.time_picker}>
@@ -77,7 +81,7 @@ function SetTimeForCall({ orgId, orgBranchId }) {
 						disabled={createOrganizationCommunicationDetailLoading}
 						onClick={handleClick}
 					>
-						FINISH
+						{t('getStarted:rightPanel_get_started_call_setup_finish_button_label')}
 					</Button>
 				</div>
 			</div>

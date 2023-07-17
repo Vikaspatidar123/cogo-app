@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
 import { useRequestBf } from '@/packages/request';
@@ -17,13 +18,17 @@ const useEdit = ({
 	isEdit,
 	setActiveTab,
 }) => {
+	const { t } = useTranslation(['common', 'productCatalogue']);
+
 	const { profile } = useSelector((state) => state);
 	const { id: profileId = '', organization = {} } = profile || {};
+
 	const [{ data, loading }, trigger] = useRequestBf({
 		url     : 'saas/product',
 		method  : 'get',
 		authKey : 'get_saas_product',
 	}, { manual: true });
+
 	const refetchEdit = async () => {
 		try {
 			const resp = await trigger({
@@ -39,7 +44,7 @@ const useEdit = ({
 				setValue('sellingPrice', sellingPrice);
 			}
 		} catch (error) {
-			Toast.error(error?.message || 'Something Went Wrong');
+			Toast.error(error?.message || t('productCatalogue:product_catalogue_toast_2'));
 		}
 	};
 
@@ -48,11 +53,7 @@ const useEdit = ({
 		method  : 'put',
 		authKey : 'put_saas_product',
 	}, { manual: true });
-	const [{ loading: addApiLoading }, AddApiTrigger] = useRequestBf({
-		url     : '/saas/product',
-		method  : 'post',
-		authKey : 'post_saas_product',
-	}, { manual: true });
+
 	const refetchPutEdit = async ({ values, proId }) => {
 		const {
 			name, description, costPrice, sellingPrice, productImg,
@@ -70,21 +71,26 @@ const useEdit = ({
 			});
 			if (resp?.data?.message === 'Success') {
 				setShowProduct(false);
-				Toast.success('Product Edit Successfully !!');
+				Toast.success(t('productCatalogue:product_catalogue_toast_3'));
 				if (subCategoryCount > 1) {
 					refetchProduct({ productClassificationId });
 				} else {
 					const productClassification = (!card && productClassificationId) || undefined;
 					refetchProduct({ productClassificationId: productClassification });
-					// if (!card) setActiveTab('allProducts');
 				}
 			}
 			return resp;
 		} catch (error) {
-			Toast.error(error.message || 'Something Went Wrong');
+			Toast.error(error.message || t('productCatalogue:product_catalogue_toast_2'));
 			return null;
 		}
 	};
+	const [{ loading: addApiLoading }, AddApiTrigger] = useRequestBf({
+		url     : '/saas/product',
+		method  : 'post',
+		authKey : 'post_saas_product',
+	}, { manual: true });
+
 	const addProduct = async ({ item, countryName, pdId }) => {
 		const { prefiledValues, pricingDetails, logoUrl = null } = item || {};
 		try {
@@ -104,16 +110,18 @@ const useEdit = ({
 				refetchProduct({ productClassificationId });
 				setShowProduct(false);
 				setHSCode(false);
-				Toast.success('Product Created Successfully !!');
+				Toast.success(t('productCatalogue:product_catalogue_toast_4'));
 				setActiveTab('allProducts');
 			}
 		} catch (error) {
-			Toast.error(error.message || 'Something Went Wrong');
+			Toast.error(error.message || t('productCatalogue:product_catalogue_toast_2'));
 		}
 	};
+
 	useEffect(() => {
 		if (productId) refetchEdit();
 	}, [productId]);
+
 	return {
 		data,
 		refetchEdit,

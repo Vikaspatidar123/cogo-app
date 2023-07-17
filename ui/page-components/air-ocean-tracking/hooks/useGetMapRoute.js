@@ -40,7 +40,7 @@ const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
 
 			return uniqueRouteArr;
 		} catch (err) {
-			console.log(err, 'err');
+			console.error(err, 'err');
 			return null;
 		}
 	}, [trigger]);

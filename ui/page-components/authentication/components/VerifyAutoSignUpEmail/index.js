@@ -1,37 +1,32 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
-import getVerifyAutoSignUpEmail from '../../hooks/useVerifyAutoSignUpEmail';
 import HeaderLayout from '../HeaderLayout';
 
 import styles from './styles.module.css';
 
 import { Link } from '@/packages/next';
-import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
-
-const PAGE_MAPPINGS = {
-	app_discover_rates : 'book',
-	search_results     : 'book-deep-link',
-	app_dashboard      : 'dashboard',
-};
 
 function VerifyAutoSignUpEmail() {
+	const { t } = useTranslation(['verifyAutoLogin']);
+
 	const content = {
-		heading           : 'Email Verification Failed!',
-		subheading        : 'We could not verify your email.',
+		heading           : `${t('verifyAutoLogin:verify_auto_login_content_heading')}`,
+		subheading        : `${t('verifyAutoLogin:verify_auto_login_content_sub_heading')}`,
 		forgotPasswordCTA : {
-			text : 'Try Setting your Password Again?',
+			text : `${t('verifyAutoLogin:verify_auto_login_content_forgot_password_text')}`,
 			link : '/forgot-password',
 		},
-		submitText: 'Send Verification Email',
+		submitText: `${t('verifyAutoLogin:verify_auto_login_content_submit_text')}`,
 	};
 
 	return (
 		<HeaderLayout
 			rightParams={{
-				label : 'Already a User?',
+				label : `${t('verifyAutoLogin:verify_auto_login_header_layout_right_params_cta')}`,
 				href  : '/login',
-				cta   : 'LOGIN',
+				cta   : `${t('verifyAutoLogin:verify_auto_login_header_layout_right_params_cta')}`,
 			}}
 		>
 			<div className={styles.container}>
@@ -60,65 +55,5 @@ function VerifyAutoSignUpEmail() {
 		</HeaderLayout>
 	);
 }
-
-VerifyAutoSignUpEmail.getInitialProps = async (ctx) => {
-	const { query } = ctx;
-	const {
-		token: email_token,
-		lead_user_id,
-		lead_organization_id,
-		lead_action_id,
-	} = query;
-
-	try {
-		const response = await getVerifyAutoSignUpEmail({
-			email_token,
-			lead_user_id,
-			lead_organization_id,
-			lead_action_id,
-		});
-
-		const { hasError } = response || {};
-
-		if (!hasError) {
-			const {
-				token,
-				lead_action = {},
-				organization_id,
-				organization_branch_id,
-				user_id,
-			} = (response || {}).data || {};
-
-			const redirect_page = lead_action?.action_config?.redirect_page || '';
-			// redirect_page = 'search_results';
-
-			let uri = `/${organization_id}/${organization_branch_id}/${PAGE_MAPPINGS?.[redirect_page]}`;
-			if (redirect_page === 'search_results') {
-				const queryObj = {
-					importer_exporter_id        : organization_id,
-					importer_exporter_branch_id : organization_branch_id,
-					user_id,
-					lead_action_id,
-				};
-
-				uri = `${uri}?query=${JSON.stringify(queryObj)}`;
-			}
-
-			if (
-				['app_dashboard', 'app_discover_rates'].includes(redirect_page)
-        && lead_action?.action_config?.search_mode === 'generic_search'
-			) {
-				uri = `${uri}?service_type=${lead_action?.action_config?.service_type}`;
-			}
-
-			setCookieAndRedirect(token, ctx, uri);
-		}
-	} catch (e) {
-		// toast.error('Something went wrong, we are working on it!');
-		console.log(e.toString());
-	}
-
-	return { layout: 'none' };
-};
 
 export default VerifyAutoSignUpEmail;

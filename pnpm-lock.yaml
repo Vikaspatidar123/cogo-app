@@ -9,7 +9,7 @@ dependencies:
     specifier: ^1.0.1
     version: 1.0.3(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/components':
-    specifier: ^1.0.431
+    specifier: ^1.0.428
     version: 1.0.431(@babel/core@7.22.9)(@cogoport/icons-react@1.0.85)(react-dom@18.2.0)(react@18.2.0)
   '@cogoport/icons-react':
     specifier: ^1.0.82

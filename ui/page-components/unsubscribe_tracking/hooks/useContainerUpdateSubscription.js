@@ -11,11 +11,7 @@ const useContainerUpdateSubscription = () => {
 	const getContainerUpdateSubscription = useCallback(async () => {
 		try {
 			const res = await request.get('/get_container_update_subscription', { params: { id: query.id } });
-			if (res.hasError) {
-				return;
-			}
-			const resp = res.data.data.subscribed;
-			setStatus(resp);
+			setStatus(res.data.data.subscribed || null);
 		} catch (e) {
 			console.error('e');
 		}

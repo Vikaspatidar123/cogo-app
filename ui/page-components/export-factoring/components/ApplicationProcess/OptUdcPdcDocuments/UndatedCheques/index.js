@@ -1,9 +1,10 @@
 import { Button, Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import React from 'react';
-import { useForm } from '@/packages/forms';
 
 import styles from './styles.module.css';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import FilePreview from '@/ui/page-components/export-factoring/common/FilePreview';
 import useUpdateCreditApplication from '@/ui/page-components/export-factoring/hooks/useUpdateCreditApplication';
@@ -54,11 +55,11 @@ function UndatedCheques({ refetch = () => {}, udcCheque, getCreditRequestRespons
 		}
 	};
 
-	if (undated_cheque.length > 0) {
+	if (!isEmpty(undated_cheque.length)) {
 		return (
 			<div className={styles.container}>
 				{undated_cheque.map((item) => (
-					<FilePreview name={item.document_type} url={item.document_url} />
+					<FilePreview key={item.document_type} name={item.document_type} url={item.document_url} />
 				))}
 			</div>
 		);

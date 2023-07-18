@@ -8,6 +8,8 @@ import {
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const FIRST_INDEX = 1;
+
 const getParams = ({ listAll, cogo_entity_id = '', country_id = '' }) => {
 	const pageLimit = listAll
 		? MAXIMUM_TOPICS_TO_BE_FETCHED
@@ -22,7 +24,7 @@ const getParams = ({ listAll, cogo_entity_id = '', country_id = '' }) => {
 			persona : 'importer_exporter',
 		},
 		sort_by    : 'view_count',
-		page       : 1,
+		page       : FIRST_INDEX,
 		page_limit : pageLimit,
 	};
 };

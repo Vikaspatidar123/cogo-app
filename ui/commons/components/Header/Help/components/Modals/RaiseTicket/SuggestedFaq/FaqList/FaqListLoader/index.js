@@ -2,7 +2,8 @@ import { Placeholder } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
-const EMPTY_ARR = [...Array(6).keys()];
+const ARRAY_SIZE = 6;
+const EMPTY_ARR = [...Array(ARRAY_SIZE).keys()];
 
 function FaqListLoader() {
 	return (

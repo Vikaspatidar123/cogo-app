@@ -6,7 +6,9 @@ import { NO_OF_QUESTIONS_TO_BE_FETCHED } from '../constants';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const getParams = ({ page = 1, cogo_entity_id = '', country_id = '', topicId = '' }) => ({
+const FIRST_INDEX = 1;
+
+const getParams = ({ page = FIRST_INDEX, cogo_entity_id = '', country_id = '', topicId = '' }) => ({
 	filters: {
 		persona      : 'importer_exporter',
 		cogo_entity_id,
@@ -24,7 +26,7 @@ const getParams = ({ page = 1, cogo_entity_id = '', country_id = '', topicId = '
 function useListFaqTopicQuestions({ topicId = '' }) {
 	const { cogo_entity_id = '', country_id = '' } = useSelector((state) => state.profile.organization);
 
-	const [currentPage, setCurrentPage] = useState(1);
+	const [currentPage, setCurrentPage] = useState(FIRST_INDEX);
 
 	const [{ loading, data }, trigger] = useRequest({
 		url    : '/cogo_academy/list_faq_questions',
@@ -32,7 +34,7 @@ function useListFaqTopicQuestions({ topicId = '' }) {
 	}, { manual: false });
 
 	const fetchFaqTopicQuestions = useCallback(
-		async ({ page = 1 }) => {
+		async ({ page = FIRST_INDEX }) => {
 			if (!topicId) {
 				return;
 			}

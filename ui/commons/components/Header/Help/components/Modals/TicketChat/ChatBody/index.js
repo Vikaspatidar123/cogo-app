@@ -13,7 +13,9 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const translationKey = 'common:components_header_tickets_details';
 
-const EMPTY_ARR = [...Array(9).keys()];
+const FIRST_INDEX = 1;
+const ARRAY_SIZE = 9;
+const EMPTY_ARR = [...Array(ARRAY_SIZE).keys()];
 
 function ChatBody({
 	listData = {},
@@ -34,7 +36,7 @@ function ChatBody({
 	const handleScroll = (e) => {
 		const bottom = e.target.scrollTop === GLOBAL_CONSTANTS.zeroth_index;
 		if (!last && bottom && !chatLoading) {
-			getTicketActivity((page || GLOBAL_CONSTANTS.zeroth_index) + 1);
+			getTicketActivity((page || GLOBAL_CONSTANTS.zeroth_index) + FIRST_INDEX);
 		}
 	};
 

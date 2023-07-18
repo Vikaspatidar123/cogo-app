@@ -8,6 +8,8 @@ import styles from './styles.module.css';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getFileAttributes from '@/ui/commons/utils/getFileAttributes';
 
+const FIRST_INDEX = 1;
+
 function ShowMessage({ message = '', restData = {} }) {
 	let newMessage = message.replace('<', '&lt;');
 
@@ -26,7 +28,7 @@ function MessageBody({ message = '', mediaUrls = [], restData }) {
 			<div>
 				{(mediaUrls || []).map((mediaUrl = '') => {
 					const urlArray = decodeURI(mediaUrl)?.split('/');
-					const fileName = urlArray[(urlArray?.length || GLOBAL_CONSTANTS.zeroth_index) - 1] || '';
+					const fileName = urlArray[(urlArray?.length || GLOBAL_CONSTANTS.zeroth_index) - FIRST_INDEX] || '';
 					const { fileType } = getFileAttributes({ fileName });
 
 					return (

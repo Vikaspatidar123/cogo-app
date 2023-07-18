@@ -75,7 +75,7 @@ function FileUploader(props) {
 		try {
 			setLoading(true);
 
-			if (values.length > 0) {
+			if (!isEmpty(values.length)) {
 				setProgress({});
 
 				const promises = values.map((value, index) => uploadFile(index)(value));
@@ -108,7 +108,7 @@ function FileUploader(props) {
 			{loading
         && !isEmpty(progress)
         && Object.keys(progress).map((key) => (
-	<div className={cl`${styles.progress_container} ${source ? styles.progress_container_footer : null}`}>
+	<div key={key} className={cl`${styles.progress_container} ${source ? styles.progress_container_footer : null}`}>
 		<IcMDocument
 			style={{ height: '30', width: '30', color: '#2C3E50' }}
 		/>

@@ -11,6 +11,8 @@ import styles from './styles.module.css';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
 
+const LAST_INDEX = 100;
+
 function TicketStructureBody({
 	item = {},
 	updateTicketActivity = () => {},
@@ -78,7 +80,7 @@ function TicketStructureBody({
 					)}
 				</div>
 				<div className={styles.category_ticket_activity}>
-					{type || description.substring(GLOBAL_CONSTANTS.zeroth_index, 100)}
+					{type || description.substring(GLOBAL_CONSTANTS.zeroth_index, LAST_INDEX)}
 				</div>
 			</div>
 			<div className={styles.subcontainer_two}>
@@ -103,7 +105,10 @@ function TicketStructureBody({
 				</div>
 				<div className={styles.ticket_reason_box}>
 					<div className={styles.description}>
-						{(ticketActivity?.Description || description).substring(GLOBAL_CONSTANTS.zeroth_index, 100)}
+						{(ticketActivity?.Description || description).substring(
+							GLOBAL_CONSTANTS.zeroth_index,
+							LAST_INDEX,
+						)}
 					</div>
 					{activityCount ? (
 						<div className={styles.messages_nos}>{activityCount}</div>

@@ -8,6 +8,7 @@ import { useTicketsRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+const FIRST_INDEX = 1;
 const REACH_BOTTOM = 20;
 
 const useListTickets = ({
@@ -16,7 +17,7 @@ const useListTickets = ({
 	listType = '',
 }) => {
 	const { profile } = useSelector((state) => state);
-	const [pagination, setPagination] = useState(1);
+	const [pagination, setPagination] = useState(FIRST_INDEX);
 	const [listData, setListData] = useState([]);
 
 	const { debounceQuery, query: searchQuery = '' } = useDebounceQuery();
@@ -37,13 +38,13 @@ const useListTickets = ({
 					size          : NO_OF_TICKETS_TO_BE_SHOWED?.[
 						listType === 'create' ? 'create' : 'default'
 					],
-					page    : pageIndex - 1,
+					page    : pageIndex - FIRST_INDEX,
 					QFilter : searchQuery || undefined,
 				},
 			});
 
 			setListData((prev) => [...prev, ...(response?.data?.items || [])]);
-			setPagination(pageIndex + 1);
+			setPagination(pageIndex + FIRST_INDEX);
 		} catch (error) {
 			console.error('error:', error);
 		}
@@ -51,12 +52,12 @@ const useListTickets = ({
 
 	const refreshTickets = () => {
 		setListData([]);
-		fetchTickets(1);
+		fetchTickets(FIRST_INDEX);
 	};
 
 	useEffect(() => {
 		setListData([]);
-		fetchTickets(1);
+		fetchTickets(FIRST_INDEX);
 	}, [searchQuery, activeTab]);
 
 	useEffect(() => {

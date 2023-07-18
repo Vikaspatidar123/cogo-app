@@ -2,9 +2,12 @@ import { Placeholder } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
+const INIT_IDX = 2;
+const FINAL_IDX = 4;
+
 function TicketStructureLoader({ listType = '' }) {
 	const ticketStructureLoaderItems = [
-		...Array(listType === 'create' ? 2 : 4).keys(),
+		...Array(listType === 'create' ? INIT_IDX : FINAL_IDX).keys(),
 	];
 
 	return (

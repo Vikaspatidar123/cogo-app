@@ -1,6 +1,7 @@
-import { merge } from '@cogoport/utils';
+import { isEmpty, merge } from '@cogoport/utils';
 import { useEffect, useState, useMemo } from 'react';
 
+import GLOBAL_CONSTANTS from '../../../ui/commons/constants/globals';
 import { useTicketsRequest } from '../../request';
 
 import useDebounceQuery from './useDebounceQuery';
@@ -68,7 +69,7 @@ function useGetAsyncCogoCareOptions({
 			});
 
 			let res;
-			if (toBeFetched.length) {
+			if (!isEmpty(toBeFetched)) {
 				res = await triggerSingle({
 					params: { ...params, [valueKey]: toBeFetched },
 				});
@@ -85,15 +86,15 @@ function useGetAsyncCogoCareOptions({
 			(item) => item[valueKey] === value,
 		);
 
-		if (checkOptionsExist.length > 0) {
-			return checkOptionsExist[0];
+		if (!isEmpty(checkOptionsExist)) {
+			return checkOptionsExist[GLOBAL_CONSTANTS.zeroth_index];
 		}
 
 		try {
 			const res = await triggerSingle({
 				params: { ...params, [valueKey]: value },
 			});
-			return res?.data?.items?.[0] || null;
+			return res?.data?.items?.[GLOBAL_CONSTANTS.zeroth_index] || null;
 		} catch (err) {
 			return {};
 		}

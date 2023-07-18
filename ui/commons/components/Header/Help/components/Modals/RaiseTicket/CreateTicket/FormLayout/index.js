@@ -25,7 +25,7 @@ function FormLayout(props) {
 
 	return (
 		<div className={styles.container}>
-			{raiseTicketControls.map((itm) => (
+			{(raiseTicketControls || []).map((itm) => (
 				<FormField
 					fields={itm}
 					control={control}

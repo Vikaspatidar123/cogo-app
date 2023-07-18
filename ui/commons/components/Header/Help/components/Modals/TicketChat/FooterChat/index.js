@@ -16,6 +16,8 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const translationKey = 'common:components_header_tickets_details';
 
+const FIRST_INDEX = 1;
+
 function FooterChat({
 	setMessage = () => {},
 	message = '',
@@ -33,7 +35,7 @@ function FooterChat({
 	};
 
 	const url_split = file ? file?.split('/') : [];
-	const file_name = url_split?.[url_split.length - 1];
+	const file_name = url_split?.[url_split.length - FIRST_INDEX];
 
 	return (
 		<>

@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import getField from '@/packages/forms/Controlled';
 
 function RenderField({ item, errors, control }) {
-	const { name, type, placeholder } = item || {};
+	const { name = '', type = '', placeholder = '' } = item || {};
 	const Element = getField(type);
 
 	return (

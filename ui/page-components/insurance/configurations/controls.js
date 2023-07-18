@@ -108,7 +108,7 @@ const controls = [
 		span        : 4,
 		rules       : {
 			pattern: {
-				value   : /^[A-Z]{5}[0-9]{4}[A-Z]{1}/g,
+				value   : GLOBAL_CONSTANTS.patterns.PAN_NUMBER,
 				message : 'Invalid PAN Number',
 			},
 		},

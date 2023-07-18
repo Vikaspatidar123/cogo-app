@@ -1,6 +1,7 @@
-import { Modal, Badge } from '@cogoport/components';
+import { Modal, Badge, Button } from '@cogoport/components';
 import {
 	IcMArrowRotateDown,
+	IcMArrowRotateRight,
 	IcMFtaskNotCompleted,
 } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -59,44 +60,43 @@ function BillingAddresses({
 		<>
 			<div className={styles.main_container}>
 				<div className={styles.flex}>
-					<div className={styles.body}>
-						<div className={styles.flex}>
-							<div className={styles.text}>{title}</div>
-
-							<div className={styles.head}>
-								<Badge color="#f8f2e7" size="md" text={addresCount()} />
-							</div>
-						</div>
-
-						<div className={styles.flex}>
-							<div
-								role="presentation"
-								className={styles.link_text}
-								onClick={() => {
-									setShowEditBillingAddress(true);
-									setMobalType(false);
-								}}
-							>
-								+ Add Address
-							</div>
-						</div>
-					</div>
-
 					<div
 						role="presentation"
 						className={styles.icon_container}
 						onClick={() => setShowData(!showData)}
-
 					>
 						{showData ? (
 							<IcMArrowRotateDown width={20} height={15} style={{ transform: 'rotate(180deg)' }} />
 						) : (
-							<IcMArrowRotateDown
+							<IcMArrowRotateRight
 								width={20}
 								height={15}
 							/>
 						)}
 					</div>
+
+					<div className={styles.body}>
+						<div className={styles.flex}>
+							<div className={styles.text}>{title}</div>
+
+							<div className={styles.head}>
+								<Badge color="#f3fafa" size="md" text={addresCount()} />
+							</div>
+						</div>
+
+						<div className={styles.flex}>
+							<Button
+								themeType={showData ? 'primary' : 'secondary'}
+								onClick={() => {
+									setShowEditBillingAddress(true);
+									setMobalType(false);
+								}}
+							>
+								Add Address +
+							</Button>
+						</div>
+					</div>
+
 				</div>
 
 				<div>{showData ? renderBillingAddress() : null}</div>
@@ -113,7 +113,7 @@ function BillingAddresses({
 					<EditBillingAddress
 						handleCloseModal={handleCloseModal}
 						organizationBillingAddressesList={organizationBillingAddressesList}
-            // getOrganizationBillingAddress={getOrganizationBillingAddress}
+		// getOrganizationBillingAddress={getOrganizationBillingAddress}
 						addressIdxToUpdate={addressIdxToUpdate}
 						organizationType={organizationType}
 						mobalType={mobalType}

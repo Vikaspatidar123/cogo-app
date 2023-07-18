@@ -11,7 +11,7 @@ import SwitchUser from './SwitchUser';
 import getSideBarConfigs from '@/packages/navigation-configs/side-bar';
 import { useSelector } from '@/packages/store';
 
-const SHOW_NAVIGATIONS = ['app_documents', 'saas_cogo_subscription', 'saas_finance'];
+const SHOW_NAVIGATIONS = ['saas_cogo_subscription', 'saas_finance'];
 
 function Menu({ setShowPopover, show, setShow }) {
 	const [isOpen, setIsOpen] = useState(false);

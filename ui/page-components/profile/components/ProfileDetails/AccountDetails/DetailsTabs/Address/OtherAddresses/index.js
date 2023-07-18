@@ -1,6 +1,7 @@
-import { Modal, Badge } from '@cogoport/components';
+import { Modal, Badge, Button } from '@cogoport/components';
 import {
 	IcMArrowRotateDown,
+	IcMArrowRotateRight,
 	IcMFtaskNotCompleted,
 } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -72,32 +73,6 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 			{Object.values(OTHER_ADDRESSES_MAPPING).map((address_key) => (
 				<div className={styles.main_container}>
 					<div className={styles.flex}>
-						<div className={styles.body}>
-							<div className={styles.flex}>
-								<div className={styles.head}>
-									<div className={styles.text}>{address_key.label}</div>
-									<Badge
-										className={styles.badge}
-										color="#f8f2e7"
-										size="md"
-										text={addresCount(address_key)}
-									/>
-								</div>
-							</div>
-							<div className={styles.flex}>
-								<div
-									className={styles.link_text}
-									onClick={() => {
-										setEditOtherAddressKey(address_key);
-										setMobalType(false);
-									}}
-									role="presentation"
-								>
-									+ Add Address
-								</div>
-							</div>
-						</div>
-
 						<div
 							className={styles.icon_container}
 							onClick={() => setShowData((ps) => ({
@@ -110,13 +85,38 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 							{showData[address_key.api_property_key] ? (
 								<IcMArrowRotateDown width={20} height={15} style={{ transform: 'rotate(180deg)' }} />
 							) : (
-								<IcMArrowRotateDown
+								<IcMArrowRotateRight
 									width={20}
 									height={15}
-
 								/>
 							)}
 						</div>
+
+						<div className={styles.body}>
+							<div className={styles.flex}>
+								<div className={styles.head}>
+									<div className={styles.text}>{address_key.label}</div>
+									<Badge
+										className={styles.badge}
+										color="#f3fafa"
+										size="md"
+										text={addresCount(address_key)}
+									/>
+								</div>
+							</div>
+							<div className={styles.flex}>
+								<Button
+									onClick={() => {
+										setEditOtherAddressKey(address_key);
+										setMobalType(false);
+									}}
+									themeType={showData[address_key.api_property_key] ? 'primary' : 'secondary'}
+								>
+									Add Address +
+								</Button>
+							</div>
+						</div>
+
 					</div>
 
 					<div>

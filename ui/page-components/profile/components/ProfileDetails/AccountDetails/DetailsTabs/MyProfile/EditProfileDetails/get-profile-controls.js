@@ -1,4 +1,4 @@
-import work_scopes from '../../../../configurations/work-scopes';
+import getWorkScopes from '../../../../configurations/work-scopes';
 
 import languages from '@/ui/commons/configurations/languages';
 
@@ -52,11 +52,11 @@ const getProfileControls = ({ userDetails = {} }) => [
 	{
 		name     : 'work_scopes',
 		label    : 'Role in Company',
-		type     : 'select',
+		type     : 'multi_select',
 		asyncKey : 'work-scopes',
 		style    : { width: '300px' },
 		value    : userDetails.work_scopes,
-		options  : work_scopes,
+		options  : getWorkScopes(),
 		multiple : true,
 	},
 	{
@@ -64,7 +64,7 @@ const getProfileControls = ({ userDetails = {} }) => [
 		label       : 'Preferred Languages',
 		placeholder : 'Enter Preferred Languages',
 		style       : { width: '300px' },
-		type        : 'select',
+		type        : 'multi_select',
 		asyncKey    : 'languages',
 		value       : userDetails.preferred_languages,
 		options     : languages,

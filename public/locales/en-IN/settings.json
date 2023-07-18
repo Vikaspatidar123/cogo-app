@@ -1,0 +1,13 @@
+{
+    "settings_kyc_pending_text":"KYC Pending",
+    "settings_kyc_verified_text":"KYC Verified",
+    "settings_kyc_rejcted_text":"KYC Rejected",
+    "settings_mobile_number_label":"Mobile Number",
+    "settings_whatsapp_number_label":"WhatsApp Number",
+    "settings_email_label":"Email ID",
+    "settings_page_tab_0":"My profile",
+    "settings_page_tab_1":"Company Details",
+    "settings_page_tab_2":"My Profile",
+    "settings_page_tab_3":"Address",
+    "settings_page_tab_4":"Alerts and Preferences"
+}

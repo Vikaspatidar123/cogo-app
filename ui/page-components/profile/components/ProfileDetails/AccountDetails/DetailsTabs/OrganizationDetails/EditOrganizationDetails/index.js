@@ -46,7 +46,7 @@ function EditOrganizationDetails({
 			</div>
 			<div className={styles.button_container}>
 				<Button
-					themeType="tertiary"
+					themeType="secondary"
 					size="md"
 					disabled={loading}
 					style={{
@@ -57,7 +57,6 @@ function EditOrganizationDetails({
 					Cancel
 				</Button>
 				<Button
-					themeType="accent"
 					size="md"
 					disabled={loading}
 					onClick={handleSubmit(onCreate, onError)}

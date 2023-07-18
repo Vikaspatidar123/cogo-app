@@ -1,12 +1,12 @@
 import AccountDetails from './AccountDetails';
-import ProfileProgress from './ProfileProgress';
+// import ProfileProgress from './ProfileProgress';
 import styles from './styles.module.css';
 
 function ProfileDetails() {
 	return (
 		<>
-			<ProfileProgress />
-
+			{/* <ProfileProgress /> */}
+			<div className={styles.heading}>Account Settings</div>
 			<div className={styles.container}>
 				<AccountDetails />
 			</div>

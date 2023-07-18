@@ -19,7 +19,7 @@ function SearchResultsServiceItemFormElement({
 				const controlStyle = controlItem?.style;
 				const Element = getField(type);
 
-				const show =					!(controlItem.name in showElements) || showElements[controlItem.name];
+				const show = !(controlItem.name in showElements) || showElements[controlItem.name];
 
 				if (!show || !Element) {
 					return null;

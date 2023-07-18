@@ -1,15 +1,15 @@
 const getOtherAddressOptions = () => {
 	const OTHER_ADDRESSES_MAPPING = {
 		office_address: {
-			label            : 'Office Address',
+			label            : 'OFFICE ADDRESS',
 			api_property_key : 'office',
 		},
 		factory_address: {
-			label            : 'Factory Address',
+			label            : 'FACTORY ADDRESS',
 			api_property_key : 'factory',
 		},
 		warehouse_address: {
-			label            : 'Warehouse Address',
+			label            : 'WAREHOUSE ADDRESS',
 			api_property_key : 'warehouse',
 		},
 	};

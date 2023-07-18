@@ -1,4 +1,3 @@
-function DocumentsWallet() {
-	return <div>DocumentsWallet</div>;
-}
-export default DocumentsWallet;
+import Docuemnts from '@/ui/page-components/documents';
+
+export default Docuemnts;

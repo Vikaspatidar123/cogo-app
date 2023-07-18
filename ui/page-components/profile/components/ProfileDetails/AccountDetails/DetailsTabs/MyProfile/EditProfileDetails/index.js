@@ -14,7 +14,7 @@ function EditProfileDetails({
 }) {
 	const {
 		showElements,
-		fields = {},
+		fields = [],
 		errors = {},
 		handleSubmit = () => {},
 		onCreate = () => {},
@@ -39,17 +39,15 @@ function EditProfileDetails({
 					}
 					const ELEMENT = item.type !== 'fieldArray' && getField(item.type);
 					const show = showElements[item.name];
-					return (
-						show
-            && item.type !== 'fieldArray' && (
-	<div className={styles.field}>
-		<div className={styles.lable}>{item.label}</div>
-		<ELEMENT {...item} control={control} />
-		<div className={styles.errors}>
-			{errors[item?.name]?.message}
-		</div>
-	</div>
-						)
+					return (show && item.type !== 'fieldArray' && (
+						<div className={styles.field}>
+							<div className={styles.lable}>{item.label}</div>
+							<ELEMENT {...item} control={control} />
+							<div className={styles.errors}>
+								{errors[item?.name]?.message}
+							</div>
+						</div>
+					)
 					);
 				})}
 			</div>

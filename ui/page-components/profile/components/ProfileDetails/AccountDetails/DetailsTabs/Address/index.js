@@ -13,13 +13,15 @@ function Address() {
 		router.push('/settings');
 	};
 	const { data, loading, addressesData, addressLoading, getAddress, getAdd } = useGetBillingAddress();
+
 	const organizationBillingAddressesList = data?.list || [];
+
 	return (
 		<>
 			<MobileHeader heading="Addresses" onClickBackButton={onClickBackButton} />
 
 			<BillingAddresses
-				title="Billing Address"
+				title="BILLING ADDRESS"
 				organizationBillingAddressesList={organizationBillingAddressesList}
 				loading={loading}
 				getAddress={getAddress}

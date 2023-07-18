@@ -66,7 +66,7 @@ function Plan() {
 					)}
 					value={activeTab}
 					onChange={(e) => {
-						setActiveTab(e.target.checked ? 'monthly' : 'annual');
+						setActiveTab(e.target.checked ? 'annual' : 'monthly');
 					}}
 				/>
 			</div>

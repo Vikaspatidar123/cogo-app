@@ -19,30 +19,33 @@ function TableList({ features = {} }) {
 	return (
 		<>
 			{(featureArray || []).map(
-				({ display_name = '', description = null, plan_values = {} }) => (
-					<div className={styles.row} key={plan_values}>
-						<div className={`${styles.col} ${styles.feature} ${styles.feature_name}`}>
-							<div className={styles.info_icon}>
-								{description ? (
-									<Tooltip
-										content={description}
-										placement="top"
-									>
-										<div>
-											<IcMInfo width={15} height={15} />
-										</div>
-									</Tooltip>
-								) : (
-									<IcMInfo width={15} height={15} />
-								)}
+				(item) => {
+					const { display_name = '', description = null, plan_values = {} } = item || {};
+					return (
+						<div className={styles.row} key={plan_values}>
+							<div className={`${styles.col} ${styles.feature} ${styles.feature_name}`}>
+								<div className={styles.info_icon}>
+									{description ? (
+										<Tooltip
+											content={description}
+											placement="top"
+										>
+											<div>
+												<IcMInfo width={15} height={15} />
+											</div>
+										</Tooltip>
+									) : (
+										<IcMInfo width={15} height={15} />
+									)}
+								</div>
+								<div className={styles.row_title_value}>{display_name}</div>
 							</div>
-							<div className={styles.row_title_value}>{display_name}</div>
+							<div className={styles.plan_name}>
+								<PlanDetails planValues={plan_values} />
+							</div>
 						</div>
-						<div className={styles.plan_name}>
-							<PlanDetails planValues={plan_values} />
-						</div>
-					</div>
-				),
+					);
+				},
 			)}
 		</>
 	);

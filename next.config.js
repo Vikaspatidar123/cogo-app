@@ -18,6 +18,10 @@ module.exports = {
 			},
 			{
 				protocol : 'https',
+				hostname : 'cogoport-testing.sgp1.digitaloceanspaces.com',
+			},
+			{
+				protocol : 'https',
 				hostname : 'cdn.cogoport.io',
 			},
 			{

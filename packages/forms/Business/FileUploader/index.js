@@ -11,7 +11,7 @@ function FileUploader(props) {
 	const {
 		source = '',
 		onChange = () => {},
-		showProgress,
+		showProgress = true,
 		multiple = false,
 		docName,
 		accept,
@@ -112,17 +112,19 @@ function FileUploader(props) {
 		<IcMDocument
 			style={{ height: '30', width: '30', color: '#2C3E50' }}
 		/>
-		<div className={styles.file_upload_progress}>
-			<div className={styles.file_name}>
-				{`File uploading (${progress[key]}%)...`}
+		{showProgress && (
+			<div className={styles.file_upload_progress}>
+				<div className={styles.file_name}>
+					{`File uploading (${progress[key]}%)...`}
+				</div>
+				<div className={styles.progress_bar}>
+					<div
+						className={styles.progress}
+						style={{ width: `${progress[key]}%` }}
+					/>
+				</div>
 			</div>
-			<div className={styles.progress_bar}>
-				<div
-					className={styles.progress}
-					style={{ width: `${progress[key]}%` }}
-				/>
-			</div>
-		</div>
+		)}
 	</div>
         ))}
 		</>

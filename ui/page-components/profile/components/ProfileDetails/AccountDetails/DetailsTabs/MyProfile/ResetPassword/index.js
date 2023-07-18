@@ -1,10 +1,10 @@
 import { Button } from '@cogoport/components';
 
-import PasswordValidator from './PasswordValidator';
 import styles from './styles.module.css';
 import useResetPassword from './useResetPassword';
 
 import { InputController } from '@/packages/forms';
+import PasswordValidator from '@/ui/commons/components/PasswordValidator';
 
 function ResetPassword({
 	setShowPasswordModal = () => {},

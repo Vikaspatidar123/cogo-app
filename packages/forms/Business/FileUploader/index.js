@@ -79,10 +79,10 @@ function FileUploader(props) {
 		const validFileSize = fileInfo.map((val) => val.size > +defaultMaxSize);
 
 		if (validFileSize.includes(true)) {
-			const size_in_mb = (defaultMaxSize / ONE_MB_IN_BYTE).toFixed(2);
+			const sizeInMb = (defaultMaxSize / ONE_MB_IN_BYTE).toFixed(2);
 
 			Toast.error(
-				`File Upload failed, Maximum size allowed - ${size_in_mb} MB`,
+				`File Upload failed, Maximum size allowed - ${sizeInMb} MB`,
 			);
 			return false;
 		}

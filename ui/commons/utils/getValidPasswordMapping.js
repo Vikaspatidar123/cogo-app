@@ -11,7 +11,7 @@ function rangeOfChars(start, stop) {
 	return result;
 }
 
-const VALID_PASSWORD_MAPPINGS = ({ t }) => ({
+const getValidPasswordMapping = ({ t }) => ({
 	lowercase: {
 		characters : rangeOfChars('a', 'z'),
 		message    : t('common:password_validator_rule_message_1'),
@@ -34,4 +34,4 @@ const VALID_PASSWORD_MAPPINGS = ({ t }) => ({
 	},
 });
 
-export default VALID_PASSWORD_MAPPINGS;
+export default getValidPasswordMapping;

@@ -1,13 +1,13 @@
 import { IcCTick } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 
-import VALID_PASSWORD_MAPPINGS from '../../utils/getValidPasswordMapping';
+import getValidPasswordMapping from '../../utils/getValidPasswordMapping';
 
 import styles from './styles.module.css';
 
 function PasswordValidator({ password = '' }) {
 	const { t } = useTranslation(['common']);
-	const validPassword = VALID_PASSWORD_MAPPINGS({ t });
+	const validPassword = getValidPasswordMapping({ t });
 
 	return (
 		<div className={styles.password_validator}>

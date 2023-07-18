@@ -1,12 +1,18 @@
-/* eslint-disable import/no-unresolved */
-import COUNTRIES from '@/.data-store/constants/countries.json';
+import { countriesHash, countriesCodeHash } from './getCountriesHash';
 
-const countriesHash = COUNTRIES.reduce(
-	(pv, acc) => ({ ...pv, [acc.id]: acc }),
-	{},
-);
+const getCountryDetails = ({ country_id, country_code }) => {
+	const countryDetails = countriesHash[country_id] || countriesCodeHash[country_code] || {};
 
-const getCountryDetails = ({ country_id }) => countriesHash[country_id] || {};
+	if (country_id && country_code) {
+		return countryDetails.country_code === country_code ? countryDetails : {};
+	}
+	return countryDetails;
+};
+
+export const getCountryIds = ({ countryCodes }) => countryCodes.map((code) => {
+	const countryInfo = getCountryDetails({ country_code: code });
+	return countryInfo.id;
+});
 
 export const getCountryCode = ({ country_id }) => {
 	const countryDetails = getCountryDetails({ country_id });

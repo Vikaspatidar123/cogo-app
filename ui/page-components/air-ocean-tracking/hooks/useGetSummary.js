@@ -10,10 +10,10 @@ const SUMARY_API = {
 
 const useGetSummary = () => {
 	const { query } = useRouter();
-	const { branch_id, activeTab: avtive } = query;
+	const { branch_id, activeTab: trackingType } = query;
 	const [globalFilter, setGlobalFilter] = useState({
 		page            : 1,
-		activeTab       : avtive || 'ocean',
+		activeTab       : trackingType || 'ocean',
 		shipment_status : '',
 		period_in_days  : '',
 	});

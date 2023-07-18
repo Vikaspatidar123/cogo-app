@@ -205,19 +205,6 @@ const GLOBAL_CONSTANTS = {
 	'https://cogoport-testing.sgp1.digitaloceanspaces.com/b3949cf1f8cd3366d0272bd60c87c930/emoji-list.json',
 	customer_support: 'support@cogoport.com',
 
-	feature_supported_service: {
-		cargo_insurance: {
-			supported_countries: ['IN'],
-		},
-		paylater: {
-			supported_countries: ['IN'],
-		},
-
-		whatsapp: {
-			supported_countries: ['IN'],
-		},
-	},
-
 	regex: {
 		url_end_slash: /\/$/,
 		website_url:

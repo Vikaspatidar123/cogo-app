@@ -2,17 +2,12 @@ import React from 'react';
 
 import getResults from '../../hooks/getResults';
 
-import { Head } from '@/packages/next';
-import { useSelector } from '@/packages/store';
+import { useRouter, Head } from '@/packages/next';
 import Results from '@/ui/page-components/search-results/components';
 
 function SearchResults() {
-	const {
-		query: { search_id, importer_exporter_id },
-	} = useSelector(({ general, profile }) => ({
-		query        : general.query || {},
-		organization : profile?.organization,
-	}));
+	const { query } = useRouter();
+	const { search_id, importer_exporter_id } = query;
 
 	const {
 		headerData: initialHeaderData,
@@ -21,18 +16,18 @@ function SearchResults() {
 		loading,
 		invoice,
 		refetch,
-		setState = () => {},
+		setState = () => { },
 		state,
 		searchData,
 		...restResults
 	} = getResults(search_id);
 
 	const headerData = {
-		search_type        : null,
-		rates_count        : 0,
-		negotiation_status : null,
-		expired            : false,
-		shipment_id        : null,
+		search_type: null,
+		rates_count: 0,
+		negotiation_status: null,
+		expired: false,
+		shipment_id: null,
 		...(initialHeaderData || {}),
 		importer_exporter_id,
 	};

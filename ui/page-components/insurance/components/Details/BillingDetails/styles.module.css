@@ -113,18 +113,6 @@
 	width: 32%;
 }
 
-.field {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	width: 32%;
-	padding: 2px 10px;
-
-	@media (max-width: 760px) {
-		width: 100%;
-	}
-}
-
 .hidden {
 	display: none;
 }
@@ -139,11 +127,6 @@
 	opacity: 1 !important;
 	transition: transform 1.4s;
 	transform: translate(10px, -52px);
-}
-
-.error_message {
-	font-size: 14px;
-	color: #cb6464;
 }
 
 .heading_wrapper_billing {

@@ -14,15 +14,12 @@ const checkFileUploadSize = ({ fileInfo, maxSizeInByte }) => {
 	const defaultMaxSize = maxSizeInByte < MAX_FILE_SIZE ? maxSizeInByte : MAX_FILE_SIZE;
 	const validFileSize = fileInfo.map((val) => val.size > +defaultMaxSize);
 
-	if (validFileSize.includes(true)) {
-		const sizeInMb = (defaultMaxSize / GLOBAL_CONSTANTS.ONE_MB_IN_BYTE).toFixed(2);
+	if (!validFileSize.includes(true)) return true;
 
-		Toast.error(
-			`File Upload failed, Maximum size allowed - ${sizeInMb} MB`,
-		);
-		return false;
-	}
-	return	true;
+	const sizeInMb = (defaultMaxSize / GLOBAL_CONSTANTS.ONE_MB_IN_BYTE).toFixed(2);
+	Toast.error(`File Upload failed, Maximum size allowed - ${sizeInMb} MB`);
+
+	return false;
 };
 
 function FileUploader(props) {

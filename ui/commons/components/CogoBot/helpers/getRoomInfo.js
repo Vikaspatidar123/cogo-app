@@ -1,0 +1,41 @@
+import { getCookie } from '@cogoport/utils';
+
+const getRoomInfo = ({
+	userName,
+	user_id,
+	isUnKnownUser,
+	orgId,
+	lead_user_id,
+	preferredMobileNo,
+	user_email,
+	userDetails,
+	business_name,
+}) => ({
+	user_id,
+	session_type           : 'bot',
+	created_at             : Date.now(),
+	updated_at             : Date.now(),
+	user_name              : userName?.toUpperCase(),
+	new_message_count      : 0,
+	new_user_message_count : 0,
+	last_message           : '',
+	user_type              : isUnKnownUser ? 'public_app' : 'app',
+	support_agent_id       : null,
+	organization_id        : orgId,
+	channel_type           : 'platform_chat',
+	lead_user_id,
+	new_message_sent_at    : Date.now(),
+	spectators_ids         : [],
+	spectators_data        : [],
+	mobile_no              : preferredMobileNo,
+	user_email,
+	organization_name      : business_name,
+	chat_tags              : [],
+	chat_status            : '',
+	user_details           : !isUnKnownUser ? userDetails : {},
+	sender                 : getCookie('cogo_bot_token') || '',
+	previous_tag           : 'new_user',
+	previous_tag_count     : 0,
+});
+
+export default getRoomInfo;

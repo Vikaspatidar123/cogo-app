@@ -1,15 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import { useSelector } from '@/packages/store';
-
 const useGetFiniteList = (hook, params = {}) => {
-	const { pathname } = useSelector(({ general, profile }) => ({
-		...general,
-		user_profile: profile,
-	}));
 	const [errors, setErrors] = useState({});
 	const [loading, setLoading] = useState(true);
-	const [initialPath] = useState(pathname);
 	const [filters, setFilters] = useState({ page: 1, highlight: undefined });
 	const [list, setList] = useState({
 		data         : [],
@@ -50,11 +43,9 @@ const useGetFiniteList = (hook, params = {}) => {
 		}
 	};
 	useEffect(() => {
-		if (initialPath === pathname) {
-			setLoading(true);
-			refetch();
-		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		setLoading(true);
+		refetch();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [filters, JSON.stringify(params)]);
 
 	const hookSetters = {

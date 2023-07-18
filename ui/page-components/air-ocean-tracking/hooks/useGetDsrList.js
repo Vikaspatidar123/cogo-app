@@ -25,7 +25,7 @@ const useGetDsrList = ({ showConfigure }) => {
 				},
 			});
 		} catch (err) {
-			console.log(err, 'err');
+			console.error(err, 'err');
 		}
 	}, [branch_id, trigger]);
 

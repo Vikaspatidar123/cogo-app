@@ -6,6 +6,8 @@ import useCreateOrganizationCreditRequest from '../../../hooks/useCreateOrganiza
 
 import styles from './styles.module.css';
 
+import getGeoConstants from '@/ui/commons/constants/geo';
+
 function GSTproof({
 	proofUrl = '',
 	handleSubmit = () => {},
@@ -14,6 +16,9 @@ function GSTproof({
 	getCreditRequestResponse = {},
 	refetch = () => {},
 }) {
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+
 	const { business_name = '', tax_number = '', address = [] } = getCreditRequestResponse || {};
 	const { createOrganizationCreditRequest = () => {} } = useCreateOrganizationCreditRequest({ refetch });
 
@@ -24,7 +29,13 @@ function GSTproof({
 	return (
 		<>
 			<div>
-				{hasRequestedForCredit && <div>GST Proof</div>}
+				{hasRequestedForCredit && (
+					<div>
+						{REGISTRATION_LABEL}
+						{' '}
+						Proof
+					</div>
+				)}
 			</div>
 			<div className={styles.file_container}>
 				<div className={styles.file}>

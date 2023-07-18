@@ -2,9 +2,10 @@ import {
 	ButtonIcon, Tabs, TabPanel, cl, Button, Popover,
 } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import { TAB_MAPPING, VIEW_MAPPING } from '../../../constant/tabMapping';
+import { getTabMapping, getViewMapping } from '../../../constant/tabMapping';
 import useExportData from '../../../hooks/useExportData';
 import useGetDsrList from '../../../hooks/useGetDsrList';
 import useRedirectFn from '../../../hooks/useRedirectFn';
@@ -18,7 +19,14 @@ import { useRouter } from '@/packages/next';
 function Header(props) {
 	const { globalFilter, filterChangeHandler } = props;
 
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
 	const { query } = useRouter();
+
+	const TAB_MAPPING = getTabMapping({ t });
+
+	const VIEW_MAPPING = getViewMapping({ t });
+
 	const [showConfigure, setShowConfigure] = useState(false);
 
 	const { isArchived = false } = query || {};
@@ -43,7 +51,10 @@ function Header(props) {
 
 				<div className={styles.flex_box}>
 					<ButtonIcon size="lg" icon={<IcMArrowBack />} themeType="primary" onClick={backHandler} />
-					<h2>{isArchived ? 'Archive List' : 'Shipment List'}</h2>
+					<h2>
+						{isArchived ? t('airOceanTracking:tracking_list_archived_heading')
+							: t('airOceanTracking:tracking_list_shipment_heading') }
+					</h2>
 					<div>
 						<Tabs
 							themeType="tertiary"
@@ -65,7 +76,7 @@ function Header(props) {
 								themeType="linkUi"
 								onClick={() => redirectArchivedList(activeTab)}
 							>
-								Archived List
+								{t('airOceanTracking:tracking_list_button_label')}
 							</Button>
 
 							{activeTab === 'ocean' && (
@@ -86,7 +97,7 @@ function Header(props) {
 										type="button"
 										onClick={() => setShowConfigure((prev) => !prev)}
 									>
-										Daily Status Report
+										{t('airOceanTracking:tracking_list_daily_status_report_button_label')}
 									</Button>
 								</Popover>
 							)}
@@ -99,7 +110,7 @@ function Header(props) {
 							className={styles.export_btn}
 							onClick={getTrackingData}
 						>
-							Export Data
+							{t('airOceanTracking:tracking_list_daily_export_data_button_label')}
 						</Button>
 					)}
 				</div>

@@ -1,18 +1,18 @@
-export const options = [
+export const getFilterOption = ({ t }) => [
 	{
-		label : 'SCREENING',
+		label : t('orderHistory:filter_service_type_tec'),
 		value : 'SCREENING',
 	},
 	{
-		label : 'DUTIES',
+		label : t('orderHistory:filter_service_type_dt'),
 		value : 'DUTIES',
 	},
 	{
-		label : 'DOCUMENTS',
+		label : t('orderHistory:filter_service_type_doc'),
 		value : 'DOCUMENTS',
 	},
 	{
-		label : 'CONTROLS',
+		label : t('orderHistory:filter_service_type_control'),
 		value : 'CONTROLS',
 	},
 ];

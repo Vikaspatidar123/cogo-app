@@ -53,7 +53,7 @@ const statusMappings = () => ({
 		icon : 'thumb',
 		main : 'Booking Successfully Placed! ',
 		info : 'We need some information for faster SI generation and BL release.'
-		+ ' So please provide us with contacts who we can approach for further liaisoning.',
+			+ ' So please provide us with contacts who we can approach for further liaisoning.',
 	},
 	service_in_cart: {
 		icon : 'thumb',
@@ -77,7 +77,7 @@ const statusMappings = () => ({
 	},
 });
 
-const getText = (shipment_data, services) => {
+const getText = ({ shipment_data, services, t }) => {
 	const { documents, state, shipment_type, service_type } = shipment_data || {};
 	const isDocThere = isDocPresent(
 		documents || [],
@@ -85,7 +85,7 @@ const getText = (shipment_data, services) => {
 	);
 	const service = services?.find((serviceItem) => mainServices.includes(serviceItem?.service_type));
 	const unconfirmedStates = ['shipment_received', 'init'];
-	const isAllocated =		service?.state === 'awaiting_service_provider_confirmation';
+	const isAllocated = service?.state === 'awaiting_service_provider_confirmation';
 	const unconfirmedServiceStates = [
 		'awaiting_service_provider_confirmation',
 		'init',
@@ -96,19 +96,19 @@ const getText = (shipment_data, services) => {
 	);
 
 	const name = {
-		fcl_freight : 'Awaiting BN',
-		lcl_freight : 'Awaiting Carting order',
-		air_freight : 'Awaiting master AWB',
+		fcl_freight : t('dashboard:getTexts_fcl_freight'),
+		lcl_freight : t('dashboard:getTexts_lcl_freight'),
+		air_freight : t('dashboard:getTexts_air_freight'),
 	};
 
 	if (state === 'cancelled' || state === 'aborted') {
 		return {
-			text       : 'Booking Cancelled',
+			text       : t('dashboard:getTexts_booking_cancelled'),
 			color      : '#FBD69F',
 			isDocThere : true,
 			stateInfo  : {
 				...statusMappings().cancelled,
-				sub: `Reason for cancellation - ${startCase(
+				sub: `${t('dashboard:getTexts_cancellation_subject')} - ${startCase(
 					shipment_data?.cancellation_reason,
 				)}`,
 			},
@@ -116,7 +116,7 @@ const getText = (shipment_data, services) => {
 	}
 	if (state === 'completed') {
 		return {
-			text       : 'Booking Completed',
+			text       : t('dashboard:getTexts_booking_completed'),
 			color      : '#B4F3BE',
 			isDocThere : true,
 			stateInfo  : statusMappings().completed,
@@ -124,7 +124,7 @@ const getText = (shipment_data, services) => {
 	}
 	if (isBookingConfirmed && isDocThere) {
 		return {
-			text      : 'Booking Confirmed',
+			text      : t('dashboard:getTexts_booking_confirmed'),
 			color     : '#B4F3BE',
 			isDocThere,
 			stateInfo : statusMappings().confirmed,
@@ -133,7 +133,7 @@ const getText = (shipment_data, services) => {
 	if (isBookingConfirmed && isMainServiceConfirmed && !isDocThere) {
 		const text = name[shipment_type];
 		return {
-			text       : text || 'Booking Received',
+			text       : text || t('dashboard:getTexts_booking_received'),
 			color      : '#FBD69F',
 			isDocThere : !text,
 			stateInfo  : statusMappings().confirmed,
@@ -141,7 +141,7 @@ const getText = (shipment_data, services) => {
 	}
 	if (isBookingConfirmed && isAllocated && !isMainServiceConfirmed) {
 		return {
-			text      : 'Booking Received',
+			text      : t('dashboard:getTexts_booking_received'),
 			color     : '#FBD69F',
 			isDocThere,
 			stateInfo : statusMappings().booking_allocated,
@@ -149,14 +149,14 @@ const getText = (shipment_data, services) => {
 	}
 	if (isBookingConfirmed && !isMainServiceConfirmed) {
 		return {
-			text      : 'Booking Received',
+			text      : t('dashboard:getTexts_booking_received'),
 			color     : '#FBD69F',
 			isDocThere,
 			stateInfo : statusMappings().user_confirmed,
 		};
 	}
 	return {
-		text      : 'Added to Cart',
+		text      : t('dashboard:getTexts_addedToCart'),
 		color     : '#FBD69F',
 		isDocThere,
 		stateInfo : statusMappings().in_cart,

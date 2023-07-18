@@ -3,6 +3,7 @@ import { Popover, Table, Tooltip } from '@cogoport/components';
 import {
 	IcMEdit, IcMPaste, IcMDelete, IcMOverflowDot,
 } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import formatAmount from '../../../../../commons/utils/formatAmount';
@@ -12,6 +13,10 @@ import useArchive from '../../../hooks/useArchive';
 import ArchiveModal from '../../AllProducts/ArchiveModal';
 
 import styles from './styles.module.css';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const DESCRIPTION_MAX_LENGTH = 10;
 
 function ListView({
 	item,
@@ -28,11 +33,15 @@ function ListView({
 	setIsEdit,
 	isEdit,
 }) {
-	const [archive, setArchive] = useState(false);
 	const { productClassificationId = '', subCategoryCount = 0 } = item || {};
+
+	const { t } = useTranslation(['common', 'productCatalogue']);
+	const [archive, setArchive] = useState(false);
 	const [productClassification, setProductClassification] = useState('');
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 	const [proId, setProId] = useState('');
+	const [visible, setVisible] = useState({});
+
 	const { refetchArchive } = useArchive({
 		proId,
 		setArchive,
@@ -42,21 +51,22 @@ function ListView({
 		setActiveTab,
 		card: false,
 	});
-	const [visible, setVisible] = useState({});
-	useEffect(() => {
-		if (activeSubTab) refetchProduct({ productClassificationId, sub: false });
-	}, [activeSubTab]);
+
 	const renderDescription = (record) => {
-		if (record?.length > 10) {
+		if (record?.length > DESCRIPTION_MAX_LENGTH) {
 			return (
 				<Tooltip placement="top" content={record}>
-					<div>{`${record?.substring(0, 10)}...`}</div>
+					<div>{`${record?.substring(GLOBAL_CONSTANTS.zeroth_index, DESCRIPTION_MAX_LENGTH)}...`}</div>
 				</Tooltip>
 			);
 		}
 		return record;
 	};
 	const check = !apiData?.list?.length > 0 && !subCategory?.length > 0;
+
+	useEffect(() => {
+		if (activeSubTab) refetchProduct({ productClassificationId, sub: false });
+	}, [activeSubTab]);
 
 	useEffect(() => {
 		if (check) setActiveTab('allProducts');
@@ -76,7 +86,7 @@ function ListView({
 				}}
 			>
 				<IcMEdit width={10} height={10} />
-				<p>Edit</p>
+				<p>{t('productCatalogue:product_catalogue_all_products_edit_button_label_1')}</p>
 			</div>
 
 			<div
@@ -89,7 +99,7 @@ function ListView({
 				}}
 			>
 				<IcMPaste width={10} height={10} />
-				<p>Archive</p>
+				<p>{t('productCatalogue:product_catalogue_all_products_edit_button_label_2')}</p>
 			</div>
 			<div
 				className="text"
@@ -102,32 +112,32 @@ function ListView({
 				}}
 			>
 				<IcMDelete width={10} height={10} />
-				<p>Delete</p>
+				<p>{t('productCatalogue:product_catalogue_all_products_edit_button_label_3')}</p>
 			</div>
 		</div>
 	);
 
 	const columns = [
 		{
-			Header   : 'Name',
+			Header   : t('productCatalogue:product_catalogue_list_column_title_1'),
 			id       : 'name',
 			key      : 'name',
 			accessor : (record) => renderDescription(record?.name),
 		},
 		{
-			Header   : 'Description',
+			Header   : t('productCatalogue:product_catalogue_list_column_title_2'),
 			key      : 'description',
 			id       : 'description',
 			accessor : (record) => renderDescription(record?.description),
 		},
 		{
-			Header   : () => 'HS Code',
+			Header   : t('productCatalogue:product_catalogue_list_column_title_3'),
 			key      : 'hsCode',
 			id       : 'hsCode',
 			accessor : (record) => record?.hsCode,
 		},
 		{
-			Header   : () => 'Cost Price',
+			Header   : t('productCatalogue:product_catalogue_list_column_title_4'),
 			key      : 'price',
 			id       : 'price',
 			accessor : (record) => formatAmount({
@@ -141,7 +151,7 @@ function ListView({
 			}),
 		},
 		{
-			Header   : () => 'Selling Price',
+			Header   : t('productCatalogue:product_catalogue_list_column_title_5'),
 			id       : 'netAmount',
 			key      : 'netAmount',
 			accessor : (record) => formatAmount({
@@ -155,7 +165,7 @@ function ListView({
 			}),
 		},
 		{
-			Header   : () => 'Action',
+			Header   : t('productCatalogue:product_catalogue_list_column_title_6'),
 			id       : 'action',
 			key      : 'action',
 			accessor : (record) => (

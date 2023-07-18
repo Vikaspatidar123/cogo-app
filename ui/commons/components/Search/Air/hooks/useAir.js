@@ -7,19 +7,17 @@ import CLASS_MAPPING from '../utils/classMapping';
 import getAirFormData from './useGetAirFormData';
 import getLtlPayload from './useGetLtlPayload';
 
+import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-const INCHCUBE_TO_CBM = 61020;
+const INCH_CUBE_TO_CBM = 61020;
 
-const INDIA_COUNTRY_DETAILS = getCountryDetails({
-	country_id: INDIA_COUNTRY_ID,
-});
-
-const INDIA_COUNTRY_CODE = INDIA_COUNTRY_DETAILS?.country_code;
+const COUNTRY_SPECIFIC_DATA_OBJ = {
+	accessorType : 'navigations',
+	accessor     : 'spot_search_air',
+};
 
 const useAir = ({
 	extraParams = {},
@@ -29,6 +27,7 @@ const useAir = ({
 	onPush = () => {},
 }) => {
 	const router = useRouter();
+	const airFormRef = useRef({});
 
 	const { destination_airport = {}, origin_airport = {} } = airFreightData || {};
 	const filterArray = Object.values(serviceDetails || {}).filter((element) => (
@@ -83,33 +82,32 @@ const useAir = ({
 
 	const originCountry = location?.origin?.country_code;
 	const destinationCountry = location?.destination?.country_code;
-	const airFormRef = useRef({});
+
+	const { is_origin_country_code_in } = getCountrySpecificData({
+		country_code: originCountry,
+		...COUNTRY_SPECIFIC_DATA_OBJ,
+	});
+
+	const { is_destination_country_code_in } = getCountrySpecificData({
+		country_code: destinationCountry,
+		...COUNTRY_SPECIFIC_DATA_OBJ,
+	});
 
 	useEffect(() => {
 		if (isEmpty(location?.origin) && isEmpty(location?.destination)) {
 			return;
 		}
 
-		if (
-			originCountry === INDIA_COUNTRY_CODE
-      && destinationCountry === INDIA_COUNTRY_CODE
-		) {
-			setServiceType('air_domestic');
-		} else {
-			setServiceType('air_international');
-		}
+		setServiceType(is_origin_country_code_in && is_destination_country_code_in
+			? 'air_domestic' : 'air_international');
 
 		let object = location;
-		if (
-			!location?.destination_pincode_checkbox
-      && !isEmpty(location?.destination_pincode)
-		) {
+
+		if (!location?.destination_pincode_checkbox && !isEmpty(location?.destination_pincode)) {
 			object = { ...object, destination_pincode: {} };
 		}
-		if (
-			!location?.origin_pincode_checkbox
-      && !isEmpty(location?.origin_pincode)
-		) {
+
+		if (!location?.origin_pincode_checkbox && !isEmpty(location?.origin_pincode)) {
 			object = { ...object, origin_pincode: {} };
 		}
 		setLocation({ ...object });
@@ -183,7 +181,7 @@ const useAir = ({
               * Number(item.width)
               * Number(item.height)
               * Number(item.quantity))
-            / INCHCUBE_TO_CBM;
+            / INCH_CUBE_TO_CBM;
 
 					length *= 2.54;
 					width *= 2.54;
@@ -385,9 +383,7 @@ const useAir = ({
 				return;
 			}
 		}
-		if (location.origin.country_code !== INDIA_COUNTRY_CODE
-			&& location.destination.country_code !== INDIA_COUNTRY_CODE
-		) {
+		if (!is_origin_country_code_in && !is_destination_country_code_in) {
 			if (isEmpty(location.origin) && isEmpty(location.destination)
 			&& location.origin.country_code === location.destination.country_code
 			) {
@@ -419,7 +415,7 @@ const useAir = ({
 
 			onPush();
 		} catch (error) {
-			Toast(error?.data);
+			Toast.error(getApiErrorString(error?.response?.data));
 		}
 	};
 

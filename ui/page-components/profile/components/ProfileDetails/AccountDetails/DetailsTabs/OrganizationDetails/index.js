@@ -7,7 +7,12 @@ import useOrganizationDetails from './hooks/useOrganizationDetails';
 import LoadingState from './LoadingState';
 import styles from './styles.module.css';
 
+import getGeoConstants from '@/ui/commons/constants/geo';
+
 function OrganizationDetails() {
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+
 	const {
 		loading = false,
 		organizationData = {},
@@ -103,7 +108,9 @@ function OrganizationDetails() {
 
 							<div className={styles.sub_container}>
 								<div className={styles.label_text}>
-									Branch GST
+									Branch
+									{' '}
+									{REGISTRATION_LABEL}
 								</div>
 								<div className={styles.value_text}>
 									{organizationData.branches?.[0].tax_number || '-'}

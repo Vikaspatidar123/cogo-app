@@ -4,10 +4,11 @@ import {
 	IcMArrowBack,
 	IcMOverflowDot,
 } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import List from '../../common/List';
-import listConfig from '../../configurations/list';
+import getlistConfig from '../../configurations/list';
 import useProductCatalogue from '../../hooks/useProductCatalogue';
 import useUnArchive from '../../hooks/useUnArchive';
 
@@ -17,6 +18,9 @@ import UnArchiveModal from './UnArchivedModal';
 import { useRouter } from '@/packages/next';
 
 function ArchiveList() {
+	const { t } = useTranslation(['common', 'productCatalogue']);
+
+	const listConfig = getlistConfig({ t });
 	const {
 		apiData = {},
 		refetchProduct = () => {},
@@ -53,7 +57,7 @@ function ArchiveList() {
 				}}
 			>
 				<IcMPaste width={10} height={10} />
-				<p>UnArchive</p>
+				<p>{t('productCatalogue:product_catalogue_archived_list_popover_label_1')}</p>
 			</div>
 		</div>
 	);
@@ -78,7 +82,7 @@ function ArchiveList() {
 	return (
 		<>
 			<div className={styles.back}>
-				<Tooltip content="Go Back" placement="top">
+				<Tooltip content={t('productCatalogue:product_catalogue_archived_list_go_back_button')} placement="top">
 					<div className="archived" role="presentation">
 						<IcMArrowBack
 							className="icon"
@@ -89,7 +93,9 @@ function ArchiveList() {
 					</div>
 				</Tooltip>
 
-				<div className={styles.title}>Archive</div>
+				<div className={styles.title}>
+					{t('productCatalogue:product_catalogue_archived_list_popover_label_2')}
+				</div>
 			</div>
 
 			<List

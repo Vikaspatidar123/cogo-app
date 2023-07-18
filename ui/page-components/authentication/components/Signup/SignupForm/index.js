@@ -20,6 +20,8 @@ import CountrySelectController from '@/packages/forms/Controlled/CountrySelectCo
 import { useRouter } from '@/packages/next';
 import patterns from '@/ui/commons/configurations/patterns';
 
+const COGOPORT_URL = 'https://www.cogoport.com';
+
 function SignupForm({
 	userDetails = {},
 	leadUserId = '',
@@ -27,10 +29,10 @@ function SignupForm({
 	setUserDetails = () => {},
 	setLeadUserId = () => {},
 }) {
+	const { locale } = useRouter();
+
 	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:signupField';
-
-	const { locale } = useRouter();
 
 	const [customError, setCustomError] = useState('');
 
@@ -192,7 +194,7 @@ function SignupForm({
 				{t('authentication:signup_footer_text')}
 				{'  '}
 				<a
-					href={`https://www.cogoport.com/${locale}/terms-and-conditions/`}
+					href={`${COGOPORT_URL}/${locale}/terms-and-conditions/`}
 					target="_blank"
 					rel="noreferrer"
 				>
@@ -202,7 +204,7 @@ function SignupForm({
 				&
 				{'  '}
 				<a
-					href={`https://www.cogoport.com/${locale}/privacy-policy/`}
+					href={`${COGOPORT_URL}/${locale}/privacy-policy/`}
 					target="_blank"
 					rel="noreferrer"
 				>

@@ -6,6 +6,7 @@ import HelpCard from '../HelpCard';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function LayoutLogo() {
@@ -16,15 +17,17 @@ function LayoutLogo() {
 		<div className={styles.header}>
 
 			<a href="/">
-				<img
+				<Image
 					src={GLOBAL_CONSTANTS.image_url.cogoport_logo}
-					alt="Cogoport"
+					alt={t(`${translationKey}_cogoport`)}
+					width={120}
+					height={36}
 				/>
 			</a>
 
 			<div className={styles.help_mobile}>
 				<Popover placement="bottom" render={(<HelpCard />)}>
-					<Button size="md" themeType="accent">
+					<Button size="md" themeType="accent" type="button">
 						<IcMAgentManagement
 							style={{ marginRight: '4px' }}
 						/>

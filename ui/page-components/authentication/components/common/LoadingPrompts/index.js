@@ -6,6 +6,8 @@ import { prompts } from '../../../configurations/loading-prompts';
 
 import styles from './styles.module.css';
 
+const TIME_INTERVAL = 2000;
+
 function LoadingPrompts({ type = '' }) {
 	const { t } = useTranslation(['common', 'authentication']);
 	const [currentPromptIndex, setCurrentPromptIndex] = useState(0);
@@ -17,7 +19,7 @@ function LoadingPrompts({ type = '' }) {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentPromptIndex((prevIndex) => (prevIndex + 1) % length);
-		}, 2000);
+		}, TIME_INTERVAL);
 
 		return () => {
 			clearInterval(interval);

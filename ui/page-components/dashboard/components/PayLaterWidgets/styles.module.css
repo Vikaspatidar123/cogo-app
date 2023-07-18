@@ -1,40 +1,36 @@
-.container {
+.header {
 	position: relative;
-	padding: 36px 22px 22px 24px;
+	width: 100%;
+	padding: 20px;
+	margin-bottom: 15px;
 	background: #2c3e50;
 	border-radius: 10px;
 	box-shadow: 0 2px 20px rgb(0 0 0 / 15%);
 }
 
-.icon_container {
-	position: absolute;
-	top: -48px;
-	right: -24px;
-}
-
-.header {
-	margin-top: 24px;
+.body {
 	font-size: 24px;
 	line-height: 30px;
 	color: #fff;
 	letter-spacing: 0.02em;
-
-	& .blue {
-		font-weight: bold;
-		color: #b3d5fb;
-	}
 }
 
-.InfoContainer {
+.blue {
+	margin: 0 10px;
+	font-weight: bold;
+	color: #b3d5fb;
+}
+
+.mainBody {
 	display: flex;
 	align-items: center;
-	padding: 17px 11px;
+	padding: 20px;
 	margin: 32px 0;
 	background: #f1f3fe;
 	border-radius: 10px;
 }
 
-.SvgContainer {
+.sub {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -44,8 +40,20 @@
 	border-radius: 10px;
 }
 
-.ButtonContainer {
+.img {
+	width: 1em;
+	height: 1em;
+	fill: none;
+}
+
+.text {
+	margin: 0;
+	font-size: 12px;
+	line-height: 1.4;
+	text-align: left;
+}
+
+.Bottom {
 	display: flex;
-	align-items: center;
 	justify-content: center;
 }

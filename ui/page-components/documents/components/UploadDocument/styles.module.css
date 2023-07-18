@@ -56,7 +56,9 @@
 }
 
 .button_wrapper {
-	display: flex;
-	justify-content: flex-end;
-	width: 100%;
+	@media (max-width: 768px) {
+		display: flex;
+		justify-content: flex-end;
+		width: 100%;
+	}
 }

@@ -8,7 +8,7 @@ import {
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const FIRST_INDEX = 1;
+const PAGE_INDEX = 1;
 
 const getParams = ({ listAll, cogo_entity_id = '', country_id = '' }) => {
 	const pageLimit = listAll
@@ -24,7 +24,7 @@ const getParams = ({ listAll, cogo_entity_id = '', country_id = '' }) => {
 			persona : 'importer_exporter',
 		},
 		sort_by    : 'view_count',
-		page       : FIRST_INDEX,
+		page       : PAGE_INDEX,
 		page_limit : pageLimit,
 	};
 };

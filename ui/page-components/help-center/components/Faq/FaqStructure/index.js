@@ -14,7 +14,7 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 const translationKey = 'helpCenter:faq_answer';
 
 const ARRAY_SIZE = 5;
-const FIRST_INDEX = 1;
+const LENGTH_INDEX = 1;
 const EMPTY_ARR = [...Array(ARRAY_SIZE).keys()];
 
 function FaqStructure({
@@ -44,12 +44,12 @@ function FaqStructure({
 		faq_feedbacks = [],
 	} = answers?.[GLOBAL_CONSTANTS.zeroth_index] || {};
 
-	const recentFeedback = faq_feedbacks?.[faq_feedbacks.length - FIRST_INDEX] || {};
+	const recentFeedback = faq_feedbacks?.[faq_feedbacks.length - LENGTH_INDEX] || {};
 
 	const { is_positive: isPositiveReview, id: feedbackID = '' } =	recentFeedback || {};
 
 	const handleNavigation = () => {
-		const hasBackPath = window.history.length > FIRST_INDEX;
+		const hasBackPath = window.history.length > LENGTH_INDEX;
 
 		if (hasBackPath) {
 			router.back();

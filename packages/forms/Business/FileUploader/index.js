@@ -75,7 +75,7 @@ function FileUploader(props) {
 		try {
 			setLoading(true);
 
-			if (!isEmpty(values.length)) {
+			if (!isEmpty(values)) {
 				setProgress({});
 
 				const promises = values.map((value, index) => uploadFile(index)(value));

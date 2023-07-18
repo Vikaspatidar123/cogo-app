@@ -7,11 +7,11 @@ import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const FIRST_INDEX = 1;
+const LENGTH_INDEX = 1;
 
 function ShowFile({ messageType = '', mediaUrl = '' }) {
 	const urlArray = decodeURI(mediaUrl)?.split('/');
-	const fileNameFromUrl = urlArray[(urlArray?.length || GLOBAL_CONSTANTS.zeroth_index) - FIRST_INDEX] || '';
+	const fileNameFromUrl = urlArray[(urlArray?.length || GLOBAL_CONSTANTS.zeroth_index) - LENGTH_INDEX] || '';
 	const [fileName = '', extension = ''] = fileNameFromUrl.split('.') || [];
 
 	return (

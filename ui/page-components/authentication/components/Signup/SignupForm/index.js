@@ -58,7 +58,7 @@ function SignupForm({
 
 	const formValues = watch();
 
-	const { onSignupApiCall, generateSignUpLeadUser } = useSignupForm({
+	const { onSignupApiCall, generateSignUpLeadUser, onWhatsappChange } = useSignupForm({
 		setCustomError,
 		trigger,
 		setValue,
@@ -140,11 +140,12 @@ function SignupForm({
 						control={control}
 						name="is_whatsapp_number"
 						className={styles.checkbox}
+						onChange={(e) => {
+							onWhatsappChange({ value: e.target.checked });
+						}}
 					/>
 					{t(`${translationKey}_whatsapp_text`)}
-					{' '}
 					<IcCWhatsapp height={20} width={20} />
-					{' '}
 					WhatsApp
 				</div>
 			</div>

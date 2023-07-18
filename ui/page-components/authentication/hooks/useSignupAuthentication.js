@@ -1,6 +1,8 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useRef, useState } from 'react';
 
+import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
 const getFormattedPayload = ({ val, captchaResponse, leadUserId }) => {
@@ -17,6 +19,8 @@ const getFormattedPayload = ({ val, captchaResponse, leadUserId }) => {
 const useSignupAuthentication = ({
 	setMode, setUserDetails, leadUserId,
 }) => {
+	const { t } = useTranslation(['authentication']);
+
 	const [captchaLoading, setCaptchaLoading] = useState(false);
 
 	const recaptchaRef = useRef({});
@@ -51,7 +55,7 @@ const useSignupAuthentication = ({
 				...data,
 			}));
 		} catch (err) {
-			Toast.error((err?.response?.data?.message) || 'Failed to Signup, Please check your details once');
+			Toast.error(getApiErrorString(err?.response?.data) || t('authentication:signup_error_message'));
 		}
 	};
 

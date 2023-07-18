@@ -36,9 +36,13 @@ const useSignupForm = ({
 			}
 		}
 
-		if (name && email && hasMobileValues) {
+		if ((name && email && hasMobileValues)) {
 			onLeadUserDetails({ leadUserId, formValues });
 		}
+	};
+
+	const onWhatsappChange = ({ value = false }) => {
+		onLeadUserDetails({ leadUserId, formValues, is_whatsapp_number: value });
 	};
 
 	const onSignupApiCall = (values, e) => {
@@ -73,6 +77,7 @@ const useSignupForm = ({
 	return {
 		onSignupApiCall,
 		generateSignUpLeadUser,
+		onWhatsappChange,
 	};
 };
 

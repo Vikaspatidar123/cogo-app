@@ -17,6 +17,7 @@
     "signupField_country_label" : "Quốc gia đăng ký",
     "signupField_country_placeholder": "Nhập quốc gia đăng ký",
     "signupField_country_error": "Quốc gia là bắt buộc.",
+    "signup_error_message":"Không đăng ký, vui lòng kiểm tra chi tiết của bạn một lần",
     "signup_footer_text":"Bằng cách đăng ký, bạn đang chấp nhận",
     "signup_submitButton_label": "Bắt đầu",
     "signup_link_login_label":"Bạn co săn san để tạo một tai khoản?",

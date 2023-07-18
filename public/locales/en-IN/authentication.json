@@ -17,6 +17,7 @@
     "signupField_country_label" : "Country of Registration",
     "signupField_country_placeholder": "Enter Country of Registration",
     "signupField_country_error": "Country is required.",
+    "signup_error_message":"Failed to Signup, Please check your details once",
     "signup_footer_text":"By signing up, you are accepting the",
     "signup_submitButton_label": "Get Started",
     "signup_link_login_label":"Already have an Account?",

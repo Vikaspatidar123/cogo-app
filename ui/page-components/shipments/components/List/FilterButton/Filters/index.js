@@ -27,8 +27,8 @@ function Filters({
 		})
 		.map((control) => ({ ...control, value: filters[control.name] }));
 
-	const { control, getValues, watch } = useForm();
-
+	const { control, getValues, watch, setValue } = useForm();
+	
 	const fieldsProp = {};
 
 	controls.forEach((item) => {
@@ -71,10 +71,10 @@ function Filters({
 		onClose();
 	};
 
-	const handleReset = () => {
-		setFilters({});
+	const handleReset = async() => {
+		setValue('shipment_type',null);
+		setFilters({}); 
 		onClose();
-		// setValue({});
 	};
 
 	return (

@@ -83,8 +83,8 @@
 
 	@media (max-width: 768px) {
 		display: flex;
-		flex-direction: row;
-		width: unset;
+		flex-direction: column;
+		width: 100%;
 		margin-bottom: 4px;
 	}
 }
@@ -123,9 +123,9 @@
 	width: 23%;
 
 	@media (max-width: 768px) {
-		all: unset;
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
+		width: 100%;
 		margin-bottom: 4px;
 	}
 }
@@ -150,6 +150,7 @@
 	@media (max-width: 768px) {
 		display: flex;
 		flex-direction: column;
+		width: 100%;
 		margin-bottom: 8px;
 	}
 }

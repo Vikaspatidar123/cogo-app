@@ -36,13 +36,15 @@ function Documents() {
 				setDocumentDetails={setDocumentDetails}
 			/>
 			<Filters setFilters={setFilters} filters={filters} />
-			<Table
-				columns={columns || []}
-				data={list || []}
-				loading={loading}
-				loadingRowsCount={6}
-				className={styles.table}
-			/>
+			<div className={styles.table_wrapper}>
+				<Table
+					columns={columns || []}
+					data={list || []}
+					loading={loading}
+					loadingRowsCount={6}
+					className={styles.table}
+				/>
+			</div>
 			<div className={styles.pagination_wrapper}>
 				<Pagination
 					type="table"

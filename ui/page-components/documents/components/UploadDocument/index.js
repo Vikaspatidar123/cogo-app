@@ -54,7 +54,7 @@ function UploadDocument({
 					disabled={!isEmpty(image_url)}
 				/>
 			</div>
-			<div>
+			<div className={styles.button_wrapper}>
 				<Button
 					themeType="accent"
 					onClick={addDocument}

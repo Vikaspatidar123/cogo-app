@@ -34,6 +34,10 @@
 			padding: 0;
 		}
 	}
+
+	@media (max-width: 768px) {
+		width: 300px;
+	}
 }
 
 .upload_link {
@@ -45,4 +49,14 @@
 
 .button {
 	margin: 0 7px;
+
+	@media (max-width: 768px) {
+		margin: 7px 0;
+	}
+}
+
+.button_wrapper {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
 }

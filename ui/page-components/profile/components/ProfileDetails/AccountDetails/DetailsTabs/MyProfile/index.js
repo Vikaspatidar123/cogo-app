@@ -53,7 +53,14 @@ function MyProfile() {
 			<div className={styles.main_container}>
 				{!showEditProfileDetails ? (
 					<div className={styles.flex}>
-						<IcMEdit onClick={() => setShowEditProfileDetails(true)} />
+						<Button themeType="secondary" onClick={() => setShowEditProfileDetails(true)}>
+							<div>Edit</div>
+							<IcMEdit
+								width={14}
+								height={14}
+								className={styles.edit_icon}
+							/>
+						</Button>
 					</div>
 				) : null}
 

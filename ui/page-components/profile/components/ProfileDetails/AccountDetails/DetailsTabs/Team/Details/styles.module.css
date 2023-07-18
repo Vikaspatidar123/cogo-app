@@ -66,10 +66,19 @@
 	padding: 16px;
 	margin: 10px 0;
 	background-color: #fdfbf6;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 }
 
 .sub_container {
 	width: 24%;
+
+	@media (max-width: 768px) {
+		width: 100%;
+		margin-top: 10px;
+	}
 }
 
 .value_text_2 {

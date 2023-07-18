@@ -16,8 +16,8 @@
 
 	@media (max-width: 768px) {
 		display: flex;
-		flex-direction: row;
-		width: unset;
+		flex-direction: column;
+		width: 100%;
 		margin-bottom: 4px;
 	}
 }
@@ -28,7 +28,7 @@
 	width: 25%;
 
 	@media (max-width: 768px) {
-		display: none;
+		width: 100%;
 	}
 }
 
@@ -58,8 +58,8 @@
 	@media (max-width: 768px) {
 		all: unset;
 		display: flex;
-		flex-direction: row;
-		width: fit-content;
+		flex-direction: column;
+		width: 100%;
 		margin-bottom: 4px;
 	}
 }
@@ -115,8 +115,9 @@
 	@media (max-width: 768px) {
 		all: unset;
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		width: fit-content;
+		width: 100%;
 		margin-bottom: 4px;
 	}
 }
@@ -129,8 +130,8 @@
 	@media (max-width: 768px) {
 		all: unset;
 		display: flex;
-		flex-direction: row;
-		width: fit-content;
+		flex-direction: column;
+		width: 100%;
 		margin-bottom: 4px;
 	}
 }

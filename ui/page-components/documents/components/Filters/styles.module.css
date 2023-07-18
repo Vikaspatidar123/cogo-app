@@ -2,6 +2,10 @@
 	display: flex;
 	justify-content: flex-end;
 	margin: 7px 0;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 }
 
 .input {
@@ -11,6 +15,10 @@
 .select_container {
 	width: 300px;
 	margin: 0 5px;
+
+	@media (max-width: 768px) {
+		margin: 10px 0;
+	}
 }
 
 .filters_wrapper {
@@ -29,4 +37,8 @@
 	font-size: 16px;
 	font-weight: 600;
 	color: #4f4f4f;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
 }

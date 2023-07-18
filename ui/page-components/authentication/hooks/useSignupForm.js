@@ -17,9 +17,9 @@ const useSignupForm = ({
 }) => {
 	const { name, email, mobile_number } = formValues;
 
-	const generateSignUpLeadUser = ({ source = '' }) => {
-		const hasMobileValues = checkMobileInput({ mobNumberObj: mobile_number });
+	const hasMobileValues = checkMobileInput({ mobNumberObj: mobile_number });
 
+	const generateSignUpLeadUser = ({ source = '' }) => {
 		if (!source) {
 			return;
 		}
@@ -42,8 +42,6 @@ const useSignupForm = ({
 	};
 
 	const onSignupApiCall = (values, e) => {
-		const hasMobileValues = checkMobileInput({ mobNumberObj: values?.mobile_number });
-
 		if (hasMobileValues) {
 			setUserDetails({ ...formValues });
 			onSignupAuthentication(values, e);
@@ -59,17 +57,18 @@ const useSignupForm = ({
 			mobile_country_code = '',
 			id = '',
 		} = getCountryDetailsByCountryCode({ country_code: locationCountryCode });
-		setValue('mobile_number', { country_code: mobile_country_code });
-		setValue('country_id', id);
-	}, [setValue]);
+
+		if (!hasMobileValues) {
+			setValue('mobile_number', { country_code: mobile_country_code });
+			setValue('country_id', id);
+		}
+	}, [hasMobileValues, setValue]);
 
 	useEffect(() => {
-		const hasMobileValues = checkMobileInput({ mobNumberObj: mobile_number });
-
 		if (hasMobileValues) {
 			setCustomError('');
 		}
-	}, [mobile_number, setCustomError]);
+	}, [hasMobileValues, setCustomError]);
 
 	return {
 		onSignupApiCall,

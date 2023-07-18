@@ -53,14 +53,11 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 
 	const formValues = watch();
 
-	const mobileCodeValue = watch('mobile_number');
-
 	const { onSignupApiCall, generateSignUpLeadUser } = useSignupForm({
 		setCustomError,
 		trigger,
 		setValue,
 		formValues,
-		mobileCodeValue,
 		onLeadUserDetails,
 		leadUserId,
 		setUserDetails,
@@ -114,6 +111,7 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 
 			<div className={styles.field}>
 				<div className={styles.label}>{t(`${translationKey}_mobile_label`)}</div>
+
 				<MobileNumberSelectController
 					control={control}
 					name="mobile_number"
@@ -123,7 +121,9 @@ function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = ()
 					}}
 					mode="onBlur"
 					onBlur={() => generateSignUpLeadUser({ source: 'mobile_number' })}
+
 				/>
+
 				<span className={styles.errors}>
 					{customError || ''}
 				</span>

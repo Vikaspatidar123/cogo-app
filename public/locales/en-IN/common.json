@@ -148,5 +148,11 @@
     "email_verification":"Email Verification Failed!",
     "send_email_text":"Send Verification Email",
     "token_invalid_text":"Token is invalid",
-    "token_expired_text":"Token has expired"
+    "token_expired_text":"Token has expired",
+    "password_validator_text_1":"Password must contain:",
+    "password_validator_rule_message_1":"at least one lowercase character.",
+    "password_validator_rule_message_2":"at least one uppercase character.",
+    "password_validator_rule_message_3":"at least one digit.",
+    "password_validator_rule_message_4":"at least one special character.",
+    "password_validator_rule_message_5":"minimum 8 characters."
 }

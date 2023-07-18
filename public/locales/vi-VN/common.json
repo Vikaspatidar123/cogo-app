@@ -148,5 +148,11 @@
     "email_verification":"Xác minh email không thành công!",
     "send_email_text":"Gửi email xác minh",
     "token_invalid_text":"Mã thông báo không hợp lệ",
-    "token_expired_text":"Mã thông báo đã hết hạn"
+    "token_expired_text":"Mã thông báo đã hết hạn",
+    "password_validator_text_1":"Mật khẩu cần phải bảo vệ:",
+    "password_validator_rule_message_1":"ít nhất một ký tự viết thường.",
+    "password_validator_rule_message_2":"ít nhất một ký tự viết hoa.",
+    "password_validator_rule_message_3":"ít nhất một chữ số.",
+    "password_validator_rule_message_4":"ít nhất một nhân vật đặc biệt.",
+    "password_validator_rule_message_5":"Tối thiểu 8 ký tự."
 }

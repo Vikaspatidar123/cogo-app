@@ -11,27 +11,27 @@ function rangeOfChars(start, stop) {
 	return result;
 }
 
-const VALID_PASSWORD_MAPPINGS = {
+const VALID_PASSWORD_MAPPINGS = ({ t }) => ({
 	lowercase: {
-		characters : rangeOfChars('a', 'z'),
-		message    : 'at least one lowercase character.',
+		characters: rangeOfChars('a', 'z'),
+		message: t('common:password_validator_rule_message_1'),
 	},
 	uppercase: {
-		characters : rangeOfChars('A', 'Z'),
-		message    : 'at least one uppercase character.',
+		characters: rangeOfChars('A', 'Z'),
+		message: t('common:password_validator_rule_message_2'),
 	},
 	digit: {
-		characters : rangeOfChars('0', '9'),
-		message    : 'at least one digit.',
+		characters: rangeOfChars('0', '9'),
+		message: t('common:password_validator_rule_message_3'),
 	},
 	special: {
-		characters : '!@#$%^&*'.split(''),
-		message    : 'at least one special character.',
+		characters: '!@#$%^&*'.split(''),
+		message: t('common:password_validator_rule_message_4'),
 	},
 	minLength: {
-		length  : 8,
-		message : 'minimum 8 characters.',
+		length: 8,
+		message: t('common:password_validator_rule_message_5'),
 	},
-};
+});
 
 export default VALID_PASSWORD_MAPPINGS;

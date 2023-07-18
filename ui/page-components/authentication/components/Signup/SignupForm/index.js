@@ -20,14 +20,19 @@ import CountrySelectController from '@/packages/forms/Controlled/CountrySelectCo
 import { useRouter } from '@/packages/next';
 import patterns from '@/ui/commons/configurations/patterns';
 
-function SignupForm({ userDetails = {}, setMode = () => { }, setUserDetails = () => {} }) {
+function SignupForm({
+	userDetails = {},
+	leadUserId = '',
+	setMode = () => {},
+	setUserDetails = () => {},
+	setLeadUserId = () => {},
+}) {
 	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:signupField';
 
 	const { locale } = useRouter();
 
 	const [customError, setCustomError] = useState('');
-	const [leadUserId, setLeadUserId] = useState('');
 
 	const {
 		onSignupAuthentication,

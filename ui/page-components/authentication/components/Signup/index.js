@@ -16,6 +16,7 @@ const SIGNUP_FLOW_MAPPING = {
 
 function Signup() {
 	const [mode, setMode] = useState('signup_form');
+	const [leadUserId, setLeadUserId] = useState('');
 
 	const [userDetails, setUserDetails] = useState({
 		name               : '',
@@ -29,8 +30,10 @@ function Signup() {
 	const componentProps = {
 		signup_form: {
 			userDetails,
+			leadUserId,
 			setMode,
 			setUserDetails,
+			setLeadUserId,
 		},
 		otp_form: {
 			userDetails,

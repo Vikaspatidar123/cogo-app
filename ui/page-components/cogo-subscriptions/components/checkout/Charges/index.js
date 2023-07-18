@@ -11,6 +11,7 @@ import { getCurrencyDetail } from '../../../utils/getCurrencyDetail';
 
 import styles from './styles.module.css';
 
+import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const description = () => (
@@ -56,13 +57,16 @@ function Charges({
 	const { plan = {}, pricing = {}, allow_activate_later = false } = plans || {};
 	const loading = checkoutResponse?.errors || completeOrderLoading;
 
+	const geo = getGeoConstants();
+	const { is_tax_included } = geo.others.navigations.subscription;
+
 	const {
 		applyPromoCode, promoCodeData, couponCode, setCouponCode,
 	} =		useUpdateSaasCheckout({
 		checkoutResponse,
 	});
 
-	const { discount_amount: discountedAmount, total_amount: totalAmount } =		promoCodeData || {};
+	const { discount_amount: discountedAmount, total_amount: totalAmount } = promoCodeData || {};
 
 	const couponCodeLength = Object.keys(couponCode)?.length;
 	const handleClick = ({ value, item }) => {
@@ -105,12 +109,14 @@ function Charges({
 			</div>
 			<div className={styles.div}>
 				<div className={styles.styled_row}>
-					<div className={styles.styled_col}>
-						<div>
-							{plan?.description}
-							<div className={styles.gst}>(Gst Included)</div>
+					{is_tax_included && (
+						<div className={styles.styled_col}>
+							<div>
+								{plan?.description}
+								<div className={styles.gst}>(Gst Included)</div>
+							</div>
 						</div>
-					</div>
+					)}
 					<div className={styles.styled_col2}>
 						{plan?.metadata?.display_pricing?.[`${query?.period}`]
 							?.prev_value_inr && (

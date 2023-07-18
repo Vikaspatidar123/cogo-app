@@ -15,7 +15,7 @@ function LayoutHelp() {
 
 			<Popover placement="bottom" render={(<HelpCard />)}>
 
-				<Button size="md" themeType="accent">
+				<Button size="md" themeType="accent" type="button">
 					<IcMAgentManagement
 						style={{ marginRight: '4px' }}
 					/>

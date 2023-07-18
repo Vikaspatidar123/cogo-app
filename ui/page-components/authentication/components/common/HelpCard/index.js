@@ -27,7 +27,7 @@ function HelpCard() {
 			<div className={styles.links}>
 				<IcMEmail style={{ marginRight: '8px' }} />
 
-				Email:
+				{t(`${translationKey}_email`)}
 
 				<a href={`mailto:${EMAIL_ID}`} className={styles.link_value}>
 					{EMAIL_ID}
@@ -37,7 +37,7 @@ function HelpCard() {
 			<div className={styles.links}>
 				<IcMCall style={{ marginRight: '8px' }} />
 
-				Mobile Number:
+				{t(`${translationKey}_mobile`)}
 
 				<a href={`tel:${PHONE_NUMBER}`} className={styles.link_value}>
 					{PHONE_NUMBER}

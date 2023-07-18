@@ -10,6 +10,7 @@ import useSetPassword from '../../hooks/useSetPassword';
 import styles from './styles.module.css';
 
 import { InputController, useForm } from '@/packages/forms';
+import { Image } from '@/packages/next';
 import PasswordValidator from '@/ui/commons/components/PasswordValidator';
 import patterns from '@/ui/commons/configurations/patterns';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
@@ -49,9 +50,11 @@ function SetPassword({ showModal = false, setShowModal = () => { } }) {
 		>
 			<Modal.Header
 				title={(
-					<img
+					<Image
 						src={GLOBAL_CONSTANTS.image_url.cogoport_logo}
 						alt="Cogoport"
+						width={120}
+						height={36}
 					/>
 				)}
 			/>

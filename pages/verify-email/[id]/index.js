@@ -15,7 +15,7 @@ export async function getServerSideProps(ctx) {
 		const redirectPath = '/dashboard?mode=set_password';
 		setCookieAndRedirect(token, ctx, redirectPath);
 	} catch (e) {
-		console.log(e.toString());
+		console.error(e.toString());
 	}
 	return {
 		props: {

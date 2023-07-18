@@ -20,9 +20,12 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function SassDashboard() {
 	const { airTracking, oceanTracking, query, country_id, kyc_status } = GetTracking();
-	const { mail_verify = false } = query;
 
-	const [showPasswordModal, setShowPasswordModal] = useState(mail_verify);
+	const { mode = '' } = query;
+
+	const isSetPassword = mode === 'set_password';
+
+	const [showPasswordModal, setShowPasswordModal] = useState(isSetPassword);
 
 	return (
 		<div className={`${styles.main_class} ${showPasswordModal ? styles.main_class_blur : ''}`}>
@@ -65,7 +68,9 @@ function SassDashboard() {
 					</div>
 				</div>
 			</div>
+
 			<SetPassword showModal={showPasswordModal} setShowModal={setShowPasswordModal} />
+
 		</div>
 
 	);

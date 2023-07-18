@@ -47,7 +47,7 @@ const useSetPassword = ({ password = '', confirm_password = '', setShowModal = (
 
 			Toast.success(t('dashboard:setPassword_success_message'));
 
-			router.push(`/dashboard?mail_verify=${false}`, '/dashboard?mail_verify=false');
+			router.push('/dashboard');
 
 			setShowModal(false);
 		} catch (err) {

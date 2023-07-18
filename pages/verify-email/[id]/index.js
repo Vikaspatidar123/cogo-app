@@ -12,7 +12,7 @@ export async function getServerSideProps(ctx) {
 		const res = await getVerifyEmail({ email_token: id });
 
 		const { token } = (res || {}).data || {};
-		const redirectPath = `/dashboard?mail_verify=${true}`;
+		const redirectPath = '/dashboard?mode=set_password';
 		setCookieAndRedirect(token, ctx, redirectPath);
 	} catch (e) {
 		console.log(e.toString());

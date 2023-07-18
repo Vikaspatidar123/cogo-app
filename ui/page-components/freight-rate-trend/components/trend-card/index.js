@@ -10,7 +10,7 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-function TrendCard({ trend = {}, fetchLocations = () => {} }) {
+function TrendCard({ trend = {}, fetchLocations = () => { } }) {
 	const { origin_port = {}, destination_port = {} } = trend || {};
 	const { t } = useTranslation(['frt']);
 	const { push } = useRouter();
@@ -19,8 +19,8 @@ function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 	const [trendId, setTrendId] = useState();
 
 	const routeList = {
-		origin      : origin_port?.name?.split(' - ')[0] || 'Origin',
-		destination : destination_port?.name?.split(' - ')[0] || 'Destination',
+		origin: origin_port?.name?.split(' - ')[0] || 'Origin',
+		destination: destination_port?.name?.split(' - ')[0] || 'Destination',
 	};
 
 	const { loading, deleteTrend } = useDeleteTrendSubscription({ fetchLocations });

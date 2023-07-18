@@ -4,6 +4,7 @@ import { format } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
+import DaliyGraph from './components/DaliyGraph';
 import FilterForm from './components/filter';
 import TrendChart from './components/trend-chart';
 import useFetchActiveTrend from './hooks/useActivetrendsDetails';
@@ -30,7 +31,7 @@ function ActiveFreightRateTrend() {
 	const id = query.trend_id;
 	const { t } = useTranslation(['frt']);
 	const { organization } = useSelector((state) => state.profile);
-	const [activeTab, setActiveTab] = useState('daily');
+	const [activeTab, setActiveTab] = useState('monthly');
 	const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 	const [commodities, setCommodities] = useState('general');
 	const [dateRangePickerValue, setDateRangePickerValue] = useState({
@@ -46,6 +47,7 @@ function ActiveFreightRateTrend() {
 		loading, trendDetails, filters, setFilters, refetch,
 	} = useFetchTrendDetails({
 		id,
+		activeTab,
 	});
 
 	const { activePagination } = useFetchActiveTrend();
@@ -155,6 +157,8 @@ function ActiveFreightRateTrend() {
 				<TabPanel name="monthly" title="Monthly" />
 
 			</Tabs>
+
+			{loading ? <RenderSkeleton /> : <DaliyGraph trendDetails={trendDetails} />}
 			<div className={styles.container}>{loading ? <RenderSkeleton /> : Graph()}</div>
 			<div className={styles.filter_mobile_view}>
 				<Button variant="secondary" size="sm" onClick={handleFilterModal}>

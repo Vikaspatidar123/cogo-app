@@ -74,8 +74,8 @@ function Form({
 			if (ele) {
 				setFormStepper((prev) => ({
 					...prev,
-					[formStepKey[index]]: false,
-					[formStepKey[index - 1]]: true,
+					[formStepKey[index]]     : false,
+					[formStepKey[index - 1]] : true,
 				}));
 
 				setStepper((prev) => ({

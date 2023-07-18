@@ -3,7 +3,6 @@ import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
 import redirectUrl from '../../../constants/redirectUrl';
-import style from '../styles.module.css';
 
 import styles from './styles.module.css';
 
@@ -13,7 +12,7 @@ import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Summary({
 	serviceRates = {},
-	createDraft = () => {},
+	createDraft = () => { },
 	loading = false,
 	formDetails,
 	quotaAvailableStats = {},
@@ -74,13 +73,6 @@ function Summary({
 		}
 	};
 	const renderBtn = () => {
-		if (loading) {
-			return (
-				<div className={style.loading_style}>
-					<Image src={GLOBAL_CONSTANTS.image_url.loading_icon} alt="" width={16} height={16} />
-				</div>
-			);
-		}
 		if (directPayment) {
 			return `${t('traderEligibilityCheck:tec_pay_button_label')} ${(pricePerUnit * 1.18).toFixed(2)} /-`;
 		}
@@ -219,11 +211,17 @@ function Summary({
 						<Button
 							className={styles.redirect_button}
 							onClick={() => redirectingButtonsFunc()}
+							disabled={loading}
 						>
 							{renderButton()}
 						</Button>
 					)}
-					<Button className={styles.submit_button} onClick={submit}>
+					<Button
+						className={styles.submit_button}
+						loading={loading}
+						onClick={submit}
+						disabled={loading}
+					>
 						{renderBtn()}
 					</Button>
 				</div>

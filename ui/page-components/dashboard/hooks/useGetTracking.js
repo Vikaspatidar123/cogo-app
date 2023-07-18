@@ -3,6 +3,10 @@ import { useEffect, useCallback } from 'react';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const getPayload = ({ orgId }) => ({
+	organization: orgId,
+});
+
 function useGetTracking() {
 	const { kyc_status, organizationId } = useSelector(({ profile }) => ({
 		kyc_status     : profile?.organization?.kyc_status,
@@ -19,19 +23,15 @@ function useGetTracking() {
 		container_tracking: oceanTracking = {},
 	} = data?.dashboard_products || {};
 
-	const getPayload = useCallback(() => ({
-		organization: organizationId,
-	}), [organizationId]);
-
 	const getDashboardTrackingInfo = useCallback(() => {
 		try {
 			trigger({
-				params: getPayload(),
+				params: getPayload({ orgId: organizationId }),
 			});
 		} catch (err) {
 			console.error(err?.message || ' Please try again.');
 		}
-	}, [getPayload, trigger]);
+	}, [organizationId, trigger]);
 
 	useEffect(() => {
 		getDashboardTrackingInfo();

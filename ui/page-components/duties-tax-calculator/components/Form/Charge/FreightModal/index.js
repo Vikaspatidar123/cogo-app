@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Modal, Button } from '@cogoport/components';
 import { IcAFinancial } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState, useCallback } from 'react';
 
@@ -113,29 +114,30 @@ function FreightModal({
 						className={styles.loading_styles}
 					/>
 				)}
-				{!spotSearchLoading && rates.length === 0 && (
-					<div className={styles.empty_state}>{t('dutiesTaxesCalculator:freight_modal_empty_state')}</div>
-				)}
-				{!spotSearchLoading && rates.length > 0 && (
-					<div className={styles.list}>
-						<div className={`${styles.row} ${styles.cardheader}`}>
-							<div>{t('dutiesTaxesCalculator:freight_modal_shipping_line')}</div>
-							<div>{t('dutiesTaxesCalculator:freight_modal_rate')}</div>
+				{!spotSearchLoading && (
+					(isEmpty(rates) ? (
+						<div className={styles.empty_state}>{t('dutiesTaxesCalculator:freight_modal_empty_state')}</div>
+					) : (
+						<div className={styles.list}>
+							<div className={`${styles.row} ${styles.cardheader}`}>
+								<div>{t('dutiesTaxesCalculator:freight_modal_shipping_line')}</div>
+								<div>{t('dutiesTaxesCalculator:freight_modal_rate')}</div>
+							</div>
+							<div className={styles.card_list}>
+								<ListRow
+									rates={rates}
+									checked={checked}
+									checkboxHandler={checkboxHandler}
+								/>
+							</div>
 						</div>
-						<div className={styles.card_list}>
-							<ListRow
-								rates={rates}
-								checked={checked}
-								checkboxHandler={checkboxHandler}
-							/>
-						</div>
-					</div>
+					))
 				)}
 			</Modal.Body>
 			<Modal.Footer>
 				<Button
 					size="md"
-					disabled={checked.length === 0 || spotSearchLoading}
+					disabled={isEmpty(checked) || spotSearchLoading}
 					onClick={submitHandler}
 				>
 					{t('dutiesTaxesCalculator:freight_modal_add')}

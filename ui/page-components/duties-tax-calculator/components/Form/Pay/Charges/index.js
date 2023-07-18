@@ -5,6 +5,8 @@ import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
+const QUOTA_DEDUCTED_VALUE = 1;
+
 function Charges({
 	formData = {},
 	isQuotaLeft = false,
@@ -117,7 +119,11 @@ function Charges({
 								<div className={styles.text}>
 									{t('dutiesTaxesCalculator:form_pay_charge_deduct_quota')}
 								</div>
-								<div className={styles.price}>- 1</div>
+								<div className={styles.price}>
+									-
+									{' '}
+									{QUOTA_DEDUCTED_VALUE}
+								</div>
 							</div>
 							<div className={styles.border} />
 
@@ -125,7 +131,7 @@ function Charges({
 								<div className={styles.total}>
 									{t('dutiesTaxesCalculator:form_pay_charge_remain_quota')}
 								</div>
-								<div className={styles.price}>{quotaValue - 1}</div>
+								<div className={styles.price}>{quotaValue - QUOTA_DEDUCTED_VALUE}</div>
 							</div>
 						</>
 					)}

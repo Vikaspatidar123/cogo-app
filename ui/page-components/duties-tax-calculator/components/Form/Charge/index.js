@@ -5,13 +5,15 @@ import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
 import { chargeControls } from '../../../configuration/controls';
-import { ProductCartIcon } from '../../../configuration/icon-configuration';
 import useFreightCharges from '../../../hook/useFreightCharges';
 import style from '../styles.module.css';
 
 import FreightModal from './FreightModal';
 import IncotermCharges from './IncotermCharges';
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const SelectController = getField('select');
 const NumberSelector = getField('number');
@@ -80,7 +82,8 @@ function Charge({
 		<div>
 			<div className={styles.title_container}>
 				<div className={style.title}>
-					<img src={ProductCartIcon} alt="" />
+					<Image src={GLOBAL_CONSTANTS.image_url.product_cart_icon} alt="" width={20} height={20} />
+
 					<div>{t('dutiesTaxesCalculator:form_charge_title')}</div>
 				</div>
 				<div className={cl`${styles.incoterm} ${style.col}`}>

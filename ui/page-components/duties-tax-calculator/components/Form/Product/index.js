@@ -8,7 +8,6 @@ import getField from '../../../../../../packages/forms/Controlled';
 import HsCode from '../../../../hs-code-modal/component';
 import ProductCatalogue from '../../../../product-catalogue-modal';
 import { productControls } from '../../../configuration/controls';
-import { ProductCartIcon } from '../../../configuration/icon-configuration';
 import useCurrencyConversion from '../../../hook/useCurrencyConversion';
 import useVerifyHscode from '../../../hook/useVerifyHscode';
 import productFn from '../../../utils/productFn';
@@ -18,6 +17,9 @@ import style from '../styles.module.css';
 import HyperLink from './HyperLine';
 import ProductBox from './ProductBox';
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const NumberSelector = getField('number');
 const CurrencySelector = getField('select');
@@ -94,9 +96,10 @@ function Product({
 		<div className={styles.container}>
 			<div className={styles.title_container}>
 				<div className={style.title}>
-					<img src={ProductCartIcon} alt="" />
+					<Image src={GLOBAL_CONSTANTS.image_url.product_cart_icon} alt="" width={20} height={20} />
 					<div>{t('dutiesTaxesCalculator:form_product_title')}</div>
 				</div>
+
 				<div className={`${style.col} ${styles.currency}`}>
 					<div className={style.label}>{fields[4]?.label}</div>
 					<CurrencySelector {...fields[4]} control={control} />

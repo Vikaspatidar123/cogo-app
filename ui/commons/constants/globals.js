@@ -230,6 +230,7 @@ const GLOBAL_CONSTANTS = {
 		archive_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg',
 		pen_image                : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg',
 		premium_image            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crown_new.svg',
+		product_cart_icon        : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/productcart.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',

@@ -1,8 +1,11 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useRequest } from '@/packages/request';
 
 const useSaasEmailVerification = () => {
+	const { t } = useTranslation(['common']);
+
 	const [{ loading: resendEmailAPILoading }, resendEmailAPItrigger] = useRequest({
 		url    : 'resend_lead_verification_email',
 		method : 'post',
@@ -21,7 +24,7 @@ const useSaasEmailVerification = () => {
 
 			if (response?.hasError) return;
 
-			Toast.success('Verification Email resent successfully');
+			Toast.success(t('common:resend_email_success_message'));
 		} catch (error) {
 			Toast.error(error?.error);
 		}

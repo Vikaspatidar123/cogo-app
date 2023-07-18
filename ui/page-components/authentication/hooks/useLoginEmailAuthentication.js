@@ -1,12 +1,16 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 
-const useLoginEmailAuthentication = ({ setMode = () => {} }) => {
+const useLoginEmailAuthentication = ({ setMode = () => { } }) => {
 	const { query = '' } = useRouter();
+
+	const { t } = useTranslation(['common']);
+
 	const [{ loading: loginLoading }, trigger] = useRequest(
 		{
 			url    : 'login_user',
@@ -39,7 +43,8 @@ const useLoginEmailAuthentication = ({ setMode = () => {} }) => {
 			setCookieAndRedirect(token, {}, redirectPath);
 		} catch (err) {
 			Toast.error(
-				getApiErrorString(err?.response?.data) || 'Failed to Login, Please try again',
+				getApiErrorString(err?.response?.data) || t('common:loginField_error'),
+
 			);
 		}
 	};

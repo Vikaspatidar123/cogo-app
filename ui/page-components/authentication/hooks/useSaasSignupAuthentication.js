@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useRequest } from '@/packages/request';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
@@ -6,6 +7,8 @@ import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 const useSaasSignupAuthentication = ({
 	setHasSignedup, setUserDetails, captchaResponse, hasWhatsApp, userInfo,
 }) => {
+	const { t } = useTranslation(['common']);
+
 	const [{ loading: signupLoading }, trigger] = useRequest({
 		url    : '/lead/create_sign_up_lead_user',
 		method : 'post',
@@ -40,7 +43,7 @@ const useSaasSignupAuthentication = ({
 			}
 		} catch (e) {
 			if (e?.response?.data?.email?.length > 0) {
-				Toast.error('Email id is already registered. Please Login');
+				Toast.error(t('common:signup_email_error'));
 			} else {
 				showErrorsInToast(e?.response?.data);
 			}

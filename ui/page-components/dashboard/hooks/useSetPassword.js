@@ -22,9 +22,10 @@ const useSetPassword = ({ password = '', confirm_password = '', setShowModal = (
 		const toCheck = password && confirm_password;
 		setCustomErrors(
 			toCheck && confirm_password !== password
-				? 'Password does not match.' : '',
+				? t('dashboard:setPassword_form_error') : '',
+
 		);
-	}, [password, confirm_password]);
+	}, [password, confirm_password, t]);
 
 	const [{ loading }, trigger] = useRequest(
 		{
@@ -52,7 +53,7 @@ const useSetPassword = ({ password = '', confirm_password = '', setShowModal = (
 			setShowModal(false);
 		} catch (err) {
 			Toast.error(
-				getApiErrorString(err?.response?.data) || 'Failed to Set Password',
+				getApiErrorString(err?.response?.data) || t('dashboard:setPassword_error'),
 			);
 		}
 	};

@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
@@ -11,6 +12,9 @@ const useResetPassword = ({ password = '', confirm_password = '' }) => {
 	} = useSelector((state) => state);
 
 	const { id: emailToken = '' } = query;
+
+	const { t } = useTranslation(['authentication']);
+	const translationKey = 'authentication:resetPassword';
 
 	const [customErrors, setCustomErrors] = useState('');
 
@@ -27,9 +31,9 @@ const useResetPassword = ({ password = '', confirm_password = '' }) => {
 			password
 				&& confirm_password
 				&& confirm_password !== password
-				? 'Password does not match.' : '',
+				? t(`${translationKey}_password_mismatch`) : '',
 		);
-	}, [password, confirm_password]);
+	}, [password, confirm_password, t]);
 
 	const onResetPassword = async (values) => {
 		try {
@@ -45,7 +49,7 @@ const useResetPassword = ({ password = '', confirm_password = '' }) => {
 			window.location.href = '/login';
 		} catch (err) {
 			Toast.error(
-				getApiErrorString(err?.response?.data) || 'Failed to Reset Password',
+				getApiErrorString(err?.response?.data) || t(`${translationKey}_error`),
 			);
 		}
 	};

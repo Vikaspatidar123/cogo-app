@@ -1,0 +1,15 @@
+.message_styles {
+	word-break: break-word;
+}
+
+.media_container {
+	display: block;
+	cursor: pointer;
+}
+
+.styled_audio,
+.styled_video,
+.styled_image {
+	max-width: 100%;
+	max-height: 250px;
+}

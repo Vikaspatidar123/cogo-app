@@ -1,4 +1,4 @@
-import { Button, Popover, Placeholder } from '@cogoport/components';
+import { Button, Popover, Placeholder, Tabs, TabPanel } from '@cogoport/components';
 import { IcMArrowBack, IcMPortArrow } from '@cogoport/icons-react';
 import { format } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
@@ -30,12 +30,12 @@ function ActiveFreightRateTrend() {
 	const id = query.trend_id;
 	const { t } = useTranslation(['frt']);
 	const { organization } = useSelector((state) => state.profile);
-
+	const [activeTab, setActiveTab] = useState('daily');
 	const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 	const [commodities, setCommodities] = useState('general');
 	const [dateRangePickerValue, setDateRangePickerValue] = useState({
-		startDate : new Date(new Date().setMonth(CURRRENT_MONTH - 6)),
-		endDate   : new Date(new Date().setMonth(CURRRENT_MONTH + 1)),
+		startDate: new Date(new Date().setMonth(CURRRENT_MONTH - 6)),
+		endDate: new Date(new Date().setMonth(CURRRENT_MONTH + 1)),
 	});
 	const [filteredCurrency, setFilteredCurrency] = useState('USD');
 	const [containerSize, setContainerSize] = useState('20');
@@ -59,13 +59,13 @@ function ActiveFreightRateTrend() {
 
 	useEffect(() => {
 		setFilters({
-			container_size   : containerSize,
-			container_type   : containerType,
-			shipping_line_id : shippingLine,
-			commodity        : commodities,
-			validity_end     : format(dateRangePickerValue.endDate),
-			validity_start   : format(dateRangePickerValue.startDate),
-			currency         : filteredCurrency,
+			container_size: containerSize,
+			container_type: containerType,
+			shipping_line_id: shippingLine,
+			commodity: commodities,
+			validity_end: format(dateRangePickerValue.endDate),
+			validity_start: format(dateRangePickerValue.startDate),
+			currency: filteredCurrency,
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
@@ -108,10 +108,10 @@ function ActiveFreightRateTrend() {
 				<Popover placement="top" trigger="mouseenter" render="Go Back">
 					<IcMArrowBack
 						style={{
-							height : 20,
-							width  : 20,
-							fill   : '#000',
-							cursor : 'pointer',
+							height: 20,
+							width: 20,
+							fill: '#000',
+							cursor: 'pointer',
 						}}
 						onClick={back}
 						fill="white"
@@ -145,7 +145,16 @@ function ActiveFreightRateTrend() {
 					setShippingLine={setShippingLine}
 				/>
 			</div>
+			<Tabs
+				themeType="tertiary"
+				activeTab={activeTab}
+				onChange={setActiveTab}
+			>
+				<TabPanel name="daily" title="Daily" />
+				<TabPanel name="weekly" title="Weekly" />
+				<TabPanel name="monthly" title="Monthly" />
 
+			</Tabs>
 			<div className={styles.container}>{loading ? <RenderSkeleton /> : Graph()}</div>
 			<div className={styles.filter_mobile_view}>
 				<Button variant="secondary" size="sm" onClick={handleFilterModal}>

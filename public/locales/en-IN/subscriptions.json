@@ -40,7 +40,7 @@
     "billing_details_text":"Billing Details",
     "add_new_text":"Add New",
     "select_address_text":"Select Address",
-    "gst_number_text":"GST Number",
+    "gst_number_text":"Number",
     "addresses_description_text":"There are no existing addresses.Try adding an address.",
     "adderss_select_error_message":"Error! Please Select an Address",
     "summary_text":"Summary",

@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 
 import AddModal from '@/ui/commons/components/CreateOrganizationModel/Components/AddAddressModal';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 function BillingDetails({
 	billingAddress = () => { },
@@ -19,6 +20,9 @@ function BillingDetails({
 	addressWithoutGst = [],
 	setisBillingAddress = () => { },
 }) {
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+
 	const addressList = addresses.concat(addressWithoutGst) || [];
 	const { t } = useTranslation(['subscriptions']);
 
@@ -94,8 +98,9 @@ function BillingDetails({
 											{pincode}
 										</div>
 										<div className={`${styles.row} ${styles.tax_number}`}>
-											{t('subscriptions:gst_number_text')}
+											{REGISTRATION_LABEL}
 											{' '}
+											{t('subscriptions:gst_number_text')}
 											:
 											{tax_number}
 										</div>

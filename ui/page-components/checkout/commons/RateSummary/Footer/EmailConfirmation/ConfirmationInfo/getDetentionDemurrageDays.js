@@ -1,6 +1,4 @@
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
 const freeDaysArray = [
 	'free_days_origin_detention',
@@ -26,7 +24,13 @@ const getDetentionDemurrageDays = ({
 
 	const { origin_country_id } = primaryService || {};
 
-	const isExportingCountryIndia =	INDIA_COUNTRY_ID === origin_country_id && trade_type === 'export';
+	const { is_export_tradeType } = getCountrySpecificData({
+		country_id   : origin_country_id,
+		accessorType : 'navigations',
+		accessor     : 'search_form',
+	});
+
+	const isExportingCountryIndia =	is_export_tradeType && trade_type === 'export';
 	const service = source === 'direct' ? detailedServices : services;
 
 	const primaryServices = Object.values(service || {})

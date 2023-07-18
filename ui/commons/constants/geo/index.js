@@ -8,17 +8,17 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 const { country_entity_ids } = GLOBAL_CONSTANTS;
 
 const MAPPING = {
-	[country_entity_ids.IN] : IN,
-	[country_entity_ids.VN] : VN,
+	[country_entity_ids.IN]: IN,
+	[country_entity_ids.VN]: VN,
 };
 
 const getGeoConstants = () => {
-	let parent_entity_id;
-	if (typeof document !== 'undefined') {
-		parent_entity_id = getCookie('parent_entity_id');
+	let parentEntity = '';
+	if (typeof window !== 'undefined') {
+		parentEntity = getCookie('parent_entity_id');
 	}
 	return MAPPING[
-		parent_entity_id in MAPPING ? parent_entity_id : country_entity_ids.IN
+		parentEntity in MAPPING ? parentEntity : country_entity_ids.IN
 	];
 };
 

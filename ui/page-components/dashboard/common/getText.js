@@ -133,7 +133,7 @@ const getText = (shipment_data, services) => {
 	if (isBookingConfirmed && isMainServiceConfirmed && !isDocThere) {
 		const text = name[shipment_type];
 		return {
-			text       : text || 'Booking Received',
+			text       : text || 'Booking Placed',
 			color      : '#FBD69F',
 			isDocThere : !text,
 			stateInfo  : statusMappings().confirmed,
@@ -141,7 +141,7 @@ const getText = (shipment_data, services) => {
 	}
 	if (isBookingConfirmed && isAllocated && !isMainServiceConfirmed) {
 		return {
-			text      : 'Booking Received',
+			text      : 'Booking Placed',
 			color     : '#FBD69F',
 			isDocThere,
 			stateInfo : statusMappings().booking_allocated,
@@ -149,7 +149,7 @@ const getText = (shipment_data, services) => {
 	}
 	if (isBookingConfirmed && !isMainServiceConfirmed) {
 		return {
-			text      : 'Booking Received',
+			text      : 'Booking Placed',
 			color     : '#FBD69F',
 			isDocThere,
 			stateInfo : statusMappings().user_confirmed,

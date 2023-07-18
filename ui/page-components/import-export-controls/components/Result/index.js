@@ -8,17 +8,19 @@ import iconUrl from '../../utils/iconUrl.json';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { Image, useRouter } from '@/packages/next';
 import ControlResult from '@/ui/commons/components/ImportExportControls';
 
 function EmptyState() {
 	const { t } = useTranslation(['importExportControls']);
 
 	return (
-		<img
+		<Image
 			className={styles.empty_state}
 			src={iconUrl?.emptyState}
 			alt={t('importExportControls:result_empty_state')}
+			width={400}
+			height={400}
 		/>
 	);
 }
@@ -60,7 +62,13 @@ function Result() {
 	return (
 		<div>
 			{tradeEngineLoading && (
-				<img src={iconUrl?.loading} alt={t('importExportControls:loading')} className={styles.loader} />
+				<Image
+					className={styles.loader}
+					alt={t('importExportControls:loading')}
+					src={iconUrl?.loading}
+					width={200}
+					height={200}
+				/>
 			)}
 			{!tradeEngineLoading && <Header title={t('importExportControls:result_title')} redirect />}
 			{!tradeEngineLoading && controls.length > 0 && (

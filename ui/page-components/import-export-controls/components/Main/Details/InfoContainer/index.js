@@ -21,7 +21,7 @@ function InfoContainer({ formInfo, setFormInfo }) {
 
 	const [showCatalogue, setShowCatalogue] = useState(false);
 	const [showHsCodeModal, setShowHsCodeModal] = useState(false);
-	const [selectedData, setSelectedData] = useState();
+	const [selectedData, setSelectedData] = useState({});
 	const [isImportHs, setIsImportHs] = useState(false);
 	const [showValidate, setShowValidate] = useState(false);
 	const [prevHs, setPrevHs] = useState({});

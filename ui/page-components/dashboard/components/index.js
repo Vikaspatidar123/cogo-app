@@ -17,10 +17,11 @@ import ActiveTracking from './Tracking/ActiveTracking';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const PAYLATER_SUPPORTED_COUNTRIES = GLOBAL_CONSTANTS.feature_supported_service.paylater.supported_countries;
-const location = getCookie('location');
 const KYC_PENDING_STATUS = 'pending_verification';
 
 function SassDashboard() {
+	const location = getCookie('location');
+
 	const { airTracking, oceanTracking, kyc_status } = useGetTracking();
 
 	return (

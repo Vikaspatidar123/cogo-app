@@ -19,17 +19,19 @@ function useGetTracking() {
 		container_tracking: oceanTracking = {},
 	} = data?.dashboard_products || {};
 
+	const getPayload = useCallback(() => ({
+		organization: organizationId,
+	}), [organizationId]);
+
 	const getDashboardTrackingInfo = useCallback(() => {
 		try {
 			trigger({
-				params: {
-					organization: organizationId,
-				},
+				params: getPayload(),
 			});
 		} catch (err) {
 			console.error(err?.message || ' Please try again.');
 		}
-	}, [organizationId, trigger]);
+	}, [getPayload, trigger]);
 
 	useEffect(() => {
 		getDashboardTrackingInfo();

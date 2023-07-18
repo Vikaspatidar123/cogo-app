@@ -165,6 +165,9 @@ const GLOBAL_CONSTANTS = {
 		},
 	},
 
+	ONE_MB_IN_BYTE    : 1048576,
+	DEFAULT_FILE_SIZE : 20971520,
+
 	patterns: {
 		PAN_NUMBER       : /[A-Za-z]{5}\d{4}[A-Za-z]{1}/g,
 		EMAIL            : /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/,

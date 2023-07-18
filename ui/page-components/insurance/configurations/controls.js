@@ -2,6 +2,7 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import { getCountryIds } from '@/ui/commons/utils/getCountryDetails';
 
 const get = (formObject = {}, key = '') => formObject[key] || null;
+const SUPPORTED_COUNTRY_CODE = GLOBAL_CONSTANTS.feature_supported_service.cargo_insurance.supported_countries;
 
 const controls = [
 	{
@@ -114,34 +115,30 @@ const controls = [
 	},
 ];
 
-const getControls = (formDetails = {}, profile = {}, setCityState = () => {}) => {
-	const SUPPORTED_COUNTRY_CODE = GLOBAL_CONSTANTS.feature_supported_service.cargo_insurance.supported_countries;
-
-	return controls.map((control) => {
-		if (control.name === 'billingPincode') {
-			return {
-				...control,
-				handleChange: (e) => {
-					setCityState({
-						city  : e?.display_name || e?.district?.name || e?.city?.name,
-						state : e?.region?.name,
-					});
-				},
-				params: {
-					...control.params,
-					filters: {
-						type       : 'pincode',
-						country_id : getCountryIds({ countryCodes: SUPPORTED_COUNTRY_CODE }),
-					},
-				},
-			};
-		}
-
+const getControls = (formDetails = {}, profile = {}, setCityState = () => {}) => controls.map((control) => {
+	if (control.name === 'billingPincode') {
 		return {
 			...control,
-			value: get(formDetails, control.name) || profile[control?.profileKey],
+			handleChange: (e) => {
+				setCityState({
+					city  : e?.display_name || e?.district?.name || e?.city?.name,
+					state : e?.region?.name,
+				});
+			},
+			params: {
+				...control.params,
+				filters: {
+					type       : 'pincode',
+					country_id : getCountryIds({ countryCodes: SUPPORTED_COUNTRY_CODE }),
+				},
+			},
 		};
-	});
-};
+	}
+
+	return {
+		...control,
+		value: get(formDetails, control.name) || profile[control?.profileKey],
+	};
+});
 
 export default getControls;

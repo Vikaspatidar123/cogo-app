@@ -10,6 +10,8 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import { getCountryCode } from '@/ui/commons/utils/getCountryDetails';
 import getFormattedValues from '@/ui/commons/utils/getFormattedValues';
 
+const FCL_CUSTOMS_SUPPORTED_COUNTRY = GLOBAL_CONSTANTS.service_supported_countries.fcl_customs.countries;
+
 const mergeContainerDetails = (containers) => {
 	const mergedValues = {};
 	containers.forEach((container) => {
@@ -189,9 +191,6 @@ const formatDataForSingleService = ({
 		let cargo_value_currency = null;
 		let address = null;
 		let ad_code = null;
-
-		const FCL_CUSTOMS_SUPPORTED_COUNTRY = GLOBAL_CONSTANTS.service_supported_countries
-			.fcl_customs.countries;
 
 		const isOriginCountrySupported = FCL_CUSTOMS_SUPPORTED_COUNTRY.includes(originCountryCode);
 		const isDestinationCountrySupported = FCL_CUSTOMS_SUPPORTED_COUNTRY.includes(destinationCountryCode);

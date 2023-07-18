@@ -34,7 +34,6 @@ function ForgotPassword() {
 
 	return (
 		<div className={styles.authentication_layout}>
-
 			<LayoutLogo />
 
 			<div className={styles.card_container}>
@@ -49,7 +48,6 @@ function ForgotPassword() {
 			</div>
 
 			<LayoutHelp />
-
 		</div>
 
 	);

@@ -1,12 +1,16 @@
 import { Toast } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
 
+import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
-const useResetUserPassword = ({ setMode = () => { }, setEmailId = () => { } }) => {
+const useResetUserPassword = (props) => {
+	const { setMode, setEmailId } = props;
+
 	const { t } = useTranslation(['authentication']);
-	const [{ loading: resetPasswordLoading }, trigger] = useRequest({
-		url    : 'reset_user_password',
+
+	const [{ loading }, trigger] = useRequest({
+		url    : '/reset_user_password',
 		method : 'post',
 	}, { manual: true });
 
@@ -25,12 +29,12 @@ const useResetUserPassword = ({ setMode = () => { }, setEmailId = () => { } }) =
 
 			setEmailId(val.email);
 		} catch (err) {
-			Toast.error(err?.response?.data || t('authentication:forgotPassword_error_message'));
+			Toast.error(getApiErrorString(err?.response?.data) || t('authentication:forgotPassword_error_message'));
 		}
 	};
 
 	return {
-		resetPasswordLoading,
+		resetPasswordLoading: loading,
 		resetUserPassword,
 	};
 };

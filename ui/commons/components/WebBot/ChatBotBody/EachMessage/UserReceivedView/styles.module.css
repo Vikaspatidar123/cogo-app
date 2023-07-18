@@ -1,0 +1,41 @@
+.parent_div {
+	width: max-content;
+	max-width: 70%;
+}
+
+.whatsapp_link_container {
+	display: flex;
+	align-items: center;
+	width: fit-content;
+	padding: 6px 10px;
+	margin: 0 17%;
+	cursor: pointer;
+	border-radius: 40px;
+	box-shadow: rgb(50 50 105 / 10%) 0 2px 10px 0, rgb(0 0 0 / 5%) 0 2px 8px 0;
+}
+
+.user_chat {
+	width: fit-content;
+	padding: 10px;
+	color: #4f4f4f;
+	background-color: #fff;
+	border-radius: 6px;
+	box-shadow: rgb(149 157 165 / 20%) 0 8px 24px;
+}
+
+.get_started_button {
+	padding: 2px 8px;
+	margin-left: 6px;
+	font-size: 12px;
+	font-weight: 600;
+	color: #fff;
+	background: rgb(115 208 129);
+	border-radius: 40px;
+}
+
+.time_stamp {
+	width: 100%;
+	margin-top: 7px;
+	font-size: 8px;
+	text-align: right;
+}

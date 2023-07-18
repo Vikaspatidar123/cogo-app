@@ -1,9 +1,15 @@
-import { Button } from '@cogoport/components';
-import { IcAAdd, IcMEdit } from '@cogoport/icons-react';
+// import { Button } from '@cogoport/components';
+import {
+	IcAAdd,
+	// IcMEdit
+} from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-function Details({ data = {}, setShowEdit = () => {} }) {
+function Details({
+	data = {},
+	// setShowEdit = () => {}
+}) {
 	const {
 		pan = '',
 		name = '',
@@ -27,10 +33,10 @@ function Details({ data = {}, setShowEdit = () => {} }) {
 						</div>
 					</div>
 				</div>
-				<Button themeType="secondary" onClick={() => setShowEdit({ show: true, type: 'company' })}>
+				{/* <Button themeType="secondary" onClick={() => setShowEdit({ show: true, type: 'company' })}>
 					<IcMEdit />
 					<div className="button_edit">Edit</div>
-				</Button>
+				</Button> */}
 			</div>
 			<div className={styles.details}>
 				<div className={styles.description}>

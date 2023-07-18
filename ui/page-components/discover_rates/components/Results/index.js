@@ -23,11 +23,11 @@ function SearchResults() {
 	} = getResults(search_id);
 
 	const headerData = {
-		search_type: null,
-		rates_count: 0,
-		negotiation_status: null,
-		expired: false,
-		shipment_id: null,
+		search_type        : null,
+		rates_count        : 0,
+		negotiation_status : null,
+		expired            : false,
+		shipment_id        : null,
 		...(initialHeaderData || {}),
 		importer_exporter_id,
 	};

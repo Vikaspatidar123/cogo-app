@@ -236,6 +236,9 @@ const GLOBAL_CONSTANTS = {
 		archive_icon             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg',
 		pen_image                : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg',
 		premium_image            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crown_new.svg',
+		track_image              : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/delayClock.svg',
+		clock_image              : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/green_clock.svg',
+		road_map_image           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/road-map.svg',
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',
@@ -276,10 +279,10 @@ const GLOBAL_CONSTANTS = {
 		ASTERISK             : /\*/g,
 		SLASH                : /(\r\n|\r|\n)/g,
 		WEBSITE_URL:
-		/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)$/,
+			/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)$/,
 	},
 	fetch_emoji_list:
-	'https://cogoport-testing.sgp1.digitaloceanspaces.com/b3949cf1f8cd3366d0272bd60c87c930/emoji-list.json',
+		'https://cogoport-testing.sgp1.digitaloceanspaces.com/b3949cf1f8cd3366d0272bd60c87c930/emoji-list.json',
 	customer_support: 'support@cogoport.com',
 
 	feature_supported_service: {

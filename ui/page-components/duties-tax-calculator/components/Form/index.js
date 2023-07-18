@@ -46,9 +46,9 @@ function Form({
 	const productFormHook = useForm({ defaultValues: { currency: organization?.country?.currency_code } });
 	const chargeFormHook = useForm({ defaultValues: { incoterm: 'CIF' } });
 
-	const { setValue:transportSetValue } = transportFormHook;
-	const { setValue:chargeSetValue } = chargeFormHook;
-	const { setValue:productSetValue } = productFormHook;
+	const { setValue: transportSetValue } = transportFormHook;
+	const { setValue: chargeSetValue } = chargeFormHook;
+	const { setValue: productSetValue } = productFormHook;
 
 	prefillFn({
 		transportSetValue,
@@ -74,8 +74,8 @@ function Form({
 			if (ele) {
 				setFormStepper((prev) => ({
 					...prev,
-					[formStepKey[index]]     : false,
-					[formStepKey[index - 1]] : true,
+					[formStepKey[index]]: false,
+					[formStepKey[index - 1]]: true,
 				}));
 
 				setStepper((prev) => ({
@@ -101,6 +101,7 @@ function Form({
 					setPortDetails={setPortDetails}
 					setPrevHs={setPrevHs}
 					setMapPoints={setMapPoints}
+					setValue={transportSetValue}
 				/>
 			)}
 			{formProductDetails && (

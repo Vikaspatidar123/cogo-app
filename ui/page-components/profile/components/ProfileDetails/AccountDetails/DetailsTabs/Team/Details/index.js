@@ -37,6 +37,7 @@ function Details({ users = [] }) {
 					{users.length > 0 ? users.length : ''}
 					)
 				</div>
+
 				{(users || []).map((user) => (
 					<div className={styles.container}>
 						<div className={styles.sub_container}>

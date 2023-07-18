@@ -13,6 +13,7 @@ import useSaveAddress from './useSaveAddress';
 import { useForm } from '@/packages/forms';
 import { useSelector } from '@/packages/store';
 import patterns from '@/ui/commons/configurations/patterns';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const getControls = ({
 	gstinOptions,
@@ -216,6 +217,10 @@ const useSaveAddressForm = (props) => {
 		source = '',
 	} = props;
 
+	const geo = getGeoConstants();
+
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+
 	const action = isEmpty(addressData) ? 'create' : 'edit';
 
 	const { gstinOptions = [], getCogoScoreTaxNumApi } = useGetGstInListByPan({
@@ -353,7 +358,7 @@ const useSaveAddressForm = (props) => {
 		if (controlName === 'tax_number') {
 			newField = {
 				...newField,
-				label     : validateGst ? 'GST Number' : 'TAX Number',
+				label     : validateGst ? `${REGISTRATION_LABEL} Number` : 'TAX Number',
 				maxLength : undefined,
 				...(validateGst && {
 					maxLength: 15,
@@ -364,7 +369,7 @@ const useSaveAddressForm = (props) => {
 					...(validateGst && {
 						pattern: {
 							value   : patterns.GST_NUMBER,
-							message : 'GST is invalid',
+							message : `${REGISTRATION_LABEL} is invalid`,
 						},
 					}),
 				},
@@ -375,7 +380,7 @@ const useSaveAddressForm = (props) => {
 		if (controlName === 'tax_number_document_url') {
 			newField = {
 				...newField,
-				label: validateGst ? 'GST Proof' : 'TAX Proof',
+				label: validateGst ? `${REGISTRATION_LABEL} Proof` : 'TAX Proof',
 			};
 		}
 

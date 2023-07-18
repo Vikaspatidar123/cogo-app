@@ -16,9 +16,12 @@ import {
 } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
 import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
+import { shouldShowWhatsAppField } from '@/ui/commons/utils/shouldShowWhatsAppField';
 
 function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 	const { t } = useTranslation(['common']);
+	const showWhatsAppField = shouldShowWhatsAppField();
+
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -149,10 +152,12 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 				)}
 			</div>
 
-			<div className={styles.checkbox_container}>
-				<Checkbox value={hasWhatsApp} onChange={handleChange} />
-				{t('common:rightPanel_registration_controls_isWhatsappNumber_label')}
-			</div>
+			{showWhatsAppField && (
+				<div className={styles.checkbox_container}>
+					<Checkbox value={hasWhatsApp} onChange={handleChange} />
+					{t('common:rightPanel_registration_controls_isWhatsappNumber_label')}
+				</div>
+			)}
 
 			<div className={styles.terms_and_conditions_text}>
 				{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_label')}

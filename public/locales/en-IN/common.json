@@ -11,6 +11,7 @@
     "loginField_mobile_error": "Mobile details are required.",
     "loginField_submit_button": "Login",
     "loginField_submit_otp_button": "Get OTP",
+    "loginField_error":"Failed to Login, Please try again",
     "loginFooter_forgot_password": "Forgot Password?",
     "loginFooter_signup": "Create a New Account",
     "loginOtpField_title":"Verify your mobile",
@@ -20,9 +21,12 @@
     "loginOtp_failedOtp":"Failed to send OTP, Please try again",
     "loginOtp_resendOtp_success":"OTP resent successfully",
     "loginOtp_resendOtp_fail":"Failed to resend OTP, Please try again.",
+    "helpButton_cogoport":"Cogoport",
     "helpButton_label":"Help",
     "helpButton_title": "Need some personal assistance?",
     "helpButton_designation": "Onboarding Specialist",
+    "helpButton_email":"Email:",
+    "helpButton_mobile":"Mobile Number:",
     "loginLoading_prompt_1": "Logging you in securely. Please wait while we verify your credentials.",
     "loginLoading_prompt_2": "Hang tight! We're securely authenticating your account.",
     "loginLoading_prompt_3": "Just a moment! We're granting you access to your personalized page.",
@@ -154,5 +158,7 @@
     "password_validator_rule_message_2":"at least one uppercase character.",
     "password_validator_rule_message_3":"at least one digit.",
     "password_validator_rule_message_4":"at least one special character.",
-    "password_validator_rule_message_5":"minimum 8 characters."
+    "password_validator_rule_message_5":"minimum 8 characters.",
+    "resend_email_success_message":"Verification Email resent successfully",
+    "signup_email_error":"Email id is already registered. Please Login."
 }

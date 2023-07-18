@@ -135,5 +135,7 @@
 	"setPassword_confirmPassword_placeholder":"Nhập ở đây...",
 	"setPassword_confirmPassword_error":"Xác nhận mật khẩu là bắt buộc.",
 	"setPassword_submit_button":"Nộp",
-	"setPassword_success_message":"Mật khẩu đặt thành công"
+	"setPassword_success_message":"Mật khẩu đặt thành công",
+	"setPassword_error": "Không đặt mật khẩu",
+	"setPassword_form_error":"Mật khẩu không hợp lệ."
 }

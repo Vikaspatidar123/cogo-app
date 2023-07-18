@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRouter } from '@/packages/next';
@@ -18,6 +19,8 @@ const useLoginOtpAuthentication = (props) => {
 	const { mobileNumber = {}, otpId = '', otpValue = '', setMode = () => {} } = props;
 
 	const { query = '' } = useRouter();
+
+	const { t } = useTranslation(['common']);
 
 	const [{ loading: loginLoading }, trigger] = useRequest(
 		{
@@ -48,7 +51,7 @@ const useLoginOtpAuthentication = (props) => {
 			setCookieAndRedirect(token, {}, redirectPath);
 		} catch (err) {
 			Toast.error(
-				getApiErrorString(err?.response?.data) || 'Failed to Login, Please try again',
+				getApiErrorString(err?.response?.data) || t('common:loginField_error'),
 			);
 		}
 	};

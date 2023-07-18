@@ -135,5 +135,7 @@
 	"setPassword_confirmPassword_placeholder":"Type here...",
 	"setPassword_confirmPassword_error":"Confirm Password is required.",
 	"setPassword_submit_button":"Submit",
-	"setPassword_success_message":"Password Set Successfully"
+	"setPassword_success_message":"Password Set Successfully",
+	"setPassword_error": "Failed to Set Password",
+	"setPassword_form_error":"Password does not match."
 }

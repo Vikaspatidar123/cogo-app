@@ -11,6 +11,7 @@
     "loginField_mobile_error": "Chi tiết di động được yêu cầu.",
     "loginField_submit_button": "Đăng nhập",
     "loginField_submit_otp_button": "Nhận OTP",
+    "loginField_error":"Không đăng nhập, vui lòng thử lại",
     "loginFooter_forgot_password": "Quên mật khẩu?",
     "loginFooter_signup": "Tạo tài khoản mới",
     "loginOtpField_title": "Xác minh điện thoại di động của bạn",
@@ -20,9 +21,12 @@
     "loginOtp_failedOtp":"Không gửi OTP, vui lòng thử lại",
     "loginOtp_resendOtp_success":"OTP phẫn nộ thành công",
     "loginOtp_resendOtp_fail":"Không thể gửi lại OTP, vui lòng thử lại.",
+    "helpButton_cogoport":"Cogoport",
     "helpButton_label":"Giúp đỡ",
     "helpButton_title": "Cần một số hỗ trợ cá nhân?",
     "helpButton_designation": "Chuyên gia trên tàu",
+    "helpButton_email":"E-mail:",
+    "helpButton_mobile":"Số điện thoại:",
     "loginLoading_prompt_1": "Đăng nhập bạn một cách an toàn. Vui lòng đợi trong khi chúng tôi xác minh thông tin đăng nhập của bạn.",
     "loginLoading_prompt_2": "Giữ chặt! Chúng tôi đang xác thực an toàn tài khoản của bạn.",
     "loginLoading_prompt_3": "Chỉ là một khoảnh khắc! Chúng tôi đang cấp cho bạn quyền truy cập vào trang được cá nhân hóa của bạn.",
@@ -154,5 +158,7 @@
     "password_validator_rule_message_2":"ít nhất một ký tự viết hoa.",
     "password_validator_rule_message_3":"ít nhất một chữ số.",
     "password_validator_rule_message_4":"ít nhất một nhân vật đặc biệt.",
-    "password_validator_rule_message_5":"Tối thiểu 8 ký tự."
+    "password_validator_rule_message_5":"Tối thiểu 8 ký tự.",
+    "resend_email_success_message":"Email xác minh phẫn nộ thành công",
+    "signup_email_error":"ID email đã được đăng ký. Vui lòng hãy đăng nhập."
 }

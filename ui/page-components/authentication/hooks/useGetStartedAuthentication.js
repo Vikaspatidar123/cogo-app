@@ -1,4 +1,6 @@
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -11,6 +13,9 @@ const getFormattedPayload = ({ formValues, user_id }) => ({
 
 const useGetStartedAuthentication = ({ setMode = () => { } }) => {
 	const { profile: { id: user_id = '' } } = useSelector((state) => state);
+
+	const { t } = useTranslation(['authentication']);
+	const translationKey = 'authentication:getStarted';
 
 	const [{ loading: getStartedLoading }, trigger] = useRequest({
 		url    : 'create_organization',
@@ -31,10 +36,10 @@ const useGetStartedAuthentication = ({ setMode = () => { } }) => {
 
 			window.location.href = '/';
 		} catch (err) {
-			if (err?.response?.data?.email?.length > 0) {
-				Toast.error('Email id is already registered. Please Login');
+			if (isEmpty(err?.response?.data?.email)) {
+				Toast.error(t(`${translationKey}_email_error`));
 			} else {
-				Toast.error('Something went wrong');
+				Toast.error(t(`${translationKey}_error`));
 			}
 		}
 	};

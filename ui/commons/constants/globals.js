@@ -1,6 +1,8 @@
 const GLOBAL_CONSTANTS = {
 	country_entity_ids: {
-		IN: '6fd98605-9d5d-479d-9fac-cf905d292b88',
+		IN : '6fd98605-9d5d-479d-9fac-cf905d292b88',
+		VN : 'b67d40b1-616c-4471-b77b-de52b4c9f2ff',
+		SG : '04bd1037-c110-4aad-8ecc-fc43e9d4069d',
 	},
 	country_ids: {
 		IN : '541d1232-58ce-4d64-83d6-556a42209eb7',
@@ -237,11 +239,23 @@ const GLOBAL_CONSTANTS = {
 		archive_icon               : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/archive.svg',
 		pen_image                  : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg',
 		premium_image              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crown_new.svg',
+		loader                     : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/spinner.svg',
+		document_icon              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/document_icon.png',
+		web_bot_icon               : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/web_bot',
+		animated_web_bot           : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/animated_bot.gif',
+
 	},
 	onboarding_specialist: {
 		name         : 'Kanira Patel',
 		phone_number : '+918976851674',
 		email_id     : 'kanira.patel@cogoport.com',
+	},
+	firebase_paths: {
+		whatsapp      : '/customer_chat/whatsapp/rooms',
+		platform_chat : '/customer_chat/platform_chat/rooms',
+	},
+	urls: {
+		whatsapp_get_started_link: 'https://wa.me/message/N4CI7UNDFE2ZM1',
 	},
 	user_specific_email_id: {
 		ajeet: 'ajeet@cogoport.com',
@@ -263,8 +277,17 @@ const GLOBAL_CONSTANTS = {
 			special          : /[!@#$%^&*]/gm,
 			minLength        : /[a-zA-Z0-9!@#$%^&*]{8,}/gm,
 		},
-		AIRWAY_BILL_NO: /^\d{3}-\d{8}$/,
+		AIRWAY_BILL_NO       : /^\d{3}-\d{8}$/,
+		ENDS_WITH_STAR_CHAR  : /\*[^0-9a-zA-Z]/,
+		ENDS_WITH_STAR_SPACE : /\* /,
+		WHITE_SPACE          : /\s+/,
+		ASTERISK             : /\*/g,
+		SLASH                : /(\r\n|\r|\n)/g,
+		WEBSITE_URL:
+			/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)$/,
 	},
+	fetch_emoji_list:
+		'https://cogoport-testing.sgp1.digitaloceanspaces.com/b3949cf1f8cd3366d0272bd60c87c930/emoji-list.json',
 	customer_support: 'support@cogoport.com',
 
 	feature_supported_service: {

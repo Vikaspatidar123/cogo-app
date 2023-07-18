@@ -7,6 +7,9 @@ import { publicRequest, request } from '../../../request';
 
 import styles from './styles.module.css';
 
+const ONE_MB_IN_BYTE = 1048576; // 1MB
+const DEFAULT_FILE_SIZE = 20971520; // 20MB
+
 function FileUploader(props) {
 	const {
 		onChange = () => {},
@@ -14,6 +17,7 @@ function FileUploader(props) {
 		multiple = false,
 		docName,
 		accept,
+		maxSizeInByte = DEFAULT_FILE_SIZE,
 		...rest
 	} = props;
 
@@ -70,11 +74,29 @@ function FileUploader(props) {
 		return finalUrl;
 	};
 
+	const checkFileUploadSize = ({ fileInfo }) => {
+		const defaultMaxSize = maxSizeInByte < DEFAULT_FILE_SIZE ? maxSizeInByte : DEFAULT_FILE_SIZE;
+		const validFileSize = fileInfo.map((val) => val.size > +defaultMaxSize);
+
+		if (validFileSize.includes(true)) {
+			const size_in_mb = (defaultMaxSize / ONE_MB_IN_BYTE).toFixed(2);
+
+			Toast.error(
+				`File Upload failed, Maximum size allowed - ${size_in_mb} MB`,
+			);
+			return false;
+		}
+		return	true;
+	};
+
 	const handleChange = async (values) => {
+		const isValidFileSize = checkFileUploadSize({ fileInfo: values });
+		if (!isValidFileSize) return;
+
 		try {
 			setLoading(true);
 
-			if (values.length > 0) {
+			if (!isEmpty(values)) {
 				setProgress({});
 
 				const promises = values.map((value, index) => uploadFile(index)(value));

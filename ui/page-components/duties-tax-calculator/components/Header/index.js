@@ -1,9 +1,10 @@
 import { useTranslation } from 'next-i18next';
 
-import { DutiesTax } from '../../configuration/icon-configuration';
-
 import Stepper from './Stepper';
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function Header({
 	stepper,
@@ -15,7 +16,7 @@ function Header({
 	return (
 		<div className={styles.container}>
 			<div className={styles.title}>
-				<img src={DutiesTax} alt="" width="32px" height="32px" />
+				<Image src={GLOBAL_CONSTANTS.image_url.duties_tax} alt="" width={32} height={32} />
 				<div>{t('dutiesTaxesCalculator:main_title')}</div>
 			</div>
 			<Stepper

@@ -43,5 +43,19 @@
 		.ui_collapse_container {
 			margin: 4px 0;
 		}
+
+		.ui_collapse_title {
+			width: 100%;
+		}
 	}
+}
+
+.skeleton_container {
+	width: 100%;
+	padding: 30px;
+}
+
+.skeleton_margin {
+	margin-bottom: 16px;
+	border-radius: 4px;
 }

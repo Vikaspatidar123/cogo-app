@@ -1,24 +1,28 @@
 import { Button } from '@cogoport/components';
 
-import { InnerUploadControls } from '../../../InnerUploadControls';
+import { formControls } from '../../../InnerUploadControls';
 
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function InnerForm() {
+function InnerForm({ setActiveCollapse = () => {}, addDocument = () => {}, addDocumentLoading = false }) {
 	const {
+		handleSubmit,
 		control,
 		formState: { errors },
-	} = useForm({
-		defaultValues: {},
-	});
+	} = useForm();
+
+	const onSubmit = (val) => {
+		addDocument(val);
+		setActiveCollapse('');
+	};
 
 	return (
 		<div className={styles.inner_form}>
 			<div className={styles.form}>
-				{InnerUploadControls.map((item) => {
+				{formControls.map((item) => {
 					const { label, name, component } = item || {};
 					const Element = getField(component);
 
@@ -44,11 +48,18 @@ function InnerForm() {
 			</div>
 
 			<div className={styles.bottom_container}>
-				<Button themeType="secondary" style={{ margin: '0 8px 0 0' }}>
+				<Button
+					themeType="secondary"
+					style={{ margin: '0 8px 0 0' }}
+					onClick={() => setActiveCollapse('')}
+					disabled={addDocumentLoading}
+				>
 					Cancel
 				</Button>
 
-				<Button>Save</Button>
+				<Button onClick={handleSubmit(onSubmit)} disabled={addDocumentLoading}>
+					Save
+				</Button>
 			</div>
 		</div>
 	);

@@ -4,12 +4,21 @@ import ServiceWiseHeading from './ServiceWiseHeading';
 import styles from './styles.module.css';
 
 function Heading({
-	setShow = () => {}, documentDetails = {}, addDocument = () => {},
-	loading = false, setDocumentDetails = () => {}, setServiceType = () => {}, serviceType = '',
+	setShow = () => {},
+	documentDetails = {},
+	addDocument = () => {},
+	refetch = () => {},
+	loading = false,
+	setDocumentDetails = () => {},
+	setServiceType = () => {},
+	serviceType = '',
+	setShowServiceList = () => {},
+	filters = {},
 }) {
 	return (
 		<div className={styles.header}>
 			<div className={styles.title}>Quick Upload a Document</div>
+
 			<UploadDocument
 				setShow={setShow}
 				documentDetails={documentDetails}
@@ -18,7 +27,13 @@ function Heading({
 				setDocumentDetails={setDocumentDetails}
 			/>
 
-			<ServiceWiseHeading setServiceType={setServiceType} serviceType={serviceType} />
+			<ServiceWiseHeading
+				setServiceType={setServiceType}
+				serviceType={serviceType}
+				refetch={refetch}
+				setShowServiceList={setShowServiceList}
+				filters={filters}
+			/>
 		</div>
 	);
 }

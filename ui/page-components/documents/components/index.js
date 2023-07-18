@@ -1,4 +1,3 @@
-import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import useAddDocuments from '../hooks/useAddDocuments';
@@ -14,6 +13,7 @@ function Documents() {
 	const [show, setShow] = useState(false);
 	const [documentDetails, setDocumentDetails] = useState({});
 	const [serviceType, setServiceType] = useState('');
+	const [showServiceList, setShowServiceList] = useState('');
 
 	const { data = {}, loading = false, refetch = () => {} } = useGetDocumentsList({ filters });
 
@@ -33,16 +33,26 @@ function Documents() {
 				setDocumentDetails={setDocumentDetails}
 				setServiceType={setServiceType}
 				serviceType={serviceType}
+				refetch={refetch}
+				setShowServiceList={setShowServiceList}
+				filters={filters}
 			/>
 
-			{isEmpty(serviceType) ? (
+			{!showServiceList ? (
 				<AllFiles
 					filter={filters}
 					setFilters={setFilters}
 					data={data}
 					loading={loading}
 				/>
-			) : <ServiceUploadDocument />}
+			) : (
+				<ServiceUploadDocument
+					data={data?.list}
+					loading={loading}
+					addDocument={addDocument}
+					addDocumentLoading={addDocumentLoading}
+				/>
+			)}
 
 			{show ? (
 				<Uploader

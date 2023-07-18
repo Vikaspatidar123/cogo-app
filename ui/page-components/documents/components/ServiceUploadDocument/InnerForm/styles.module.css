@@ -1,9 +1,8 @@
 .form {
 	display: flex;
-	align-items: center;
 	justify-content: space-around;
 	width: 100%;
-	padding: 16px 16px 16px 0;
+	padding: 16px 16px 0 0;
 
 	@media (max-width: 576px) {
 		flex-direction: column;
@@ -14,17 +13,20 @@
 	display: flex;
 	flex-basis: 30%;
 	flex-direction: column;
-	gap: 1rem;
 
-	/* align-items: center; */
+	:global {
+		.ui_upload_droparea_container {
+			flex-direction: row;
+			min-height: 70px;
+			padding: 12px 18px;
+			margin-bottom: 0;
+		}
 
-	/* justify-content: space-between; */
-	height: 200px;
-	margin: "0 8px 0 0";
-}
-
-.form_group:not(:first-child) {
-	margin: 10px 0;
+		.ui_upload_droparea_subheading {
+			margin-left: 20px;
+			font-size: 8px;
+		}
+	}
 }
 
 .input_group {
@@ -34,10 +36,8 @@
 }
 
 .error_message {
-	font-size: 0.75rem;
-	font-weight: 400;
+	font-size: 10px;
 	color: #cb6464;
-	letter-spacing: 0.02em;
 }
 
 .label {
@@ -55,5 +55,5 @@
 .bottom_container {
 	display: flex;
 	justify-content: flex-end;
-	padding: 20px 28px;
+	padding: 8px 28px 20px 0;
 }

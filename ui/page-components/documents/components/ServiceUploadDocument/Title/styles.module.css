@@ -2,12 +2,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 84vw;
-	height: 48px;
+	width: 100%;
 
 	:global {
 		.ui_pill_container {
-			width: 16px;
+			width: 10px;
 			height: 10px;
 			padding: 0;
 		}
@@ -16,29 +15,26 @@
 
 .listTitle {
 	display: flex;
-	width: 45%;
-	margin: 0 80px 0 0;
+	max-width: 95%;
 	overflow: hidden;
 	font-size: 14px;
 	font-weight: 500;
 	color: #231f20;
 	text-overflow: ellipsis;
-
-	/* justify-content: "start"; */
 	white-space: nowrap;
 }
 
 .sampleLink {
-	display: "flex";
-	width: 45%;
-	margin: "0 80px 0 0";
+	display: flex;
+	margin: 0 80px 0 0;
 	color: #034afd;
 	text-decoration: underline;
 }
 
 .tag {
-	/* border-radius: 2px; */
+	width: 10px;
 	margin: 0 18px 0 0;
+	border-radius: 2px;
 }
 
 .success_container {
@@ -66,6 +62,12 @@
 
 .init_title {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
-	width: 100%;
+}
+
+.label {
+	display: flex;
+	align-items: center;
+	width: 50%;
 }

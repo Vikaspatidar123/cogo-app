@@ -1,4 +1,4 @@
-import { Collapse } from '@cogoport/components';
+import { Collapse, Placeholder } from '@cogoport/components';
 import { useState } from 'react';
 
 import { checkFileList } from '../../constants/checkFileList';
@@ -7,20 +7,17 @@ import InnerForm from './InnerForm';
 import styles from './styles.module.css';
 import Title from './Title/index';
 
-function ServiceUploadDocument() {
+function ServiceUploadDocument({ data = [], loading = false, addDocument = () => {}, addDocumentLoading = false }) {
 	const [activeCollapse, setActiveCollapse] = useState('');
 
 	const options = checkFileList.map((value, index) => ({
-		key   : index.toString(),
-		title : <Title
-			finalList={value?.finalList}
-			type={value?.type}
-			sampleLink={value?.sampleLink}
-			activeCollapse={activeCollapse}
+		key      : index.toString(),
+		title    : <Title doc_data={value} data={data} />,
+		children : <InnerForm
 			setActiveCollapse={setActiveCollapse}
-
+			addDocument={addDocument}
+			addDocumentLoading={addDocumentLoading}
 		/>,
-		children: <InnerForm />,
 	}));
 
 	return (
@@ -29,15 +26,25 @@ function ServiceUploadDocument() {
 				Upload Service Documents
 			</div>
 
-			<div className={styles.list}>
-				<Collapse
-					panels={options}
-					activeKey={activeCollapse}
-					setActive={(v) => setActiveCollapse(v)}
-					type="text"
-					className={styles.collapse_component}
-				/>
-			</div>
+			{loading ? (
+				<div className={styles.skeleton_container}>
+					<Placeholder width="100%" height="30px" className="skeleton" style={{ marginBottom: '16px' }} />
+					<Placeholder width="100%" height="30px" className="skeleton" style={{ marginBottom: '16px' }} />
+					<Placeholder width="100%" height="30px" className="skeleton" style={{ marginBottom: '16px' }} />
+					<Placeholder width="100%" height="30px" className="skeleton" style={{ marginBottom: '16px' }} />
+					<Placeholder width="100%" height="30px" className="skeleton" style={{ marginBottom: '16px' }} />
+				</div>
+			) : (
+				<div className={styles.list}>
+					<Collapse
+						panels={options}
+						activeKey={activeCollapse}
+						setActive={(v) => setActiveCollapse(v)}
+						type="text"
+						className={styles.collapse_component}
+					/>
+				</div>
+			)}
 		</div>
 	);
 }

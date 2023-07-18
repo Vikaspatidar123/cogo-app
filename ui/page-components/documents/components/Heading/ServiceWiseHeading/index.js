@@ -1,8 +1,34 @@
-import { Button, Select } from '@cogoport/components';
+import { Button, Select, Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
-function ServiceWiseHeading({ setServiceType = () => {}, serviceType = '' }) {
+function ServiceWiseHeading({
+	setServiceType = () => {},
+	serviceType = '',
+	refetch = () => {},
+	setShowServiceList = () => {},
+}) {
+	const handleSubmit = () => {
+		if (isEmpty(serviceType)) {
+			Toast.error('Please select a service!');
+			return;
+		}
+
+		setShowServiceList(true);
+		refetch({ service_type: serviceType });
+	};
+
+	const handleSelect = (val) => {
+		setServiceType(val);
+
+		if (isEmpty(val)) {
+			setServiceType('');
+			setShowServiceList(false);
+			refetch();
+		}
+	};
+
 	return (
 		<div className={styles.header}>
 			<div className={styles.or}>
@@ -17,14 +43,14 @@ function ServiceWiseHeading({ setServiceType = () => {}, serviceType = '' }) {
 				<Select
 					type="select"
 					placeholder="Service Name"
-					options={[{ label: 'FCL Customs', value: 'fcl_customs_service' }]}
+					options={[{ label: 'FCL Customs', value: 'fcl_customs' }]}
 					value={serviceType}
-					onChange={setServiceType}
+					onChange={(e) => handleSelect(e)}
 					isClearable
 					style={{ width: '200px' }}
 				/>
 
-				<Button themeType="accent" className={styles.button}>
+				<Button themeType="accent" className={styles.button} onClick={handleSubmit}>
 					Submit
 				</Button>
 			</div>

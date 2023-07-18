@@ -17,9 +17,8 @@ const useAddDocuments = ({
 					...documentDetails,
 				},
 			});
-			setDocumentDetails({
-				name: '',
-			});
+			setDocumentDetails({ name: '' });
+
 			refetch();
 		} catch (e) {
 			console.log(e);

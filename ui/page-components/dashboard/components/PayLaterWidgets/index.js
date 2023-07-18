@@ -3,7 +3,8 @@ import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { useRouter, Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function PayLaterWidgets() {
 	const { push } = useRouter();
@@ -18,10 +19,12 @@ function PayLaterWidgets() {
 			</div>
 			<div className={styles.mainBody}>
 				<div className={styles.sub}>
-					<img
+					<Image
 						className={styles.img}
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/newadd.svg"
+						src={GLOBAL_CONSTANTS.image_url.pay_later_widget}
 						alt="img"
+						width={20}
+						height={20}
 					/>
 
 				</div>
@@ -30,7 +33,7 @@ function PayLaterWidgets() {
 				</p>
 
 			</div>
-			<div className={styles.Bottom}>
+			<div className={styles.bottom}>
 				<Button className={styles.button} type="button" onClick={() => push('/pay-later')}>
 					{t('dashboard:pay_later_text_4')}
 				</Button>

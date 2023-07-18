@@ -60,6 +60,7 @@ const IMAGE_URLS = {
 	track_image      : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/delayClock.svg',
 	clock_image      : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/green_clock.svg',
 	road_map_image   : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/road-map.svg',
+	pay_later_widget : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/newadd.svg',
 
 };
 

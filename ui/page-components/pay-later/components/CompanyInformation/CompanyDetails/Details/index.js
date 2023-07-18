@@ -6,6 +6,8 @@ import {
 
 import styles from './styles.module.css';
 
+import getGeoConstants from '@/ui/commons/constants/geo';
+
 function Details({
 	data = {},
 	// setShowEdit = () => {}
@@ -18,6 +20,9 @@ function Details({
 		date_of_incorporation = '',
 		constitution_of_business = '',
 	} = data || {};
+
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
 
 	return (
 		<div className={styles.container}>
@@ -65,7 +70,7 @@ function Details({
 				</div>
 				<div className={styles.description}>
 					<div className={styles.title}>
-						GST
+						{REGISTRATION_LABEL}
 					</div>
 					<div className={styles.value}>
 						{gst_number}
@@ -81,7 +86,9 @@ function Details({
 				</div>
 				<div className={styles.address}>
 					<div className={styles.title}>
-						GST Registered Address
+						{REGISTRATION_LABEL}
+						{' '}
+						Registered Address
 					</div>
 					<div className={styles.value}>
 						{address}

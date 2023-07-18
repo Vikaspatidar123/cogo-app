@@ -10,7 +10,7 @@ function Details({ organizationData = {} }) {
 				<Image
 					src={organizationData.logo
 					// eslint-disable-next-line max-len
-					|| 'https:cogoport-production.sgp1.digitaloceanspaces.com92f7f7340ff071a93fcacfca9956b32a/company-info-icon.svg'}
+					|| 'https:cogoport-production.sgp1.digitaloceanspaces.com/92f7f7340ff071a93fcacfca9956b32a/company-info-icon.svg'}
 					width={64}
 					height={64}
 				/>

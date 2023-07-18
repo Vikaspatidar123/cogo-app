@@ -1,0 +1,84 @@
+.name_container {
+	display: flex;
+	flex-direction: column;
+	padding: 16px;
+	margin-bottom: 15px;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+}
+
+.kyc_status {
+	display: flex;
+	justify-content: center;
+	width: fit-content;
+	padding: 2px;
+	color: #221f20;
+	border-radius: 6px;
+}
+
+.verified {
+	background-color: #f7faef;
+}
+
+.rejected {
+	background-color: #fdebe9;
+}
+
+.pending {
+	background-color: #fffce6;
+}
+
+.header_text {
+	font-weight: 600;
+	color: #4f4f4f;
+}
+
+.value_text {
+	margin: 2px 8px 4px 0;
+	font-size: 13px;
+	color: #221f20;
+
+	@media (max-width: 768px) {
+		margin-right: unset;
+		font-size: 14px;
+		font-weight: 400;
+	}
+}
+
+.label_text {
+	margin-bottom: 8px;
+	font-weight: 600;
+
+	@media (max-width: 768px) {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin-right: 4px;
+		margin-bottom: unset;
+	}
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	padding: 16px;
+	margin: 10px 0;
+	background-color: #fdfbf6;
+}
+
+.sub_container {
+	width: 24%;
+}
+
+.value_text_2 {
+	margin-right: 8px;
+	font-size: 16px;
+	color: #221f20;
+
+	@media (max-width: 768px) {
+		margin-right: unset;
+		font-size: 14px;
+		font-weight: 400;
+	}
+}

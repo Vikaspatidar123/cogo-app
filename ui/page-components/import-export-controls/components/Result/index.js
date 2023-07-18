@@ -61,7 +61,7 @@ function Result() {
 
 	return (
 		<div>
-			{tradeEngineLoading && (
+			{tradeEngineLoading ? (
 				<Image
 					className={styles.loader}
 					alt={t('importExportControls:loading')}
@@ -69,18 +69,21 @@ function Result() {
 					width={200}
 					height={200}
 				/>
+			) : (
+				<>
+					<Header title={t('importExportControls:result_title')} redirect />
+					{!isEmpty(controls) ? (
+						<div className={styles.result_container}>
+							<ControlResult
+								tradeEngineResponse={tradeEngineResp}
+								EmptyState={EmptyState}
+							/>
+						</div>
+					) : (
+						<EmptyState />
+					)}
+				</>
 			)}
-			{!tradeEngineLoading && <Header title={t('importExportControls:result_title')} redirect />}
-			{!tradeEngineLoading && controls.length > 0 && (
-				<div className={styles.result_container}>
-					<ControlResult
-						tradeEngineResponse={tradeEngineResp}
-						EmptyState={EmptyState}
-					/>
-				</div>
-
-			)}
-			{!tradeEngineLoading && isEmpty(controls) && <EmptyState />}
 		</div>
 	);
 }

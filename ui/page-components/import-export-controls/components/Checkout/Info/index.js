@@ -25,7 +25,7 @@ function RenderDetails({ name, prefillData = {}, localStorageData = {} }) {
 	if (COUNTRY_ARR.includes(name)) {
 		return (
 			<div className={styles.country_info}>
-				{imageUrl && <Image src={imageUrl} alt="" width={23} height={23} />}
+				{imageUrl ? <Image src={imageUrl} alt="" width={23} height={23} /> : null}
 				<span>{prefillData?.[name]}</span>
 			</div>
 		);

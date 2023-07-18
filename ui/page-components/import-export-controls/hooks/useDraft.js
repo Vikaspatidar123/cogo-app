@@ -12,7 +12,7 @@ const useDraft = () => {
 
 	const { profile } = useSelector((state) => state);
 	const { organization = {} } = profile;
-	const [draftResp, setDraftResp] = useState();
+	const [draftResp, setDraftResp] = useState('');
 
 	const TRANSPORT_MAPPING = getTransportMapping({ t });
 

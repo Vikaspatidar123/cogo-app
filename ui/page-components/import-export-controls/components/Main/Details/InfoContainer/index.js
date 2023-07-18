@@ -85,13 +85,13 @@ function InfoContainer({ formInfo, setFormInfo }) {
 						<div className={styles.col} key={name}>
 							<div className={styles.label_container}>
 								<p className={styles.label}>{label}</p>
-								{sublabel && (
+								{sublabel ? (
 									<p className={styles.sub_label}>
 										(
 										{sublabel}
 										)
 									</p>
-								)}
+								) : null}
 								{errors?.[name] && (
 									<p className={styles.error}>
 										{`${t('importExportControls:details_error')} *`}

@@ -12,14 +12,14 @@ function TitleContainer({ billId }) {
 				<IcAReports width={25} height={25} />
 				<div className={styles.title}>{t('importExportControls:validate_modal_title')}</div>
 			</div>
-			{billId && (
+			{billId ? (
 				<dv className={`${styles.success_msg} ${styles.txt}`}>
 					{t('importExportControls:validate_modal_subtitle_1')}
 					<br />
 					{' '}
 					{t('importExportControls:validate_modal_subtitle_2')}
 				</dv>
-			)}
+			) : null}
 			<div className={styles.sub_heading}>
 				<div className={cl`${styles.subheading} ${styles.row}`}>
 					<div className={styles.txt}>

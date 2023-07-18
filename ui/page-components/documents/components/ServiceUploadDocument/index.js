@@ -7,7 +7,7 @@ import InnerForm from './InnerForm';
 import styles from './styles.module.css';
 import Title from './Title/index';
 
-export default function ServiceUploadDocument() {
+function ServiceUploadDocument() {
 	const [activeCollapse, setActiveCollapse] = useState('');
 
 	const options = checkFileList.map((value, index) => ({
@@ -21,20 +21,19 @@ export default function ServiceUploadDocument() {
 
 		/>,
 		children: <InnerForm />,
-
 	}));
+
 	return (
 		<div className={styles.container}>
-			<div className={styles.heading}>Upload Service XYZ Documents</div>
-			<div
-				className={styles.list}
-			>
+			<div className={styles.heading}>
+				Upload Service Documents
+			</div>
+
+			<div className={styles.list}>
 				<Collapse
 					panels={options}
 					activeKey={activeCollapse}
-					setActive={(v) => {
-						setActiveCollapse(v);
-					}}
+					setActive={(v) => setActiveCollapse(v)}
 					type="text"
 					className={styles.collapse_component}
 				/>
@@ -42,3 +41,5 @@ export default function ServiceUploadDocument() {
 		</div>
 	);
 }
+
+export default ServiceUploadDocument;

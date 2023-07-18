@@ -22,6 +22,7 @@ function Documents() {
 		refetch,
 		setDocumentDetails,
 	});
+
 	return (
 		<div>
 			<Heading

@@ -10,11 +10,13 @@ const useAddDocuments = ({
 		url    : 'create_organization_document',
 	}, { manual: true, autoCancel: false });
 
-	const addDocument = async () => {
+	const addDocument = async (val) => {
+		console.log(val, 'val');
 		try {
 			await trigger({
 				data: {
 					...documentDetails,
+					...(val || {}),
 				},
 			});
 			setDocumentDetails({ name: '' });

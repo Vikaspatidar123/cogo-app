@@ -41,7 +41,6 @@ function Card({
 		item,
 		priority_sequence_active_plan,
 	});
-
 	const {
 		description = '',
 		priority_sequence: prioritySequence = '',

@@ -145,7 +145,7 @@ function Checkout() {
 							/>
 						</div>
 					</div>
-					{checkoutResponse.order_type === 'recurring' ? <BottomContainer /> : null}
+					{checkoutResponse?.order_type === 'recurring' ? <BottomContainer /> : null}
 				</div>
 
 			)}

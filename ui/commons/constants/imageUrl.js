@@ -57,6 +57,10 @@ const IMAGE_URLS = {
 	document_icon    : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/document_icon.png',
 	web_bot_icon     : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/web_bot',
 	animated_web_bot : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/animated_bot.gif',
+	track_image      : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/delayClock.svg',
+	clock_image      : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/green_clock.svg',
+	road_map_image   : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/road-map.svg',
+	pay_later_widget : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/newadd.svg',
 
 };
 

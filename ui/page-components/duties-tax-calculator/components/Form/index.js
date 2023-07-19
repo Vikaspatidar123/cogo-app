@@ -46,9 +46,9 @@ function Form({
 	const productFormHook = useForm({ defaultValues: { currency: organization?.country?.currency_code } });
 	const chargeFormHook = useForm({ defaultValues: { incoterm: 'CIF' } });
 
-	const { setValue:transportSetValue } = transportFormHook;
-	const { setValue:chargeSetValue } = chargeFormHook;
-	const { setValue:productSetValue } = productFormHook;
+	const { setValue: transportSetValue } = transportFormHook;
+	const { setValue: chargeSetValue } = chargeFormHook;
+	const { setValue: productSetValue } = productFormHook;
 
 	prefillFn({
 		transportSetValue,
@@ -101,6 +101,7 @@ function Form({
 					setPortDetails={setPortDetails}
 					setPrevHs={setPrevHs}
 					setMapPoints={setMapPoints}
+					setValue={transportSetValue}
 				/>
 			)}
 			{formProductDetails && (

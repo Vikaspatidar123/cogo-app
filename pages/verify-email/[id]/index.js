@@ -19,7 +19,7 @@ export async function getServerSideProps(ctx) {
 	}
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common', 'authentication'])),
+			...(await serverSideTranslations(locale, ['common', 'verifyAutoLogin'])),
 
 		},
 	};

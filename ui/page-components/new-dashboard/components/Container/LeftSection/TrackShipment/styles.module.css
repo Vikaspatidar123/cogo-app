@@ -11,10 +11,20 @@
 	object-fit: contain;
 }
 
+.main_container {
+	position: relative;
+	background: var(--white, #fff);
+	border: 1px solid var(--black-20, #e0e0e0);
+	border-radius: 4px;
+
+	/* Shadow/SM */
+	box-shadow: 0 0 8px 0 rgb(98 127 172 / 20%);
+}
+
 .text {
-	font-size: 18px;
-	font-weight: 600;
-	color: #fff;
+	padding: 10px 0 8px 30px;
+	font-size: 22px;
+	font-weight: 700;
 }
 
 .line {
@@ -26,8 +36,14 @@
 }
 
 .input_box {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 9999999;
 	display: flex;
 	justify-content: end;
+	background-blend-mode: multiply;
+	backdrop-filter: blur(8px);
 }
 
 .input_container {

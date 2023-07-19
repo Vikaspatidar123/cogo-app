@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import getOrganizationControls from '../EditOrganizationDetails/get-organization-controls';
@@ -18,6 +19,8 @@ const useEditOrganizationDetails = ({
 	getOrganization = () => {},
 	setShowEditOrganizationDetails = () => {},
 }) => {
+	const { t } = useTranslation(['settings']);
+
 	const [errors, setErrors] = useState({});
 	const { refetch } = useGetUser();
 	const cityOptions = useGetAsyncOptions(
@@ -25,7 +28,7 @@ const useEditOrganizationDetails = ({
 			params: { filters: { type: ['city'] } },
 		}),
 	);
-	const controls = getOrganizationControls({ cityOptions, organizationData });
+	const controls = getOrganizationControls({ cityOptions, organizationData, t });
 
 	const [{ loading }, trigger] = useRequest(
 		{
@@ -77,7 +80,7 @@ const useEditOrganizationDetails = ({
 				await refetch();
 				setShowEditOrganizationDetails(false);
 			}
-			Toast.success('Successfull Update');
+			Toast.success(t('settings:billing_details_successfully_updated_toast'));
 			if (values.city_id) {
 				getOrganization();
 			}

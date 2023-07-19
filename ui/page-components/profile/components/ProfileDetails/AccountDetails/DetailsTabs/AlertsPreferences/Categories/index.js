@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import getAlertPreferencesControls from '../../../../configurations/alerts-preferences-controls';
@@ -10,6 +11,12 @@ import styles from './styles.module.css';
 import { useSelector } from '@/packages/store';
 
 function Categories() {
+	const { t } = useTranslation(['settings']);
+
+	const {
+		profile: { id = '' },
+	} = useSelector((state) => state);
+
 	const [formData, setFormData] = useState({
 		select_all                               : false,
 		offers_discounts                         : false,
@@ -20,11 +27,8 @@ function Categories() {
 		general_news                             : false,
 	});
 
-	const {
-		profile: { id = '' },
-	} = useSelector((state) => state);
 	const { getPreferences, preferences } = getUserAlert({ setFormData });
-	const controls = getAlertPreferencesControls();
+	const controls = getAlertPreferencesControls({ t });
 
 	return (
 		<div className={styles.container}>

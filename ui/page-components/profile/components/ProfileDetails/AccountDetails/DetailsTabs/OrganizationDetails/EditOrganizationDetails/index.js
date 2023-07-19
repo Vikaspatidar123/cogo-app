@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import useEditOrganizationDetails from '../hooks/useEditOrganizationDetails';
 
@@ -11,6 +12,8 @@ function EditOrganizationDetails({
 	organizationType = '',
 	organizationData = {},
 }) {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		showElements,
 		control,
@@ -54,14 +57,14 @@ function EditOrganizationDetails({
 					}}
 					onClick={() => setShowEditOrganizationDetails(false)}
 				>
-					Cancel
+					{t('settings:edit_or_add_button_label_1')}
 				</Button>
 				<Button
 					size="md"
 					disabled={loading}
 					onClick={handleSubmit(onCreate, onError)}
 				>
-					Update
+					{t('settings:billing_details_update_label')}
 				</Button>
 			</div>
 		</div>

@@ -1,10 +1,13 @@
 import { cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 
 function Details({ users = [] }) {
+	const { t } = useTranslation(['settings']);
+
 	const { profile } = useSelector((state) => state);
 	const { organization = {} } = profile || {};
 	const { kyc_status } = organization || {};
@@ -16,24 +19,26 @@ function Details({ users = [] }) {
 				<div>
 					{kyc_status === 'verified' && (
 						<div className={cl`${styles.verified} ${styles.kyc_status}`}>
-							KYC Verified
+							{t('settings:settings_kyc_verified_text')}
 						</div>
 					)}
 					{kyc_status === 'rejected' && (
 						<div className={cl`${styles.rejected} ${styles.kyc_status}`}>
-							KYC Rejected
+							{t('settings:settings_kyc_rejcted_text')}
 						</div>
 					)}
 					{kyc_status?.includes('pending') && (
 						<div className={cl`${styles.pending} ${styles.kyc_status}`}>
-							KYC Pending
+							{t('settings:settings_kyc_pending_text')}
 						</div>
 					)}
 				</div>
 			</div>
 			<div className={styles.name_container}>
 				<div className={styles.header_text}>
-					Team Members (
+					{t('settings:organization_my_team_text_1')}
+					{' '}
+					(
 					{users.length > 0 ? users.length : ''}
 					)
 				</div>
@@ -42,7 +47,7 @@ function Details({ users = [] }) {
 					<div className={styles.container}>
 						<div className={styles.sub_container}>
 							<div className={styles.value_text}>
-								Username
+								{t('settings:organization_my_team_text_2')}
 							</div>
 							<div className={styles.label_text}>
 								{user?.name || '-'}
@@ -51,7 +56,7 @@ function Details({ users = [] }) {
 
 						<div className={styles.sub_container}>
 							<div className={styles.value_text}>
-								Email
+								{t('settings:organization_my_team_text_3')}
 								{' '}
 							</div>
 							<div className={styles.label_text}>
@@ -61,7 +66,7 @@ function Details({ users = [] }) {
 
 						<div className={styles.sub_container}>
 							<div className={styles.value_text}>
-								Mobile Number
+								{t('settings:organization_my_team_text_4')}
 							</div>
 							<div className={styles.label_text}>
 								{user?.mobile_number
@@ -74,7 +79,7 @@ function Details({ users = [] }) {
 
 						<div className={styles.sub_container}>
 							<div className={styles.value_text}>
-								Status
+								{t('settings:organization_my_team_text_5')}
 							</div>
 							<div className={styles.label_text}>
 								{user.status || '-'}

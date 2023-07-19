@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import getProfileControls from '../EditProfileDetails/get-profile-controls';
@@ -13,6 +14,8 @@ const useEditProfileDetails = ({
 	userDetails = {},
 	setShowEditProfileDetails = () => {},
 }) => {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		profile: { organization = {} },
 	} = useSelector((state) => state);
@@ -20,7 +23,7 @@ const useEditProfileDetails = ({
 	const dispatch = useDispatch();
 
 	const [errors, setErrors] = useState({});
-	const controls = getProfileControls({ userDetails });
+	const controls = getProfileControls({ userDetails, t });
 
 	const formProps = useForm();
 	const fields = controls;
@@ -67,7 +70,7 @@ const useEditProfileDetails = ({
 			};
 
 			await trigger({ data: body });
-			Toast.success('Edit Successfully');
+			Toast.success(t('settings:edited_successfully_toast'));
 			dispatch(
 				setProfileStoreState({
 					...body,

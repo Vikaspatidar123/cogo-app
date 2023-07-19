@@ -1,4 +1,5 @@
 import { Button, Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 import useMobileNoVerification from './useMobileNoVerification';
@@ -9,6 +10,8 @@ import getField from '@/packages/forms/Controlled';
 const OTP_LENGTH = 4;
 
 function MobileVerification({ type = '' }) {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		controls = [],
 		formProps = {},
@@ -27,7 +30,7 @@ function MobileVerification({ type = '' }) {
 
 	return (
 		<div>
-			<Modal.Header title="Mobile Number Verification" />
+			<Modal.Header title={t('settings:heading_mobile_number_verification')} />
 
 			<from>
 				<Modal.Body>
@@ -67,7 +70,7 @@ function MobileVerification({ type = '' }) {
 							className={styles.button}
 							onClick={handleSubmit(onSubmit, onErrors)}
 						>
-							GET OTP
+							{t('settings:get_otp_button_label')}
 						</Button>
 					)}
 
@@ -77,11 +80,9 @@ function MobileVerification({ type = '' }) {
 							onClick={verifyOtpNumber}
 							themeType="accent"
 							className={styles.button}
-							disabled={
-                verifyMobileNumberAPI.loading || otpNumber?.length !== 4
-              }
+							disabled={verifyMobileNumberAPI.loading || otpNumber?.length !== 4}
 						>
-							SUBMIT
+							{t('settings:submit_button_label')}
 						</Button>
 					)}
 				</Modal.Footer>

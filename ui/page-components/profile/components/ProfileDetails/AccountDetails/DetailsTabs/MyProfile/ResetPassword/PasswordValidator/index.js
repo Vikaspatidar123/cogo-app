@@ -1,37 +1,40 @@
 /* eslint-disable no-unused-vars */
 import { IcCTick } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
 import patterns from '@/ui/commons/configurations/patterns';
 
 function PasswordValidator({ password = '' }) {
+	const { t } = useTranslation(['settings']);
+
 	const VALID_PASSWORD_MAPPINGS = {
 		lowercase: {
 			pattern : patterns.PASSWORD.lowercase,
-			message : 'at least one lowercase character.',
+			message : t('settings:password_validator_1'),
 		},
 		uppercase: {
 			pattern : patterns.PASSWORD.uppercase,
-			message : 'at least one uppercase character.',
+			message : t('settings:password_validator_2'),
 		},
 		digit: {
 			pattern : patterns.PASSWORD.digit,
-			message : 'at least one digit.',
+			message : t('settings:password_validator_3'),
 		},
 		special: {
 			pattern : patterns.PASSWORD.special,
-			message : 'at least one special character (!@#$%^&*).',
+			message : t('settings:password_validator_4'),
 		},
 		minLength: {
 			pattern : patterns.PASSWORD.minLength,
-			message : 'minimum 8 characters.',
+			message : t('settings:password_validator_5'),
 		},
 	};
 
 	return (
 		<div className={styles.password_validator}>
-			<div className={styles.title}>Password must contain:</div>
+			<div className={styles.title}>{t('settings:password_validator_heading')}</div>
 
 			<div className={styles.list}>
 				{Object.entries(VALID_PASSWORD_MAPPINGS)?.map(([key, value]) => {

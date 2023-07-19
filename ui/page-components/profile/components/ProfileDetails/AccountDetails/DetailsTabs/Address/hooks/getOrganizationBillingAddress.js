@@ -25,7 +25,7 @@ const useGetBillingAddress = () => {
 				},
 			});
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 	const getAdd = async () => {
@@ -36,7 +36,7 @@ const useGetBillingAddress = () => {
 				},
 			});
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 	useEffect(() => {

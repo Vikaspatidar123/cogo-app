@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import FieldArray from '../FieldArray';
 import useEditProfileDetails from '../hooks/useEditProfileDetails';
@@ -12,6 +13,8 @@ function EditProfileDetails({
 	userDetails = {},
 	getChannelPartnerUser,
 }) {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		showElements,
 		fields = [],
@@ -61,7 +64,7 @@ function EditProfileDetails({
 						marginRight: 16,
 					}}
 				>
-					Cancel
+					{t('settings:edit_or_add_button_label_1')}
 				</Button>
 				<Button
 					disabled={loading}
@@ -69,7 +72,7 @@ function EditProfileDetails({
 					size="sm"
 					themeType="accent"
 				>
-					Update
+					{t('settongs:billing_details_update_label')}
 				</Button>
 			</div>
 		</div>

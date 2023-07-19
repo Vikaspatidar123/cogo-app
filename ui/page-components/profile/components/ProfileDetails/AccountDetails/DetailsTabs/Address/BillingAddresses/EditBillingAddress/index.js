@@ -1,4 +1,5 @@
 import { Button, Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 import useEditBillingAddress from './useEditBillingAddress';
@@ -14,6 +15,8 @@ function EditBillingAddress({
 	mobalType,
 	getAddress,
 }) {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		control,
 		fields,
@@ -35,7 +38,9 @@ function EditBillingAddress({
 
 	return (
 		<div>
-			<Modal.Header title={`${mobalType ? 'Edit' : ' Add'} Billing Address`} />
+			<Modal.Header title={`${mobalType ? t('settings:edit_or_add_button_label_2')
+				: t('settings:edit_or_add_button_label_3')} ${t('settings:billing_details_placeholder_14')}`}
+			/>
 			<Modal.Body>
 				<div className={styles.layout}>
 					{fields.map((item) => {
@@ -66,11 +71,11 @@ function EditBillingAddress({
 						marginRight: 16,
 					}}
 				>
-					Cancel
+					{t('settings:edit_or_add_button_label_1')}
 				</Button>
 
 				<Button disabled={loading} onClick={handleSubmit(onCreate)}>
-					{mobalType ? 'Update' : 'Add'}
+					{mobalType ? t('settings:billing_details_update_label') : t('settings:billing_details_add_label')}
 				</Button>
 			</Modal.Footer>
 		</div>

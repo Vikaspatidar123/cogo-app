@@ -4,6 +4,7 @@ import {
 	IcMArrowRotateRight,
 	IcMFtaskNotCompleted,
 } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import EditOtherAddress from './EditOtherAddress';
@@ -13,7 +14,9 @@ import styles from './styles.module.css';
 import getOtherAddressOptions from './utils/get-other-address-options';
 
 function OtherAddresses({ addressesData, addressLoading, getAdd }) {
-	const OTHER_ADDRESSES_MAPPING = getOtherAddressOptions();
+	const { t } = useTranslation(['settings']);
+
+	const OTHER_ADDRESSES_MAPPING = getOtherAddressOptions({ t });
 
 	const [editOtherAddresKey, setEditOtherAddressKey] = useState(null);
 
@@ -36,7 +39,7 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 			return (
 				<div className={styles.empty}>
 					<IcMFtaskNotCompleted width={40} height={40} />
-					<div className={styles.no_data}>No data Found</div>
+					<div className={styles.no_data}>{t('settings:no_data_found_text')}</div>
 				</div>
 			);
 		}
@@ -64,7 +67,8 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 	}
 	const addresCount = (address_key) => {
 		const count = filterAddress(address_key).length;
-		const value = count === 0 ? 'No Address(s) Added' : `${count} Address(s) Added`;
+		const value = count === 0 ? t('settings:addresses_not_found_text_1')
+			: `${count} ${t('settings:addresses_added_text_1')}`;
 		return value;
 	};
 
@@ -112,7 +116,7 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 									}}
 									themeType={showData[address_key.api_property_key] ? 'primary' : 'secondary'}
 								>
-									Add Address +
+									{t('settings:add_address_button_label')}
 								</Button>
 							</div>
 						</div>
@@ -120,32 +124,27 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 					</div>
 
 					<div>
-						{showData[address_key.api_property_key]
-              && renderAddressCards({ address_key })}
+						{showData[address_key.api_property_key] && renderAddressCards({ address_key })}
 					</div>
 				</div>
 			))}
 
-			{(!!editOtherAddresKey
-        || Object.keys(otherAddressObjToUpdate).length !== 0) && (
-	<Modal
-		show={
-            !!editOtherAddresKey
-            || Object.keys(otherAddressObjToUpdate).length !== 0
-          }
-		onClose={handleCloseModal}
-		closeOnOuterClick={handleCloseModal}
-		size="lg"
-	>
-		<EditOtherAddress
-			organizationOtherAddressesList={organizationOtherAddressesList}
-			otherAddressObjToUpdate={otherAddressObjToUpdate}
-			address_key={editOtherAddresKey}
-			handleCloseModal={handleCloseModal}
-			getAdd={getAdd}
-			mobalType={mobalType}
-		/>
-	</Modal>
+			{(!!editOtherAddresKey || Object.keys(otherAddressObjToUpdate).length !== 0) && (
+				<Modal
+					show={!!editOtherAddresKey || Object.keys(otherAddressObjToUpdate).length !== 0}
+					onClose={handleCloseModal}
+					closeOnOuterClick={handleCloseModal}
+					size="lg"
+				>
+					<EditOtherAddress
+						organizationOtherAddressesList={organizationOtherAddressesList}
+						otherAddressObjToUpdate={otherAddressObjToUpdate}
+						address_key={editOtherAddresKey}
+						handleCloseModal={handleCloseModal}
+						getAdd={getAdd}
+						mobalType={mobalType}
+					/>
+				</Modal>
 			)}
 		</>
 	);

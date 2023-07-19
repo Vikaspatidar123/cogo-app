@@ -4,6 +4,7 @@ import {
 	RadioGroup,
 	Textarea,
 } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { getMappings } from '../../../../../../../../constants';
@@ -17,6 +18,8 @@ function ReasonModal({
 	setShowModal,
 	filteredDataState = {},
 }) {
+	const { t } = useTranslation(['settings']);
+
 	const [reason, setReason] = useState('');
 
 	const [otherReason, setOtherReason] = useState('');
@@ -39,7 +42,7 @@ function ReasonModal({
 		setOtherReason(false);
 	};
 
-	const { REASON_MAPPING, MAPPING } = getMappings();
+	const { REASON_MAPPING, MAPPING } = getMappings({ t });
 	const head = () => (
 		<div>
 			<div className={styles.header}>

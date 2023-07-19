@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import { Modal, Button, cl } from '@cogoport/components';
 import { IcMEdit, IcMDocument } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import AddEditPocDetails from '../../AddEditPocDetails';
@@ -10,13 +11,14 @@ import styles from './styles.module.css';
 function OtherAddressCard({
 	other_address_data = {},
 	setOtherAddressObjToUpdate = () => {},
-	// getOrganizationOtherAddresses,
 	index = '',
 	setMobalType,
 	setEditOtherAddressKey,
 	address_key,
 	getAdd,
 }) {
+	const { t } = useTranslation(['settings']);
+
 	const [showPocModal, setShowPocModal] = useState(null);
 
 	const [pocToUpdate, setPocToUpdate] = useState({});
@@ -48,35 +50,35 @@ function OtherAddressCard({
 						setEditOtherAddressKey(address_key);
 					}}
 				>
-					<div>Edit</div>
+					<div>{t('settings:edit_or_add_button_label_2')}</div>
 					<IcMEdit style={{ height: 14, width: 14, marginLeft: '3px' }} />
 				</Button>
 			</div>
 
 			<div className={styles.basic_billing_details}>
 				<div className={styles.sub_container}>
-					<div className={styles.label_text}>Billing Party Name</div>
+					<div className={styles.label_text}>{t('settings:billing_details_label_1')}</div>
 					<div className={styles.value_text}>
 						{other_address_data.name || '-'}
 					</div>
 				</div>
 
 				<div className={styles.sub_container}>
-					<div className={styles.label_text}>Pincode</div>
+					<div className={styles.label_text}>{t('settings:billing_details_label_5')}</div>
 					<div className={styles.value_text}>
 						{other_address_data.pincode || '-'}
 					</div>
 				</div>
 
 				<div className={styles.sub_container}>
-					<div className={styles.label_text}>Address</div>
+					<div className={styles.label_text}>{t('settings:billing_details_label_3')}</div>
 					<div className={styles.value_text}>
 						{other_address_data.address || '-'}
 					</div>
 				</div>
 
 				<div className={styles.sub_container}>
-					<div className={styles.label_text}>Country</div>
+					<div className={styles.label_text}>{t('settings:billing_details_label_11')}</div>
 					<div className={styles.value_text}>
 						{other_address_data.country.name || '-'}
 					</div>
@@ -86,7 +88,7 @@ function OtherAddressCard({
 			{other_address_data.tax_exemption_proof ? (
 				<div className={styles.tax_details_container}>
 					<div className={styles.sub_container}>
-						<div className={styles.label_text}>Tax Exemption Proof</div>
+						<div className={styles.label_text}>{t('settings:billing_details_placeholder_16')}</div>
 
 						<div className={styles.doc_container}>
 							<div className={styles.flex}>
@@ -100,7 +102,7 @@ function OtherAddressCard({
 									onClick={() => handleOpenDocument(other_address_data.tax_exemption_proof)}
 									role="presentation"
 								>
-									view
+									{t('settings:billing_details_button_label')}
 								</div>
 							</div>
 						</div>
@@ -123,7 +125,7 @@ function OtherAddressCard({
 
 					<div className={styles.poc_sub_container}>
 						<div className={cl`${styles.label_text} ${styles.poc_details}`}>
-							POC Name
+							{t('settings:poc_name_label')}
 						</div>
 						<div className={`${styles.value_text}${styles.poc_details} `}>
 							{firstPoc?.name || '-'}
@@ -132,7 +134,7 @@ function OtherAddressCard({
 
 					<div className={styles.poc_sub_container}>
 						<div className={cl`${styles.label_text} ${styles.poc_details}`}>
-							POC Mobile
+							{t('settings:poc_mobile_label')}
 						</div>
 						<div className={`${styles.value_text} ${styles.poc_details} `}>
 							{firstPoc?.mobile_number
@@ -145,7 +147,7 @@ function OtherAddressCard({
 
 					<div className={styles.poc_sub_container}>
 						<div className={`${styles.label_text} ${styles.poc_details} `}>
-							Email
+							{t('settings:poc_email_label')}
 						</div>
 						<div className={`${styles.value_text} ${styles.poc_details}`}>
 							{firstPoc?.email || '-'}
@@ -153,7 +155,7 @@ function OtherAddressCard({
 					</div>
 					<div className={styles.poc_sub_container}>
 						<div className={`${styles.label_text} ${styles.poc_details} `}>
-							Alternate Mobile
+							{t('settings:poc_alternate_mobile_label')}
 						</div>
 						<div className={`${styles.value_text} ${styles.poc_details}`}>
 							{firstPoc?.alternate_mobile_number
@@ -177,7 +179,7 @@ function OtherAddressCard({
 					size="sm"
 					themeType="secondary"
 				>
-					Add POC +
+					{t('settings:add_poc_button_label')}
 				</Button>
 			</div>
 

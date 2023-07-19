@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcMEdit } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import MobileHeader from '../../../../MobileHeader';
 
@@ -10,6 +11,8 @@ import LoadingState from './LoadingState';
 import styles from './styles.module.css';
 
 function OrganizationDetails() {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		loading = false,
 		organizationData = {},
@@ -32,12 +35,12 @@ function OrganizationDetails() {
 
 				<div className={styles.header_container}>
 					<div className={styles.header_text}>
-						COMPANY DETAILS
+						{t('settings:organization_details_heading')}
 					</div>
 
 					{!showEditOrganizationDetails ? (
 						<Button onClick={() => setShowEditOrganizationDetails(true)} themeType="secondary">
-							<div>Edit</div>
+							<div>{t('settings:edit_or_add_button_label_2')}</div>
 							<IcMEdit
 								style={{ width: 16, height: 16, marginLeft: '5px' }}
 							/>
@@ -61,7 +64,7 @@ function OrganizationDetails() {
 		<>
 
 			<MobileHeader
-				heading="Company Details"
+				heading={t('settings:organization_details_mobile_heading')}
 				onClickBackButton={onClickBackButton}
 			/>
 

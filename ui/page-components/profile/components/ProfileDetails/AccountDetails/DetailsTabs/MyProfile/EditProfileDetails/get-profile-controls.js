@@ -2,20 +2,20 @@ import getWorkScopes from '../../../../configurations/work-scopes';
 
 import languages from '@/ui/commons/configurations/languages';
 
-const getProfileControls = ({ userDetails = {} }) => [
+const getProfileControls = ({ userDetails = {}, t }) => [
 	{
 		name         : 'name',
-		label        : 'Name',
+		label        : t('settings:address_add_control_label_1'),
 		type         : 'text',
 		style        : { width: '300px' },
-		placeholder  : 'Enter Name',
+		placeholder  : t('settings:address_add_control_placeholder_1'),
 		showOptional : false,
 		value        : userDetails.name,
 	},
 	{
 		name         : 'phone_number',
-		label        : 'Phone Number',
-		placeholder  : 'Eneter Phone Number',
+		label        : t('settings:profile_controls_label_1'),
+		placeholder  : t('settings:profile_controls_placeholder_1'),
 		type         : 'mobile_number',
 		inputType    : 'number',
 		style        : { width: '180px' },
@@ -27,8 +27,8 @@ const getProfileControls = ({ userDetails = {} }) => [
 	},
 	{
 		name                  : 'date_of_birth',
-		label                 : 'Date',
-		placeholder           : 'Enter Date',
+		label                 : t('settings:profile_controls_label_2'),
+		placeholder           : t('settings:profile_controls_placeholder_2'),
 		type                  : 'datepicker',
 		style                 : { width: '300px' },
 		value                 : new Date(userDetails.birth_date),
@@ -36,33 +36,27 @@ const getProfileControls = ({ userDetails = {} }) => [
 		isPreviousDaysAllowed : true,
 	},
 	{
-		name  : 'email',
-		label : 'Email',
-		type  : 'text',
-		style : { width: '300px' },
-		rules : {
-			pattern: {
-				// value   : geo.regex.EMAIL,
-				message: 'Email',
-			},
-		},
+		name         : 'email',
+		label        : t('settings:address_add_control_label_2'),
+		type         : 'text',
+		style        : { width: '300px' },
 		showOptional : false,
 		value        : userDetails.email,
 	},
 	{
 		name     : 'work_scopes',
-		label    : 'Role in Company',
+		label    : t('settings:profile_controls_label_3'),
 		type     : 'multi_select',
 		asyncKey : 'work-scopes',
 		style    : { width: '300px' },
 		value    : userDetails.work_scopes,
-		options  : getWorkScopes(),
+		options  : getWorkScopes({ t }),
 		multiple : true,
 	},
 	{
 		name        : 'preferred_languages',
-		label       : 'Preferred Languages',
-		placeholder : 'Enter Preferred Languages',
+		label       : t('settings:profile_controls_label_4'),
+		placeholder : t('settings:profile_controls_placeholder_4'),
 		style       : { width: '300px' },
 		type        : 'multi_select',
 		asyncKey    : 'languages',
@@ -72,7 +66,7 @@ const getProfileControls = ({ userDetails = {} }) => [
 	},
 	{
 		name         : 'picture',
-		label        : 'Picture',
+		label        : t('settings:profile_controls_label_5'),
 		drag         : true,
 		type         : 'file',
 		format       : ' ',
@@ -97,11 +91,11 @@ const getProfileControls = ({ userDetails = {} }) => [
 		controls           : [
 			{
 				name        : 'mobile_number',
-				label       : 'Alternate Mobail Number',
+				label       : t('settings:address_add_control_label_4'),
 				type        : 'mobile_number',
 				inputType   : 'number',
 				select2     : 'new',
-				placeholder : 'Enter Mobail Number',
+				placeholder : t('settings:billing_details_placeholder_12'),
 			},
 		],
 	},

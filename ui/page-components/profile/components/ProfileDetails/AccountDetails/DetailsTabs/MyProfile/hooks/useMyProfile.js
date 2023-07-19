@@ -61,7 +61,6 @@ const useMyProfile = () => {
 		getOrganization();
 	}, []);
 
-	// const userDetails = profile || getChannelPartnerUserAPI.data?.list?.[0];
 	return {
 		userDetails: profile || {},
 		showEditProfileDetails,

@@ -1,12 +1,16 @@
+import { useTranslation } from 'next-i18next';
+
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
 
 function Details({ organizationData = {} }) {
+	const { t } = useTranslation(['settings']);
+
 	return (
 		<div className={styles.wrapper}>
 			<div>
-				<div className={styles.heading}>Company Logo</div>
+				<div className={styles.heading}>{t('settings:organization_details_text_1')}</div>
 				<Image
 					src={organizationData.logo
 					// eslint-disable-next-line max-len
@@ -18,7 +22,7 @@ function Details({ organizationData = {} }) {
 			<div className={styles.container}>
 				<div className={styles.sub_container}>
 					<div>
-						<div className={styles.heading}>Company Name</div>
+						<div className={styles.heading}>{t('settings:organization_details_text_2')}</div>
 						<div className={styles.value}>
 							{organizationData.business_name || '-'}
 							{' '}
@@ -27,7 +31,7 @@ function Details({ organizationData = {} }) {
 				</div>
 				<div className={styles.sub_container}>
 					<div>
-						<div className={styles.heading}>Country</div>
+						<div className={styles.heading}>{t('settings:organization_details_text_3')}</div>
 						<div className={styles.value}>{organizationData.country?.display_name || '-'}</div>
 					</div>
 				</div>
@@ -35,7 +39,7 @@ function Details({ organizationData = {} }) {
 			<div className={styles.container}>
 				<div className={styles.sub_container}>
 					<div>
-						<div className={styles.heading}>PAN Number</div>
+						<div className={styles.heading}>{t('settings:organization_details_text_4')}</div>
 						<div className={styles.value}>
 							{organizationData.registration_number || '-'}
 						</div>
@@ -43,7 +47,7 @@ function Details({ organizationData = {} }) {
 				</div>
 				<div className={styles.sub_container}>
 					<div>
-						<div className={styles.heading}>Website</div>
+						<div className={styles.heading}>{t('settings:organization_details_text_5')}</div>
 						<div className={styles.value}>
 							{organizationData.website || '-'}
 						</div>
@@ -53,7 +57,7 @@ function Details({ organizationData = {} }) {
 			<div className={styles.container}>
 				<div className={styles.sub_container}>
 					<div>
-						<div className={styles.heading}>Branch Name</div>
+						<div className={styles.heading}>{t('settings:organization_details_text_6')}</div>
 						<div className={styles.value}>
 							{organizationData.branches?.[0].branch_name || '-'}
 						</div>
@@ -61,7 +65,7 @@ function Details({ organizationData = {} }) {
 				</div>
 				<div className={styles.sub_container}>
 					<div>
-						<div className={styles.heading}>Branch Code</div>
+						<div className={styles.heading}>{t('settings:organization_details_text_7')}</div>
 						<div className={styles.value}>
 							{organizationData.branches?.[0].branch_code || '-'}
 						</div>

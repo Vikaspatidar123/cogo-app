@@ -1,4 +1,5 @@
 import { Button, Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 import useEditOtherAddress from './useEditOtherAddress';
@@ -15,6 +16,8 @@ function EditOtherAddress({
 	getAdd,
 	mobalType,
 }) {
+	const { t } = useTranslation(['settings']);
+
 	const { loading, control, showElements, fields, handleSubmit, onCreate } = useEditOtherAddress({
 		organizationType,
 		address_key,
@@ -28,7 +31,9 @@ function EditOtherAddress({
 	return (
 		<div>
 			<Modal.Header
-				title={mobalType ? `Edit ${address_key?.label}` : address_key?.label}
+				title={mobalType
+					? `${t('settings:edit_or_add_button_label_2')} ${address_key?.label}`
+					: address_key?.label}
 			/>
 			<Modal.Body>
 				<div className={styles.layout}>
@@ -55,7 +60,7 @@ function EditOtherAddress({
 					themeType="secondary"
 					disabled={loading}
 				>
-					Cancel
+					{t('settings:edit_or_add_button_label_1')}
 				</Button>
 
 				<Button
@@ -63,7 +68,7 @@ function EditOtherAddress({
 					onClick={handleSubmit(onCreate)}
 					themeType="primary"
 				>
-					{mobalType ? 'Update' : 'Add'}
+					{mobalType ? t('settings:billing_details_update_label') : t('settings:billing_details_add_label')}
 				</Button>
 			</Modal.Footer>
 		</div>

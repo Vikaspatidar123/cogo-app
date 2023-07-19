@@ -4,6 +4,7 @@ import {
 	IcMArrowRotateRight,
 	IcMFtaskNotCompleted,
 } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import BillingAddressCard from './BillingAddressCard';
@@ -18,11 +19,14 @@ function BillingAddresses({
 	loading,
 	getAddress,
 }) {
+	const { t } = useTranslation(['settings']);
+
 	const [showEditBillingAddress, setShowEditBillingAddress] = useState(false);
 
 	const [addressIdxToUpdate, setAddressIdxToUpdate] = useState(null);
 
 	const [showData, setShowData] = useState(false);
+
 	const [mobalType, setMobalType] = useState(false);
 
 	const handleCloseModal = () => {
@@ -34,7 +38,7 @@ function BillingAddresses({
 			return (
 				<div className={styles.empty}>
 					<IcMFtaskNotCompleted width={40} height={40} />
-					<div className={styles.no_data}>No data Found</div>
+					<div className={styles.no_data}>{t('settings:no_data_found_text')}</div>
 				</div>
 			);
 		}
@@ -50,7 +54,8 @@ function BillingAddresses({
 	};
 	const addresCount = () => {
 		const count = organizationBillingAddressesList.length;
-		const value = count === 0 ? 'No Address(s) Added' : `${count} Address(s) Added`;
+		const value = count === 0 ? t('settings:addresses_not_found_text_1')
+			: `${count} ${t('settings:addresses_added_text_1')}`;
 		return value;
 	};
 	if (loading) {
@@ -92,7 +97,7 @@ function BillingAddresses({
 									setMobalType(false);
 								}}
 							>
-								Add Address +
+								{t('settings:add_address_button_label')}
 							</Button>
 						</div>
 					</div>
@@ -113,7 +118,7 @@ function BillingAddresses({
 					<EditBillingAddress
 						handleCloseModal={handleCloseModal}
 						organizationBillingAddressesList={organizationBillingAddressesList}
-		// getOrganizationBillingAddress={getOrganizationBillingAddress}
+						// getOrganizationBillingAddress={getOrganizationBillingAddress}
 						addressIdxToUpdate={addressIdxToUpdate}
 						organizationType={organizationType}
 						mobalType={mobalType}

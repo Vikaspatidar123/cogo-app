@@ -2,9 +2,11 @@
 import { Modal, Button } from '@cogoport/components';
 import { IcMDocument, IcMEdit } from '@cogoport/icons-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import AddEditPocDetails from '../../AddEditPocDetails';
 
+import PocCard from './PocCard';
 import styles from './styles.module.css';
 
 import getValue from '@/ui/commons/utils/getValue';
@@ -17,7 +19,7 @@ function AddressCard({
 	setMobalType,
 	getAddress,
 }) {
-	const [showPocDetails, setShowPocDetails] = useState(false);
+	const { t } = useTranslation(['settings']);
 
 	const [showPocModal, setShowPocModal] = useState(null);
 
@@ -48,18 +50,18 @@ function AddressCard({
 					setMobalType(true);
 				}}
 			>
-				<div>Edit</div>
+				<div>{t('settings:edit_or_add_button_label_2')}</div>
 				<IcMEdit height={14} width={14} style={{ marginLeft: '3px' }} />
 			</Button>
 
 			<div className={styles.basic_billing_details}>
 				<div className={styles.billing_party_name_container}>
-					<div className={styles.value_text}>Billing Party Name</div>
+					<div className={styles.value_text}>{t('settings:billing_details_label_1')}</div>
 					<div className={styles.label_text}>{address.name || '-'}</div>
 				</div>
 
 				<div className={styles.mobile_sub_container}>
-					<div className={styles.value_text}>Is your address SEZ?</div>
+					<div className={styles.value_text}>{t('settings:billing_details_label_2')}</div>
 					<div className={styles.label_text}>
 						{address.is_sez ? 'Yes' : 'No'}
 					</div>
@@ -68,23 +70,25 @@ function AddressCard({
 
 			<div className={styles.tax_details_container}>
 				<div className={styles.address_container}>
-					<div className={styles.value_text}>Address</div>
+					<div className={styles.value_text}>{t('settings:billing_details_label_3')}</div>
 					<div className={styles.label_text}>{address.address || '-'}</div>
 				</div>
 				<div className={styles.sub_container}>
-					<div className={styles.value_text}>GST Number</div>
+					<div className={styles.value_text}>{t('settings:billing_details_label_4')}</div>
 					<div className={styles.label_text}>{address.tax_number || '-'}</div>
 				</div>
 			</div>
 
 			<div className={styles.tax_details_container}>
 				<div className={styles.pin_code_container}>
-					<div className={styles.value_text}>Pincode </div>
+					<div className={styles.value_text}>
+						{t('settings:billing_details_label_5')}
+					</div>
 					<div className={styles.label_text}>{address.pincode || '-'}</div>
 				</div>
 
 				<div className={styles.address_container}>
-					<div className={styles.value_text}>GST Proof</div>
+					<div className={styles.value_text}>{t('settings:billing_details_label_6')}</div>
 					{address.tax_number_document_url ? (
 						<div className={styles.doc_container}>
 							<div className={styles.flex}>
@@ -98,7 +102,7 @@ function AddressCard({
 									role="presentation"
 									onClick={() => handleOpenDocument(address.tax_number_document_url)}
 								>
-									View
+									{t('settings:billing_details_button_label')}
 								</div>
 							</div>
 						</div>
@@ -109,63 +113,7 @@ function AddressCard({
 			</div>
 
 			{(organization_pocs || []).map((firstPoc) => (
-				<div className={styles.poc_container}>
-					<div
-						className={styles.poc_edit_icon_container}
-						onClick={() => {
-							setShowPocModal('edit');
-							setPocToUpdate(firstPoc);
-						}}
-						role="presentation"
-					>
-						<IcMEdit style={{ width: 12, height: 12 }} />
-					</div>
-
-					<div className={styles.poc_sub_container}>
-						<div className={`${styles.value_text}${styles.poc_details}`}>
-							POC`s Name
-						</div>
-						<div className={`${styles.label_text}${styles.poc_details}`}>
-							{firstPoc?.name || '-'}
-						</div>
-					</div>
-
-					<div className={styles.poc_sub_container}>
-						<div className={`${styles.value_text}${styles.poc_details}`}>
-							POC`s Mobile
-						</div>
-						<div className={`${styles.label_text}${styles.poc_details}`}>
-							{firstPoc?.mobile_number
-								? `${firstPoc?.mobile_country_code || ''} ${
-									firstPoc?.mobile_number
-								}`
-								: '-'}
-						</div>
-					</div>
-
-					<div className={styles.poc_sub_container}>
-						<div className={`${styles.value_text}${styles.poc_details}`}>
-							Email
-							{' '}
-						</div>
-						<div className={`${styles.label_text}${styles.poc_details}`}>
-							{firstPoc?.email || '-'}
-						</div>
-					</div>
-
-					<div className={styles.poc_sub_container}>
-						<div className={`${styles.value_text}${styles.poc_details}`}>
-							Alternate Mobile
-						</div>
-						<div className={`${styles.label_text}${styles.poc_details}`}>
-							{firstPoc?.alternate_mobile_number
-								? `${firstPoc?.alternate_mobile_country_code || ''} ${
-									firstPoc?.alternate_mobile_number
-								}`
-								: '-'}
-						</div>
-					</div>
-				</div>
+				<PocCard firstPoc={firstPoc} setShowPocModal={setShowPocModal} setPocToUpdate={setPocToUpdate} />
 			))}
 
 			<div className={styles.poc_footer}>
@@ -175,7 +123,7 @@ function AddressCard({
 					className={styles.button}
 					onClick={() => setShowPocModal('add')}
 				>
-					Add POC +
+					{t('settings:add_poc_button_label')}
 				</Button>
 			</div>
 

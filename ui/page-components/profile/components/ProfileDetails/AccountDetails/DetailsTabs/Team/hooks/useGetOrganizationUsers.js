@@ -19,11 +19,15 @@ const useGetOrganizationUsers = () => {
 	}, { autoCancel: false });
 
 	const getOrgUsers = useCallback(async () => {
-		await trigger({
-			params: {
-				organization_id: profile?.organization?.id,
-			},
-		});
+		try {
+			await trigger({
+				params: {
+					organization_id: profile?.organization?.id,
+				},
+			});
+		} catch (e) {
+			console.error(e);
+		}
 	}, [profile?.organization?.id, trigger]);
 
 	useEffect(() => {

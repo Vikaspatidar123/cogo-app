@@ -2,6 +2,7 @@
 import { Toast } from '@cogoport/components';
 import { IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
 import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import getControls from './controls';
 
@@ -21,6 +22,8 @@ const useResetPassword = ({
 	setShowPasswordModal = () => {},
 	refetch = () => {},
 }) => {
+	const { t } = useTranslation(['settings']);
+
 	const [passwordInputType, setPasswordInputType] = useState('password');
 
 	const [confirmPasswordInputType, setConfirmPasswordInputType] =		useState('password');
@@ -32,7 +35,7 @@ const useResetPassword = ({
 		method : 'post',
 	}, { manual: false });
 
-	const controls = getControls();
+	const controls = getControls({ t });
 
 	const newControls = useMemo(() => controls?.map((control) => {
 		const { name = '' } = control;
@@ -117,9 +120,7 @@ const useResetPassword = ({
 			setShowPasswordModal(false);
 			refetch();
 
-			Toast.success(
-				'Successfully Updated',
-			);
+			Toast.success(t('settings:billing_details_successfully_updated_toast'));
 		} catch (error) {
 			handleResetPasswordError(error);
 		}
@@ -143,7 +144,6 @@ const useResetPassword = ({
 		onSubmit,
 		onErrors,
 		loading,
-		// loading: updateUserPasswordAPI?.loading,
 	};
 };
 

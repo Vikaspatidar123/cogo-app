@@ -4,7 +4,6 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-// import { getStaticOptions } from '@/commons/form';
 import getField from '@/packages/forms/Controlled';
 
 function Child({

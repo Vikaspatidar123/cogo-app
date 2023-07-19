@@ -1,5 +1,6 @@
 import { Modal, Button } from '@cogoport/components';
 import { IcMEdit } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import MobileHeader from '../../../../MobileHeader';
 import getWorkScopes from '../../../configurations/work-scopes';
@@ -13,6 +14,8 @@ import ResetPassword from './ResetPassword';
 import styles from './styles.module.css';
 
 function MyProfile() {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		loading = false,
 		userDetails = {},
@@ -26,7 +29,7 @@ function MyProfile() {
 		onClickBackButton,
 	} = useMyProfile();
 
-	const workScopes = getWorkScopes();
+	const workScopes = getWorkScopes({ t });
 
 	if (loading) {
 		return <LoadingState />;
@@ -47,14 +50,14 @@ function MyProfile() {
 	return (
 		<>
 			<MobileHeader
-				heading="My Profile"
+				heading={t('settings:my_profile_heading_text')}
 				onClickBackButton={onClickBackButton}
 			/>
 			<div className={styles.main_container}>
 				{!showEditProfileDetails ? (
 					<div className={styles.flex}>
 						<Button themeType="secondary" onClick={() => setShowEditProfileDetails(true)}>
-							<div>Edit</div>
+							<div>{t('settings:edit_or_add_button_label_2')}</div>
 							<IcMEdit
 								width={14}
 								height={14}
@@ -66,11 +69,11 @@ function MyProfile() {
 
 				<div className={styles.header_container}>
 					<div className={styles.header_text}>
-						My Profile
+						{t('settings:my_profile_heading_text')}
 					</div>
 					{!showEditProfileDetails ? (
 						<Button themeType="secondary" onClick={() => setShowEditProfileDetails(true)}>
-							<div>Edit</div>
+							<div>{t('settings:edit_or_add_button_label_2')}</div>
 							<IcMEdit
 								width={14}
 								height={14}

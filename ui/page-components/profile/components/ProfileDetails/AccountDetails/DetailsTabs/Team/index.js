@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next';
+
 import MobileHeader from '../../../../MobileHeader';
 
 import Details from './Details';
@@ -6,6 +8,8 @@ import LoadingState from './LoadingState';
 import styles from './styles.module.css';
 
 function Team() {
+	const { t } = useTranslation(['settings']);
+
 	const { users, loading, onClickBackButton } = useGetOrganizationUsers();
 
 	function RenderTeamDetails() {
@@ -13,7 +17,7 @@ function Team() {
 		return (
 			<div>
 				<div className={styles.header_text}>
-					My Team
+					{t('settings:my_team_heading')}
 				</div>
 				<Details users={users} />
 			</div>
@@ -23,7 +27,7 @@ function Team() {
 	return (
 		<>
 			<MobileHeader
-				heading="Company Details"
+				heading={t('settings:my_team_heading')}
 				onClickBackButton={onClickBackButton}
 			/>
 

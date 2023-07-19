@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'react-i18next';
 
 import PasswordValidator from './PasswordValidator';
 import styles from './styles.module.css';
@@ -10,6 +11,8 @@ function ResetPassword({
 	setShowPasswordModal = () => {},
 	refetch = () => {},
 }) {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		fields = [],
 		formProps = {},
@@ -27,9 +30,9 @@ function ResetPassword({
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>
-				<div className={styles.heading_title}>Reset Password</div>
+				<div className={styles.heading_title}>{t('settings:personal_information_label_6')}</div>
 				<div className={styles.heading_sub_title}>
-					Let s get you a new password
+					{t('settings:reset_password_text_1')}
 				</div>
 			</div>
 			{fields.map((field) => (
@@ -50,13 +53,13 @@ function ResetPassword({
 					disabled={loading}
 					loading={loading}
 				>
-					Save
+					{t('settings:reset_password_button_label_1')}
 				</Button>
 				<Button
 					onClick={() => setShowPasswordModal(false)}
 					themeType="tertiary"
 				>
-					Cancel
+					{t('settings:edit_or_add_button_label_1')}
 				</Button>
 			</div>
 		</div>

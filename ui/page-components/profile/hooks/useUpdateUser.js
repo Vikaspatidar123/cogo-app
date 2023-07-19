@@ -1,8 +1,11 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useRequest } from '@/packages/request';
 
 const useUpdateUser = (refetch) => {
+	const { t } = useTranslation(['settings']);
+
 	const [{ loading }, trigger] = useRequest({
 		url    : '/update_user',
 		method : 'post',
@@ -17,7 +20,7 @@ const useUpdateUser = (refetch) => {
 			});
 			if (resp.status === 200) {
 				refetch();
-				Toast.success('Successfull Update Languages');
+				Toast.success(t('settings:successfully_updated_langauges_toast'));
 			}
 		} catch (err) {
 			Toast.error(err?.message);

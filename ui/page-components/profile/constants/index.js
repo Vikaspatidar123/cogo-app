@@ -7,59 +7,60 @@ export const CATEGORIES = [
 	'general_news',
 ];
 
-export const getReasonMapping = () => [
+export const getReasonMapping = ({ t }) => [
 	{
-		label : 'Your emails are too frequent',
-		value : 'Your emails are not relevant to me',
-	},
-	{
-		label : 'Your emails are not relevant to me',
+		label : t('settings:unsubscribe_reason_1'),
 		value : 'Your emails are too frequent',
 	},
 	{
-		label : 'I don’t remember signing up for this',
+		label : t('settings:unsubscribe_reason_2'),
+		value : 'Your emails are not relevant to me',
+	},
+	{
+		label : t('settings:unsubscribe_reason_3'),
 		value : 'I don’t remember signing up for this',
 	},
 	{
-		label : 'I no longer want to receive these emails',
+		label : t('settings:unsubscribe_reason_4'),
 		value : 'I no longer want to receive these emails',
 	},
 	{
-		label : 'The emails are spam and should be reported',
+		label : t('settings:unsubscribe_reason_5'),
 		value : 'The emails are spam and should be reported',
 	},
-	{ label: 'Others', value: 'others' },
+	{ label: t('settings:unsubscribe_reason_6'), value: 'others' },
 ];
-export const getMapping = () => ({
+
+export const getMapping = ({ t }) => ({
 	general_news: {
-		label    : 'Offers/Discounts',
-		sublabel : 'Receive offers and discounts.',
+		label    : t('settings:alerts_text_1'),
+		sublabel : t('settings:alerts_text_2'),
 	},
 	new_product_service_launches_and_updates: {
-		label    : 'Subscriber Special',
-		sublabel : 'Receive exclusive subscriber communications.',
+		label    : t('settings:alerts_text_3'),
+		sublabel : t('settings:alerts_text_4'),
 	},
 	newsletter: {
-		label    : 'New product/Service launches and updates',
-		sublabel : 'Get information on latest product launches and updates.',
+		label    : t('settings:alerts_text_5'),
+		sublabel : t('settings:alerts_text_6'),
 	},
 	offers_discounts: {
-		label    : 'Product/service Explainers',
-		sublabel : 'Receive detailed product explanations.',
+		label    : t('settings:alerts_text_7'),
+		sublabel : t('settings:alerts_text_8'),
 	},
 	product_service_explainers: {
-		label    : 'Newsletter',
-		sublabel : 'Get latest newsletters and services.',
+		label    : t('settings:alerts_text_9'),
+		sublabel : t('settings:alerts_text_10'),
 	},
 	subscriber_special: {
-		label    : 'General News',
-		sublabel : 'Receive relevant news and information.',
+		label    : t('settings:alerts_text_11'),
+		sublabel : t('settings:alerts_text_12'),
 	},
 });
 
-export const getMappings = () => {
-	const REASON_MAPPING = getReasonMapping();
-	const MAPPING = getMapping();
+export const getMappings = ({ t }) => {
+	const REASON_MAPPING = getReasonMapping({ t });
+	const MAPPING = getMapping({ t });
 
 	return {
 		REASON_MAPPING,

@@ -4,7 +4,6 @@ import FieldArray from './FieldArray';
 import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
-// import { getStaticOptions } from '@/packages/forms';
 
 function SearchResultsServiceItemFormElement({
 	controls,

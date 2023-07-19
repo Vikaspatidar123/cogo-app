@@ -16,7 +16,7 @@ const getOptions = ({ t }) => ({
 	},
 	team: {
 		key                : 'team',
-		title              : 'My Team',
+		title              : t('settings:my_team_heading'),
 		containerComponent : Team,
 		icon               : <IcMTeam />,
 	},
@@ -40,7 +40,7 @@ const getOptions = ({ t }) => ({
 	},
 	documents: {
 		key                : 'documents',
-		title              : 'Documents',
+		title              : t('settings:documents_heading'),
 		containerComponent : DocumentsWallet,
 		icon               : <IcMDocument />,
 	},

@@ -1,5 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
 import getBillingAddressControls from './get-billing-address-controls';
@@ -23,6 +24,8 @@ const useEditBillingAddress = ({
 	mobalType,
 	getAddress,
 }) => {
+	const { t } = useTranslation(['settings']);
+
 	const endPoint = mobalType
 		? '/update_organization_billing_address'
 		: '/create_organization_billing_address';
@@ -42,7 +45,8 @@ const useEditBillingAddress = ({
 			params: { filters: { type: ['pincode'] } },
 		}),
 	);
-	const fields = getBillingAddressControls({ cityPincode }) || [];
+	const fields = getBillingAddressControls({ cityPincode, t }) || [];
+
 	const {
 		handleSubmit = () => {},
 		watch,
@@ -108,7 +112,7 @@ const useEditBillingAddress = ({
 					id                      : mobalType ? valuesToPrefill?.id : undefined,
 				},
 			});
-			Toast.success('Successfull Update');
+			Toast.success(t('settings:billing_details_successfully_updated_toast'));
 			getAddress();
 			handleCloseModal(false);
 		} catch (err) {

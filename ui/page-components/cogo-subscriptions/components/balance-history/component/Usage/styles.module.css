@@ -9,7 +9,6 @@
 
 .subtitle {
 	display: flex;
-	gap: 5px;
 	font-size: 12px;
 }
 
@@ -37,11 +36,14 @@
 
 .card_container {
 	display: flex;
-	gap: 30px;
 	justify-content: flex-start;
 	max-width: 96%;
 	overflow-x: auto;
 	scroll-behavior: smooth;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 .empty_state {
@@ -70,6 +72,7 @@
 	width: 230px;
 	height: 110px;
 	padding: 15px;
+	margin-right: 10px;
 	color: #3b536b;
 	border: 1px solid #e0e0e0;
 	border-radius: 5px;
@@ -215,5 +218,21 @@
 @media screen and (max-width: 768px) {
 	.footer {
 		z-index: 2;
+	}
+}
+
+.web_view {
+	display: block;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}
+
+.mobile_view {
+	display: none;
+
+	@media (max-width: 768px) {
+		display: block;
 	}
 }

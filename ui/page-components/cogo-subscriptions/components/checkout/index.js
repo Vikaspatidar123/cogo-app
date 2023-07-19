@@ -3,6 +3,7 @@ import { IcMArrowBack } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { useTranslation } from 'next-i18next';
 import { useCallback, useEffect, useState } from 'react';
 
 import CheckoutModal from '../../common/CheckoutModal';
@@ -19,10 +20,13 @@ import Charges from './Charges';
 import styles from './styles.module.css';
 import SubscriptionDetails from './subscriptionDetails';
 
-import { useRouter } from '@/packages/next';
+import { useRouter, Image } from '@/packages/next';
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function Checkout() {
+	const { t } = useTranslation(['subscriptions']);
+
 	const { profile } = useSelector((s) => s);
 	const [plan, setPlan] = useState({});
 	const [datePickerValue, setDatePickerValue] = useState();
@@ -82,7 +86,7 @@ function Checkout() {
 
 	useEffect(() => {
 		stripefunc();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [gateway_key]);
 
 	useEffect(() => {
@@ -92,22 +96,24 @@ function Checkout() {
 	useEffect(() => {
 		if (checkoutResponse?.errors) {
 			Toast.error(
-				'Something went wrong. Please try again after sometime',
+				t('checkout_error_message:checkout_text'),
 			);
 		}
-	}, [checkoutResponse]);
+	}, [checkoutResponse, t]);
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.label}>
 				<IcMArrowBack onClick={() => redirectManageSubscription()} />
-				Checkout
+				{t('subscriptions:checkout_text')}
 			</div>
 			{(planDataLoading || checkoutLoading) && (
-				<img
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
+				<Image
+					src={GLOBAL_CONSTANTS.image_url.loading}
 					className={styles.loading}
-					alt="loading-svg"
+					alt={t('subscriptions:loading_text')}
+					height={20}
+					width={20}
 				/>
 			)}
 			{!planDataLoading && !checkoutLoading && (

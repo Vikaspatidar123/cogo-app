@@ -25,7 +25,6 @@ function Header({
 				<div className={styles.heading}>{t('hsClassification:hs_code_classification_label')}</div>
 				<div>
 					<Toggle
-						name="a4"
 						size="md"
 						disabled={false}
 						onLabel={t('hsClassification:hs_code_classification_toggle_on_label')}

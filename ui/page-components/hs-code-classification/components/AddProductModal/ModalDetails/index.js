@@ -11,12 +11,14 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 
+const ZERO_PERCENTAGE = 0;
+
 const renderProfit = ({ t, profitPercentage }) => {
-	if (profitPercentage > 0) {
+	if (profitPercentage > ZERO_PERCENTAGE) {
 		return `${t('hsClassification:hs_code_classification_profit_label')} 
 		${Math.round(Math.abs(profitPercentage))}%`;
 	}
-	if (profitPercentage === 0) {
+	if (profitPercentage === ZERO_PERCENTAGE) {
 		return `${t('hsClassification:hs_code_classification_loss_label')}  0% `;
 	}
 	return `${t('hsClassification:hs_code_classification_loss_label')} ${Math.round(Math.abs(profitPercentage))}%`;
@@ -71,7 +73,7 @@ function ModalDetails({ data = {}, setShow }) {
 	const { categoryDisplayName, subCategoryDisplayName } = productDetails || {};
 
 	useEffect(() => {
-		if (costPrice >= 0 && sellingPrice > 0) {
+		if (costPrice >= ZERO_PERCENTAGE && sellingPrice > ZERO_PERCENTAGE) {
 			calculateProfit({ sellingPrice, costPrice, setProfitPercentage });
 		}
 	}, [costPrice, sellingPrice]);

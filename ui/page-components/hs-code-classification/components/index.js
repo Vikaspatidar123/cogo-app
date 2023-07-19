@@ -39,7 +39,7 @@ function HsClassification() {
 		searchLoading,
 	} = useHSCode();
 
-	const list = loading ? [1, 2, 3, 4, 5, 6] : apiData;
+	const list = loading ? [...Array(5).keys()] : apiData;
 
 	const {
 		bookmarkData, refetchGetBookmark, refetchRemoveBookmark, getBookmarkLoading,

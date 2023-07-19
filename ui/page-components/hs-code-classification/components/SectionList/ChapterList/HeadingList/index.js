@@ -7,6 +7,10 @@ import styles from '../../styles.module.css';
 
 import HScode from './HScode';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const MAX_DESCRIPTION_LENGTH = 76;
+
 function HeadingList({
 	headingData,
 	chapterToggle,
@@ -45,11 +49,9 @@ function HeadingList({
 	const description = () => {
 		if (headingLoading) return addLoader('150px', '800px');
 		if (headingToggle) return headingDescription;
-		if (headingDescription?.length > 40) {
-			return `${headingData?.headingDescription?.substring(0, 40)}....`;
-		}
-		if (headingDescription?.length > 96) {
-			return `${headingData?.headingDescription?.substring(0, 95)}....`;
+		if (headingDescription?.length > MAX_DESCRIPTION_LENGTH) {
+			return `${headingData?.headingDescription
+				?.substring(GLOBAL_CONSTANTS.zeroth_index, MAX_DESCRIPTION_LENGTH)}....`;
 		}
 		return headingDescription;
 	};

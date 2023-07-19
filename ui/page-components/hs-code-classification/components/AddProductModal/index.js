@@ -12,7 +12,7 @@ function AddProductModal({ data = {}, src = '' }) {
 	return (
 		<div>
 			{data?.type === 'FINAL'
-				&& (
+				? (
 					<>
 						<div
 							role="presentation"
@@ -33,8 +33,8 @@ function AddProductModal({ data = {}, src = '' }) {
 							<IcMPlus width={10} height={10} />
 						</div>
 					</>
-				)}
-			{src === 'fav' && (
+				) : null}
+			{src === 'fav' ? (
 				<Tooltip
 					theme="light"
 					content={t('hsClassification:hs_code_classification_add_to_product_catalogue_tooltip')}
@@ -49,15 +49,15 @@ function AddProductModal({ data = {}, src = '' }) {
 						<IcMPlus width={25} height={25} />
 					</div>
 				</Tooltip>
-			)}
-			{show && (
+			) : null}
+			{show ? (
 				<Modal
 					show={show}
 					onClose={() => setShow(false)}
 				>
 					<ModalDetails data={data} setShow={setShow} />
 				</Modal>
-			)}
+			) : null}
 		</div>
 	);
 }

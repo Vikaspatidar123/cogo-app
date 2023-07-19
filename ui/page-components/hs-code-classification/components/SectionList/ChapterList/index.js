@@ -8,6 +8,10 @@ import styles from '../styles.module.css';
 
 import HeadingList from './HeadingList';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const MAX_CHAPTER_LENGTH = 76;
+
 function ChapterList({
 	chapterData,
 	sectionToggle,
@@ -39,11 +43,9 @@ function ChapterList({
 
 	const description = () => {
 		if (chapterToggle) return chapterDescription;
-		if (chapterDescription?.length > 40) {
-			return `${chapterData?.chapterDescription?.substring(0, 40)}....`;
-		}
-		if (chapterDescription?.length > 110) {
-			return `${chapterData?.chapterDescription?.substring(0, 110)}....`;
+		if (chapterDescription?.length > MAX_CHAPTER_LENGTH) {
+			return `${chapterData?.chapterDescription
+				?.substring(GLOBAL_CONSTANTS.zeroth_index, MAX_CHAPTER_LENGTH)}....`;
 		}
 		return chapterDescription;
 	};

@@ -5,13 +5,29 @@ import { useTranslation } from 'next-i18next';
 import React, { useState, useEffect, useRef } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
-import { ShipGif, PlaneGif } from '../../../common/gif';
 import { transportationControls } from '../../../configuration/controls';
-import { InterChange, PlaneIcon, OceanIcon } from '../../../configuration/icon-configuration';
 import transportFn from '../../../utils/transportFn';
 import style from '../styles.module.css';
 
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const TRANSPORT_MODE_MAPPING = [
+	{
+		mode   : 'OCEAN',
+		imgUrl : GLOBAL_CONSTANTS.image_url.vessel_icon,
+		gifUrl : GLOBAL_CONSTANTS.image_url.vessel_gif,
+		text   : 'form_transport_ocean',
+	},
+	{
+		mode   : 'AIR',
+		imgUrl : GLOBAL_CONSTANTS.image_url.plane_icon,
+		gifUrl : GLOBAL_CONSTANTS.image_url.plane_gif,
+		text   : 'form_transport_air',
+	},
+];
 
 function Transportation({
 	transportMode,
@@ -79,33 +95,23 @@ function Transportation({
 			</div>
 			<form>
 				<div className={`${styles.tabs}`}>
-					<div
-						className={cl`${transportMode === 'OCEAN' && styles.selected} ${styles.card}`}
-						role="presentation"
-						onClick={() => setTransportMode('OCEAN')}
-					>
-						{transportMode === 'OCEAN' && <div className={styles.dot} />}
-
-						{transportMode === 'OCEAN' ? (
-							<img className={styles.image} src={ShipGif} alt="" />
-						) : (
-							<img src={OceanIcon} alt="" width={70} height={70} />
-						)}
-						<div className={styles.txt}>{t('dutiesTaxesCalculator:form_transport_ocean')}</div>
-					</div>
-					<div
-						className={cl`${transportMode === 'AIR' && styles.selected} ${styles.card}`}
-						role="presentation"
-						onClick={() => setTransportMode('AIR')}
-					>
-						{transportMode === 'AIR' && <div className={styles.dot} />}
-						{transportMode === 'AIR' ? (
-							<img className={styles.image} src={PlaneGif} alt="" />
-						) : (
-							<img src={PlaneIcon} alt="" width={70} height={70} />
-						)}
-						<div className={styles.txt}>{t('dutiesTaxesCalculator:form_transport_air')}</div>
-					</div>
+					{TRANSPORT_MODE_MAPPING.map((info) => (
+						<div
+							key={info.text}
+							className={cl`${transportMode === info.mode && styles.selected} ${styles.card}`}
+							role="presentation"
+							onClick={() => setTransportMode(info.mode)}
+						>
+							{transportMode === info.mode && <div className={styles.dot} />}
+							<Image
+								src={info.mode === transportMode ? info.gifUrl : info.imgUrl}
+								alt={t('dutiesTaxesCalculator:transport')}
+								width={88}
+								height={60}
+							/>
+							<div className={styles.txt}>{t(`dutiesTaxesCalculator:${info.text}`)}</div>
+						</div>
+					))}
 				</div>
 
 				<div className={styles.form_div}>
@@ -131,7 +137,12 @@ function Transportation({
 											role="presentation"
 											onClick={interchangeValuesHandler}
 										>
-											<img src={InterChange} alt="" width="20px" height="20px" />
+											<Image
+												src={GLOBAL_CONSTANTS.image_url.interchange}
+												alt={t('dutiesTaxesCalculator:interchange')}
+												width={20}
+												height={20}
+											/>
 										</div>
 									</div>
 								)}

@@ -3,11 +3,10 @@ import { Tooltip, cl, Button } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 
-import { SuccessGif } from '../../configuration/icon-configuration';
-
 import styles from './styles.module.css';
 
 import { Image, useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const CHARGE_MAPPING = {
@@ -77,7 +76,7 @@ function SuccessModal({ tradeEngineResp }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.icon_container_div}>
-				<Image src={SuccessGif} alt="success" height={130} width={130} />
+				<Image src={GLOBAL_CONSTANTS.image_url.success_gif} alt="success" height={130} width={130} />
 			</div>
 			<div className={styles.header_container}>
 				<div className={styles.title}>{t('dutiesTaxesCalculator:success_modal_title')}</div>

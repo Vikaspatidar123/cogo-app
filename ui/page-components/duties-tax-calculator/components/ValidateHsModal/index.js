@@ -6,12 +6,14 @@ import { IcAReports } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
-import { ValidateIcon } from '../../configuration/icon-configuration';
 import useVerifyHscode from '../../hook/useVerifyHscode';
 import validateFn from '../../utils/validateFn';
 
 import styles from './styles.module.css';
 import TitleContainer from './TitleContainer';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const sugestionContent = ({
 	inputValue,
@@ -153,7 +155,7 @@ function ValidateHsModal({
 							</Button>
 						) : (
 							<div className={styles.valid}>
-								<img src={ValidateIcon} alt="" height={25} width={25} />
+								<Image src={GLOBAL_CONSTANTS.image_url.validate} alt="" height={25} width={25} />
 								<div className={styles.validate}>
 									{t('dutiesTaxesCalculator:validate_hscode_modal_validated')}
 								</div>

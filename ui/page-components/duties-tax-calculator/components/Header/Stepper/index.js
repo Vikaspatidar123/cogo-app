@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 function Stepper({
 	stepper,
 	setStepper,
-	tradeEngineRespLength = 0,
+	isTradeEngineRespEmpty = false,
 	billId = '',
 }) {
 	const { t } = useTranslation(['dutiesTaxesCalculator']);
@@ -24,14 +24,14 @@ function Stepper({
 		const index = stepperValue.findIndex((ele) => !ele);
 		if (index > 0) {
 			setOngoing(stepperKey[index - 1]);
-		} else if (tradeEngineRespLength === 0) {
+		} else if (isTradeEngineRespEmpty) {
 			setOngoing('payDetails');
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [JSON.stringify(stepper)]);
 
 	useEffect(() => {
-		if (tradeEngineRespLength > 0) {
+		if (!isTradeEngineRespEmpty) {
 			setOngoing('');
 			setStepper({
 				transportDetails : true,
@@ -41,7 +41,7 @@ function Stepper({
 			});
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [tradeEngineRespLength]);
+	}, [isTradeEngineRespEmpty]);
 
 	useEffect(() => {
 		if (billId !== '') {

@@ -94,5 +94,12 @@
     "transport_err_msg_2": "Please enter Origin Country",
     "transport_err_msg_3": "Please enter Destination Country",
     "transport_err_msg_4": "Same Port selected !",
-    "transport_err_msg_5": "Ports of same Country selected!"
+    "transport_err_msg_5": "Ports of same Country selected!",
+    "product_box_quantity":"Quantity",
+    "product_box_value":"Consignment Value",
+    "alt_loader":"Loading",
+    "alt_product_cart_icon":"Product Cart",
+    "alt_product":"product cube",
+    "interchange":"interchange",
+    "transport":"Transport Mode"
 }

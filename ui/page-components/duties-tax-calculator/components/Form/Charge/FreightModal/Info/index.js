@@ -20,19 +20,18 @@ const getTagMapping = ({ t, transportMode }) => {
 };
 
 function RenderName({ name }) {
-	if (name.length > MAX_NAME_LENGTH) {
-		return (
-			<Tooltip theme="light-border" content={name}>
-				<div className={styles.tooltip_name}>
-					{' '}
-					{name.slice(ZEROTH_INDEX, MAX_NAME_LENGTH)}
-					...
-				</div>
-			</Tooltip>
-		);
-	}
+	const stringifyName = name.toString();
+	if (stringifyName.length < MAX_NAME_LENGTH) return name;
 
-	return name;
+	return (
+		<Tooltip theme="light-border" content={name}>
+			<div className={styles.tooltip_name}>
+				{' '}
+				{stringifyName.slice(ZEROTH_INDEX, MAX_NAME_LENGTH)}
+				...
+			</div>
+		</Tooltip>
+	);
 }
 
 function Info({ transportMode, portDetails }) {

@@ -60,6 +60,7 @@ const List = ({
 			>
 				<div>
 					<div className={`${styles.col} ${styles.icon}`}>
+						{/* image url is comming from Backend */}
 						<img
 							className={styles.img_icon}
 							src={item?.shipping_line?.logo_url || item?.airline?.logo_url}

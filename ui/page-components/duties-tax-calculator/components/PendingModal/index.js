@@ -2,11 +2,10 @@ import { Button, Modal, cl } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 
-import { Loading, LoadingBanner } from '../../configuration/icon-configuration';
-
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 	const { query } = useRouter();
@@ -25,14 +24,14 @@ function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 			{!stop && (
 				<div className={styles.container}>
 					<img
-						src={LoadingBanner}
-						alt=""
+						src={GLOBAL_CONSTANTS.image_url.loading_banner}
+						alt={t('dutiesTaxesCalculator:alt_loader')}
 						className={styles.loading_banner}
 					/>
 					<div className={styles.title}>{t('dutiesTaxesCalculator:pending_modal_checking')}</div>
 					<img
-						src={Loading}
-						alt=""
+						src={GLOBAL_CONSTANTS.image_url.loading}
+						alt={t('dutiesTaxesCalculator:alt_loader')}
 						className={styles.loading}
 					/>
 				</div>

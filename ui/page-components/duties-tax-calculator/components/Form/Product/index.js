@@ -96,7 +96,12 @@ function Product({
 		<div className={styles.container}>
 			<div className={styles.title_container}>
 				<div className={style.title}>
-					<Image src={GLOBAL_CONSTANTS.image_url.product_cart_icon} alt="" width={20} height={20} />
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.product_cart_icon}
+						alt={t('dutiesTaxesCalculator:alt_product_cart_icon')}
+						width={20}
+						height={20}
+					/>
 					<div>{t('dutiesTaxesCalculator:form_product_title')}</div>
 				</div>
 

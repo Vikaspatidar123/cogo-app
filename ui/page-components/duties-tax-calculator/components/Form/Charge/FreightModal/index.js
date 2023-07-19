@@ -5,7 +5,6 @@ import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState, useCallback } from 'react';
 
-import { Loading } from '../../../../configuration/icon-configuration';
 import useCurrencyConversion from '../../../../hook/useCurrencyConversion';
 import spotSearchPayload from '../../../../utils/spotSearchPayload';
 
@@ -13,7 +12,8 @@ import Info from './Info';
 import ListRow from './List';
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { Image, useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function TitleRender({ redirectDiscover }) {
 	const { t } = useTranslation(['dutiesTaxesCalculator']);
@@ -106,11 +106,11 @@ function FreightModal({
 			<Modal.Body>
 				<Info transportMode={transportMode} portDetails={portDetails} />
 				{spotSearchLoading && (
-					<img
-						src={Loading}
-						alt=""
-						width="60px"
-						height="60px"
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.loading}
+						alt={t('dutiesTaxesCalculator:alt_loader')}
+						width={60}
+						height={60}
 						className={styles.loading_styles}
 					/>
 				)}

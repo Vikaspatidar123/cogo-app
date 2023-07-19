@@ -64,6 +64,14 @@ const IMAGE_URLS = {
 	product_cart_icon : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/productcart.svg',
 	duties_tax        : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/tax.svg',
 	interchange       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/interchange.svg',
+	product_cube      : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/productCube.svg',
+	product_box_icon  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/productBox.svg',
+	plane_icon        : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/plane.svg',
+	vessel_icon       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ocean.svg',
+	plane_gif         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Gif-03-1.gif',
+	vessel_gif        : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Gif-02.gif',
+	success_gif       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.gif',
+	validate          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/validate.svg',
 
 };
 

@@ -8,7 +8,7 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function Header({
 	stepper,
-	tradeEngineRespLength,
+	isTradeEngineRespEmpty,
 	setStepper,
 	billId = '',
 }) {
@@ -22,7 +22,7 @@ function Header({
 			<Stepper
 				stepper={stepper}
 				setStepper={setStepper}
-				tradeEngineRespLength={tradeEngineRespLength}
+				isTradeEngineRespEmpty={isTradeEngineRespEmpty}
 				billId={billId}
 			/>
 		</div>

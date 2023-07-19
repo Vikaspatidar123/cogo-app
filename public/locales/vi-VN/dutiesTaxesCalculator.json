@@ -94,5 +94,12 @@
     "transport_err_msg_2": "Vui lòng nhập quốc gia gốc",
     "transport_err_msg_3": "Vui lòng vào quốc gia đích",
     "transport_err_msg_4": "Cùng một cổng được chọn!",
-    "transport_err_msg_5": "Các cảng của cùng một quốc gia được chọn!"
+    "transport_err_msg_5": "Các cảng của cùng một quốc gia được chọn!",
+    "product_box_quantity":"Quantity",
+    "product_box_value":"Consignment Value",
+    "alt_loader":"Loading",
+    "alt_product_cart_icon":"Product Cart",
+    "alt_product":"product cube",
+    "interchange":"interchange",
+    "transport":"Transport Mode"
 }

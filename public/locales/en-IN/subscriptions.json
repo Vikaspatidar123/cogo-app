@@ -97,5 +97,12 @@
     "payment_failed_status_text":"Apologies, but your payment has failed. Please ensure that the payment details are correct and try again.",
     "payment_pending_status_text":"Thank you for your payment! We have received it and will activate your subscription shortly. If you need to modify any subscription details, please let us know, and we'll be happy to assist you.",
     "feature_text":"Feature",
-    "limited_text":"Limited"
+    "limited_text":"Limited",
+    "payment_failed_text":"Payment Failed",
+    "attempt_number_failed_text":
+    "Our last attempted charge was unsuccessful.Your subscription will be automatically cancelled after 3 failed attempts.Contact admin to update payment.",
+    "recurring_communication_text_1":"We are delighted to have you as a valued member of our community.",
+    "recurring_communication_text_2":"With this subscription plan, you will gain access to exclusive features and content on a",
+    "recurring_communication_text_3":"basis until you decide to cancel.",
+    "recurring_communication_text_4":"Enjoy the convenience of automatic billing, which ensures uninterrupted access to our top-notch services."
 }

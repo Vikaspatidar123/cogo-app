@@ -1,26 +1,29 @@
+import { useTranslation } from 'next-i18next';
+
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
 function BottomContainer() {
 	const { query } = useRouter();
+
+	const { t } = useTranslation(['subscriptions']);
+
 	const { period } = query || {};
 	return (
 		<div className={styles.bottom_container}>
 			<div className={styles.text_1}>
-				We are delighted to have you as a valued member of our community.
+				{t('subscriptions:recurring_communication_text_1')}
 			</div>
 			<div>
-				With this subscription plan, you will gain access to exclusive features and content on
-				a
+				{t('subscriptions:recurring_communication_text_2')}
 				{' '}
 				<b>{period === 'annual' ? 'yearly' : period}</b>
 				{' '}
-				basis until you decide to cancel.
+				{t('subscriptions:recurring_communication_text_3')}
 			</div>
 			<div>
-				Enjoy the convenience of automatic billing,
-				which ensures uninterrupted access to our top-notch services.
+				{t('subscriptions:recurring_communication_text_4')}
 			</div>
 		</div>
 	);

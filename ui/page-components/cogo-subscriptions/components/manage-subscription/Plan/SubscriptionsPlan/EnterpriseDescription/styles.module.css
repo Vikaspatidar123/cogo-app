@@ -1,6 +1,5 @@
 .flex_column {
 	width: 100%;
-	padding: 15px;
 	border-radius: 26px;
 
 	.container {
@@ -32,7 +31,6 @@
 	z-index: 2;
 	color: #fff;
 	background: #333;
-	background-image: url("https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/line.png");
 	border-radius: 26px;
 	box-shadow: 0 42px 34px rgb(219 106 106 / 29.6%);
 	transition: transform 0.8s;

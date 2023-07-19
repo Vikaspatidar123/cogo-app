@@ -18,6 +18,7 @@ function RenderCard({ loading, userplan, activeTab, subscribeTab }) {
 	if (loading) {
 		return <Loading />;
 	}
+
 	return (
 		<>
 			{(sortedPlan || []).map((item, index) => (
@@ -38,6 +39,7 @@ function RenderCard({ loading, userplan, activeTab, subscribeTab }) {
 				callbackLoading={callbackLoading}
 				setActiveHover={setActiveHover}
 				activeIndex={activeIndex}
+				activeHover={activeHover}
 			/>
 		</>
 	);

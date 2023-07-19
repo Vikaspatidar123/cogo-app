@@ -8,7 +8,7 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useGetUSerActivePlan = () => {
-	const { profile } = useSelector((s) => s);
+	const { profile } = useSelector((state) => state);
 	const [userPlan, setUserPlan] = useState({});
 
 	const [subscribeTab, setSubscribeTab] = useState('monthly');
@@ -17,15 +17,17 @@ const useGetUSerActivePlan = () => {
 	const { item_plans = [] } = userPlan || {};
 
 	const checkPlanType = item_plans.some(
-		({ display_pricing = {}, priority_sequence }) => !!(
-			priority_sequence > MIN_POPPULAR_SEQUENCE
-			&& display_pricing?.annual?.is_active_plan
+		(item) => !!(
+			item?.priority_sequence > MIN_POPPULAR_SEQUENCE
+			&& item?.display_pricing?.annual?.is_active_plan
 		),
 	);
+
 	const [{ loading, data: plansData }, trigger] = useRequest({
 		url    : '/saas_get_user_active_plan',
 		method : 'get',
 	}, { manual: true });
+
 	const getPlan = useCallback(async () => {
 		try {
 			const activePlanResponse = await trigger({

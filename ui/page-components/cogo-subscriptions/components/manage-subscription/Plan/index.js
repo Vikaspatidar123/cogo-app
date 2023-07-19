@@ -54,13 +54,10 @@ function Plan() {
 	return (
 		<div>
 			{extended_days ? <RecurringPaymentFailedRibbon /> : null}
-
 			<div
 				className={extended_days ? styles.extended_padding : ''}
 			>
-
 				<HeaderContainer />
-
 				<div className={styles.container}>
 
 					<Toggle
@@ -117,7 +114,9 @@ function Plan() {
 					/>
 				)}
 			</div>
+
 		</div>
+
 	);
 }
 

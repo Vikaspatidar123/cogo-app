@@ -18,13 +18,13 @@ function CardHeader({ plans = {} }) {
 				{t('subscriptions:feature_text')}
 			</div>
 			<div className={styles.plan_name}>
-				{(sortPlanObjArray || []).map(({ display_name = '' }, index) => (
+				{(sortPlanObjArray || []).map((item, index) => (
 					<div
 						className={cl`${styles.col} ${styles.planCol} ${styles[`planCol${index}`]}`}
-						key={display_name}
+						key={item?.display_name}
 						style={{ minWidth: '70px' }}
 					>
-						{display_name}
+						{item?.display_name}
 					</div>
 				))}
 			</div>

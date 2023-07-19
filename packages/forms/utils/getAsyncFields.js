@@ -367,6 +367,18 @@ function asyncFieldsShippingLineList() {
 		endpoint : 'get_saas_container_shipping_lines',
 	};
 }
+function asyncFieldsTicketTypes() {
+	return {
+		labelKey    : 'TicketType',
+		valueKey    : 'TicketType',
+		endpoint    : 'default_types',
+		authKey     : 'get_tickets_default_types',
+		initialCall : true,
+		qFilterKey  : 'QFilter',
+		listKey     : 'items',
+		scope       : 'cogocare',
+	};
+}
 
 export {
 	asyncFieldsLocations,
@@ -400,4 +412,5 @@ export {
 	asyncFieldsAirLineList,
 	asyncFieldsShippingLineList,
 	asyncFieldsShippingLines,
+	asyncFieldsTicketTypes,
 };

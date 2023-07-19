@@ -32,7 +32,7 @@ function LiveInvoices({ data = {} }) {
 
 							<span className={styles.value}>
 								{(lineItem?.tax_price || 0, lineItem?.currency)}
-								<div className="showPercent">
+								<div className={styles.showPercent}>
 									(
 									{lineItem.tax_percent || 0}
 									%)
@@ -47,7 +47,8 @@ function LiveInvoices({ data = {} }) {
 				<div className={styles.total}>
 					<span>
 						Overall Total
-						<small> (excluding TAX)</small>
+						{' '}
+						<small>(excluding TAX)</small>
 					</span>
 					<div style={{ marginLeft: '16px' }}>
 						{formatAmount({
@@ -61,7 +62,7 @@ function LiveInvoices({ data = {} }) {
 			<div className={styles.total}>
 				<div className={styles.total_with_tax}>
 					<span>Overall Total with TAX</span>
-					{' '}
+					&nbsp;
 					<span className={styles.inc_of_tax}>(including all services)</span>
 				</div>
 				<div style={{ marginLeft: '16px' }}>

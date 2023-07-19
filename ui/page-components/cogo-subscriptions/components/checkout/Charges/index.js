@@ -114,12 +114,12 @@ function Charges({
 					<div className={styles.styled_col2}>
 						{plan?.metadata?.display_pricing?.[`${query?.period}`]
 							?.prev_value_inr ? (
-							<div className={`${styles.crossed_price} ${styles.crossedprice}`}>
-								<div className={styles.flex_div}>
-									{getAmount({ amount: crossedAmount, currency })}
+								<div className={`${styles.crossed_price} ${styles.crossedprice}`}>
+									<div className={styles.flex_div}>
+										{getAmount({ amount: crossedAmount, currency })}
+									</div>
 								</div>
-							</div>
-						) : null}
+							) : null}
 						<div className={styles.flex_div}>
 							{getAmount({ amount, currency })}
 						</div>

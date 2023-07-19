@@ -4,7 +4,6 @@ import { useState } from 'react';
 import useGetTracking from '../hooks/useGetTracking';
 
 import DiscoverRates from './DiscoverRates';
-import Elgibility from './Elgibility';
 import ExportFactoring from './ExportFactoring';
 import KYCPage from './KYCPage';
 import PayLaterWidgets from './PayLaterWidgets';
@@ -67,7 +66,6 @@ function SassDashboard() {
 				<div className={styles.part2}>
 					<div className={styles.child2}>
 						{PAYLATER_SUPPORTED_COUNTRIES.includes(location) && <PayLaterWidgets />}
-						<Elgibility />
 						<ExportFactoring />
 						<Promotion />
 					</div>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
@@ -12,6 +13,36 @@ const Cogomaps = dynamic(() => import('@/ui/commons/components/CogoMaps'), {
 const style = {
 	borderRadius: '18px',
 };
+const createBezier = (inputPoints, step, setCurvePoints) => {
+	let t = 0;
+	const bezierPoints = [];
+	while (t <= 1) {
+		try {
+			let x1;
+			let x2;
+			let x3;
+
+			x1 = parseFloat(inputPoints[0].lat);
+			x3 = parseFloat(inputPoints[1].lat);
+			x2 = Math.max(x1, x3) + 20;
+			const lat_x = (1 - t) * ((1 - t) * x1 + t * x2) + t * ((1 - t) * x2 + t * x3);
+
+			x1 = parseFloat(inputPoints[0].lng);
+			x3 = parseFloat(inputPoints[1].lng);
+			x2 = (x1 + x3) / 2;
+			const lng_x = (1 - t) * ((1 - t) * x1 + t * x2) + t * ((1 - t) * x2 + t * x3);
+
+			bezierPoints.push({
+				lat : lat_x,
+				lng : lng_x,
+			});
+		} catch (err) {
+			t = 1;
+		}
+		t += step;
+	}
+	setCurvePoints([...bezierPoints]);
+};
 function MapContainer({
 	transportMode,
 	exportCountry = {},
@@ -23,39 +54,7 @@ function MapContainer({
 
 	const originId = importCountry?.id;
 	const destinationId = exportCountry?.id;
-
-	const { getOceanRoute } = useOceanRoute({ setMapPoints });
-
-	const createBezier = (inputPoints, step) => {
-		let t = 0;
-		const bezierPoints = [];
-		while (t <= 1) {
-			try {
-				let x1;
-				let x2;
-				let x3;
-
-				x1 = parseFloat(inputPoints[0].lat);
-				x3 = parseFloat(inputPoints[1].lat);
-				x2 = Math.max(x1, x3) + 20;
-				const lat_x = (1 - t) * ((1 - t) * x1 + t * x2) + t * ((1 - t) * x2 + t * x3);
-
-				x1 = parseFloat(inputPoints[0].lng);
-				x3 = parseFloat(inputPoints[1].lng);
-				x2 = (x1 + x3) / 2;
-				const lng_x = (1 - t) * ((1 - t) * x1 + t * x2) + t * ((1 - t) * x2 + t * x3);
-
-				bezierPoints.push({
-					lat : lat_x,
-					lng : lng_x,
-				});
-			} catch (err) {
-				t = 1;
-			}
-			t += step;
-		}
-		setCurvePoints([...bezierPoints]);
-	};
+	const { getOceanRoute } = useOceanRoute({ setMapPoints, transportMode });
 
 	useEffect(() => {
 		if (originId && destinationId) {
@@ -72,7 +71,6 @@ function MapContainer({
 				]);
 			}
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [exportCountry?.id, originId, destinationId, transportMode]);
 
 	useEffect(() => {
@@ -115,7 +113,7 @@ function MapContainer({
 								lat : arrivalLatitude,
 								lng : arrivalLongitude,
 							};
-							createBezier([source, dest], 0.001);
+							createBezier([source, dest], 0.001, setCurvePoints);
 							return true;
 						}
 						return false;
@@ -125,8 +123,7 @@ function MapContainer({
 		} else if (mapPoints?.length === 0) {
 			setCurvePoints([]);
 		}
-	}, [mapPoints, transportMode]);
-
+	}, [mapPoints]);
 	return (
 		<div className={styles.container}>
 			<Cogomaps

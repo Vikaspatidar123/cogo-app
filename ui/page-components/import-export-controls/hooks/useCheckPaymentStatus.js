@@ -7,6 +7,8 @@ import { useRequestBf } from '@/packages/request';
 const MAX_API_TRIES = 10;
 let count = 0;
 const API_CALL_TIME = 2000;
+const INCREMENT_BY_ONE = 1;
+
 const useCheckPaymentStatus = ({
 	setShowPendingModal,
 	paymentSuccessHandler,
@@ -33,7 +35,7 @@ const useCheckPaymentStatus = ({
 			if (resp?.data?.status === 'PAID') {
 				paymentSuccessHandler(resp?.data);
 			} else if (count < MAX_API_TRIES) {
-				count += 1;
+				count += INCREMENT_BY_ONE;
 				setTimeout(async () => {
 					await checkPaymentStatus();
 				}, API_CALL_TIME);

@@ -11,6 +11,9 @@ import useVerifyHsCode from './useVerifyHsCode';
 import { useForm } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
 
+const COUNTRIES = ['exportCountry', 'importCountry', 'manufacturingCountry'];
+const HS_CODE_LENGTH = 6;
+
 const useInfoValidate = ({
 	isQuotaLeft = false,
 	isUserSubscribed = false,
@@ -25,16 +28,19 @@ const useInfoValidate = ({
 	setPrevHs,
 	prevHs,
 }) => {
-	const { query, push } = useRouter();
+	const { hsCode = '', name: productName = '', description = '' } = selectedData || {};
 
+	const { query, push } = useRouter();
 	const { billId = '' } = query;
+
 	const initialRef = useRef({ fillExportHs: true, fillImportHs: true });
 
-	const {
-		hsCode = '',
-		name: productName = '',
-		description = '',
-	} = selectedData || {};
+	const formProps = useForm();
+	const { getValues, setValue, watch } = formProps;
+
+	const [watchImportHs, watchExportHs,
+		watchImportCountry,
+		watchExportCountry] = watch(['importHsCode', 'exportHsCode', 'importCountry', 'exportCountry']);
 
 	const { verifySixDigitHs, verifySixDigitLoading } = useVerifyHsCode();
 	const { refetchDraft, draftLoading, getDraftFn } = useDraft();
@@ -44,34 +50,9 @@ const useInfoValidate = ({
 		setShowPendingModal,
 	});
 
-	const formProps = useForm();
-	const { getValues, setValue, watch } = formProps;
-
-	const [watchImportHs, watchExportHs,
-		watchImportCountry,
-		watchExportCountry] = watch(['importHsCode', 'exportHsCode', 'importCountry', 'exportCountry']);
-
-	useEffect(() => {
-		if (billId) {
-			checkPaymentStatus();
-		}
-	}, [billId]);
-
 	const prevHsChangeHandler = (hsKey) => {
 		setPrevHs((prev) => ({ ...prev, [hsKey]: '' }));
 	};
-
-	useEffect(() => {
-		if (watchImportCountry && !isEmpty(prevHs)) {
-			prevHsChangeHandler('importHs');
-		}
-	}, [watchImportCountry]);
-
-	useEffect(() => {
-		if (watchExportCountry && !isEmpty(prevHs)) {
-			prevHsChangeHandler('exportHs');
-		}
-	}, [watchExportCountry]);
 
 	const setFormValue = (key, value) => {
 		setValue(key, value);
@@ -80,42 +61,6 @@ const useInfoValidate = ({
 			[key]: value,
 		}));
 	};
-
-	useEffect(() => {
-		if (!isEmpty(hsCode)) {
-			if (isImportHs) {
-				setFormValue('importHsCode', hsCode);
-				if (!isEmpty(productName)) {
-					setValue('productName', productName);
-				} else if (!isEmpty(description)) {
-					setValue('productName', description);
-				}
-			} else {
-				setFormValue('exportHsCode', hsCode);
-			}
-		}
-	}, [selectedData]);
-
-	useEffect(() => {
-		if (
-			watchExportHs?.toString().length >= 6
-			&& !watchImportHs
-			&& initialRef.current.fillImportHs
-		) {
-			const importHs = watchExportHs.toString().substring(0, 6);
-			setFormValue('importHsCode', importHs);
-			initialRef.current.fillImportHs = false;
-		}
-		if (
-			!watchExportHs
-			&& watchImportHs?.toString().length >= 6
-			&& initialRef.current.fillExportHs
-		) {
-			const exportHs = watchImportHs.toString().substring(0, 6);
-			setFormValue('exportHsCode', exportHs);
-			initialRef.current.fillExportHs = false;
-		}
-	}, [watchImportHs, watchExportHs]);
 
 	const prefillData = () => {
 		if (typeof window === 'undefined') return;
@@ -128,27 +73,20 @@ const useInfoValidate = ({
 				...rest
 			} = localStorageFormData || {};
 
-			const obj = {
-				...rest,
-			};
-			const setKeys = Object.keys(obj || {});
-			setKeys.map((item) => setValue(item, obj?.[item]));
+			const setKeys = Object.keys(rest || {});
+			setKeys.forEach((item) => setValue(item, rest?.[item]));
+
 			setValue('exportCountry', exportCountry?.id);
 			setValue('importCountry', importCountry?.id);
 			setValue('manufacturingCountry', manufacturingCountry?.id);
+
 			setFormInfo(localStorageFormData);
 			localStorage.removeItem('formInfo');
 		}
 	};
 
-	useEffect(() => {
-		prefillData();
-	}, []);
-
 	const getKey = (name) => {
-		if (
-			['exportCountry', 'importCountry', 'manufacturingCountry'].includes(name)
-		) { return getValues(name); }
+		if (COUNTRIES.includes(name)) return getValues(name);
 
 		return name;
 	};
@@ -218,7 +156,8 @@ const useInfoValidate = ({
 		const exportHs = await verifySixDigitHs({ hsCode: exportHsCode.toString() });
 
 		if (importHs && exportHs) {
-			if (importHsCode.toString().substring(0, 6) !== exportHsCode.toString().substring(0, 6)) {
+			if (importHsCode.toString().substring(0, HS_CODE_LENGTH)
+			!== exportHsCode.toString().substring(0, HS_CODE_LENGTH)) {
 				setShowPendingModal(true);
 			} else {
 				btnSubtmitHandler();
@@ -241,6 +180,64 @@ const useInfoValidate = ({
 			}
 		}
 	};
+
+	useEffect(() => {
+		if (billId) {
+			checkPaymentStatus();
+		}
+	}, [billId]);
+
+	useEffect(() => {
+		if (watchImportCountry && !isEmpty(prevHs)) {
+			prevHsChangeHandler('importHs');
+		}
+	}, [watchImportCountry]);
+
+	useEffect(() => {
+		if (watchExportCountry && !isEmpty(prevHs)) {
+			prevHsChangeHandler('exportHs');
+		}
+	}, [watchExportCountry]);
+
+	useEffect(() => {
+		if (!isEmpty(hsCode)) {
+			if (isImportHs) {
+				setFormValue('importHsCode', hsCode);
+				if (!isEmpty(productName)) {
+					setValue('productName', productName);
+				} else if (!isEmpty(description)) {
+					setValue('productName', description);
+				}
+			} else {
+				setFormValue('exportHsCode', hsCode);
+			}
+		}
+	}, [selectedData]);
+
+	useEffect(() => {
+		if (
+			watchExportHs?.toString().length >= HS_CODE_LENGTH
+			&& !watchImportHs
+			&& initialRef.current.fillImportHs
+		) {
+			const importHs = watchExportHs.toString().substring(0, HS_CODE_LENGTH);
+			setFormValue('importHsCode', importHs);
+			initialRef.current.fillImportHs = false;
+		}
+		if (
+			!watchExportHs
+			&& watchImportHs?.toString().length >= HS_CODE_LENGTH
+			&& initialRef.current.fillExportHs
+		) {
+			const exportHs = watchImportHs.toString().substring(0, HS_CODE_LENGTH);
+			setFormValue('exportHsCode', exportHs);
+			initialRef.current.fillExportHs = false;
+		}
+	}, [watchImportHs, watchExportHs]);
+
+	useEffect(() => {
+		prefillData();
+	}, []);
 
 	return {
 		formProps,

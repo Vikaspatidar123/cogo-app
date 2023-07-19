@@ -5,7 +5,7 @@ import { Checkout } from '@/ui/page-components/import-export-documents';
 export async function getServerSideProps({ locale }) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common', 'importExportDoc'])),
+			...(await serverSideTranslations(locale, ['common', 'importExportDoc', 'traderEligibilityCheck'])),
 
 		},
 	};

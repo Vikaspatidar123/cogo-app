@@ -7,7 +7,9 @@ import TitleContainer from './TitleContainer';
 import ValidateRow from './ValidateRow';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 function ValidateHsModal({
 	show,
 	setShow,
@@ -79,7 +81,7 @@ function ValidateHsModal({
 							setPrevHs={setPrevHs}
 							setIsDisable={setIsDisable}
 						/>
-						{index === 0 && <div className={styles.line} />}
+						{index === ZEROTH_INDEX && <div className={styles.line} />}
 					</div>
 				))}
 			</div>

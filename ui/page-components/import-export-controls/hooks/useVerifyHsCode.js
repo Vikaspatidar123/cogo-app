@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
@@ -67,15 +68,15 @@ const useVerifyHscode = () => {
 			const { data = {} } = resp || {};
 			const { status = false, recommendations = [] } = data || {};
 
-			if (!status && recommendations.length === 0) {
-				Toast.info(t('importExportControls:api_hscode_error_3'));
+			if (!status) {
 				setValidateInProgress(true);
-			}
-			if (!status && recommendations.length > 0) {
-				Toast.info(t('importExportControls:api_hscode_error_4'));
-				setValidateInProgress(true);
-			}
-			if (status && recommendations.length === 0) {
+
+				if (isEmpty(recommendations)) {
+					Toast.info(t('importExportControls:api_hscode_error_3'));
+				} else {
+					Toast.info(t('importExportControls:api_hscode_error_4'));
+				}
+			} else if (recommendations.length === 0) {
 				const hsKey = isImport ? 'importHs' : 'exportHs';
 				setPrevHs((prev) => ({ ...prev, [hsKey]: hsCode }));
 			}

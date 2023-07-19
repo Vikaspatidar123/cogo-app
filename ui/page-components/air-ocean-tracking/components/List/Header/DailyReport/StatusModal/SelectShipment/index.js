@@ -1,7 +1,8 @@
 import { Placeholder, Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useMemo, useState } from 'react';
 
-import shipmentConfig from '../../../../../../configuration/shipmentConfig';
+import getShipmentConfig from '../../../../../../configuration/shipmentConfig';
 import { getTableFn } from '../../../../../../configuration/shipmentTableConfig';
 import useDsrToSubscription from '../../../../../../hooks/useDsrToSubscription';
 import useGetShipment from '../../../../../../hooks/useGetShipment';
@@ -14,6 +15,10 @@ import Table from '@/ui/page-components/air-ocean-tracking/common/Table';
 const LOADING_ARR = getLoadingArr(4);
 
 function SelectShipment({ selectedContact = {}, setIsSingleReport, setActiveStepper }) {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const shipmentConfig = getShipmentConfig({ t });
+
 	const [selectedShipments, setSelectedShipments] = useState([]);
 
 	const { id: contactId, dsrId } = selectedContact || {};
@@ -25,8 +30,8 @@ function SelectShipment({ selectedContact = {}, setIsSingleReport, setActiveStep
 	} = useDsrToSubscription({ dsrId, setActiveStepper, selectedShipments, setSelectedShipments });
 
 	const TABLE_MAPPING = useMemo(() => (
-		getTableFn({ associatedShipments, otherShipments })
-	), [associatedShipments, otherShipments]);
+		getTableFn({ associatedShipments, otherShipments, t })
+	), [associatedShipments, otherShipments, t]);
 
 	const checkboxChangeHandler = ({ id, val }) => {
 		if (val) {
@@ -74,7 +79,7 @@ function SelectShipment({ selectedContact = {}, setIsSingleReport, setActiveStep
 					onClick={() => setIsSingleReport(false)}
 					disabled={createLoading}
 				>
-					Back
+					{t('airOceanTracking:back_button_label')}
 				</Button>
 				<Button
 					className={styles.submit_btn}
@@ -82,7 +87,7 @@ function SelectShipment({ selectedContact = {}, setIsSingleReport, setActiveStep
 					onClick={submitHandler}
 					loading={createLoading}
 				>
-					Next
+					{t('airOceanTracking:tracking_daily_report_next_button_label')}
 				</Button>
 			</div>
 		</div>

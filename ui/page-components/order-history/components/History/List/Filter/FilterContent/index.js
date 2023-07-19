@@ -1,14 +1,17 @@
 import { Chips, DateRangepicker, CreatableSelect } from '@cogoport/components';
 import { IcMCrossInCircle } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
-import { options } from '../filterOptions';
+import { getFilterOption } from '../filterOptions';
 import styles from '../styles.module.css';
 
-const OPTIONS = [
+const PAGE_ARR = ['page', 'pageLimit'];
+
+const getOption = ({ t }) => [
 	{
 		children: (
 			<div className={styles.import_export}>
-				<div className={styles.type_label}>DIRECT PAYMENT</div>
+				<div className={styles.type_label}>{t('orderHistory:filter_option_direct_pay')}</div>
 			</div>
 		),
 		key: 'PAYMENT',
@@ -16,37 +19,44 @@ const OPTIONS = [
 	{
 		children: (
 			<div className={styles.import_export}>
-				<div className={styles.type_label}>QUOTA</div>
+				<div className={styles.type_label}>{t('orderHistory:filter_option_quota')}</div>
 			</div>
 		),
 		key: 'QUOTA',
 	},
 ];
 
-function FilterContent({ filters = {}, setFilters = () => {} }) {
-	const filterLength = Object.keys(filters)?.filter(
-		(x) => !['page', 'pageLimit'].includes(x),
-	)?.length;
+const calculateLength = ({ filters }) => {
+	let item = 0;
+	Object.keys(filters)
+		.filter((x) => !PAGE_ARR.includes(x))
+		.forEach((ele) => {
+			if (filters[ele]) {
+				item += 1;
+			}
+		});
+	return item;
+};
 
-	const calculateLength = () => {
-		let item = 0;
-		Object.keys(filters)
-			.filter((x) => !['page', 'pageLimit'].includes(x))
-			.forEach((ele) => {
-				if (filters[ele]) {
-					item += 1;
-				}
-			});
-		return item;
-	};
+function FilterContent({ filters = {}, setFilters = () => {} }) {
+	const { t } = useTranslation(['orderHistory']);
+
+	const options = getOption({ t });
+	const selectOption = getFilterOption({ t });
+
+	const filterLength = Object.keys(filters)?.filter(
+		(x) => !PAGE_ARR.includes(x),
+	)?.length;
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>
 				<div>
-					<div className={styles.title}>Apply Filters</div>
+					<div className={styles.title}>{t('orderHistory:filter_title')}</div>
 					{(filterLength > 0 || filters?.requestType) && (
-						<div className={styles.sub_header}>{`Selected Filters (${calculateLength()})`}</div>
+						<div className={styles.sub_header}>
+							{`${t('orderHistory:filter_selected')} (${calculateLength({ filters })})`}
+						</div>
 					)}
 				</div>
 				{(filterLength > 0 || filters?.requestType) && (
@@ -60,7 +70,7 @@ function FilterContent({ filters = {}, setFilters = () => {} }) {
 							});
 						}}
 					>
-						<p>Clear Filters </p>
+						<p>{t('orderHistory:filter_clear')}</p>
 						<IcMCrossInCircle />
 					</div>
 				)}
@@ -69,9 +79,9 @@ function FilterContent({ filters = {}, setFilters = () => {} }) {
 				<div className={styles.section}>
 					<CreatableSelect
 						size="sm"
-						placeholder="Service Type"
+						placeholder={t('orderHistory:filter_select_placeholder')}
 						value={filters?.requestType}
-						options={options || []}
+						options={selectOption || []}
 						onChange={(e) => setFilters((prev) => ({
 							...prev,
 							requestType : e,
@@ -80,11 +90,11 @@ function FilterContent({ filters = {}, setFilters = () => {} }) {
 					/>
 				</div>
 				<div className={styles.section}>
-					<div className={styles.title}>Status</div>
+					<div className={styles.title}>{t('orderHistory:filter_chips_label')}</div>
 					<div className={styles.chips_container}>
 						<Chips
 							selectedItems={filters.paymentType}
-							items={OPTIONS}
+							items={options}
 							onItemChange={(e) => setFilters((prev) => ({
 								...prev,
 								paymentType: e,
@@ -95,7 +105,7 @@ function FilterContent({ filters = {}, setFilters = () => {} }) {
 				<div className={styles.section}>
 					<div className={styles.row}>
 						<div className={styles.section}>
-							<div className={styles.title}>Order Date Range From - To</div>
+							<div className={styles.title}>{t('orderHistory:filter_date_label')}</div>
 							<DateRangepicker
 								pickerType="range"
 								name="date"

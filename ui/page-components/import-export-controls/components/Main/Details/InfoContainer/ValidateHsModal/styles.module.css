@@ -76,12 +76,6 @@
 	padding: 14px 16px;
 	box-shadow: 0 0 8px 0 #2c3e5033;
 
-	.core-ui-button-root {
-		text-transform: capitalize !important;
-		background: #ee3425 !important;
-		border: none;
-	}
-
 	.disable_btn {
 		opacity: 0.7;
 	}
@@ -119,15 +113,8 @@
 		font-weight: 500;
 	}
 
-	.validate_svg {
-		width: 25px;
-		height: 25px;
-	}
-
 	.btn_color {
-		text-transform: capitalize !important;
-		background: #221f20 !important;
-		border: none !important;
+		text-transform: capitalize;
 	}
 }
 

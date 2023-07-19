@@ -2,7 +2,7 @@ import getGeoConstants from '@/ui/commons/constants/geo';
 
 export const contactInfoControls = ({ t }) => {
 	const geo = getGeoConstants();
-
+	const REGISTRATION_PATTERN = geo.others.registration_number.pattern;
 	const addressControls = [
 		{
 			label       : `${t('cogoStore:enter_poc_name_label')}`,
@@ -53,7 +53,7 @@ export const contactInfoControls = ({ t }) => {
 			rules       : {
 				required : `${t('cogoStore:enter_tax_number')}`,
 				pattern  : {
-					value   : geo.regex.GST,
+					value   : REGISTRATION_PATTERN,
 					message : `${t('cogoStore:invalid_gst_number')}`,
 				},
 			},

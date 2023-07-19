@@ -5,6 +5,8 @@ import { getLabelMapping } from '../../../constant/lableMapping';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+
 const getMapping = ({ t }) => {
 	const COUNTRY_ARR = [t('importExportControls:checkout_country_arr_1'),
 		t('importExportControls:checkout_country_arr_2'), t('importExportControls:checkout_country_arr_3')];
@@ -14,26 +16,31 @@ const getMapping = ({ t }) => {
 	return { COUNTRY_ARR, HS_CODE_ARR };
 };
 
-function Info({ prefillData = {}, localStorageData = {} }) {
+function RenderDetails({ name, prefillData = {}, localStorageData = {} }) {
 	const { t } = useTranslation(['importExportControls']);
 
 	const { COUNTRY_ARR, HS_CODE_ARR } = getMapping({ t });
-	const LABEL_MAPPING = getLabelMapping({ t });
+	const imageUrl = localStorageData?.[name]?.flag_icon_url;
 
-	const renderDetails = (name) => {
-		if (COUNTRY_ARR.includes(name)) {
-			return (
-				<div className={styles.country_info}>
-					<img src={localStorageData?.[name]?.flag_icon_url} alt="" />
-					<span>{prefillData?.[name]}</span>
-				</div>
-			);
-		}
-		if (HS_CODE_ARR.includes(name)) {
-			return <span className={styles.hsCode}>{prefillData?.[name]}</span>;
-		}
-		return prefillData?.[name];
-	};
+	if (COUNTRY_ARR.includes(name)) {
+		return (
+			<div className={styles.country_info}>
+				{imageUrl ? <Image src={imageUrl} alt="" width={23} height={23} /> : null}
+				<span>{prefillData?.[name]}</span>
+			</div>
+		);
+	}
+	if (HS_CODE_ARR.includes(name)) {
+		return <span className={styles.hsCode}>{prefillData?.[name]}</span>;
+	}
+	return <span>{prefillData?.[name]}</span>;
+}
+
+function Info(props) {
+	const { prefillData = {}, localStorageData = {} } = props;
+	const { t } = useTranslation(['importExportControls']);
+
+	const LABEL_MAPPING = getLabelMapping({ t });
 
 	return (
 		<div className={styles.container}>
@@ -47,7 +54,9 @@ function Info({ prefillData = {}, localStorageData = {} }) {
 						return (
 							<div className={styles.col} key={item}>
 								<div className={styles.label}>{LABEL_MAPPING?.[item]}</div>
-								<div className={styles.value}>{renderDetails(item)}</div>
+								<div className={styles.value}>
+									<RenderDetails name={item} {...props} />
+								</div>
 							</div>
 						);
 					})}

@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 
 import AddModal from '@/ui/commons/components/CreateOrganizationModel/Components/AddAddressModal';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 function BillingDetails({
 	billingAddress = () => {},
@@ -17,6 +18,9 @@ function BillingDetails({
 	addressWithoutGst = [],
 	setisBillingAddress = () => {},
 }) {
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+
 	const addressList = addresses.concat(addressWithoutGst) || [];
 
 	const [addAddressModal, setAddAddressModal] = useState(false);
@@ -88,7 +92,9 @@ function BillingDetails({
 											{pincode}
 										</div>
 										<div className={`${styles.row} ${styles.tax_number}`}>
-											GST Number :
+											{REGISTRATION_LABEL}
+											{' '}
+											Number :
 											{tax_number}
 										</div>
 									</div>

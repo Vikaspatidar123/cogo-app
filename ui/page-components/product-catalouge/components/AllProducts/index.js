@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
-	Pagination, Popover, Loader, Tooltip,
+	Pagination, Popover, Loader, Tooltip, cl,
 } from '@cogoport/components';
 import {
 	IcMEdit, IcMPaste, IcMDelete, IcMOverflowDot, IcMPlus,
 } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useState, useEffect } from 'react';
 
 import DeleteProductModal from '../../common/DeleteProductModal';
@@ -14,6 +15,11 @@ import ArchiveModal from './ArchiveModal';
 import styles from './styles.module.css';
 
 import HsCodeIcon from '@/ui/commons/components/HsCodeIcon';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const SUB_CATEGORY_STRING_MAX_LENGTH = 40;
+
+const CATEGORY_STRING_MAX_LENGTH = 16;
 
 function AllProducts({
 	setShowProduct,
@@ -28,6 +34,7 @@ function AllProducts({
 	productClassification = '',
 	proId = '',
 }) {
+	const { t } = useTranslation(['common', 'productCatalogue']);
 	const { MAPPING } = HsCodeIcon();
 	const [archive, setArchive] = useState(false);
 	const [visible, setVisible] = useState({});
@@ -39,9 +46,7 @@ function AllProducts({
 		productClassificationId : productClassification,
 		card                    : true,
 	});
-	const {
-		list = [], pageNo = 1, totalRecords = 0, pageSize = 0,
-	} = apiData || {};
+	const { list = [], pageNo = 1, totalRecords = 0, pageSize = 0 } = apiData || {};
 
 	const [pagination, setPagination] = useState(pageNo);
 
@@ -52,7 +57,7 @@ function AllProducts({
 	const content = (id, productClassificationId) => (
 		<div className={styles.info} role="presentation" onClick={() => setProId(id)}>
 			<div
-				className="text edit"
+				className={cl`${styles.text_1} ${styles.edit}`}
 				role="presentation"
 				onClick={() => {
 					setProductClassification(productClassificationId);
@@ -62,11 +67,11 @@ function AllProducts({
 				}}
 			>
 				<IcMEdit width={10} height={10} />
-				<div>Edit</div>
+				<div>{t('productCatalogue:product_catalogue_all_products_edit_button_label_1')}</div>
 			</div>
 
 			<div
-				className="text edit"
+				className={cl`${styles.text_1} ${styles.edit}`}
 				role="presentation"
 				onClick={() => {
 					setProId(id);
@@ -75,11 +80,11 @@ function AllProducts({
 				}}
 			>
 				<IcMPaste width={10} height={10} />
-				<div>Archive</div>
+				<div>{t('productCatalogue:product_catalogue_all_products_edit_button_label_2')}</div>
 			</div>
 
 			<div
-				className="text"
+				className={cl`${styles.text_1} ${styles.edit}`}
 				role="presentation"
 				onClick={() => {
 					setShowDeleteModal(true);
@@ -89,7 +94,7 @@ function AllProducts({
 				}}
 			>
 				<IcMDelete width={10} height={10} />
-				<div>Delete</div>
+				<div>{t('productCatalogue:product_catalogue_all_products_edit_button_label_3')}</div>
 			</div>
 		</div>
 	);
@@ -112,13 +117,19 @@ function AllProducts({
 										<>
 											<div>{MAPPING[categoryCode]}</div>
 											<div className={styles.display_name}>
-												{categoryDisplayName?.length > 16 ? (
+												{categoryDisplayName?.length > CATEGORY_STRING_MAX_LENGTH ? (
 													<Tooltip
 														theme="light"
 														placement="top"
 														content={categoryDisplayName}
 													>
-														<div>{`${categoryDisplayName.substring(0, 16)}..`}</div>
+														<div>
+															{`${categoryDisplayName
+																.substring(
+																	GLOBAL_CONSTANTS.zeroth_index,
+																	CATEGORY_STRING_MAX_LENGTH,
+																)}..`}
+														</div>
 													</Tooltip>
 												) : (
 													<div>{categoryDisplayName}</div>
@@ -146,16 +157,23 @@ function AllProducts({
 									)}
 									{loading && <Loader width="169px" />}
 								</div>
-								<div className={`${styles.row}${styles.second}`}>
+								<div className={cl`${styles.row}${styles.second}`}>
 									{!loading && (
 										<div className={`${styles.sub_category}`}>
-											{subCategoryDisplayName?.length > 40 ? (
+											{subCategoryDisplayName?.length > SUB_CATEGORY_STRING_MAX_LENGTH ? (
 												<Tooltip
 													theme="light"
 													placement="top"
 													content={subCategoryDisplayName}
 												>
-													<div>{`${subCategoryDisplayName.substring(0, 40)}..`}</div>
+													<div>
+														{`${subCategoryDisplayName
+															.substring(
+																GLOBAL_CONSTANTS.zeroth_index,
+																SUB_CATEGORY_STRING_MAX_LENGTH,
+															)}..`}
+
+													</div>
 												</Tooltip>
 											) : (
 												<div>{subCategoryDisplayName}</div>
@@ -182,9 +200,7 @@ function AllProducts({
 
 			<div className={styles.page_container}>
 				<div className="pagination">
-
 					<Pagination
-						className="md"
 						type="number"
 						currentPage={pageNo}
 						totalItems={totalRecords}

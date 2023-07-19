@@ -13,8 +13,6 @@ import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
 
-const geo = getGeoConstants();
-
 const ICON_MAPPING = {
 	yellow : GLOBAL_CONSTANTS.image_url.yellow_vessel,
 	red    : GLOBAL_CONSTANTS.image_url.red_vessel,
@@ -22,6 +20,8 @@ const ICON_MAPPING = {
 };
 
 const getData = ({ info, props }) => {
+	const geo = getGeoConstants();
+
 	if (info === 'last_updated_at') {
 		return formatDate({
 			date       : props?.last_updated_at,

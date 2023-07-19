@@ -1,8 +1,5 @@
 /* eslint-disable no-undef */
-/* eslint-disable import/order */
-/* eslint-disable react-hooks/rules-of-hooks */
-
-import { Router } from '@/packages/next';
+import { setCookie, getCookie } from '@cogoport/utils';
 import { appWithTranslation } from 'next-i18next';
 import pageProgessBar from 'nprogress';
 import { useEffect } from 'react';
@@ -10,17 +7,63 @@ import { useEffect } from 'react';
 import withStore from './store';
 
 import { routeConfig } from '@/packages/navigation-configs';
-
+import { dynamic, Router } from '@/packages/next';
 import 'nprogress/nprogress.css';
 import { Provider } from '@/packages/store';
 import { setGeneralStoreState } from '@/packages/store/store/general';
+import getGeoConstants from '@/ui/commons/constants/geo';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
 import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
-import { setCookie } from '@cogoport/utils';
+
+const KEY_MAPPING = {
+	COUNTRY: {
+		IN: {
+			isBotVisible: true,
+		},
+		VN: {
+			isBotVisible: false,
+		},
+		SG: {
+			isBotVisible: false,
+		},
+	},
+	ENTITY: {
+		[GLOBAL_CONSTANTS.country_entity_ids.IN]: {
+			isBotVisible: true,
+		},
+		[GLOBAL_CONSTANTS.country_entity_ids.VN]: {
+			isBotVisible: false,
+		},
+		[GLOBAL_CONSTANTS.country_entity_ids.SG]: {
+			isBotVisible: false,
+		},
+	},
+};
+
+const DynamicChatBot = dynamic(() => import('@/ui/commons/components/CogoBot'), {
+	ssr: false,
+});
 
 function MyApp({ Component, pageProps, store, generalData }) {
 	const { profile } = store.getState() || {};
-	const { partner_id } = profile.organization || {};
+	const { partner_id, id:organizationId } = profile.organization || {};
+
+	let countryCode = '';
+
+	if (typeof document !== 'undefined') {
+		countryCode = getCookie('location');
+	}
+
+	const geo = getGeoConstants();
+
+	const isUnKnownUser = !organizationId;
+
+	const botVisibility = isUnKnownUser
+		? KEY_MAPPING.COUNTRY[countryCode]
+		: KEY_MAPPING.ENTITY[geo.parent_entity_id];
+
+	const { isBotVisible = true } = botVisibility || {};
 
 	useEffect(() => {
 		setCookie('parent_entity_id', partner_id);
@@ -43,6 +86,7 @@ function MyApp({ Component, pageProps, store, generalData }) {
 				head={pageProps.head || ''}
 			>
 				<Component {...pageProps} />
+				{isBotVisible && <DynamicChatBot />}
 			</GlobalLayout>
 		</Provider>
 	);

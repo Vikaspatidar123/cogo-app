@@ -7,7 +7,9 @@ import useVerifyHscode from '../../../../../../hooks/useVerifyHsCode';
 import iconUrl from '../../../../../../utils/iconUrl.json';
 import styles from '../styles.module.css';
 
-const sugestionContent = ({
+import { Image } from '@/packages/next';
+
+function SugestionContent({
 	inputValue,
 	setStatus,
 	setValidateInProgress,
@@ -15,7 +17,7 @@ const sugestionContent = ({
 	isImport,
 	setFormInfo,
 	setPrevHs,
-}) => {
+}) {
 	const clickHandler = (data = {}) => {
 		const { hsCode = '', description = '' } = data || {};
 
@@ -60,7 +62,7 @@ const sugestionContent = ({
 			))}
 		</div>
 	);
-};
+}
 
 function ValidateRow({
 	item = {},
@@ -103,15 +105,17 @@ function ValidateRow({
 		<div className={cl`${styles.row} ${styles.hs_row}`}>
 			<Popover
 				animation="shift-away"
-				content={sugestionContent({
-					inputValue,
-					setStatus,
-					setValidateInProgress,
-					setValue,
-					isImport,
-					setFormInfo,
-					setPrevHs,
-				})}
+				content={(
+					<SugestionContent
+						inputValue={inputValue}
+						setStatus={setStatus}
+						setValidateInProgress={setValidateInProgress}
+						setValue={setValue}
+						isImport={isImport}
+						setFormInfo={setFormInfo}
+						setPrevHs={setPrevHs}
+					/>
+				)}
 				interactive
 				placement="bottom"
 				visible={validateInProgress && inputValue.length > 0}
@@ -138,15 +142,17 @@ function ValidateRow({
 						loading={checkLoading}
 						disabled={validateInProgress}
 						className={styles.btn_color}
+						themeType="accent"
 					>
 						{t('importExportControls:validate_modal_validate')}
 					</Button>
 				) : (
 					<div className={styles.valid}>
-						<img
+						<Image
 							src={iconUrl.validate}
 							alt="validated"
-							className={styles.validate_svg}
+							width={25}
+							height={25}
 						/>
 						<div className={styles.validate}>{t('importExportControls:validate_modal_validated')}</div>
 					</div>

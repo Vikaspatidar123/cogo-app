@@ -10,10 +10,10 @@ const SUMARY_API = {
 
 const useGetSummary = () => {
 	const { query } = useRouter();
-	const { branch_id } = query;
+	const { branch_id, activeTab: trackingType } = query;
 	const [globalFilter, setGlobalFilter] = useState({
 		page            : 1,
-		activeTab       : 'ocean',
+		activeTab       : trackingType || 'ocean',
 		shipment_status : '',
 		period_in_days  : '',
 	});
@@ -39,7 +39,7 @@ const useGetSummary = () => {
 				},
 			});
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	}, [branch_id, trigger, globalFilter]);
 

@@ -17,11 +17,11 @@ function Summary({
 	quotaValue = 0,
 	tradeEngineId = '',
 	isQuotaLeft = false,
-	getPrice = () => { },
-	paymentHandler = () => { },
+	getPrice,
+	paymentHandler,
 	loading = false,
-	setAddress = () => { },
-	address = {},
+	setAddress,
+	address,
 }) {
 	const { push } = useRouter();
 	const { t } = useTranslation(['common', 'importExportControls']);

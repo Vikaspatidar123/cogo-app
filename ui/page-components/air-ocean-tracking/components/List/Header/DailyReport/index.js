@@ -1,31 +1,35 @@
 import { cl, Button, Pagination, ButtonIcon } from '@cogoport/components';
 import { IcMCross } from '@cogoport/icons-react';
-import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import dailyStatusConfig from '../../../../configuration/dailyStatusConfig';
+import getDailyStatusConfig from '../../../../configuration/dailyStatusConfig';
 
 import Item from './Item';
 import StatusModal from './StatusModal';
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getLoadingArr from '@/ui/page-components/air-ocean-tracking/utils/getLoadingArr';
 
 const LOADING_ARR = getLoadingArr(5);
 
 function DailyReport({ dsrListValue = {}, setShowConfigure, activeTab = 'ocean' }) {
-	const [statusModal, setStatusModal] = useState({ isOpen: false });
-
 	const { data = {}, loading, setPage, getDsrList } = dsrListValue || {};
 
 	const { list = [], page = 0, total_count = 0, page_limit = 0 } = data || {};
 	const newList = loading ? LOADING_ARR : list || [];
 
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+	const [statusModal, setStatusModal] = useState({ isOpen: false });
+
+	const dailyStatusConfig = getDailyStatusConfig({ t });
+
 	return (
 		<div className={styles.container}>
 			<div className={cl`${styles.flex_box} ${styles.header}`}>
-				<h3>Schedule Status Reports to Contacts</h3>
+				<h3>{t('airOceanTracking:schedule_reports_to_contacts_text_1')}</h3>
 
 				<div className={styles.cta_container}>
 					<Button
@@ -33,7 +37,7 @@ function DailyReport({ dsrListValue = {}, setShowConfigure, activeTab = 'ocean' 
 						themeType="accent"
 						onClick={() => setStatusModal({ isOpen: true })}
 					>
-						Create New
+						{t('airOceanTracking:schedule_create_new_contact_button_label')}
 
 					</Button>
 					<ButtonIcon
@@ -66,7 +70,7 @@ function DailyReport({ dsrListValue = {}, setShowConfigure, activeTab = 'ocean' 
 								height={200}
 								alt="empty"
 							/>
-							<h3>No Daily Status Report Found</h3>
+							<h3>{t('airOceanTracking:schedule_no_contacts_found_text')}</h3>
 						</div>
 					)}
 			</div>

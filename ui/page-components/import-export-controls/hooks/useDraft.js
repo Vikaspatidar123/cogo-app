@@ -5,13 +5,14 @@ import { getTransportMapping } from '../constant/transportMapping';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const useDraft = () => {
 	const { t } = useTranslation(['importExport']);
 
 	const { profile } = useSelector((state) => state);
 	const { organization = {} } = profile;
-	const [draftResp, setDraftResp] = useState();
+	const [draftResp, setDraftResp] = useState('');
 
 	const TRANSPORT_MAPPING = getTransportMapping({ t });
 
@@ -29,7 +30,7 @@ const useDraft = () => {
 
 	const getPayloadData = ({ data, formInfo = {} }) => {
 		const { lineItem: getDraftLineItem = [] } = getDraftData || {};
-		const { tradeEngineLineItemInputId } = getDraftLineItem?.[0] || {};
+		const { tradeEngineLineItemInputId } = getDraftLineItem?.[GLOBAL_CONSTANTS.zeroth_index] || {};
 
 		const header = {
 			originCountryCode      : formInfo?.exportCountry?.country_code,

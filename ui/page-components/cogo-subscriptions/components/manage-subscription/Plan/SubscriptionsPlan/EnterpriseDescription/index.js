@@ -15,7 +15,7 @@ function EnterpriseDescription({
 	activeHover,
 }) {
 	const { t } = useTranslation(['subscriptions']);
-	const image_url = activeHover === 'active' ? GLOBAL_CONSTANTS.image_url.card_background_line_image : ''
+	const image_url = activeHover === 'active' ? GLOBAL_CONSTANTS.image_url.card_background_line_image : '';
 	return (
 		<div
 			className={styles.flex_column}
@@ -26,7 +26,7 @@ function EnterpriseDescription({
 				setActiveHover(activeIndex);
 			}}
 			style={{
-				backgroundImage: `url(${image_url})`
+				backgroundImage: `url(${image_url})`,
 			}}
 		>
 			<div className={styles.container}>
@@ -58,7 +58,7 @@ function EnterpriseDescription({
 					</Button>
 				</div>
 			</div>
-		</div >
+		</div>
 	);
 }
 

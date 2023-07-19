@@ -139,7 +139,7 @@ function Usage({ pendingModal, setPendingModal }) {
 													)
 														&& !is_unlimited
 														&& styles.warn
-														} ${styles.count_container}`}
+													} ${styles.count_container}`}
 												>
 													<RenderCount
 														count={left_quota}

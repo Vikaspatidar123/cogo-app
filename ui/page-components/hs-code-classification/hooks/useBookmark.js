@@ -1,10 +1,12 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useBookmark = ({ setAddBookmark, setRemoveBookmark, refetchHsCode }) => {
+	const { t } = useTranslation(['common', 'hsClassification']);
 	const { profile } = useSelector((s) => s);
 	const [bookmarkData, setBookmarkData] = useState([]);
 	const { id, organization } = profile || {};
@@ -46,7 +48,7 @@ const useBookmark = ({ setAddBookmark, setRemoveBookmark, refetchHsCode }) => {
 			});
 			setBookmarkData(response.data);
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 
@@ -64,7 +66,7 @@ const useBookmark = ({ setAddBookmark, setRemoveBookmark, refetchHsCode }) => {
 				setRemoveBookmark(false);
 				setAddBookmark(true);
 			}
-			Toast.success('Successfully Add In Favourites List');
+			Toast.success(t('hsClassification:hs_code_classification_add_bookmark_toast_1'));
 		} catch (err) {
 			Toast.error(err?.err?.message);
 		}
@@ -88,13 +90,13 @@ const useBookmark = ({ setAddBookmark, setRemoveBookmark, refetchHsCode }) => {
 			if (response.data === 'Success' && flag) {
 				setAddBookmark(false);
 				setRemoveBookmark(true);
-				Toast.success('Successfully Remove From Favourites List');
+				Toast.success(t('hsClassification:hs_code_classification_remove_bookmark_toast_1'));
 			} else if (response.data === 'Success') {
 				getRefetch();
 				if (chapterCode) {
 					refetchHsCode(chapterCode);
 				}
-				Toast.success('Successfully Remove From Favourites List');
+				Toast.success(t('hsClassification:hs_code_classification_remove_bookmark_toast_1'));
 			}
 		} catch (err) {
 			Toast.error(err?.err?.message);

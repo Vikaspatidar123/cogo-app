@@ -1,9 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
-
-
 
 const useTrackShipment = () => {
     const { query } = useRouter();
@@ -37,7 +35,7 @@ const useTrackShipment = () => {
 
     return {
         data,
-        loading
+        loading,
     };
 };
 

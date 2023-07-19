@@ -1,9 +1,10 @@
 import { isEmpty } from '@cogoport/utils';
 import { useCallback, useEffect, useState } from 'react';
 
-
 import { useRequest } from '@/packages/request';
 
+const DEFAULT_LAT_INDEX = 0;
+const DEFAULT_LNG_INDEX = 1;
 const getUniqueArrElements = (arr) => arr.reduce((accumulator, current) => {
 	const found = accumulator.some(
 		(item) => JSON.stringify(item) === JSON.stringify(current),
@@ -87,9 +88,7 @@ const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
 
 	useEffect(() => {
 		if (!isEmpty(trackingInfo)) {
-			if (type === 'ocean') {
-				calcSeaRoute();
-			}
+			calcSeaRoute();
 		}
 	}, [calcSeaRoute, trackingInfo, type]);
 

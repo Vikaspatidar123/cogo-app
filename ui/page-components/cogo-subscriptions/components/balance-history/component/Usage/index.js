@@ -24,6 +24,7 @@ function RenderCount({ count, totalCount, addon, unlimited }) {
 	const { t } = useTranslation(['subscriptions']);
 
 	if (unlimited) return <div className={styles.count}>{t('subscriptions:unlimited_text')}</div>;
+
 	return (
 		<>
 			<div className={styles.count}>
@@ -55,7 +56,10 @@ function RenderProgress({ count, addon, total, is_unlimited }) {
 
 function Usage({ pendingModal, setPendingModal }) {
 	const { t } = useTranslation(['subscriptions']);
-	const { profile } = useSelector((s) => s);
+
+	const { profile } = useSelector((state) => state);
+
+	const scrollRef = useRef(null);
 
 	const [addModal, setAddModal] = useState(false);
 
@@ -64,8 +68,6 @@ function Usage({ pendingModal, setPendingModal }) {
 	const { loading, userPlan } = useGetUSerActivePlan({ profile });
 
 	const { redirectManageSubscription } = redirectUrl();
-
-	const scrollRef = useRef();
 
 	const { billing_cycle = {}, current_usages = [] } = userPlan || {};
 
@@ -137,7 +139,7 @@ function Usage({ pendingModal, setPendingModal }) {
 													)
 														&& !is_unlimited
 														&& styles.warn
-													} ${styles.count_container}`}
+														} ${styles.count_container}`}
 												>
 													<RenderCount
 														count={left_quota}

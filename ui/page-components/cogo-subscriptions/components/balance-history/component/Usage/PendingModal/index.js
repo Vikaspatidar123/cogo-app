@@ -38,20 +38,12 @@ function PendingModal({
 	}, [redirectBalanceHistory, setAddModal, setPendingModal, setRazorLoading]);
 
 	useEffect(() => {
-		if (apiTries > MAX_API_TRIES) {
+		if (apiTries > MAX_API_TRIES || status === 'active') {
 			setTimeout(() => {
 				closeModalHandler();
 			}, SET_TIME);
 		}
-	}, [apiTries, closeModalHandler]);
-
-	useEffect(() => {
-		if (status === 'active') {
-			setTimeout(() => {
-				closeModalHandler();
-			}, SET_TIME);
-		}
-	}, [closeModalHandler, status]);
+	}, [apiTries, closeModalHandler, status]);
 
 	return (
 		<Modal

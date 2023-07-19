@@ -8,12 +8,13 @@ import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
+const Mapping = logoMapping();
+
 function SubscriptionDetails({ plans = {}, query }) {
 	const { plan, pricing } = plans || {};
 
 	const { t } = useTranslation(['subscriptions']);
 
-	const Mapping = logoMapping();
 	let periods;
 	if (query?.period === 'monthly') {
 		periods = 'month';
@@ -54,8 +55,8 @@ function SubscriptionDetails({ plans = {}, query }) {
 						amount,
 						currency,
 						options: {
-							notation : 'standard',
-							style    : 'currency',
+							notation: 'standard',
+							style: 'currency',
 						},
 					})}
 				</div>

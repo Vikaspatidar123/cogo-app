@@ -16,6 +16,10 @@ import Subscribe from './Subscribe';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import SuccessModal from '@/ui/page-components/cogo-subscriptions/common/SuccessModal';
 
+const CUSTOM_IMAGE_MAPPING = {
+	true: GLOBAL_CONSTANTS.image_url.active_hover_image,
+	false: GLOBAL_CONSTANTS.image_url.active_image
+}
 function Card({
 	item,
 	activeTab,
@@ -44,8 +48,10 @@ function Card({
 		display_pricing = {},
 		is_free_plan = false,
 	} = item || {};
+
 	const displayPricing = display_pricing?.[activeTab] || {};
 
+	const activeHoverCheck = prioritySequence === activeHover
 	return (
 		<div
 			onMouseEnter={() => {
@@ -85,7 +91,10 @@ function Card({
 				metadata={metadata}
 				active={active}
 			/>
-			{item.category === 'custom' && <div className={styles.custom} />}
+
+			{item.category === 'custom' &&
+				<div className={styles.custom} style={{ backgroundImage: `url(${CUSTOM_IMAGE_MAPPING[activeHoverCheck]})` }} />
+			}
 
 			<div>
 				{!displayPricing?.is_active_plan

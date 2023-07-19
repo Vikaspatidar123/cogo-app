@@ -14,6 +14,7 @@ function ServiceUploadDocument({ data = [], loading = false, addDocument = () =>
 		key      : index.toString(),
 		title    : <Title doc_data={value} data={data} />,
 		children : <InnerForm
+			value={value}
 			setActiveCollapse={setActiveCollapse}
 			addDocument={addDocument}
 			addDocumentLoading={addDocumentLoading}

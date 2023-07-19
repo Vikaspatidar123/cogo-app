@@ -19,8 +19,8 @@ function CheckboxController(props) {
 					key={rest.id}
 					onChange={(val, obj) => {
 						onChange(val, obj);
-						if (rest?.onChange) {
-							rest.onChange(val, obj);
+						if (rest?.handleChange) {
+							rest.handleChange(val, obj);
 						}
 					}}
 					checked={newValue}

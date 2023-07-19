@@ -1,10 +1,14 @@
+import GLOBAL_CONSTANTS from '../constants/globals';
+
+const ITERATOR = 1;
+
 function rangeOfChars(start, stop) {
-	const startCharCode = start.charCodeAt(0);
-	const endCharCode = stop.charCodeAt(0);
+	const startCharCode = start.charCodeAt(GLOBAL_CONSTANTS.zeroth_index);
+	const endCharCode = stop.charCodeAt(GLOBAL_CONSTANTS.zeroth_index);
 
 	const result = [];
 
-	for (let charCode = startCharCode; charCode <= endCharCode; charCode += 1) {
+	for (let charCode = startCharCode; charCode <= endCharCode; charCode += ITERATOR) {
 		result.push(String.fromCharCode(charCode));
 	}
 

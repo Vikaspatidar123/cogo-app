@@ -7,6 +7,8 @@ import LoadingPrompts from '../common/LoadingPrompts';
 import DetailsForm from './DetailsForm';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const GET_STARTED_FLOW_MAPPING = {
 	details_form    : DetailsForm,
 	loading_prompts : LoadingPrompts,
@@ -26,8 +28,12 @@ function GetStarted() {
 
 	const Component = GET_STARTED_FLOW_MAPPING[mode] || null;
 	return (
-		<div className={styles.authentication_layout}>
-
+		<div
+			className={styles.authentication_layout}
+			style={{
+				backgroundImage: `url(${GLOBAL_CONSTANTS.image_url.neo_background_image})`,
+			}}
+		>
 			<LayoutLogo />
 
 			<div className={styles.card_container}>
@@ -42,7 +48,6 @@ function GetStarted() {
 			</div>
 
 			<LayoutHelp />
-
 		</div>
 	);
 }

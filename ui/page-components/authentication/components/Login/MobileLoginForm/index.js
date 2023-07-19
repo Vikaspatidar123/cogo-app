@@ -7,6 +7,7 @@ import useMobileLoginForm from '../../../hooks/useMobileLoginForm';
 import styles from './styles.module.css';
 
 import { useForm, MobileNumberSelectController } from '@/packages/forms';
+import { Link } from '@/packages/next';
 
 function MobileLoginForm({
 	setMode = () => {},
@@ -55,7 +56,7 @@ function MobileLoginForm({
 			</Button>
 
 			<div className={styles.links}>
-				<a href="/signup">{t('common:loginFooter_signup')}</a>
+				<Link href="/signup">{t('common:loginFooter_signup')}</Link>
 			</div>
 		</form>
 	);

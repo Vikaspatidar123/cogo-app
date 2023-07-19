@@ -1,13 +1,14 @@
 import { Button } from '@cogoport/components';
-import { IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import useLoginEmailAuthentication from '../../../hooks/useLoginEmailAuthentication';
+import TogglePasswordView from '../../common/TogglePasswordView';
 
 import styles from './styles.module.css';
 
 import { useForm, InputController } from '@/packages/forms';
+import { Link } from '@/packages/next';
 
 function EmailLoginForm({ setMode = () => {} }) {
 	const { t } = useTranslation(['common']);
@@ -23,11 +24,6 @@ function EmailLoginForm({ setMode = () => {} }) {
 			password : '',
 		},
 	});
-
-	const renderSuffix = (show, setShow) => {
-		const Icon = show ? IcMEyeclose : IcMEyeopen;
-		return <Icon className={styles.show_password} onClick={() => setShow(!show)} />;
-	};
 
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
@@ -49,7 +45,7 @@ function EmailLoginForm({ setMode = () => {} }) {
 				control={control}
 				name="password"
 				type={showPassword ? 'text' : 'password'}
-				suffix={renderSuffix(showPassword, setShowPassword)}
+				suffix={<TogglePasswordView showPassword={showPassword} setShowPassword={setShowPassword} />}
 				placeholder={t(`${translationKey}_password_placeholder`)}
 				rules={{ required: t(`${translationKey}_password_error`) }}
 			/>
@@ -67,8 +63,8 @@ function EmailLoginForm({ setMode = () => {} }) {
 			</Button>
 
 			<div className={styles.links}>
-				<a href="/forgot-password">{t('common:loginFooter_forgot_password')}</a>
-				<a href="/signup">{t('common:loginFooter_signup')}</a>
+				<Link href="/forgot-password">{t('common:loginFooter_forgot_password')}</Link>
+				<Link href="/signup">{t('common:loginFooter_signup')}</Link>
 			</div>
 
 		</form>

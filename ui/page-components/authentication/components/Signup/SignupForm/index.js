@@ -17,7 +17,7 @@ import {
 } from '@/packages/forms';
 import CheckboxController from '@/packages/forms/Controlled/CheckboxController';
 import CountrySelectController from '@/packages/forms/Controlled/CountrySelectController';
-import { useRouter } from '@/packages/next';
+import { Link, useRouter } from '@/packages/next';
 import patterns from '@/ui/commons/configurations/patterns';
 
 const COGOPORT_URL = 'https://www.cogoport.com';
@@ -87,7 +87,7 @@ function SignupForm({
 					placeholder={t(`${translationKey}_name_placeholder`)}
 					rules={{ required: t(`${translationKey}_name_error`) }}
 					mode="onBlur"
-					onBlur={() => generateSignUpLeadUser({ source: 'name' })}
+					handleBlur={() => generateSignUpLeadUser({ source: 'name' })}
 				/>
 				<span className={styles.errors}>
 					{errors?.name?.message || ' '}
@@ -109,7 +109,7 @@ function SignupForm({
 						},
 					}}
 					mode="onBlur"
-					onBlur={() => generateSignUpLeadUser({ source: 'email' })}
+					handleBlur={() => generateSignUpLeadUser({ source: 'email' })}
 				/>
 				<span className={styles.errors}>
 					{errors?.email?.message || ' '}
@@ -127,7 +127,7 @@ function SignupForm({
 						required: t(`${translationKey}_mobile_error`),
 					}}
 					mode="onBlur"
-					onBlur={() => generateSignUpLeadUser({ source: 'mobile_number' })}
+					handleBlur={() => generateSignUpLeadUser({ source: 'mobile_number' })}
 
 				/>
 
@@ -142,7 +142,7 @@ function SignupForm({
 						control={control}
 						name="is_whatsapp_number"
 						className={styles.checkbox}
-						onChange={(e) => {
+						handleChange={(e) => {
 							onWhatsappChange({ value: e.target.checked });
 						}}
 					/>
@@ -223,7 +223,7 @@ function SignupForm({
 			</Button>
 
 			<div className={styles.links}>
-				<a href="/login">{t('authentication:signup_link_login_label')}</a>
+				<Link href="/login">{t('authentication:signup_link_login_label')}</Link>
 			</div>
 		</form>
 	);

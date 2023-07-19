@@ -27,7 +27,7 @@ function InputController(props) {
 					value={newValue}
 					onBlur={(event) => {
 						onBlur(event);
-						rest?.onBlur?.(event);
+						rest?.handleBlur?.(event);
 					}}
 				/>
 			)}

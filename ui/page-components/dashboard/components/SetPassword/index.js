@@ -1,5 +1,5 @@
 import { Button, Modal } from '@cogoport/components';
-import { IcCTick, IcMEyeclose, IcMEyeopen } from '@cogoport/icons-react';
+import { IcCTick } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
@@ -14,6 +14,7 @@ import { Image } from '@/packages/next';
 import PasswordValidator from '@/ui/commons/components/PasswordValidator';
 import patterns from '@/ui/commons/configurations/patterns';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import TogglePasswordView from '@/ui/page-components/authentication/components/common/TogglePasswordView';
 
 function SetPassword({ showModal = false, setShowModal = () => { } }) {
 	const { t } = useTranslation(['dashboard']);
@@ -34,11 +35,6 @@ function SetPassword({ showModal = false, setShowModal = () => { } }) {
 		loading = false,
 		customErrors = '',
 	} = useSetPassword({ password, confirm_password, setShowModal });
-
-	const renderSuffix = (show, setShow) => {
-		const Icon = show ? IcMEyeclose : IcMEyeopen;
-		return <Icon className={styles.show_password} onClick={() => setShow(!show)} />;
-	};
 
 	return (
 		<Modal
@@ -77,7 +73,12 @@ function SetPassword({ showModal = false, setShowModal = () => { } }) {
 								control={control}
 								name="password"
 								type={showPassword ? 'text' : 'password'}
-								suffix={renderSuffix(showPassword, setShowPassword)}
+								suffix={(
+									<TogglePasswordView
+										showPassword={showPassword}
+										setShowPassword={setShowPassword}
+									/>
+								)}
 								placeholder={t(`${translationKey}_password_placeholder`)}
 								rules={{
 									required : t(`${translationKey}_password_error_1`),
@@ -96,7 +97,12 @@ function SetPassword({ showModal = false, setShowModal = () => { } }) {
 								control={control}
 								name="confirm_password"
 								type={showConfirmPassword ? 'text' : 'password'}
-								suffix={renderSuffix(showConfirmPassword, setShowConfirmPassword)}
+								suffix={(
+									<TogglePasswordView
+										showPassword={showConfirmPassword}
+										setShowPassword={setShowConfirmPassword}
+									/>
+								)}
 								placeholder={t(`${translationKey}_confirmPassword_placeholder`)}
 								rules={{
 									required: t(`${translationKey}_confirmPassword_error`),

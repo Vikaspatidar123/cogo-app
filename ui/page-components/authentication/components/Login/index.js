@@ -8,6 +8,8 @@ import LoginTabs from './LoginTabs';
 import OTPLoginForm from './OTPLoginForm';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const LOGIN_FLOW_MAPPING = {
 	login_tabs      : LoginTabs,
 	otp_form        : OTPLoginForm,
@@ -39,7 +41,12 @@ function Login() {
 	const Component = LOGIN_FLOW_MAPPING[mode] || null;
 
 	return (
-		<div className={styles.authentication_layout}>
+		<div
+			className={styles.authentication_layout}
+			style={{
+				backgroundImage: `url(${GLOBAL_CONSTANTS.image_url.neo_background_image})`,
+			}}
+		>
 			<LayoutLogo />
 
 			<div className={styles.card_container}>

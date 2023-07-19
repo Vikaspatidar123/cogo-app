@@ -13,9 +13,9 @@ function SuccessMessage({ resetUserPassword = () => { }, emailId = '' }) {
 			<p className={styles.card_body}>
 				{t(`${translationKey}_body_1`)}
 				{' '}
-				<b>
+				<strong>
 					{emailId}
-				</b>
+				</strong>
 				{' '}
 				{t(`${translationKey}_body_2`)}
 				<br />

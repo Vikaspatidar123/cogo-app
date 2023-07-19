@@ -4,17 +4,20 @@
 // 	'72abc4ba-6368-4501-9a86-8065f5c191f8',
 // ];
 
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
 const inco_terms = ['fca', 'fas', 'fob'];
 
 // const export_inco_terms_except_ddp = ['cif', 'cfr', 'cpt', 'cip', 'dat', 'dap'];
 
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-
 export const showEnquiryFunc = (rates_count = 0, data = {}) => {
-	const notShowEnq =		inco_terms.includes(data?.inco_term)
-		&& data?.destination_country_id === INDIA_COUNTRY_ID
+	const { enquiry_card } = getCountrySpecificData({
+		country_id   : data?.destination_country_id,
+		accessorType : 'navigations',
+		accessor     : 'search_results',
+	});
+	const notShowEnq =	inco_terms.includes(data?.inco_term)
+		&& enquiry_card.show_enquiry
 		&& rates_count > 0
 		&& data?.containers_count < 5;
 

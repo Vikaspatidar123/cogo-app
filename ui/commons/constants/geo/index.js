@@ -13,11 +13,12 @@ const MAPPING = {
 };
 
 const getGeoConstants = () => {
-	const parent_entity_id = getCookie('parent_entity_id');
+	let parentEntity = '';
 
-	return MAPPING[
-		parent_entity_id in MAPPING ? parent_entity_id : country_entity_ids.IN
-	];
+	if (typeof window !== 'undefined') {
+		parentEntity = getCookie('parent_entity_id');
+	}
+
+	return MAPPING[parentEntity in MAPPING ? parentEntity : country_entity_ids.IN];
 };
-
 export default getGeoConstants;

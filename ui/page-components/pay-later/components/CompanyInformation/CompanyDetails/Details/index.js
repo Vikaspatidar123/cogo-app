@@ -1,9 +1,17 @@
-import { Button } from '@cogoport/components';
-import { IcAAdd, IcMEdit } from '@cogoport/icons-react';
+// import { Button } from '@cogoport/components';
+import {
+	IcAAdd,
+	// IcMEdit
+} from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-function Details({ data = {}, setShowEdit = () => {} }) {
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+function Details({
+	data = {},
+	// setShowEdit = () => {}
+}) {
 	const {
 		pan = '',
 		name = '',
@@ -12,6 +20,9 @@ function Details({ data = {}, setShowEdit = () => {} }) {
 		date_of_incorporation = '',
 		constitution_of_business = '',
 	} = data || {};
+
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
 
 	return (
 		<div className={styles.container}>
@@ -27,10 +38,10 @@ function Details({ data = {}, setShowEdit = () => {} }) {
 						</div>
 					</div>
 				</div>
-				<Button themeType="secondary" onClick={() => setShowEdit({ show: true, type: 'company' })}>
+				{/* <Button themeType="secondary" onClick={() => setShowEdit({ show: true, type: 'company' })}>
 					<IcMEdit />
 					<div className="button_edit">Edit</div>
-				</Button>
+				</Button> */}
 			</div>
 			<div className={styles.details}>
 				<div className={styles.description}>
@@ -59,7 +70,7 @@ function Details({ data = {}, setShowEdit = () => {} }) {
 				</div>
 				<div className={styles.description}>
 					<div className={styles.title}>
-						GST
+						{REGISTRATION_LABEL}
 					</div>
 					<div className={styles.value}>
 						{gst_number}
@@ -75,7 +86,9 @@ function Details({ data = {}, setShowEdit = () => {} }) {
 				</div>
 				<div className={styles.address}>
 					<div className={styles.title}>
-						GST Registered Address
+						{REGISTRATION_LABEL}
+						{' '}
+						Registered Address
 					</div>
 					<div className={styles.value}>
 						{address}

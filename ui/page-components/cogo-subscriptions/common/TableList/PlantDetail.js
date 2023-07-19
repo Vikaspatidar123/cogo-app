@@ -60,9 +60,10 @@ const PlanDetails = ({ planValues = {} }) => {
 
 	return sortedPlanValues.map(({ type = '', value = '' }) => {
 		const Component = MAPPING[type] || null;
+
 		return (
 			<div className={`${styles.col} ${styles.row_value}`} key={value}>
-				<Component value={value} />
+				{Component && <Component key={type} value={value} />}
 			</div>
 		);
 	});

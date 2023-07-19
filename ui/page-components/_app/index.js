@@ -47,7 +47,7 @@ const DynamicChatBot = dynamic(() => import('@/ui/commons/components/CogoBot'), 
 
 function MyApp({ Component, pageProps, store, generalData }) {
 	const { profile } = store.getState() || {};
-	const { partner_id, id:organizationId } = profile.organization || {};
+	const { partner_id, id: organizationId } = profile.organization || {};
 
 	let countryCode = '';
 

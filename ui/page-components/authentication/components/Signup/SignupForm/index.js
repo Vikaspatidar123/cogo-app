@@ -1,4 +1,5 @@
 import { Button, Checkbox } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import React, { useState, useRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
@@ -7,8 +8,11 @@ import useSignupAuthentication from '../../../hooks/useSignupAuthentication';
 import styles from './styles.module.css';
 
 import { useForm, InputController, MobileNumberSelectController } from '@/packages/forms';
+import { useRouter } from '@/packages/next';
 
 function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
+	const { locale } = useRouter();
+	const { t } = useTranslation(['common']);
 	const {
 		handleSubmit, formState: { errors }, control, watch, register,
 	} = useForm();
@@ -44,30 +48,30 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 					control={control}
 					name="name"
 					type="text"
-					placeholder="Name"
-					rules={{ required: 'Name is required.' }}
+					placeholder={t('common:rightPanel_registration_controls_name_label')}
+					rules={{ required: `${t('common:rightPanel_registration_controls_name_is_required')}` }}
 				/>
 
-				{errors.name && (
+				{errors.name ? (
 					<span className={styles.errors}>
 						{errors.name.message}
 					</span>
-				)}
+				) : null}
 			</div>
 			<div className={styles.input_container}>
 				<InputController
 					control={control}
 					name="email"
 					type="email"
-					placeholder="Email"
-					rules={{ required: 'Email is required.' }}
+					placeholder={t('common:rightPanel_tabs_email_controls_email_label')}
+					rules={{ required: `${t('common:rightPanel_email_is_required')}` }}
 				/>
 
-				{errors.email && (
+				{errors.email ? (
 					<span className={styles.errors}>
 						{errors.email.message}
 					</span>
-				)}
+				) : null}
 			</div>
 
 			<div className={styles.mobile_number_select_container}>
@@ -75,41 +79,46 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 					control={control}
 					name="mobile_number"
 					type="mobile-number-select"
-					placeholder="Mobile Number"
-					mobileSelectRef={{ ...register('mobile_number', { required: 'Please enter mobile no' }) }.ref}
+					placeholder={t('common:rightPanel_tabs_mobile_controls_mobile_label')}
+					mobileSelectRef={{
+						...register('mobile_number', {
+							required:
+						`${t('common:rightPanel_enter_mobile_number')}`,
+						}),
+					}.ref}
 				/>
-				{errors.mobile_number && (
+				{errors.mobile_number ? (
 					<span className={styles.errors}>
 						{errors.mobile_number.message || errors.mobile_number.type}
 					</span>
-				)}
+				) : null}
 			</div>
 
 			<div className={styles.checkbox_container}>
 				<Checkbox value={hasWhatsApp} onChange={handleChange} />
-				Number also available on WhatsApp
+				{t('common:rightPanel_registration_controls_isWhatsappNumber_label')}
 			</div>
 
 			<div className={styles.terms_and_conditions_text}>
-				By clicking on SUBMIT, you are accepting the
+				{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_label')}
 				<a
-					href="https://www.cogoport.com/en-IN/terms-and-conditions/"
+					href={`https://www.cogoport.com/${locale}/terms-and-conditions/`}
 					target="_blank"
 					rel="noreferrer"
 					className={styles.terms_and_conditions_link}
 				>
-					Terms of Use
+					{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_terms_linkLabel')}
 					{'  '}
 
 				</a>
 				&
 				<a
-					href="https://www.cogoport.com/en-IN/privacy-policy/"
+					href={`https://www.cogoport.com/${locale}/privacy-policy/`}
 					target="_blank"
 					className={styles.terms_and_conditions_link}
 					rel="noreferrer"
 				>
-					Privacy Policy.
+					{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_privacyPolicy_linkLabel')}
 				</a>
 			</div>
 
@@ -128,12 +137,12 @@ function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
 				size="lg"
 				onClick={handleClick}
 			>
-				SignUp
+				{t('common:rightPanel_signupLink_link')}
 			</Button>
-			<a href="mailto:kanira.patel@cogoport.com" className={styles.right_footer_text}>
-				If you have any trouble logging in, email here -
+			{/* <a href="mailto:kanira.patel@cogoport.com" className={styles.right_footer_text}>
+				{t('common:rightPanel_support_label')}
 				<span className={styles.right_footer_text_span}>kanira.patel@cogoport.com</span>
-			</a>
+			</a> */}
 		</form>
 	);
 }

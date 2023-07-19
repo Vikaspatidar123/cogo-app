@@ -1,9 +1,12 @@
+import { useTranslation } from 'next-i18next';
+
 import styles from './styles.module.css';
 
 // import { useRouter } from '@/packages/next';
-
 function ExportFactoring() {
 	// const { push } = useRouter();
+	const { t } = useTranslation(['dashboard']);
+
 	// const handelRouting = () => {
 	// 	push('/export-factoring-login');
 	// };
@@ -17,9 +20,10 @@ function ExportFactoring() {
 				/>
 			</div>
 			<div className={styles.header}>
-				<span className={styles.yellow}>Export factoring </span>
-				is right around the corner.
-				<div> Easily apply online in just a few minutes</div>
+				<span className={styles.yellow}>{t('dashboard:export_factoring_text_1')}</span>
+				{' '}
+				{t('dashboard:export_factoring_text_2')}
+				<div>{t('dashboard:export_factoring_text_3')}</div>
 			</div>
 
 			<div className={styles.info_container}>
@@ -31,8 +35,7 @@ function ExportFactoring() {
 					/>
 				</div>
 				<div className={styles.text} size={12}>
-					Finance up to 90% of your commercial invoice value and avail
-					collateral free insured limits.
+					{t('dashboard:export_factoring_text_4')}
 				</div>
 			</div>
 

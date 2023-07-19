@@ -46,7 +46,7 @@ const useDsrSchedule = ({ dsrList = [], selectedContact = {}, closeModalHandler,
 			await getDsrList();
 			closeModalHandler();
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 

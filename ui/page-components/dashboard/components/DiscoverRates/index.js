@@ -1,4 +1,5 @@
 import { IcMArrowNext, IcMSearchlight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -6,6 +7,7 @@ import { useRouter } from '@/packages/next';
 
 function DiscoverRates() {
 	const { push } = useRouter();
+	const { t } = useTranslation(['dashboard']);
 
 	const handelRouting = () => {
 		push('/book');
@@ -14,7 +16,7 @@ function DiscoverRates() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.text}>
-				Start discovering your rates/track your deals
+				{t('dashboard:yourDeals_text_1')}
 			</div>
 
 			<div className={styles.display_container}>
@@ -24,16 +26,15 @@ function DiscoverRates() {
 					</div>
 					<div>
 						<div className={styles.text}>
-							Discover Rates
+							{t('dashboard:yourDeals_text_2')}
 						</div>
 						<div className={styles.desc}>
-							Don’t miss out on the competitive rates across FCL, LCL, Air and
-							Haulage in one place.
+							{t('dashboard:yourDeals_text_3')}
 						</div>
 					</div>
 				</div>
 				<div className={styles.btn} role="presentation" onClick={() => handelRouting()}>
-					<p className={styles.viewall}>Go to Rates</p>
+					<p className={styles.viewall}>{t('dashboard:yourDeals_text_4')}</p>
 					<IcMArrowNext className={styles.arrow} />
 				</div>
 			</div>

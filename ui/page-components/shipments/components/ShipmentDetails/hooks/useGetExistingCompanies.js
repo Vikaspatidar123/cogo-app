@@ -10,7 +10,7 @@ import { useRequest } from '@/packages/request';
 const useGetExistingCompanies = ({ role, servProvId, compType, existing_company_controls }) => {
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
 	const [companyDetails, setCompanyDetails] = useState({});
-	const { handleSubmit, watch, setValue, control } = useForm();
+	const { handleSubmit, watch, setValue, control, register } = useForm();
 	const formProps = watch();
 
 	const [errors, setErrors] = useState({});
@@ -137,6 +137,7 @@ const useGetExistingCompanies = ({ role, servProvId, compType, existing_company_
 		onError,
 		control,
 		existingCompanyOptions,
+		register,
 	};
 };
 

@@ -6,13 +6,13 @@ import styles from './styles.module.css';
 
 import getValue from '@/ui/commons/utils/getValue';
 
-const Item = ({
+function Item({
 	item = {},
 	fields = [],
 	handleClick = () => {},
 	loading = false,
 	functions = {},
-}) => {
+}) {
 	const { newFunctions } = itemFunctions({
 		functions,
 	});
@@ -25,7 +25,6 @@ const Item = ({
 							{getValue(itm, singleItem, newFunctions)}
 						</div>
 					)}
-					theme="light"
 				>
 					<div className={styles.info}>
 						{getValue(itm, singleItem, newFunctions)}
@@ -35,13 +34,14 @@ const Item = ({
 		}
 		return getValue(itm, singleItem, newFunctions);
 	};
-	const renderItem = (itm) => (
+
+	return (
 		<div className={styles.container}>
 			<div className={styles.mobile_view}>
 				<MobileView
 					fields={fields}
 					infoData={infoData}
-					itm={itm}
+					itm={item}
 					loading={loading}
 				/>
 			</div>
@@ -59,7 +59,7 @@ const Item = ({
 						>
 							{loading ? (
 								<Placeholder width="90px" />
-							) : (infoData(singleItem, itm)
+							) : (infoData(singleItem, item)
 							)}
 						</div>
 					))}
@@ -67,8 +67,6 @@ const Item = ({
 			</div>
 		</div>
 	);
-
-	return renderItem(item);
-};
+}
 
 export default Item;

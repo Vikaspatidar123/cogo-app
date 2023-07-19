@@ -1,10 +1,13 @@
 import { Pagination } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import React from 'react';
 
 import CardHeader from './CardHeader';
 import EmptyState from './EmptyState';
 import Item from './Item';
 import styles from './styles.module.css';
+
+const LOADING_ARR = [...new Array(5).keys()];
 
 function List({
 	data = {},
@@ -19,33 +22,27 @@ function List({
 
 }) {
 	const { list = [], pageNo = 0, totalPages } = data || {};
-	const { fields, tableView = false, singleList = false } = config || {};
-	const listNew = loading ? [1, 2, 3, 4, 5] : list;
-	const { length = 0 } = listNew || {};
+
+	const listNew = loading ? LOADING_ARR : list;
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.header_view}>
-				{listNew?.length > 0 && (
+				{!isEmpty(listNew) ? (
 					<CardHeader
-						singleList={singleList}
-						fields={fields}
+						fields={config}
 						sort={sort}
 						setSort={setSort}
 					/>
-				)}
+				) : null}
 			</div>
-			{(listNew || []).map((item, index) => (
+			{(listNew || []).map((item) => (
 				<Item
 					key={item.id}
-					tableView={tableView}
-					singleList={singleList}
 					item={item}
-					fields={fields}
+					fields={config}
 					loading={loading}
 					functions={functions}
-					length={length}
-					index={index}
 				/>
 			))}
 

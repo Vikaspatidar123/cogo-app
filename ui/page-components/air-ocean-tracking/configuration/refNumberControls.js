@@ -1,10 +1,10 @@
-const refNumberControls = [
+const getRefNumberControls = ({ t }) => [
 	{
 		name        : 'referenceNo',
 		type        : 'text',
-		placeholder : 'Enter Reference Number',
-		rules       : { required: 'Please enter Reference Number' },
+		placeholder : t('airOceanTracking:tracking_ref_number_control_label'),
+		rules       : { required: t('airOceanTracking:tracking_ref_number_required_text') },
 	},
 ];
 
-export default refNumberControls;
+export default getRefNumberControls;

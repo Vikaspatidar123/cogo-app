@@ -93,7 +93,12 @@ function Card({
 			/>
 
 			{item.category === 'custom'
-				&& <div className={styles.custom} style={{ backgroundImage: `url(${CUSTOM_IMAGE_MAPPING[activeHoverCheck]})` }} />}
+				&& (
+					<div
+						className={styles.custom}
+						style={{ backgroundImage: `url(${CUSTOM_IMAGE_MAPPING[activeHoverCheck]})` }}
+					/>
+				)}
 
 			<div>
 				{!displayPricing?.is_active_plan

@@ -42,13 +42,14 @@ function CardInfo({
 						<ActivateLater activatesIn={displayPricing.activates_in} />
 					)}
 					{prioritySequence > EXPIRE_DAY
-                        && displayPricing?.is_active_plan
-                        && displayPricing?.expires_in !== undefined ? (
-	<PrioritySequence
-		expiresIn={displayPricing.expires_in}
-	/>
-                    	) : (
-	<div className={styles.date_space} />)}
+					&& displayPricing?.is_active_plan
+                    && displayPricing?.expires_in !== undefined
+						? (
+							<PrioritySequence
+								expiresIn={displayPricing.expires_in}
+							/>
+						) : (
+							<div className={styles.date_space} />)}
 				</div>
 			</div>
 			<div className={styles.styled_row}>

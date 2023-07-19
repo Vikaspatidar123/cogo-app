@@ -23,8 +23,8 @@ function PrioritySequence({ expiresIn }) {
 			<span className={styles.days}>{expiresIn}</span>
 			<span className={styles.date}>
 				{expiresIn === START_COUNT
-                	? t('subscriptions:day_text')
-                	: t('subscriptions:days_text')}
+					? t('subscriptions:day_text')
+					: t('subscriptions:days_text')}
 				{' '}
 				{t('subscriptions:expire_text')}
 			</span>

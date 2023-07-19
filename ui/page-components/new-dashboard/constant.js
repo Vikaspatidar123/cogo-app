@@ -20,3 +20,18 @@ export const seaValueKeys = {
 };
 
 export const MAX_LIMIT = 3;
+
+export const PATH_OPTION = {
+    ocean: { color: '#1867D2', weight: 2 },
+    air: { color: '#f37166', weight: 2 },
+    land: { color: '#136f29', weight: 2 },
+};
+
+export const LOADING_TEXT = [
+    'Tracking your shipment in real-time...',
+    'Monitoring the progress of your shipment...',
+    'Tracking the movement of your shipment for detailed updates...',
+    'Fetching the latest tracking information for your package...',
+];
+
+export const LOADING_TEXT_COUNT = 3;

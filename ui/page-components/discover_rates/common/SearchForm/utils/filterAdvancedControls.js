@@ -1,15 +1,6 @@
 import getShowElement from './getShowElement';
 
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
-
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-
-const INDIA_COUNTRY_DETAILS = getCountryDetails({
-	country_id: INDIA_COUNTRY_ID,
-});
-
-const INDIA_COUNTRY_CODE = INDIA_COUNTRY_DETAILS?.country_code;
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const filterAdvancedControls = ({
 	rawAdvancedControls,
@@ -19,6 +10,9 @@ const filterAdvancedControls = ({
 	services,
 	data,
 }) => {
+	const geo = getGeoConstants();
+	const isHaulageOptionCarrier = geo.others.navigations.search_form.filter_drop_haulage_option_carrier;
+
 	const advControls = rawAdvancedControls.filter((control) => getShowElement(
 		control.name,
 		{ [control.name]: control, ...fields },
@@ -48,7 +42,7 @@ const filterAdvancedControls = ({
 			&& ['direct_port_delivery', 'delivery_from_dock'].includes(
 				data?.destination_cargo_handling_type,
 			)
-			&& location?.destination?.country?.country_code === INDIA_COUNTRY_CODE
+			&& isHaulageOptionCarrier
 		) {
 			return {
 				...item,

@@ -1,7 +1,8 @@
-import GetTracking from '../hooks/GetTracking';
+import { getCookie } from '@cogoport/utils';
+
+import useGetTracking from '../hooks/useGetTracking';
 
 import DiscoverRates from './DiscoverRates';
-import Elgibility from './Elgibility';
 import ExportFactoring from './ExportFactoring';
 import KYCPage from './KYCPage';
 import PayLaterWidgets from './PayLaterWidgets';
@@ -12,11 +13,15 @@ import styles from './styles.module.css';
 import Tracking from './Tracking';
 import ActiveTracking from './Tracking/ActiveTracking';
 
-// import VerifyEmailMobile from '@/ui/commons/components/VerifyEmailMobile';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+const PAYLATER_SUPPORTED_COUNTRIES = GLOBAL_CONSTANTS.feature_supported_service.paylater.supported_countries;
+const KYC_PENDING_STATUS = 'pending_verification';
+
 function SassDashboard() {
-	const { airTracking, oceanTracking, query, country_id, kyc_status } = GetTracking();
+	const location = getCookie('location');
+
+	const { airTracking, oceanTracking, kyc_status } = useGetTracking();
 
 	return (
 		<div className={styles.main_class}>
@@ -24,7 +29,7 @@ function SassDashboard() {
 				<div className={styles.part1}>
 					{/* <VerifyEmailMobile /> */}
 
-					{kyc_status !== 'pending_verification' && (
+					{kyc_status !== KYC_PENDING_STATUS && (
 						<div className={styles.top}>
 							<KYCPage />
 						</div>
@@ -51,9 +56,7 @@ function SassDashboard() {
 				</div>
 				<div className={styles.part2}>
 					<div className={styles.child2}>
-						{country_id === GLOBAL_CONSTANTS.country_ids.IN
-							&& query?.account_type === 'importer-exporter' && <PayLaterWidgets />}
-						<Elgibility />
+						{PAYLATER_SUPPORTED_COUNTRIES.includes(location) && <PayLaterWidgets />}
 						<ExportFactoring />
 						<Promotion />
 					</div>

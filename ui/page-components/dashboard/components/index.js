@@ -50,8 +50,8 @@ function SassDashboard() {
 					</div>
 					<Schedule />
 					{
-						(isEmpty(Object.keys(airTracking?.data || {}))
-							|| isEmpty(Object.keys(oceanTracking?.data || {})) ? (
+						(!isEmpty(Object.keys(airTracking?.data || {}))
+							|| !isEmpty(Object.keys(oceanTracking?.data || {})) ? (
 
 								<ActiveTracking
 									airTracking={airTracking}

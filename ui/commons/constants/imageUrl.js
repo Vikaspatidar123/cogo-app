@@ -14,7 +14,7 @@ const IMAGE_URLS = {
 	banner_image         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Banner 1.png',
 	signatory_image      : 'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/Vector.png',
 	edit_image:
-        'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/animation_500_lhvo6uhx1.png',
+		'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/animation_500_lhvo6uhx1.png',
 	yellow_vessel            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipYellow.png',
 	red_vessel               : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipRed.png',
 	black_vessel             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/shipArrow.png',
@@ -50,7 +50,7 @@ const IMAGE_URLS = {
 	empty_state              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
 	globe                    : 'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/globe-language.png',
 	cogoport_image:
-	'https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg',
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg',
 	pen_image            : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg',
 	premium_image        : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crown_new.svg',
 	loader               : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/spinner.svg',
@@ -62,7 +62,7 @@ const IMAGE_URLS = {
 	road_map_image       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/road-map.svg',
 	pay_later_widget     : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/newadd.svg',
 	neo_background_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/backgroundNeo.png',
-
+	vault_lock_image     : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/lock 2.svg',
 };
 
 export default IMAGE_URLS;

@@ -33,7 +33,7 @@ function ResetPassword({
 				</div>
 			</div>
 			{fields.map((field) => (
-				<div>
+				<div key={field?.name}>
 					<div>{field.label}</div>
 					<InputController {...field} control={control} />
 					<div className={styles.message}>

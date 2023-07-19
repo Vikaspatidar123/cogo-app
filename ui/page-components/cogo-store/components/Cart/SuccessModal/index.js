@@ -168,7 +168,7 @@ function SuccessModal({
 				{showFailed && (
 					<div className={cl`${styles.container} ${styles.alert_container}`}>
 						<img
-							src={GLOBAL_CONSTANTS.image_url.success_image}
+							src={GLOBAL_CONSTANTS.image_url.succes_image}
 							alt={t('cogoStore:cart_successmodal_image_alt_text')}
 							className={styles.alert_icon}
 						/>

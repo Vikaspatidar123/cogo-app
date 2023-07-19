@@ -1,4 +1,4 @@
-import { getCookie } from '@cogoport/utils';
+import { getCookie, isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import useGetTracking from '../hooks/useGetTracking';
@@ -36,7 +36,6 @@ function SassDashboard() {
 		<div className={`${styles.main_class} ${showPasswordModal ? styles.main_class_blur : ''}`}>
 			<div className={styles.main_class2}>
 				<div className={styles.part1}>
-					{/* <VerifyEmailMobile /> */}
 
 					{kyc_status !== KYC_PENDING_STATUS && (
 						<div className={styles.top}>
@@ -51,8 +50,8 @@ function SassDashboard() {
 					</div>
 					<Schedule />
 					{
-						(Object.keys(airTracking?.data || {}).length > 0
-							|| Object.keys(oceanTracking?.data || {}).length > 0 ? (
+						(isEmpty(Object.keys(airTracking?.data || {}))
+							|| isEmpty(Object.keys(oceanTracking?.data || {})) ? (
 
 								<ActiveTracking
 									airTracking={airTracking}

@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
 import { useRequest } from '@/packages/request';
@@ -15,11 +16,12 @@ const useSaasSignupAuthentication = ({
 	}, { manual: true });
 
 	const signupAuthentication = async (val) => {
+		const { email = '', name = '', mobile_number = {} } = val;
 		const payload = {
-			email                     : val.email,
-			name                      : val.name,
-			mobile_number             : val.mobile_number.number,
-			mobile_country_code       : val.mobile_number.country_code,
+			email,
+			name,
+			mobile_number             : mobile_number?.number,
+			mobile_country_code       : mobile_number?.country_code,
 			google_recaptcha_response : captchaResponse,
 			is_whatsapp_number        : hasWhatsApp,
 		};
@@ -42,7 +44,7 @@ const useSaasSignupAuthentication = ({
 				setUserDetails(userDetails);
 			}
 		} catch (e) {
-			if (e?.response?.data?.email?.length > 0) {
+			if (isEmpty(e?.response?.data?.email)) {
 				Toast.error(t('common:signup_email_error'));
 			} else {
 				showErrorsInToast(e?.response?.data);

@@ -87,7 +87,7 @@ function OTPSignupForm({ userDetails = {}, setMode = () => {} }) {
 					<>
 						at
 						{'  '}
-						<b>{email}</b>
+						<strong>{email}</strong>
 					</>
 				) : ('')}
 

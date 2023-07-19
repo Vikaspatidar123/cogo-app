@@ -20,7 +20,7 @@ function Download({ data }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.icon}>
-				{billStatus === 'PAID' && data?.invoicePdfUrl && (
+				{(billStatus === 'PAID' && data?.invoicePdfUrl) ? (
 					<Tooltip content="Download Invoice" theme="light" animation="shift-away">
 						<div>
 							<IcMDownload
@@ -30,14 +30,14 @@ function Download({ data }) {
 							/>
 						</div>
 					</Tooltip>
-				)}
-				{billStatus === 'PAID' && billType === 'PREMIUM_SERVICES' && (
+				) : null}
+				{(billStatus === 'PAID' && billType === 'PREMIUM_SERVICES') ? (
 					<Tooltip content="Service" animation="shift-away" theme="light">
 						<div className={styles.service}>
 							<IcMServices onClick={serviceHandler} width={20} height={20} />
 						</div>
 					</Tooltip>
-				)}
+				) : null}
 			</div>
 			{show && (
 				<TransactionModal

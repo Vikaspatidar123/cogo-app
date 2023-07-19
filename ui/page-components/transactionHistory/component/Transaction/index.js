@@ -24,8 +24,10 @@ function Transaction({
 						<div className={styles.line} />
 					</div>
 				</div>
+
 				<AllFilters filters={filters} setFilters={setFilters} />
 			</div>
+
 			<div className={styles.card_container}>
 				<List
 					data={realData || []}

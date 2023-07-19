@@ -23,5 +23,7 @@
     "list_label_bill_date": "Dữ liệu hóa đơn",
     "list_label_amount":"Số lượng",
     "list_label_status":"Trạng thái",
-    "list_label_mode":"Chế độ thanh toán"
+    "list_label_mode":"Chế độ thanh toán",
+    "empty_state_text_1":"Looks like you do not have any transactions with us",
+    "empty_state_text_2":"Try our products for hassle free shippings"
 }

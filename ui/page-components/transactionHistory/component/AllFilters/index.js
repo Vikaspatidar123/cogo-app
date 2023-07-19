@@ -12,6 +12,7 @@ function AllFilters({ filters, setFilters }) {
 		<div className={styles.container}>
 			<div className={styles.button_div}>
 				<FilterSection filters={filters} setFilters={setFilters} />
+
 				<div className={styles.search_wrapper}>
 					<Input
 						className="search"

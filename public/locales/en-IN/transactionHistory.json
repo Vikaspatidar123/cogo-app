@@ -23,5 +23,7 @@
     "list_label_bill_date": "Bill Data",
     "list_label_amount":"Amount",
     "list_label_status":"Status",
-    "list_label_mode":"Payment Mode"
+    "list_label_mode":"Payment Mode",
+    "empty_state_text_1":"Looks like you do not have any transactions with us",
+    "empty_state_text_2":"Try our products for hassle free shippings"
 }

@@ -68,8 +68,10 @@ const IMAGE_URLS = {
 	clock_image                : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/green_clock.svg',
 	road_map_image             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/road-map.svg',
 	pay_later_widget           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/newadd.svg',
-	active_image               : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/reshot-icon-checklist-YUWL2XGFTQ%202.png',
-	active_hover_image         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/reshot-icon-checklist-YUWL2XGFTQ%201.svg',
+	custom_image:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/reshot-icon-checklist-YUWL2XGFTQ%202.png',
+	custom_hover_image:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/reshot-icon-checklist-YUWL2XGFTQ%201.svg',
 
 };
 

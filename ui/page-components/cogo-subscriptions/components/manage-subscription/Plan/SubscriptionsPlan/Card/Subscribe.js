@@ -29,12 +29,12 @@ function Subscribe({
 							<div className={styles.price}>
 								<div className={styles.currency}>{currency}</div>
 								{formatAmount({
-                                	amount  : totalAmt || DEFAULT_MONTHLY_AMOUNT,
-                                	currency,
-                                	options : {
-                                		notation : 'standard',
-                                		style    : 'currency',
-                                	},
+									amount  : totalAmt || DEFAULT_MONTHLY_AMOUNT,
+									currency,
+									options : {
+										notation : 'standard',
+										style    : 'currency',
+									},
 								})}
 								<div className={styles.per_period}>
 									{' '}

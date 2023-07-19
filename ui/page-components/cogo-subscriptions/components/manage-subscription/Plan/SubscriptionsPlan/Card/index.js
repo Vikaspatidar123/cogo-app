@@ -17,8 +17,8 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import SuccessModal from '@/ui/page-components/cogo-subscriptions/common/SuccessModal';
 
 const CUSTOM_IMAGE_MAPPING = {
-	true  : GLOBAL_CONSTANTS.image_url.active_hover_image,
-	false : GLOBAL_CONSTANTS.image_url.active_image,
+	true  : GLOBAL_CONSTANTS.image_url.custom_hover_image,
+	false : GLOBAL_CONSTANTS.image_url.custom_image,
 };
 function Card({
 	item,

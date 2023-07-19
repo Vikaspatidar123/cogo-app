@@ -148,3 +148,12 @@
 	align-items: flex-end;
 	margin-left: 0.5rem;
 }
+
+.icon {
+	img,
+	svg {
+		vertical-align: bottom;
+	}
+
+	margin-right: 12px;
+}

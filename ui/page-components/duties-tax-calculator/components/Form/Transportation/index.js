@@ -59,11 +59,7 @@ function Transportation({
 		if (initialRef.current) {
 			initialRef.current = false;
 		} else if (transportMode) {
-			const obj = {
-				originPort      : '',
-				destinationPort : '',
-			};
-			reset({ ...obj });
+			reset({});
 			setPortDetails({});
 			setMapPoints([]);
 		}

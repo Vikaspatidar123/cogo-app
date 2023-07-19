@@ -34,13 +34,12 @@
 	}
 }
 
-.div1{
+.title{
 	display: flex;
-	flex: 1;
 	padding: 0px 30px;
 }
 
-.div2{
+.value{
 	display: flex;
 	justify-content: center;
 	flex: 0.3;

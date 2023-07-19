@@ -10,12 +10,12 @@ function LiveInvoices({ data = {} }) {
 			<div className={styles.heading_bq}>Quotation</div>
 			<div className={styles.service_container}>
 				<div className={styles.flex_row}>
-					<div className={styles.div1}>{startCase(data?.service_type)}</div>
-					<div className={styles.div2}>currency</div>
-					<div className={styles.div2}>Rate</div>
-					<div className={styles.div2}>quantity</div>
-					<div className={styles.div2}>Tax</div>
-					<div className={styles.div2}>Cost</div>
+					<span className={styles.title}>{startCase(data?.service_type)}</span>
+					<span className={styles.value}>currency</span>
+					<span className={styles.value}>Rate</span>
+					<span className={styles.value}>quantity</span>
+					<span className={styles.value}>Tax</span>
+					<span className={styles.value}>Cost</span>
 				</div>
 
 				{(data?.line_items || []).map((lineItem, index) => {
@@ -25,30 +25,30 @@ function LiveInvoices({ data = {} }) {
 
 					return (
 						<div className={styles.flex_row} style={customStyle}>
-							<div className={styles.div2}>{lineItem?.name}</div>
-							<div className={styles.div2}>{lineItem?.currency}</div>
-							<div className={styles.div2}>{lineItem?.price}</div>
-							<div className={styles.div2}>{lineItem?.quantity}</div>
+							<span className={styles.value}>{lineItem?.name}</span>
+							<span className={styles.value}>{lineItem?.currency}</span>
+							<span className={styles.value}>{lineItem?.price}</span>
+							<span className={styles.value}>{lineItem?.quantity}</span>
 
-							<div className={styles.div2}>
+							<span className={styles.value}>
 								{(lineItem?.tax_price || 0, lineItem?.currency)}
 								<div className="showPercent">
 									(
 									{lineItem.tax_percent || 0}
 									%)
 								</div>
-							</div>
+							</span>
 
-							<div className={styles.div2}>{lineItem?.total_price || 0}</div>
+							<span className={styles.value}>{lineItem?.total_price || 0}</span>
 						</div>
 					);
 				})}
 
 				<div className={styles.total}>
-					<div>
+					<span>
 						Overall Total
 						<small> (excluding TAX)</small>
-					</div>
+					</span>
 					<div style={{ marginLeft: '16px' }}>
 						{formatAmount({
 							amount   : data?.tax_total_price,
@@ -60,9 +60,9 @@ function LiveInvoices({ data = {} }) {
 			</div>
 			<div className={styles.total}>
 				<div className={styles.total_with_tax}>
-					<div>Overall Total with TAX</div>
+					<span>Overall Total with TAX</span>
 					{' '}
-					<div className={styles.inc_of_tax}>(including all services)</div>
+					<span className={styles.inc_of_tax}>(including all services)</span>
 				</div>
 				<div style={{ marginLeft: '16px' }}>
 					{formatAmount({

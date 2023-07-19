@@ -24,21 +24,21 @@ function SalesInvoice() {
 	if (invoiceLoading) {
 		return (
 			[1, 2, 3].map(() => (
-				<div className={styles.loader}>
+				<section className={styles.loader}>
 					<Placeholder height="30px" width="200px" />
 					<Placeholder height="30px" width="200px" />
 					<Placeholder height="30px" width="200px" />
 					<Placeholder height="30px" width="200px" />
-				</div>
+				</section>
 			))
 		);
 	}
 
 	if (!invoiceLoading && invoiceData?.length === 0) {
 		return (
-			<div className={styles.empty_container}>
+			<section className={styles.empty_container}>
 				No Data!
-			</div>
+			</section>
 		);
 	}
 
@@ -49,7 +49,7 @@ function SalesInvoice() {
 	}
 
 	return (
-		<div className={styles.container}>
+		<section className={styles.container}>
 			<Header shipmentData={shipment_data} invoiceData={invoiceData} />
 
 			<Invoice
@@ -58,7 +58,7 @@ function SalesInvoice() {
 				groupedInvoices={groupedInvoices}
 				refetch={refetch}
 			/>
-		</div>
+		</section>
 	);
 }
 

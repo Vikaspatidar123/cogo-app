@@ -4,7 +4,7 @@ import { useRequest } from '@/packages/request';
 
 const useGetNominatedSellQuotation = ({ shipmentId }) => {
 	const [{ loading, data }, trigger] = useRequest({
-		url    : 'get_shipment_sell_quotations',
+		url    : 'get_nomination_shipment_sell_quotations',
 		method : 'get',
 	}, { manual: true });
 

@@ -1,38 +1,25 @@
-import { IcMRateManagement } from '@cogoport/icons-react';
-
 import styles from './styles.module.css';
 
-export const OPTIONS = [
+export const getBillTypeOptions = ({ t }) => [
 	{
-		label : 'SENT',
-		value : 'SENT',
-	},
-	{
-		label : 'DRAFTED',
-		value : 'DRAFTED',
-	},
-];
-
-export const BILLTYPEOPTIONS = [
-	{
-		label : 'INSURANCE',
+		label : t('transactionHistory:bill_type_label_1'),
 		value : 'INSURANCE',
 	},
 	{
-		label : 'PREMIUM SERVICES',
+		label : t('transactionHistory:bill_type_label_2'),
 		value : 'PREMIUM_SERVICES',
 	},
 	{
-		label : 'SUBSCRIPTION',
+		label : t('transactionHistory:bill_type_label_3'),
 		value : 'SUBSCRIPTION',
 	},
 ];
 
-export const PAYMENTTYPEOPTIONS = [
+export const getPaymentTypeOption = ({ t }) => [
 	{
 		children: (
 			<div className={styles.import_export}>
-				<div className={styles.type_label}>PAID</div>
+				<div className={styles.type_label}>{t('transactionHistory:payment_type_label_1')}</div>
 			</div>
 		),
 		key: 'PAID',
@@ -40,7 +27,7 @@ export const PAYMENTTYPEOPTIONS = [
 	{
 		children: (
 			<div className={styles.import_export}>
-				<div className={styles.type_label}>PENDING</div>
+				<div className={styles.type_label}>{t('transactionHistory:payment_type_label_2')}</div>
 			</div>
 		),
 		key: 'PENDING',
@@ -48,30 +35,9 @@ export const PAYMENTTYPEOPTIONS = [
 	{
 		children: (
 			<div className={styles.import_export}>
-				<div className={styles.type_label}>FAILED</div>
+				<div className={styles.type_label}>{t('transactionHistory:payment_type_label_3')}</div>
 			</div>
 		),
 		key: 'PAYMENT_FAILED',
-	},
-];
-
-export const OPTIONRISK = [
-	{
-		label: (
-			<div className={styles.import_export}>
-				<IcMRateManagement fill="#6B6D81" width={18} height={18} />
-				<div className={styles.type_label}>All Risk</div>
-			</div>
-		),
-		value: 'ALL_RISK',
-	},
-	{
-		label: (
-			<div className={styles.import_export}>
-				<IcMRateManagement fill="#6B6D81" width={18} height={18} />
-				<div className={styles.type_label}>Basic Risk</div>
-			</div>
-		),
-		value: 'BASIC_RISK',
 	},
 ];

@@ -63,6 +63,28 @@ const IMAGE_URLS = {
 	pay_later_widget     : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/newadd.svg',
 	neo_background_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/backgroundNeo.png',
 	vault_lock_image     : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/lock 2.svg',
+	'https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg',
+	pen_image                  : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg',
+	premium_image              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crown_new.svg',
+	loader                     : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/spinner.svg',
+	document_icon              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/document_icon.png',
+	web_bot_icon               : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/web_bot',
+	animated_web_bot           : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/animated_bot.gif',
+	track_image                : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/delayClock.svg',
+	clock_image                : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/green_clock.svg',
+	road_map_image             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/road-map.svg',
+	pay_later_widget           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/newadd.svg',
+	calendar_image             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/date.png',
+	card_background_line_image : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/line.png',
+	limited_image              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Limited.svg',
+	unlimted_image             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/unlimted.svg',
+	empty_sub_image            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ICSad.svg',
+	success_image              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.svg',
+	active_image               : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/activate-icon.svg',
+	custom_image:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/reshot-icon-checklist-YUWL2XGFTQ%202.png',
+	custom_hover_image:
+		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/reshot-icon-checklist-YUWL2XGFTQ%201.svg',
 };
 
 export default IMAGE_URLS;

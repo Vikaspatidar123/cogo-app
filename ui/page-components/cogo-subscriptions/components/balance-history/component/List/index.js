@@ -1,5 +1,5 @@
 import { Pagination } from '@cogoport/components';
-import { useState, useEffect } from 'react';
+import { useTranslation } from 'next-i18next';
 
 import useGetOrderDetails from '../../../../hooks/useGetOrderDetails';
 
@@ -7,37 +7,33 @@ import styles from './styles.module.css';
 import TableHeader from './TableHeader';
 import TableList from './TableList';
 
-import { useSelector } from '@/packages/store';
-
 function List({ pendingModal }) {
-	const [pagination, setPagination] = useState(1);
+	const { t } = useTranslation(['subscriptions']);
 
 	const {
-		general: { isMobile },
-	} = useSelector((state) => state);
-
-	const {
-		fetchOrderLoading, orderDetails, orderBy, setOrderBy, fetchOrderDetails,
-	} =	useGetOrderDetails({
+		fetchOrderLoading,
+		orderDetails,
+		setOrderBy,
 		pagination,
+		setPagination,
+	} = useGetOrderDetails({
+		pendingModal,
 	});
 	const { order_history, page_limit, total_count } = orderDetails || {};
 
-	useEffect(() => {
-		if (!pendingModal) fetchOrderDetails();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [pagination, pendingModal, orderBy]);
-
 	return (
 		<div className={styles.container}>
-			<div className={styles.title}>Current Usage</div>
+			<div className={styles.title}>{t('subscriptions:current_usage_text')}</div>
 			<div className={styles.table_container}>
 				<div className={styles.scroll_table}>
-					{!isMobile && <TableHeader setOrderBy={setOrderBy} />}
+
+					<div className={styles.web_view}>
+						<TableHeader setOrderBy={setOrderBy} />
+					</div>
+
 					<TableList
 						list={order_history}
 						loading={fetchOrderLoading}
-						isMobile={isMobile}
 					/>
 				</div>
 				<div className={styles.pagination}>

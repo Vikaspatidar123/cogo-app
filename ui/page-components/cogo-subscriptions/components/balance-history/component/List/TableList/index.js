@@ -1,37 +1,22 @@
-import { Placeholder } from '@cogoport/components';
-import { IcCRedCircle, IcCGreenCircle, IcMArrowNext } from '@cogoport/icons-react';
-import { format } from '@cogoport/utils';
+import { Placeholder, cl } from '@cogoport/components';
+import { IcMArrowNext } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
+import React from 'react';
 
 import tableStyles from '../TableHeader/styles.module.css';
 
+import EventName from './EventName';
 import styles from './styles.module.css';
 
-const renderEventName = (type, name) => {
-	if (type) {
-		return (
-			<>
-				<IcCGreenCircle width={6} height={6} />
-				{name}
-			</>
-		);
-	}
-	if (type === null) {
-		return (
-			<>
-				<div className={tableStyles.grey_dot} />
-				{name}
-			</>
-		);
-	}
-	return (
-		<>
-			<IcCRedCircle width={6} height={6} />
-			{name}
-		</>
-	);
-};
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
-const renderUsage = (type, value) => {
+const UNLIMITED_VALUE = -1;
+
+const LOADING = [...Array(5).keys()];
+
+const renderUsage = ({ type, value, t }) => {
 	if (type) {
 		return (
 			<>
@@ -44,7 +29,7 @@ const renderUsage = (type, value) => {
 	}
 
 	if (type === null) {
-		return value === -1 ? 'Unlimited' : value;
+		return value === UNLIMITED_VALUE ? t('subscriptions:unlimited_text') : value;
 	}
 
 	return (
@@ -63,51 +48,48 @@ const getEventType = (type) => {
 	return 'debit';
 };
 
-function TableList({ list = [], loading = false, isMobile = false }) {
-	const loaderCount = [1, 2, 3, 4, 5];
-
+function TableList({ list = [], loading = false }) {
+	const { t } = useTranslation(['subscriptions']);
+	if (loading && isEmpty(list)) {
+		return <div className={styles.empty}>{t('subscriptions:no_data_text')}</div>;
+	}
 	return (
-		<>
+		<div>
+
 			{loading
-				&& !isMobile
-				&& loaderCount.map(() => (
-					<div className={tableStyles.row}>
-						{loaderCount.map(() => (
-							<div className={tableStyles.wd_150}>
-								<Placeholder />
-							</div>
-						))}
-					</div>
-				))}
-			{loading
-				&& isMobile
-				&& loaderCount.map(() => (
-					<div className={styles.card}>
-						<div className={styles.date}>
-							<Placeholder height="15px" width="70px" />
+				? LOADING.map((item) => (
+					<React.Fragment key={item}>
+						<div className={cl`${tableStyles.web_view} ${tableStyles.row}`}>
+							{LOADING.map((ele) => (
+								<div className={tableStyles.wd_150} key={ele}>
+									<Placeholder />
+								</div>
+							))}
 						</div>
-						<div className={styles.div}>
-							<div className={styles.vertical_div}>
-								<div className={styles.type}>
-									<Placeholder height="16px" width="60px" />
-								</div>
-								<div className={styles.sub_heading}>
-									<Placeholder height="12px" margin="8px 0px" width="50px" />
-								</div>
-								<div className={styles.title}>
-									<Placeholder height="18px" width="70px" />
-								</div>
+						<div className={cl`${styles.mobile_view} ${styles.card}`}>
+							<div className={styles.date}>
+								<Placeholder height="15px" width="70px" />
 							</div>
-							<div className={styles.quantity}>
-								<Placeholder height="24px" width="50px" />
+							<div className={styles.div}>
+								<div className={styles.vertical_div}>
+									<div className={styles.type}>
+										<Placeholder height="16px" width="60px" />
+									</div>
+									<div className={styles.sub_heading}>
+										<Placeholder height="12px" margin="8px 0px" width="50px" />
+									</div>
+									<div className={styles.title}>
+										<Placeholder height="18px" width="70px" />
+									</div>
+								</div>
+								<div className={styles.quantity}>
+									<Placeholder height="24px" width="50px" />
+								</div>
 							</div>
 						</div>
-					</div>
-				))}
-			{!loading && list?.length === 0 && <div>No Data found</div>}
-			{!loading
-				&& list?.length > 0
-				&& (list || []).map(
+					</React.Fragment>
+				))
+				: (list || []).map(
 					(
 						{
 							created_at = '',
@@ -119,41 +101,68 @@ function TableList({ list = [], loading = false, isMobile = false }) {
 						index,
 					) => {
 						const eventType = getEventType(is_credit);
-						return isMobile ? (
-							<div className={styles.card}>
-								<div className={styles.date}>
-									Dated:
-									{format(created_at, 'dd MMM yyyy')}
-								</div>
-								<div className={styles.div}>
-									<div className={styles.vertical_div}>
-										<div
-											className={`${styles.type} ${styles[eventType]}`}
-										>
-											{renderEventName(is_credit, event_name)}
-										</div>
-										<div className={styles.sub_heading}>Feature Name</div>
-										<div className={styles.title}>{product_name}</div>
+						return (
+							<div key={created_at}>
+								<div className={cl`${styles.mobile_view} ${styles.card}`}>
+									<div className={styles.date}>
+										{t('subscriptions:dated_text')}
+										:
+										{formatDate({
+											date       : created_at,
+											dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+											formatType : 'date',
+										})}
 									</div>
-									<div className={styles.quantity}>{renderUsage(is_credit, quantity)}</div>
+									<div className={styles.div}>
+										<div className={styles.vertical_div}>
+											<div
+												className={`${styles.type} ${styles[eventType]}`}
+											>
+												<EventName type={is_credit} name={event_name} />
+											</div>
+											<div className={styles.sub_heading}>
+												{t('subscriptions:feature_name_text')}
+
+											</div>
+											<div className={styles.title}>{product_name}</div>
+										</div>
+										<div className={styles.quantity}>
+											{renderUsage({
+												type  : is_credit,
+												value : quantity,
+												t,
+											})}
+
+										</div>
+									</div>
 								</div>
-							</div>
-						) : (
-							<div className={tableStyles.row}>
-								<div className={tableStyles.wd_100}>{index + 1}</div>
-								<div className={tableStyles.wd_150}>{product_name}</div>
-								<div className={tableStyles.wd_150}>{renderEventName(is_credit, event_name)}</div>
-								<div className={tableStyles.wd_150}>
-									{format(created_at, 'dd MMM yyyy')}
-								</div>
-								<div className={`${tableStyles.wd_150} ${tableStyles.flex}`}>
-									{renderUsage(is_credit, quantity)}
+
+								<div className={cl`${tableStyles.web_view} ${tableStyles.row}`}>
+									<div className={tableStyles.wd_100}>{index + 1}</div>
+									<div className={tableStyles.wd_150}>{product_name}</div>
+									<div className={tableStyles.wd_150}>
+										<EventName type={is_credit} name={event_name} />
+									</div>
+									<div className={tableStyles.wd_150}>
+										{formatDate({
+											date       : created_at,
+											dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+											formatType : 'date',
+										})}
+									</div>
+									<div className={cl`${tableStyles.wd_150} ${tableStyles.flex}`}>
+										{renderUsage({
+											type  : is_credit,
+											value : quantity,
+											t,
+										})}
+									</div>
 								</div>
 							</div>
 						);
 					},
 				)}
-		</>
+		</div>
 	);
 }
 export default TableList;

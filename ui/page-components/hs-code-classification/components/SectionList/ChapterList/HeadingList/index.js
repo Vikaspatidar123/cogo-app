@@ -1,10 +1,15 @@
 import { cl, Placeholder } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import styles from '../../styles.module.css';
 
 import HScode from './HScode';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const MAX_DESCRIPTION_LENGTH = 76;
 
 function HeadingList({
 	headingData,
@@ -17,7 +22,7 @@ function HeadingList({
 	headingLoading,
 	hsloading,
 }) {
-	const isMobile = false;
+	const { t } = useTranslation(['common', 'hsClassification']);
 	const [headingToggle, setHeadingToggle] = useState(false);
 	const { headingCode, headingDescription } = headingData || {};
 	useEffect(() => {
@@ -44,14 +49,13 @@ function HeadingList({
 	const description = () => {
 		if (headingLoading) return addLoader('150px', '800px');
 		if (headingToggle) return headingDescription;
-		if (headingDescription?.length > 40 && isMobile) {
-			return `${headingData?.headingDescription?.substring(0, 40)}....`;
-		}
-		if (headingDescription?.length > 96) {
-			return `${headingData?.headingDescription?.substring(0, 95)}....`;
+		if (headingDescription?.length > MAX_DESCRIPTION_LENGTH) {
+			return `${headingData?.headingDescription
+				?.substring(GLOBAL_CONSTANTS.zeroth_index, MAX_DESCRIPTION_LENGTH)}....`;
 		}
 		return headingDescription;
 	};
+
 	return (
 		<div>
 			<div
@@ -62,7 +66,8 @@ function HeadingList({
 				}}
 			>
 				<div className={`${styles.name} ${headingToggle && styles.selected}`}>
-					{headingLoading ? addLoader('40px', '130px') : `Heading ${headingCode}`}
+					{headingLoading ? addLoader('40px', '130px')
+						: `${t('hsClassification:hs_code_classification_heading_label')} ${headingCode}`}
 				</div>
 				<div className={`${styles.desc} ${headingToggle && styles.selected}`}>
 					{description()}

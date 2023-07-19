@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcAIdea } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
 import getControls from '../../../../configurations/cardfilter';
@@ -16,6 +17,10 @@ function BaseFilters({
 	setSearchTag,
 	countryOptions,
 }) {
+	const { t } = useTranslation(['common', 'hsClassification']);
+
+	const field = getControls({ countryOptions, t });
+
 	const {
 		handleSubmit,
 		watch,
@@ -26,6 +31,7 @@ function BaseFilters({
 	} = useForm();
 
 	const watchCountry = watch('country');
+
 	const onSubmit = (data) => {
 		refetchSearch(data);
 		resetDrillDownHandler();
@@ -46,7 +52,6 @@ function BaseFilters({
 		resetDrillDownHandler();
 	}, [watchCountry, refetch, resetDrillDownHandler]);
 
-	const field = getControls({ countryOptions });
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className={`${styles.filter_container}`}>
@@ -84,7 +89,7 @@ function BaseFilters({
 						disabled={loading}
 						onClick={() => clearFilterHandler()}
 					>
-						Clear Filter
+						{t('hsClassification:hs_code_classification_clear_search_button_label')}
 					</Button>
 					<div>
 						<Button
@@ -94,7 +99,7 @@ function BaseFilters({
 							type="submit"
 							disabled={loading}
 						>
-							Search
+							{t('hsClassification:hs_code_classification_search_button_label')}
 						</Button>
 					</div>
 				</div>

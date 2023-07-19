@@ -1,5 +1,7 @@
+import { useTranslation } from 'next-i18next';
+
 import List from '../../../../../common/List';
-import { HSCode } from '../../../../../configurations/HsCode';
+import { getHSCodeControls } from '../../../../../configurations/HsCode';
 
 function HScode({
 	hscodeData,
@@ -10,11 +12,15 @@ function HScode({
 	headCode,
 	headingToggle,
 }) {
+	const { t } = useTranslation(['common', 'hsClassification']);
+
+	const hsCode = getHSCodeControls({ t });
+
 	return (
 		<List
 			className="hsCode"
 			apiData={hscodeData}
-			configs={HSCode}
+			configs={hsCode}
 			loading={hsloading}
 			pageObj={pageObj}
 			setGlobalFilters={setGlobalFilters}

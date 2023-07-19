@@ -203,6 +203,13 @@ const GLOBAL_CONSTANTS = {
 		'https://cogoport-testing.sgp1.digitaloceanspaces.com/b3949cf1f8cd3366d0272bd60c87c930/emoji-list.json',
 	customer_support: 'support@cogoport.com',
 
+	regex: {
+		url_end_slash: /\/$/,
+		website_url:
+			/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)$/,
+		image_extension: /\.(jpg|jpeg|png|gif|svg)$/i,
+
+	},
 };
 
 export default GLOBAL_CONSTANTS;

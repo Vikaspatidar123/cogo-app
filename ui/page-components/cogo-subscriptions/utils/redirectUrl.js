@@ -3,7 +3,7 @@ import { useSelector } from '@/packages/store';
 
 const useRedirectUrl = () => {
 	const { profile } = useSelector((s) => s);
-	const { push = () => {}, query = {} } = useRouter();
+	const { push = () => { }, query = {} } = useRouter();
 	const { addons = '' } = query || {};
 	const { organization = {}, branch = {} } = profile || {};
 
@@ -19,7 +19,7 @@ const useRedirectUrl = () => {
 		push('/saas/cogo-subscriptions/balance-history');
 	};
 
-	const redirectCheckoutSubscription = (id, activeTab, plan_pricing_id) => {
+	const redirectCheckoutSubscription = ({ id, activeTab, plan_pricing_id }) => {
 		push(
 			`/saas/cogo-subscriptions/checkout?active=${id}&period=${activeTab}&plan_pricing_id=${plan_pricing_id}`,
 		);

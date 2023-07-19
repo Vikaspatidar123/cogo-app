@@ -3,10 +3,15 @@ import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
+import getGeoConstants from '@/ui/commons/constants/geo';
+
 function BillingDetails({
 	address,
 	taxNumber,
 }) {
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.billing_address_container}>
@@ -17,7 +22,9 @@ function BillingDetails({
 			</div>
 
 			<div className={styles.text}>
-				GST Number :
+				{REGISTRATION_LABEL}
+				{' '}
+				Number :
 				{' '}
 				{taxNumber || 'Not Applicable'}
 			</div>

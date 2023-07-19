@@ -98,6 +98,7 @@ function AddCompany({
 		compType,
 		loading,
 		newFields,
+		register,
 	} = useCreateAddCompany({
 		setTradeParties,
 		roleCheck,
@@ -202,6 +203,7 @@ function AddCompany({
 						controls={newFields}
 						control={control}
 						errors={errors}
+						register={register}
 					/>
 				</Modal.Body>
 				<Modal.Footer>

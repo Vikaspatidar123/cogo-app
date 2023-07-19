@@ -1,4 +1,5 @@
 import { Collapse, Placeholder } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import { checkFileList } from '../../constants/checkFileList';
@@ -7,18 +8,31 @@ import InnerForm from './InnerForm';
 import styles from './styles.module.css';
 import Title from './Title/index';
 
-function ServiceUploadDocument({ data = [], loading = false, addDocument = () => {}, addDocumentLoading = false }) {
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const isAllowedOpen = (data, value) => {
+	const uploadedDoc = data?.filter((doc) => doc?.name === value?.doc_name)
+		?.[GLOBAL_CONSTANTS.zeroth_index];
+	return isEmpty(uploadedDoc);
+};
+
+function ServiceUploadDocument({
+	serviceType = '', data = [], loading = false, addDocument = () => {}, addDocumentLoading = false,
+}) {
 	const [activeCollapse, setActiveCollapse] = useState('');
 
 	const options = checkFileList.map((value, index) => ({
 		key      : index.toString(),
 		title    : <Title doc_data={value} data={data} />,
-		children : <InnerForm
-			value={value}
-			setActiveCollapse={setActiveCollapse}
-			addDocument={addDocument}
-			addDocumentLoading={addDocumentLoading}
-		/>,
+		children : isAllowedOpen(data, value) ? (
+			<InnerForm
+				serviceType={serviceType}
+				value={value}
+				setActiveCollapse={setActiveCollapse}
+				addDocument={addDocument}
+				addDocumentLoading={addDocumentLoading}
+			/>
+		) : null,
 	}));
 
 	return (
@@ -40,7 +54,9 @@ function ServiceUploadDocument({ data = [], loading = false, addDocument = () =>
 					<Collapse
 						panels={options}
 						activeKey={activeCollapse}
-						setActive={(v) => setActiveCollapse(v)}
+						setActive={(v) => {
+							setActiveCollapse(v);
+						}}
 						type="text"
 						className={styles.collapse_component}
 					/>

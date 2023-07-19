@@ -21,6 +21,7 @@ function Documents() {
 		documentDetails,
 		refetch,
 		setDocumentDetails,
+		serviceType,
 	});
 
 	return (
@@ -47,6 +48,7 @@ function Documents() {
 				/>
 			) : (
 				<ServiceUploadDocument
+					serviceType={serviceType}
 					data={data?.list}
 					loading={loading}
 					addDocument={addDocument}

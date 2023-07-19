@@ -28,6 +28,7 @@ function PaymentModeModal({
 			window.open(url, '_blank');
 		} else if (value === 'directPay') {
 			setValidateProduct(true);
+			setPaymentModal(false);
 			setPaymentMode('directPay');
 		}
 	};

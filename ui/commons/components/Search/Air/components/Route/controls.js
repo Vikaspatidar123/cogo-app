@@ -1,13 +1,10 @@
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-
-const INDIA_COUNTRY_DETAILS = getCountryDetails({
-	country_id: INDIA_COUNTRY_ID,
-});
-
-const INDIA_COUNTRY_CODE = INDIA_COUNTRY_DETAILS?.country_code;
+const COUNTRY_SPECIFIC_DATA_OBJ = {
+	accessorType  : 'navigations',
+	accessor      : 'spot_search_air',
+	isDefaultData : true,
+};
 
 const getControls = ({
 	setLocation = () => {},
@@ -22,6 +19,7 @@ const getControls = ({
 		type           : 'async_select',
 		placeholder    : 'Shipping from',
 		asyncKey       : 'locations',
+		initialCall    : true,
 		style          : { width: '300px' },
 		handleChange   : (obj) => {
 			setLocation((pv) => ({
@@ -29,17 +27,24 @@ const getControls = ({
 				origin: obj,
 			}));
 			setToggleState(() => {
-				if (obj?.country_code === INDIA_COUNTRY_CODE) {
-					return 'export';
-				}
-				if (location?.destination?.country_code === INDIA_COUNTRY_CODE) {
-					return 'import';
-				}
+				const { origin_input_trade_type } = getCountrySpecificData({
+					country_code: obj?.country_code,
+					...COUNTRY_SPECIFIC_DATA_OBJ,
+				});
+				if (origin_input_trade_type) return origin_input_trade_type;
+
+				const { origin_input_location_trade_type } = getCountrySpecificData({
+					country_code: location?.destination?.country_code,
+					...COUNTRY_SPECIFIC_DATA_OBJ,
+				});
+
+				if (origin_input_location_trade_type) return origin_input_location_trade_type;
+
 				return 'export';
 			});
 		},
 		params: {
-			filters     : { type: ['airport', 'city', 'country'] },
+			filters     : { type: ['airport'] },
 			preferences : {
 				organization_id : org_id,
 				service_type    : 'air_freight',
@@ -61,6 +66,7 @@ const getControls = ({
 		name           : 'destination',
 		labelShow      : 'DESTINATION',
 		defaultOptions : true,
+		initialCall    : true,
 		type           : 'async_select',
 		placeholder    : 'Shipping to',
 		asyncKey       : 'locations',
@@ -68,17 +74,25 @@ const getControls = ({
 		handleChange   : (obj) => {
 			setLocation((pv) => ({ ...pv, destination: obj }));
 			setToggleState(() => {
-				if (obj?.country_code === INDIA_COUNTRY_CODE) {
-					return 'import';
-				}
-				if (location?.origin?.country_code === INDIA_COUNTRY_CODE) {
-					return 'export';
-				}
+				const { destination_input_trade_type } = getCountrySpecificData({
+					country_code: obj?.country_code,
+					...COUNTRY_SPECIFIC_DATA_OBJ,
+				});
+
+				if (destination_input_trade_type) return destination_input_trade_type;
+
+				const { destination_input_location_trade_type } = getCountrySpecificData({
+					country_code: location?.destination?.country_code,
+					...COUNTRY_SPECIFIC_DATA_OBJ,
+				});
+
+				if (destination_input_location_trade_type) return destination_input_location_trade_type;
+
 				return 'export';
 			});
 		},
 		params: {
-			filters     : { type: ['airport', 'city', 'country'] },
+			filters     : { type: ['airport'] },
 			preferences : {
 				organization_id : org_id,
 				service_type    : 'air_freight',

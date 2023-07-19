@@ -8,7 +8,7 @@ function SelectCountryCode(props) {
 
 	const formattedList = countryCode.map((code) => ({
 		value : code.mobile_country_code,
-		label : `${code.mobile_country_code} ${showCountryName && `: ${code.name}`}`,
+		label : `${code.mobile_country_code} ${showCountryName ? `: ${code.name}` : ''}`,
 		// label : (
 		// 	<div style={{ display: 'flex', alignItems: 'center' }}>
 		// 		<span style={{ marginRight: '5px' }}>

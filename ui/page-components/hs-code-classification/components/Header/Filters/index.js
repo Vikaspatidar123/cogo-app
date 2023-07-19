@@ -14,8 +14,8 @@ function Filters({
 	resetDrillDownHandler,
 	setSearchTag,
 }) {
-	const countryOptions = useGetAsyncOptionsBf(merge(asyncFieldsHsCodeCountries(), {
-	}));
+	const countryOptions = useGetAsyncOptionsBf(merge(asyncFieldsHsCodeCountries(), {}));
+
 	return (
 		<div className={styles.container}>
 			{labeledValue === 'normalSearch' ? (

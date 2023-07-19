@@ -1,119 +1,91 @@
-import { Tabs, TabPanel } from '@cogoport/components';
-import { useEffect, useState } from 'react';
+import { Toggle } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
+import { useState } from 'react';
 
 import SuccessModal from '../../../common/SuccessModal';
-import useGetRequestCallback from '../../../hooks/useGetRequestCallback';
+import useGetPlanFeatures from '../../../hooks/useGetPlanFeatures';
 import useGetUSerActivePlan from '../../../hooks/useGetUserActivePlan';
 import useVerifyRazor from '../../../hooks/useVerifyRazorPayStatus';
-import SubscriptionsPlanList from '../SubscriptionsPlanList/index';
 
 import HeaderContainer from './HeaderContainer';
-import Loader from './Loader';
 import PendingModal from './PendingModal';
 import styles from './styles.module.css';
+import SubscriptionsPlan from './SubscriptionsPlan';
+import CardTable from './SubscriptionsPlan/CardTable';
 
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
-const options = [
-	{
-		label           : 'Bill Monthly',
-		value           : 'monthly',
-		backgroundColor : '#2b2b43',
-		color           : ' #ffffff',
-	},
-	{
-		label           : 'Bill Yearly',
-		value           : 'annual',
-		backgroundColor : '#2b2b43',
-		color           : ' #ffffff',
-	},
-];
-
 function Plan() {
-	const { profile } = useSelector((s) => s);
 	const { query } = useRouter();
-	const [userplan, setUserPlan] = useState({});
-	const [activeTab, setActiveTab] = useState('monthly');
+	const { saas_plan = '' } = query || {};
+	const { t } = useTranslation(['subscriptions']);
+	const { profile } = useSelector((s) => s);
+
 	const [modal, setShowModal] = useState(false);
-	const [clickedPlan, setClickedPlan] = useState();
-	const [subscribeTab, setSubscribeTab] = useState('monthly');
-	const { getPlan, loading } = useGetUSerActivePlan({ profile });
+
+	const {
+		loading,
+		getPlan,
+		userPlan,
+		activeTab,
+		setActiveTab,
+		subscribeTab,
+	} = useGetUSerActivePlan({ profile });
 	const {
 		setRazorLoading,
 		razorLoading = false,
 		paymentStatus = {},
 		apiTries,
 	} = useVerifyRazor();
-	const { requestCallback, callbackLoading } = useGetRequestCallback({ profile });
 
-	const { saas_plan = '' } = query || {};
+	const { saas_product_family_id = '' } = userPlan || {};
 
-	const { billing_cycle } = userplan;
-	const userActivePlan = userplan?.item_plans?.find(
-		(obj) => obj?.display_pricing?.annual?.id === userplan?.saas_plan_pricing_id
-			|| obj?.display_pricing?.monthly?.id === userplan?.saas_plan_pricing_id,
-	);
-
-	const { description = '', priority_sequence: priority_sequence_active_plan } =		userActivePlan || {};
-
-	useEffect(() => {
-		getPlan({ setUserPlan });
-	}, [getPlan]);
-
-	const { item_plans = [], saas_plan_pricing_id = '' } = userplan || {};
-
-	useEffect(() => {
-		if (Object.keys(item_plans).length > 0) {
-			item_plans.forEach(({ display_pricing = {}, priority_sequence }) => {
-				if (priority_sequence > 0) {
-					if (display_pricing?.annual?.is_active_plan) {
-						setActiveTab('annual');
-						setSubscribeTab('annual');
-					}
-				}
-			});
-		}
-	}, [item_plans]);
+	const { planFeatureData = {} } = useGetPlanFeatures({
+		saas_product_family_id,
+	});
 
 	return (
 		<div>
 			<HeaderContainer />
 
 			<div className={styles.container}>
-				<div>
-					<div className={styles.heading}>Efficient plans to grow your business</div>
-					<div className={styles.line} />
-				</div>
 
-				<Tabs
-					activeTab={activeTab}
-					themeType="primary"
-					onChange={setActiveTab}
-				>
-					{ options.map((val) => (
-						<TabPanel name={val.value} title={val.label} key={val.id} />
-					)) }
-				</Tabs>
+				<Toggle
+					offLabel={t('subscriptions:bill_monthly_text')}
+					onLabel={(
+						<div>
+							{t('subscriptions:bill_yearly_text')}
+							<span className={styles.save}>
+								{' '}
+								(
+								{t('subscriptions:save_text')}
+								)
+							</span>
+						</div>
+					)}
+					value={activeTab}
+					onChange={(e) => {
+						setActiveTab(e.target.checked ? 'annual' : 'monthly');
+					}}
+				/>
 			</div>
-			<div className={styles.wrapper}>
-				{loading && <Loader className="loader" />}
-				{!loading && item_plans?.length > 0 && (
-					<SubscriptionsPlanList
-						clickedPlan={clickedPlan}
-						setClickedPlan={setClickedPlan}
-						activeTab={activeTab}
-						userplan={userplan}
-						description={description}
-						priority_sequence_active_plan={priority_sequence_active_plan}
-						requestCallback={requestCallback}
-						saas_plan_pricing_id={saas_plan_pricing_id}
-						subscribeTab={subscribeTab}
-						callbackLoading={callbackLoading}
-						billing_cycle={billing_cycle}
-					/>
-				)}
+			<SubscriptionsPlan
+				userplan={userPlan}
+				activeTab={activeTab}
+				subscribeTab={subscribeTab}
+				loading={loading}
+			/>
+
+			<div className={styles.feature_line}>
+				<div>
+					<div className={styles.features}>{t('subscriptions:detailed_text')}</div>
+				</div>
 			</div>
+			<CardTable
+				planFeatureData={planFeatureData}
+			/>
+
 			{modal && (
 				<SuccessModal
 					query={query}
@@ -121,7 +93,6 @@ function Plan() {
 					setShowModal={setShowModal}
 					getPlan={getPlan}
 					name={saas_plan}
-					setUserPlan={setUserPlan}
 				/>
 			)}
 			{razorLoading && (

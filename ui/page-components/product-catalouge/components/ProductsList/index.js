@@ -8,8 +8,11 @@ import {
 	IcMArrowBack,
 	IcMPlus,
 } from '@cogoport/icons-react';
-import React from 'react';
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
+import React, { useState } from 'react';
 
+import AddProductModal from '../../common/AddProductModal';
 import EmptyState from '../../common/List/EmptyState';
 import AllProducts from '../AllProducts';
 import SubCategory from '../SubCategories';
@@ -25,23 +28,27 @@ function ProductsList({
 	setSubCategory, setActiveHeaderTab, showProduct, setShowProduct, prefiledValues, addProductLoading,
 	activeHeaderTab, setIsEdit,
 }) {
+	const { t } = useTranslation(['common', 'productCatalogue']);
 	const { profile } = useSelector((state) => state);
 	const { MAPPING } = HsCodeIcon(false);
 	const checkLength = apiData?.totalRecords;
 	const countryInfo = profile?.organization?.country;
 
+	const [proId, setProId] = useState('');
+	const [productClassification, setProductClassification] = useState('');
+
 	return (
 		<div className={styles.main_container}>
 			<div className={styles.heading}>
 				<div className={styles.title_section}>
-					<h1 className="title">Products Catalogue</h1>
+					<h1 className="title">{t('productCatalogue:product_catalogue_title')}</h1>
 					<div className={styles.line_wrapper}>
 						<div className={styles.line} />
 					</div>
 				</div>
 				<div className={styles.button_container}>
 					<Tooltip
-						content="Click to view archived List"
+						content={t('productCatalogue:product_catalogue_archived_list_tooltip')}
 						placement="bottom"
 					>
 						<div className={styles.archived_button} role="presentation">
@@ -58,14 +65,14 @@ function ProductsList({
 						disabled={hsLoading}
 						onClick={() => setHSCode(true)}
 					>
-						+ Add New
+						{t('productCatalogue:add_new_product_button')}
 					</Button>
 				</div>
 			</div>
 			<div className={styles.scroll_content}>
 				{(showProductView) && (
 					<div>
-						<div className={styles.sub_title}>Select Category</div>
+						<div className={styles.sub_title}>{t('productCatalogue:product_catalogue_tabs_title')}</div>
 						<div>
 							{hsList.length > 0 && (
 								<div className="scroll">
@@ -92,7 +99,7 @@ function ProductsList({
 															>
 																<IcMGrid fill="#d94646" className={styles.icon} />
 															</div>
-															All Products
+															{t('productCatalogue:product_catalogue_tabs_title_1')}
 														</div>
 													)}
 												/>
@@ -163,7 +170,7 @@ function ProductsList({
 									setShowProductView(false);
 								}}
 							/>
-							<div className="back">Go Back</div>
+							<div className="back">{t('productCatalogue:product_catalogue_archived_list_go_back_button')}</div>
 						</div>
 					</div>
 				)}
@@ -173,18 +180,15 @@ function ProductsList({
 						<>
 							<div className={styles.tab_header}>
 								<IcMGrid fill="#d94646" />
-								<div className={styles.title_styled}>All Products</div>
+								<div className={styles.title_styled}>{t('productCatalogue:product_catalogue_tabs_title_1')}</div>
 								<div className={styles.total_records}>{!loading ? checkLength : '...'}</div>
 							</div>
 							<div className={styles.border_bottom} />
 							<div>
-								{checkLength !== 0 ? (
+								{!isEmpty(checkLength) ? (
 									<AllProducts
-										showProduct={showProduct}
 										setShowProduct={setShowProduct}
 										countryInfo={countryInfo}
-										prefiledValues={prefiledValues}
-										setPrefiledValues={setPrefiledValues}
 										apiData={apiData}
 										refetchProduct={refetchProduct}
 										loading={loading}
@@ -196,6 +200,10 @@ function ProductsList({
 										showProductView={showProductView}
 										activeTab={activeTab}
 										setHSCode={setHSCode}
+										setProductClassification={setProductClassification}
+										setProId={setProId}
+										productClassification={productClassification}
+										proId={proId}
 									/>
 								) : (
 									<EmptyState />
@@ -223,6 +231,21 @@ function ProductsList({
 							showProductView={showProductView}
 						/>
 					)}
+					<AddProductModal
+						showProduct={showProduct}
+						setShowProduct={setShowProduct}
+						countryInfo={countryInfo}
+						prefiledValues={prefiledValues}
+						setPrefiledValues={setPrefiledValues}
+						isEdit={isEdit}
+						setIsEdit={setIsEdit}
+						addProductLoading={addProductLoading}
+						refetchProduct={refetchProduct}
+						setHSCode={setHSCode}
+						productClassificationId={productClassification}
+						productId={proId}
+						card
+					/>
 				</div>
 			</div>
 		</div>

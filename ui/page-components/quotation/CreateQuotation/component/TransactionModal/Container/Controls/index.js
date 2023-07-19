@@ -1,24 +1,54 @@
 import { cl, Toggle } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import iconUrl from '../../../../../utils/iconUrl.json';
 
 import styles from './styles.module.css';
 
-const FLAGMAPPING = {
-	N : <img src={iconUrl?.greenFlag} alt="green flag" />,
-	Y : <img src={iconUrl?.redFlag} alt="red flag" />,
-	M : <img src={iconUrl?.yellowFlag} alt="yellow flag" />,
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const FLAG_MAPPING = {
+	N : <Image src={GLOBAL_CONSTANTS.image_url.iec_green_flag} width={18} height={18} alt="green flag" />,
+	Y : <Image src={GLOBAL_CONSTANTS.image_url.iec_red_flag} width={18} height={18} alt="red flag" />,
+	M : <Image src={GLOBAL_CONSTANTS.image_url.iec_yellow_flag} width={18} height={18} alt="yellow flag" />,
+
 };
 
 function Controls({ controls }) {
-	const [labeledValue, setLabeledValue] = useState('Import');
-	const doc = (controls || []).filter((x) => x.tradeType === labeledValue);
-	const [mapDoc, setMapDoc] = useState(doc);
+	const [labeledValue, setLabeledValue] = useState('IMPORT');
+	const [controlVal, setControlVal] = useState({
+		importControls : [],
+		exportControls : [],
+	});
+
+	const { importControls, exportControls } = controlVal;
+
+	const TAB_MAPPING = {
+		IMPORT : importControls,
+		EXPORT : exportControls,
+	};
 
 	useEffect(() => {
-		if (doc) setMapDoc(doc);
-	}, [doc, labeledValue]);
+		if (!isEmpty(controls)) {
+			const impControls = [];
+			const expControls = [];
+
+			(controls || []).forEach((control) => {
+				if (control?.tradeType === 'IMPORT') {
+					impControls.push(control);
+				} else {
+					expControls.push(control);
+				}
+			});
+
+			setControlVal({
+				importControls : impControls,
+				exportControls : expControls,
+			});
+		}
+	}, [controls]);
 
 	return (
 		<>
@@ -37,26 +67,33 @@ function Controls({ controls }) {
 						onLabel="Export"
 						value={labeledValue}
 						onChange={(e) => {
-							if (e.target.checked) setLabeledValue('Export');
-							else setLabeledValue('Import');
+							setLabeledValue(e.target.checked ? 'EXPORT' : 'IMPORT');
 						}}
 					/>
 				</div>
 			</div>
 			<div className={styles.container}>
-				{controls?.length > 0 ? (
+				{!isEmpty(controls) ? (
 					<div className={styles.section}>
-						{mapDoc?.length > 0 && (
-							mapDoc || []).map(({ description, status }) => (
-								<div className={styles.flex_box} style={{ margiTop: '20px' }}>
-									<div className="controlName">{description}</div>
-									<div className="flag">{FLAGMAPPING(status)}</div>
-								</div>
-						))}
-						{mapDoc?.length === 0 && (
+						{!isEmpty(TAB_MAPPING?.[labeledValue]) ? (
+							TAB_MAPPING[labeledValue].map((ele, index) => {
+								const { description, status } = ele || {};
+								return (
+									<div
+										key={`${index + 1}_${description}_${status}`}
+										className={styles.flex_box}
+										style={{ marginTop: '20px' }}
+									>
+										<div>{description}</div>
+										<div>{FLAG_MAPPING[status]}</div>
+									</div>
+								);
+							})
+						) : (
 							<div className={styles.flex_box} style={{ height: '70px' }}>
 								<div className={styles.sorry}>No data here</div>
 							</div>
+
 						)}
 					</div>
 				) : (

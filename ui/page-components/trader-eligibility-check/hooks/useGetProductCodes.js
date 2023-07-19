@@ -3,7 +3,7 @@ import usePayment from './usePayment';
 import { useRequestBf } from '@/packages/request';
 
 const useGetProductCode = () => {
-	const { initiatePayment } = usePayment();
+	const { initiatePayment, loading: paymentLoading } = usePayment();
 
 	const [{ loading }, trigger] = useRequestBf(
 		{
@@ -34,7 +34,7 @@ const useGetProductCode = () => {
 
 	return {
 		getProductCode,
-		getProductCodeLoading: loading,
+		getProductCodeLoading: loading || paymentLoading,
 	};
 };
 

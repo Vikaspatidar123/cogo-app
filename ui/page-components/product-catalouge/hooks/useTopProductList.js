@@ -25,7 +25,7 @@ const useTopProductList = () => {
 			});
 			setProductList(resp?.data);
 		} catch (error) {
-			console.log(error.message || 'Something Went Wrong');
+			console.error(error.message);
 		}
 	};
 

@@ -39,10 +39,13 @@ export default {
 	},
 	notification_polling_interval : 300000,
 	lcw_timer                     : 10000,
-	customer_support              : 'support@cogoport.com',
+	customer_support              : 'support.vn@cogoport.com',
 	default_agent                 : {
-		name          : 'Ayushi Mishra',
-		mobile_number : '918976761462',
+		name                  : 'Lam Ngoc Ha',
+		email                 : 'support.vn@cogoport.com',
+		mobile_country_code   : '+84',
+		mobile_number         : '961435779',
+		mobile_number_eformat : '84961435779',
 	},
 	uuid: {
 		super_admin_id              : '5de782f6-f59d-41fc-84f4-8425dc1fa670',
@@ -362,4 +365,81 @@ export default {
 	},
 
 	live_booking_indicative_price_constant: 25,
+
+	others: {
+		registration_number: {
+			label      : 'VAT',
+			pattern    : /^[0-9]{1}[0-9]{9}$|^[0-3]{1}[0-9]{9}-?[0-9]{3}$/,
+			max_length : 15,
+		},
+		identification_number: {
+			label: 'Registration Number',
+		},
+		address: {
+			label: 'Registration Extract',
+		},
+		economic_zone: {
+			label: 'Non-Tariff Zone',
+		},
+		pan_number: {
+			label   : 'PAN',
+			pattern : '',
+		},
+		navigations: {
+			common: {
+				validate_registration_number : false,
+				invoicing_party_validate_gst : false,
+			},
+
+			onboarding: {
+				billing_address_details: {
+					is_suggestion_container_visible: false,
+				},
+			},
+
+			kyc: {
+				is_pan_included: false,
+			},
+
+			search_form: {
+				default_icoterm_cif                : false,
+				filter_drop_haulage_option_carrier : false,
+				is_export_tradeType                : false,
+			},
+
+			search_results: {
+				enquiry_card: {
+					show_enquiry: false,
+				},
+			},
+
+			subscription: {
+				is_tax_included: false,
+			},
+
+			profile_details: {
+				show_whatsapp: false,
+			},
+
+			spot_search_air: {
+				origin_input_trade_type               : null,
+				origin_input_location_trade_type      : null,
+				destination_input_trade_type          : null,
+				destination_input_location_trade_type : null,
+				is_origin_country_code                : false,
+				is_destination_country_code           : false,
+			},
+
+			manage_rfq: {
+				use_domestic_transport: false,
+			},
+
+			format_create_search: {
+				fcl_customs: {
+					is_origin_country_vn      : true,
+					is_destination_country_vn : true,
+				},
+			},
+		},
+	},
 };

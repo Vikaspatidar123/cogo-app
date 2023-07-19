@@ -1,19 +1,21 @@
-const shipmentTableConfig = [
-	{
-		name           : 'associatedShipments',
-		title          : 'Associated Shipments',
-		maxHeight      : '15vh',
-		emptyStateText : 'Add shipments to show here',
-	},
-	{
-		name           : 'otherName',
-		title          : 'Other Shipments',
-		maxHeight      : '20vh',
-		emptyStateText : 'No other shipments found',
-	},
-];
+export const getTableFn = ({ associatedShipments, otherShipments, t }) => {
+	const shipmentTableConfig = [
+		{
+			name           : 'associatedShipments',
+			title          : t('airOceanTracking:tracking_shipment_table_config_label_1'),
+			maxHeight      : '15vh',
+			emptyStateText : t('airOceanTracking:tracking_shipment_table_config_empty_state_1'),
+		},
+		{
+			name           : 'otherName',
+			title          : t('airOceanTracking:tracking_shipment_table_config_label_2'),
+			maxHeight      : '20vh',
+			emptyStateText : t('airOceanTracking:tracking_shipment_table_config_empty_state_2'),
+		},
+	];
 
-export const getTableFn = ({ associatedShipments, otherShipments }) => shipmentTableConfig.map((config) => ({
-	...config,
-	filteredList: config.name === 'associatedShipments' ? associatedShipments : otherShipments,
-}));
+	return shipmentTableConfig.map((config) => ({
+		...config,
+		filteredList: config.name === 'associatedShipments' ? associatedShipments : otherShipments,
+	}));
+};

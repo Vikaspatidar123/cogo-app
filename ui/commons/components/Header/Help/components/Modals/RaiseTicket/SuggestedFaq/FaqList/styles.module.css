@@ -1,0 +1,22 @@
+.container {
+	height: calc(46vh - 17px);
+	margin: 5px 14px 12px;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.icon_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 46vh;
+}
+
+.icmflag_icon {
+	width: 150px;
+	height: 150px;
+	fill: #828282;
+}

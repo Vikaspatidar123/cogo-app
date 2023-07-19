@@ -1,12 +1,13 @@
 import { IcMArrowBack } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
-
-import { LoadingIcon } from '../../configuration/icon-configuration';
 
 import Details from './Details';
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import SelectAddressComponent from '@/ui/commons/components/CreateOrganizationModel/Components/SelectAddressComponent';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function CheckoutPage({
 	quotaDetails = {},
@@ -19,6 +20,7 @@ function CheckoutPage({
 	serviceRatesLoading = false,
 	quotaAvailableStats = {},
 }) {
+	const { t } = useTranslation(['traderEligibilityCheck']);
 	const [address, setAddress] = useState();
 	const { directPayment = false } = payment || {};
 	const Length = Object.keys(serviceRates)?.length;
@@ -32,7 +34,7 @@ function CheckoutPage({
 				<div className={styles.back_buttton}>
 					<IcMArrowBack />
 				</div>
-				Checkout
+				{t('traderEligibilityCheck:tec_checkout_page_title')}
 			</div>
 			{directPayment && (
 				<SelectAddressComponent
@@ -54,10 +56,12 @@ function CheckoutPage({
 				/>
 			)}
 			{serviceRatesLoading && (
-				<img
-					src={LoadingIcon}
+				<Image
+					src={GLOBAL_CONSTANTS.image_url.loading_icon}
 					alt=""
 					className={styles.checkout_loading}
+					width={200}
+					height={200}
 				/>
 			)}
 		</div>

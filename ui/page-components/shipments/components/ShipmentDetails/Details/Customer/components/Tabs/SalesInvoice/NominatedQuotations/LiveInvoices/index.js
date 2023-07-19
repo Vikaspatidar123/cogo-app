@@ -24,7 +24,7 @@ function LiveInvoices({ data = {} }) {
 						: {};
 
 					return (
-						<div className={styles.flex_row} style={customStyle}>
+						<div className={styles.flex_row} style={customStyle} key={lineItem?.name}>
 							<span className={styles.value}>{lineItem?.name}</span>
 							<span className={styles.value}>{lineItem?.currency}</span>
 							<span className={styles.value}>{lineItem?.price}</span>

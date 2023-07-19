@@ -10,7 +10,6 @@ export async function getServerSideProps(ctx) {
 
 	try {
 		const res = await getVerifyEmail({ email_token: id });
-
 		const { token } = (res || {}).data || {};
 		const redirectPath = '/dashboard?mode=set_password';
 		setCookieAndRedirect(token, ctx, redirectPath);
@@ -19,7 +18,7 @@ export async function getServerSideProps(ctx) {
 	}
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common', 'verifyAutoLogin'])),
+			...(await serverSideTranslations(locale, ['common', 'authentication', 'verifyAutoLogin'])),
 
 		},
 	};

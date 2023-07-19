@@ -43,8 +43,11 @@ export default {
 	lcw_timer                     : 10000,
 	customer_support              : 'support@cogoport.com',
 	default_agent                 : {
-		name          : 'Ayushi Mishra',
-		mobile_number : '918976761462',
+		name                  : 'Kanira Patel',
+		email                 : 'support@cogoport.com',
+		mobile_country_code   : '+91',
+		mobile_number         : '8976851674',
+		mobile_number_eformat : '918976851674',
 	},
 	uuid: {
 		super_admin_id              : '5de782f6-f59d-41fc-84f4-8425dc1fa670',
@@ -395,4 +398,85 @@ export default {
 	},
 
 	live_booking_indicative_price_constant: 25,
+
+	others: {
+		registration_number: {
+			label: 'GST',
+			pattern:
+				/\d{2}[A-Za-z]{5}\d{4}[A-Za-z]{1}[A-Za-z\d]{1}[Zz]{1}[A-Za-z\d]{1}/g,
+			max_length: 15,
+		},
+		identification_number: {
+			label: 'PAN Number',
+		},
+		address: {
+			label: 'Address Proof',
+		},
+		economic_zone: {
+			label: 'SEZ',
+		},
+
+		pan_number: {
+			label   : 'PAN',
+			pattern : /[A-Za-z]{5}\d{4}[A-Za-z]{1}/g,
+		},
+		navigations: {
+			common: {
+				validate_registration_number : true,
+				invoicing_party_validate_gst : true,
+
+			},
+
+			onboarding: {
+				billing_address_details: {
+					is_suggestion_container_visible: true,
+				},
+			},
+
+			kyc: {
+				is_pan_included: true,
+			},
+
+			search_form: {
+				default_icoterm_cif                : true,
+				filter_drop_haulage_option_carrier : true,
+				is_export_tradeType                : true,
+			},
+
+			search_results: {
+				enquiry_card: {
+					show_enquiry: true,
+				},
+			},
+
+			subscription: {
+				is_tax_included: true,
+			},
+
+			profile_details: {
+				show_whatsapp: true,
+			},
+
+			spot_search_air: {
+				origin_input_trade_type               : 'export',
+				origin_input_location_trade_type      : 'import',
+				destination_input_trade_type          : 'import',
+				destination_input_location_trade_type : 'export',
+				is_origin_country_code_in             : true,
+				is_destination_country_code_in        : true,
+			},
+
+			manage_rfq: {
+				use_domestic_transport: true,
+			},
+
+			format_create_search: {
+				fcl_customs: {
+					is_origin_country_vn      : false,
+					is_destination_country_vn : false,
+				},
+			},
+
+		},
+	},
 };

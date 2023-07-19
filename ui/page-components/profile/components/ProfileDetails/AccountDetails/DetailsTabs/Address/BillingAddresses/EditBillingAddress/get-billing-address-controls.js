@@ -1,5 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import data from '@/.data-store/constants/countries.json';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const country_code = data?.map((x) => ({
 	label : x.mobile_country_code,
@@ -7,6 +8,11 @@ const country_code = data?.map((x) => ({
 }));
 
 const getBillingAddressControls = ({ cityPincode = {}, t }) => {
+	const geo = getGeoConstants();
+
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+	const ECO_ZONE_LABEL = geo.others.economic_zone.label;
+
 	const fields = [
 		{
 			name        : 'name',
@@ -31,17 +37,18 @@ const getBillingAddressControls = ({ cityPincode = {}, t }) => {
 		},
 		{
 			name        : 'tax_number',
-			label       : t('settings:billing_details_label_4'),
-			placeholder : t('settings:billing_details_placeholder_9'),
-			type        : 'text',
-			style       : { width: '370px' },
-			rules       : {
+			label       : `${REGISTRATION_LABEL} ${t('settings:billing_details_label_4')}`,
+			placeholder : `${t('settings:billing_details_placeholder_9')} 
+							${REGISTRATION_LABEL} ${t('settings:billing_details_label_4')}`,
+			type  : 'text',
+			style : { width: '370px' },
+			rules : {
 				required: t('settings:settings_field_required_text'),
 			},
 		},
 		{
 			name    : 'is_sez',
-			label   : t('settings:billing_details_label_2'),
+			label   : `${t('settings:billing_details_label_2')} ${REGISTRATION_LABEL}?`,
 			type    : 'checkbox',
 			options : [
 				{
@@ -96,7 +103,7 @@ const getBillingAddressControls = ({ cityPincode = {}, t }) => {
 		},
 		{
 			name  : 'sez_proof',
-			label : t('settings:billing_details_label_10'),
+			label : `${ECO_ZONE_LABEL} ${t('settings:billing_details_label_10')}`,
 			type  : 'file',
 			drag  : true,
 			style : { width: '370px' },
@@ -106,7 +113,7 @@ const getBillingAddressControls = ({ cityPincode = {}, t }) => {
 		},
 		{
 			name  : 'tax_number_document_url',
-			label : t('setting:billing_details_label_6'),
+			label : `${REGISTRATION_LABEL} ${t('setting:billing_details_label_6')}`,
 			type  : 'file',
 			style : { width: '370px' },
 			rules : {

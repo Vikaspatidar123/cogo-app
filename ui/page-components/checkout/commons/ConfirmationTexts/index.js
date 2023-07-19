@@ -12,8 +12,6 @@ function ConfirmationTexts({
 	trade_type = '',
 	services = {},
 }) {
-	const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-
 	const primaryService = (Object.values(services) || [])
 		.map((per_service) => {
 			if (per_service?.service_type === primaryServiceData?.service_type) {
@@ -53,10 +51,6 @@ function ConfirmationTexts({
 
 		return returnHash;
 	}, {});
-
-	const { origin_country_id } = primaryServiceData;
-
-	const isExportingCountryIndia = INDIA_COUNTRY_ID === origin_country_id && trade_type === 'export';
 
 	const isShowDestinationDays = destination_detention || destination_demurrage;
 
@@ -138,16 +132,23 @@ function ConfirmationTexts({
 						<div className={cl`${styles.text} ${styles.detention_demurrage}`}>
 							<b>Origin</b>
 							:
-							{' '}
-							{origin_detention || (isExportingCountryIndia ? 4 : 0)}
-							{' '}
-							detention
-							days,
-							{origin_demurrage || (isExportingCountryIndia ? 4 : 0)}
-							{' '}
-							demurrage
-							days
-							{' '}
+							{origin_detention ? (
+								<>
+									{origin_detention}
+									{' '}
+									detention day(s)
+									{' '}
+								</>
+							) : null}
+							{origin_demurrage ? (
+								<>
+									{origin_demurrage}
+									{' '}
+									demmurage day(s)
+									{' '}
+								</>
+							) : null}
+
 						</div>
 						<div className={styles.inner_text}>
 							For extra day(s) charges refer T&C

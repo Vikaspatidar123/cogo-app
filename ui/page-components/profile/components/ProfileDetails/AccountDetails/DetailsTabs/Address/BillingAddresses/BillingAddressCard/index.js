@@ -9,6 +9,8 @@ import AddEditPocDetails from '../../AddEditPocDetails';
 import PocCard from './PocCard';
 import styles from './styles.module.css';
 
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
 import getValue from '@/ui/commons/utils/getValue';
 
 function AddressCard({
@@ -24,6 +26,10 @@ function AddressCard({
 	const [showPocModal, setShowPocModal] = useState(null);
 
 	const [pocToUpdate, setPocToUpdate] = useState({});
+
+	const geo = getGeoConstants();
+
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
 
 	const gstDocName = getValue(address, 'tax_number_document_url', '')
 		?.split('/')
@@ -74,7 +80,11 @@ function AddressCard({
 					<div className={styles.label_text}>{address.address || '-'}</div>
 				</div>
 				<div className={styles.sub_container}>
-					<div className={styles.value_text}>{t('settings:billing_details_label_4')}</div>
+					<div className={styles.value_text}>
+						{REGISTRATION_LABEL}
+						{' '}
+						{t('settings:billing_details_label_4')}
+					</div>
 					<div className={styles.label_text}>{address.tax_number || '-'}</div>
 				</div>
 			</div>
@@ -88,7 +98,11 @@ function AddressCard({
 				</div>
 
 				<div className={styles.address_container}>
-					<div className={styles.value_text}>{t('settings:billing_details_label_6')}</div>
+					<div className={styles.value_text}>
+						{REGISTRATION_LABEL}
+						{' '}
+						{t('settings:billing_details_label_6')}
+					</div>
 					{address.tax_number_document_url ? (
 						<div className={styles.doc_container}>
 							<div className={styles.flex}>
@@ -113,7 +127,11 @@ function AddressCard({
 			</div>
 
 			{(organization_pocs || []).map((firstPoc) => (
-				<PocCard firstPoc={firstPoc} setShowPocModal={setShowPocModal} setPocToUpdate={setPocToUpdate} />
+				<PocCard
+					firstPoc={firstPoc}
+					setShowPocModal={setShowPocModal}
+					setPocToUpdate={setPocToUpdate}
+				/>
 			))}
 
 			<div className={styles.poc_footer}>

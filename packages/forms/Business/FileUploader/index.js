@@ -3,9 +3,24 @@ import { IcMDocument } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
 
+import GLOBAL_CONSTANTS from '../../../../ui/commons/constants/globals';
 import { publicRequest, request } from '../../../request';
 
 import styles from './styles.module.css';
+
+const MAX_FILE_SIZE = GLOBAL_CONSTANTS.DEFAULT_FILE_SIZE;
+
+const checkFileUploadSize = ({ fileInfo, maxSizeInByte }) => {
+	const defaultMaxSize = maxSizeInByte < MAX_FILE_SIZE ? maxSizeInByte : MAX_FILE_SIZE;
+	const validFileSize = fileInfo.map((val) => val.size > +defaultMaxSize);
+
+	if (!validFileSize.includes(true)) return true;
+
+	const sizeInMb = (defaultMaxSize / GLOBAL_CONSTANTS.ONE_MB_IN_BYTE).toFixed(2);
+	Toast.error(`File Upload failed, Maximum size allowed - ${sizeInMb} MB`);
+
+	return false;
+};
 
 function FileUploader(props) {
 	const {
@@ -14,6 +29,7 @@ function FileUploader(props) {
 		multiple = false,
 		docName,
 		accept,
+		maxSizeInByte = MAX_FILE_SIZE,
 		...rest
 	} = props;
 
@@ -71,10 +87,13 @@ function FileUploader(props) {
 	};
 
 	const handleChange = async (values) => {
+		const isValidFileSize = checkFileUploadSize({ fileInfo: values, maxSizeInByte });
+		if (!isValidFileSize) return;
+
 		try {
 			setLoading(true);
 
-			if (values.length > 0) {
+			if (!isEmpty(values)) {
 				setProgress({});
 
 				const promises = values.map((value, index) => uploadFile(index)(value));

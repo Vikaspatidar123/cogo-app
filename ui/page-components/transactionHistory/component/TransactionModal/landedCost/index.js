@@ -14,7 +14,7 @@ const calculateTotalDuties = ({ taxSet }) => {
 	return totalDuties;
 };
 
-function LandedCost({ landedCost, resultCurrency = 'INR' }) {
+function LandedCost({ landedCost, resultCurrency = '' }) {
 	const { taxSet } = landedCost?.[0] || {};
 
 	const { t } = useTranslation(['transactionHistory']);
@@ -32,10 +32,10 @@ function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 						</div>
 
 						<div>
-							{(taxSetResponse || []).map((x, index) => (
-								<div key={`${x?.name}_${index + 1}`} className={cl`${styles.row} ${styles.padding}`}>
+							{(taxSetResponse || []).map((resp, index) => (
+								<div key={`${resp?.name}_${index + 1}`} className={cl`${styles.row} ${styles.padding}`}>
 									<div className={cl`${styles.col} ${styles.dotFlex}`}>
-										<div className={styles.text} key={x.id}>{x.name}</div>
+										<div className={styles.text}>{resp.name}</div>
 									</div>
 
 									<div className={styles.dot} />
@@ -43,7 +43,7 @@ function LandedCost({ landedCost, resultCurrency = 'INR' }) {
 									<div className={cl`${styles.col} ${styles.paddngFlex}`}>
 										<div className={styles.text}>
 											{formatAmount({
-												amount   : x.value,
+												amount   : resp.value,
 												currency : resultCurrency,
 												options  : {
 													notation : 'standard',

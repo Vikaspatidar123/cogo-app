@@ -25,5 +25,20 @@
     "list_label_status":"Status",
     "list_label_mode":"Payment Mode",
     "empty_state_text_1":"Looks like you do not have any transactions with us",
-    "empty_state_text_2":"Try our products for hassle free shippings"
+    "empty_state_text_2":"Try our products for hassle free shippings",
+    "bill_type_label_1":"INSURANCE",
+    "bill_type_label_2":"PREMIUM SERVICES",
+    "bill_type_label_3":"SUBSCRIPTION",
+    "payment_type_label_1":"PAID",
+    "payment_type_label_2":"PENDING",
+    "payment_type_label_3":"FAILED",
+    "result_modal_title_quote":"Service details",
+    "result_modal_title_dt":"Duties & Taxes",
+    "result_modal_title_tec":"Trader Eligibility Check",
+    "result_modal_title_ied":"Import/Export Documents",
+    "result_modal_title_iec":"Import/Export Controls",
+    "controls_label_1":"Incoterm",
+    "controls_label_2":"Consignment Value",
+    "controls_label_3":"Result Currency",
+    "controls_label_4":"Total Applicable Charges"
 }

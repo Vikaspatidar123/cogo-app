@@ -1,50 +1,44 @@
-const controls = [
+const getControls = ({ t }) => [
 	{
-		label       : 'Incoterm',
-		name        : 'incoterm',
-		type        : 'text',
-		size        : 'sm',
-		placeholder : 'Enter Incoterm',
-		rules       : {
+		label : t('transactionHistory:controls_label_1'),
+		name  : 'incoterm',
+		type  : 'text',
+		size  : 'sm',
+		rules : {
 			required: '*Required',
 		},
 		disabled: true,
 	},
 	{
-		label       : 'Consignment Value',
-		name        : 'consignment',
-		type        : 'number',
-		size        : 'sm',
-		placeholder : 'Enter Consignment',
-		rules       : {
+		label : t('transactionHistory:controls_label_2'),
+		name  : 'consignment',
+		type  : 'number',
+		size  : 'sm',
+		rules : {
 			required: '*Required',
 		},
 		disabled: true,
 	},
 	{
-		label       : 'Result Currency',
-		name        : 'result',
-		type        : 'text',
-		size        : 'sm',
-		placeholder : 'Enter Result Currency',
-		rules       : {
+		label : t('transactionHistory:controls_label_3'),
+		name  : 'result',
+		type  : 'text',
+		size  : 'sm',
+		rules : {
 			required: '*Required',
 		},
 		disabled: true,
 	},
 	{
-		label       : 'Total Applicable Charges',
-		name        : 'applicable',
-		type        : 'number',
-		size        : 'sm',
-		placeholder : 'Enter Total Applicable Charges',
-		rules       : {
+		label : t('transactionHistory:controls_label_4'),
+		name  : 'applicable',
+		type  : 'number',
+		size  : 'sm',
+		rules : {
 			required: '*Required',
 		},
 		disabled: true,
 	},
 ];
-
-const getControls = () => controls.map((control) => control);
 
 export default getControls;

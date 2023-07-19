@@ -8,9 +8,11 @@ import TransactionModal from '../TransactionModal';
 import styles from './styles.module.css';
 
 function Download({ data }) {
-	const { getService, transactionData = {}, loading } = useService();
-	const [show, setShow] = useState(false);
 	const { billRefId = '', billStatus = '', billType = '', requestType = '' } = data || {};
+
+	const [show, setShow] = useState(false);
+
+	const { getService, transactionData = {}, loading } = useService();
 
 	const serviceHandler = () => {
 		getService(billRefId);
@@ -31,6 +33,7 @@ function Download({ data }) {
 						</div>
 					</Tooltip>
 				) : null}
+
 				{(billStatus === 'PAID' && billType === 'PREMIUM_SERVICES') ? (
 					<Tooltip content="Service" animation="shift-away" theme="light">
 						<div className={styles.service}>
@@ -38,8 +41,10 @@ function Download({ data }) {
 						</div>
 					</Tooltip>
 				) : null}
+
 			</div>
-			{show && (
+
+			{show ? (
 				<TransactionModal
 					paymentSuccess={show}
 					setPaymentSuccess={setShow}
@@ -47,7 +52,7 @@ function Download({ data }) {
 					loading={loading}
 					requestType={requestType}
 				/>
-			)}
+			) : null}
 		</div>
 	);
 }

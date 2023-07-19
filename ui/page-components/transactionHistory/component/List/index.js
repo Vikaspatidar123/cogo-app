@@ -20,11 +20,13 @@ function List({
 	sort,
 	setSort,
 }) {
-	const { t } = useTranslation(['transactionHistory']);
-
 	const { list = [], totalRecords = 0 } = data || {};
 	const { pageNo } = filters;
+
+	const { t } = useTranslation(['transactionHistory']);
+
 	const fields = getListConfig({ t });
+
 	const listNew = loading ? LOADER_ARR : (list || []);
 
 	return (

@@ -14,14 +14,6 @@ const SERVICES_MODAL = {
 	DEFAULT   : CommonServicesModal,
 };
 
-const TITLE_MAPPING = {
-	QUOTATION : 'Service details',
-	DUTIES    : 'Duties & Taxes',
-	SCREENING : 'Trader Eligibility Check',
-	DOCUMENTS : 'Import/Export Documents',
-	CONTROLS  : 'Import/Export Controls',
-};
-
 const LOADER_ARR = [...Array(4).keys()];
 
 function ServiceDetailModal({
@@ -32,6 +24,14 @@ function ServiceDetailModal({
 	requestType,
 }) {
 	const { t } = useTranslation(['transactionHistory']);
+
+	const TITLE_MAPPING = {
+		QUOTATION : t('transactionHistory:result_modal_title_quote'),
+		DUTIES    : t('transactionHistory:result_modal_title_dt'),
+		SCREENING : t('transactionHistory:result_modal_title_tec'),
+		DOCUMENTS : t('transactionHistory:result_modal_title_ied'),
+		CONTROLS  : t('transactionHistory:result_modal_title_iec'),
+	};
 	const ServiceComponent = SERVICES_MODAL?.[requestType] || SERVICES_MODAL.DEFAULT;
 
 	return (
@@ -40,15 +40,15 @@ function ServiceDetailModal({
 			onClose={() => setPaymentSuccess(false)}
 			size="xl"
 		>
-			{loading && (
+			{loading ? (
 				LOADER_ARR.map((ele) => (
 					<div key={ele} className={styles.flex}>
 						<Placeholder height="50px" />
 					</div>
 				))
-			)}
+			) : null}
 
-			{!loading && isEmpty(transactionData) && (
+			{!loading && isEmpty(transactionData) ? (
 				<>
 					<div className={styles.empty_div}>
 						<Image
@@ -62,9 +62,9 @@ function ServiceDetailModal({
 						{t('transactionHistory:result_empty_state')}
 					</div>
 				</>
-			)}
+			) : null}
 
-			{!loading && requestType && !isEmpty(transactionData) && (
+			{!loading && requestType && !isEmpty(transactionData) ? (
 				<>
 					<Modal.Header title={TITLE_MAPPING?.[requestType]} />
 					<div className={styles.hr} />
@@ -73,7 +73,7 @@ function ServiceDetailModal({
 						requestType={requestType}
 					/>
 				</>
-			)}
+			) : null}
 
 		</Modal>
 	);

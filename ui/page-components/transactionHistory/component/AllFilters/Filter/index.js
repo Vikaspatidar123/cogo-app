@@ -4,12 +4,13 @@ import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import { BILLTYPEOPTIONS, PAYMENTTYPEOPTIONS } from './filterOptions';
+import { getBillTypeOptions, getPaymentTypeOption } from './filterOptions';
 import styles from './styles.module.css';
 
 function FilterContent({ filters, setFilters }) {
 	const { t } = useTranslation(['transactionHistory']);
-
+	const BILL_TYPE_OPTIONS = getBillTypeOptions({ t });
+	const PAYMENT_TYPE_OPTIONS = getPaymentTypeOption({ t });
 	const [dateRangePickerValue, setDateRangePickerValue] = useState({});
 
 	return (
@@ -41,7 +42,7 @@ function FilterContent({ filters, setFilters }) {
 						type="select"
 						placeholder={t('transactionHistory:filter_bill_type_placeholder')}
 						value={filters.bill_type}
-						options={BILLTYPEOPTIONS}
+						options={BILL_TYPE_OPTIONS}
 						onChange={(e) => setFilters((prev) => ({
 							...prev,
 							bill_type: e,
@@ -53,7 +54,7 @@ function FilterContent({ filters, setFilters }) {
 					<div className={styles.chips_container}>
 						<Chips
 							selectedItems={filters.payment_status}
-							items={PAYMENTTYPEOPTIONS}
+							items={PAYMENT_TYPE_OPTIONS}
 							onItemChange={(e) => setFilters((prev) => ({
 								...prev,
 								payment_status: e,

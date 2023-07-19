@@ -15,7 +15,6 @@ function AllFilters({ filters, setFilters }) {
 
 				<div className={styles.search_wrapper}>
 					<Input
-						className="search"
 						onChange={(e) => setFilters((prev) => ({
 							...prev,
 							searchTerm : e,

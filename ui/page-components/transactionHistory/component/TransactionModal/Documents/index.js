@@ -1,4 +1,5 @@
 import { Toggle } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
@@ -32,7 +33,8 @@ function Document({ documents = [], hsNumber = '' }) {
 					/>
 				</div>
 			</div>
-			{documents?.length > 0 ? (
+
+			{!isEmpty(documents) ? (
 				<div className={styles.section}>
 					{(labeledValue === 'IMPORT' ? importDoc : exportDoc).map((item) => (
 						<DrillDown item={item} hsNumber={hsNumber} />

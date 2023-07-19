@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
 import getControls from '../configuration';
@@ -14,8 +15,10 @@ const MAPPING = {
 	result      : 'resultCurrency',
 	applicable  : 'totalDutiesAndTaxes',
 };
+
 function Duties({ transactionData }) {
-	const controls = getControls();
+	const { t } = useTranslation(['transactionHistory']);
+	const controls = getControls({ t });
 	const {
 		setValue,
 		control,

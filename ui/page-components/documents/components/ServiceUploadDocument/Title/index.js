@@ -1,13 +1,11 @@
-import { Button, Pill, Tooltip, cl } from '@cogoport/components';
-import { IcMCloudUpload, IcMEyeopen, IcMDelete } from '@cogoport/icons-react';
+import { Button, Pill, Tooltip } from '@cogoport/components';
+import { IcMCloudUpload } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 
-import useDeleteDocument from '../../../hooks/useDeleteDocument';
-
 import styles from './styles.module.css';
+import UploadedDoc from './UploadedDoc';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import formatDate from '@/ui/commons/utils/formatDate';
 
 const COLOR_MAPPING = {
 	uploaded    : 'green',
@@ -30,67 +28,6 @@ function UnuploadedDoc({ sampleLink = '' }) {
 				<div style={{ padding: '0 4px 0 0' }} />
 				Upload
 			</Button>
-		</div>
-	);
-}
-
-function UploadedDoc({
-	uploadedDoc = {},
-	refetch = () => {},
-}) {
-	const {
-		deleteDocument,
-		loading,
-	} = useDeleteDocument({ refetch });
-
-	const handleDelete = () => {
-		deleteDocument({ item: uploadedDoc });
-	};
-
-	return (
-		<div className={styles.success_container}>
-			<div style={{ display: 'flex', width: '88%' }}>
-				<div className={styles.success_info_doc}>
-					Document Number :
-					{' '}
-					<span className={styles.info}>
-						{uploadedDoc?.data?.document_number}
-					</span>
-				</div>
-
-				<div className={styles.success_info}>
-					Valid Till :
-					{' '}
-					<span className={styles.info}>
-						{formatDate({
-							date       : (uploadedDoc?.data.document_validity),
-							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-							formatType : 'date',
-						})}
-					</span>
-				</div>
-
-				<div className={styles.success_info}>
-					Uploaded on :
-					{' '}
-					<span className={styles.info}>
-						{formatDate({
-							date       : (uploadedDoc?.created_at),
-							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-							formatType : 'date',
-						})}
-					</span>
-				</div>
-			</div>
-
-			<div>
-				<IcMEyeopen onClick={() => window.open(uploadedDoc?.image_url, '_blank')} className={styles.icon} />
-
-				<IcMDelete
-					className={cl`${styles.icon} ${loading ? styles.loading : null}`}
-					onClick={!loading ? handleDelete : null}
-				/>
-			</div>
 		</div>
 	);
 }

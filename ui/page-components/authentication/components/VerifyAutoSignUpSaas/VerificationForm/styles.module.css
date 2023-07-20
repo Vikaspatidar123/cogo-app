@@ -68,13 +68,6 @@
 	margin-bottom: 20px;
 }
 
-.resend_mail_button {
-	font-size: 16px;
-	text-decoration: underline;
-	cursor: pointer;
-	border: none;
-}
-
 @media (max-width: 786px) {
 	.header_container {
 		display: flex;

@@ -1,0 +1,26 @@
+.help_card {
+	display: flex;
+	flex-direction: column;
+	padding: 8px 12px;
+	border-radius: 6px;
+}
+
+.line {
+	width: 100%;
+	margin: 20px 0;
+}
+
+.designation {
+	margin-bottom: 4px;
+	font-style: italic;
+}
+
+.links {
+	display: flex;
+	align-items: center;
+	margin-top: 8px;
+}
+
+.link_value {
+	margin-left: 4px;
+}

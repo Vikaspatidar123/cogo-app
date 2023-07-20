@@ -1,11 +1,11 @@
 import { Button } from '@cogoport/components';
 import { useTranslation } from 'react-i18next';
 
-import PasswordValidator from './PasswordValidator';
 import styles from './styles.module.css';
 import useResetPassword from './useResetPassword';
 
 import { InputController } from '@/packages/forms';
+import PasswordValidator from '@/ui/commons/components/PasswordValidator';
 
 function ResetPassword({
 	setShowPasswordModal = () => {},
@@ -36,7 +36,7 @@ function ResetPassword({
 				</div>
 			</div>
 			{fields.map((field) => (
-				<div>
+				<div key={field?.name}>
 					<div>{field.label}</div>
 					<InputController {...field} control={control} />
 					<div className={styles.message}>

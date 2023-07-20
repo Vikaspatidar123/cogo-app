@@ -1,0 +1,11 @@
+.help {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	height: fit-content;
+	margin: 12px 24px;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}

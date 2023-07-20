@@ -1,5 +1,6 @@
 import { cl, Placeholder } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 
 import EmptyState from '../../common/EmptyState';
@@ -22,6 +23,7 @@ function SectionList({
 	resetDrillDown,
 	setResetDrillDown,
 }) {
+	const { t } = useTranslation(['common', 'hsClassification']);
 	const isMobile = false;
 	const [sectionToggle, setSectionToggle] = useState(false);
 	useEffect(() => {
@@ -68,7 +70,8 @@ function SectionList({
 				<div className={cl`${styles.name} ${sectionToggle && styles.selected}`}>
 					<div className={cl`${styles.section_styles}`}>
 						{!loading && <span className={cl`${styles.icon_svg}`}>{Mapping[sectionCode]}</span>}
-						{loading ? addLoader('40px', '140px') : `SECTION ${sectionCode}`}
+						{loading ? addLoader('40px', '140px')
+							: `${t('hsClassification:hs_code_classification_section_label_uppercase')} ${sectionCode}`}
 					</div>
 				</div>
 				<div className={`${styles.desc}  ${sectionToggle && styles.selected}`}>

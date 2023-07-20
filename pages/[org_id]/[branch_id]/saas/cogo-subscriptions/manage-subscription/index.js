@@ -5,7 +5,7 @@ import CogoSubscriptions from '@/ui/page-components/cogo-subscriptions/component
 export async function getServerSideProps({ locale }) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common'])),
+			...(await serverSideTranslations(locale, ['common', 'subscriptions'])),
 
 		},
 	};

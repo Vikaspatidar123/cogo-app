@@ -1,4 +1,4 @@
-import { Upload, Toast } from '@cogoport/components';
+import { Upload, Toast, cl } from '@cogoport/components';
 import { IcMDocument } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
@@ -24,6 +24,7 @@ const checkFileUploadSize = ({ fileInfo, maxSizeInByte }) => {
 
 function FileUploader(props) {
 	const {
+		source = '',
 		onChange = () => {},
 		showProgress = true,
 		multiple = false,
@@ -126,12 +127,12 @@ function FileUploader(props) {
 			{loading
         && !isEmpty(progress)
         && Object.keys(progress).map((key) => (
-	<div className={styles.progress_container}>
+	<div key={key} className={cl`${styles.progress_container} ${source ? styles.progress_container_footer : null}`}>
 		<IcMDocument
 			style={{ height: '30', width: '30', color: '#2C3E50' }}
 		/>
 		{showProgress && (
-			<div>
+			<div className={styles.file_upload_progress}>
 				<div className={styles.file_name}>
 					{`File uploading (${progress[key]}%)...`}
 				</div>

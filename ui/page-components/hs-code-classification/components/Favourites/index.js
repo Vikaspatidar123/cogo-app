@@ -1,5 +1,6 @@
 import { Modal, Placeholder } from '@cogoport/components';
 import { IcMDelete } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import AddProductModal from '../AddProductModal';
 import styles from '../styles.module.css';
@@ -14,6 +15,8 @@ function Favourites({
 }) {
 	const { list = [] } = bookmarkData || {};
 	const isBookmarkEmpty = list.length === 0;
+
+	const { t } = useTranslation(['common', 'hsClassification']);
 
 	const addLoader = (mobileWidth, desktopWidth) => (
 		<div>
@@ -32,7 +35,11 @@ function Favourites({
 			<div className={`${styles.line}`} />
 			<Modal.Body>
 				{(isBookmarkEmpty && !loading)
-					? <div className={`${styles.no_data}`}>No Data Found</div>
+					? (
+						<div className={`${styles.no_data}`}>
+							{t('hsClassification:hs_code_classification_favourite_text_1')}
+						</div>
+					)
 					: (list || []).map((book) => (
 						<div className={`${styles.card} ${styles.bookmark}`}>
 							<div className={`${styles.bm}`}>
@@ -42,7 +49,9 @@ function Favourites({
 											addLoader('40px', '250px')
 										) : (
 											<div>
-												<b>HS Code</b>
+												<b>
+													{t('hsClassification:hs_code_classification_favourite_text_2')}
+												</b>
 												-
 												{book.hsCode}
 											</div>
@@ -75,7 +84,7 @@ function Favourites({
 										addLoader('40px', '250px')
 									) : (
 										<div>
-											<b>Description</b>
+											<b>{t('hsClassification:hs_code_classification_favourite_text_3')}</b>
 											{' '}
 											-
 											{book.description}
@@ -89,22 +98,30 @@ function Favourites({
 									) : (
 										<>
 											<div className={`${styles.favourites_tag}`}>
-												Section -
+												{t('hsClassification:hs_code_classification_favourite_text_4')}
+												{' '}
+												-
 												{book.sectionCode}
 											</div>
 											&gt;
 											<div className={`${styles.favourites_tag}`}>
-												Chapter -
+												{t('hsClassification:hs_code_classification_favourite_text_5')}
+												{' '}
+												-
 												{book.chapterCode}
 											</div>
 											&gt;
 											<div className={`${styles.favourites_tag}`}>
-												Heading -
+												{t('hsClassification:hs_code_classification_favourite_text_6')}
+												{' '}
+												-
 												{book.headingCode}
 											</div>
 											|
 											<div className={`${styles.favourites_tag}`} style={{ color: '#9B86F6' }}>
-												Country -
+												{t('hsClassification:hs_code_classification_favourite_text_7')}
+												{' '}
+												-
 												<span>
 													{' '}
 													{book.countryName}

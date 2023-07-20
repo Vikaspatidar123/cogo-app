@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const ListSaasSubscriptions = () => {
+const useListSaasSubscriptions = () => {
 	const { general } = useSelector((state) => state);
 	const { query } = general;
 	const [page, setPage] = useState(1);
@@ -39,4 +39,4 @@ const ListSaasSubscriptions = () => {
 		setPage,
 	};
 };
-export default ListSaasSubscriptions;
+export default useListSaasSubscriptions;

@@ -12,8 +12,8 @@ const LAYER = [
 	},
 ];
 
-const lineOptions = { color: 'green' };
-const remainingRoutelineOptions = { color: 'blue' };
+const lineOptions = { color: '#f37166', weight: 2 };
+const remainingRoutelineOptions = { color: '#1867D2', weight: 2 };
 const center = { lat: '28.679079', lng: '77.069710' };
 
 function MapComp({
@@ -22,7 +22,6 @@ function MapComp({
 	curvePoints,
 	isMobile = false,
 	lengthDependency = '',
-	currentMilestone,
 	height = '600px',
 	vesselLocationLat,
 	vesselLocationLang,
@@ -61,8 +60,11 @@ function MapComp({
 			style={{ height: `${heightVariable}`, width: '100%' }}
 			baseLayer={LAYER}
 			zoom={2.9}
+			minZoom={1.5}
 			center={center_map}
 			setMap={setMap}
+			maxBoundsViscosity={1}
+			maxZoom={12}
 		>
 			{markers?.length > 0
 				&& markers?.map((m) => (
@@ -78,14 +80,6 @@ function MapComp({
 				/>
 			)}
 
-			{currentMilestone && (
-				<Pointer
-					lat={currentMilestone?.lat}
-					lng={currentMilestone?.lng}
-					iconSvg="current_location"
-					map={map}
-				/>
-			)}
 			{completedPoints.length > 0 && (
 				<Route
 					positions={completedPoints}
@@ -107,7 +101,7 @@ function MapComp({
 				<Pointer
 					lat={curvePoints[curvePointLength - 1]?.lat}
 					lng={curvePoints[curvePointLength - 1]?.lng}
-					iconSvg="destinationIcon"
+					iconSvg="map_destination"
 					map={map}
 				/>
 			)}

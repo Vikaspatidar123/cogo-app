@@ -1369,6 +1369,10 @@ const saas = {
 			access_type  : 'public',
 			service_name : 'location',
 		},
+		{
+			api         : 'list_operators',
+			access_type : 'public',
+		},
 	],
 	app_saas_live_vessel_tracking: [
 		{

@@ -18,7 +18,7 @@ const getUniqueArrElements = (arr) => arr.reduce((accumulator, current) => {
 
 const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
 	const [allRoute, setAllRoute] = useState([]);
-
+	console.log(trackingInfo, 'trackingInfo');
 	const [{ loading }, trigger] = useRequest({
 		method : 'get',
 		url    : '/get_multiple_sea_routes',

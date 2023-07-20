@@ -277,7 +277,7 @@ const app_settings = [
 	{
 		api          : 'create_lead_organization_on_sign_up',
 		access_type  : 'private',
-		service_name : 'user',
+		service_name : 'lead',
 	},
 	{
 		api          : 'verify_sign_up_lead_user',

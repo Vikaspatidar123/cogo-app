@@ -14,7 +14,7 @@ import OtherAddressCard from './OtherAddressCard';
 import styles from './styles.module.css';
 import getOtherAddressOptions from './utils/get-other-address-options';
 
-const ZERO_ADDRESS_LENGTH = 0;
+const ZERO_COUNT = 0;
 
 function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 	const organizationOtherAddressesList = addressesData?.list || [];
@@ -79,7 +79,7 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 	}
 	const addresCount = (address_key) => {
 		const count = filterAddress(address_key).length;
-		const value = count === ZERO_ADDRESS_LENGTH ? t('settings:addresses_not_found_text_1')
+		const value = count === ZERO_COUNT ? t('settings:addresses_not_found_text_1')
 			: `${count} ${t('settings:addresses_added_text_1')}`;
 		return value;
 	};

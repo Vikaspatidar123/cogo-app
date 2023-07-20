@@ -1,36 +1,57 @@
-import { Tooltip } from '@cogoport/components';
+import { Popover } from '@cogoport/components';
+import { IcMHelpInCircle } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
+import { useState, useEffect } from 'react';
 
+import Modals from './components/Modals';
+import Support from './components/Support';
 import styles from './styles.module.css';
-import Support from './Support';
+import getDefaultValues from './utils/getDefaultValues';
 
 import { useSelector } from '@/packages/store';
 
 function Help() {
-	const { agent } = useSelector(({ profile }) => ({
-		agent: profile.partner?.entity_manager,
+	const { agent, query } = useSelector(({ profile, general }) => ({
+		agent : profile?.organization?.agent,
+		query : general?.query,
 	}));
 
+	const [showPopover, setShowPopover] = useState(false);
+	const [modalData, setModalData] = useState(null);
+
+	useEffect(() => {
+		if (!isEmpty(query)) {
+			setModalData(getDefaultValues({ query }));
+		}
+	}, [query]);
+
 	return (
-		<div className={styles.tooltip_container}>
-			<Tooltip
+		<div className={styles.styled_tooltip_container}>
+			<Popover
 				animation="shift-away"
 				placement="bottom"
-				content={<Support agent={agent} />}
-				theme="light"
+				visible={showPopover}
+				onClickOutside={() => setShowPopover(false)}
+				render={(
+					<Support
+						agent={agent}
+						modalData={modalData}
+						setModalData={setModalData}
+						showPopover={showPopover}
+						setShowPopover={setShowPopover}
+					/>
+				)}
 				interactive
 			>
 				<div className={styles.container}>
-					<div className={styles.container}>
-						<img
-							src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ic-help.svg"
-							alt="cogo"
-							style={{ cursor: 'pointer' }}
-							width="22px"
-							height="22px"
-						/>
-					</div>
+					<IcMHelpInCircle
+						className={styles.help_circle}
+						aria-label="help"
+						onClick={() => setShowPopover((p) => !p)}
+					/>
 				</div>
-			</Tooltip>
+			</Popover>
+			<Modals modalData={modalData} setModalData={setModalData} />
 		</div>
 	);
 }

@@ -24,7 +24,7 @@
 	font-size: 12px;
 	font-weight: 700;
 	line-height: 16px;
-	color: rgb(130 130 130);
+	color: #828282;
 }
 
 .country {
@@ -33,4 +33,8 @@
 
 .country_name {
 	padding-left: 10px;
+}
+
+.button_1 {
+	margin-right: 16px;
 }

@@ -31,6 +31,7 @@ const PUBLIC_PATHS = [
 	'/raise-cancellation-ticket',
 	'/create-ticket/[token]',
 	'/draft-airway-bill/[id]',
+	'/unsubscribe-container-update/[id]',
 ];
 const UNAUTHENTICATED = ['/login', '/signup'];
 export default { PUBLIC_PATHS, UNAUTHENTICATED, All };

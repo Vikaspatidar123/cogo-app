@@ -6,8 +6,7 @@
 	text-align: center;
 
 	.loading_banner {
-		width: 300;
-		height: auto;
+		margin-top: 10px;
 	}
 
 	.loading {

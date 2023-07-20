@@ -1,4 +1,5 @@
 import { Placeholder } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import Element from './Element';
 import getValue from './getValue';
@@ -6,7 +7,8 @@ import renderFunction from './renderFunction';
 import styles from './styles.module.css';
 
 const Item = ({ configs, data, loading }) => {
-	const { newRenderFunction } = renderFunction();
+	const { t } = useTranslation(['common', 'hsClassification']);
+	const { newRenderFunction } = renderFunction({ t });
 
 	const renderItem = () => (
 		<div className={styles.row}>

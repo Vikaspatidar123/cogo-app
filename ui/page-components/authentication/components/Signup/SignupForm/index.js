@@ -1,148 +1,229 @@
-import { Button, Checkbox } from '@cogoport/components';
+import { Button } from '@cogoport/components';
+import { IcCWhatsapp, IcMArrowRight } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
-import React, { useState, useRef } from 'react';
+import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
+import useLeadUserDetails from '../../../hooks/useLeadUserDetails';
 import useSignupAuthentication from '../../../hooks/useSignupAuthentication';
+import useSignupForm from '../../../hooks/useSignupForm';
 
 import styles from './styles.module.css';
 
-import { useForm, InputController, MobileNumberSelectController } from '@/packages/forms';
-import { useRouter } from '@/packages/next';
+import {
+	InputController,
+	MobileNumberSelectController,
+	useForm,
+} from '@/packages/forms';
+import CheckboxController from '@/packages/forms/Controlled/CheckboxController';
+import CountrySelectController from '@/packages/forms/Controlled/CountrySelectController';
+import { Link, useRouter } from '@/packages/next';
+import patterns from '@/ui/commons/configurations/patterns';
 
-function SignupForm({ setHasSignedup, setFormData, setUserDetails }) {
+const COGOPORT_URL = 'https://www.cogoport.com';
+
+function SignupForm({
+	userDetails = {},
+	leadUserId = '',
+	setMode = () => {},
+	setUserDetails = () => {},
+	setLeadUserId = () => {},
+}) {
 	const { locale } = useRouter();
-	const { t } = useTranslation(['common']);
+
+	const { t } = useTranslation(['authentication']);
+	const translationKey = 'authentication:signupField';
+
+	const [customError, setCustomError] = useState('');
+
 	const {
-		handleSubmit, formState: { errors }, control, watch, register,
-	} = useForm();
-	const [captchaResponse, setCaptchaResponse] = useState('');
-	const [hasWhatsApp, setHasWhatsApp] = useState(false);
-	const recaptchaRef = useRef({});
+		onSignupAuthentication,
+		loading,
+		recaptchaRef,
+	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId });
 
-	const { signupAuthentication, signupLoading } = useSignupAuthentication({
-		setHasSignedup, setUserDetails, captchaResponse, hasWhatsApp,
+	const { onLeadUserDetails } = useLeadUserDetails({ setLeadUserId });
+
+	const {
+		handleSubmit,
+		formState: { errors },
+		trigger,
+		control,
+		watch,
+		setValue,
+	} = useForm({
+		defaultValues: {
+			...userDetails,
+		},
+		mode: 'onBlur',
 	});
-
-	const onChange = (value = '') => {
-		setCaptchaResponse(value);
-	};
-
-	const handleChange = () => {
-		setHasWhatsApp(!hasWhatsApp);
-	};
 
 	const formValues = watch();
 
-	const handleClick = () => {
-		setFormData(formValues);
-	};
+	const { onSignupApiCall, generateSignUpLeadUser, onWhatsappChange } = useSignupForm({
+		setCustomError,
+		trigger,
+		setValue,
+		formValues,
+		onLeadUserDetails,
+		leadUserId,
+		setUserDetails,
+		onSignupAuthentication,
+		t,
+	});
 
 	return (
-		<form
-			className={styles.form_container}
-			onSubmit={handleSubmit(signupAuthentication)}
-		>
-			<div className={styles.input_container}>
+		<form className={styles.form_container} onSubmit={handleSubmit(onSignupApiCall)}>
+			<h2 className={styles.card_heading}>
+				{t(`${translationKey}_title`)}
+			</h2>
+
+			<div className={styles.field}>
+				<div className={styles.label}>{t(`${translationKey}_name_label`)}</div>
 				<InputController
 					control={control}
 					name="name"
 					type="text"
-					placeholder={t('common:rightPanel_registration_controls_name_label')}
-					rules={{ required: `${t('common:rightPanel_registration_controls_name_is_required')}` }}
+					placeholder={t(`${translationKey}_name_placeholder`)}
+					rules={{ required: t(`${translationKey}_name_error`) }}
+					mode="onBlur"
+					handleBlur={() => generateSignUpLeadUser({ source: 'name' })}
 				/>
-
-				{errors.name ? (
-					<span className={styles.errors}>
-						{errors.name.message}
-					</span>
-				) : null}
+				<span className={styles.errors}>
+					{errors?.name?.message || ' '}
+				</span>
 			</div>
-			<div className={styles.input_container}>
+
+			<div className={styles.field}>
+				<div className={styles.label}>{t(`${translationKey}_email_label`)}</div>
 				<InputController
 					control={control}
 					name="email"
 					type="email"
-					placeholder={t('common:rightPanel_tabs_email_controls_email_label')}
-					rules={{ required: `${t('common:rightPanel_email_is_required')}` }}
+					placeholder={t(`${translationKey}_email_placeholder`)}
+					rules={{
+						required : t(`${translationKey}_email_error`),
+						pattern  : {
+							value   : patterns.EMAIL,
+							message : t(`${translationKey}_email_error_1`),
+						},
+					}}
+					mode="onBlur"
+					handleBlur={() => generateSignUpLeadUser({ source: 'email' })}
 				/>
-
-				{errors.email ? (
-					<span className={styles.errors}>
-						{errors.email.message}
-					</span>
-				) : null}
+				<span className={styles.errors}>
+					{errors?.email?.message || ' '}
+				</span>
 			</div>
 
-			<div className={styles.mobile_number_select_container}>
+			<div className={styles.field}>
+				<div className={styles.label}>{t(`${translationKey}_mobile_label`)}</div>
+
 				<MobileNumberSelectController
 					control={control}
 					name="mobile_number"
-					type="mobile-number-select"
-					placeholder={t('common:rightPanel_tabs_mobile_controls_mobile_label')}
-					mobileSelectRef={{
-						...register('mobile_number', {
-							required:
-						`${t('common:rightPanel_enter_mobile_number')}`,
-						}),
-					}.ref}
+					placeholder={t(`${translationKey}_mobile_placeholder`)}
+					rules={{
+						required: t(`${translationKey}_mobile_error`),
+					}}
+					mode="onBlur"
+					handleBlur={() => generateSignUpLeadUser({ source: 'mobile_number' })}
 				/>
-				{errors.mobile_number ? (
-					<span className={styles.errors}>
-						{errors.mobile_number.message || errors.mobile_number.type}
-					</span>
-				) : null}
+
+				<span className={styles.errors}>
+					{customError || ''}
+				</span>
 			</div>
 
-			<div className={styles.checkbox_container}>
-				<Checkbox value={hasWhatsApp} onChange={handleChange} />
-				{t('common:rightPanel_registration_controls_isWhatsappNumber_label')}
+			<div className={styles.field}>
+				<div className={styles.checkbox_container}>
+					<CheckboxController
+						control={control}
+						name="is_whatsapp_number"
+						className={styles.checkbox}
+						handleChange={(e) => {
+							onWhatsappChange({ value: e.target.checked });
+						}}
+					/>
+					{t(`${translationKey}_whatsapp_text`)}
+					<IcCWhatsapp height={20} width={20} />
+					WhatsApp
+				</div>
 			</div>
 
-			<div className={styles.terms_and_conditions_text}>
-				{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_label')}
+			<div className={styles.field}>
+				<div className={styles.label}>{t(`${translationKey}_company_label`)}</div>
+				<InputController
+					control={control}
+					name="business_name"
+					type="text"
+					placeholder={t(`${translationKey}_company_placeholder`)}
+					rules={{ required: t(`${translationKey}_company_error`) }}
+				/>
+				<span className={styles.errors}>
+					{errors?.business_name?.message || ' '}
+				</span>
+
+			</div>
+
+			<div className={styles.field}>
+				<div className={styles.label}>{t(`${translationKey}_country_label`)}</div>
+				<CountrySelectController
+					control={control}
+					name="country_id"
+					placeholder={t(`${translationKey}_country_placeholder`)}
+					rules={{ required: t(`${translationKey}_company_error`) }}
+				/>
+				<span className={styles.errors}>
+					{errors?.country_id?.message || ' '}
+				</span>
+			</div>
+
+			<div className={styles.field_captcha}>
+				<div className={styles.recaptcha}>
+					<ReCAPTCHA
+						ref={recaptchaRef}
+						sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
+						size="invisible"
+					/>
+				</div>
+			</div>
+
+			<div className={styles.tnc_link}>
+				{t('authentication:signup_footer_text')}
+				{'  '}
 				<a
-					href={`https://www.cogoport.com/${locale}/terms-and-conditions/`}
+					href={`${COGOPORT_URL}/${locale}/terms-and-conditions/`}
 					target="_blank"
 					rel="noreferrer"
-					className={styles.terms_and_conditions_link}
 				>
-					{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_terms_linkLabel')}
+					Terms and Conditions
 					{'  '}
-
 				</a>
 				&
+				{'  '}
 				<a
-					href={`https://www.cogoport.com/${locale}/privacy-policy/`}
+					href={`${COGOPORT_URL}/${locale}/privacy-policy/`}
 					target="_blank"
-					className={styles.terms_and_conditions_link}
 					rel="noreferrer"
 				>
-					{t('common:rightPanel_registration_links_termsAndPrivacyPolicy_links_privacyPolicy_linkLabel')}
+					Privacy Policy
 				</a>
-			</div>
-
-			<div className={styles.recaptcha_container}>
-				<ReCAPTCHA
-					ref={recaptchaRef}
-					sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
-					onChange={onChange}
-				/>
 			</div>
 
 			<Button
-				loading={signupLoading}
-				className={styles.submit_button}
+				loading={loading}
 				type="submit"
 				size="lg"
-				onClick={handleClick}
 			>
-				{t('common:rightPanel_signupLink_link')}
+				{t('authentication:signup_submitButton_label')}
+				{' '}
+				<IcMArrowRight />
 			</Button>
-			{/* <a href="mailto:kanira.patel@cogoport.com" className={styles.right_footer_text}>
-				{t('common:rightPanel_support_label')}
-				<span className={styles.right_footer_text_span}>kanira.patel@cogoport.com</span>
-			</a> */}
+
+			<div className={styles.links}>
+				<Link href="/login">{t('authentication:signup_link_login_label')}</Link>
+			</div>
 		</form>
 	);
 }

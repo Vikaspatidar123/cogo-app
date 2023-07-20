@@ -3,19 +3,19 @@ import { IcMOverflowDot, IcCGreenCircle, IcCYelloCircle } from '@cogoport/icons-
 
 import Amount from './Amount';
 import Date from './Date';
-import popoverFunc from './Popover';
+import PopoverRender from './Popover';
 import styles from './styles.module.css';
 import RenderTooltip from './TooltipText';
 
 const itemFunctions = ({
 	functions,
-	deleteTradeParty = () => {},
+	deleteTradeParty = () => { },
 	deleteLoading,
 	setShowModal,
-	setTradePartyDetails = () => {},
-	setIsEdit = () => {},
+	setTradePartyDetails = () => { },
+	setIsEdit = () => { },
 	deleteModal,
-	setDeleteModal = () => {},
+	setDeleteModal = () => { },
 	archived,
 	getList,
 	showmodal,
@@ -41,18 +41,20 @@ const itemFunctions = ({
 					<Popover
 						placement="bottom-end"
 						animation="shift-away"
-						render={popoverFunc({
-							itemData,
-							deleteTradeParty,
-							deleteLoading,
-							setShowModal,
-							setTradePartyDetails,
-							setIsEdit,
-							deleteModal,
-							setDeleteModal,
-							archived,
-							getList,
-						})}
+						render={(
+							<PopoverRender
+								itemData={itemData}
+								deleteTradeParty={deleteTradeParty}
+								deleteLoading={deleteLoading}
+								setShowModal={setShowModal}
+								setTradePartyDetails={setTradePartyDetails}
+								setIsEdit={setIsEdit}
+								deleteModal={deleteModal}
+								setDeleteModal={setDeleteModal}
+								archived={archived}
+								getList={getList}
+							/>
+						)}
 						interactive
 					>
 						<IcMOverflowDot />

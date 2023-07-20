@@ -3,43 +3,33 @@ import {
 	Toast, Checkbox, Datepicker, Tooltip,
 } from '@cogoport/components';
 import { IcMArrowNext, IcMHelpInCircle, IcCFtick } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import Coupons from '../../../common/Coupons';
+import {
+	getAmount, MIN_DATE,
+	MAX_DATE,
+} from '../../../constants/dimensions';
 import useUpdateSaasCheckout from '../../../hooks/useUpdateSaasCheckout';
 import { getCurrencyDetail } from '../../../utils/getCurrencyDetail';
 
+import DiscountTooltip from './DiscountTooltip';
 import styles from './styles.module.css';
 
-import formatAmount from '@/ui/commons/utils/formatAmount';
+import { Image } from '@/packages/next';
+import getGeoConstants from '@/ui/commons/constants/geo';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const description = () => (
-	<div className={styles.tooltip_ctn}>
-		You can schedule this plan to activate on a specific day. Once you schedule
-		your plan, you can manually activate it before specified day or it will be
-		automatically activated on a specified day.
-	</div>
-);
-
-const discountTooltip = ({ discountedAmount, currency }) => (
-	<div className={styles.discount_content}>
-		<div className={styles.heading}>Total discount breakup:</div>
-		<div className={styles.content}>
-			<div>Coupons Discount</div>
-			<div>
-				-
-				{formatAmount({
-					amount  : discountedAmount,
-					currency,
-					options : {
-						notation : 'standard',
-						style    : 'currency',
-					},
-				})}
-			</div>
+function Description() {
+	const { t } = useTranslation(['subscriptions']);
+	return (
+		<div className={styles.tooltip_ctn}>
+			{t('subscriptions:description_text')}
 		</div>
-	</div>
-);
+	);
+}
 
 function Charges({
 	plans,
@@ -51,32 +41,41 @@ function Charges({
 	datePickerValue,
 	setDatePickerValue,
 }) {
-	const [check, setCheck] = useState(false);
-	const [showCoupons, setShowCoupons] = useState(false);
 	const { plan = {}, pricing = {}, allow_activate_later = false } = plans || {};
+
+	const { t } = useTranslation(['subscriptions']);
+
+	const [check, setCheck] = useState(false);
+
+	const [showCoupons, setShowCoupons] = useState(false);
+
 	const loading = checkoutResponse?.errors || completeOrderLoading;
+
+	const geo = getGeoConstants();
+	const { is_tax_included } = geo.others.navigations.subscription;
 
 	const {
 		applyPromoCode, promoCodeData, couponCode, setCouponCode,
-	} =		useUpdateSaasCheckout({
+	} = useUpdateSaasCheckout({
 		checkoutResponse,
 	});
+	const { discount_amount: discountedAmount, total_amount: totalAmount } = promoCodeData || {};
 
-	const { discount_amount: discountedAmount, total_amount: totalAmount } =		promoCodeData || {};
+	const {
+		amount_currency = '',
+		unit = '',
+		value: couponValue = '',
+	} = couponCode?.promotion_discounts?.[GLOBAL_CONSTANTS.zeroth_index] || {};
 
-	const couponCodeLength = Object.keys(couponCode)?.length;
 	const handleClick = ({ value, item }) => {
 		applyPromoCode({ value, item });
 	};
 
 	const submit = () => {
-		if (checked.length !== 0) {
+		if (!isEmpty(checked)) {
 			completeOrder({ couponCode });
 		} else {
-			Toast.error('Error! Please Select an Address', {
-				autoClose : 5000,
-				style     : { background: '#FFD8D8', color: '#000' },
-			});
+			Toast.error(t('subscriptions:adderss_select_error_message'));
 		}
 	};
 
@@ -91,53 +90,38 @@ function Charges({
 
 	const crossedAmount = plan?.metadata?.display_pricing?.[`${query?.period}`]?.[preValue];
 
-	const now = new Date();
-
-	const minDate = new Date(now.setDate(now.getDate() + 1));
-	const maxDate = new Date(now.setMonth(now.getMonth() + 2));
-
 	return (
 		<div>
 			<div className={styles.wrapper}>
 				<div className={styles.label}>
-					Summary
+					{t('subscriptions:summary_text')}
 				</div>
 			</div>
 			<div className={styles.div}>
 				<div className={styles.styled_row}>
-					<div className={styles.styled_col}>
-						<div>
-							{plan?.description}
-							<div className={styles.gst}>(Gst Included)</div>
+					{is_tax_included ? (
+						<div className={styles.styled_col}>
+							<div>
+								{plan?.description}
+								<div className={styles.gst}>
+									(
+									{t('subscriptions:gst_included_text')}
+									)
+								</div>
+							</div>
 						</div>
-					</div>
+					) : null}
 					<div className={styles.styled_col2}>
 						{plan?.metadata?.display_pricing?.[`${query?.period}`]
-							?.prev_value_inr && (
+							?.prev_value_inr ? (
 								<div className={`${styles.crossed_price} ${styles.crossedprice}`}>
 									<div className={styles.flex_div}>
-										{formatAmount({
-											amount  : crossedAmount,
-											currency,
-											options : {
-												notation : 'standard',
-												style    : 'currency',
-											},
-										})}
-										{
-}
+										{getAmount({ amount: crossedAmount, currency })}
 									</div>
 								</div>
-						)}
+							) : null}
 						<div className={styles.flex_div}>
-							{formatAmount({
-								amount,
-								currency,
-								options: {
-									notation : 'standard',
-									style    : 'currency',
-								},
-							})}
+							{getAmount({ amount, currency })}
 						</div>
 					</div>
 				</div>
@@ -145,19 +129,18 @@ function Charges({
 					<div className={styles.line} />
 				</div>
 
-				{couponCodeLength > 0 && (
+				{!isEmpty(couponCode) ? (
 					<div className={styles.styled_row}>
 						<div className={`${styles.styled_col} ${styles.discount_name}`}>
 							<Tooltip
 								placement="top-start"
-								theme="light-border"
-								content={discountTooltip({ discountedAmount, currency })}
+								content={<DiscountTooltip discountedAmount={discountedAmount} currency={currency} />}
 								animation="scale"
 								interactive
 								visibility
 							>
 								<div>
-									Discount
+									{t('subscriptions:discount_text')}
 									<div className={`${styles.line_wrapper} ${styles.discount_line}`}>
 										<div className={`${styles.line} ${styles.discount_dashed_line}`} />
 									</div>
@@ -166,21 +149,16 @@ function Charges({
 						</div>
 						<div className={`${styles.discount_name} ${styles.price}`}>
 							-
-							{formatAmount({
-								amount  : discountedAmount,
-								currency,
-								options : {
-									notation : 'standard',
-									style    : 'currency',
-								},
-							})}
+							{getAmount({ amount: discountedAmount, currency })}
 						</div>
 					</div>
-				)}
+				) : null}
 
 				<div className={styles.input_wrapper}>
-					{!Object.keys(couponCode)?.length > 0 ? (
-						<div>Have a coupon code?</div>
+					{isEmpty(couponCode) ? (
+						<div>
+							{t('subscriptions:coupon_code_text')}
+						</div>
 					) : (
 						<div className={styles.code_wrapper}>
 							<div>
@@ -188,28 +166,32 @@ function Charges({
 							</div>
 							<div className={styles.applied_coupon}>
 								<div>
-									Code
-									{couponCode?.promocodes?.[0]?.promocode?.toUpperCase()}
-									applied
+									{t('subscriptions:code_text')}
+									{couponCode?.promocodes?.[GLOBAL_CONSTANTS.zeroth_index]?.promocode?.toUpperCase()}
+									{t('subscriptions:applied_text')}
 								</div>
 								<div className={styles.discount}>
-									{couponCode?.promotion_discounts?.[0]?.unit === 'flat'
-										&& couponCode?.promotion_discounts?.[0]?.amount_currency}
-									{couponCode?.promotion_discounts?.[0]?.value}
-									{couponCode?.promotion_discounts?.[0]?.unit === 'percentage' && '%'}
-									OFF
+
+									{unit === 'flat' && amount_currency}
+
+									{couponValue}
+
+									{unit === 'percentage' && '%'}
+
+									{t('subscriptions:off_code_text')}
+
 								</div>
 							</div>
 						</div>
 					)}
 					<div>
-						{!Object.keys(couponCode)?.length > 0 ? (
+						{isEmpty(couponCode) ? (
 							<div
 								className={styles.applycoupon}
 								onClick={() => setShowCoupons(true)}
 								role="presentation"
 							>
-								Apply
+								{t('subscriptions:apply_text')}
 							</div>
 						) : (
 							<div
@@ -220,7 +202,7 @@ function Charges({
 								}}
 								role="presentation"
 							>
-								Remove
+								{t('subscriptions:remove_text')}
 							</div>
 						)}
 					</div>
@@ -231,17 +213,10 @@ function Charges({
 
 				<div className={styles.styled_row}>
 					<div className={`${styles.styled_col} ${styles.total}`}>
-						<div>Total</div>
+						<div>{t('subscriptions:total_text')}</div>
 					</div>
 					<div className={`${styles.styled_col} ${styles.price}`}>
-						{formatAmount({
-							amount  : couponCodeLength > 0 ? totalAmount : amount,
-							currency,
-							options : {
-								notation : 'standard',
-								style    : 'currency',
-							},
-						})}
+						{getAmount({ amount: !isEmpty(couponCode) ? totalAmount : amount, currency })}
 					</div>
 				</div>
 
@@ -250,10 +225,12 @@ function Charges({
 						<Checkbox
 							label={(
 								<div className={styles.checkbox_label_content}>
-									<div className={styles.activate_later_txt}>Activate later</div>
+									<div className={styles.activate_later_txt}>
+										{t('subscriptions:activate_later_text')}
+									</div>
 									<Tooltip
 										placement="top"
-										content={description()}
+										content={<Description />}
 										animation="scale"
 										maxWidth={350}
 										interactive
@@ -270,42 +247,41 @@ function Charges({
 							value={check}
 						/>
 					</div>
-					{check && (
+					{check ? (
 						<Datepicker
 							showTimeSelect={false}
-							minDate={minDate}
-							maxDate={maxDate}
+							minDate={MIN_DATE}
+							maxDate={MAX_DATE}
 							onChange={setDatePickerValue}
 							value={datePickerValue}
 						/>
-					)}
+					) : null}
 				</div>
-
 				<div className={styles.button_wrapper}>
 					<Button
 						onClick={submit}
 						disabled={loading}
-						className={loading ? 'disabled' : ''}
 					>
 						{completeOrderLoading ? (
-							<img
-								src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
-								alt="cogo"
+							<Image
+								src={GLOBAL_CONSTANTS.image_url.loading}
+								alt={t('subscriptions:loading_text')}
+								width={20}
+								height={20}
 							/>
 						) : (
 							<>
-								Proceed to Pay
+								{t('subscriptions:proceed_to_pay_text')}
 								<IcMArrowNext className={styles.icon} />
 							</>
 						)}
 					</Button>
 				</div>
 			</div>
-
 			<div
 				className={`${styles.coupon_container} ${showCoupons ? styles.show : styles.hide}`}
 			>
-				{showCoupons && (
+				{showCoupons ? (
 					<Coupons
 						showCoupons={showCoupons}
 						couponCode={couponCode}
@@ -315,7 +291,7 @@ function Charges({
 						setShowCoupons={setShowCoupons}
 						handleClick={handleClick}
 					/>
-				)}
+				) : null}
 			</div>
 		</div>
 	);

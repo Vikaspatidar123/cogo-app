@@ -1,7 +1,8 @@
 import { Table, Pagination } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import columns from '../config';
+import getColumns from '../config';
 import useAddDocuments from '../hooks/useAddDocuments';
 import useGetDocumentsList from '../hooks/useGetDocumentsList';
 
@@ -10,9 +11,15 @@ import Heading from './Heading';
 import styles from './styles.module.css';
 import Uploader from './Uploader';
 
+const LOADING_ROWS_COUNT = 6;
+
 function Documents() {
-	const [filters, setFilters] = useState({});
+	const { t } = useTranslation(['documents']);
+
+	const [filters, setFilters] = useState({ page: 1 });
+
 	const [show, setShow] = useState(false);
+
 	const [documentDetails, setDocumentDetails] = useState({});
 
 	const { page = 1 } = filters || {};
@@ -21,11 +28,14 @@ function Documents() {
 
 	const { total_count = 0, list = [] } = data || {};
 
+	const columns = getColumns({ t });
+
 	const { addDocument, loading:addDocumentLoading } = useAddDocuments({
 		documentDetails,
 		refetch,
 		setDocumentDetails,
 	});
+
 	return (
 		<div>
 			<Heading
@@ -36,13 +46,15 @@ function Documents() {
 				setDocumentDetails={setDocumentDetails}
 			/>
 			<Filters setFilters={setFilters} filters={filters} />
-			<Table
-				columns={columns || []}
-				data={list || []}
-				loading={loading}
-				loadingRowsCount={6}
-				className={styles.table}
-			/>
+			<div className={styles.table_wrapper}>
+				<Table
+					columns={columns || []}
+					data={list || []}
+					loading={loading}
+					loadingRowsCount={LOADING_ROWS_COUNT}
+					className={styles.table}
+				/>
+			</div>
 			<div className={styles.pagination_wrapper}>
 				<Pagination
 					type="table"

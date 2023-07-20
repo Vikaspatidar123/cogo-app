@@ -21,7 +21,7 @@ function DocumentsRequired({
 										{...item}
 										multiple={false}
 										control={control}
-										showProgress={false}
+										showProgress
 										draggable
 										onChange={(val) => {
 											setUploadedFiles((prev) => ({

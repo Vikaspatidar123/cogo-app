@@ -65,7 +65,10 @@ export default function UploadedDoc({
 			</div>
 
 			<div>
-				<IcMEyeopen onClick={() => window.open(uploadedDoc?.image_url, '_blank')} className={styles.icon} />
+				<IcMEyeopen
+					onClick={() => window.open(uploadedDoc?.image_url, '_blank')}
+					className={styles.icon}
+				/>
 
 				<IcMDelete
 					className={cl`${styles.icon} ${loading ? styles.loading : null}`}
@@ -75,22 +78,25 @@ export default function UploadedDoc({
 
 			<Modal size="md" show={show} onClose={onClose} placement="center">
 				<Modal.Header title="Are you sure?" />
-				<Modal.Body>
-					Do you wish to delete the document
 
+				<Modal.Body>
+					Do you wish to delete the document?
 				</Modal.Body>
+
 				<Modal.Footer>
 					<div className={styles.modal_body}>
 						<Button
 							style={{ margin: '0 8px 0 0' }}
 							themeType="secondary"
 							onClick={onClose}
+							loading={loading}
 						>
 							Cancel
 						</Button>
+
 						<Button
 							themeType="primary"
-							onClick={!loading ? handleDelete : null}
+							onClick={handleDelete}
 							loading={loading}
 						>
 							Save

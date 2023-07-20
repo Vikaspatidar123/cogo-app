@@ -17,7 +17,7 @@ function UnuploadedDoc({ sampleLink = '' }) {
 		<div className={styles.init_title}>
 			{sampleLink ? (
 				<div className={styles.sampleLink}>
-					<a href={sampleLink}>
+					<a href={sampleLink} target="_blank" rel="noreferrer">
 						View Sample Doc
 					</a>
 				</div>
@@ -54,14 +54,15 @@ function Title({
 						maxWidth={500}
 						animation="shift-away"
 						content={doc_data?.doc_name}
-						placement="top"
+						placement="bottom"
 					>
 						{doc_data?.doc_name}
 					</Tooltip>
 				</div>
 			</div>
 
-			{isEmpty(uploadedDoc) ? <UnuploadedDoc sampleLink={doc_data?.sample_link} />
+			{isEmpty(uploadedDoc)
+				? <UnuploadedDoc sampleLink={doc_data?.sample_link} />
 				: <UploadedDoc uploadedDoc={uploadedDoc} refetch={refetch} />}
 		</div>
 	);

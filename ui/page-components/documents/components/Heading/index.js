@@ -5,6 +5,11 @@ import UploadDocument from '../UploadDocument';
 import ServiceWiseHeading from './ServiceWiseHeading';
 import styles from './styles.module.css';
 
+import { useSelector } from '@/packages/store';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const geo = getGeoConstants();
+
 function Heading({
 	setShow = () => {},
 	documentDetails = {},
@@ -18,6 +23,10 @@ function Heading({
 	filters = {},
 }) {
 	const { t } = useTranslation(['documents']);
+
+	const { user_data } = useSelector(({ profile }) => ({
+		user_data: profile || {},
+	}));
 
 	return (
 		<div className={styles.header}>
@@ -33,13 +42,16 @@ function Heading({
 				setDocumentDetails={setDocumentDetails}
 			/>
 
-			<ServiceWiseHeading
-				setServiceType={setServiceType}
-				serviceType={serviceType}
-				refetch={refetch}
-				setShowServiceList={setShowServiceList}
-				filters={filters}
-			/>
+			{user_data?.organization?.country?.country_code === geo.country.code
+				? (
+					<ServiceWiseHeading
+						setServiceType={setServiceType}
+						serviceType={serviceType}
+						refetch={refetch}
+						setShowServiceList={setShowServiceList}
+						filters={filters}
+					/>
+				) : null}
 		</div>
 	);
 }

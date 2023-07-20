@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const ERROR_MESSAGE = 'Unknown Error :Data is Already Generated';
+
 const useTradeEngine = ({ billId = undefined }) => {
 	const { t } = useTranslation(['importExportControls']);
 
@@ -56,9 +58,7 @@ const useTradeEngine = ({ billId = undefined }) => {
 				getTradeEngine(resp?.data?.id);
 			}
 		} catch (err) {
-			if (
-				err?.response?.data?.message === 'Unknown Error :Data is Already Generated'
-			) {
+			if (err?.response?.data?.message === ERROR_MESSAGE) {
 				getTradeEngine(id);
 			} else {
 				Toast.error(t('importExportControls:api_error'));

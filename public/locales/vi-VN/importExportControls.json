@@ -69,6 +69,6 @@
     "api_hscode_error_1":"Có gì đó đã sai!Vui lòng thử lại",
     "api_hscode_error_2":"Vui lòng nhập mã HS hợp lệ",
     "api_hscode_error_3":"Mã HS này không được chúng tôi hỗ trợ.Vui lòng cung cấp mã HS khác",
-    "api_hscode_error_4":"Mã HS không hợp lệ.Vui lòng chọn từ thả xuống"
-
+    "api_hscode_error_4":"Mã HS không hợp lệ.Vui lòng chọn từ thả xuống",
+    "alt_flag":"Flag"
 }

@@ -74,7 +74,7 @@ const useDraft = () => {
 			setDraftResp(resp?.data?.id);
 			return resp?.data?.id;
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 			return false;
 		}
 	};
@@ -87,7 +87,7 @@ const useDraft = () => {
 				},
 			});
 		} catch (err) {
-			console.log(err?.error?.message);
+			console.error(err?.error?.message);
 		}
 	};
 

@@ -69,6 +69,6 @@
     "api_hscode_error_1":"Something went wrong! Please try again",
     "api_hscode_error_2":"Please enter valid Hs Code",
     "api_hscode_error_3":"This hs code is not supported by us. Please provide another hs code",
-    "api_hscode_error_4":"Invalid HS Code. Please select from dropdown"
-
+    "api_hscode_error_4":"Invalid HS Code. Please select from dropdown",
+    "alt_flag":"Flag"
 }

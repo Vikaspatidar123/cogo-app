@@ -1,0 +1,309 @@
+.container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+	padding: 15px;
+	margin-right: 10px;
+	overflow: hidden;
+	border-radius: 26px;
+
+	.icon {
+		margin-right: 5px;
+	}
+
+	.ribbon_wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		width: fit-content;
+		padding: 5px 12px;
+		font-size: 11px;
+		font-weight: 500;
+		background: #fcdc00;
+		border: 1px solid #e0e0e0;
+		border-radius: 10.5px;
+	}
+
+	.flex {
+		display: flex;
+		padding: 5px;
+	}
+
+	.active_div {
+		display: flex;
+		font-size: 26px;
+		font-weight: 400;
+		color: #67c676;
+	}
+
+	.free {
+		font-size: 22px;
+		font-weight: 500;
+		color: #6fa5ab;
+	}
+
+	.active {
+		width: fit-content;
+		padding: 1px 10px;
+		color: #fff;
+		background: #db4634;
+		border-radius: 5px;
+		border-bottom-left-radius: 0;
+		box-shadow: 0 1px 1px rgb(0 0 0 / 15%);
+	}
+
+	.dot {
+		width: 3px;
+		height: 5px;
+		background: #db4634;
+		border-bottom-right-radius: 100px 200px;
+		transform: rotate(15deg);
+	}
+
+	.active_span {
+		padding: 13px;
+	}
+
+	.list {
+		padding-top: 15px;
+	}
+
+	.value {
+		padding-right: 5px;
+		margin-left: 3px;
+		font-size: 14px;
+		font-weight: 500;
+		color: #4f4f4f;
+	}
+
+	.text {
+		color: #828282;
+	}
+
+	.row {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.card {
+		padding-top: 20px;
+	}
+
+	.annually_not {
+		padding-top: 20px;
+	}
+
+	.date {
+		margin: 3px;
+		font-size: 12px;
+		font-weight: 700;
+		color: #ee3425;
+	}
+
+	.days {
+		position: absolute;
+		left: 2px;
+		font-size: 12px;
+		font-weight: 700;
+		color: #ee3425;
+	}
+
+	.date_box {
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+	}
+
+	.cr_inner {
+		position: absolute;
+		top: -4px;
+		left: -20px;
+		width: 120px;
+		font-size: 14px;
+		font-weight: 600;
+		color: white;
+		text-align: center;
+		background: #ee3425;
+		transform: rotate(315deg) translateY(0.1em) translateX(-1.8em);
+	}
+
+	.line_img {
+		position: absolute;
+		right: 0;
+		z-index: -1;
+	}
+
+	.custom {
+		width: 200px;
+		height: 200px;
+		margin-left: 15%;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+}
+
+.hover_card {
+	z-index: 2;
+	color: #fff;
+	background: #333;
+	border-radius: 26px;
+	box-shadow: 0 42px 34px rgb(219 106 106 / 29.6%);
+	transition: transform 0.8s;
+	transform: scale(1.01, 1.02);
+
+	@media screen and (max-width: 768px) {
+		z-index: auto;
+		transition: transform 0.3s;
+		transform: scale(1.01);
+	}
+
+	.date {
+		color: #fff;
+	}
+
+	.head_text {
+		color: #fff;
+	}
+
+	.active_text {
+		color: #f68b21;
+	}
+
+	.text {
+		color: #fff;
+	}
+
+	.value {
+		padding-right: 5px;
+		color: #fff;
+	}
+
+	.ribbon_wrapper {
+		color: #000;
+		background: #fcdc00;
+	}
+
+	.icon {
+		width: 15px;
+		height: 15px;
+		margin-right: 5px;
+		border-radius: 50px;
+		mix-blend-mode: normal;
+		fill: #fcdc00;
+	}
+
+	.custom {
+		width: 200px;
+		height: 200px;
+		margin-left: 15%;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.button {
+		color: #fff !important;
+		background-color: red !important;
+	}
+}
+
+.ribbon {
+	width: 100px;
+	height: 50px;
+}
+
+.styled_row {
+	display: flex;
+	justify-content: space-between;
+	padding: 5px;
+	margin-top: 5px;
+
+	&.priceRow {
+		padding-top: 0;
+		padding-bottom: 0;
+		margin-top: 0;
+	}
+
+	&.heading {
+		align-items: flex-start;
+	}
+
+	.annuallyTxt {
+		color: #a4a2a2;
+	}
+
+	.styled_col {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.row {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+
+	.crossed_price {
+		color: #db4634;
+		text-decoration: line-through;
+	}
+
+	.price {
+		display: flex;
+		align-items: center;
+		font-size: 26px;
+		font-weight: 600;
+	}
+
+	.per_period {
+		font-size: 12px;
+		color: #bdbdbd;
+	}
+
+	.currency {
+		padding-right: 6px;
+		font-size: 16px;
+		font-weight: 400;
+	}
+}
+
+.heading {
+	font-size: 24px;
+	font-weight: 700;
+
+	&.active_text {
+		color: #828282;
+	}
+}
+
+.center_div {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	margin: 10px 0 8px 15px;
+}
+
+.subscribe {
+	:global {
+		.ui_button_container {
+			width: 86%;
+			padding: 10px 20px;
+			margin-top: 6px;
+			font-size: 15px;
+			font-weight: 500;
+			color: #000;
+			background-color: #fff;
+			border: 0.7px solid #333;
+		}
+	}
+}
+
+.back_ground_image {
+	width: auto;
+
+	@media (max-width: 767px) {
+		width: 70%;
+	}
+}

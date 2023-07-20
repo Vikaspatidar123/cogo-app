@@ -1,14 +1,29 @@
 import { Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function ActivatePendingModal({ activateLoading }) {
+	const { t } = useTranslation(['subscriptions']);
 	return (
 		<Modal show={activateLoading} closable={false}>
 			<div className={styles.container}>
-				<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg" alt="cogo" />
-				<div className={styles.title}>Hang on! Activating your plan ...</div>
-				<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg" alt="cogo" />
+				<Image
+					src={GLOBAL_CONSTANTS.image_url.loading_banner}
+					alt={t('subscriptions:cogo_text')}
+					width={300}
+					height={200}
+				/>
+				<div className={styles.title}>{t('subscriptions:panding_message')}</div>
+				<Image
+					src={GLOBAL_CONSTANTS.image_url.loading}
+					alt={t('subscriptions:cogo_text')}
+					width={30}
+					height={30}
+				/>
 			</div>
 		</Modal>
 	);

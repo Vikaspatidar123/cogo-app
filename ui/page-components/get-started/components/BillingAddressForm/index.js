@@ -1,4 +1,5 @@
 import { Button, Checkbox } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import useCreateBillingAddress from '../../hooks/useCreateBillingAddress';
@@ -6,8 +7,14 @@ import useCreateBillingAddress from '../../hooks/useCreateBillingAddress';
 import styles from './styles.module.css';
 
 import { InputController, useForm, UploadController } from '@/packages/forms';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 function BillingAddress({ orgId, setInviteTeam }) {
+	const { t } = useTranslation(['common', 'getStarted']);
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+	const ECO_ZONE_LABEL = geo.others.economic_zone.label;
+
 	const {
 		handleSubmit, control, formState: { errors }, watch,
 	} = useForm();
@@ -38,8 +45,10 @@ function BillingAddress({ orgId, setInviteTeam }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header_container}>
-				<span className={styles.header_container_bold}>Billing Address Details</span>
-				Add your billing address now to fast track bookings
+				<span className={styles.header_container_bold}>
+					{t('getStarted:rightPanel_get_started_billing_address_text_1')}
+				</span>
+				{t('getStarted:rightPanel_get_started_billing_address_text_2')}
 			</div>
 			<div className={styles.total_container}>
 				<form className={styles.form_container} onSubmit={handleSubmit(onClickCreateBillingAddress)}>
@@ -48,8 +57,8 @@ function BillingAddress({ orgId, setInviteTeam }) {
 							control={control}
 							name="gst_number"
 							type="text"
-							placeholder="GST/Tax number"
-							rules={{ required: 'GST is required.' }}
+							placeholder={`${REGISTRATION_LABEL}/Tax number`}
+							rules={{ required: `${REGISTRATION_LABEL} is required.` }}
 						/>
 
 						{errors.gst_number && (
@@ -63,8 +72,11 @@ function BillingAddress({ orgId, setInviteTeam }) {
 							control={control}
 							name="billing_address"
 							type="text"
-							placeholder="Billing Address"
-							rules={{ required: 'Billing Address is required.' }}
+							placeholder={t('getStarted:rightPanel_get_started_billing_address_address_label')}
+							rules={{
+								required:
+								t('getStarted:rightPanel_get_started_billing_address_address_required'),
+							}}
 						/>
 
 						{errors.billing_address && (
@@ -78,8 +90,11 @@ function BillingAddress({ orgId, setInviteTeam }) {
 							control={control}
 							name="pincode"
 							type="text"
-							placeholder="Pincode"
-							rules={{ required: 'Pincode is required.' }}
+							placeholder={t('getStarted:rightPanel_get_started_billing_address_pincode_label')}
+							rules={{
+								required:
+								t('getStarted:rightPanel_get_started_billing_address_pincode_required_rules'),
+							}}
 						/>
 
 						{errors.pincode && (
@@ -90,17 +105,17 @@ function BillingAddress({ orgId, setInviteTeam }) {
 					</div>
 					<div className={styles.checkbox_container}>
 						<Checkbox value={isSez} onChange={handleChange} />
-						The above address is SEZ
+						{`The above address is ${ECO_ZONE_LABEL}`}
 					</div>
 					{
 						isSez && (
 							<>
 								<div className={styles.file_uploader}>
-									Sez Proof:
+									{`${ECO_ZONE_LABEL} Proof:`}
 									<UploadController
 										control={control}
 										name="sez_proof"
-										rules={{ required: 'sez_proof is required.' }}
+										rules={{ required: `${ECO_ZONE_LABEL} proof is required.` }}
 									/>
 								</div>
 								<div className={styles.file_uploader}>
@@ -116,14 +131,16 @@ function BillingAddress({ orgId, setInviteTeam }) {
 					<div
 						className={styles.add_button_container}
 					>
-						<Button type="submit" loading={createBillingAddressLoading}>ADD</Button>
+						<Button type="submit" loading={createBillingAddressLoading}>
+							{t('getStarted:rightPanel_get_started_add_button_label')}
+						</Button>
 					</div>
 					<div className={styles.button_container}>
 						<Button className={styles.button} themeType="accent" onClick={handleSkip}>
-							SKIP
+							{t('getStarted:rightPanel_get_started_skip_button_label')}
 						</Button>
 						<Button className={styles.button} themeType="accent" disabled={is_disabled}>
-							NEXT
+							{t('getStarted:rightPanel_get_started_next_button_label')}
 						</Button>
 					</div>
 				</form>

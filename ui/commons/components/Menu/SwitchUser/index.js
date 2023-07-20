@@ -1,6 +1,6 @@
-/* eslint-disable no-undef */
 import { Button } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import Item from './Item';
 import styles from './styles.module.css';
@@ -12,7 +12,7 @@ function SwitchUser({ setShow }) {
 		profile: { organizations },
 		general: { pathname },
 	} = useSelector(({ profile, general }) => ({ profile, general }));
-
+	const { t } = useTranslation(['common']);
 	const onBack = () => {
 		setShow(false);
 	};
@@ -31,7 +31,7 @@ function SwitchUser({ setShow }) {
 
 				{pathname === '/get-started' ? null : (
 					<Button size="md" themeType="secondary" onClick={() => getStarted()}>
-						+ Add New Account
+						{t('common:add_new_account_button')}
 					</Button>
 				)}
 			</div>

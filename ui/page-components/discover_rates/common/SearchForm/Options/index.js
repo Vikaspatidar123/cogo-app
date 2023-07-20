@@ -13,18 +13,9 @@ import DateRangeBox from './PillsInput/DateRangeBox';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const mainServices = ['fcl_freight', 'lcl_freight', 'air_freight'];
-
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-
-const INDIA_COUNTRY_DETAILS = getCountryDetails({
-	country_id: INDIA_COUNTRY_ID,
-});
-
-const INDIA_COUNTRY_CODE = INDIA_COUNTRY_DETAILS?.country_code;
 
 function Options({
 	mode = '',
@@ -56,6 +47,10 @@ function Options({
 	const [errors, setErrors] = useState({});
 	const [showAdvance, setShowAdvance] = useState(false);
 	const [packageInformation, setPackageInformation] = useState({});
+
+	const geo = getGeoConstants();
+	const isDefaultIncotermCif = geo.others.navigations.search_form.default_icoterm_cif;
+
 	const optionFormControls = getControls(
 		optionsControls.form,
 		{},
@@ -74,6 +69,7 @@ function Options({
 	const formValues1 = options.values || {};
 	const formValues = { ...(formProps.formValues || {}), ...formValues1 };
 	const allErrors = { ...(errors || {}), ...(formProps?.errors || {}) };
+
 	const showElements = useMemo(
 		() => showElementsFunc({
 			...formProps,
@@ -140,7 +136,7 @@ function Options({
 			(key) => key.name === 'inco_term',
 		)?.name;
 		if (incoKey && mode === 'fcl_freight') {
-			if (location?.origin?.country_code === INDIA_COUNTRY_CODE) {
+			if (isDefaultIncotermCif) {
 				setValue(incoKey, 'cif');
 			} else {
 				setValue(incoKey, 'fob');

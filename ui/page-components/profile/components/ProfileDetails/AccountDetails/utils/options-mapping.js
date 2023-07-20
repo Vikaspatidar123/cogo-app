@@ -1,10 +1,14 @@
-import { IcMAlert, IcMBusinessFinance, IcMDocument, IcMMap, IcMProfile, IcMTeam } from '@cogoport/icons-react';
+import {
+	IcMAlert, IcMBusinessFinance, IcMDocument, IcMMap, IcMProfile,
+	IcMServices, IcMTeam,
+} from '@cogoport/icons-react';
 
 import Address from '../DetailsTabs/Address';
 import AlertsPreferences from '../DetailsTabs/AlertsPreferences';
 import DocumentsWallet from '../DetailsTabs/DocumentsWallet';
 import MyProfile from '../DetailsTabs/MyProfile';
 import OrganizationDetails from '../DetailsTabs/OrganizationDetails';
+import Subscription from '../DetailsTabs/Subscription';
 import Team from '../DetailsTabs/Team';
 
 const getOptions = ({ t }) => ({
@@ -43,6 +47,12 @@ const getOptions = ({ t }) => ({
 		title              : t('settings:documents_heading'),
 		containerComponent : DocumentsWallet,
 		icon               : <IcMDocument />,
+	},
+	subscription: {
+		key                : 'subscription',
+		title              : t('settings:subscriptions_heading'),
+		containerComponent : Subscription,
+		icon               : <IcMServices />,
 	},
 });
 

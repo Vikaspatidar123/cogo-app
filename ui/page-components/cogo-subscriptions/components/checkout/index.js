@@ -1,4 +1,4 @@
-import { Toast } from '@cogoport/components';
+import { Toast, cl } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { Elements } from '@stripe/react-stripe-js';
@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next';
 import { useCallback, useEffect, useState } from 'react';
 
 import CheckoutModal from '../../common/CheckoutModal';
+import CheckoutPageLoader from '../../common/CheckoutPageLoader';
 import useCompleteOrder from '../../hooks/useCompleteOrder';
 import useCreateBillingAddres from '../../hooks/useCreateBillingAddress';
 import useCreateCheckout from '../../hooks/useCreateCheckout';
@@ -16,32 +17,34 @@ import redirectUrl from '../../utils/redirectUrl';
 import StripePaymentModal from '../balance-history/component/Usage/StripePaymentModal';
 
 import BillingDetails from './BillingDetails';
+import BottomContainer from './BottomContainer';
 import Charges from './Charges';
 import styles from './styles.module.css';
 import SubscriptionDetails from './subscriptionDetails';
 
-import { useRouter, Image } from '@/packages/next';
+import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function Checkout() {
+	const { query } = useRouter();
+
 	const { t } = useTranslation(['subscriptions']);
 
 	const { profile } = useSelector((s) => s);
-	const [plan, setPlan] = useState({});
-	const [datePickerValue, setDatePickerValue] = useState();
-	const [addresses, setAddresses] = useState();
-	const [checkoutResponse, setCheckoutResponse] = useState();
-	const [addressWithoutGst, setAddressWithoutGst] = useState();
-	const [isBillingAddress, setisBillingAddress] = useState();
-	const [stripePromiseSet, setstripePromiseSet] = useState();
 
-	const { query } = useRouter();
+	const [plan, setPlan] = useState({});
+	const [datePickerValue, setDatePickerValue] = useState({});
+	const [addresses, setAddresses] = useState([]);
+	const [checkoutResponse, setCheckoutResponse] = useState({});
+	const [addressWithoutGst, setAddressWithoutGst] = useState([]);
+	const [isBillingAddress, setisBillingAddress] = useState('');
+	const [stripePromiseSet, setstripePromiseSet] = useState({});
+	const [checked, setChecked] = useState([]);
+
 	const { billingAddress, addressApi } = useFetchBillingAddress({
 		profile,
 		setAddressWithoutGst,
 	});
-	const [checked, setChecked] = useState([]);
 	const { getPlan, planDataLoading } = useGetPlanDetails({ profile });
 	const { redirectManageSubscription } = redirectUrl();
 	const { createSellerAddres, createAddressLoading } = useCreateBillingAddres(
@@ -103,61 +106,60 @@ function Checkout() {
 
 	return (
 		<div className={styles.container}>
+
 			<div className={styles.label}>
 				<IcMArrowBack onClick={() => redirectManageSubscription()} />
 				{t('subscriptions:checkout_text')}
 			</div>
-			{(planDataLoading || checkoutLoading) && (
-				<Image
-					src={GLOBAL_CONSTANTS.image_url.loading}
-					className={styles.loading}
-					alt={t('subscriptions:loading_text')}
-					height={20}
-					width={20}
-				/>
-			)}
-			{!planDataLoading && !checkoutLoading && (
-				<div className={styles.padded_row}>
-					<div className={`${styles.wrapper} ${styles.wd_28}`}>
-						<SubscriptionDetails plans={plan} query={query} />
+
+			{(planDataLoading || checkoutLoading) ? (
+				<CheckoutPageLoader />
+			) : (
+				<div>
+					<div className={styles.padded_row}>
+						<div className={cl`${styles.wrapper} ${styles.wd_28}`}>
+							<SubscriptionDetails plans={plan} query={query} />
+						</div>
+						<div className={cl`${styles.wrapper} ${styles.wd_39}`}>
+							<BillingDetails
+								createSellerAddres={createSellerAddres}
+								createAddressLoading={createAddressLoading}
+								billingAddress={billingAddress}
+								addressApi={addressApi}
+								setAddresses={setAddresses}
+								addresses={addresses}
+								addressWithoutGst={addressWithoutGst}
+								checked={checked}
+								setChecked={setChecked}
+								setisBillingAddress={setisBillingAddress}
+							/>
+						</div>
+						<div className={cl`${styles.wrapper} ${styles.wd_29}`}>
+							<Charges
+								plans={plan}
+								query={query}
+								completeOrder={completeOrder}
+								completeOrderLoading={completeOrderLoading}
+								checked={checked}
+								checkoutResponse={checkoutResponse}
+								datePickerValue={datePickerValue}
+								setDatePickerValue={setDatePickerValue}
+							/>
+						</div>
 					</div>
-					<div className={`${styles.wrapper} ${styles.wd_39}`}>
-						<BillingDetails
-							createSellerAddres={createSellerAddres}
-							createAddressLoading={createAddressLoading}
-							billingAddress={billingAddress}
-							addressApi={addressApi}
-							setAddresses={setAddresses}
-							addresses={addresses}
-							addressWithoutGst={addressWithoutGst}
-							checked={checked}
-							setChecked={setChecked}
-							setisBillingAddress={setisBillingAddress}
-						/>
-					</div>
-					<div className={`${styles.wrapper} ${styles.wd_29}`}>
-						<Charges
-							plans={plan}
-							query={query}
-							completeOrder={completeOrder}
-							completeOrderLoading={completeOrderLoading}
-							checked={checked}
-							checkoutResponse={checkoutResponse}
-							datePickerValue={datePickerValue}
-							setDatePickerValue={setDatePickerValue}
-						/>
-					</div>
+					{checkoutResponse?.order_type === 'recurring' ? <BottomContainer /> : null}
 				</div>
+
 			)}
-			{checkoutModal && (
+			{checkoutModal ? (
 				<CheckoutModal
 					checkoutModal={checkoutModal}
 					responseForCheckout={responseForCheckout}
 					checkoutResponse={checkoutResponse}
 					setCheckoutModal={setCheckoutModal}
 				/>
-			)}
-			{stripeModal && !isEmpty(stripePromiseSet) && (
+			) : null}
+			{(stripeModal && !isEmpty(stripePromiseSet)) ? (
 				<Elements stripe={stripePromiseSet}>
 					<StripePaymentModal
 						flag={stripeModal}
@@ -168,7 +170,7 @@ function Checkout() {
 						query={query}
 					/>
 				</Elements>
-			)}
+			) : null}
 		</div>
 	);
 }

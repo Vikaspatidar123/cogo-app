@@ -1,5 +1,6 @@
 import { cl } from '@cogoport/components';
 import { IcMArrowRotateDown } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { forwardRef } from 'react';
 
 import styles from './styles.module.css';
@@ -50,17 +51,15 @@ function PillInput(props, ref) {
 			>
 				<div
 					className={cl`${styles.sub_container} ${
-						modifiedValues.length === 0 ? styles.placeholder : ''
+						isEmpty(modifiedValues) ? styles.placeholder : ''
 					} ${error ? styles.error : ''} ${show ? styles.show : ''} ${
 						action === 'disable' ? styles.disable : ''
 					} ${styles?.[className]}`}
 				>
 					<div className={styles.chip_container}>
-						{modifiedValues.length > 0 && handleShowChips()}
-
-						{modifiedValues.length === 0 && (
-							<div className={styles.placeholder}>Select Options</div>
-						)}
+						{!isEmpty(modifiedValues)
+							? handleShowChips()
+							: <div className={styles.placeholder}>Select Options</div>}
 					</div>
 
 					<div className={styles.util_div}>

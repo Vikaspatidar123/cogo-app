@@ -28,8 +28,8 @@ function Tags({
 			))}
 
 			{(hscodeDetails || []).map((item) => (
-				<Tooltip theme="light" placement="top" content={item.name}>
-					<div className={styles.styled_tag}>{item.name}</div>
+				<Tooltip key={item?.name} theme="light" placement="top" content={item?.name}>
+					<div className={styles.styled_tag}>{item?.name}</div>
 				</Tooltip>
 			))}
 

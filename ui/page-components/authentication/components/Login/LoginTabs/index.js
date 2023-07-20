@@ -29,11 +29,11 @@ function LoginTabs({
 				style={{ width: '100%' }}
 			>
 
-				<TabPanel name="email" title="Email">
+				<TabPanel name="email" title={t(`${translationKey}_tab_email`)}>
 					<EmailLoginForm setMode={setMode} />
 				</TabPanel>
 
-				<TabPanel name="mobile" title="Mobile">
+				<TabPanel name="mobile" title={t(`${translationKey}_tab_mobile`)}>
 					<MobileLoginForm
 						setMode={setMode}
 						setMobileNumber={setMobileNumber}

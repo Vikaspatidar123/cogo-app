@@ -18,7 +18,12 @@ function InputNumberController(props) {
 				<InputNumber
 					{...rest}
 					key={rest.id}
-					onChange={onChange}
+					onChange={(val, obj) => {
+						onChange(val, obj);
+						if (rest.handleChange) {
+							rest.handleChange(val, obj);
+						}
+					}}
 					value={newValue}
 					onBlur={onBlur}
 				/>

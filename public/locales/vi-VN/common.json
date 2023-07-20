@@ -1,5 +1,7 @@
 {
     "loginField_title": "Chào mừng trở lại Cogoport",
+    "loginField_tab_email": "E-mail",
+    "loginField_tab_mobile":"Di động",
     "loginField_email_label": "Địa chỉ email",
     "loginField_email_placeholder": "Nhập email của bạn",
     "loginField_email_error": "Email thì cần thiết.",

@@ -1,5 +1,7 @@
 {
     "loginField_title": "Welcome back to Cogoport",
+    "loginField_tab_email": "Email",
+    "loginField_tab_mobile":"Mobile",
     "loginField_email_label": "Email address",
     "loginField_email_placeholder": "Enter your Email",
     "loginField_email_error": "Email is required.",

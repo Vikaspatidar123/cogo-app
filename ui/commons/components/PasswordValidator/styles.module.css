@@ -1,0 +1,47 @@
+.password_validator {
+	display: flex;
+	flex-direction: column;
+	padding: 16px;
+	border-radius: 4px;
+	box-shadow: 0 2px 10px rgb(0 0 0 / 25%);
+}
+
+.title {
+	margin-bottom: 4px;
+	font-weight: 500;
+	color: var(--color-secondary-greyscale-1);
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+}
+
+.message {
+	margin-left: 8px;
+	font-size: var(--font-size-md);
+	color: var(--color-secondary-greyscale-1);
+}
+
+.icon {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.item {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	margin-top: 4px;
+}
+
+.dot {
+	width: 8px;
+	height: 4px;
+	padding: 4px;
+	background-color: var(--color-secondary-greyscale-4);
+	border-radius: 20px;
+}

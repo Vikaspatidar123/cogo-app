@@ -3,8 +3,8 @@ import { IcCSendEmail } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
-import useEmailVerification from '../../../hooks/useEmailVerification';
 import useOtpVerification from '../../../hooks/useOtpVerification';
+import useSaasEmailVerification from '../../../hooks/useSaasEmailVerification';
 
 import styles from './styles.module.css';
 
@@ -19,7 +19,7 @@ function VerifictaionForm({ formData, userDetails }) {
 	const [otpValue, setOtpValue] = useState('');
 	const { id, email = '', mobile_country_code = '', mobile_number = '' } = userDetails || {};
 
-	const { onClickResendEmail } = useEmailVerification();
+	const { onClickResendEmail } = useSaasEmailVerification();
 
 	const {
 		loading = false,
@@ -84,12 +84,12 @@ function VerifictaionForm({ formData, userDetails }) {
 				{t('common:rightPanel_verification_email_texts_4')}
 				<br />
 				{t('common:rightPanel_verification_email_texts_5')}
-				<button
-					className={styles.resend_mail_button}
+				<Button
+					themeType="link"
 					onClick={() => onClickResendEmail(id)}
 				>
 					{t('common:rightPanel_verification_email_resendEmailButton_label')}
-				</button>
+				</Button>
 			</div>
 		</div>
 	);

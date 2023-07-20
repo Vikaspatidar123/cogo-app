@@ -1,71 +1,68 @@
-import { FluidContainer, cl } from '@cogoport/components';
-// import { useTranslation } from 'next-i18next';
-import { useTranslation } from 'next-i18next';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import LoginForm from './LoginForm';
-import MobileLoginForm from './MobilLogineNoForm/MobileLoginForm';
+import LayoutHelp from '../common/LayoutHelp';
+import LayoutLogo from '../common/LayoutLogo';
+import LoadingPrompts from '../common/LoadingPrompts';
+
+import LoginTabs from './LoginTabs';
+import OTPLoginForm from './OTPLoginForm';
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
-import LeftPanel from '@/ui/commons/components/LeftPanel';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const MAPPING = {
-	emailId  : <LoginForm />,
-	mobileNo : <MobileLoginForm />,
+const LOGIN_FLOW_MAPPING = {
+	login_tabs      : LoginTabs,
+	otp_form        : OTPLoginForm,
+	loading_prompts : LoadingPrompts,
 };
 
 function Login() {
-	const { t } = useTranslation(['common']);
-	const {
-		general: { query = {} },
-	} = useSelector((state) => state);
+	const [mode, setMode] = useState('login_tabs');
+	const [mobileNumber, setMobileNumber] = useState({});
+	const [otpId, setOtpId] = useState('');
 
-	const { loginType: login_type = '' } = query;
+	const componentProps = {
+		login_tabs: {
+			setMode,
+			setMobileNumber,
+			setOtpId,
+			mobileNumber,
+		},
+		otp_form: {
+			otpId,
+			mobileNumber,
+			setMode,
+		},
+		loading_prompts: {
+			type: 'login',
+		},
+	};
 
-	const [loginType, setLoginType] = useState(() => {
-		if (login_type === 'mobile') return 'mobileNo';
-
-		return 'emailId';
-	});
+	const Component = LOGIN_FLOW_MAPPING[mode] || null;
 
 	return (
-		<FluidContainer className={styles.container}>
-			<div className={styles.left_container}>
-				<LeftPanel />
-			</div>
-			<div className={styles.right_container}>
-				<div className={styles.right_signup_text}>
-					{t('common:text_1')}
-					<a href="/signup" className={styles.right_signup_text_link}>{t('common:text_2')}</a>
-				</div>
-				<div className={styles.main_container}>
-					<p className={styles.right_login_text}>
-						{t('common:text_3')}
-					</p>
-					<div className={styles.button_group}>
-						<div
-							className={cl`${styles.group_by_button} 
-							${loginType === 'emailId'
-								&& styles.active} ${styles.left}`}
-							onClick={() => setLoginType('emailId')}
-							role="presentation"
-						>
-							{t('common:rightPanel_tabs_email_title')}
-						</div>
-						<div
-							className={cl`${styles.group_by_button}
-									${loginType === 'mobileNo' && styles.active} ${styles.right}`}
-							onClick={() => setLoginType('mobileNo')}
-							role="presentation"
-						>
-							{t('common:rightPanel_tabs_mobile_title')}
-						</div>
-					</div>
-					{MAPPING[loginType]}
+		<div
+			className={styles.authentication_layout}
+			style={{
+				backgroundImage: `url(${GLOBAL_CONSTANTS.image_url.neo_background_image})`,
+			}}
+		>
+			<LayoutLogo />
+
+			<div className={styles.card_container}>
+				<div className={styles.card}>
+					{Component && (
+						<Component
+							key={mode}
+							{...(componentProps[mode] || {})}
+						/>
+					)}
 				</div>
 			</div>
-		</FluidContainer>
+
+			<LayoutHelp />
+		</div>
 	);
 }
+
 export default Login;

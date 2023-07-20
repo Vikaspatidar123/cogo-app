@@ -21,7 +21,7 @@ function CreateTicket() {
 		general: { query: { type = '' } = {} },
 	} = useSelector((state) => state);
 
-	const [selectedInvoices, setSelectedInvoices] = useState();
+	const [selectedInvoices, setSelectedInvoices] = useState({});
 	const [selectedpayments, setSelectedPayments] = useState([]);
 	const [selectIssue, setSelectIssue] = useState('invoice');
 
@@ -47,7 +47,7 @@ function CreateTicket() {
 		isTicketNotUtlilized,
 	} = useCreateTokenTicket();
 
-	const { updateTokenTicket, showSuccessPage, loading } =	useUpdateTokenTicket();
+	const { updateTokenTicket, showSuccessPage, loading } = useUpdateTokenTicket();
 
 	const onFormSubmit = (val) => {
 		updateTokenTicket({ val, selectedInvoices, selectedpayments });

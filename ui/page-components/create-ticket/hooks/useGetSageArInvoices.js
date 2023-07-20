@@ -22,7 +22,7 @@ const useGetSageArInvoices = () => {
 		key   : '',
 		order : '',
 	});
-	const [searchQuery, setSearchQuery] = useState();
+	const [searchQuery, setSearchQuery] = useState(' ');
 	const [salesAgentId, setSalesAgentId] = useState('');
 
 	const [{ data, loading }, trigger] = useRequest({

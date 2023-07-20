@@ -1,7 +1,8 @@
 import { Table, Pagination } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import columns from '../config';
+import getColumns from '../config';
 import useAddDocuments from '../hooks/useAddDocuments';
 import useGetDocumentsList from '../hooks/useGetDocumentsList';
 
@@ -11,6 +12,8 @@ import styles from './styles.module.css';
 import Uploader from './Uploader';
 
 function Documents() {
+	const { t } = useTranslation(['documents']);
+
 	const [filters, setFilters] = useState({});
 	const [show, setShow] = useState(false);
 	const [documentDetails, setDocumentDetails] = useState({});
@@ -21,11 +24,14 @@ function Documents() {
 
 	const { total_count = 0, list = [] } = data || {};
 
+	const columns = getColumns({ t });
+
 	const { addDocument, loading:addDocumentLoading } = useAddDocuments({
 		documentDetails,
 		refetch,
 		setDocumentDetails,
 	});
+
 	return (
 		<div>
 			<Heading

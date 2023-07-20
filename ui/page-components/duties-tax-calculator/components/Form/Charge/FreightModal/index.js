@@ -67,7 +67,7 @@ function FreightModal({
 		setShowFreightModal(false);
 	};
 	const redirectDiscover = () => {
-		const callBackUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/book`;
+		const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/${account_type}/book`;
 		window.open(callBackUrl, '_blank');
 	};
 

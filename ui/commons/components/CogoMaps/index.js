@@ -25,8 +25,8 @@ function MapComp({
 	transportMode,
 }) {
 	const [map, setMap] = useState();
-	const corner1 = L.latLng(-90, -200);
-	const corner2 = L.latLng(90, 200);
+	const corner1 = L.latLng(-90, -250);
+	const corner2 = L.latLng(90, 250);
 	const bounds = L.latLngBounds(corner1, corner2);
 	const pointLength = plotPoints.length;
 

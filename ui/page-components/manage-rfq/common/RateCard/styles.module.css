@@ -3,29 +3,35 @@
 	flex-direction: column;
 	justify-content: space-around;
 	width: 90%;
-	margin: 0 24px 12px;
+	margin-bottom: 12px;
+	background: #f9f9f9;
 	border: 1px solid #e0e0e0;
 	border-radius: 4px;
+	transition: 0.6s;
+
+	&:hover {
+		border: 1px solid #5936f0;
+		transition: 0.3s;
+		transform: scale(1.01);
+	}
 }
 
 .info_wrapper {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin: 6px 0;
 }
 
 .footer {
 	display: flex;
 	justify-content: space-between;
-	padding: 4px 12px;
+	padding: 8px 12px;
+	margin-top: 4px;
 	border-top: 1px solid #e0e0e0;
 }
 
 .footer_price_shown {
-	display: flex;
-	justify-content: space-between;
-	padding: 4px 12px;
-	border-top: 1px solid #e0e0e0;
 	border-bottom: 1px solid #e0e0e0;
 }
 

@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, cl } from '@cogoport/components';
 import { IcMArrowDown } from '@cogoport/icons-react';
 import { useState } from 'react';
 
@@ -10,26 +10,54 @@ import RatePerContainer from './RatePerContainer';
 import ShippingCompany from './ShippingCompany';
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
+const titleDisplay = ({ rfqStatus, title }) => {
+	const MARGIN_NAME_DISPLAY = {
+		recommended : 'View Break-Up',
+		created     : rfqStatus !== 'expired' ? 'Adjust Rates' : 'View Break-Up',
+		spot_rates  : rfqStatus !== 'expired' ? 'Adjust Rates' : 'View Break-Up',
+		negotiated_rates:
+			rfqStatus !== 'expired' ? 'Adjust Rates' : 'View Break-Up',
+	};
+	return MARGIN_NAME_DISPLAY[title];
+};
 
-function RateCard({ typeName, ratesBreakdown = {}, detail = {} }) {
-	const { shipping_line, airline, service_type } = ratesBreakdown || {};
-	const [showPrice, setShowPrice] = useState(false);
-	const features = getDetailsFeatures({ ratesBreakdown, detail });
-	const { scope } = useSelector(({ general }) => ({
-		scope: general.scope,
-	}));
-
+const ratesCount = ({ ratesBreakdown }) => {
 	let noRatesCount = 0;
-
 	const { service_rates } = ratesBreakdown || {};
-	const services_ids = Object.keys(service_rates || {});
-	(services_ids || []).forEach((key) => {
+	const servicesIds = Object.keys(service_rates || {});
+	(servicesIds || []).forEach((key) => {
 		const { is_rate_available } = service_rates[key] || {};
-		if (!is_rate_available) noRatesCount += 1;
+		if (!is_rate_available) {
+			noRatesCount += 1;
+		}
 	});
+	return noRatesCount;
+};
 
-	const noRatesText =		scope === 'app' ? 'Fetching rates for ' : 'No rates available for';
+function RateCard({
+	typeName,
+	ratesBreakdown,
+	detail = {},
+	setShowEditMarginModal = () => {},
+	setShowNegotiate = () => {},
+	negotiation_rank,
+	title = '',
+	card_state = '',
+	source = '',
+	negotiation_limit,
+	rfqStatus,
+}) {
+	const {
+		shipping_line,
+		airline,
+		service_type = '',
+		card = {},
+	} = ratesBreakdown || {};
+
+	const [showPrice, setShowPrice] = useState(false);
+
+	const features = getDetailsFeatures({ ratesBreakdown, detail });
+	const noRatesCount = ratesCount({ ratesBreakdown });
 
 	return (
 		<div className={styles.container}>
@@ -38,7 +66,9 @@ function RateCard({ typeName, ratesBreakdown = {}, detail = {} }) {
 				shippingLine={shipping_line || airline}
 				ratesBreakdown={ratesBreakdown}
 				serviceType={service_type || ''}
+				card_state={card_state}
 			/>
+
 			<div className={styles.info_wrapper}>
 				<Features feature={features} />
 				<RatePerContainer
@@ -47,11 +77,12 @@ function RateCard({ typeName, ratesBreakdown = {}, detail = {} }) {
 					showPrice={showPrice}
 				/>
 			</div>
-			<div className={showPrice ? styles.footer_price_shown : styles.footer}>
+
+			<div className={cl`${styles.footer} ${showPrice ? styles.footer_price_shown : ''}`}>
 				<div className={styles.rates_price}>
 					{noRatesCount ? (
 						<>
-							{noRatesText}
+							Fetching rates for
 							{' '}
 							{noRatesCount}
 							{' '}
@@ -59,19 +90,45 @@ function RateCard({ typeName, ratesBreakdown = {}, detail = {} }) {
 						</>
 					) : null}
 				</div>
+				{source !== 'app' ? (
+					<div className={styles.button_container}>
+						{negotiation_rank < negotiation_limit
+							&& title === 'spot_rates' && rfqStatus !== 'expired' && (
+								<Button
+									size="sm"
+									themeType="secondary"
+									onClick={() => { setShowNegotiate({ card }); }}
+									type="button"
+								>
+									Negotiate
+								</Button>
+						)}
+						<Button
+							size="sm"
+							themeType="secondary"
+							onClick={() => {
+								setShowEditMarginModal({ ...ratesBreakdown, title });
+							}}
+							type="button"
+						>
+							{titleDisplay({ rfqStatus, title })}
+						</Button>
+					</div>
+				)
+					: (
+						<Button
+							themeType="linkUi"
+							onClick={() => {
+								setShowPrice((prev) => !prev);
+							}}
+						>
+							{showPrice ? 'Hide' : 'View'}
+							{' '}
+							Details
+							<IcMArrowDown />
+						</Button>
+					)}
 
-				<Button
-					themeType="linkUi"
-					onClick={(e) => {
-						e.stopPropagation();
-						setShowPrice(!showPrice);
-					}}
-				>
-					{showPrice ? 'Hide' : 'View'}
-					{' '}
-					Details
-					<IcMArrowDown />
-				</Button>
 			</div>
 			{showPrice && <PriceBreakup details={detail} data={ratesBreakdown} />}
 		</div>

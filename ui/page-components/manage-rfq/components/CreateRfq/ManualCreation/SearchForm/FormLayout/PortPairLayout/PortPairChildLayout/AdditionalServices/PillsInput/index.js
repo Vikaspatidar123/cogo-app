@@ -1,4 +1,4 @@
-import { cl, Input } from '@cogoport/components';
+import { cl } from '@cogoport/components';
 import { IcMArrowRotateDown } from '@cogoport/icons-react';
 import { forwardRef } from 'react';
 
@@ -8,7 +8,6 @@ import getConfiguration from '@/ui/page-components/manage-rfq/configurations/Sea
 
 function PillInput(props, ref) {
 	const {
-		onFocus = () => {},
 		onClick = () => {},
 		value: modifiedValues = [],
 		showCaret = true,
@@ -17,7 +16,6 @@ function PillInput(props, ref) {
 		className = '',
 		action = '',
 		mode,
-		...rest
 	} = props;
 
 	const handleShowChips = () => {
@@ -63,13 +61,6 @@ function PillInput(props, ref) {
 						{modifiedValues.length === 0 && (
 							<div className={styles.placeholder}>Select Options</div>
 						)}
-
-						<Input
-							{...rest}
-							onFocus={onFocus}
-							onBlur={onFocus}
-							id="search_form_cargo_details_input"
-						/>
 					</div>
 
 					<div className={styles.util_div}>

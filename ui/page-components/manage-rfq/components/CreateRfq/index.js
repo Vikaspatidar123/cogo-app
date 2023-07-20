@@ -23,7 +23,7 @@ function CreateRfq() {
 
 	const [currentStep, setCurrentStep] = useState(Number(stage) || 1);
 
-	const { control, setValue, watch } = useForm({
+	const { control, setValue, watch, formState: { errors } } = useForm({
 		defaultValues: {
 			reason_type  : 'comparison',
 			request_type : 'manual_entry',
@@ -60,6 +60,7 @@ function CreateRfq() {
 						currentStep={currentStep}
 						setCurrentStep={setCurrentStep}
 						watchRequestType={watchRequestType}
+						errors={errors}
 					/>
 				</div>
 			</div>

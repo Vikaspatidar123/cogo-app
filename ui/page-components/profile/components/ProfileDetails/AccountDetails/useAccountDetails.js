@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useState, useMemo } from 'react';
 
 import getOptions from './utils/options-mapping';
@@ -6,11 +7,13 @@ import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 const useAccountDetails = () => {
+	const { t } = useTranslation(['settings']);
+
+	const { push } = useRouter();
+
 	const { query = {} } = useSelector((state) => state.general);
 
-	const router = useRouter();
-
-	const OPTIONS_MAPPING = getOptions();
+	const OPTIONS_MAPPING = getOptions({ t });
 
 	const [activeTab, setActiveTab] = useState(
 		query.activeTab || Object.keys(OPTIONS_MAPPING)[0],
@@ -21,11 +24,11 @@ const useAccountDetails = () => {
 
 		return options?.reduce(
 			(previousValues, currentOption) => {
-				const { key = '', title = '' } = currentOption;
+				const { key = '', title = '', icon = '' } = currentOption;
 
 				const newTabOptions = [
 					...(previousValues?.tabOptions || []),
-					{ key, title },
+					{ key, title, icon },
 				];
 
 				return {
@@ -39,7 +42,7 @@ const useAccountDetails = () => {
 
 	const handleChangeTab = (obj) => {
 		setActiveTab(obj);
-		if (obj !== activeTab) router.push(`/settings?activeTab=${obj}`);
+		if (obj !== activeTab) push(`/settings?activeTab=${obj}`);
 	};
 
 	return {

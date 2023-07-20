@@ -63,13 +63,14 @@ function UploadDocument({
 					disabled={!isEmpty(image_url)}
 				/>
 			</div>
-			<div>
+			<div className={styles.button_wrapper}>
 				<Button
 					themeType="accent"
 					onClick={addDocument}
 					loading={loading}
 					disabled={loading}
 					className={styles.button}
+					type="button"
 				>
 					{t('documents:documents_upload_button_label_2')}
 				</Button>

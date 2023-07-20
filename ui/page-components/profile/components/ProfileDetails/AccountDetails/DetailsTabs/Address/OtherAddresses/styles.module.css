@@ -15,7 +15,6 @@
 	justify-content: center;
 	padding: 0 14px;
 	cursor: pointer;
-	background: #f5fafe;
 }
 
 .body {
@@ -31,7 +30,7 @@
 	text-decoration-line: underline;
 	cursor: pointer;
 
-	@media (max-width: 767.99px) {
+	@media (max-width: 768px) {
 		font-size: 12px;
 	}
 }
@@ -41,7 +40,7 @@
 	font-weight: 600;
 	color: #2c3e50;
 
-	@media (max-width: 767.99px) {
+	@media (max-width: 768px) {
 		font-size: 12px;
 	}
 }
@@ -52,7 +51,7 @@
 
 .no_data {
 	font-size: 16px;
-	color: rgb(189 189 189);
+	color: #bdbdbd;
 }
 
 .empty {
@@ -67,7 +66,7 @@
 	display: flex;
 	align-items: center;
 
-	@media (max-width: 767.99px) {
+	@media (max-width: 768px) {
 		display: block;
 	}
 }

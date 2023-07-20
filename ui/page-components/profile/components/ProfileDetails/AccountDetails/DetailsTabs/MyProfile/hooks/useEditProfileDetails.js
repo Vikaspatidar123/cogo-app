@@ -1,5 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import getProfileControls from '../EditProfileDetails/get-profile-controls';
@@ -13,6 +15,8 @@ const useEditProfileDetails = ({
 	userDetails = {},
 	setShowEditProfileDetails = () => {},
 }) => {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		profile: { organization = {} },
 	} = useSelector((state) => state);
@@ -20,7 +24,7 @@ const useEditProfileDetails = ({
 	const dispatch = useDispatch();
 
 	const [errors, setErrors] = useState({});
-	const controls = getProfileControls({ userDetails });
+	const controls = getProfileControls({ userDetails, t });
 
 	const formProps = useForm();
 	const fields = controls;
@@ -36,6 +40,10 @@ const useEditProfileDetails = ({
 	);
 
 	const onCreate = async (values = {}) => {
+		const {
+			name = '', work_scopes = [], preferred_languages = [], picture = '',
+			date_of_birth = '',
+		} = values || {};
 		const alternate_mobile_numbers = [];
 		values.alternate_mobile_numbers?.forEach((alternate_mobile_number) => {
 			const { mobile_number = {} } = alternate_mobile_number;
@@ -54,20 +62,16 @@ const useEditProfileDetails = ({
 			const body = {
 				id                       : organization.id,
 				user_id                  : userDetails.id,
-				name                     : values.name || undefined,
-				// mobile_country_code      : values.phone_number.country_code || undefined,
-				// mobile_number            : values.phone_number.number || undefined,
-				work_scopes              : values.work_scopes || undefined,
-				preferred_languages      : values.preferred_languages || undefined,
-				picture                  : values.picture || undefined,
-				birth_date               : values.date_of_birth || undefined,
-				alternate_mobile_numbers : alternate_mobile_numbers.length
-					? alternate_mobile_numbers
-					: undefined,
+				name                     : name || undefined,
+				work_scopes              : work_scopes || undefined,
+				preferred_languages      : preferred_languages || undefined,
+				picture                  : picture || undefined,
+				birth_date               : date_of_birth || undefined,
+				alternate_mobile_numbers : alternate_mobile_numbers || undefined,
 			};
 
 			await trigger({ data: body });
-			Toast.success('Edit Successfully');
+			Toast.success(t('settings:edited_successfully_toast'));
 			dispatch(
 				setProfileStoreState({
 					...body,
@@ -103,7 +107,7 @@ const useEditProfileDetails = ({
 	}, {});
 
 	useEffect(() => {
-		if (userDetails.alternate_mobile_numbers?.length) {
+		if (!isEmpty(userDetails.alternate_mobile_numbers)) {
 			const alternate_mobile_numbers = [];
 
 			userDetails.alternate_mobile_numbers?.forEach(
@@ -132,7 +136,6 @@ const useEditProfileDetails = ({
 		handleSubmit,
 		onCreate,
 		onError,
-		// loading: updateUserAPI.loading,
 		loading,
 		setValue,
 	};

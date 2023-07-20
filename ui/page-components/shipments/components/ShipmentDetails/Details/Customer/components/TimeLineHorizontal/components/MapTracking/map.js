@@ -12,6 +12,11 @@ const LAYER = [
 	},
 ];
 
+const MAX_ZOOM = 12;
+const MIN_ZOOM = 1.5;
+const ZOOM = 2.9;
+const MAX_VISCOCITY = 1;
+
 const lineOptions = { color: '#f37166', weight: 2 };
 const remainingRoutelineOptions = { color: '#1867D2', weight: 2 };
 const center = { lat: '28.679079', lng: '77.069710' };
@@ -59,12 +64,12 @@ function MapComp({
 		<CogoMaps
 			style={{ height: `${heightVariable}`, width: '100%' }}
 			baseLayer={LAYER}
-			zoom={2.9}
-			minZoom={1.5}
+			zoom={ZOOM}
+			minZoom={MIN_ZOOM}
 			center={center_map}
 			setMap={setMap}
-			maxBoundsViscosity={1}
-			maxZoom={12}
+			maxBoundsViscosity={MAX_VISCOCITY}
+			maxZoom={MAX_ZOOM}
 		>
 			{markers?.length > 0
 				&& markers?.map((m) => (

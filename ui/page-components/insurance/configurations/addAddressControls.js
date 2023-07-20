@@ -1,4 +1,7 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import { getCountryIds } from '@/ui/commons/utils/getCountryDetails';
+
+const SUPPORTED_COUNTRY_CODE = GLOBAL_CONSTANTS.feature_supported_service.cargo_insurance.supported_countries;
 
 export const addAddressControls = [
 	{
@@ -33,7 +36,7 @@ export const addAddressControls = [
 		params      : {
 			filters: {
 				type       : 'pincode',
-				country_id : GLOBAL_CONSTANTS.country_ids.IN,
+				country_id : getCountryIds({ countryCodes: SUPPORTED_COUNTRY_CODE }),
 			},
 			includes: {
 				country                 : '',

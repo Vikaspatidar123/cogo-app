@@ -1,14 +1,17 @@
 import { Table, Pagination } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
-import columns from '../../config';
+import getColumns from '../../config';
 import Filters from '../Filters';
 
 import styles from './styles.module.css';
 
 function AllFiles({ data = {}, loading = false, filters = {}, setFilters = () => {} }) {
 	const { page = 1 } = filters || {};
-
 	const { total_count = 0, list = [] } = data || {};
+
+	const { t } = useTranslation(['documents']);
+	const columns = getColumns({ t });
 
 	return (
 		<div>

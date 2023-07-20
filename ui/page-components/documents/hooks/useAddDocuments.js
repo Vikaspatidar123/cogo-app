@@ -23,7 +23,7 @@ const useAddDocuments = ({
 			setDocumentDetails({ name: '' });
 			refetch(serviceType ? { service_type: serviceType } : {});
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 		}
 	};
 

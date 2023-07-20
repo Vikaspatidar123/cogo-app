@@ -1,13 +1,8 @@
 .container {
-	max-height: 100%;
-	overflow: scroll;
-	box-shadow:
-		0 12px 44px 0 #14142b57,
-		0 -2px 4px 0 #14142b1f,
-		0 3px 14px 0 #4a3aff08;
-
-	::-webkit-scrollbar {
-		display: none;
+	:global {
+		.ui_modal_scroll .ui_modal_body_container {
+			max-height: 444px;
+		}
 	}
 }
 
@@ -132,4 +127,15 @@
 
 .flex {
 	display: flex;
+}
+
+.total {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.finalTotal {
+	padding: 0 40px;
+	font-size: 16px;
+	font-weight: 500;
 }

@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next';
+
 import UploadDocument from '../UploadDocument';
 
 import ServiceWiseHeading from './ServiceWiseHeading';
@@ -15,9 +17,13 @@ function Heading({
 	setShowServiceList = () => {},
 	filters = {},
 }) {
+	const { t } = useTranslation(['documents']);
+
 	return (
 		<div className={styles.header}>
-			<div className={styles.title}>Quick Upload a Document</div>
+			<div className={styles.title}>
+				{t('documents:documents_heading')}
+			</div>
 
 			<UploadDocument
 				setShow={setShow}

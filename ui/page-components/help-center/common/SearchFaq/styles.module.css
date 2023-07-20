@@ -1,0 +1,52 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+.search_text {
+	font-size: 18px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.input_container {
+	width: 40%;
+	padding-top: 25px;
+
+	[data-tippy-root] {
+		width: 40%;
+		max-width: unset;
+	}
+}
+
+.search_icon {
+	width: 20px;
+	height: 20px;
+	fill: #221f20;
+}
+
+.title_container {
+	align-self: flex-start;
+	width: 93%;
+
+	[data-tippy-root] {
+		width: 55%;
+		max-width: unset;
+	}
+}
+
+.popover_container {
+	width: 100%;
+	max-width: unset;
+	padding: 0;
+
+	:global {
+		.tippy-content {
+			width: 100%;
+			padding: 0;
+		}
+	}
+}

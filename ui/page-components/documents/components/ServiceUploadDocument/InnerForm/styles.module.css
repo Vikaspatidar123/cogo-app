@@ -1,59 +1,59 @@
 .form {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  padding: 16px 16px 0 0;
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	padding: 16px 16px 0 0;
 
-  @media (max-width: 576px) {
-    flex-direction: column;
-  }
+	@media (max-width: 576px) {
+		flex-direction: column;
+	}
 }
 
 .form_group {
-  display: flex;
-  flex-basis: 30%;
-  flex-direction: column;
+	display: flex;
+	flex-basis: 30%;
+	flex-direction: column;
 
-  :global {
-    .ui_upload_droparea_container {
-      flex-direction: row;
-      min-height: 70px;
-      padding: 12px 18px;
-      margin-bottom: 0;
-    }
+	:global {
+		.ui_upload_droparea_container {
+			flex-direction: row;
+			min-height: 70px;
+			padding: 12px 18px;
+			margin-bottom: 0;
+		}
 
-    .ui_upload_droparea_subheading {
-      margin-left: 20px;
-      font-size: 8px;
-    }
-  }
+		.ui_upload_droparea_subheading {
+			margin-left: 20px;
+			font-size: 8px;
+		}
+	}
 }
 
 .input_group {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
 .error_message {
-  font-size: 10px;
-  color: #cb6464;
+	font-size: 10px;
+	color: #cb6464;
 }
 
 .label {
-  display: flex;
-  align-self: flex-start;
-  margin-bottom: 4px;
-  color: #4f4f4f;
+	display: flex;
+	align-self: flex-start;
+	margin-bottom: 4px;
+	color: #4f4f4f;
 }
 
 .inner_form {
-  border: 1px solid #ebebeb;
-  border-radius: 4px;
+	border: 1px solid #ebebeb;
+	border-radius: 4px;
 }
 
 .bottom_container {
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px 28px 20px 0;
+	display: flex;
+	justify-content: flex-end;
+	padding: 20px 28px 20px 0;
 }

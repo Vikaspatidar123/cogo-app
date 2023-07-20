@@ -18,6 +18,10 @@ module.exports = {
 			},
 			{
 				protocol : 'https',
+				hostname : 'cogoport-testing.sgp1.digitaloceanspaces.com',
+			},
+			{
+				protocol : 'https',
 				hostname : 'cdn.cogoport.io',
 			},
 			{
@@ -31,6 +35,10 @@ module.exports = {
 			{
 				protocol : 'https',
 				hostname : 'airline-images-cogoport.s3.ap-south-1.amazonaws.com',
+			},
+			{
+				protocol : 'https',
+				hostname : 'cogoport-testing.sgp1.digitaloceanspaces.com',
 			},
 		],
 	},

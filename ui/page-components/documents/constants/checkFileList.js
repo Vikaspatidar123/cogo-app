@@ -5,20 +5,20 @@ export const checkFileList = [
 		doc_type : 'kyc_docs',
 	},
 	{
-		doc_name : 'Pan of director(signed and stamp) ',
+		doc_name : 'Pan of director(signed and stamp)',
 		doc_type : 'kyc_docs',
 	},
 	{
-		doc_name : 'Aadhaar of director(signed and stamp) ',
+		doc_name : 'Aadhaar of director(signed and stamp)',
 		doc_type : 'kyc_docs',
 	},
 	{
-		doc_name    : 'IEC copy (signed and stamp) ',
+		doc_name    : 'IEC copy (signed and stamp)',
 		doc_type    : 'kyc_docs',
 		sample_link : 'https://cogoport-production.sgp1.digitaloceanspaces.com/c8cfaa65c6d3e59b38d13e0900985e18/IEC_format%20%281%29.png',
 	},
 	{
-		doc_name    : 'Gst registration (signed and stamp) ',
+		doc_name    : 'Gst registration (signed and stamp)',
 		doc_type    : 'company_tax_docs',
 		sample_link : 'https://cogoport-production.sgp1.digitaloceanspaces.com/95c72c88842372e66c57bbdf221ebeb5/GST-Registration-Certificate-Sample-Annexure-A%20%281%29.png',
 	},
@@ -28,12 +28,12 @@ export const checkFileList = [
 		sample_link : 'https://cogoport-production.sgp1.digitaloceanspaces.com/b0e35c0aa25953e5e08e5644cd396420/Certificate-Of-Incorporation.jpeg',
 	},
 	{
-		doc_name    : 'Memorandum & Article of association ',
+		doc_name    : 'Memorandum & Article of association',
 		doc_type    : 'company_registration_docs',
 		sample_link : 'https://cogoport-production.sgp1.digitaloceanspaces.com/02bdaad19978dbb68f367485bfe19bf2/MOA-AOA_sample%20template%20%281%29.png',
 	},
 	{
-		doc_name : 'Self-attested company/LLP master data.',
+		doc_name : 'Self-attested company/LLP master data',
 		doc_type : 'company_registration_docs',
 	},
 	{
@@ -57,7 +57,7 @@ export const checkFileList = [
 		sample_link : 'https://cogoport-production.sgp1.digitaloceanspaces.com/739799d6ba4ee67a4098765d32a67058/KYC%20%281%29%20%281%29.pdf',
 	},
 	{
-		doc_name : 'ITR of last 2 years of firm / Propreitor/Directors',
+		doc_name : 'ITR of last 2 years of firm/Propreitor/Directors',
 		doc_type : 'company_tax_docs',
 	},
 	{
@@ -74,7 +74,7 @@ export const checkFileList = [
 		doc_type : 'company_registration_docs',
 	},
 	{
-		doc_name : 'Address Proof i.e. Electricity Bill, Landline Telephone Bill, Rent Agreement etc.',
+		doc_name : 'Address Proof i.e. Electricity Bill, Landline Telephone Bill, Rent Agreement etc',
 		doc_type : 'kyc_docs',
 	},
 	{
@@ -83,7 +83,7 @@ export const checkFileList = [
 		sample_link : 'https://cogoport-production.sgp1.digitaloceanspaces.com/ab637cead9e949aada5115faf89871b4/Covering%20Letter-Request%20letter%20to%20Assis%3Adeputy%20commissionar.doc',
 	},
 	{
-		doc_name : 'Bank Statement of last 6 Months ',
+		doc_name : 'Bank Statement of last 6 Months',
 		doc_type : 'company_financial_docs',
 	},
 	{

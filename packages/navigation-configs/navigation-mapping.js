@@ -34,6 +34,9 @@ import {
 	IcARfq,
 } from '@cogoport/icons-react';
 
+// eslint-disable-next-line import/no-unresolved, import/extensions
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const navigationMappings = ({ t = () => { } }) => {
 	const translationKey = 'common:layouts_app_header_navigation';
 
@@ -147,12 +150,14 @@ const navigationMappings = ({ t = () => { } }) => {
 				isSubNavs   : true,
 				options     : [
 					{
-						key         : 'saas_premium_services-cogo_insurance',
-						title       : t(`${translationKey}_premium_services_options_insurance_label`),
-						href        : '/saas/insurance/list',
-						as          : '/saas/insurance/list',
-						icon        : <IcAInsurance width={55} height={55} fill="#fbd221" />,
-						description : t(`${translationKey}_premium_services_options_insurance_description`),
+						key              : 'saas_premium_services-cogo_insurance',
+						title            : t(`${translationKey}_premium_services_options_insurance_label`),
+						href             : '/saas/insurance/list',
+						as               : '/saas/insurance/list',
+						icon             : <IcAInsurance width={55} height={55} fill="#fbd221" />,
+						description      : t(`${translationKey}_premium_services_options_insurance_description`),
+						supportedCountry : GLOBAL_CONSTANTS.feature_supported_service
+							.cargo_insurance.supported_countries,
 
 					},
 					{

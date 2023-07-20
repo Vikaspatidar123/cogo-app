@@ -25,7 +25,7 @@ const useGetDocumentsList = ({ filters = {} }) => {
 				},
 			});
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 		}
 	}, [documentTypeFilter, page, query, trigger]);
 

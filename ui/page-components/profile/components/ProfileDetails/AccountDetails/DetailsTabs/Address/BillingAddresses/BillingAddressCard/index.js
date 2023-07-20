@@ -7,6 +7,8 @@ import AddEditPocDetails from '../../AddEditPocDetails';
 
 import styles from './styles.module.css';
 
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
 import getValue from '@/ui/commons/utils/getValue';
 
 function AddressCard({
@@ -22,6 +24,10 @@ function AddressCard({
 	const [showPocModal, setShowPocModal] = useState(null);
 
 	const [pocToUpdate, setPocToUpdate] = useState({});
+
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+	const ECO_ZONE_LABEL = geo.others.economic_zone.label;
 
 	const gstDocName = getValue(address, 'tax_number_document_url', '')
 		?.split('/')
@@ -73,12 +79,20 @@ function AddressCard({
 
 			<div className={styles.tax_details_container}>
 				<div className={styles.sub_container}>
-					<div className={styles.label_text}>GST Number</div>
+					<div className={styles.label_text}>
+						{REGISTRATION_LABEL}
+						{' '}
+						Number
+					</div>
 					<div className={styles.value_text}>{address.tax_number || '-'}</div>
 				</div>
 
 				<div className={styles.address_container}>
-					<div className={styles.label_text}>GST Proof</div>
+					<div className={styles.label_text}>
+						{REGISTRATION_LABEL}
+						{' '}
+						Proof
+					</div>
 
 					{address.tax_number_document_url ? (
 						<div className={styles.doc_container}>
@@ -105,7 +119,12 @@ function AddressCard({
 
 			<div className={styles.flex}>
 				<div className={styles.mobile_sub_container}>
-					<div className={styles.label_text}>Is your address SEZ?</div>
+					<div className={styles.label_text}>
+						Is your address
+						{' '}
+						{ECO_ZONE_LABEL}
+						?
+					</div>
 					<div className={styles.value_text}>
 						{address.is_sez ? 'Yes' : 'No'}
 					</div>

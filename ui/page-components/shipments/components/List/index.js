@@ -20,6 +20,7 @@ function ShipmentList() {
 		setCurrentTab,
 		currentTab,
 		config,
+		refetchListShipment,
 	} = useGetShipmentList(params);
 
 	const handleTabChange = (val) => {
@@ -32,6 +33,7 @@ function ShipmentList() {
 				total_page : 0,
 			});
 		}
+		refetchListShipment();
 	};
 	const renderTabPanel = () => {
 		if (loading) {

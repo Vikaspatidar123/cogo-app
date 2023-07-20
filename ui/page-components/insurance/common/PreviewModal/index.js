@@ -74,6 +74,7 @@ function PreviewModal({
 			size="lg"
 			scroll
 		>
+			<Modal.Header />
 			<Modal.Body>
 				<div className={styles.heading}>
 					<IcMFsea width={20} height={20} />
@@ -330,6 +331,7 @@ function PreviewModal({
 					)}
 				</div>
 			</Modal.Body>
+			<Modal.Footer />
 		</Modal>
 	);
 }

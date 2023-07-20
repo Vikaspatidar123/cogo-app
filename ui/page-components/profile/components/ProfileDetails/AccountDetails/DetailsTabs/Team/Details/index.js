@@ -1,4 +1,5 @@
 import { cl } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
@@ -12,26 +13,23 @@ function Details({ users = [] }) {
 	const { organization = {} } = profile || {};
 	const { kyc_status } = organization || {};
 
+	const KYC_MAPPING = {
+		verified : t('settings:settings_kyc_verified_text'),
+		rejected : t('settings:settings_kyc_rejcted_text'),
+		pending  : t('settings:settings_kyc_pending_text'),
+	};
+
 	return (
 		<div>
 			<div className={styles.name_container}>
 				<div className={styles.value_text_2}>{profile.name || '-'}</div>
 				<div>
-					{kyc_status === 'verified' && (
-						<div className={cl`${styles.verified} ${styles.kyc_status}`}>
-							{t('settings:settings_kyc_verified_text')}
-						</div>
-					)}
-					{kyc_status === 'rejected' && (
-						<div className={cl`${styles.rejected} ${styles.kyc_status}`}>
-							{t('settings:settings_kyc_rejcted_text')}
-						</div>
-					)}
-					{kyc_status?.includes('pending') && (
-						<div className={cl`${styles.pending} ${styles.kyc_status}`}>
-							{t('settings:settings_kyc_pending_text')}
-						</div>
-					)}
+					{['verified', 'rejected', 'pending'].includes(kyc_status)
+						? (
+							<div className={cl`${styles[`${kyc_status}`]} ${styles.kyc_status}`}>
+								{KYC_MAPPING.kyc_status}
+							</div>
+						) : null}
 				</div>
 			</div>
 			<div className={styles.name_container}>
@@ -39,12 +37,12 @@ function Details({ users = [] }) {
 					{t('settings:organization_my_team_text_1')}
 					{' '}
 					(
-					{users.length > 0 ? users.length : ''}
+					{!isEmpty(users) ? users.length : ''}
 					)
 				</div>
 
 				{(users || []).map((user) => (
-					<div className={styles.container}>
+					<div className={styles.container} key={`${user.name}_${user.mobile_number}`}>
 						<div className={styles.sub_container}>
 							<div className={styles.value_text}>
 								{t('settings:organization_my_team_text_2')}

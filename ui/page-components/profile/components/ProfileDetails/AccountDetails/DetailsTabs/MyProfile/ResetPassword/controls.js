@@ -10,7 +10,7 @@ const getControls = ({ t }) => [
 			required : t('settings:settings_field_required_text'),
 			pattern  : {
 				value   : patterns.PASSWORD.PASSWORD_PATTERN,
-				message : 'password is invalid',
+				message : t('settings:password_invalid_text'),
 			},
 		},
 	},

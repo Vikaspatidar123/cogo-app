@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function Details({ organizationData = {} }) {
 	const { t } = useTranslation(['settings']);
@@ -12,11 +13,10 @@ function Details({ organizationData = {} }) {
 			<div>
 				<div className={styles.heading}>{t('settings:organization_details_text_1')}</div>
 				<Image
-					src={organizationData.logo
-					// eslint-disable-next-line max-len
-					|| 'https:cogoport-production.sgp1.digitaloceanspaces.com/92f7f7340ff071a93fcacfca9956b32a/company-info-icon.svg'}
+					src={organizationData.logo || GLOBAL_CONSTANTS.image_url.company_logo}
 					width={64}
 					height={64}
+					alt="companyLogo"
 				/>
 			</div>
 			<div className={styles.container}>
@@ -59,7 +59,7 @@ function Details({ organizationData = {} }) {
 					<div>
 						<div className={styles.heading}>{t('settings:organization_details_text_6')}</div>
 						<div className={styles.value}>
-							{organizationData.branches?.[0].branch_name || '-'}
+							{organizationData.branches?.[GLOBAL_CONSTANTS.zeroth_index].branch_name || '-'}
 						</div>
 					</div>
 				</div>
@@ -67,7 +67,7 @@ function Details({ organizationData = {} }) {
 					<div>
 						<div className={styles.heading}>{t('settings:organization_details_text_7')}</div>
 						<div className={styles.value}>
-							{organizationData.branches?.[0].branch_code || '-'}
+							{organizationData.branches?.[GLOBAL_CONSTANTS.zeroth_index].branch_code || '-'}
 						</div>
 					</div>
 				</div>

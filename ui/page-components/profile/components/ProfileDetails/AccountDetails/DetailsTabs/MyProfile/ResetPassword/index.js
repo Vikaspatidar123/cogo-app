@@ -52,12 +52,14 @@ function ResetPassword({
 					onClick={handleSubmit(onSubmit, onErrors)}
 					disabled={loading}
 					loading={loading}
+					type="submit"
 				>
 					{t('settings:reset_password_button_label_1')}
 				</Button>
 				<Button
 					onClick={() => setShowPasswordModal(false)}
 					themeType="tertiary"
+					type="button"
 				>
 					{t('settings:edit_or_add_button_label_1')}
 				</Button>

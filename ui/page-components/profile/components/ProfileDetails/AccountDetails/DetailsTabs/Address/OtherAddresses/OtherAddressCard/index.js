@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { Modal, Button, cl } from '@cogoport/components';
 import { IcMEdit, IcMDocument } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
@@ -178,6 +177,7 @@ function OtherAddressCard({
 					}}
 					size="sm"
 					themeType="secondary"
+					type="button"
 				>
 					{t('settings:add_poc_button_label')}
 				</Button>

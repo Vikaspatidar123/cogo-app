@@ -63,6 +63,7 @@ function EditProfileDetails({
 					style={{
 						marginRight: 16,
 					}}
+					type="button"
 				>
 					{t('settings:edit_or_add_button_label_1')}
 				</Button>
@@ -71,6 +72,7 @@ function EditProfileDetails({
 					onClick={handleSubmit(onCreate, onError)}
 					size="sm"
 					themeType="accent"
+					type="submit"
 				>
 					{t('settongs:billing_details_update_label')}
 				</Button>

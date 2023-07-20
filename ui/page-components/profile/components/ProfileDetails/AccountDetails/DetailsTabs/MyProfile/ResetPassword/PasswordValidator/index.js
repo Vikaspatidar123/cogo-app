@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { IcCTick } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 
@@ -37,7 +36,8 @@ function PasswordValidator({ password = '' }) {
 			<div className={styles.title}>{t('settings:password_validator_heading')}</div>
 
 			<div className={styles.list}>
-				{Object.entries(VALID_PASSWORD_MAPPINGS)?.map(([key, value]) => {
+				{Object.entries(VALID_PASSWORD_MAPPINGS)?.map((item) => {
+					const value = item?.[1] || {};
 					const { pattern = null, message = '' } = value;
 					const regex = new RegExp(pattern);
 					const isValid = regex.test(password);

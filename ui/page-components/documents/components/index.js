@@ -10,6 +10,8 @@ import Heading from './Heading';
 import styles from './styles.module.css';
 import Uploader from './Uploader';
 
+const LOADING_ROWS_COUNT = 6;
+
 function Documents() {
 	const [filters, setFilters] = useState({});
 	const [show, setShow] = useState(false);
@@ -26,6 +28,7 @@ function Documents() {
 		refetch,
 		setDocumentDetails,
 	});
+
 	return (
 		<div>
 			<Heading
@@ -41,7 +44,7 @@ function Documents() {
 					columns={columns || []}
 					data={list || []}
 					loading={loading}
-					loadingRowsCount={6}
+					loadingRowsCount={LOADING_ROWS_COUNT}
 					className={styles.table}
 				/>
 			</div>

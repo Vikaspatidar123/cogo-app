@@ -78,6 +78,7 @@ function AddEditPocDetails({
 					onClick={handleSubmit(onCreate)}
 					size="sm"
 					themeType="primary"
+					type="submit"
 				>
 					{showPocModal === 'edit' ? t('settings:edit_or_add_button_label_2')
 						: t('settings:edit_or_add_button_label_3')}

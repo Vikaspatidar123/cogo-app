@@ -55,6 +55,7 @@ function AddressCard({
 					setAddressIdxToUpdate(index);
 					setMobalType(true);
 				}}
+				type="submit"
 			>
 				<div>{t('settings:edit_or_add_button_label_2')}</div>
 				<IcMEdit height={14} width={14} style={{ marginLeft: '3px' }} />

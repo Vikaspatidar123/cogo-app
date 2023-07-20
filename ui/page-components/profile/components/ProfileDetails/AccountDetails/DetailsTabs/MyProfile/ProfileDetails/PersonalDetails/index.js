@@ -1,5 +1,5 @@
 import { Button } from '@cogoport/components';
-import { startCase } from '@cogoport/utils';
+import { isEmpty, startCase } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
@@ -35,7 +35,7 @@ function PersonalDetails({ userDetails = {}, renderWorkScopes = () => {}, setSho
 								? (
 									<div className={styles.flex}>
 										{ userDetails.preferred_languages?.map((lang, index) => (
-											<div className={styles.language_tag}>
+											<div className={styles.language_tag} key={lang}>
 												{startCase(lang)}
 												{index < userDetails.preferred_languages.length - 1 ? ',' : ''}
 												{'  '}
@@ -73,11 +73,12 @@ function PersonalDetails({ userDetails = {}, renderWorkScopes = () => {}, setSho
 					<div>
 						<div className={styles.heading}>{t('settings:personal_information_label_7')}</div>
 						<div className={styles.value}>
-							{userDetails.alternate_mobile_numbers?.length > 0
+							{!isEmpty(userDetails.alternate_mobile_numbers)
 								? userDetails.alternate_mobile_numbers?.map(
 									(mobile_number) => (
 										<div
 											className={styles.value_text}
+											key={mobile_number}
 										>
 											{`${mobile_number.mobile_country_code}
 												${mobile_number.mobile_number}`}

@@ -8,7 +8,6 @@ function Heading({
 }) {
 	return (
 		<div className={styles.header}>
-			{/* <div className={styles.title}>Quick Upload a Document</div> */}
 			<UploadDocument
 				setShow={setShow}
 				documentDetails={documentDetails}

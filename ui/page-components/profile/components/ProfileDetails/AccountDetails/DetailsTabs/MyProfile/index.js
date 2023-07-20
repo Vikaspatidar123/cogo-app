@@ -56,7 +56,7 @@ function MyProfile() {
 			<div className={styles.main_container}>
 				{!showEditProfileDetails ? (
 					<div className={styles.flex}>
-						<Button themeType="secondary" onClick={() => setShowEditProfileDetails(true)}>
+						<Button themeType="secondary" onClick={() => setShowEditProfileDetails(true)} type="button">
 							<div>{t('settings:edit_or_add_button_label_2')}</div>
 							<IcMEdit
 								width={14}
@@ -72,7 +72,7 @@ function MyProfile() {
 						{t('settings:my_profile_heading_text')}
 					</div>
 					{!showEditProfileDetails ? (
-						<Button themeType="secondary" onClick={() => setShowEditProfileDetails(true)}>
+						<Button themeType="secondary" onClick={() => setShowEditProfileDetails(true)} type="button">
 							<div>{t('settings:edit_or_add_button_label_2')}</div>
 							<IcMEdit
 								width={14}

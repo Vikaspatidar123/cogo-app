@@ -70,11 +70,12 @@ function EditBillingAddress({
 					style={{
 						marginRight: 16,
 					}}
+					type="button"
 				>
 					{t('settings:edit_or_add_button_label_1')}
 				</Button>
 
-				<Button disabled={loading} onClick={handleSubmit(onCreate)}>
+				<Button disabled={loading} onClick={handleSubmit(onCreate)} type="submit">
 					{mobalType ? t('settings:billing_details_update_label') : t('settings:billing_details_add_label')}
 				</Button>
 			</Modal.Footer>

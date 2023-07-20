@@ -61,6 +61,8 @@ const IMAGE_URLS = {
 	clock_image      : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/green_clock.svg',
 	road_map_image   : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/road-map.svg',
 	pay_later_widget : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/newadd.svg',
+	company_logo:
+	'https:cogoport-production.sgp1.digitaloceanspaces.com/92f7f7340ff071a93fcacfca9956b32a/company-info-icon.svg',
 
 };
 

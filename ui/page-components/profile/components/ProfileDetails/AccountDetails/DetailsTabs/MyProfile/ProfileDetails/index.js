@@ -14,6 +14,12 @@ function ProfileDetails({ userDetails = {}, renderWorkScopes = () => {}, setShow
 	const { organization = {} } = profile || {};
 	const { kyc_status } = organization || {};
 
+	const KYC_MAPPING = {
+		verified : t('settings:settings_kyc_verified_text'),
+		rejected : t('settings:settings_kyc_rejcted_text'),
+		pending  : t('settings:settings_kyc_pending_text'),
+	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.name_container}>
@@ -32,21 +38,12 @@ function ProfileDetails({ userDetails = {}, renderWorkScopes = () => {}, setShow
 				<div>
 					<div className={styles.value_text}>{userDetails.name || '-'}</div>
 					<div>
-						{kyc_status === 'verified' && (
-							<div className={cl`${styles.verified} ${styles.kyc_status}`}>
-								{t('settings:settings_kyc_verified_text')}
-							</div>
-						)}
-						{kyc_status === 'rejected' && (
-							<div className={cl`${styles.rejected} ${styles.kyc_status}`}>
-								{t('settings:settings_kyc_rejcted_text')}
-							</div>
-						)}
-						{kyc_status?.includes('pending') && (
-							<div className={cl`${styles.pending} ${styles.kyc_status}`}>
-								{t('common:settings_kyc_pending_text')}
-							</div>
-						)}
+						{['verified', 'rejected', 'pending'].includes(kyc_status)
+							? (
+								<div className={cl`${styles[`${kyc_status}`]} ${styles.kyc_status}`}>
+									{KYC_MAPPING.kyc_status}
+								</div>
+							) : null}
 					</div>
 				</div>
 			</div>

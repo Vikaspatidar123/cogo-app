@@ -96,6 +96,7 @@ function BillingAddresses({
 									setShowEditBillingAddress(true);
 									setMobalType(false);
 								}}
+								type="button"
 							>
 								{t('settings:add_address_button_label')}
 							</Button>
@@ -118,7 +119,6 @@ function BillingAddresses({
 					<EditBillingAddress
 						handleCloseModal={handleCloseModal}
 						organizationBillingAddressesList={organizationBillingAddressesList}
-						// getOrganizationBillingAddress={getOrganizationBillingAddress}
 						addressIdxToUpdate={addressIdxToUpdate}
 						organizationType={organizationType}
 						mobalType={mobalType}

@@ -4,6 +4,7 @@ import {
 	IcMArrowRotateRight,
 	IcMFtaskNotCompleted,
 } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
@@ -85,6 +86,7 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 									!ps[address_key.api_property_key],
 							}))}
 							role="presentation"
+							key={address_key.api_property_key}
 						>
 							{showData[address_key.api_property_key] ? (
 								<IcMArrowRotateDown width={20} height={15} style={{ transform: 'rotate(180deg)' }} />
@@ -129,7 +131,7 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 				</div>
 			))}
 
-			{(!!editOtherAddresKey || Object.keys(otherAddressObjToUpdate).length !== 0) && (
+			{(!!editOtherAddresKey || !isEmpty(Object.keys(otherAddressObjToUpdate))) && (
 				<Modal
 					show={!!editOtherAddresKey || Object.keys(otherAddressObjToUpdate).length !== 0}
 					onClose={handleCloseModal}

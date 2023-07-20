@@ -59,6 +59,7 @@ function EditOtherAddress({
 					}}
 					themeType="secondary"
 					disabled={loading}
+					type="submit"
 				>
 					{t('settings:edit_or_add_button_label_1')}
 				</Button>
@@ -67,6 +68,7 @@ function EditOtherAddress({
 					disabled={loading}
 					onClick={handleSubmit(onCreate)}
 					themeType="primary"
+					type="submit"
 				>
 					{mobalType ? t('settings:billing_details_update_label') : t('settings:billing_details_add_label')}
 				</Button>

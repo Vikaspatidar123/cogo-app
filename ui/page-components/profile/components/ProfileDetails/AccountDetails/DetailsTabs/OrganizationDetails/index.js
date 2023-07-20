@@ -39,7 +39,11 @@ function OrganizationDetails() {
 					</div>
 
 					{!showEditOrganizationDetails ? (
-						<Button onClick={() => setShowEditOrganizationDetails(true)} themeType="secondary">
+						<Button
+							onClick={() => setShowEditOrganizationDetails(true)}
+							themeType="secondary"
+							type="button"
+						>
 							<div>{t('settings:edit_or_add_button_label_2')}</div>
 							<IcMEdit
 								style={{ width: 16, height: 16, marginLeft: '5px' }}

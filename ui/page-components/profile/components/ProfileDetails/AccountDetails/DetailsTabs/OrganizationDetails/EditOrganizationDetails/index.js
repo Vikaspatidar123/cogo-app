@@ -56,6 +56,7 @@ function EditOrganizationDetails({
 						marginRight: 16,
 					}}
 					onClick={() => setShowEditOrganizationDetails(false)}
+					type="button"
 				>
 					{t('settings:edit_or_add_button_label_1')}
 				</Button>
@@ -63,6 +64,7 @@ function EditOrganizationDetails({
 					size="md"
 					disabled={loading}
 					onClick={handleSubmit(onCreate, onError)}
+					type="submit"
 				>
 					{t('settings:billing_details_update_label')}
 				</Button>

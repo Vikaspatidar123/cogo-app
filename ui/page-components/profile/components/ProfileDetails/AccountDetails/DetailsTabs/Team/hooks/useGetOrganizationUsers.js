@@ -5,9 +5,9 @@ import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 
 const useGetOrganizationUsers = () => {
-	const { profile } = useSelector((state) => state);
-
 	const router = useRouter();
+
+	const { profile } = useSelector((state) => state);
 
 	const onClickBackButton = () => {
 		router.push('/settings');

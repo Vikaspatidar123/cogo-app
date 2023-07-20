@@ -1,18 +1,28 @@
-import { Avatar } from '@cogoport/components';
+import { Avatar, cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function UserDetails() {
+	const { t } = useTranslation(['settings']);
+
 	const { profile } = useSelector((state) => state);
 	const { organization = {} } = profile || {};
 	const { kyc_status } = organization || {};
 
+	const KYC_MAPPING = {
+		verified : t('settings:settings_kyc_verified_text'),
+		rejected : t('settings:settings_kyc_rejcted_text'),
+		pending  : t('settings:settings_kyc_pending_text'),
+	};
+
 	return (
 		<div className={styles.container}>
 			<Avatar
-				src="https://www.w3schools.com/howto/img_avatar.png"
+				src={GLOBAL_CONSTANTS.image_url.cogoport_avatar}
 				alt="img"
 				disabled={false}
 				size="48px"
@@ -23,25 +33,14 @@ function UserDetails() {
 				</div>
 				<div className={styles.id}>
 					<span className="kyc_status">
-						{kyc_status === 'verified' && (
-							<div className={styles.verified}>
-								KYC Verified
-								{/* <VerifiedIcon style={{ marginLeft: 4 }} /> */}
-							</div>
-						)}
-						{kyc_status === 'rejected' && (
-							<div className={styles.rejected}>
-								KYC Rejected
-								{/* <RejectedIcon style={{ marginLeft: 4 }} /> */}
-							</div>
-						)}
-
-						{kyc_status?.includes('pending') && (
-							<div className={styles.pending}>
-								KYC Pending
-								{/* <PendingIcon style={{ marginLeft: 4 }} /> */}
-							</div>
-						)}
+						<div>
+							{['verified', 'rejected', 'pending'].includes(kyc_status)
+								? (
+									<div className={cl`${styles[`${kyc_status}`]} ${styles.kyc_status}`}>
+										{KYC_MAPPING[kyc_status]}
+									</div>
+								) : null}
+						</div>
 					</span>
 				</div>
 			</div>

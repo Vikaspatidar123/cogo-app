@@ -38,8 +38,8 @@ function AccountDetails() {
 						className={styles.main_container}
 					>
 						{(tabOptions || []).map((option) => {
-							const { key = '', title = '' } = option;
-							return <TabPanel key={key} name={key} title={title} />;
+							const { key = '', title = '', icon = '' } = option;
+							return <TabPanel key={key} name={key} title={title} icon={icon} />;
 						})}
 					</Tabs>
 				</div>

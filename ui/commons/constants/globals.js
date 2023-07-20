@@ -210,6 +210,7 @@ const GLOBAL_CONSTANTS = {
 		image_extension: /\.(jpg|jpeg|png|gif|svg)$/i,
 
 	},
+	PROFILE_NAVIGATIONS: ['saas_cogo_subscription', 'saas_finance'],
 };
 
 export default GLOBAL_CONSTANTS;

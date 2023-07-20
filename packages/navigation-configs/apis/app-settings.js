@@ -294,6 +294,16 @@ const app_settings = [
 		access_type  : 'private',
 		service_name : 'user',
 	},
+	{
+		api          : 'list_organization_documents',
+		access_type  : 'private',
+		service_name : 'organization',
+	},
+	{
+		api          : 'create_organization_document',
+		access_type  : 'private',
+		service_name : 'organization',
+	},
 ];
 
 export default app_settings;

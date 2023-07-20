@@ -1,4 +1,4 @@
-export const TRANSPORT_MAPPING = {
-	ocean : 'SEA',
-	air   : 'AIR',
-};
+export const getTransportMapping = ({ t }) => ({
+	ocean : t('importExportControls:sea'),
+	air   : t('importExportControls:uppercase_air'),
+});

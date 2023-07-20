@@ -164,6 +164,11 @@
 		color: #fff;
 	}
 
+	.button {
+		color: #fff !important;
+		background-color: #db4634 !important;
+	}
+
 	.head_text {
 		color: #fff;
 	}

@@ -33,7 +33,7 @@ function Checkout() {
 	const { profile } = useSelector((s) => s);
 
 	const [plan, setPlan] = useState({});
-	const [datePickerValue, setDatePickerValue] = useState({});
+	const [datePickerValue, setDatePickerValue] = useState(new Date());
 	const [addresses, setAddresses] = useState([]);
 	const [checkoutResponse, setCheckoutResponse] = useState({});
 	const [addressWithoutGst, setAddressWithoutGst] = useState([]);

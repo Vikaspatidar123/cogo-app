@@ -17,28 +17,30 @@ const useGetBillingAddress = () => {
 		method : 'get',
 	}, { manual: true });
 
-	const getAddress = async () => {
+	const getAddress = () => {
 		try {
-			await trigger({
+			trigger({
 				params: {
 					filters: { organization_branch_id: profile.branch.id },
 				},
 			});
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
-	const getAdd = async () => {
+
+	const getAdd = () => {
 		try {
-			await triggerAddress({
+			triggerAddress({
 				params: {
 					filters: { organization_branch_id: profile.branch.id },
 				},
 			});
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
+
 	useEffect(() => {
 		getAddress();
 		getAdd();

@@ -60,13 +60,17 @@ const useEditBillingAddress = ({
 		fields?.map((item) => setValue(
 			item?.name,
 			item?.mode === 'poc'
-				? valuesToPrefill?.organization_pocs?.[0]?.[MAPPING[item.name]]
+				? valuesToPrefill?.organization_pocs?.[0]?.[
+					MAPPING[item.name]
+				]
 				: valuesToPrefill[item.name],
 		));
 		const phone_number = {
-			number: valuesToPrefill?.organization_pocs?.[0]?.mobile_number || '',
+			number:
+                valuesToPrefill?.organization_pocs?.[0]?.mobile_number || '',
 			country_code:
-        valuesToPrefill?.organization_pocs?.[0]?.mobile_country_code || '',
+                valuesToPrefill?.organization_pocs?.[0]?.mobile_country_code
+                || '',
 		};
 		if (mobalType) setValue('phone_number', phone_number);
 		const tax_number_document_url = {
@@ -108,13 +112,16 @@ const useEditBillingAddress = ({
 				data: {
 					...prop,
 					poc_details,
-					tax_number_document_url : tax_number_document_url || undefined,
-					sez_proof               : sez_proof || undefined,
+					tax_number_document_url:
+                        tax_number_document_url || undefined,
+					sez_proof : sez_proof || undefined,
 					is_sez,
-					id                      : mobalType ? valuesToPrefill?.id : undefined,
+					id        : mobalType ? valuesToPrefill?.id : undefined,
 				},
 			});
-			Toast.success(t('settings:billing_details_successfully_updated_toast'));
+			Toast.success(
+				t('settings:billing_details_successfully_updated_toast'),
+			);
 			getAddress();
 			handleCloseModal(false);
 		} catch (err) {

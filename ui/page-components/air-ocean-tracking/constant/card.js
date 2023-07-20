@@ -22,6 +22,16 @@ export const SEVERITY_MAPPING = {
 	},
 };
 
+const OCEAN_MILESTONE_ICON = {
+	VESSEL : GLOBAL_CONSTANTS.image_url.ship_icon,
+	TRUCK  : GLOBAL_CONSTANTS.image_url.truck_icon,
+	RAIL   : GLOBAL_CONSTANTS.image_url.truck_icon,
+};
+
+const AIR_MILESTONE_ICON = {
+	AIR: GLOBAL_CONSTANTS.image_url.air_icon2,
+};
+
 const getMappingObject = ({ t }) => {
 	const OCEAN_TITLE_MAPPING = {
 		CONTAINER_NO       : t('airOceanTracking:tracking_card_mapping_label_1'),
@@ -49,16 +59,6 @@ const getMappingObject = ({ t }) => {
 	const AIR_POC = {
 		shipper   : t('airOceanTracking:tracking_card_mapping_label_8'),
 		consignee : t('airOceanTracking:tracking_card_mapping_label_9'),
-	};
-
-	const OCEAN_MILESTONE_ICON = {
-		VESSEL : GLOBAL_CONSTANTS.image_url.ship_icon,
-		TRUCK  : GLOBAL_CONSTANTS.image_url.truck_icon,
-		RAIL   : GLOBAL_CONSTANTS.image_url.truck_icon,
-	};
-
-	const AIR_MILESTONE_ICON = {
-		AIR: GLOBAL_CONSTANTS.image_url.air_icon2,
 	};
 
 	return {

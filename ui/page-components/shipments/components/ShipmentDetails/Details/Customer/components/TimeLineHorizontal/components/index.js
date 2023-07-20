@@ -34,58 +34,10 @@ function TrackerInfomation({
 	const [selectedMilestonesList, setSelectedMilestonesList] = useState([]);
 	const [preditiveEta, setPreditiveEta] = useState({});
 	const [vesselName, setVesselName] = useState('');
-	const { getRoute, routeLoading } = useGetAllOceanRoutes({});
-
-	const [{ loading:apiloading }, trigger1] = useRequest({
-		url        : 'get_container_sea_route',
-		method     : 'post',
-		autoCancel : false,
-	}, { manual: true });
+	const { routeLoading, getAllOceanRoutes } = useGetAllOceanRoutes({ setMapPoints });
 
 	const isTrackerEmpty = trackerDetails?.tracking_status !== 'Found';
-	const getAllOceanRoutes = async (ocean_data) => {
-		try {
-			const container_no = ocean_data.container_details
-				.map((c) => c.container_no)
-				.flat();
-			const request_data = {
-				saas_container_subscriptions: [
-					{
-						saas_container_subscription_id : ocean_data.id,
-						type                           : ocean_data.type,
-						container_no,
-					},
-				],
-			};
-			const res = await trigger1({ data: request_data });
-			const { hasError } = res || [];
-			if (hasError) throw new Error();
-			else if (res.data?.length) {
-				container_no.map(async (c) => {
-					const container = res.data.filter((r) => r.container_no === c);
-					if (container.length > 0) {
-						const pre_points = container.map((a) => a.data).flat();
-						const coordinates = {
-							originLatLng      : pre_points?.[0],
-							destinationLatLng : pre_points?.[pre_points.length - 1],
-						};
-						const routeArr = await getRoute({ coordinates });
-						setMapPoints((prevPoints) => [
-							...prevPoints,
-							{
-								container_no : c,
-								route        : routeArr || pre_points,
-							},
-						]);
-					}
-					return true;
-				});
-			}
-			return res.data;
-		} catch (err) {
-			return [];
-		}
-	};
+
 	const [{ loading:loading2 }, trigger2] = useRequest({
 		url    : `get_saas_container_subscription?id=${id}`,
 		method : 'get',
@@ -103,7 +55,7 @@ function TrackerInfomation({
 				...trackerData,
 				data: trackerData?.data,
 			});
-			getAllOceanRoutes(trackerData);
+			getAllOceanRoutes({ ocean_data: trackerData });
 			setSelectedContainerId(trackerData?.container_number);
 		} catch (err) {
 			if (err.message !== 'canceled') {
@@ -123,7 +75,7 @@ function TrackerInfomation({
 		<div className={styles.container}>
 			<MapAndDetails
 				setQuickAction={setQuickAction}
-				mapLoading={loading2 || loading || apiloading || routeLoading}
+				mapLoading={loading2 || loading || routeLoading}
 				isTrackerEmpty={isTrackerEmpty}
 				mapPoints={mapPoints}
 				trackerDetails={trackerDetails}

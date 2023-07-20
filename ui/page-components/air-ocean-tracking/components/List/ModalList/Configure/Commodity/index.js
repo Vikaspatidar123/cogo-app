@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import getCommodityControls from '../../../../../configuration/commodityControls';
+import getMappingObject from '../../../../../constant/card';
 import useCreateShipment from '../../../../../hooks/useCreateShipment';
 
 import styles from './styles.module.css';
@@ -11,13 +12,16 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function Commodity({ closeHandler, shipmentId = '', refetchTrackerList, shipmentInfo = {} }) {
+function Commodity({ closeHandler, shipmentId = '', refetchTrackerList, shipmentInfo = {}, activeTab }) {
 	const { hs_code = '' } = shipmentInfo || {};
 
 	const { t } = useTranslation(['common', 'airOceanTracking']);
 
-	const commodityControls = getCommodityControls({ t });
 	const [commodityValue, setCommodityValue] = useState('');
+
+	const commodityControls = getCommodityControls({ t });
+	const MAPPING_OBJ = getMappingObject({ t });
+	const { TRACKER_ID_KEY } = MAPPING_OBJ[activeTab];
 
 	const { control, handleSubmit, setValue, formState:{ errors } } = useForm({
 		defaultValues: {
@@ -25,13 +29,13 @@ function Commodity({ closeHandler, shipmentId = '', refetchTrackerList, shipment
 		},
 	});
 
-	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler, refetchTrackerList });
+	const { loading, updateTrackerInfo } = useCreateShipment({ closeHandler, refetchTrackerList, activeTab });
 
 	const onSubmit = () => {
 		const payload = {
-			commodity                      : commodityValue?.description,
-			hs_code                        : commodityValue?.hsCode,
-			saas_container_subscription_id : shipmentId,
+			commodity        : commodityValue?.description,
+			hs_code          : commodityValue?.hsCode,
+			[TRACKER_ID_KEY] : shipmentId,
 		};
 		updateTrackerInfo({ payload });
 	};

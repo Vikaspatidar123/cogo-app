@@ -1,4 +1,10 @@
-.main_container {
+.empty {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.container {
 	padding: 8px;
 	background: #fff;
 	box-shadow: 0 1px 6px rgb(190 209 237 / 65%);
@@ -7,18 +13,6 @@
 		all: unset;
 		margin: 0 -12px;
 		background: #fff;
-	}
-}
-
-.header_container {
-	padding-block: 12px;
-	font-size: 16px;
-	font-weight: 500;
-	color: #2c3e50;
-	border-bottom: 1px solid #cddbff;
-
-	@media (max-width: 768px) {
-		display: none;
 	}
 }
 
@@ -31,5 +25,11 @@
 .card {
 	display: flex;
 	justify-content: space-between;
+	width: 100%;
+}
+
+.empty_container {
+	display: flex;
+	justify-content: center;
 	width: 100%;
 }

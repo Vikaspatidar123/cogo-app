@@ -21,18 +21,6 @@
 	justify-content: flex-end;
 }
 
-.wrapper {
-	display: flex;
-	justify-content: center;
-	padding: 10px;
-	padding-top: 0;
-}
-
-.wrapper .loader {
-	width: 500px !important;
-	height: 400px !important;
-}
-
 .line {
 	width: 44%;
 	height: 3px;
@@ -64,4 +52,8 @@
 	line-height: 27px;
 	color: #000;
 	text-align: center;
+}
+
+.extended_padding {
+	padding: 40px;
 }

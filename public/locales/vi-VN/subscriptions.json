@@ -93,6 +93,16 @@
     "plan_text":"Kế hoạch",
     "now_text":"Hiện nay?",
     "panding_message":"Treo lên!Kích hoạt kế hoạch của bạn ...",
+    "payment_due_text":"Thanh toán đến hạn",
+    "payment_failed_status_text":"Xin lỗi, nhưng khoản thanh toán của bạn đã thất bại.Vui lòng đảm bảo rằng các chi tiết thanh toán là chính xác và thử lại.",
+    "payment_pending_status_text":"Cảm ơn bạn đã thanh toán!Chúng tôi đã nhận được nó và sẽ sớm kích hoạt đăng ký của bạn.Nếu bạn cần sửa đổi bất kỳ chi tiết đăng ký nào, xin vui lòng cho chúng tôi biết và chúng tôi sẽ sẵn lòng hỗ trợ bạn.",
     "feature_text":"Tính năng",
-    "limited_text":"Giới hạn"
+    "limited_text":"Giới hạn",
+    "payment_failed_text":"Thanh toán không thành công",
+    "attempt_number_failed_text":
+    "Khoản phí cố gắng cuối cùng của chúng tôi đã không thành công. Đăng ký của bạn sẽ tự động bị hủy sau 3 lần thử thất bại. Quản trị viên liên lạc để cập nhật thanh toán.",
+    "recurring_communication_text_1":"Chúng tôi rất vui mừng khi có bạn là một thành viên có giá trị của cộng đồng của chúng tôi.",
+    "recurring_communication_text_2":"Với kế hoạch đăng ký này, bạn sẽ có quyền truy cập vào các tính năng và nội dung độc quyền trên",
+    "recurring_communication_text_3":"cơ sở cho đến khi bạn quyết định hủy bỏ.",
+    "recurring_communication_text_4":"Tận hưởng sự tiện lợi của thanh toán tự động, đảm bảo quyền truy cập không bị gián đoạn vào các dịch vụ hàng đầu của chúng tôi."
 }

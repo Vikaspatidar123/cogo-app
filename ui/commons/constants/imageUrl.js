@@ -76,8 +76,11 @@ const IMAGE_URLS = {
 		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/reshot-icon-checklist-YUWL2XGFTQ%202.png',
 	custom_hover_image:
 		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/reshot-icon-checklist-YUWL2XGFTQ%201.svg',
-	cogoport_avatar : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/avatar-placeholder.webp',
-	empty_url       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty-item.svg',
+	cogoport_avatar           : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/avatar-placeholder.webp',
+	spinner_loader            : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-spinner.svg',
+	logo_without_footer       : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/logo-cogoport.svg',
+	create_ticket_empty_state : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/empty-state.svg',
+	empty_url                 : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty-item.svg',
 };
 
 export default IMAGE_URLS;

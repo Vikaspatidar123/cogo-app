@@ -2,6 +2,9 @@ import { isEmpty } from '@cogoport/utils';
 
 import { useRequest } from '@/packages/request';
 
+const LAT_INDEX = 1;
+const LNG_INDEX = 0;
+
 const useGetAllOceanRoutes = ({ setMapPoints }) => {
 	const [{ loading }, trigger] = useRequest({
 		url    : '/get_multiple_sea_routes',
@@ -81,7 +84,7 @@ const useGetAllOceanRoutes = ({ setMapPoints }) => {
 
 						const prePoint = (container || [])
 							.flatMap((a) => a?.data)
-							.map((pt) => [pt[1], pt[0]]);
+							.map((pt) => [pt[LAT_INDEX], pt[LNG_INDEX]]);
 
 						const isRouteAvaliable = promiseValue?.[index]?.status === 'fulfilled'
 							&& promiseValue?.[index]?.value;

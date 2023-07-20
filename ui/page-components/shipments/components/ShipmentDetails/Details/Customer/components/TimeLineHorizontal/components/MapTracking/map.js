@@ -73,7 +73,7 @@ function MapComp({
 			maxZoom={MAX_ZOOM}
 		>
 			{!isEmpty(markers) ? markers?.map((m) => (
-				<Pointer lat={m.lat} lng={m.lng} iconSvg="point" map={map} />
+				<Pointer key={`${m.lat}_${m.lng}`} lat={m.lat} lng={m.lng} iconSvg="point" map={map} />
 			)) : null}
 
 			{!isEmpty(curvePoints) ? (

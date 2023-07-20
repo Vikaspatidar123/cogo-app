@@ -18,8 +18,7 @@ function ContactDetails() {
 				<div className={styles.label_text}>{t('settings:settings_mobile_number_label')}</div>
 				<div className={styles.value_text}>
 					{profile.mobile_number
-						? `${profile.mobile_country_code
-						} ${profile.mobile_number}`
+						? `${profile.mobile_country_code} ${profile.mobile_number}`
 						: '-'}
 				</div>
 			</div>
@@ -29,8 +28,7 @@ function ContactDetails() {
 					<div className={styles.label_text}>{t('settings:settings_whatsapp_number_label')}</div>
 					<div className={styles.value_text}>
 						{profile.whatsapp_number
-							? `${profile.whatsapp_country_code
-							} ${profile.whatsapp_number}`
+							? `${profile.whatsapp_country_code} ${profile.whatsapp_number}`
 							: '-'}
 					</div>
 				</div>

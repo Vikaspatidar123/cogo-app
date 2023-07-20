@@ -8,6 +8,7 @@ const country_code = data?.map((x) => ({
 	label : x.mobile_country_code,
 	value : x.mobile_country_code,
 }));
+
 const country = data?.map((item) => ({
 	label: (
 		<div className={styles.country}>

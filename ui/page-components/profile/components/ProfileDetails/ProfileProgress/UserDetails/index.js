@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function UserDetails() {
 	const { t } = useTranslation(['settings']);
@@ -21,7 +22,7 @@ function UserDetails() {
 	return (
 		<div className={styles.container}>
 			<Avatar
-				src="https://www.w3schools.com/howto/img_avatar.png"
+				src={GLOBAL_CONSTANTS.image_url.cogoport_avatar}
 				alt="img"
 				disabled={false}
 				size="48px"

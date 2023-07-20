@@ -4,6 +4,7 @@ import {
 	IcMArrowRotateRight,
 	IcMFtaskNotCompleted,
 } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
@@ -34,7 +35,7 @@ function BillingAddresses({
 		setAddressIdxToUpdate(null);
 	};
 	function RenderBillingAddress() {
-		if (!organizationBillingAddressesList.length) {
+		if (isEmpty(organizationBillingAddressesList)) {
 			return (
 				<div className={styles.empty}>
 					<IcMFtaskNotCompleted width={40} height={40} />
@@ -49,6 +50,7 @@ function BillingAddresses({
 				address={address}
 				setMobalType={setMobalType}
 				getAddress={getAddress}
+				key={address.name}
 			/>
 		));
 	}

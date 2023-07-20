@@ -38,7 +38,7 @@ function MobileVerification({ type = '' }) {
 						{controls.map((item) => {
 							const ELEMENT = getField(item.type);
 							return (
-								<div>
+								<div key={item.name}>
 									<div className={styles.lable}>{item.label}</div>
 									<ELEMENT {...item} control={control} />
 									<div className={styles.errors}>

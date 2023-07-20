@@ -14,6 +14,8 @@ import OtherAddressCard from './OtherAddressCard';
 import styles from './styles.module.css';
 import getOtherAddressOptions from './utils/get-other-address-options';
 
+const ZERO_ADDRESS_LENGTH = 0;
+
 function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 	const organizationOtherAddressesList = addressesData?.list || [];
 
@@ -36,7 +38,7 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 	};
 	function RenderAddressCards({ address_key }) {
 		const data = filterAddress(address_key);
-		if ((data || []).length === 0) {
+		if (isEmpty(data)) {
 			return (
 				<div className={styles.empty}>
 					<IcMFtaskNotCompleted width={40} height={40} />
@@ -54,6 +56,7 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 				address_key={address_key}
 				organizationOtherAddressesList={organizationOtherAddressesList}
 				getAdd={getAdd}
+				key={other_address_data.name}
 			/>
 		));
 	}
@@ -63,12 +66,20 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 		setOtherAddressObjToUpdate({});
 	};
 
+	const handleClick = ({ address_key }) => {
+		setShowData((ps) => ({
+			...ps,
+			[address_key.api_property_key]:
+				!ps[address_key.api_property_key],
+		}));
+	};
+
 	if (addressLoading) {
 		return <LoadingState />;
 	}
 	const addresCount = (address_key) => {
 		const count = filterAddress(address_key).length;
-		const value = count === 0 ? t('settings:addresses_not_found_text_1')
+		const value = count === ZERO_ADDRESS_LENGTH ? t('settings:addresses_not_found_text_1')
 			: `${count} ${t('settings:addresses_added_text_1')}`;
 		return value;
 	};
@@ -80,11 +91,7 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 					<div className={styles.flex}>
 						<div
 							className={styles.icon_container}
-							onClick={() => setShowData((ps) => ({
-								...ps,
-								[address_key.api_property_key]:
-									!ps[address_key.api_property_key],
-							}))}
+							onClick={() => handleClick({ address_key })}
 							role="presentation"
 							key={address_key.api_property_key}
 						>
@@ -136,7 +143,7 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 
 			{(!!editOtherAddresKey || !isEmpty(Object.keys(otherAddressObjToUpdate))) ? (
 				<Modal
-					show={!!editOtherAddresKey || Object.keys(otherAddressObjToUpdate).length !== 0}
+					show
 					onClose={handleCloseModal}
 					closeOnOuterClick={handleCloseModal}
 					size="lg"

@@ -111,7 +111,7 @@ function OtherAddressCard({
 			) : null}
 
 			{(organization_pocs || []).map((firstPoc) => (
-				<div className={styles.poc_container}>
+				<div className={styles.poc_container} key={firstPoc.name}>
 					<div
 						className={styles.poc_edit_icon_container}
 						onClick={() => {
@@ -127,7 +127,7 @@ function OtherAddressCard({
 						<div className={cl`${styles.label_text} ${styles.poc_details}`}>
 							{t('settings:poc_name_label')}
 						</div>
-						<div className={`${styles.value_text}${styles.poc_details} `}>
+						<div className={cl`${styles.value_text} ${styles.poc_details} `}>
 							{firstPoc?.name || '-'}
 						</div>
 					</div>
@@ -136,7 +136,7 @@ function OtherAddressCard({
 						<div className={cl`${styles.label_text} ${styles.poc_details}`}>
 							{t('settings:poc_mobile_label')}
 						</div>
-						<div className={`${styles.value_text} ${styles.poc_details} `}>
+						<div className={cl`${styles.value_text} ${styles.poc_details} `}>
 							{firstPoc?.mobile_number
 								? `${firstPoc?.mobile_country_code || ''} ${
 									firstPoc?.mobile_number
@@ -146,18 +146,18 @@ function OtherAddressCard({
 					</div>
 
 					<div className={styles.poc_sub_container}>
-						<div className={`${styles.label_text} ${styles.poc_details} `}>
+						<div className={cl`${styles.label_text} ${styles.poc_details} `}>
 							{t('settings:poc_email_label')}
 						</div>
-						<div className={`${styles.value_text} ${styles.poc_details}`}>
+						<div className={cl`${styles.value_text} ${styles.poc_details}`}>
 							{firstPoc?.email || '-'}
 						</div>
 					</div>
 					<div className={styles.poc_sub_container}>
-						<div className={`${styles.label_text} ${styles.poc_details} `}>
+						<div className={cl`${styles.label_text} ${styles.poc_details} `}>
 							{t('settings:poc_alternate_mobile_label')}
 						</div>
-						<div className={`${styles.value_text} ${styles.poc_details}`}>
+						<div className={cl`${styles.value_text} ${styles.poc_details}`}>
 							{firstPoc?.alternate_mobile_number
 								? `${firstPoc?.alternate_mobile_country_code || ''}
 												${firstPoc?.alternate_mobile_number}`
@@ -170,15 +170,13 @@ function OtherAddressCard({
 			<div className={styles.poc_footer}>
 
 				<Button
-					style={{
-						marginLeft: 0,
-					}}
 					onClick={() => {
 						setShowPocModal('add');
 					}}
 					size="sm"
 					themeType="secondary"
 					type="button"
+					className={styles.button_1}
 				>
 					{t('settings:add_poc_button_label')}
 				</Button>

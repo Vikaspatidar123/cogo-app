@@ -26,7 +26,7 @@ const useResetPassword = ({
 
 	const [passwordInputType, setPasswordInputType] = useState('password');
 
-	const [confirmPasswordInputType, setConfirmPasswordInputType] =		useState('password');
+	const [confirmPasswordInputType, setConfirmPasswordInputType] =	useState('password');
 
 	const [errors, setErrors] = useState({});
 
@@ -62,30 +62,6 @@ const useResetPassword = ({
 
 	const watchPassword = formProps.watch('password');
 	const watchConfirmPassword = formProps.watch('confirmPassword');
-
-	useEffect(() => {
-		setErrors((previousErrors) => ({
-			...previousErrors,
-			password: {
-				type    : '',
-				message : '',
-			},
-		}));
-	}, [watchPassword]);
-
-	useEffect(() => {
-		setErrors((previousErrors) => ({
-			...previousErrors,
-			confirmPassword: {
-				type: '',
-				message:
-					watchConfirmPassword && watchConfirmPassword !== watchPassword
-						? ''
-
-						: '',
-			},
-		}));
-	}, [watchPassword, watchConfirmPassword]);
 
 	const onErrors = (errs = {}) => setErrors({ ...errs });
 
@@ -135,6 +111,29 @@ const useResetPassword = ({
 
 		resetPassword({ password });
 	};
+
+	useEffect(() => {
+		setErrors((previousErrors) => ({
+			...previousErrors,
+			password: {
+				type    : '',
+				message : '',
+			},
+		}));
+	}, [watchPassword]);
+
+	useEffect(() => {
+		setErrors((previousErrors) => ({
+			...previousErrors,
+			confirmPassword: {
+				type: '',
+				message:
+					watchConfirmPassword && watchConfirmPassword !== watchPassword
+						? ''
+						: '',
+			},
+		}));
+	}, [watchPassword, watchConfirmPassword]);
 
 	return {
 		fields,

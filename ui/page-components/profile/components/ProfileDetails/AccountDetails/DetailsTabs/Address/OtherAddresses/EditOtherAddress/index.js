@@ -43,7 +43,7 @@ function EditOtherAddress({
 						const show = showElements[item.name];
 						return (
 							show ? (
-								<div className={styles.field}>
+								<div className={styles.field} key={item.name}>
 									<div className={styles.lable}>{item.label}</div>
 									<Controller {...item} control={control} />
 								</div>
@@ -55,9 +55,7 @@ function EditOtherAddress({
 			<Modal.Footer>
 				<Button
 					onClick={handleCloseModal}
-					style={{
-						marginRight: 16,
-					}}
+					className={styles.button_1}
 					themeType="secondary"
 					disabled={loading}
 					type="button"

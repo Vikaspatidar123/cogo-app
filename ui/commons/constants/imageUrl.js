@@ -76,6 +76,7 @@ const IMAGE_URLS = {
 		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/reshot-icon-checklist-YUWL2XGFTQ%202.png',
 	custom_hover_image:
 		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/reshot-icon-checklist-YUWL2XGFTQ%201.svg',
+	cogoport_avatar: 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/avatar-placeholder.webp',
 };
 
 export default IMAGE_URLS;

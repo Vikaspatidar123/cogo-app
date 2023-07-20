@@ -31,7 +31,7 @@ function PersonalDetails({ userDetails = {}, renderWorkScopes = () => {}, setSho
 					<div>
 						<div className={styles.heading}>{t('settings:personal_information_label_3')}</div>
 						<div className={styles.value}>
-							{userDetails.preferred_languages?.length > 0
+							{!(isEmpty(userDetails.preferred_languages))
 								? (
 									<div className={styles.flex}>
 										{ userDetails.preferred_languages?.map((lang, index) => (

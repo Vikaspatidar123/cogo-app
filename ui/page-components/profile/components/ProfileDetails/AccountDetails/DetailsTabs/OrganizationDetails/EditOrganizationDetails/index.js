@@ -37,7 +37,7 @@ function EditOrganizationDetails({
 					const show = showElements[item.name];
 					return (
 						show ? (
-							<div className={styles.field}>
+							<div className={styles.field} key={item.name}>
 								<div className={styles.lable}>{item.label}</div>
 								<Controller {...item} control={control} />
 								<div className={styles.errors}>
@@ -53,11 +53,9 @@ function EditOrganizationDetails({
 					themeType="secondary"
 					size="md"
 					disabled={loading}
-					style={{
-						marginRight: 16,
-					}}
 					onClick={() => setShowEditOrganizationDetails(false)}
 					type="button"
+					className={styles.button_1}
 				>
 					{t('settings:edit_or_add_button_label_1')}
 				</Button>

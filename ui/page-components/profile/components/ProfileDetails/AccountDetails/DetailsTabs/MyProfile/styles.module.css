@@ -128,12 +128,7 @@
 
 .text_icon_container {
 	display: flex;
-
-	/* align-items: center; */
 	flex-wrap: wrap;
-
-	/* flex-wrap: ${(props) => (props.wrap === 'wrap' ? 'wrap' : '')};
-	justify-content: ${(props) => props.justifyContent}; */
 }
 
 .flex {

@@ -43,32 +43,32 @@ function ReasonModal({
 	};
 
 	const { REASON_MAPPING, MAPPING } = getMappings({ t });
-	const head = () => (
-		<div>
-			<div className={styles.header}>
-				Reason for unsubscription
-			</div>
+	function Head() {
+		return (
+			<div>
+				<div className={styles.header}>
+					Reason for unsubscription
+				</div>
 
-			<div className={styles.sub_head}>
-				You will no longer receive marketing email from this list
+				<div className={styles.sub_head}>
+					You will no longer receive marketing email from this list
+				</div>
 			</div>
-		</div>
-	);
+		);
+	}
 	return (
 		<Modal
 			show={showModal}
 			onClose={() => setShowModal(false)}
-			onOuterClick={() => setShowModal(false)}
 			className={styles.modal}
 		>
-
-			<Modal.Header title={head()} />
+			<Modal.Header title={<Head />} />
 			<Modal.Body>
 				<div className={styles.card}>
 					{Object.entries(filteredDataState).map(([key, value], index) => {
 						if (!value) {
 							return (
-								<div className={styles.box}>
+								<div className={styles.box} key={key}>
 									<div className={styles.count}>{index + 1}</div>
 									<div className={styles.inline}>
 										<div className={styles.label}>{MAPPING[key].label}</div>

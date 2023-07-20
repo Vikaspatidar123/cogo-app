@@ -3,7 +3,6 @@
 	border-radius: 4px;
 
 	@media (max-width: 768px) {
-		all: unset;
 		margin: 0 -12px;
 		background: #fff;
 	}

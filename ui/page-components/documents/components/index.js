@@ -19,6 +19,7 @@ function Documents() {
 	const [filters, setFilters] = useState({ page: 1 });
 
 	const [show, setShow] = useState(false);
+
 	const [documentDetails, setDocumentDetails] = useState({});
 
 	const { page = 1 } = filters || {};

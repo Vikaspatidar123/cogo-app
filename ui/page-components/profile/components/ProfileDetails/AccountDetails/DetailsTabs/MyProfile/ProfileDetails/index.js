@@ -6,6 +6,7 @@ import PersonalDetails from './PersonalDetails';
 import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function ProfileDetails({ userDetails = {}, renderWorkScopes = () => {}, setShowPasswordModal = () => {} }) {
 	const { t } = useTranslation(['settings']);
@@ -28,8 +29,8 @@ function ProfileDetails({ userDetails = {}, renderWorkScopes = () => {}, setShow
 						? <Avatar personName={userDetails.name} size="50px" className={styles.avatar} />
 						: (
 							<Avatar
-								src="https://www.w3schools.com/howto/img_avatar.png"
-								alt="img"
+								src={GLOBAL_CONSTANTS.image_url.cogoport_avatar}
+								alt="avatar"
 								disabled={false}
 								size="50px"
 							/>

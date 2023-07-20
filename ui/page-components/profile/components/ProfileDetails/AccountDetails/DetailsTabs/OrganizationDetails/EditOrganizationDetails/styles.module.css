@@ -49,9 +49,13 @@
 }
 
 .errors {
-	color: red;
+	color: #ee3425;
 }
 
 .button {
 	border-radius: 2px;
+}
+
+.button_1 {
+	margin-right: 16px;
 }

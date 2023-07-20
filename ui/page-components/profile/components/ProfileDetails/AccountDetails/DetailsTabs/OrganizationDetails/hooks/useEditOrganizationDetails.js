@@ -24,20 +24,13 @@ const useEditOrganizationDetails = ({
 	const [errors, setErrors] = useState({});
 
 	const { refetch } = useGetUser();
+
 	const cityOptions = useGetAsyncOptions(
 		merge(asyncFieldsLocations(), {
 			params: { filters: { type: ['city'] } },
 		}),
 	);
 	const controls = getOrganizationControls({ cityOptions, organizationData, t });
-
-	const [{ loading }, trigger] = useRequest(
-		{
-			url    : '/update_organization',
-			method : 'post',
-		},
-		{ manual: true },
-	);
 
 	const { handleSubmit = () => {}, setValue, control } = useForm();
 
@@ -65,6 +58,14 @@ const useEditOrganizationDetails = ({
 			setValue('logo', organizationData.logo);
 		}
 	}, [organizationData]);
+
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : '/update_organization',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
 	const onCreate = async (values = {}) => {
 		try {

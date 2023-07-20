@@ -51,11 +51,11 @@ function EditBillingAddress({
 								<div className={styles.field}>
 									<div className={styles.lable}>{item.label}</div>
 									<Element {...item} control={control} />
-									{errors && (
+									{errors ? (
 										<div className={styles.errors}>
 											{errors[item?.name]?.message}
 										</div>
-									)}
+									) : null}
 								</div>
 							) : null
 						);

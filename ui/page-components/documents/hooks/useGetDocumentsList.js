@@ -21,6 +21,7 @@ const useGetDocumentsList = ({ filters = {} }) => {
 						...(val || {}),
 					},
 					page,
+					page_limit: 40,
 				},
 			});
 		} catch (e) {

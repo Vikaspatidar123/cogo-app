@@ -4,6 +4,7 @@ const useAddDocuments = ({
 	documentDetails = {},
 	refetch = () => {},
 	setDocumentDetails = () => {},
+	serviceType = '',
 }) => {
 	const [{ loading, data }, trigger] = useRequest({
 		method : 'post',
@@ -11,17 +12,16 @@ const useAddDocuments = ({
 	}, { manual: true, autoCancel: false });
 
 	const addDocument = async (val) => {
-		console.log(val, 'val');
 		try {
 			await trigger({
 				data: {
 					...documentDetails,
 					...(val || {}),
+					service_type: serviceType || undefined,
 				},
 			});
 			setDocumentDetails({ name: '' });
-
-			refetch();
+			refetch(serviceType ? { service_type: serviceType } : {});
 		} catch (e) {
 			console.log(e);
 		}

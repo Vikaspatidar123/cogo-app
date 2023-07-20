@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-function InnerForm({ setActiveCollapse = () => {}, addDocument = () => {}, addDocumentLoading = false }) {
+function InnerForm({ value = {}, setActiveCollapse = () => {}, addDocument = () => {}, addDocumentLoading = false }) {
 	const {
 		handleSubmit,
 		control,
@@ -15,7 +15,13 @@ function InnerForm({ setActiveCollapse = () => {}, addDocument = () => {}, addDo
 	} = useForm();
 
 	const onSubmit = (val) => {
-		addDocument(val);
+		const payload = {
+			image_url     : val?.doc_file,
+			data          : { doc_validity: val?.doc_validity, doc_number: val?.doc_number },
+			name          : value?.doc_name,
+			document_type : value?.doc_type,
+		};
+		addDocument(payload);
 		setActiveCollapse('');
 	};
 

@@ -5,6 +5,7 @@ import { isEmpty } from '@cogoport/utils';
 import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
 
 const COLOR_MAPPING = {
 	uploaded    : 'green',
@@ -31,29 +32,43 @@ function UnuploadedDoc({ sampleLink = '' }) {
 	);
 }
 
-function UploadedDoc() {
+function UploadedDoc({ uploadedDoc = {} }) {
 	return (
 		<div className={styles.success_container}>
 			<div style={{ display: 'flex', width: '88%' }}>
-				<div className={styles.success_info}>
+				<div className={styles.success_info_doc}>
 					Document Number :
 					{' '}
-					<span className={styles.info}>1234</span>
+					<span className={styles.info}>{uploadedDoc?.data?.doc_number}</span>
+				</div>
+
+				<div className={styles.success_info}>
+					Valid Till :
+					{' '}
+					<span className={styles.info}>
+						{formatDate({
+							date       : (uploadedDoc?.data.doc_validity),
+							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+							formatType : 'date',
+						})}
+					</span>
 				</div>
 				<div className={styles.success_info}>
 					Uploaded on :
 					{' '}
-					<span className={styles.info}>1234</span>
-				</div>
-				<div className={styles.success_info}>
-					Valid Till :
-					{' '}
-					<span className={styles.info}>1234</span>
+					<span className={styles.info}>
+						{formatDate({
+							date       : (uploadedDoc?.created_at),
+							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+							formatType : 'date',
+						})}
+
+					</span>
 				</div>
 			</div>
 
 			<div>
-				<IcMEyeopen onClick={() => window.open('/', '_blank')} className={styles.icon} />
+				<IcMEyeopen onClick={() => window.open(uploadedDoc?.image_url, '_blank')} className={styles.icon} />
 
 				<IcMDelete className={styles.icon} onClick={() => console.log('delete')} />
 			</div>
@@ -65,7 +80,7 @@ function Title({
 	doc_data = {},
 	data = [],
 }) {
-	const uploadedDoc = data?.filter((doc) => doc?.document_name === doc_data?.doc_name)
+	const uploadedDoc = data?.filter((doc) => doc?.name === doc_data?.doc_name)
 		?.[GLOBAL_CONSTANTS.zeroth_index];
 
 	return (
@@ -77,13 +92,20 @@ function Title({
 				/>
 
 				<div className={styles.listTitle}>
-					<Tooltip animation="shift-away" content={doc_data?.doc_name} placement="top">
-						<div>{doc_data?.doc_name}</div>
+					<Tooltip
+						className={styles.tool_tip}
+						maxWidth={500}
+						animation="shift-away"
+						content={doc_data?.doc_name}
+						placement="top"
+					>
+						{doc_data?.doc_name}
 					</Tooltip>
 				</div>
 			</div>
 
-			{isEmpty(uploadedDoc) ? <UnuploadedDoc sampleLink={doc_data?.sample_link} /> : <UploadedDoc />}
+			{isEmpty(uploadedDoc) ? <UnuploadedDoc sampleLink={doc_data?.sample_link} />
+				: <UploadedDoc uploadedDoc={uploadedDoc} />}
 		</div>
 	);
 }

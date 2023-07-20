@@ -1,12 +1,13 @@
 import { IcMExportfile, IcMImportfile } from '@cogoport/icons-react';
 
-export const options = [
+const getChipOptions = ({ activeStepper = [], sid = 'false' }) => [
 	{
 		suffix          : 'Import',
 		key             : 'IMPORT',
 		prefix          : <IcMImportfile height={25} width={25} />,
 		backgroundColor : '#7278AD',
 		color           : '#eee7e7',
+		disabled        : (activeStepper?.[1] !== 'pro' || sid === 'true'),
 	},
 	{
 		suffix          : 'Export',
@@ -14,5 +15,8 @@ export const options = [
 		prefix          : <IcMExportfile height={25} width={25} />,
 		backgroundColor : '#7278AD',
 		color           : '#eee7e7',
+		disabled        : (activeStepper?.[1] !== 'pro' || sid === 'true'),
 	},
 ];
+
+export default getChipOptions;

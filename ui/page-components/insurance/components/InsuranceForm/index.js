@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import FAQComponent from '../../common/FAQComponent';
 import redirectUrl from '../../common/redirectUrl';
-import { options } from '../../configurations/segmentOptions';
+import getChipOptions from '../../configurations/segmentOptions';
 import useGetDraftDetails from '../../hooks/useGetDraftDetails';
 import InsuredDetails from '../InsuredDetails';
 
@@ -14,22 +14,26 @@ import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 function InsuranceFrom() {
+	const { query } = useRouter();
+
+	const { type = '', policyType = '', policyId = '', sid = 'false' } = query || {};
+
+	const { isMobile = false } = useSelector((state) => state);
+
 	const [activeStepper, setActiveStepper] = useState({
 		1   : 'pro',
 		2   : false,
 		3   : false,
 		svg : 0,
 	});
+
 	const [showFaq, setFaq] = useState('none');
-
-	const { isMobile = false } = useSelector((state) => state);
-
-	const { query } = useRouter();
-	const { type = '', policyType = '', policyId = '' } = query || {};
 
 	const [activeTab, setActiveTab] = useState(policyType || 'IMPORT');
 
 	const { redirectHome } = redirectUrl();
+
+	const options = getChipOptions({ sid, activeStepper });
 
 	const { draftDetailsPrefilling = {} } = useGetDraftDetails({
 		policyId,

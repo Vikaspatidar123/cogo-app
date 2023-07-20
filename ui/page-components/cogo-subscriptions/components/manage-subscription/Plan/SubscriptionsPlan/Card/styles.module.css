@@ -163,7 +163,10 @@
 	.date {
 		color: #fff;
 	}
-
+   .button{
+	background-color: #db4634 !important;
+	color: #fff !important;
+   }
 	.head_text {
 		color: #fff;
 	}

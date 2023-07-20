@@ -42,6 +42,10 @@
 .section2 {
 	height: 100px;
 	overflow-y: scroll;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 .text_total {

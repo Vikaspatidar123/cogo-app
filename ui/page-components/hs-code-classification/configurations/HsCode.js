@@ -1,11 +1,11 @@
-export const HSCode = [
+export const getHSCodeControls = ({ t }) => [
 	{
-		label : 'HS code',
+		label : t('hsClassification:hs_code_classification_hs_code_control_label_2'),
 		key   : 'displayHsCode',
 		type  : 'text',
 	},
 	{
-		label : ' Product Description',
+		label : t('hsClassification:hs_code_classification_hs_code_control_label_1'),
 		key   : 'description',
 		type  : 'text',
 	},

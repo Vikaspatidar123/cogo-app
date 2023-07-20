@@ -1,6 +1,7 @@
 import {
 	IcMCross, IcMMinusInCircle, IcMStar, IcCBookmark,
 } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useState, useCallback } from 'react';
 
 import EmptyState from '../common/EmptyState';
@@ -13,6 +14,15 @@ import SectionList from './SectionList';
 import styles from './styles.module.css';
 
 function HsClassification() {
+	const { t } = useTranslation(['common', 'hsClassification']);
+
+	const [searchTag, setSearchTag] = useState('');
+	const [resetDrillDown, setResetDrillDown] = useState(true);
+	const [openSelectedModal, setOpenSelectedModal] = useState(false);
+	const resetDrillDownHandler = useCallback(() => {
+		setResetDrillDown(false);
+	}, []);
+
 	const {
 		refetch,
 		apiData,
@@ -29,17 +39,12 @@ function HsClassification() {
 		searchLoading,
 	} = useHSCode();
 
-	const list = loading ? [1, 2, 3, 4, 5, 6] : apiData;
-	const [searchTag, setSearchTag] = useState('');
-	const [resetDrillDown, setResetDrillDown] = useState(true);
-	const [openSelectedModal, setOpenSelectedModal] = useState(false);
-	const resetDrillDownHandler = useCallback(() => {
-		setResetDrillDown(false);
-	}, []);
+	const list = loading ? [...Array(5).keys()] : apiData;
 
 	const {
 		bookmarkData, refetchGetBookmark, refetchRemoveBookmark, getBookmarkLoading,
 	} = useBookmark({ refetchHsCode });
+
 	return (
 		<div>
 			<Header
@@ -51,7 +56,7 @@ function HsClassification() {
 			/>
 			<div className={styles.container}>
 				<div className={styles.tag}>
-					<div className={styles.title}>List of HS Codes</div>
+					<div className={styles.title}>{t('hsClassification:hs_code_classification_text_1')}</div>
 					{searchTag && <div>{searchTag}</div>}
 				</div>
 
@@ -62,7 +67,7 @@ function HsClassification() {
 						role="presentation"
 					>
 						<IcMMinusInCircle />
-						Collaspse all
+						{t('hsClassification:hs_code_classification_text_2')}
 					</div>
 					<div
 						onClick={() => {
@@ -73,7 +78,7 @@ function HsClassification() {
 						role="presentation"
 					>
 						<IcMStar />
-						Favourites
+						{t('hsClassification:hs_code_classification_text_3')}
 					</div>
 				</div>
 
@@ -86,12 +91,12 @@ function HsClassification() {
 								refetchGetBookmark();
 							}}
 						/>
-						<div className={styles.icon_text}>Favourites</div>
+						<div className={styles.icon_text}>{t('hsClassification:hs_code_classification_text_3')}</div>
 					</div>
 
 					<div className={styles.icon_container}>
 						<IcMCross width={30} height={30} onClick={resetDrillDownHandler} />
-						<div className={styles.icon_text}>Collaspse all</div>
+						<div className={styles.icon_text}>{t('hsClassification:hs_code_classification_text_2')}</div>
 					</div>
 				</div>
 			</div>

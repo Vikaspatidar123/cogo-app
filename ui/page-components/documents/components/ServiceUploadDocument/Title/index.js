@@ -1,6 +1,8 @@
-import { Button, Pill, Tooltip } from '@cogoport/components';
+import { Button, Pill, Tooltip, cl } from '@cogoport/components';
 import { IcMCloudUpload, IcMEyeopen, IcMDelete } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+
+import useDeleteDocument from '../../../hooks/useDeleteDocument';
 
 import styles from './styles.module.css';
 
@@ -32,14 +34,28 @@ function UnuploadedDoc({ sampleLink = '' }) {
 	);
 }
 
-function UploadedDoc({ uploadedDoc = {} }) {
+function UploadedDoc({
+	uploadedDoc = {},
+	refetch = () => {},
+}) {
+	const {
+		deleteDocument,
+		loading,
+	} = useDeleteDocument({ refetch });
+
+	const handleDelete = () => {
+		deleteDocument({ item: uploadedDoc });
+	};
+
 	return (
 		<div className={styles.success_container}>
 			<div style={{ display: 'flex', width: '88%' }}>
 				<div className={styles.success_info_doc}>
 					Document Number :
 					{' '}
-					<span className={styles.info}>{uploadedDoc?.data?.doc_number}</span>
+					<span className={styles.info}>
+						{uploadedDoc?.data?.document_number}
+					</span>
 				</div>
 
 				<div className={styles.success_info}>
@@ -47,12 +63,13 @@ function UploadedDoc({ uploadedDoc = {} }) {
 					{' '}
 					<span className={styles.info}>
 						{formatDate({
-							date       : (uploadedDoc?.data.doc_validity),
+							date       : (uploadedDoc?.data.document_validity),
 							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 							formatType : 'date',
 						})}
 					</span>
 				</div>
+
 				<div className={styles.success_info}>
 					Uploaded on :
 					{' '}
@@ -62,7 +79,6 @@ function UploadedDoc({ uploadedDoc = {} }) {
 							dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 							formatType : 'date',
 						})}
-
 					</span>
 				</div>
 			</div>
@@ -70,7 +86,10 @@ function UploadedDoc({ uploadedDoc = {} }) {
 			<div>
 				<IcMEyeopen onClick={() => window.open(uploadedDoc?.image_url, '_blank')} className={styles.icon} />
 
-				<IcMDelete className={styles.icon} onClick={() => console.log('delete')} />
+				<IcMDelete
+					className={cl`${styles.icon} ${loading ? styles.loading : null}`}
+					onClick={!loading ? handleDelete : null}
+				/>
 			</div>
 		</div>
 	);
@@ -79,6 +98,7 @@ function UploadedDoc({ uploadedDoc = {} }) {
 function Title({
 	doc_data = {},
 	data = [],
+	refetch = () => {},
 }) {
 	const uploadedDoc = data?.filter((doc) => doc?.name === doc_data?.doc_name)
 		?.[GLOBAL_CONSTANTS.zeroth_index];
@@ -105,7 +125,7 @@ function Title({
 			</div>
 
 			{isEmpty(uploadedDoc) ? <UnuploadedDoc sampleLink={doc_data?.sample_link} />
-				: <UploadedDoc uploadedDoc={uploadedDoc} />}
+				: <UploadedDoc uploadedDoc={uploadedDoc} refetch={refetch} />}
 		</div>
 	);
 }

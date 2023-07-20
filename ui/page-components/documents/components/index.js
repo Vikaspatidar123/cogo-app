@@ -53,6 +53,7 @@ function Documents() {
 					loading={loading}
 					addDocument={addDocument}
 					addDocumentLoading={addDocumentLoading}
+					refetch={refetch}
 				/>
 			)}
 

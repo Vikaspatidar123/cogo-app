@@ -18,13 +18,18 @@ const isAllowedOpen = (data, value) => {
 
 function ServiceUploadDocument({
 	serviceType = '', data = [], loading = false, addDocument = () => {}, addDocumentLoading = false,
+	refetch = () => {},
 }) {
 	const [activeCollapse, setActiveCollapse] = useState('');
 
 	const options = checkFileList.map((value, index) => ({
-		key      : index.toString(),
-		title    : <Title doc_data={value} data={data} />,
-		children : isAllowedOpen(data, value) ? (
+		key   : index.toString(),
+		title : <Title
+			doc_data={value}
+			data={data}
+			refetch={refetch}
+		/>,
+		children: isAllowedOpen(data, value) ? (
 			<InnerForm
 				serviceType={serviceType}
 				value={value}
@@ -54,9 +59,7 @@ function ServiceUploadDocument({
 					<Collapse
 						panels={options}
 						activeKey={activeCollapse}
-						setActive={(v) => {
-							setActiveCollapse(v);
-						}}
+						setActive={(v) => setActiveCollapse(v)}
 						type="text"
 						className={styles.collapse_component}
 					/>

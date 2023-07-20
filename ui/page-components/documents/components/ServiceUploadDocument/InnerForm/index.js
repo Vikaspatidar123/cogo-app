@@ -17,7 +17,7 @@ function InnerForm({ value = {}, setActiveCollapse = () => {}, addDocument = () 
 	const onSubmit = (val) => {
 		const payload = {
 			image_url     : val?.doc_file,
-			data          : { doc_validity: val?.doc_validity, doc_number: val?.doc_number },
+			data          : { document_validity: val?.doc_validity, document_number: val?.doc_number },
 			name          : value?.doc_name,
 			document_type : value?.doc_type,
 		};

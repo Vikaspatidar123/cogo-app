@@ -7,6 +7,7 @@ import SearchRates from './SearchRates';
 import ShipmentLoading from './ShipmentLoading';
 import Shipments from './Shipments';
 import styles from './styles.module.css';
+import TrackAndTrace from './TrackAndTrace';
 import TrackShipment from './TrackShipment';
 
 function LeftSection() {
@@ -19,11 +20,12 @@ function LeftSection() {
 			{(!isEmpty(list.length) && !loading)
 				? <Shipments list={list} />
 				: <ShipmentLoading loading={loading} />}
-
+			<TrackAndTrace />
 			<div className={styles.section}>
 				<div className={styles.box}>
 					<TrackShipment />
 				</div>
+
 				<div className={styles.box}>
 					<CustomDuty />
 				</div>

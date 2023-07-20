@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcMArrowRight } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 
 import Loading from '../Loading';
 
@@ -13,6 +14,9 @@ function RecentSearches({ data, loading }) {
 	const { push } = useRouter();
 	// const { data, loading } = useRecentSearches();
 	const list = data.slice(0, 2) || [];
+	if (isEmpty(list)) {
+		return null;
+	}
 	return (
 		<div className={styles.container}>
 			<div className={styles.head}>

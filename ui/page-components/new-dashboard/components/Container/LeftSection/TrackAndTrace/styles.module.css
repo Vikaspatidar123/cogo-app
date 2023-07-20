@@ -1,0 +1,36 @@
+.container {
+    box-sizing: border-box;
+    padding: 6px 15px;
+    margin-top: 10px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgb(98 127 172 / 20%);
+}
+
+.heading {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.section {
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.box {
+    width: 50%;
+    padding: 6px;
+    margin: 3px;
+    background: rgb(255 255 255);
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgb(98 127 172 / 20%);
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+}

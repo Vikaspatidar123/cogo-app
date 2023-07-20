@@ -20,12 +20,22 @@
 }
 
 .box {
+    position: relative;
     width: 50%;
     padding: 6px;
-    margin: 3px;
+    margin: 4px;
+    cursor: pointer;
     background: rgb(255 255 255);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: auto;
     border-radius: 5px;
     box-shadow: 0 0 8px rgb(98 127 172 / 20%);
+}
+
+.box:hover {
+    transition: transform 0.3s;
+    transform: scale(1.03);
 }
 
 .head {
@@ -33,4 +43,37 @@
     align-items: center;
     font-size: 16px;
     font-weight: 500;
+}
+
+.card {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.count_card {
+    padding: 10px;
+}
+
+.count {
+    margin-left: 10px;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.down {
+    display: flex;
+    align-items: baseline;
+}
+
+.text {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.img_container {
+    position: absolute;
+    top: -33px;
+    right: -9px;
+    transform: rotate(19deg);
 }

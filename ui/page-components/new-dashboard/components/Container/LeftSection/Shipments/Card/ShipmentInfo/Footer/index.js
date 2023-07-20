@@ -1,9 +1,13 @@
 import { IcMFship } from '@cogoport/icons-react';
-import { format } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
+
 function Footer({ item }) {
+	const { t } = useTranslation(['dashboard']);
 	return (
 		<div className={styles.container}>
 			<div className={styles.fouth_data}>
@@ -18,13 +22,13 @@ function Footer({ item }) {
 							<span
 								className={styles.span}
 							>
-								ETD: &nbsp;
+								{t('dashboard:onGoingShipments_card_text_1')}
 							</span>
-							image
-							{format(
-								item?.selected_schedule_departure,
-								'dd/MM/yyyy',
-							)}
+							{formatDate({
+								date: item?.selected_schedule_departure,
+								dateFormat: GLOBAL_CONSTANTS.formats.date['dd/MMM/yyyy'],
+								formatType: 'date',
+							})}
 						</p>
 					)}
 				</div>
@@ -33,12 +37,13 @@ function Footer({ item }) {
 						<span
 							className={styles.span}
 						>
-							ETA: &nbsp;
+							{t('dashboard:onGoingShipments_card_text_2')}
 						</span>
-						{format(
-							item?.selected_schedule_arrival,
-							'dd/MM/yyyy',
-						)}
+						{formatDate({
+							date: item?.selected_schedule_arrival,
+							dateFormat: GLOBAL_CONSTANTS.formats.date['dd/MMM/yyyy'],
+							formatType: 'date',
+						})}
 					</p>
 				)}
 				{item?.last_updated_at && (
@@ -46,12 +51,15 @@ function Footer({ item }) {
 						<span
 							className={styles.span}
 						>
-							Updated At: &nbsp;
+							{t('dashboard:onGoingShipments_card_text_3')}
+							{' '}
+							&nbsp;
 						</span>
-						{format(
-							item?.last_updated_at,
-							'dd/MM/yyyy',
-						)}
+						{formatDate({
+							date: item?.last_updated_at,
+							dateFormat: GLOBAL_CONSTANTS.formats.date['dd/MMM/yyyy'],
+							formatType: 'date',
+						})}
 					</p>
 				)}
 			</div>

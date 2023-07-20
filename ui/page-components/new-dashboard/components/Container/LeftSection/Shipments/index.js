@@ -1,6 +1,7 @@
 import { Carousel } from '@cogoport/components';
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import Card from './Card';
 import styles from './styles.module.css';
@@ -9,6 +10,7 @@ import { useRouter } from '@/packages/next';
 
 function Shipments({ list }) {
 	const { push } = useRouter();
+	const { t } = useTranslation(['dashboard']);
 	const carouselData = Card({ data: list });
 	if (isEmpty(carouselData)) {
 		return null;
@@ -16,7 +18,7 @@ function Shipments({ list }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>
-				Your Ongoing Shipments
+				{t('dashboard:onGoingShipments_text_1')}
 			</div>
 			<Carousel
 				slides={carouselData}
@@ -36,7 +38,7 @@ function Shipments({ list }) {
 				<p
 					className={styles.viewall}
 				>
-					View all
+					{t('dashboard:onGoingShipments_text_1')}
 				</p>
 				<IcMArrowNext className={styles.arrow} />
 			</div>

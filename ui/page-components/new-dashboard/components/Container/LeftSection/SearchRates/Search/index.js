@@ -1,15 +1,16 @@
 import { IcMSearchlight, IcMArrowNext } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
-import SearchForm from './SearchForm';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-function Search({ data }) {
+function Search() {
 	const { push } = useRouter();
+	const { t } = useTranslation(['dashboard']);
 	return (
 		<div className={styles.container}>
-			<div className={styles.heading}>Search</div>
+			<div className={styles.heading}>{t('dashboard:search_text')}</div>
 			{/* <SearchForm data={data} /> */}
 			<div className={styles.box}>
 				<div className={styles.icon_box}>
@@ -18,9 +19,9 @@ function Search({ data }) {
 					</div>
 					<div className={styles.text}>
 						<div>
-							Discover Rates
+							{t('dashboard:yourDeals_text_2')}
 						</div>
-						<div>Don’t miss out on the competitive rates across FCL, LCL, Air and Haulage in one place.</div>
+						<div>{t('dashboard:yourDeals_text_3')}</div>
 					</div>
 				</div>
 				<div
@@ -28,7 +29,7 @@ function Search({ data }) {
 					role="presentation"
 					onClick={() => push('/book')}
 				>
-					<span>Go to rates</span>
+					<span>{t('dashboard:yourDeals_text_4')}</span>
 					<IcMArrowNext />
 				</div>
 			</div>

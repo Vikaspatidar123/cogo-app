@@ -1,12 +1,13 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 import getText from '@/ui/page-components/new-dashboard/common/getText';
 
-const renderStatus = (ogShipmentData, service) => {
-	const textObj = getText(ogShipmentData, service);
+const renderStatus = (ogShipmentData, service, t) => {
+	const textObj = getText(ogShipmentData, service, t);
 
 	return (
 		<text className={styles.text} style={{ backgroundColor: textObj.color }}>
@@ -17,6 +18,7 @@ const renderStatus = (ogShipmentData, service) => {
 
 function LeftContainer({ item }) {
 	const { push } = useRouter();
+	const { t } = useTranslation(['dashboard']);
 	const { documents = '', state = '', service_type = '', shipment_type = '', services = '' } = item || {};
 	const data = {
 		documents,
@@ -29,20 +31,21 @@ function LeftContainer({ item }) {
 		<div className={styles.container}>
 			<div className={styles.details}>
 
-				{renderStatus(data, services)}
+				{renderStatus(data, services, t)}
 
 				<Button
 					size="sm"
 					themeType="accent"
+					type="button"
 					onClick={() => push(
 						'/shipments/[id]',
 						`/shipments/${item?.id}`,
 					)}
 					className={styles.button}
 				>
-					VIEW DETAILS
+					{t('dashboard:onGoingShipments_card_text_5')}
 				</Button>
-				{item?.pending_tasks_count	? (
+				{item?.pending_tasks_count ? (
 					<div className={styles.dot}>
 						<div className={styles.dot2} />
 						<p className={styles.tasks}>
@@ -50,7 +53,7 @@ function LeftContainer({ item }) {
 							<span
 								className={styles.pending}
 							>
-								pending tasks
+								{t('dashboard:onGoingShipments_card_text_4')}
 							</span>
 						</p>
 					</div>

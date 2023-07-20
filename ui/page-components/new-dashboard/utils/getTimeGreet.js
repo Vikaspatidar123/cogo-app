@@ -1,14 +1,11 @@
-import { useTranslation } from 'next-i18next';
 const ICON_PROPS = {
 	width: '24px',
 	height: '24px',
 	style: { marginRight: 8 },
 };
 
-const getTimeGreet = () => {
+const getTimeGreet = ({ t }) => {
 	const curHr = new Date().getHours();
-
-	const { t } = useTranslation(['dashboard']);
 
 	if (curHr < 12) {
 		return {

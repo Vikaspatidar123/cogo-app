@@ -1,24 +1,25 @@
 import { Button } from '@cogoport/components';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function CustomDuty() {
 	const { push } = useRouter();
+	const { t } = useTranslation(['dashboard']);
 	return (
 		<div className={styles.container}>
-			<div className={styles.text}>Custom Duty Calculator</div>
+			<div className={styles.text}>{t('dashboard:custom_duty_text1')}</div>
 			<div className={styles.seaction}>
 				<div>
 					<div className={styles.des}>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-
+						{t('dashboard:custom_duty_text2')}
 					</div>
 					<div className={styles.text_des}>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-						incididunt ut labore et dolore magna aliqua.
+						{t('dashboard:custom_duty_text3')}
 					</div>
 					<Button
 						themeType="accent"
@@ -26,7 +27,7 @@ function CustomDuty() {
 						type="button"
 						onClick={() => push('/saas/premium-services/duties-taxes-calculator')}
 					>
-						Try Now!
+						{t('dashboard:custom_duty_text4')}
 
 					</Button>
 
@@ -36,8 +37,8 @@ function CustomDuty() {
 					<Image
 						width={200}
 						height={200}
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Saly-13.png"
-						alt=""
+						src={GLOBAL_CONSTANTS.image_url.custom_duty}
+						alt={t('dashboard:cogo_logo')}
 					/>
 				</div>
 			</div>

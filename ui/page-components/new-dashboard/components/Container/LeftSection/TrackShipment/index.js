@@ -1,10 +1,11 @@
-import { Input, Button } from '@cogoport/components';
+import { Button } from '@cogoport/components';
 import { IcMTracking, IcMAppSearch } from '@cogoport/icons-react';
 import dynamic from 'next/dynamic';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
-import { InputController, AsyncSelectController, useForm } from '@/packages/forms';
+import { InputController, AsyncSelectController } from '@/packages/forms';
 import useCreateTracker from '@/ui/page-components/new-dashboard/hooks/useCreateTracker';
 import useGetMapRoute from '@/ui/page-components/new-dashboard/hooks/useGetMapRoute';
 import useTrackShipment from '@/ui/page-components/new-dashboard/hooks/useTrackShipment';
@@ -21,6 +22,7 @@ const shipment_rules = {
 const rules = { required: true };
 
 function TrackShipment() {
+	const { t } = useTranslation(['dashboard']);
 	const { data } = useTrackShipment();
 	const { list } = data || {};
 	const { allRoute } = useGetMapRoute({ trackingInfo: list, type: 'ocean' });
@@ -31,12 +33,12 @@ function TrackShipment() {
 			<CogoMaps height="270px" allPoints={allRoute} type="ocean" />
 			<div className={styles.input_box}>
 				<div>
-					<div className={styles.text}>Track your shipment!</div>
+					<div className={styles.text}>{t('dashboard:track_shipment_text1')}</div>
 					<InputController
 						name="shipmentNumber"
 						size="sm"
 						className={styles.input_container}
-						placeholder="Search here"
+						placeholder={t('dashboard:shipment_placeholder')}
 						suffix={<IcMAppSearch style={{ marginRight: '10px' }} />}
 						control={control}
 						rules={shipment_rules}
@@ -46,7 +48,7 @@ function TrackShipment() {
 						name="shippingLine"
 						size="sm"
 						className={styles.input_container}
-						placeholder="Select shipping line"
+						placeholder={t('dashboard:shippingline_placeholder')}
 						control={control}
 						asyncKey="shippingline_list"
 						initialCall
@@ -58,8 +60,9 @@ function TrackShipment() {
 							size="md"
 							onClick={handleSubmit(onSubmitHandler)}
 							themeType="accent"
+							type="button"
 						>
-							Track Now
+							{t('dashboard:track_now_button_text')}
 							<IcMTracking />
 						</Button>
 					</div>

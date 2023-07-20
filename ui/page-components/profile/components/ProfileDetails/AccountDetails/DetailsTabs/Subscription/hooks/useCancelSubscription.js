@@ -11,6 +11,7 @@ const useCancelSubscription = () => {
 			method : 'post',
 			url    : '/saas_create_callback_for_cancel_subscription',
 		},
+		{ manual: true, autoCancel: false },
 	);
 
 	const cancelSubscription = () => {

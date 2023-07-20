@@ -1,7 +1,6 @@
 .list_wrapper {
 	display: flex;
 	flex-wrap: wrap;
-	padding: 5px;
 
 	svg {
 		margin-bottom: 20px;
@@ -139,4 +138,8 @@
 	font-weight: 600;
 	background-color: rgb(217 234 253);
 	border-radius: 5px;
+}
+
+.modal_styles {
+	padding: 20px 25px;
 }

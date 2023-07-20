@@ -8,12 +8,12 @@ import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
 
-function TraderEligibilityModal({ tradeEngineResponse = {} }) {
+function TraderEligibilityModal({ tradeEngineResponse = {}, isModal = false }) {
 	const { screeningRequestResponse = {}, screeningPartyName = '' } = tradeEngineResponse || {};
 	const { t } = useTranslation(['tecResult']);
 
 	return (
-		<>
+		<div className={isModal ? styles.modal_styles : ''}>
 			<div className={styles.styled_tag}>
 				{t('tecResult:tec_trader_name')}
 				{' '}
@@ -78,8 +78,8 @@ function TraderEligibilityModal({ tradeEngineResponse = {} }) {
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.secure_icon}
 						alt={t('tecResult:tec_secure_alt')}
-						height={100}
-						width={100}
+						height={150}
+						width={150}
 					/>
 					<div className={styles.label}>
 						<b className={styles.bold}>{screeningPartyName.toUpperCase()}</b>
@@ -90,7 +90,7 @@ function TraderEligibilityModal({ tradeEngineResponse = {} }) {
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 	);
 }
 

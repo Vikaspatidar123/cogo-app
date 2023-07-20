@@ -10,10 +10,12 @@ function Header({ activePlanObject = {}, activePlan = {} }) {
 
 	return (
 		<div className={styles.details_card}>
+
 			<div className={styles.plan}>
 				<div className={styles.current_plan}>{t('common:account_settings_subscription_text_5')}</div>
 				<div className={styles.display_name}>{display_name}</div>
 			</div>
+
 			<div className={styles.plan}>
 				<div className={styles.price}>
 					<div className={styles.currency}>{currency}</div>
@@ -21,6 +23,7 @@ function Header({ activePlanObject = {}, activePlan = {} }) {
 					<div className={styles.currency}>{t('common:account_settings_subscription_text_6')}</div>
 				</div>
 			</div>
+
 		</div>
 	);
 }

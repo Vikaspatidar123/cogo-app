@@ -2,10 +2,12 @@ import { Placeholder } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
+const LOADER = [...Array(3).keys()];
+
 function CheckoutPageLoader() {
 	return (
 		<div className={styles.loader_container}>
-			{[...Array(3).keys()].map(() => (
+			{LOADER.map(() => (
 				<Placeholder
 					height="490px"
 					width="96%"

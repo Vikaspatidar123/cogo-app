@@ -12,9 +12,6 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function Subscription() {
 	const { t } = useTranslation(['common']);
-	const { image_url = {} } = GLOBAL_CONSTANTS || {};
-
-	const { empty_url = '' } = image_url || {};
 
 	const { data = {}, loading } = useFetchSubscriptionPlan();
 
@@ -41,7 +38,7 @@ function Subscription() {
 
 	return (
 		<div className={styles.container}>
-			{priority_sequence === 0 ? (
+			{priority_sequence === GLOBAL_CONSTANTS.zeroth_index ? (
 				<div className={styles.first_row}>
 					<div className={styles.card}>
 						<Header
@@ -54,7 +51,12 @@ function Subscription() {
 				</div>
 			) : (
 				<div className={styles.container}>
-					<Image src={empty_url} alt={t('common:alt_empty_text')} width={100} height={100} />
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.empty_url}
+						alt={t('common:alt_empty_text')}
+						width={100}
+						height={100}
+					/>
 				</div>
 			)}
 		</div>

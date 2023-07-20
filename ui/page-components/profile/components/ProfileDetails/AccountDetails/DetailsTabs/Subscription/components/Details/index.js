@@ -15,13 +15,16 @@ function Details({ activePlanObject = {} }) {
 		<div className={styles.plan}>
 			<div className={styles.status_card}>
 				<div className={styles.current_plan}>{t('common:account_settings_subscription_status_text')}</div>
+
 				<div className={styles.active}>
 					<IcMFtick fill="#ABCD62" width={24} height={24} />
 					<div className={styles.plan_name}>{t('common:account_settings_subscription_active_text')}</div>
 				</div>
 			</div>
+
 			<div className={styles.date}>
 				<div>{t('common:account_settings_subscription_text_2')}</div>
+
 				<div className={styles.date_text}>
 					{formatDate({
 						date       : start_date,

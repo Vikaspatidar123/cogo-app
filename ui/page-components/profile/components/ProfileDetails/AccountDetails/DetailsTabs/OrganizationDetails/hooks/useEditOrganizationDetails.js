@@ -22,6 +22,7 @@ const useEditOrganizationDetails = ({
 	const { t } = useTranslation(['settings']);
 
 	const [errors, setErrors] = useState({});
+
 	const { refetch } = useGetUser();
 	const cityOptions = useGetAsyncOptions(
 		merge(asyncFieldsLocations(), {
@@ -39,12 +40,6 @@ const useEditOrganizationDetails = ({
 	);
 
 	const { handleSubmit = () => {}, setValue, control } = useForm();
-	useEffect(() => {
-		(controls || []).map((item) => setValue(item.name, organizationData[item.name]));
-		if (organizationData.logo) {
-			setValue('logo', organizationData.logo);
-		}
-	}, [organizationData]);
 
 	const onError = (err) => {
 		setErrors({ ...err });
@@ -63,6 +58,13 @@ const useEditOrganizationDetails = ({
 			[name]: showElement,
 		};
 	}, {});
+
+	useEffect(() => {
+		(controls || []).map((item) => setValue(item.name, organizationData[item.name]));
+		if (organizationData.logo) {
+			setValue('logo', organizationData.logo);
+		}
+	}, [organizationData]);
 
 	const onCreate = async (values = {}) => {
 		try {

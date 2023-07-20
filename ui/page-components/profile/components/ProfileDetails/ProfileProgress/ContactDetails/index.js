@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
@@ -35,7 +36,7 @@ function ContactDetails() {
 				</div>
 			)}
 
-			<div className={`${styles.sub_container}${styles.last_item}`}>
+			<div className={cl`${styles.sub_container} ${styles.last_item}`}>
 				<div className={styles.label_text}>{t('settings:settings_email_label')}</div>
 				<div className={styles.value_text}>{profile.email}</div>
 			</div>

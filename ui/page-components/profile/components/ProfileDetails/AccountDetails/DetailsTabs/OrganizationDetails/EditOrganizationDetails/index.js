@@ -28,6 +28,7 @@ function EditOrganizationDetails({
 		organizationData,
 		setShowEditOrganizationDetails,
 	});
+
 	return (
 		<div className={styles.layout_container}>
 			<div className={styles.layout}>
@@ -35,7 +36,7 @@ function EditOrganizationDetails({
 					const Controller = getField(item.type);
 					const show = showElements[item.name];
 					return (
-						show && (
+						show ? (
 							<div className={styles.field}>
 								<div className={styles.lable}>{item.label}</div>
 								<Controller {...item} control={control} />
@@ -43,7 +44,7 @@ function EditOrganizationDetails({
 									{errors[item?.name]?.message}
 								</div>
 							</div>
-						)
+						) : null
 					);
 				})}
 			</div>

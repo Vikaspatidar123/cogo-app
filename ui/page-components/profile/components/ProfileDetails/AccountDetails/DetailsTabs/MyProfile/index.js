@@ -99,7 +99,7 @@ function MyProfile() {
 				)}
 			</div>
 
-			{showPasswordModal && (
+			{showPasswordModal ? (
 				<Modal
 					show={showPasswordModal}
 					onClose={setShowPasswordModal}
@@ -108,14 +108,14 @@ function MyProfile() {
 				>
 					<ResetPassword setShowPasswordModal={setShowPasswordModal} />
 				</Modal>
-			)}
+			) : null}
 
-			{showMobileVerificationModal !== null && (
+			{showMobileVerificationModal !== null ? (
 				<MobileVerificationModal
 					showMobileVerificationModal={showMobileVerificationModal}
 					setShowMobileVerificationModal={setShowMobileVerificationModal}
 				/>
-			)}
+			) : null}
 		</>
 	);
 }

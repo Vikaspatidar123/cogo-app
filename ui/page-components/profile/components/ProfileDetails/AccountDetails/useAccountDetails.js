@@ -9,9 +9,9 @@ import { useSelector } from '@/packages/store';
 const useAccountDetails = () => {
 	const { t } = useTranslation(['settings']);
 
-	const { query = {} } = useSelector((state) => state.general);
+	const { push } = useRouter();
 
-	const router = useRouter();
+	const { query = {} } = useSelector((state) => state.general);
 
 	const OPTIONS_MAPPING = getOptions({ t });
 
@@ -42,7 +42,7 @@ const useAccountDetails = () => {
 
 	const handleChangeTab = (obj) => {
 		setActiveTab(obj);
-		if (obj !== activeTab) router.push(`/settings?activeTab=${obj}`);
+		if (obj !== activeTab) push(`/settings?activeTab=${obj}`);
 	};
 
 	return {

@@ -2,6 +2,7 @@
 import styles from './styles.module.css';
 
 import data from '@/.data-store/constants/countries.json';
+import { Image } from '@/packages/next';
 
 const country_code = data?.map((x) => ({
 	label : x.mobile_country_code,
@@ -10,13 +11,15 @@ const country_code = data?.map((x) => ({
 const country = data?.map((item) => ({
 	label: (
 		<div className={styles.country}>
-			<img
+			<Image
 				src={
 				item.flag_icon_url
 					? item.flag_icon_url
 					: 'https://via.placeholder.com/24x20'
 				}
 				alt={item.name}
+				width={24}
+				height={20}
 			/>
 			<div className={styles.country_name}>{item.name}</div>
 		</div>

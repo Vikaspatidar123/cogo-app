@@ -28,6 +28,7 @@ function EditOtherAddress({
 		getAdd,
 		mobalType,
 	});
+
 	return (
 		<div>
 			<Modal.Header
@@ -41,12 +42,12 @@ function EditOtherAddress({
 						const Controller = getField(item.type);
 						const show = showElements[item.name];
 						return (
-							show && (
+							show ? (
 								<div className={styles.field}>
 									<div className={styles.lable}>{item.label}</div>
 									<Controller {...item} control={control} />
 								</div>
-							)
+							) : null
 						);
 					})}
 				</div>
@@ -59,7 +60,7 @@ function EditOtherAddress({
 					}}
 					themeType="secondary"
 					disabled={loading}
-					type="submit"
+					type="button"
 				>
 					{t('settings:edit_or_add_button_label_1')}
 				</Button>

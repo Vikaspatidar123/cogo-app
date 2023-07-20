@@ -103,11 +103,11 @@ function ReasonModal({
 				)}
 
 				<div className={styles.end_box}>
-					<Button className={styles.styled_button} onClick={handleClose}>
+					<Button className={styles.styled_button} onClick={handleClose} type="button">
 						Cancel
 					</Button>
 
-					<Button themeType="accent" onClick={handleSave}>
+					<Button themeType="accent" onClick={handleSave} type="button">
 						Submit
 					</Button>
 				</div>

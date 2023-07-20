@@ -5,12 +5,12 @@ import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 
 const useGetOrganizationUsers = () => {
-	const router = useRouter();
+	const { push } = useRouter();
 
 	const { profile } = useSelector((state) => state);
 
 	const onClickBackButton = () => {
-		router.push('/settings');
+		push('/settings');
 	};
 
 	const [{ data, loading }, trigger] = useRequest({

@@ -58,8 +58,6 @@ const useEditProfileDetails = ({
 				id                       : organization.id,
 				user_id                  : userDetails.id,
 				name                     : values.name || undefined,
-				// mobile_country_code      : values.phone_number.country_code || undefined,
-				// mobile_number            : values.phone_number.number || undefined,
 				work_scopes              : values.work_scopes || undefined,
 				preferred_languages      : values.preferred_languages || undefined,
 				picture                  : values.picture || undefined,
@@ -135,7 +133,6 @@ const useEditProfileDetails = ({
 		handleSubmit,
 		onCreate,
 		onError,
-		// loading: updateUserAPI.loading,
 		loading,
 		setValue,
 	};

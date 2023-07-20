@@ -1,5 +1,5 @@
 import { Button } from '@cogoport/components';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 import useResetPassword from './useResetPassword';

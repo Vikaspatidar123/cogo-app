@@ -15,6 +15,8 @@ import styles from './styles.module.css';
 import getOtherAddressOptions from './utils/get-other-address-options';
 
 function OtherAddresses({ addressesData, addressLoading, getAdd }) {
+	const organizationOtherAddressesList = addressesData?.list || [];
+
 	const { t } = useTranslation(['settings']);
 
 	const OTHER_ADDRESSES_MAPPING = getOtherAddressOptions({ t });
@@ -26,15 +28,13 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 	const [showData, setShowData] = useState({});
 	const [mobalType, setMobalType] = useState(false);
 
-	const organizationOtherAddressesList = addressesData?.list || [];
-
 	const filterAddress = (address_key) => {
 		const listData = (organizationOtherAddressesList || []).filter(
 			(item) => item.address_type === address_key.api_property_key,
 		);
 		return listData || [];
 	};
-	const renderAddressCards = ({ address_key }) => {
+	function RenderAddressCards({ address_key }) {
 		const data = filterAddress(address_key);
 		if ((data || []).length === 0) {
 			return (
@@ -56,7 +56,7 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 				getAdd={getAdd}
 			/>
 		));
-	};
+	}
 
 	const handleCloseModal = () => {
 		setEditOtherAddressKey(null);
@@ -76,7 +76,7 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 	return (
 		<>
 			{Object.values(OTHER_ADDRESSES_MAPPING).map((address_key) => (
-				<div className={styles.main_container}>
+				<div className={styles.main_container} key={address_key.api_property_key}>
 					<div className={styles.flex}>
 						<div
 							className={styles.icon_container}
@@ -117,6 +117,7 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 										setMobalType(false);
 									}}
 									themeType={showData[address_key.api_property_key] ? 'primary' : 'secondary'}
+									type="button"
 								>
 									{t('settings:add_address_button_label')}
 								</Button>
@@ -126,12 +127,14 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 					</div>
 
 					<div>
-						{showData[address_key.api_property_key] && renderAddressCards({ address_key })}
+						{showData[address_key.api_property_key] ? (
+							<RenderAddressCards address_key={address_key} />
+						) : null}
 					</div>
 				</div>
 			))}
 
-			{(!!editOtherAddresKey || !isEmpty(Object.keys(otherAddressObjToUpdate))) && (
+			{(!!editOtherAddresKey || !isEmpty(Object.keys(otherAddressObjToUpdate))) ? (
 				<Modal
 					show={!!editOtherAddresKey || Object.keys(otherAddressObjToUpdate).length !== 0}
 					onClose={handleCloseModal}
@@ -147,7 +150,7 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 						mobalType={mobalType}
 					/>
 				</Modal>
-			)}
+			) : null}
 		</>
 	);
 }

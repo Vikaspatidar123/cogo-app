@@ -33,7 +33,7 @@ function BillingAddresses({
 		setShowEditBillingAddress(false);
 		setAddressIdxToUpdate(null);
 	};
-	const renderBillingAddress = () => {
+	function RenderBillingAddress() {
 		if (!organizationBillingAddressesList.length) {
 			return (
 				<div className={styles.empty}>
@@ -51,7 +51,7 @@ function BillingAddresses({
 				getAddress={getAddress}
 			/>
 		));
-	};
+	}
 	const addresCount = () => {
 		const count = organizationBillingAddressesList.length;
 		const value = count === 0 ? t('settings:addresses_not_found_text_1')
@@ -105,7 +105,7 @@ function BillingAddresses({
 
 				</div>
 
-				<div>{showData ? renderBillingAddress() : null}</div>
+				<div>{showData ? <RenderBillingAddress /> : null}</div>
 			</div>
 
 			{(showEditBillingAddress || addressIdxToUpdate !== null) && (

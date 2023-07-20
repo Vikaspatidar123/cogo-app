@@ -2,7 +2,6 @@ import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import getAlertPreferencesControls from '../../../../configurations/alerts-preferences-controls';
-// import useGetPreferences from '../../../../../../hooks/useGetPreferences';
 import getUserAlert from '../hooks/getUserAlert';
 
 import CategoryForm from './CategoryForm';
@@ -28,6 +27,7 @@ function Categories() {
 	});
 
 	const { getPreferences, preferences } = getUserAlert({ setFormData });
+
 	const controls = getAlertPreferencesControls({ t });
 
 	return (

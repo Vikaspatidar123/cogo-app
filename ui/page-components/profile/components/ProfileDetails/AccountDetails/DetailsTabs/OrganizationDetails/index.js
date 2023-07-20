@@ -21,7 +21,7 @@ function OrganizationDetails() {
 		onClickBackButton,
 	} = useOrganizationDetails({});
 
-	const renderOrganizationDetails = () => {
+	function RenderOrganizationDetails() {
 		if (loading) {
 			return <LoadingState />;
 		}
@@ -62,7 +62,7 @@ function OrganizationDetails() {
 				)}
 			</div>
 		);
-	};
+	}
 
 	return (
 		<>
@@ -72,7 +72,7 @@ function OrganizationDetails() {
 				onClickBackButton={onClickBackButton}
 			/>
 
-			{renderOrganizationDetails()}
+			<RenderOrganizationDetails />
 		</>
 	);
 }

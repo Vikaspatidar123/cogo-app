@@ -16,13 +16,13 @@ function OtherAddressCard({
 	address_key,
 	getAdd,
 }) {
+	const { organization_pocs = [] } = other_address_data;
+
 	const { t } = useTranslation(['settings']);
 
 	const [showPocModal, setShowPocModal] = useState(null);
 
 	const [pocToUpdate, setPocToUpdate] = useState({});
-
-	const { organization_pocs = [] } = other_address_data;
 
 	const taxExemptionDocName = other_address_data.tax_exemption_proof
 		?.split('/')
@@ -48,6 +48,7 @@ function OtherAddressCard({
 						setMobalType(true);
 						setEditOtherAddressKey(address_key);
 					}}
+					tyep="button"
 				>
 					<div>{t('settings:edit_or_add_button_label_2')}</div>
 					<IcMEdit style={{ height: 14, width: 14, marginLeft: '3px' }} />

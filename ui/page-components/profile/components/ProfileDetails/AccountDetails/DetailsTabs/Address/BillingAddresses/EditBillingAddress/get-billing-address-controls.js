@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import data from '@/.data-store/constants/countries.json';
 import getGeoConstants from '@/ui/commons/constants/geo';
 

@@ -42,7 +42,7 @@ function EditProfileDetails({
 					}
 					const ELEMENT = item.type !== 'fieldArray' && getField(item.type);
 					const show = showElements[item.name];
-					return (show && item.type !== 'fieldArray' && (
+					return (show && item.type !== 'fieldArray' ? (
 						<div className={styles.field}>
 							<div className={styles.lable}>{item.label}</div>
 							<ELEMENT {...item} control={control} />
@@ -50,7 +50,7 @@ function EditProfileDetails({
 								{errors[item?.name]?.message}
 							</div>
 						</div>
-					)
+					) : null
 					);
 				})}
 			</div>

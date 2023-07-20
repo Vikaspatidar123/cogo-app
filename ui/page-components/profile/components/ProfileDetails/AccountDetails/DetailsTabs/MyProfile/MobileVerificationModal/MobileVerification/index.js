@@ -32,7 +32,7 @@ function MobileVerification({ type = '' }) {
 		<div>
 			<Modal.Header title={t('settings:heading_mobile_number_verification')} />
 
-			<from>
+			<form>
 				<Modal.Body>
 					<div>
 						{controls.map((item) => {
@@ -49,7 +49,7 @@ function MobileVerification({ type = '' }) {
 						})}
 					</div>
 
-					{showEnterOtpComponent && (
+					{showEnterOtpComponent ? (
 						<div className={styles.otp_container}>
 							<OTPLayout
 								otpLength={OTP_LENGTH}
@@ -58,10 +58,10 @@ function MobileVerification({ type = '' }) {
 								sendOtp={(obj) => sendOtpNumber({ ...obj })}
 							/>
 						</div>
-					)}
+					) : null}
 				</Modal.Body>
 				<Modal.Footer>
-					{!showEnterOtpComponent && (
+					{!showEnterOtpComponent ? (
 						<Button
 							type="submit"
 							size="xl"
@@ -72,9 +72,9 @@ function MobileVerification({ type = '' }) {
 						>
 							{t('settings:get_otp_button_label')}
 						</Button>
-					)}
+					) : null}
 
-					{showEnterOtpComponent && (
+					{showEnterOtpComponent ? (
 						<Button
 							type="submit"
 							onClick={verifyOtpNumber}
@@ -84,9 +84,9 @@ function MobileVerification({ type = '' }) {
 						>
 							{t('settings:submit_button_label')}
 						</Button>
-					)}
+					) : null}
 				</Modal.Footer>
-			</from>
+			</form>
 		</div>
 	);
 }

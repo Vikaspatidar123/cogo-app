@@ -130,6 +130,7 @@ function AddressCard({
 					firstPoc={firstPoc}
 					setShowPocModal={setShowPocModal}
 					setPocToUpdate={setPocToUpdate}
+					key={firstPoc.name}
 				/>
 			))}
 

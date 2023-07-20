@@ -32,6 +32,7 @@ function SearchResultsServiceItemFormElement({
 							control={control}
 							showElements={showElements}
 							error={errors.controlItem}
+							key={name}
 						/>
 					);
 				}
@@ -57,6 +58,7 @@ function SearchResultsServiceItemFormElement({
 							...controlStyle,
 							...(name === 'is_sez' ? { margin: 'auto' } : null),
 						}}
+						key={name}
 					>
 						<div>
 							{name !== 'is_sez' ? (

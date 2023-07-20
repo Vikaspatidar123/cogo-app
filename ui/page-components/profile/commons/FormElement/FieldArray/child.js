@@ -38,8 +38,8 @@ function Child({
 					return (
 						<div
 							className={styles.form_item}
-							style={{ marginRight: '10px', ...style }}
 							key={index}
+							style={{ ...style }}
 						>
 							<div className={styles.list}>
 								{(showLabelOnce && index === 0 && controlItem.label)

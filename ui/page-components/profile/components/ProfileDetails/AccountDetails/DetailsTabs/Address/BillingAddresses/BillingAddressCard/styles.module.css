@@ -73,7 +73,7 @@
 	border: 1px solid #e0e0e0;
 	border-radius: 4px;
 
-	@media (max-width: 767.99px) {
+	@media (max-width: 768px) {
 		width: 220px;
 	}
 }
@@ -82,7 +82,7 @@
 	font-size: 12px;
 	font-weight: 400;
 
-	@media (max-width: 767.99px) {
+	@media (max-width: 768px) {
 		width: 140px;
 		overflow: hidden;
 		text-overflow: ellipsis;

@@ -36,7 +36,7 @@ function UserDetails() {
 							{['verified', 'rejected', 'pending'].includes(kyc_status)
 								? (
 									<div className={cl`${styles[`${kyc_status}`]} ${styles.kyc_status}`}>
-										{KYC_MAPPING.kyc_status}
+										{KYC_MAPPING[kyc_status]}
 									</div>
 								) : null}
 						</div>

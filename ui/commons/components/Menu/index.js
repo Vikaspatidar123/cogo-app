@@ -41,7 +41,7 @@ function Menu({ setShowPopover, show, setShow }) {
 	return (
 		<div className={styles.container}>
 			<MenuProfileHeader setShow={setShow} />
-			{organization?.id && <Profile setShowPopover={setShowPopover} />}
+			{organization?.id ? <Profile setShowPopover={setShowPopover} /> : null}
 			{(filterData || []).map((item) => (
 				<Navigation
 					setShowPopover={setShowPopover}

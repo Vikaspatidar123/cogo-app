@@ -50,12 +50,12 @@ function Subscription() {
 					<Details activePlanObject={activePlanObject} />
 				</div>
 			) : (
-				<div className={styles.container}>
+				<div className={styles.empty_container}>
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.empty_url}
 						alt={t('common:alt_empty_text')}
-						width={100}
-						height={100}
+						width={150}
+						height={150}
 					/>
 				</div>
 			)}

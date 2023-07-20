@@ -1373,6 +1373,11 @@ const saas = {
 			api         : 'list_operators',
 			access_type : 'public',
 		},
+		{
+			api          : 'get_vessel_live_location',
+			access_type  : 'private',
+			service_name : 'saas_traceability',
+		},
 	],
 	app_saas_live_vessel_tracking: [
 		{

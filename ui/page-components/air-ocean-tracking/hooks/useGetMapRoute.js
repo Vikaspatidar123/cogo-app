@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { DEFAULT_LAT_INDEX, DEFAULT_LNG_INDEX } from '../constant/mapConstant';
 import calAirRoute from '../utils/calAirRoute';
 
+import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 
 const getUniqueArrElements = (arr) => arr.reduce((accumulator, current) => {
@@ -16,18 +17,33 @@ const getUniqueArrElements = (arr) => arr.reduce((accumulator, current) => {
 	return accumulator;
 }, []);
 
+const getLiveLocPayload = ({ trackingInfo = [], trackingId }) => {
+	const containerNos = trackingInfo.map((info) => info.container_no);
+
+	return {
+		tracking_id       : trackingId,
+		container_numbers : containerNos,
+	};
+};
+
 const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
+	const { query } = useRouter();
+	const { trackingId } = query;
+
 	const [allRoute, setAllRoute] = useState([]);
-	console.log(trackingInfo, 'trackingInfo');
+
 	const [{ loading }, trigger] = useRequest({
 		method : 'get',
 		url    : '/get_multiple_sea_routes',
 	}, { manual: true, autoCancel: false });
 
-	const [{ loading: liveLocLoading }, liveLocTrigger] = useRequest({
+	const [{ loading: liveLocLoading, data:liveLocData }] = useRequest({
 		method : 'get',
 		url    : '/get_vessel_live_location',
-	}, { manual: true });
+		params : getLiveLocPayload({ trackingId, trackingInfo }),
+	}, { manual: false });
+
+	console.log(liveLocData, 'liveLocData');
 
 	const getSeaRoute = useCallback(async ({ coordinates = [] }) => {
 		try {

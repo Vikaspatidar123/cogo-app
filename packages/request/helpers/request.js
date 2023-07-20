@@ -67,7 +67,7 @@ request.interceptors.request.use((oldConfig) => {
 		newConfig.url = `/${serviceName}/${apiPath}`;
 	}
 
-	if (serviceName === 'location' || apiPath.includes('location')) {
+	if (serviceName === 'location') {
 		newConfig.baseURL = 'https://api.cogoport.com';
 	}
 

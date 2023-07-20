@@ -1,5 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcAIdea } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect } from 'react';
 
 import getControls from '../../../../configurations/advFilter';
@@ -16,6 +17,9 @@ function AdvFilters({
 	setSearchTag,
 	countryOptions,
 }) {
+	const { t } = useTranslation(['common', 'hsClassification']);
+	const field = getControls({ countryOptions, t });
+
 	const {
 		handleSubmit,
 		watch,
@@ -41,8 +45,6 @@ function AdvFilters({
 		}
 		setSearchTag('');
 	};
-
-	const field = getControls({ countryOptions });
 
 	useEffect(() => {
 		refetch(country);
@@ -81,7 +83,7 @@ function AdvFilters({
 							clearFilterHandler();
 						}}
 					>
-						Clear Filter
+						{t('hsClassification:hs_code_classification_clear_search_button_label')}
 					</Button>
 					<div>
 						<Button
@@ -91,7 +93,7 @@ function AdvFilters({
 							type="submit"
 							disabled={loading}
 						>
-							Search
+							{t('hsClassification:hs_code_classification_search_button_label')}
 						</Button>
 					</div>
 				</div>

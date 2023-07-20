@@ -1,4 +1,5 @@
 import { Toggle } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import Filters from './Filters';
@@ -11,6 +12,8 @@ function Header({
 	resetDrillDownHandler,
 	setSearchTag,
 }) {
+	const { t } = useTranslation(['common', 'hsClassification']);
+
 	const [labeledValue, setLabeledValue] = useState('normalSearch');
 	const handleToggle = (value) => {
 		setLabeledValue(value ? 'advanceSearch' : 'normalSearch');
@@ -19,14 +22,13 @@ function Header({
 	return (
 		<div className={styles.container}>
 			<div className={styles.head}>
-				<div className={styles.heading}>Search HS Code</div>
+				<div className={styles.heading}>{t('hsClassification:hs_code_classification_label')}</div>
 				<div>
 					<Toggle
-						name="a4"
 						size="md"
 						disabled={false}
-						onLabel="Advance Search"
-						offLabel="Normal Search"
+						onLabel={t('hsClassification:hs_code_classification_toggle_on_label')}
+						offLabel={t('hsClassification:hs_code_classification_toggle_off_label')}
 						onChange={(value) => {
 							handleToggle(value.target.checked);
 						}}

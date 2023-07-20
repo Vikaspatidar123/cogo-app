@@ -1,3 +1,6 @@
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
+
 import Item from '../Item';
 import Pagination from '../Item/Pagination';
 
@@ -13,7 +16,8 @@ function List({
 	headCode,
 	headingToggle,
 }) {
-	const list = loading ? [1, 2, 3, 4, 5] : apiData;
+	const { t } = useTranslation(['common', 'tradePartner']);
+	const list = loading ? [...Array(5).keys()] : apiData;
 
 	return (
 		<div>
@@ -30,7 +34,11 @@ function List({
 					headingToggle={headingToggle}
 				/>
 			)}
-			{!loading && apiData?.length === 0 && <div className={styles.empty}>No Data Available</div>}
+			{!loading && isEmpty(apiData) && (
+				<div className={styles.empty}>
+					{t('hsClassification:hs_code_classification_empty_state_text_7')}
+				</div>
+			)}
 		</div>
 	);
 }

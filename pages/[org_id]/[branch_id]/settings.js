@@ -5,7 +5,7 @@ import { ProfileDetails } from '@/ui/page-components/profile';
 export async function getServerSideProps({ locale }) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common', 'settings'])),
+			...(await serverSideTranslations(locale, ['common', 'settings', 'documents'])),
 
 		},
 	};

@@ -17,6 +17,7 @@ const MAPPING = {
 	poc_name     : 'name',
 	phone_number : 'mobile_number',
 };
+
 const useEditBillingAddress = ({
 	addressIdxToUpdate,
 	organizationBillingAddressesList,
@@ -29,6 +30,7 @@ const useEditBillingAddress = ({
 	const endPoint = mobalType
 		? '/update_organization_billing_address'
 		: '/create_organization_billing_address';
+
 	const [{ loading }, trigger] = useRequest(
 		{
 			url    : endPoint,

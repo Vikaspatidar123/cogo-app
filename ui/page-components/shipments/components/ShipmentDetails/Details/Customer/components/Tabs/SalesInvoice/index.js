@@ -23,7 +23,7 @@ function SalesInvoice() {
 
 	if (invoiceLoading) {
 		return (
-			[1, 2, 3].map((item) => (
+			[...Array(3).keys()].map((item) => (
 				<section className={styles.loader} key={item}>
 					<Placeholder height="30px" width="200px" />
 					<Placeholder height="30px" width="200px" />

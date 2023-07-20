@@ -70,7 +70,7 @@ function PendingModal({
 			closeOnOuterClick={false}
 			showCloseIcon={false}
 		>
-			{apiTries < MAX_API_TRIES && status !== 'active' && (
+			{apiTries < MAX_API_TRIES && status !== 'active' ? (
 				<div className={styles.container}>
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.loading_banner}
@@ -87,9 +87,9 @@ function PendingModal({
 						height={30}
 					/>
 				</div>
-			)}
+			) : null}
 
-			{apiTries > CLOSE_TIME && (
+			{apiTries > CLOSE_TIME ? (
 				<div className={styles.container}>
 					<Icon width={52} height={52} fill="#FBDC00" />
 					<div className={`${styles.txt} ${styles.error}`}>
@@ -104,7 +104,7 @@ function PendingModal({
 						{t('subscriptions:close_text')}
 					</Button>
 				</div>
-			)}
+			) : null}
 		</Modal>
 	);
 }

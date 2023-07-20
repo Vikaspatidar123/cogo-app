@@ -95,7 +95,7 @@ function Plan() {
 					planFeatureData={planFeatureData}
 				/>
 
-				{modal && (
+				{modal ? (
 					<SuccessModal
 						query={query}
 						modal={modal}
@@ -103,8 +103,8 @@ function Plan() {
 						getPlan={getPlan}
 						name={saas_plan}
 					/>
-				)}
-				{razorLoading && (
+				) : null}
+				{razorLoading ? (
 					<PendingModal
 						razorLoading={razorLoading}
 						setRazorLoading={setRazorLoading}
@@ -112,7 +112,7 @@ function Plan() {
 						paymentStatus={paymentStatus}
 						setAddModal={setShowModal}
 					/>
-				)}
+				) : null}
 			</div>
 
 		</div>

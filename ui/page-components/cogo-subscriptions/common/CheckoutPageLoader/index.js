@@ -7,12 +7,13 @@ const LOADER = [...Array(3).keys()];
 function CheckoutPageLoader() {
 	return (
 		<div className={styles.loader_container}>
-			{LOADER.map(() => (
+			{LOADER.map((item) => (
 				<Placeholder
 					height="490px"
 					width="96%"
 					margin="30px 10px 20px 10px"
 					className={styles.loader}
+					key={item}
 				/>
 			))}
 		</div>

@@ -18,7 +18,7 @@ function BottomContainer() {
 			<div>
 				{t('subscriptions:recurring_communication_text_2')}
 				{' '}
-				<b>{period === 'annual' ? 'yearly' : period}</b>
+				<strong>{period === 'annual' ? 'yearly' : period}</strong>
 				{' '}
 				{t('subscriptions:recurring_communication_text_3')}
 			</div>

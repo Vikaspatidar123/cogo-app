@@ -1,4 +1,4 @@
-import { Toast } from '@cogoport/components';
+import { Toast, cl } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { Elements } from '@stripe/react-stripe-js';
@@ -26,23 +26,25 @@ import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
 
 function Checkout() {
+	const { query } = useRouter();
+
 	const { t } = useTranslation(['subscriptions']);
 
 	const { profile } = useSelector((s) => s);
-	const [plan, setPlan] = useState({});
-	const [datePickerValue, setDatePickerValue] = useState();
-	const [addresses, setAddresses] = useState();
-	const [checkoutResponse, setCheckoutResponse] = useState();
-	const [addressWithoutGst, setAddressWithoutGst] = useState();
-	const [isBillingAddress, setisBillingAddress] = useState();
-	const [stripePromiseSet, setstripePromiseSet] = useState();
 
-	const { query } = useRouter();
+	const [plan, setPlan] = useState({});
+	const [datePickerValue, setDatePickerValue] = useState({});
+	const [addresses, setAddresses] = useState([]);
+	const [checkoutResponse, setCheckoutResponse] = useState({});
+	const [addressWithoutGst, setAddressWithoutGst] = useState([]);
+	const [isBillingAddress, setisBillingAddress] = useState('');
+	const [stripePromiseSet, setstripePromiseSet] = useState({});
+	const [checked, setChecked] = useState([]);
+
 	const { billingAddress, addressApi } = useFetchBillingAddress({
 		profile,
 		setAddressWithoutGst,
 	});
-	const [checked, setChecked] = useState([]);
 	const { getPlan, planDataLoading } = useGetPlanDetails({ profile });
 	const { redirectManageSubscription } = redirectUrl();
 	const { createSellerAddres, createAddressLoading } = useCreateBillingAddres(
@@ -115,10 +117,10 @@ function Checkout() {
 			) : (
 				<div>
 					<div className={styles.padded_row}>
-						<div className={`${styles.wrapper} ${styles.wd_28}`}>
+						<div className={cl`${styles.wrapper} ${styles.wd_28}`}>
 							<SubscriptionDetails plans={plan} query={query} />
 						</div>
-						<div className={`${styles.wrapper} ${styles.wd_39}`}>
+						<div className={cl`${styles.wrapper} ${styles.wd_39}`}>
 							<BillingDetails
 								createSellerAddres={createSellerAddres}
 								createAddressLoading={createAddressLoading}
@@ -132,7 +134,7 @@ function Checkout() {
 								setisBillingAddress={setisBillingAddress}
 							/>
 						</div>
-						<div className={`${styles.wrapper} ${styles.wd_29}`}>
+						<div className={cl`${styles.wrapper} ${styles.wd_29}`}>
 							<Charges
 								plans={plan}
 								query={query}
@@ -149,15 +151,15 @@ function Checkout() {
 				</div>
 
 			)}
-			{checkoutModal && (
+			{checkoutModal ? (
 				<CheckoutModal
 					checkoutModal={checkoutModal}
 					responseForCheckout={responseForCheckout}
 					checkoutResponse={checkoutResponse}
 					setCheckoutModal={setCheckoutModal}
 				/>
-			)}
-			{stripeModal && !isEmpty(stripePromiseSet) && (
+			) : null}
+			{(stripeModal && !isEmpty(stripePromiseSet)) ? (
 				<Elements stripe={stripePromiseSet}>
 					<StripePaymentModal
 						flag={stripeModal}
@@ -168,7 +170,7 @@ function Checkout() {
 						query={query}
 					/>
 				</Elements>
-			)}
+			) : null}
 		</div>
 	);
 }

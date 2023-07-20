@@ -38,7 +38,7 @@ function Subscription() {
 
 	return (
 		<div className={styles.container}>
-			{priority_sequence === GLOBAL_CONSTANTS.zeroth_index ? (
+			{priority_sequence !== GLOBAL_CONSTANTS.zeroth_index ? (
 				<div className={styles.first_row}>
 					<div className={styles.card}>
 						<Header

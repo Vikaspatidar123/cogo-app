@@ -39,7 +39,7 @@ function Child({
 						<div
 							className={styles.form_item}
 							key={index}
-							style={{ ...style }}
+							style={style}
 						>
 							<div className={styles.list}>
 								{(showLabelOnce && index === 0 && controlItem.label)

@@ -111,6 +111,7 @@ function TrackMapNavigate({
 				tracking_no    : trackerDetails?.input,
 				tracking_label : startCase(trackerDetails?.type),
 			}}
+			isGetSeaRoute
 		/>
 	);
 }

@@ -61,6 +61,7 @@ function UploadDocument({
 					loading={loading}
 					disabled={loading}
 					className={styles.button}
+					type="button"
 				>
 					Save
 				</Button>

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Modal, Button } from '@cogoport/components';
 import { IcMDocument, IcMEdit } from '@cogoport/icons-react';
 import { useState } from 'react';
@@ -9,7 +8,6 @@ import AddEditPocDetails from '../../AddEditPocDetails';
 import PocCard from './PocCard';
 import styles from './styles.module.css';
 
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import getValue from '@/ui/commons/utils/getValue';
 
@@ -21,6 +19,8 @@ function AddressCard({
 	setMobalType,
 	getAddress,
 }) {
+	const { organization_pocs = [] } = address;
+
 	const { t } = useTranslation(['settings']);
 
 	const [showPocModal, setShowPocModal] = useState(null);
@@ -44,8 +44,6 @@ function AddressCard({
 		window.open(modifiedUrl, '_blank');
 	};
 
-	const { organization_pocs = [] } = address;
-
 	return (
 		<div className={styles.container}>
 			<Button
@@ -55,7 +53,7 @@ function AddressCard({
 					setAddressIdxToUpdate(index);
 					setMobalType(true);
 				}}
-				type="submit"
+				type="button"
 			>
 				<div>{t('settings:edit_or_add_button_label_2')}</div>
 				<IcMEdit height={14} width={14} style={{ marginLeft: '3px' }} />
@@ -141,6 +139,7 @@ function AddressCard({
 					themeType="secondary"
 					className={styles.button}
 					onClick={() => setShowPocModal('add')}
+					type="button"
 				>
 					{t('settings:add_poc_button_label')}
 				</Button>

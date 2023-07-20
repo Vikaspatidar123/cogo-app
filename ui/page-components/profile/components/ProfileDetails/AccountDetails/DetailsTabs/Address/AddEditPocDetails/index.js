@@ -69,6 +69,7 @@ function AddEditPocDetails({
 					onClick={() => setShowPocModal(false)}
 					size="sd"
 					themeType="secondary"
+					type="button"
 				>
 					{t('settings:edit_or_add_button_label_1')}
 				</Button>

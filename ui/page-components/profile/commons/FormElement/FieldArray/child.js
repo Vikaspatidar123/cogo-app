@@ -23,8 +23,7 @@ function Child({
 				{controls.map((controlItem) => {
 					const { style, type } = controlItem;
 
-					const show =						!(controlItem.name in showElements)
-						|| showElements[controlItem.name];
+					const show = !(controlItem.name in showElements) || showElements[controlItem.name];
 
 					const Element = getField(type);
 					if (!Element && !show) return null;

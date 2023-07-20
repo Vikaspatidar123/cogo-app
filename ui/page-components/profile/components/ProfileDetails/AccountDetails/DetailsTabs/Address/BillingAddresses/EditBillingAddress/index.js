@@ -47,7 +47,7 @@ function EditBillingAddress({
 						const Element = getField(item.type);
 						const show = showElements[item.name];
 						return (
-							show && (
+							show ? (
 								<div className={styles.field}>
 									<div className={styles.lable}>{item.label}</div>
 									<Element {...item} control={control} />
@@ -57,7 +57,7 @@ function EditBillingAddress({
 										</div>
 									)}
 								</div>
-							)
+							) : null
 						);
 					})}
 				</div>

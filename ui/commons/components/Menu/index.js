@@ -14,12 +14,14 @@ import { useSelector } from '@/packages/store';
 const SHOW_NAVIGATIONS = ['saas_cogo_subscription', 'saas_finance'];
 
 function Menu({ setShowPopover, show, setShow }) {
-	const [isOpen, setIsOpen] = useState(false);
 	const { t } = useTranslation(['common']);
 
 	const { user_data } = useSelector(({ profile }) => ({
 		user_data: profile || {},
 	}));
+
+	const [isOpen, setIsOpen] = useState(false);
+
 	const { organization } = user_data || {};
 
 	const configs = getSideBarConfigs({ userData: user_data, t });
@@ -46,6 +48,7 @@ function Menu({ setShowPopover, show, setShow }) {
 					item={item}
 					setIsOpen={setIsOpen}
 					isOpen={isOpen}
+					key={item.title}
 				/>
 			))}
 

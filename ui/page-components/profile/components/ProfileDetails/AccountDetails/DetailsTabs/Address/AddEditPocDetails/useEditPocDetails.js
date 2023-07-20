@@ -35,6 +35,7 @@ const useEditPocDetails = ({
 	);
 
 	const { formState, handleSubmit, control, setValue, register } = useForm();
+
 	const setValues = () => {
 		fields?.map((item) => setValue(item?.name, pocToUpdate[item.name]));
 		const phone_number = {
@@ -48,6 +49,7 @@ const useEditPocDetails = ({
 		};
 		setValue('alternate_phone_number', alternate_phone_number);
 	};
+
 	useEffect(() => {
 		if (pocToUpdate !== null && showPocModal === 'edit') {
 			setValues();

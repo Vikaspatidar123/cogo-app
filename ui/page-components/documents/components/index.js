@@ -13,7 +13,7 @@ import Uploader from './Uploader';
 const LOADING_ROWS_COUNT = 6;
 
 function Documents() {
-	const [filters, setFilters] = useState({});
+	const [filters, setFilters] = useState({ page: 1 });
 	const [show, setShow] = useState(false);
 	const [documentDetails, setDocumentDetails] = useState({});
 

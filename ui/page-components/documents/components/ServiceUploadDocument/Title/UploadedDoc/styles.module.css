@@ -1,44 +1,44 @@
 .success_container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
-
+  
 .success_info_doc {
-  flex-basis: 35%;
-  overflow: hidden;
-  color: #828282;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+	flex-basis: 35%;
+	overflow: hidden;
+	color: #828282;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .info {
-  color: #231;
+	color: #231;
 }
 
 .success_info {
-  flex-basis: 25%;
-  color: #828282;
+	flex-basis: 25%;
+	color: #828282;
 }
 
 .success_info_doc {
-  flex-basis: 35%;
-  overflow: hidden;
-  color: #828282;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+	flex-basis: 35%;
+	overflow: hidden;
+	color: #828282;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .icon {
-  width: 20px;
-  height: 20px;
-  margin: 0 10px;
-  cursor: pointer;
+	width: 20px;
+	height: 20px;
+	margin: 0 10px;
+	cursor: pointer;
 }
 
 .modal_body {
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
 }

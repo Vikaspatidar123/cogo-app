@@ -1,4 +1,4 @@
-import { Button, Toast } from '@cogoport/components';
+import { Button, Toast, cl } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
@@ -20,7 +20,7 @@ function Footer({ setCurrentStep, basicDetails }) {
 	};
 
 	return (
-		<div className={styles.container}>
+		<div className={cl`${styles.container} ${reason_type !== 'bidding' ? styles.add_margin : ''}`}>
 			<Button onClick={handleNext}>
 				Next
 			</Button>

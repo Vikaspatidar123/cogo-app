@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import Footer from './Footer';
 import styles from './styles.module.css';
 
@@ -22,24 +24,30 @@ function ReasonType({
 	setCurrentStep,
 	control,
 	errors,
+	watchReasonType,
 	...basicDetails
 }) {
 	const {
 		profile: { organization = {} },
 	} = useSelector((state) => state);
-	const { reason_type: watchReasonType } = basicDetails || {};
+
 	const suggestName = `${organization.business_name}_${suggestDate}_RFQ`;
 
 	const handleSetValue = () => {
-		setValue(
-			'quotation_name',
-			`${organization.business_name}_${suggestDate}_RFQ`,
-		);
+		setValue('quotation_name', suggestName);
 	};
+
+	useEffect(() => {
+		if (watchReasonType !== 'bidding') {
+			setValue('bidding_date', null);
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [watchReasonType]);
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.content}>
+
 				<div className={styles.field}>
 					<p className={styles.label}>{fields[0]?.label}</p>
 					<InputController control={control} {...fields?.[0]} />
@@ -60,6 +68,7 @@ function ReasonType({
 				{watchReasonType === 'bidding' ? (
 					<div className={styles.date_container}>
 						<p className={styles.label}>{fields[3].label}</p>
+
 						<DatepickerController {...fields[3]} control={control} />
 						<p className={styles.error}>
 							{errors.bidding_date ? errors.bidding_date?.message : null}

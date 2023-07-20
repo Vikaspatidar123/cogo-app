@@ -1,4 +1,4 @@
-import { Stepper } from '@cogoport/components';
+import { Stepper, cl } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
 import { useState } from 'react';
 
@@ -30,9 +30,11 @@ function CreateRfq() {
 		},
 	});
 	const basicDetails = watch();
-	const watchRequestType = watch('request_type');
+	const { request_type: watchRequestType, reason_type: watchReasonType } = basicDetails;
 
 	const Component = getComponent({ currentStep, watchRequestType, type });
+
+	const fixedCondition = !(currentStep === 3 && (type === 'manual_entry' || watchRequestType === 'manual_entry'));
 
 	return (
 		<div className={styles.container}>
@@ -41,7 +43,7 @@ function CreateRfq() {
 				<div className={styles.title}>Create Quotation</div>
 			</div>
 
-			<div className={styles.content}>
+			<div className={cl`${styles.content} ${fixedCondition ? styles.fixed : ''}`}>
 				<Stepper
 					active={currentStep}
 					setActive={setCurrentStep}
@@ -60,10 +62,13 @@ function CreateRfq() {
 						currentStep={currentStep}
 						setCurrentStep={setCurrentStep}
 						watchRequestType={watchRequestType}
+						watchReasonType={watchReasonType}
 						errors={errors}
 					/>
 				</div>
 			</div>
+
+			{!fixedCondition && (<div className={styles.dummy_footer} />)}
 		</div>
 	);
 }

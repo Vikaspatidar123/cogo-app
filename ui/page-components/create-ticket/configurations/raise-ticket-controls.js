@@ -25,8 +25,8 @@ const getControls = ({ t }) => [
 		placeholder : t('createTicketPublic:raise_issue_placeholder_3'),
 		multiple    : true,
 		options     : [
-			{ label: 'Whatsapp', value: 'whatsapp' },
-			{ label: 'Email', value: 'email' },
+			{ label: t('createTicketPublic:notification_label_1'), value: 'whatsapp' },
+			{ label: t('createTicketPublic:notification_label_2'), value: 'email' },
 		],
 	},
 	{

@@ -31,5 +31,7 @@
     "payment_col_5":"Utilization Status",
     "success_title":"Thank you for your valuable time!",
     "success_sub_title":"Ticket Raised Sucessfully",
-    "success_btn":"View Details"
+    "success_btn":"View Details",
+    "notification_label_1":"Whatsapp",
+    "notification_label_2":"Email"
 }

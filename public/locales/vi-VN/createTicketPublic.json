@@ -31,5 +31,7 @@
     "payment_col_5":"Trạng thái sử dụng",
     "success_title":"Cảm ơn bạn vì thời gian quý giá của bạn!",
     "success_sub_title":"Vé được nâng lên thành công",
-    "success_btn":"Xem chi tiết"
+    "success_btn":"Xem chi tiết",
+    "notification_label_1":"Whatsapp",
+    "notification_label_2":"Email"
 }

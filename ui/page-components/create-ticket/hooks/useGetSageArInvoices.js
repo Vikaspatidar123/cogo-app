@@ -4,6 +4,8 @@ import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 
 const PAGE_LIMIT = 6;
+const DEFAULT_PAGE_LIMIT = 10;
+const DEFAULT_PAGE = 1;
 
 const useGetSageArInvoices = () => {
 	const { query } = useRouter();
@@ -11,8 +13,8 @@ const useGetSageArInvoices = () => {
 	const { token } = query || {};
 
 	const [params, setParams] = useState({
-		page                     : 1,
-		page_limit               : 10,
+		page                     : DEFAULT_PAGE,
+		page_limit               : DEFAULT_PAGE_LIMIT,
 		pagination_data_required : true,
 	});
 

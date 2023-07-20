@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useDebounceQuery } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
 import { useRequestBf } from '@/packages/request';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const DEFAULT_SIZE = 10;
 
@@ -21,7 +22,7 @@ const useGetAsyncOptions = ({ isTicketNotUtlilized }) => {
 		authKey : 'get_token_ticket_types',
 		scope   : 'cogocare',
 		params  : {
-			page       : 0,
+			page       : GLOBAL_CONSTANTS.zeroth_index,
 			TicketType : !isEmpty(searchQuery?.trim())
 				? searchQuery?.trim()
 				: undefined,

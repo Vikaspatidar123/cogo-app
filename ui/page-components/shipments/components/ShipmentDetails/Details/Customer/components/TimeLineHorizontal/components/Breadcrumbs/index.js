@@ -30,7 +30,7 @@ function BreadCrumbs({ servicesForMap = false }) {
 				<Breadcrumb.Item
 					label="Shipments"
 					onClick={() => handleClick()}
-					style={{ color: 'blue' }}
+					style={{ color: 'blue', cursor: 'pointer' }}
 					className={styles.back_to_shipment}
 				/>
 				<Breadcrumb.Item label={show_shipment_id} />

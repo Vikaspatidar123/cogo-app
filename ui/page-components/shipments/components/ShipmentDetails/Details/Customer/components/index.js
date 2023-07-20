@@ -1,5 +1,4 @@
-import { isEmpty } from '@cogoport/utils';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import styles from './styles.module.css';
 import TabSections from './Tabs';

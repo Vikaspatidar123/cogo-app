@@ -24,6 +24,11 @@ const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
 		url    : '/get_multiple_sea_routes',
 	}, { manual: true, autoCancel: false });
 
+	const [{ loading: liveLocLoading }, liveLocTrigger] = useRequest({
+		method : 'get',
+		url    : '/get_vessel_live_location',
+	}, { manual: true });
+
 	const getSeaRoute = useCallback(async ({ coordinates = [] }) => {
 		try {
 			const resp = await trigger({

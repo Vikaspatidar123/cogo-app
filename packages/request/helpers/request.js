@@ -61,10 +61,14 @@ request.interceptors.request.use((oldConfig) => {
 	const serviceName = microServices[apiPath];
 	const isDev = !process.env.NEXT_PUBLIC_APP_BASE_URL.includes('api.cogoport.com');
 
-	const peeweeSerializerRequierd = PEEWEE_SERVICES.includes(serviceName) || (serviceName === 'location' && !isDev);
+	const peeweeSerializerRequierd = PEEWEE_SERVICES.includes(serviceName) || (serviceName === 'location' && isDev);
 
 	if (serviceName) {
 		newConfig.url = `/${serviceName}/${apiPath}`;
+	}
+
+	if (serviceName === 'location' || apiPath.includes('location')) {
+		newConfig.baseURL = 'https://api.cogoport.com';
 	}
 
 	return {

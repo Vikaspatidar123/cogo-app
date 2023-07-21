@@ -18,10 +18,10 @@ const useGetProductClassificationId = ({
 		method  : 'get',
 		authKey : 'get_saas_product_category',
 	}, { manual: true });
-	const [{ loading:addProductLoading }, addApi] = useRequestBf({
+	const [{ loading: addProductLoading }, addApi] = useRequestBf({
 		url     : '/saas/product',
 		method  : 'post',
-		authkey : 'post_saas_product',
+		authKey : 'post_saas_product',
 	}, { manual: true });
 
 	const getProductClassification = async () => {
@@ -39,7 +39,7 @@ const useGetProductClassificationId = ({
 		}
 	};
 	const addProduct = async (data, setShowProduct, pdId) => {
-		const { prefiledValues:prefiled, pricingDetails, logoUrl = null } = data || {};
+		const { prefiledValues: prefiled, pricingDetails, logoUrl = null } = data || {};
 		try {
 			const resp = await addApi({
 				data: {

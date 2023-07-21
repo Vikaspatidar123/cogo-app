@@ -7,7 +7,7 @@ const useGetProductCode = () => {
 	const [{ loading, data }, trigger] = useRequestBf({
 		method  : 'get',
 		url     : '/saas/bill/product-codes',
-		authkey : 'get_saas_bill_product_codes',
+		authKey : 'get_saas_bill_product_codes',
 	}, { manual: true });
 
 	const getProductCode = useCallback(async () => {

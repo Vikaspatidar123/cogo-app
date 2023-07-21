@@ -18,16 +18,17 @@ const controls = [
 		initialCall        : true,
 		getModifiedOptions : (options) => (options || []).map((x) => ({
 			...x,
-			value: x.id,
-			label:
-	<>
-		<div>{x.commodity}</div>
-		<div>
-			(
-			{x.subCommodity}
-			)
-		</div>
-	</>,
+			value : x.id,
+			label : (
+				<>
+					<div>{x.commodity}</div>
+					<div>
+						(
+						{x.subCommodity}
+						)
+					</div>
+				</>
+			),
 		})),
 	},
 	{
@@ -37,15 +38,20 @@ const controls = [
 		asyncKey           : 'insurance_country_list',
 		getModifiedOptions : (options = []) => (options || []).map((x) => ({
 			...x,
-			value: x.locationId,
-			label:
-	<div className={styles.country_flag_options}>
-		{x.countryFlagIcon ? <img src={x.countryFlagIcon} alt="cogo" /> : <IcCCompleteJourney />}
-		<div>{x.countryName}</div>
-		{x?.countryType === 'BLOCKED' && (
-			<Pill color="red">{x?.countryType}</Pill>
-		)}
-	</div>,
+			value : x.locationId,
+			label : (
+				<div className={styles.country_flag_options}>
+					{x.countryFlagIcon ? (
+						<img src={x.countryFlagIcon} alt="cogo" />
+					) : (
+						<IcCCompleteJourney />
+					)}
+					<div>{x.countryName}</div>
+					{x?.countryType === 'BLOCKED' && (
+						<Pill color="red">{x?.countryType}</Pill>
+					)}
+				</div>
+			),
 		})),
 		valueKey    : 'locationId',
 		initialCall : true,
@@ -83,7 +89,9 @@ const controls = [
 		placeholder : 'Transit Start Date',
 		type        : 'datepicker',
 		minDate     : new Date(),
-		maxDate     : new Date().setDate(new Date().getDate() + ONE_MONTH_FROM_TODAY),
+		maxDate     : new Date().setDate(
+			new Date().getDate() + ONE_MONTH_FROM_TODAY,
+		),
 	},
 	{
 		name        : 'locationFrom',
@@ -112,13 +120,13 @@ const controls = [
 ];
 
 const getControls = ({
-	setCommodityName = () => {},
+	setCommodityName = () => { },
 	activeTab = '',
 	formDetails = {},
-	setDescription = () => {},
+	setDescription = () => { },
 	transitType = '',
-	setCountryCode = () => {},
-	setCountryDetails = () => {},
+	setCountryCode = () => { },
+	setCountryDetails = () => { },
 }) => controls.map((control) => {
 	if (control.name === 'policyCommodityId') {
 		return {
@@ -133,8 +141,11 @@ const getControls = ({
 	if (control.name === 'policyCountryId') {
 		return {
 			...control,
-			placeholder  : activeTab === 'IMPORT' ? 'Origin Country' : 'Destination Country',
-			handleChange : (e) => {
+			placeholder:
+				activeTab === 'IMPORT'
+					? 'Origin Country'
+					: 'Destination Country',
+			handleChange: (e) => {
 				setCountryDetails({
 					checkSantion      : e?.countryType,
 					sanctionedCountry : e?.countryName,
@@ -142,16 +153,22 @@ const getControls = ({
 				setCountryCode(e?.countryCode);
 			},
 			params: {
-				transitMode: transitType === 'Ocean' ? 'SEA' : transitType?.toUpperCase() || '',
+				transitMode:
+					transitType === 'Ocean'
+						? 'SEA'
+						: transitType?.toUpperCase() || '',
 			},
 		};
 	}
 	if (control.name === 'incoterm') {
 		return {
 			...control,
-			options: activeTab === 'IMPORT'
-				? INCOTERMOPTIONS.filter((option) => option.value !== 'CIF')
-				: INCOTERMOPTIONS,
+			options:
+				activeTab === 'IMPORT'
+					? INCOTERMOPTIONS.filter(
+						(option) => option.value !== 'CIF',
+					)
+					: INCOTERMOPTIONS,
 		};
 	}
 

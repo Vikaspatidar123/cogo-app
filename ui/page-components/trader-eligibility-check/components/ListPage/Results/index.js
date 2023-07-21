@@ -6,11 +6,13 @@ import styles from '../styles.module.css';
 import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+const LOADER_ARRAY = [...Array(3).keys()];
+
 function Results({ loading, screeningRequestResponse, screeningPartyName }) {
 	const { t } = useTranslation(['traderEligibilityCheck']);
 
 	if (loading) {
-		return [...Array(3).keys()].map((item) => (
+		return LOADER_ARRAY.map((item) => (
 			<div key={item}>
 				<Placeholder className={styles.placeholder_styles}>
 					{[...Array(5).keys()].map((itm) => (
@@ -99,7 +101,7 @@ function Results({ loading, screeningRequestResponse, screeningPartyName }) {
 	if (screeningRequestResponse?.length === 0) {
 		return (
 			<div className={styles.list_wrapper}>
-				<Image src={GLOBAL_CONSTANTS.image_url.secure_icon} alt="" height={300} width={300} />
+				<Image src={GLOBAL_CONSTANTS.image_url.secure_icon} alt="secure_icon" height={300} width={300} />
 				<div className={styles.label}>
 					<div className={styles.bold}>
 						{screeningPartyName.toUpperCase()}

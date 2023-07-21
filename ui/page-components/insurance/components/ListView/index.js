@@ -1,5 +1,6 @@
 import { Input, Button, Pagination } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import CancellationAndConfirmModal from '../../common/CancellationModal';
@@ -116,7 +117,7 @@ function ListView() {
 				loading={(listLoading || summaryLoading)}
 				summaryLoading={summaryLoading}
 			/>
-			{data?.list?.length > 0 && (
+			{!isEmpty(data?.list) && (
 				<div className={styles.pagination_div}>
 					<Pagination
 						type="table"

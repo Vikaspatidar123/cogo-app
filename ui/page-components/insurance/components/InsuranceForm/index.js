@@ -10,15 +10,12 @@ import InsuredDetails from '../InsuredDetails';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
-import { useSelector } from '@/packages/store';
+import { Image, useRouter } from '@/packages/next';
 
 function InsuranceFrom() {
 	const { query } = useRouter();
 
 	const { type = '', policyType = '', policyId = '', sid = 'false' } = query || {};
-
-	const { isMobile = false } = useSelector((state) => state);
 
 	const [activeStepper, setActiveStepper] = useState({
 		1   : 'pro',
@@ -55,7 +52,7 @@ function InsuranceFrom() {
 						Insurance
 					</div>
 				</div>
-				<div className={isMobile ? styles.segmented_container_mobile : styles.segmented_container}>
+				<div className={styles.segmented_container}>
 					<Chips
 						items={options}
 						selectedItems={activeTab}
@@ -63,7 +60,7 @@ function InsuranceFrom() {
 						className={styles.chips}
 						size="lg"
 					/>
-					<img
+					<Image
 						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/faq.svg"
 						onClick={() => {
 							setFaq('block');
@@ -71,18 +68,18 @@ function InsuranceFrom() {
 						role="presentation"
 						alt="faq_button"
 						className={showFaq === 'block' ? styles.faq_hidden : styles.faq}
+						width={60}
+						height={45}
 					/>
 					<FAQComponent
 						showFaq={showFaq}
 						setFaq={setFaq}
-						isMobile={isMobile}
 					/>
 				</div>
 
 				{policyId && Object.keys(draftDetailsPrefilling || {})?.length > 0 && (
 					<InsuredDetails
 						type={type}
-						isMobile={isMobile}
 						activeTab={activeTab}
 						setActiveStepper={setActiveStepper}
 						activeStepper={activeStepper}
@@ -93,7 +90,6 @@ function InsuranceFrom() {
 				{!policyId && (
 					<InsuredDetails
 						type={type}
-						isMobile={isMobile}
 						activeTab={activeTab}
 						setActiveStepper={setActiveStepper}
 						activeStepper={activeStepper}

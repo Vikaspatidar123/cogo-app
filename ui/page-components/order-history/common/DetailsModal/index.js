@@ -14,6 +14,17 @@ import DutiesTaxesModal from '@/ui/commons/components/DutiesTaxes';
 import TraderEligibilityModal from '@/ui/commons/components/TraderEligibility';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+function Title({ requestType, TITLE_MAPPING }) {
+	return (
+		<div className={styles.container}>
+			<div>{TITLE_MAPPING?.[requestType]}</div>
+			<div className={styles.line_wrapper}>
+				<div className={styles.line} />
+			</div>
+		</div>
+	);
+}
+
 const COMPONENT_MAPPING = {
 	DUTIES    : DutiesTaxesModal,
 	SCREENING : TraderEligibilityModal,
@@ -29,17 +40,6 @@ function DetailsModal({
 	const { t } = useTranslation(['orderHistory']);
 
 	const TITLE_MAPPING = getTitle({ t });
-
-	function Title({ requestType }) {
-		return (
-			<div className={styles.container}>
-				<div>{TITLE_MAPPING?.[requestType]}</div>
-				<div className={styles.line_wrapper}>
-					<div className={styles.line} />
-				</div>
-			</div>
-		);
-	}
 
 	const { tradeEngineResponse, tradeEngineResponseLoading, tradeEngineResponseFunc } = useGetTradeEngine({ itm });
 
@@ -57,7 +57,15 @@ function DetailsModal({
 			onClose={() => setModal(false)}
 			size="xl"
 		>
-			<Modal.Header className={styles.heading} title={<Title requestType={requestType} />} />
+			<Modal.Header
+				className={styles.heading}
+				title={(
+					<Title
+						requestType={requestType}
+						TITLE_MAPPING={TITLE_MAPPING}
+					/>
+				)}
+			/>
 
 			<Modal.Body>
 				{tradeEngineResponseLoading ? (

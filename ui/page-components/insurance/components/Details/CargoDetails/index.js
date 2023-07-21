@@ -56,7 +56,7 @@ const useCargoDetails = ({
 			policyCountryId   : formDetails?.policyCountryId || '',
 			cargoDescription  : formDetails?.cargoDescription || '',
 			packaging         : formDetails?.packaging || '',
-			transitDate       : formDetails?.transitDate || addDays(new Date(), 4),
+			transitDate       : formDetails?.transitDate || addDays(new Date(), 7),
 			locationFrom      : formDetails?.locationFrom || '',
 			locationTo        : formDetails?.locationTo || '',
 		},

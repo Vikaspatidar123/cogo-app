@@ -8,6 +8,11 @@ import Footer from './Footer';
 import getComponents from './getComponents';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
+
+const { DetailsContainer, HeaderTitle, SectionTitle, AvatarComponent } = getComponents();
+
 function PreviewModal({
 	formDetails = {},
 	showPreviewModal = false,
@@ -59,8 +64,6 @@ function PreviewModal({
 	} = formDetails || {};
 
 	const { totalApplicableCharges = 0 } = ratesResponse || formDetails || {};
-
-	const { DetailsContainer, HeaderTitle, SectionTitle, AvatarComponent } = getComponents();
 
 	const [noteModal, setNoteModal] = useState(false);
 
@@ -190,7 +193,11 @@ function PreviewModal({
 						<div className={styles.row}>
 							<DetailsContainer
 								label="Transit start date"
-								value={format(transitDate || transitStartDate, 'dd MMM yy')}
+								value={formatDate({
+									date       : transitDate || transitStartDate,
+									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+									formatType : 'date',
+								})}
 								className="commodity"
 							/>
 						</div>

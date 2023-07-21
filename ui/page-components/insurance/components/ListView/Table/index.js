@@ -1,4 +1,5 @@
 import { Table, Chips } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 
 import NoData from '../../../common/NoData';
 import segementedOpt from '../Options/index';
@@ -24,7 +25,7 @@ function TableComponent({
 					className={styles.chips}
 				/>
 			</div>
-			{data?.list?.length > 0 ? (
+			{!isEmpty(data?.list) ? (
 				<div className={styles.tables_wrapper}>
 					<Table
 						columns={fields || []}

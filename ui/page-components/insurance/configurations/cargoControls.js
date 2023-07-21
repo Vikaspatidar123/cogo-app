@@ -4,6 +4,8 @@ import { IcCCompleteJourney } from '@cogoport/icons-react';
 import styles from '../components/Details/CargoDetails/styles.module.css';
 import { INCOTERMOPTIONS } from '../constants/incotermOptions';
 
+const ONE_MONTH_FROM_TODAY = 31;
+
 const get = (formObject = {}, key = '') => formObject[key] || null;
 
 const controls = [
@@ -81,7 +83,7 @@ const controls = [
 		placeholder : 'Transit Start Date',
 		type        : 'datepicker',
 		minDate     : new Date(),
-		maxDate     : new Date().setDate(new Date().getDate() + 31),
+		maxDate     : new Date().setDate(new Date().getDate() + ONE_MONTH_FROM_TODAY),
 	},
 	{
 		name        : 'locationFrom',

@@ -2,6 +2,7 @@ import { Button } from '@cogoport/components';
 
 import styles from '../styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Footer({
@@ -19,7 +20,7 @@ function Footer({
 					{' '}
 					{formatAmount({
 						amount   : netPremium,
-						currency : 'INR',
+						currency : GLOBAL_CONSTANTS.currency_code.INR,
 						options  : {
 							notation : 'standard',
 							le       : 'currency',
@@ -35,7 +36,7 @@ function Footer({
 						{' '}
 						{formatAmount({
 							amount   : totalApplicableCharges,
-							currency : 'INR',
+							currency : GLOBAL_CONSTANTS.currency_code.INR,
 							options  : {
 								ation : 'standard',
 								le    : 'currency',

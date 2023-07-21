@@ -26,7 +26,7 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 				},
 			});
 		} catch (err) {
-			console.log(err?.error?.message);
+			console.error(err?.error?.message);
 		}
 	}, [activeTab, filters, organization, sort, trigger]);
 

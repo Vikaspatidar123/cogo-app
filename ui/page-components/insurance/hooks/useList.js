@@ -37,7 +37,7 @@ const useList = ({ activeTab }) => {
 				},
 			});
 		} catch (err) {
-			console.log(getApiErrorString(err));
+			console.error(getApiErrorString(err));
 		}
 	}, [activeTab, filters, organization?.id, sort, trigger]);
 

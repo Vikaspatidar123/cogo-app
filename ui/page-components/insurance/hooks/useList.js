@@ -9,11 +9,6 @@ const useList = ({ activeTab }) => {
 	const [filters, setFilters] = useState({ page: 1, pageLimit: 10 });
 	const [sort, setSort] = useState({});
 	const { organization } = profile || {};
-	const [{ loading, data }, trigger] = useRequestBf({
-		method  : 'get',
-		authKey : 'get_saas_insurance_list',
-		url     : '/saas/insurance/list',
-	}, { manual: true, autoCancel: false });
 
 	const transitModeMapping = (item) => {
 		const mapping = {
@@ -22,6 +17,13 @@ const useList = ({ activeTab }) => {
 		};
 		return mapping[item] || item;
 	};
+
+	const [{ loading, data }, trigger] = useRequestBf({
+		method  : 'get',
+		authKey : 'get_saas_insurance_list',
+		url     : '/saas/insurance/list',
+	}, { manual: true, autoCancel: false });
+
 	const list = useCallback(async () => {
 		const { sortBy = undefined, sortType = undefined } = sort || {};
 		try {
@@ -42,7 +44,10 @@ const useList = ({ activeTab }) => {
 	}, [activeTab, filters, organization?.id, sort, trigger]);
 
 	useEffect(() => {
-		if (organization?.id) { list(); }
+		if (organization?.id) {
+			console.log('hey usefeecet');
+			list();
+		}
 	}, [list, organization?.id]);
 
 	return {

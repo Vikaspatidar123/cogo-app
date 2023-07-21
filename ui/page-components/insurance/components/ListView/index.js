@@ -1,12 +1,9 @@
-import { Input, Chips, Button, Table, Pagination } from '@cogoport/components';
+import { Input, Button, Pagination } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight } from '@cogoport/icons-react';
-import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import CancellationAndConfirmModal from '../../common/CancellationModal';
-import EmptyState from '../../common/EmptyState';
 import FAQComponent from '../../common/FAQComponent';
-import NoData from '../../common/NoData';
 import PreviewModal from '../../common/PreviewModal';
 import redirectUrl from '../../common/redirectUrl';
 import renderFunctions from '../../common/renderFunctions';
@@ -16,8 +13,8 @@ import userSummary from '../../hooks/useGetSummaryDetails';
 import useList from '../../hooks/useList';
 
 import FilterSection from './Filter';
-import segementedOpt from './Options/index';
 import styles from './styles.module.css';
+import TableComponent from './Table';
 
 function ListView() {
 	const [activeTab, setActiveTab] = useState('ALL');
@@ -26,7 +23,9 @@ function ListView() {
 	const [showPreviewModal, setShowPreviewModal] = useState(false);
 	const [cancellationPolicyDetails, setcancellationPolicyDetails] = useState('');
 
-	const { loading = true, data, setFilters, filters, setSort, sort, refetch } = useList({ activeTab });
+	console.log('appppp');
+
+	const { loading:listLoading, data, setFilters, filters, setSort, sort, refetch } = useList({ activeTab });
 
 	const { summaryData, summaryLoading } = userSummary({ activeTab, filters, sort });
 
@@ -109,31 +108,16 @@ function ListView() {
 					/>
 				)}
 			</div>
-			{(isEmpty(data) && !loading) ? <EmptyState /> : (
-				<>
-					<div className={styles.segment_faq}>
-						<Chips
-							size="lg"
-							items={segementedOpt(summaryData, activeTab, summaryLoading)}
-							selectedItems={activeTab}
-							onItemChange={handleTabChange}
-							className={styles.chips}
-						/>
-					</div>
-					{data?.list?.length > 0 ? (
-						<div className={styles.tables_wrapper}>
-							<Table
-								columns={fields || []}
-								data={list || []}
-								loading={loading}
-								loadingRowsCount={10}
-								className={styles.table}
-								type="block"
-							/>
-						</div>
-					) : <NoData />}
-				</>
-			)}
+			<TableComponent
+				fields={fields}
+				list={list}
+				summaryData={summaryData}
+				activeTab={activeTab}
+				handleTabChange={handleTabChange}
+				data={data}
+				loading={(listLoading || summaryLoading)}
+				summaryLoading={summaryLoading}
+			/>
 			{data?.list?.length > 0 && (
 				<div className={styles.pagination_div}>
 					<Pagination

@@ -28,10 +28,13 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 		} catch (err) {
 			console.error(err?.error?.message);
 		}
-	}, [activeTab, filters, organization, sort, trigger]);
+	}, [activeTab, filters, organization?.id, sort, trigger]);
 
 	useEffect(() => {
-		if (organization?.id) { summary(); }
+		if (organization?.id) {
+			console.log('hey siummary');
+			summary();
+		}
 	}, [organization?.id, summary]);
 
 	return {

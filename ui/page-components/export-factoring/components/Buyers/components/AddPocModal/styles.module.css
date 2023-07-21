@@ -1,11 +1,11 @@
-.formDiv{
-    width: 60%;
-    padding: 0px;
+.formDiv {
+	width: 60%;
+	padding: 0;
 }
 
 .field {
+	padding-left: 20px;
 	margin: 0 0 15px;
-    padding-left: 20px;
 }
 
 .field_name {

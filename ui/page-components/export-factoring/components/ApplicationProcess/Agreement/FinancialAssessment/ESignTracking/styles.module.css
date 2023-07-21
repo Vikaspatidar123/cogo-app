@@ -35,7 +35,8 @@
 
 .preview {
 	width: 60%;
+
 	div {
-		margin: 5px 0px;
+		margin: 5px 0;
 	}
 }

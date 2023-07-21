@@ -28,9 +28,9 @@
 
 .content {
 	display: flex;
-	align-items: center;
-	margin: 10px 0px;
 	flex-wrap: wrap;
+	align-items: center;
+	margin: 10px 0;
 }
 
 .list {
@@ -45,7 +45,8 @@
 .form_item {
 	width: 40%;
 }
-.form_container{
+
+.form_container {
 	width: 100%;
 }
 

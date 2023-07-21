@@ -1,15 +1,15 @@
-.header_div{
-    margin: 10px 0px;
+.header_div {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
 	font-size: 16px;
 	color: #060127;
-	width: 100%;
-	justify-content: space-between;
-	padding: 10px;
 }
 
-.header{
-    font-size: 18px;
-    font-weight: 600;
+.header {
+	font-size: 18px;
+	font-weight: 600;
 }

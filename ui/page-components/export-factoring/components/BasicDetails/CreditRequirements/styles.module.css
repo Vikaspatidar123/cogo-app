@@ -2,24 +2,28 @@
 	display: flex;
 	flex-direction: column;
 }
+
 .form_container {
 	display: inline;
+
 	:global {
 		.ui_accordion_content {
 			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
+			flex-flow: row wrap;
 		}
 	}
 }
+
 .field {
-	margin: 0 0 15px;
 	display: flex;
 	flex-direction: column;
+	margin: 0 0 15px;
 }
+
 .field:nth-child(odd) {
 	width: 18%;
 }
+
 .field:nth-child(even) {
 	width: 80%;
 }

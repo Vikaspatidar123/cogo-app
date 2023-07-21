@@ -1,7 +1,8 @@
 .field {
-	margin: 0 0 15px;
 	width: 25%;
+	margin: 0 0 15px;
 }
+
 .field:last-child {
 	width: 100%;
 }
@@ -14,10 +15,9 @@
 }
 
 .form {
-	padding: 20px;
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	flex-flow: row wrap;
+	padding: 20px;
 }
 
 .error_text {

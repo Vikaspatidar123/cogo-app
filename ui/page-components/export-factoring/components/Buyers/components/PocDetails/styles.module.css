@@ -1,24 +1,24 @@
-.flexDiv{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin: 20px 0px;
-    border-bottom: 0.7px dashed #d2d2d2;
+.flexDiv {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	margin: 20px 0;
+	border-bottom: 0.7px dashed #d2d2d2;
 }
 
-.dataDiv{
-    padding: 10px 0px;
+.dataDiv {
+	padding: 10px 0;
 }
 
-.labelText{
-    font-size: 12px;
-    font-weight: 400;
-    color: #4F4F4F;
+.labelText {
+	font-size: 12px;
+	font-weight: 400;
+	color: #4f4f4f;
 }
 
-.valueText{
-    font-size: 14px;
-    font-weight: 500;
-    color: #221F20;
+.valueText {
+	font-size: 14px;
+	font-weight: 500;
+	color: #221f20;
 }

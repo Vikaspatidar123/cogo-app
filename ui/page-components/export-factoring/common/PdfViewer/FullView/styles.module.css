@@ -1,13 +1,13 @@
-.container{
+.container {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	margin: auto;
 	margin-top: 15px;
-	justify-content: center;
 }
 
-.flexDiv{
+.flexDiv {
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 }

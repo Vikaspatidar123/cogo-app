@@ -2,28 +2,31 @@
 	display: flex;
 	flex-direction: column;
 }
+
 .header {
+	padding: 10px 0;
 	font-size: 24px;
 	font-weight: 600;
 	line-height: 36px;
-	letter-spacing: 0px;
 	text-align: left;
-    padding: 10px 0px;
+	letter-spacing: 0;
 }
-.button_wrapper{
-	padding: 20px 0px;
+
+.button_wrapper {
 	display: inline-flex;
 	justify-content: flex-end;
+	padding: 20px 0;
 }
-.terms_condition_div{
+
+.terms_condition_div {
 	display: inline-flex;
 	align-items: center;
-
 }
-.terms{
-	span{
-		color: rgba(225, 60, 60, 0.783);
+
+.terms {
+	span {
+		padding: 0 5px;
+		color: rgb(225 60 60 / 78.3%);
 		cursor: pointer;
-		padding: 0px 5px;
 	}
 }

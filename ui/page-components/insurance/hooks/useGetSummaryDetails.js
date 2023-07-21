@@ -32,7 +32,7 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 
 	useEffect(() => {
 		if (organization?.id) { summary(); }
-	}, [filters, sort, activeTab, summary, organization?.id]);
+	}, [organization?.id, summary]);
 
 	return {
 		summaryData    : data,

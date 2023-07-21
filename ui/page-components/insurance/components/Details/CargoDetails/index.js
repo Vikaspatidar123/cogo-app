@@ -1,5 +1,6 @@
 import { Toast, Tooltip, Button } from '@cogoport/components';
 import { IcMArrowBack, IcMArrowNext, IcMBldo } from '@cogoport/icons-react';
+import { addDays } from '@cogoport/utils';
 import { useEffect, useState } from 'react';
 
 import getControls from '../../../configurations/cargoControls';
@@ -55,7 +56,7 @@ const useCargoDetails = ({
 			policyCountryId   : formDetails?.policyCountryId || '',
 			cargoDescription  : formDetails?.cargoDescription || '',
 			packaging         : formDetails?.packaging || '',
-			trasitDate        : formDetails?.trasitDate || new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+			transitDate       : formDetails?.transitDate || addDays(new Date(), 4),
 			locationFrom      : formDetails?.locationFrom || '',
 			locationTo        : formDetails?.locationTo || '',
 		},

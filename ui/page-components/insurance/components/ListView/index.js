@@ -26,7 +26,7 @@ function ListView() {
 	const [showPreviewModal, setShowPreviewModal] = useState(false);
 	const [cancellationPolicyDetails, setcancellationPolicyDetails] = useState('');
 
-	const { loading, data, setFilters, filters, setSort, sort, refetch } = useList({ activeTab });
+	const { loading = true, data, setFilters, filters, setSort, sort, refetch } = useList({ activeTab });
 
 	const { summaryData, summaryLoading } = userSummary({ activeTab, filters, sort });
 

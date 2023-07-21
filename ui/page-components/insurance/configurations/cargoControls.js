@@ -77,12 +77,11 @@ const controls = [
 		type        : 'text',
 	},
 	{
-		name                  : 'transitDate',
-		placeholder           : 'Transit Start Date',
-		type                  : 'datepicker',
-		minDate               : new Date(Date.now() + 4 * 24 * 60 * 60 * 1000),
-		maxDate               : new Date().setDate(new Date().getDate() + 31),
-		isPreviousDaysAllowed : false,
+		name        : 'transitDate',
+		placeholder : 'Transit Start Date',
+		type        : 'datepicker',
+		minDate     : new Date(),
+		maxDate     : new Date().setDate(new Date().getDate() + 31),
 	},
 	{
 		name        : 'locationFrom',

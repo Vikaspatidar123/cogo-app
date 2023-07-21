@@ -37,15 +37,15 @@
 	margin: 10px 0;
 
 	:global {
-		.ui_input_number_container {
+		.ui_input_container {
 			justify-content: space-between;
 		}
 
-		.ui_input_number_control {
+		.ui_input_control {
 			width: 62%;
 		}
 
-		.ui_input_number_suffix {
+		.ui_input_suffix {
 			margin-right: 9px;
 			font-size: 12px;
 			color: #878484;
@@ -58,7 +58,7 @@
 
 		:global {
 			.ui_input_container {
-				width: 40%;
+				width: 48%;
 			}
 		}
 	}

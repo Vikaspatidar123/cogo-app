@@ -204,7 +204,7 @@ const saas = {
 		navigation : 'saas_tools-air_ocean_tracking_v2',
 		isMainNav  : true,
 	},
-	'/saas/tools/air-ocean-tracking/list/[trackingId]': {
+	'/saas/tools/air-ocean-tracking/list/[trackingType]/[trackingId]': {
 		navigation: 'saas_tools-air_ocean_tracking_v2',
 	},
 

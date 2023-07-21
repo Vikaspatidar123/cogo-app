@@ -6,8 +6,8 @@ import { CENTER, LAYER, MAP_ATTRIBUTE } from '../../../../constant/mapConstant';
 import Pointer from './Pointer';
 import Route from './Route';
 
-const corner1 = L.latLng(-90, -200);
-const corner2 = L.latLng(90, 200);
+const corner1 = L.latLng(-90, -250);
+const corner2 = L.latLng(90, 250);
 const bounds = L.latLngBounds(corner1, corner2);
 
 function MapComps({ height = '500px', pointsArr = [], type = 'ocean' }) {

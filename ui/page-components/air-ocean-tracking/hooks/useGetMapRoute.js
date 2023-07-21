@@ -17,14 +17,9 @@ const getUniqueArrElements = (arr) => arr.reduce((accumulator, current) => {
 	return accumulator;
 }, []);
 
-const getLiveLocPayload = ({ trackingInfo = [], trackingId }) => {
-	const containerNos = trackingInfo.map((info) => info.container_no);
-
-	return {
-		tracking_id       : trackingId,
-		container_numbers : containerNos,
-	};
-};
+const getLiveLocPayload = ({ trackingId }) => ({
+	container_subscription_id: trackingId,
+});
 
 const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
 	const { query } = useRouter();
@@ -40,7 +35,7 @@ const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
 	const [{ loading: liveLocLoading, data:liveLocData }] = useRequest({
 		method : 'get',
 		url    : '/get_vessel_live_location',
-		params : getLiveLocPayload({ trackingId, trackingInfo }),
+		params : getLiveLocPayload({ trackingId }),
 	}, { manual: false });
 
 	console.log(liveLocData, 'liveLocData');

@@ -2,11 +2,16 @@ import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+const SECOND_INDEX = 2;
+
 function ToolTipComponent({ point, data }) {
 	const date = point?.data?.xFormatted;
 
 	const newData = (data || []).map((item) => ({
-		[item.id]: item.data.filter((info) => info.x === date)?.[0]?.y.toFixed(2),
+		[item.id]: item.data.filter((info) => info.x === date)?.[ZEROTH_INDEX]?.y.toFixed(SECOND_INDEX),
 	}));
 
 	return (

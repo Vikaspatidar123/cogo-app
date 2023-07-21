@@ -9,10 +9,14 @@ import Route from './Route';
 const LAYER = [
 	{
 		name        : 'Cogo Maps',
-		url         : 'https://api.cogoport.com/cogo-tiles/{z}/{x}/{y}.png',
+		url         : `${process.env.NEXT_PUBLIC_MAPS_BASE_URL}/cogo-tiles/{z}/{x}/{y}.png`,
 		attribution : '',
 	},
 ];
+
+const corner1 = L.latLng(-90, -250);
+const corner2 = L.latLng(90, 250);
+const bounds = L.latLngBounds(corner1, corner2);
 
 const center = { lat: '28.679079', lng: '77.069710' };
 function MapComp({
@@ -25,9 +29,7 @@ function MapComp({
 	transportMode,
 }) {
 	const [map, setMap] = useState();
-	const corner1 = L.latLng(-90, -250);
-	const corner2 = L.latLng(90, 250);
-	const bounds = L.latLngBounds(corner1, corner2);
+
 	const pointLength = plotPoints.length;
 
 	const heightVariable = isMobile ? '350px' : height;

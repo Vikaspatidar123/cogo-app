@@ -111,7 +111,7 @@ function TimelineNavigate({
 								role="presentation"
 								className={`${styles.custom_tag} 
                                 ${currentSubscription?.id === item?.id ? styles.set_tracking : ''}`}
-								id={item.container_details[0]?.container_no}
+								id={item?.input}
 								onClick={(e) => handleSubscription(e)}
 								style={{
 									fontSize: '12px',

@@ -9,16 +9,20 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 const LAYER = [
 	{
 		name        : 'Cogo Maps',
-		url         : 'https://api.cogoport.com/cogo-tiles/{z}/{x}/{y}.png',
+		url         : `${process.env.NEXT_PUBLIC_MAPS_BASE_URL}/cogo-tiles/{z}/{x}/{y}.png`,
 		attribution : '',
 	},
 
 ];
 
+const SELECTED_MARKER_SIZE = [40, 70];
+const DEFAULT_MARKER_SIZE = [28, 45];
+const DEFAULT_ICON_ANCHOR = [0, 0];
+
 const getIcon = (selectedMarker) => L.icon({
 	iconUrl    : GLOBAL_CONSTANTS.image_url.destination_map_pointer,
-	iconSize   : selectedMarker ? [40, 70] : [28, 45],
-	iconAnchor : [0, 0],
+	iconSize   : selectedMarker ? SELECTED_MARKER_SIZE : DEFAULT_MARKER_SIZE,
+	iconAnchor : DEFAULT_ICON_ANCHOR,
 });
 
 function Map({

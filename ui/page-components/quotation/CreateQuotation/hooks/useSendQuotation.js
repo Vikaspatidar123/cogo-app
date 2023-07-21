@@ -9,7 +9,7 @@ const useSendQuotation = () => {
 	const [{ loading, data }, trigger] = useRequestBf({
 		method  : 'post',
 		url     : 'saas/quote/send',
-		authkey : 'post_saas_quote_send',
+		authKey : 'post_saas_quote_send',
 	}, { manual: true });
 
 	const sendQuotation = async (quoteId = null) => {

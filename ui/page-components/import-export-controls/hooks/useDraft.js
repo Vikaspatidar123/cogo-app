@@ -14,10 +14,10 @@ const getPayloadData = ({ data, formInfo = {}, getDraftData, t }) => {
 	const TRANSPORT_MAPPING = getTransportMapping({ t });
 
 	const header = {
-		originCountryCode: formInfo?.exportCountry?.country_code,
-		destinationCountryCode: formInfo?.importCountry?.country_code,
-		modeOfTransport: TRANSPORT_MAPPING?.[formInfo?.transportMode],
-		tradeEngineInputId: formInfo?.tradeEngineInputId,
+		originCountryCode      : formInfo?.exportCountry?.country_code,
+		destinationCountryCode : formInfo?.importCountry?.country_code,
+		modeOfTransport        : TRANSPORT_MAPPING?.[formInfo?.transportMode],
+		tradeEngineInputId     : formInfo?.tradeEngineInputId,
 	};
 	const lineItem = [
 		{
@@ -25,9 +25,9 @@ const getPayloadData = ({ data, formInfo = {}, getDraftData, t }) => {
 			manufactureOrigin:
 				formInfo?.manufacturingCountry?.country_code
 				|| formInfo?.exportCountry?.country_code,
-			originHs: data?.exportHsCode,
-			destinationHs: data?.importHsCode,
-			productName: data?.productName || '',
+			originHs      : data?.exportHsCode,
+			destinationHs : data?.importHsCode,
+			productName   : data?.productName || '',
 			tradeEngineLineItemInputId,
 		},
 	];
@@ -45,15 +45,15 @@ const useDraft = () => {
 	const [draftResp, setDraftResp] = useState('');
 
 	const [{ loading }, trigger] = useRequestBf({
-		method: 'post',
-		url: '/saas/trade-engine/controls/draft',
-		authKey: 'post_saas_trade_engine_controls_draft',
+		method  : 'post',
+		url     : '/saas/trade-engine/controls/draft',
+		authKey : 'post_saas_trade_engine_controls_draft',
 	}, { manual: true });
 
 	const [{ loading: getDraftLoading, data: getDraftData }, getDraftTrigger] = useRequestBf({
-		method: 'get',
-		url: '/saas/trade-engine/draft',
-		authKey: 'get_saas_trade_engine_draft',
+		method  : 'get',
+		url     : '/saas/trade-engine/draft',
+		authKey : 'get_saas_trade_engine_draft',
 	}, { manual: true });
 
 	const refetchDraft = async (props) => {
@@ -61,10 +61,10 @@ const useDraft = () => {
 		try {
 			const resp = await trigger({
 				data: {
-					performedBy: profile?.id,
-					organizationId: organization?.id,
-					source: 'SAAS',
-					header: {
+					performedBy    : profile?.id,
+					organizationId : organization?.id,
+					source         : 'SAAS',
+					header         : {
 						...header,
 						tradeEngineInputId: draftResp || header?.tradeEngineInputId,
 					},

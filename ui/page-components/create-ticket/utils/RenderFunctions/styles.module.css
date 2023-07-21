@@ -1,0 +1,22 @@
+.title {
+	font-size: 12px;
+	font-weight: 500;
+	color: #2f3941;
+
+	@media (max-width: 768px) {
+		padding: 0;
+	}
+}
+
+.show_cursor {
+	cursor: pointer;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+
+	@media (max-width: 768px) {
+		padding: 0;
+	}
+}

@@ -4,6 +4,23 @@
 	margin-right: 14px;
 }
 
-.tooltip_container {
+.styled_tooltip_container {
 	margin: 12px;
+
+	:global {
+		.tippy-box {
+			max-width: 500px;
+			padding: 0;
+		}
+
+		.tippy-content {
+			padding: 0;
+		}
+	}
+}
+
+.help_circle {
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
 }

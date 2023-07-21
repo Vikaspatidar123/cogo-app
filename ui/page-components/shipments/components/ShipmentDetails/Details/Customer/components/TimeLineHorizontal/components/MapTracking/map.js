@@ -1,4 +1,5 @@
 import { CogoMaps, L } from '@cogoport/maps';
+import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect } from 'react';
 
 import Pointer from './Pointer';
@@ -12,8 +13,13 @@ const LAYER = [
 	},
 ];
 
-const lineOptions = { color: 'green' };
-const remainingRoutelineOptions = { color: 'blue' };
+const MAX_ZOOM = 12;
+const MIN_ZOOM = 1.5;
+const ZOOM = 2.9;
+const MAX_VISCOCITY = 1;
+
+const lineOptions = { color: '#f37166', weight: 2 };
+const remainingRoutelineOptions = { color: '#1867D2', weight: 2 };
 const center = { lat: '28.679079', lng: '77.069710' };
 
 function MapComp({
@@ -22,7 +28,6 @@ function MapComp({
 	curvePoints,
 	isMobile = false,
 	lengthDependency = '',
-	currentMilestone,
 	height = '600px',
 	vesselLocationLat,
 	vesselLocationLang,
@@ -60,65 +65,62 @@ function MapComp({
 		<CogoMaps
 			style={{ height: `${heightVariable}`, width: '100%' }}
 			baseLayer={LAYER}
-			zoom={2.9}
+			zoom={ZOOM}
+			minZoom={MIN_ZOOM}
 			center={center_map}
 			setMap={setMap}
+			maxBoundsViscosity={MAX_VISCOCITY}
+			maxZoom={MAX_ZOOM}
 		>
-			{markers?.length > 0
-				&& markers?.map((m) => (
-					<Pointer lat={m.lat} lng={m.lng} iconSvg="point" map={map} />
-				))}
+			{!isEmpty(markers) ? markers?.map((m) => (
+				<Pointer key={`${m.lat}_${m.lng}`} lat={m.lat} lng={m.lng} iconSvg="point" map={map} />
+			)) : null}
 
-			{curvePoints?.length > 0 && (
+			{!isEmpty(curvePoints) ? (
 				<Pointer
 					lat={curvePoints[0]?.lat}
 					lng={curvePoints[0]?.lng}
 					iconSvg="sourceIcon"
 					map={map}
 				/>
-			)}
+			) : null}
 
-			{currentMilestone && (
-				<Pointer
-					lat={currentMilestone?.lat}
-					lng={currentMilestone?.lng}
-					iconSvg="current_location"
-					map={map}
-				/>
-			)}
-			{completedPoints.length > 0 && (
+			{!isEmpty(completedPoints) ? (
 				<Route
 					positions={completedPoints}
 					map={map}
 					pathOptions={lineOptions}
 				/>
-			)}
-			{remainingPoints?.length > 0 && (
+			) : null}
+			{!isEmpty(remainingPoints) ? (
 				<Route
 					positions={remainingPoints}
 					map={map}
 					pathOptions={remainingRoutelineOptions}
 				/>
-			)}
-			{remainingPoints?.length === 0 && curvePoints?.length > 0 && (
+			) : null}
+
+			{isEmpty(remainingPoints) && !isEmpty(curvePoints) ? (
 				<Route positions={curvePoints} map={map} pathOptions={lineOptions} />
-			)}
-			{curvePoints?.length > 0 && (
+			) : null}
+
+			{!isEmpty(curvePoints) ? (
 				<Pointer
 					lat={curvePoints[curvePointLength - 1]?.lat}
 					lng={curvePoints[curvePointLength - 1]?.lng}
-					iconSvg="destinationIcon"
+					iconSvg="map_destination"
 					map={map}
 				/>
-			)}
-			{typeof vesselLocationLat !== 'undefined' && (
+			) : null}
+
+			{typeof vesselLocationLat !== 'undefined' ? (
 				<Pointer
 					lat={vesselLocationLat}
 					lng={vesselLocationLang}
 					iconSvg="eta"
 					map={map}
 				/>
-			)}
+			) : null}
 		</CogoMaps>
 	);
 }

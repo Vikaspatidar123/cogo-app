@@ -1,17 +1,17 @@
+import { Button } from '@cogoport/components';
 import { IcMEdit } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import MobileHeader from '../../../../MobileHeader';
 
+import Details from './Details';
 import EditOrganizationDetails from './EditOrganizationDetails';
 import useOrganizationDetails from './hooks/useOrganizationDetails';
 import LoadingState from './LoadingState';
 import styles from './styles.module.css';
 
-import getGeoConstants from '@/ui/commons/constants/geo';
-
 function OrganizationDetails() {
-	const geo = getGeoConstants();
-	const REGISTRATION_LABEL = geo.others.registration_number.label;
+	const { t } = useTranslation(['settings']);
 
 	const {
 		loading = false,
@@ -21,7 +21,7 @@ function OrganizationDetails() {
 		onClickBackButton,
 	} = useOrganizationDetails({});
 
-	const renderOrganizationDetails = () => {
+	function RenderOrganizationDetails() {
 		if (loading) {
 			return <LoadingState />;
 		}
@@ -35,14 +35,20 @@ function OrganizationDetails() {
 
 				<div className={styles.header_container}>
 					<div className={styles.header_text}>
-						Organization Details
+						{t('settings:organization_details_heading')}
 					</div>
 
 					{!showEditOrganizationDetails ? (
-						<IcMEdit
+						<Button
 							onClick={() => setShowEditOrganizationDetails(true)}
-							style={{ width: 16, height: 16, cursor: 'pointer' }}
-						/>
+							themeType="secondary"
+							type="button"
+						>
+							<div>{t('settings:edit_or_add_button_label_2')}</div>
+							<IcMEdit
+								style={{ width: 16, height: 16, marginLeft: '5px' }}
+							/>
+						</Button>
 					) : null}
 				</div>
 
@@ -52,121 +58,21 @@ function OrganizationDetails() {
 						setShowEditOrganizationDetails={setShowEditOrganizationDetails}
 					/>
 				) : (
-					<div className={styles.content}>
-						<div className={styles.details_container}>
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Company Name
-								</div>
-								<div className={styles.value_text}>{organizationData.business_name || '-'}</div>
-							</div>
-
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Country
-								</div>
-								<div className={styles.value_text}>
-									{organizationData.country?.display_name || '-'}
-								</div>
-							</div>
-
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									City
-								</div>
-								<div className={styles.value_text}>{organizationData.city?.name || '-'}</div>
-							</div>
-
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									PAN Number
-								</div>
-								<div className={styles.value_text}>
-									{organizationData.registration_number || '-'}
-								</div>
-							</div>
-						</div>
-
-						<div className={styles.details_container}>
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Branch Name
-								</div>
-								<div className={styles.value_text}>
-									{organizationData.branches?.[0].branch_name || '-'}
-								</div>
-							</div>
-
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Branch Code
-								</div>
-								<div className={styles.value_text}>
-									{organizationData.branches?.[0].branch_code || '-'}
-								</div>
-							</div>
-
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Branch
-									{' '}
-									{REGISTRATION_LABEL}
-								</div>
-								<div className={styles.value_text}>
-									{organizationData.branches?.[0].tax_number || '-'}
-								</div>
-							</div>
-						</div>
-
-						<div className={styles.details_container}>
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Company Logo
-								</div>
-								<div style={{ width: 50, height: 50 }}>
-									<img
-										src={
-											organizationData.logo
-											// eslint-disable-next-line max-len
-											|| 'https://cogoport-production.sgp1.digitaloceanspaces.com/92f7f7340ff071a93fcacfca9956b32a/company-info-icon.svg'
-										}
-										alt="Your Logo"
-										width={50}
-										height={50}
-									/>
-								</div>
-							</div>
-
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Website
-
-								</div>
-								<div className={styles.value_text}>{organizationData.website || '-'}</div>
-							</div>
-						</div>
-
-						<div className={styles.about_container}>
-							<div className={styles.label_text}>
-								About Company
-							</div>
-							<div className={styles.description}>{organizationData.about || '-'}</div>
-						</div>
-					</div>
+					<Details organizationData={organizationData} />
 				)}
 			</div>
 		);
-	};
+	}
 
 	return (
 		<>
 
 			<MobileHeader
-				heading="Company Details"
+				heading={t('settings:organization_details_mobile_heading')}
 				onClickBackButton={onClickBackButton}
 			/>
 
-			{renderOrganizationDetails()}
+			<RenderOrganizationDetails />
 		</>
 	);
 }

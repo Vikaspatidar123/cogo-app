@@ -1,19 +1,23 @@
 import { DateRangepicker, CreatableSelect, Button, Popover, Chips } from '@cogoport/components';
 import { IcMFilter, IcMCrossInCircle } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import { BILLTYPEOPTIONS, PAYMENTTYPEOPTIONS } from './filterOptions';
+import { getBillTypeOptions, getPaymentTypeOption } from './filterOptions';
 import styles from './styles.module.css';
 
 function FilterContent({ filters, setFilters }) {
+	const { t } = useTranslation(['transactionHistory']);
+	const BILL_TYPE_OPTIONS = getBillTypeOptions({ t });
+	const PAYMENT_TYPE_OPTIONS = getPaymentTypeOption({ t });
 	const [dateRangePickerValue, setDateRangePickerValue] = useState({});
-	const filtersKeyLength = Object?.keys(filters).length;
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>
-				<div className={styles.title}>Apply Filters</div>
-				{filtersKeyLength > 0 && (
+				<div className={styles.title}>{t('transactionHistory:filter_apply')}</div>
+				{!isEmpty(filters) && (
 					<div
 						className={styles.clear_Btn}
 						role="presentation"
@@ -25,7 +29,7 @@ function FilterContent({ filters, setFilters }) {
 							setDateRangePickerValue({});
 						}}
 					>
-						<p>Clear Filters </p>
+						<p>{t('transactionHistory:filter_clear')}</p>
 						<IcMCrossInCircle />
 					</div>
 				)}
@@ -33,12 +37,12 @@ function FilterContent({ filters, setFilters }) {
 
 			<div className={styles.container_section}>
 				<div className={styles.section}>
-					<div className={styles.title}>Bill type</div>
+					<div className={styles.title}>{t('transactionHistory:filter_bill_type')}</div>
 					<CreatableSelect
 						type="select"
-						placeholder="Enter Bill Type"
+						placeholder={t('transactionHistory:filter_bill_type_placeholder')}
 						value={filters.bill_type}
-						options={BILLTYPEOPTIONS}
+						options={BILL_TYPE_OPTIONS}
 						onChange={(e) => setFilters((prev) => ({
 							...prev,
 							bill_type: e,
@@ -46,11 +50,11 @@ function FilterContent({ filters, setFilters }) {
 					/>
 				</div>
 				<div className={styles.section}>
-					<div className={styles.title}>Status</div>
+					<div className={styles.title}>{t('transactionHistory:filter_status')}</div>
 					<div className={styles.chips_container}>
 						<Chips
 							selectedItems={filters.payment_status}
-							items={PAYMENTTYPEOPTIONS}
+							items={PAYMENT_TYPE_OPTIONS}
 							onItemChange={(e) => setFilters((prev) => ({
 								...prev,
 								payment_status: e,
@@ -59,7 +63,7 @@ function FilterContent({ filters, setFilters }) {
 					</div>
 				</div>
 				<div className={styles.section}>
-					<div className={styles.title}>Bill date ranging from</div>
+					<div className={styles.title}>{t('transactionHistory:filter_date_range')}</div>
 					<DateRangepicker
 						value={dateRangePickerValue}
 						pickerType="range"
@@ -79,6 +83,8 @@ function FilterContent({ filters, setFilters }) {
 }
 
 function FilterSection({ filters, setFilters }) {
+	const { t } = useTranslation(['transactionHistory']);
+
 	const [showFilters, setshowFilters] = useState(false);
 	return (
 		<Popover
@@ -92,7 +98,7 @@ function FilterSection({ filters, setFilters }) {
 			}
 		>
 			<Button onClick={() => setshowFilters(!showFilters)}>
-				Filter
+				{t('transactionHistory:filter_title')}
 				<IcMFilter height={15} width={14} />
 			</Button>
 		</Popover>

@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useMemo, useState } from 'react';
 
 import getControls from './controls';
@@ -9,6 +10,8 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useMobileNoVerification = ({ type = '' }) => {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		profile: {
 			mobile_country_code: mobileCountryCode = '',
@@ -28,7 +31,7 @@ const useMobileNoVerification = ({ type = '' }) => {
 		{ manual: false },
 	);
 
-	const controls = getControls();
+	const controls = getControls({ t });
 
 	const newControls = useMemo(
 		() => controls?.map((control) => {

@@ -1,40 +1,51 @@
 import { Toast } from '@cogoport/components';
-import { useState } from 'react';
+import { useTranslation } from 'next-i18next';
+import { useState, useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
-const useGetOrderDetails = ({ pagination }) => {
-	const [orderDetails, setOrderDetails] = useState(null);
-	const { profile } = useSelector((s) => s);
+const DEFAULT_PAGINATION = 1;
+
+const getPayload = ({ profile, pagination, orderBy }) => ({
+	organization_id : profile.organization.id,
+	page            : pagination,
+	sorting         : orderBy,
+});
+
+const useGetOrderDetails = ({ pendingModal }) => {
+	const { t } = useTranslation(['subscriptions']);
+	const { profile } = useSelector((state) => state);
+
+	const [orderDetails, setOrderDetails] = useState({});
 	const [orderBy, setOrderBy] = useState({});
+	const [pagination, setPagination] = useState(DEFAULT_PAGINATION);
 
 	const [{ loading }, trigger] = useRequest({
 		url    : '/saas_get_usage_history',
 		method : 'get',
 	}, { manual: true });
 
-	const fetchOrderDetails = async () => {
+	const fetchOrderDetails = useCallback(async () => {
+		const payload = getPayload({ profile, pagination, orderBy });
 		try {
 			const res = await trigger({
-				params: {
-					organization_id : profile.organization.id,
-					page            : pagination,
-					sorting         : orderBy,
-				},
+				params: payload,
 			});
 
-			const { hasError } = res || {};
-			if (hasError) throw new Error();
 			const { data } = res;
 
 			if (data) {
 				setOrderDetails(data);
 			}
 		} catch (err) {
-			Toast.error('Unable to fetch order details. Please try again.');
+			Toast.error(t('subscriptions:unabel_fetch_message'));
 		}
-	};
+	}, [orderBy, pagination, profile, t, trigger]);
+
+	useEffect(() => {
+		if (!pendingModal) fetchOrderDetails();
+	}, [pagination, pendingModal, orderBy, fetchOrderDetails]);
 
 	return {
 		fetchOrderLoading: loading,
@@ -42,6 +53,8 @@ const useGetOrderDetails = ({ pagination }) => {
 		setOrderBy,
 		orderBy,
 		fetchOrderDetails,
+		pagination,
+		setPagination,
 	};
 };
 

@@ -1,0 +1,21 @@
+.container {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	margin: 40px;
+
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+	}
+
+	.card {
+		width: 250px;
+		height: auto;
+		padding: 20px;
+		border-radius: 20px;
+	}
+
+	.loader_div {
+		padding: 10px 0;
+	}
+}

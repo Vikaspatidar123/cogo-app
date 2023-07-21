@@ -8,27 +8,17 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	gap: 25px;
 	align-items: center;
-	padding: 35px 10px;
-	padding-bottom: 40px;
+	padding: 40px 0;
+
+	.save {
+		color: #f68b21;
+	}
 }
 
 .div {
 	display: flex;
 	justify-content: flex-end;
-}
-
-.wrapper {
-	display: flex;
-	justify-content: center;
-	padding: 10px;
-	padding-top: 0;
-}
-
-.wrapper .loader {
-	width: 500px !important;
-	height: 400px !important;
 }
 
 .line {
@@ -48,4 +38,22 @@
 		flex-wrap: wrap;
 		padding: 0;
 	}
+}
+
+.feature_line {
+	display: flex;
+	justify-content: center;
+	padding: 60px 0;
+}
+
+.features {
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 27px;
+	color: #000;
+	text-align: center;
+}
+
+.extended_padding {
+	padding: 40px;
 }

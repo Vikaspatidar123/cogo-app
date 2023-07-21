@@ -4,7 +4,6 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-// import { getStaticOptions } from '@/commons/form';
 import getField from '@/packages/forms/Controlled';
 
 function Child({
@@ -24,8 +23,7 @@ function Child({
 				{controls.map((controlItem) => {
 					const { style, type } = controlItem;
 
-					const show =						!(controlItem.name in showElements)
-						|| showElements[controlItem.name];
+					const show = !(controlItem.name in showElements) || showElements[controlItem.name];
 
 					const Element = getField(type);
 					if (!Element && !show) return null;
@@ -40,8 +38,8 @@ function Child({
 					return (
 						<div
 							className={styles.form_item}
-							style={{ marginRight: '10px', ...style }}
 							key={index}
+							style={style}
 						>
 							<div className={styles.list}>
 								{(showLabelOnce && index === 0 && controlItem.label)

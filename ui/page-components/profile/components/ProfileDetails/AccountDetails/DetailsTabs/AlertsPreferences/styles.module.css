@@ -21,3 +21,15 @@
 		display: none;
 	}
 }
+
+.first_row {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.card {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}

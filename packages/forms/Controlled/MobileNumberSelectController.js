@@ -28,7 +28,10 @@ function MobileNumberSelectController({
 					key={itemKey}
 					onChange={onChange}
 					value={newValue}
-					onBlur={onBlur}
+					onBlur={(event) => {
+						onBlur(event);
+						rest?.handleBlur?.(event);
+					}}
 				/>
 			)}
 		/>

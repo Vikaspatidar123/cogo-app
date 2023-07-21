@@ -1,5 +1,4 @@
-import { Toast, Tooltip } from '@cogoport/components';
-import { IcMInfo } from '@cogoport/icons-react';
+import { Toast } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useCallback, useEffect } from 'react';
@@ -28,7 +27,6 @@ const useInfoValidateFn = ({
 	watchExport = '',
 	watchImport = '',
 	setShowPendingModal,
-	styles,
 	getDraftData = {},
 }) => {
 	const { hsCode = '', name: productName = '', description = '' } = selectedData || {};
@@ -132,26 +130,6 @@ const useInfoValidateFn = ({
 			header,
 			lineItem,
 		};
-	};
-
-	const renderLabel = (name, label) => {
-		if (name === 'hsCode') {
-			return (
-				<div className={styles.label_container}>
-					{label}
-					<Tooltip
-						content={t('importExportDoc:hscode_subtitle')}
-						placement="right-start"
-						animation="shift-toward"
-					>
-						<div>
-							<IcMInfo />
-						</div>
-					</Tooltip>
-				</div>
-			);
-		}
-		return <p>{label}</p>;
 	};
 
 	const getKey = (name) => {
@@ -270,7 +248,6 @@ const useInfoValidateFn = ({
 		submitHandler,
 		changeHandler,
 		validateSubmitHandler,
-		renderLabel,
 		getKey,
 		withHsHandler,
 		errorHandler,

@@ -4,6 +4,8 @@ import ReactDOMServer from 'react-dom/server';
 
 import MapResultCard from '../MapResultCard';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const LAYER = [
 	{
 		name        : 'Cogo Maps',
@@ -14,8 +16,8 @@ const LAYER = [
 ];
 
 const getIcon = (selectedMarker) => L.icon({
-	iconUrl    : '/mapIcon/location.svg',
-	iconSize   : selectedMarker ? [60, 90] : [38, 95],
+	iconUrl    : GLOBAL_CONSTANTS.image_url.destination_map_pointer,
+	iconSize   : selectedMarker ? [40, 70] : [28, 45],
 	iconAnchor : [0, 0],
 });
 

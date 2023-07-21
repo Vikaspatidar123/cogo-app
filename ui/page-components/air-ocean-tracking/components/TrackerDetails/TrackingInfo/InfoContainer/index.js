@@ -68,13 +68,13 @@ function InfoContainer({
 			</div>
 
 			<div className={cl`${styles.info}
-				${containerDetails.length > 1 ? styles.without_info_field : styles.info_field}`}
+				${containerDetails?.length > 1 ? styles.without_info_field : styles.info_field}`}
 			>
 				<p className={styles.info_text}>
 					{trackingType === 'ocean' ? CARD_TITLE.CONTAINER_NO : CARD_TITLE}
 				</p>
 
-				{containerDetails.length > 1
+				{containerDetails?.length > 1
 					? (
 						<Select
 							size="sm"

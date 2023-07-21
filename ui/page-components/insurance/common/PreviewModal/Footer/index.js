@@ -13,7 +13,7 @@ function Footer({
 }) {
 	return (
 		<div className={cogoPolicyNo ? styles.footer_center : styles.footer}>
-			{cogoPolicyNo && (
+			{cogoPolicyNo ? (
 				<div className={styles.textforpreview}>
 					Premium:
 					{' '}
@@ -27,7 +27,7 @@ function Footer({
 					})}
 					<div className={styles.inclusive}>(inclusive of taxes)</div>
 				</div>
-			)}
+			) : null}
 			{!cogoPolicyNo && (
 				<>
 					<div className={styles.text}>
@@ -48,6 +48,7 @@ function Footer({
 						onClick={() => {
 							setNoteModal(true);
 						}}
+						type="button"
 					>
 						Continue
 					</Button>

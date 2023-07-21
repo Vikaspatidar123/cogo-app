@@ -32,7 +32,6 @@ const useGetSummaryDetails = ({ activeTab, filters, sort }) => {
 
 	useEffect(() => {
 		if (organization?.id) {
-			console.log('hey siummary');
 			summary();
 		}
 	}, [organization?.id, summary]);

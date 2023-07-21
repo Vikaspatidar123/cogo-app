@@ -23,8 +23,6 @@ function ListView() {
 	const [showPreviewModal, setShowPreviewModal] = useState(false);
 	const [cancellationPolicyDetails, setcancellationPolicyDetails] = useState('');
 
-	console.log('appppp');
-
 	const { loading:listLoading, data, setFilters, filters, setSort, sort, refetch } = useList({ activeTab });
 
 	const { summaryData, summaryLoading } = userSummary({ activeTab, filters, sort });

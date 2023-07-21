@@ -45,7 +45,6 @@ const useList = ({ activeTab }) => {
 
 	useEffect(() => {
 		if (organization?.id) {
-			console.log('hey usefeecet');
 			list();
 		}
 	}, [list, organization?.id]);

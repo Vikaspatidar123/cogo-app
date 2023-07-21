@@ -277,7 +277,7 @@ const app_settings = [
 	{
 		api          : 'create_lead_organization_on_sign_up',
 		access_type  : 'private',
-		service_name : 'user',
+		service_name : 'lead',
 	},
 	{
 		api          : 'verify_sign_up_lead_user',
@@ -293,6 +293,16 @@ const app_settings = [
 		api          : 'delete_user_session',
 		access_type  : 'private',
 		service_name : 'user',
+	},
+	{
+		api          : 'list_organization_documents',
+		access_type  : 'private',
+		service_name : 'organization',
+	},
+	{
+		api          : 'create_organization_document',
+		access_type  : 'private',
+		service_name : 'organization',
 	},
 ];
 

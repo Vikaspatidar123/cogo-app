@@ -128,7 +128,6 @@ function SignupForm({
 					}}
 					mode="onBlur"
 					handleBlur={() => generateSignUpLeadUser({ source: 'mobile_number' })}
-
 				/>
 
 				<span className={styles.errors}>

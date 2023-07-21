@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import HsCode from '../../../../../hs-code-modal';
@@ -16,9 +17,11 @@ import ValidateHsModal from './ValidateHsModal';
 import getField from '@/packages/forms/Controlled';
 
 function InfoContainer({ formInfo, setFormInfo }) {
+	const { t } = useTranslation(['importExportControls']);
+
 	const [showCatalogue, setShowCatalogue] = useState(false);
 	const [showHsCodeModal, setShowHsCodeModal] = useState(false);
-	const [selectedData, setSelectedData] = useState();
+	const [selectedData, setSelectedData] = useState({});
 	const [isImportHs, setIsImportHs] = useState(false);
 	const [showValidate, setShowValidate] = useState(false);
 	const [prevHs, setPrevHs] = useState({});
@@ -26,7 +29,7 @@ function InfoContainer({ formInfo, setFormInfo }) {
 	const [showPendingModal, setShowPendingModal] = useState(false);
 
 	const SelectProductModal = showCatalogue ? ProductCatalogue : HsCode;
-
+	const fields = controlsConfig({ t });
 	const { isUserSubscribed = false, isQuotaLeft = false } = useGetQuota();
 
 	const paymentSuccessHandler = () => {
@@ -73,7 +76,7 @@ function InfoContainer({ formInfo, setFormInfo }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.row}>
-				{controlsConfig.map((config) => {
+				{fields.map((config) => {
 					const { label, sublabel, type, name } = config || {};
 					if (type === 'hidden') return null;
 					const Element = getField(type);
@@ -82,14 +85,18 @@ function InfoContainer({ formInfo, setFormInfo }) {
 						<div className={styles.col} key={name}>
 							<div className={styles.label_container}>
 								<p className={styles.label}>{label}</p>
-								{sublabel && (
+								{sublabel ? (
 									<p className={styles.sub_label}>
 										(
 										{sublabel}
 										)
 									</p>
+								) : null}
+								{errors?.[name] && (
+									<p className={styles.error}>
+										{`${t('importExportControls:details_error')} *`}
+									</p>
 								)}
-								{errors?.[name] && <p className={styles.error}>required *</p>}
 							</div>
 							<Element
 								{...config}
@@ -119,7 +126,7 @@ function InfoContainer({ formInfo, setFormInfo }) {
 					onClick={handleSubmit(submitHandler)}
 					disabled={watchExportCountry === watchImportCountry}
 				>
-					Proceed To Checkout
+					{t('importExportControls:details_btn')}
 				</Button>
 			</div>
 

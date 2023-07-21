@@ -1,5 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
 import getOtherAddressControls from './get-other-address-controls';
@@ -24,6 +25,8 @@ const useEditOtherAddress = ({
 	handleCloseModal,
 	address_key,
 }) => {
+	const { t } = useTranslation(['settings']);
+
 	const labelKey = 'postal_code';
 	const valueKey = 'postal_code';
 	const cityPincode = useGetAsyncOptions(
@@ -42,7 +45,7 @@ const useEditOtherAddress = ({
 		},
 		{ manual: true },
 	);
-	const fields = getOtherAddressControls({ cityPincode });
+	const fields = getOtherAddressControls({ cityPincode, t });
 
 	const formProps = useForm();
 	const {
@@ -95,7 +98,7 @@ const useEditOtherAddress = ({
 					address_type : address_key?.api_property_key,
 				},
 			});
-			Toast.success('Successfull Update');
+			Toast.success(t('settings:billing_details_successfully_updated_toast'));
 			getAdd();
 			handleCloseModal(false);
 		} catch (err) {
@@ -111,11 +114,8 @@ const useEditOtherAddress = ({
 		if (name === 'sez_proof' && !isSez) {
 			showElement = false;
 		}
-		if (
-			(name === 'poc_name'
-        || name === 'phone_number'
-        || name === 'poc_email')
-      && Object.keys(otherAddressObjToUpdate).length
+		if ((name === 'poc_name' || name === 'phone_number' || name === 'poc_email')
+		&& Object.keys(otherAddressObjToUpdate).length
       && otherAddressObjToUpdate.index !== null
 		) {
 			showElement = false;

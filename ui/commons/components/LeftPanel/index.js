@@ -14,7 +14,7 @@ function LeftPanel() {
 				<Image
 					width={150}
 					height={100}
-					src={GLOBAL_CONSTANTS.image_url.cogoport_image}
+					src={GLOBAL_CONSTANTS.image_url.cogoport_logo}
 					alt="Cogo"
 				/>
 			</div>

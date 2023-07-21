@@ -69,7 +69,7 @@
 .header_icons {
 	display: flex;
 	flex-direction: row;
-	align-items: end;
+	align-items: flex-end;
 	justify-content: space-around;
 	width: 8%;
 

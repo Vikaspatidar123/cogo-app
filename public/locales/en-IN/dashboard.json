@@ -112,7 +112,7 @@
 	"getTexts_booking_cancelled": "Booking Cancelled",
 	"getTexts_booking_completed": "Booking Completed",
 	"getTexts_booking_confirmed": "Booking Confirmed",
-	"getTexts_booking_received": "Booking Received",
+	"getTexts_booking_received": "Booking Placed",
 	"getTexts_addedToCart": "Added to Cart",
 	"getTexts_cancellation_subject": "Reason for cancellation",
 	"image_text":"img",

@@ -1,0 +1,79 @@
+.container {
+	background: #fff;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}
+
+.show_cursor {
+	width: fit-content;
+	vertical-align: text-top;
+	cursor: pointer;
+	transition: transform 0.3s linear;
+}
+
+.rotate_icn {
+	transition: transform 0.3s linear;
+	transform: rotate(180deg);
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding: 16px;
+	margin: 0 !important;
+	background: rgb(248 249 249);
+	border-bottom: none;
+	border-bottom: 1px solid rgb(204 204 204);
+
+	.invoice_id,
+	.id {
+		width: 5%;
+	}
+
+	.invoice_number {
+		width: 16.7%;
+	}
+
+	.shipment_serial_id {
+		width: 11.6%;
+	}
+
+	.open_invoice_amount,
+	.ledger_invoice_amount {
+		width: 15%;
+	}
+
+	.invoice_date {
+		width: 13.3%;
+	}
+
+	.due_date,
+	.due_days {
+		width: 11.6%;
+	}
+
+	.payment_num,
+	.account_util_amt_led,
+	.transaction_date {
+		width: 19.16%;
+	}
+
+	.utilization_status {
+		width: 18.3%;
+	}
+}
+
+.col {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.card_title {
+	font-size: 12px;
+	font-weight: 500;
+	color: #2f3941;
+}

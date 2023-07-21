@@ -11,11 +11,15 @@ import Heading from './Heading';
 import styles from './styles.module.css';
 import Uploader from './Uploader';
 
+const LOADING_ROWS_COUNT = 6;
+
 function Documents() {
 	const { t } = useTranslation(['documents']);
 
-	const [filters, setFilters] = useState({});
+	const [filters, setFilters] = useState({ page: 1 });
+
 	const [show, setShow] = useState(false);
+
 	const [documentDetails, setDocumentDetails] = useState({});
 
 	const { page = 1 } = filters || {};
@@ -42,13 +46,15 @@ function Documents() {
 				setDocumentDetails={setDocumentDetails}
 			/>
 			<Filters setFilters={setFilters} filters={filters} />
-			<Table
-				columns={columns || []}
-				data={list || []}
-				loading={loading}
-				loadingRowsCount={6}
-				className={styles.table}
-			/>
+			<div className={styles.table_wrapper}>
+				<Table
+					columns={columns || []}
+					data={list || []}
+					loading={loading}
+					loadingRowsCount={LOADING_ROWS_COUNT}
+					className={styles.table}
+				/>
+			</div>
 			<div className={styles.pagination_wrapper}>
 				<Pagination
 					type="table"

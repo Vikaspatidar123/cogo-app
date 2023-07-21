@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
 import getControls from './controls';
@@ -14,12 +15,17 @@ const useEditPocDetails = ({
 	showPocModal,
 	pocToUpdate,
 }) => {
-	const fields = getControls();
+	const { t } = useTranslation(['common', 'settings']);
+
+	const fields = getControls({ t });
+
 	const endPoint = type === 'other_address'
 		? '/update_organization_address'
 		: '/update_organization_billing_address';
 	const editEndPoint = '/update_organization_poc';
+
 	const api = showPocModal === 'edit' ? editEndPoint : endPoint;
+
 	const [{ loading }, trigger] = useRequest(
 		{
 			url    : api,
@@ -29,6 +35,7 @@ const useEditPocDetails = ({
 	);
 
 	const { formState, handleSubmit, control, setValue, register } = useForm();
+
 	const setValues = () => {
 		fields?.map((item) => setValue(item?.name, pocToUpdate[item.name]));
 		const phone_number = {
@@ -42,6 +49,7 @@ const useEditPocDetails = ({
 		};
 		setValue('alternate_phone_number', alternate_phone_number);
 	};
+
 	useEffect(() => {
 		if (pocToUpdate !== null && showPocModal === 'edit') {
 			setValues();
@@ -82,7 +90,7 @@ const useEditPocDetails = ({
 			await trigger({
 				data: payload,
 			});
-			Toast.success('Successfull Update');
+			Toast.success(t('settings:add_or_edit_poc_details_toast'));
 			setShowPocModal(false);
 			refetch();
 		} catch (err) {

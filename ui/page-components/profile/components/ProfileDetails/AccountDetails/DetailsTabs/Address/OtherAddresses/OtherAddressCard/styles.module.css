@@ -5,14 +5,13 @@
 	padding: 16px;
 	margin: 16px;
 	overflow: hidden;
-	background: #f9f9f9;
+	background: #fdfbf6;
 	border-radius: 4px;
 }
 
 .label_text {
 	margin-bottom: 8px;
-	font-size: 14px;
-	line-height: 16px;
+	font-size: 13px;
 	color: #828282;
 
 	@media (max-width: 768px) {
@@ -60,9 +59,9 @@
 
 .value_text {
 	margin-right: 8px;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 600;
-	color: #2c3e50;
+	color: #221f20;
 
 	@media (max-width: 768px) {
 		margin-right: unset;
@@ -80,11 +79,12 @@
 	display: flex;
 	flex-direction: column;
 	width: 50%;
+	margin: 10px 0;
 
 	@media (max-width: 768px) {
 		display: flex;
-		flex-direction: row;
-		width: unset;
+		flex-direction: column;
+		width: 100%;
 		margin-bottom: 4px;
 	}
 }
@@ -101,7 +101,7 @@
 	padding: 24px 20px;
 	margin-top: 12px;
 	background: #fff;
-	border: 1px solid #66acf7;
+	border: 1px solid #f2e3c3;
 	border-radius: 8px;
 
 	@media (max-width: 768px) {
@@ -123,9 +123,9 @@
 	width: 23%;
 
 	@media (max-width: 768px) {
-		all: unset;
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
+		width: 100%;
 		margin-bottom: 4px;
 	}
 }
@@ -143,12 +143,14 @@
 
 .basic_billing_details {
 	display: flex;
-	flex-direction: row;
+	flex-flow: row wrap;
+	width: 100%;
 	margin-bottom: 24px;
 
 	@media (max-width: 768px) {
 		display: flex;
 		flex-direction: column;
+		width: 100%;
 		margin-bottom: 8px;
 	}
 }
@@ -165,4 +167,8 @@
 
 .flex {
 	display: flex;
+}
+
+.button_1 {
+	margin-left: 0;
 }

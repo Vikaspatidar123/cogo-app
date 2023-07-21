@@ -22,7 +22,7 @@ const useAddDocuments = ({
 			});
 			refetch();
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 		}
 	};
 

@@ -1,8 +1,11 @@
-import { Modal, Badge } from '@cogoport/components';
+import { Modal, Badge, Button } from '@cogoport/components';
 import {
 	IcMArrowRotateDown,
+	IcMArrowRotateRight,
 	IcMFtaskNotCompleted,
 } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import BillingAddressCard from './BillingAddressCard';
@@ -17,23 +20,26 @@ function BillingAddresses({
 	loading,
 	getAddress,
 }) {
+	const { t } = useTranslation(['settings']);
+
 	const [showEditBillingAddress, setShowEditBillingAddress] = useState(false);
 
 	const [addressIdxToUpdate, setAddressIdxToUpdate] = useState(null);
 
 	const [showData, setShowData] = useState(false);
+
 	const [mobalType, setMobalType] = useState(false);
 
 	const handleCloseModal = () => {
 		setShowEditBillingAddress(false);
 		setAddressIdxToUpdate(null);
 	};
-	const renderBillingAddress = () => {
-		if (!organizationBillingAddressesList.length) {
+	function RenderBillingAddress() {
+		if (isEmpty(organizationBillingAddressesList)) {
 			return (
 				<div className={styles.empty}>
 					<IcMFtaskNotCompleted width={40} height={40} />
-					<div className={styles.no_data}>No data Found</div>
+					<div className={styles.no_data}>{t('settings:no_data_found_text')}</div>
 				</div>
 			);
 		}
@@ -44,12 +50,14 @@ function BillingAddresses({
 				address={address}
 				setMobalType={setMobalType}
 				getAddress={getAddress}
+				key={address.name}
 			/>
 		));
-	};
+	}
 	const addresCount = () => {
 		const count = organizationBillingAddressesList.length;
-		const value = count === 0 ? 'No Address(s) Added' : `${count} Address(s) Added`;
+		const value = count === 0 ? t('settings:addresses_not_found_text_1')
+			: `${count} ${t('settings:addresses_added_text_1')}`;
 		return value;
 	};
 	if (loading) {
@@ -59,47 +67,47 @@ function BillingAddresses({
 		<>
 			<div className={styles.main_container}>
 				<div className={styles.flex}>
-					<div className={styles.body}>
-						<div className={styles.flex}>
-							<div className={styles.text}>{title}</div>
-
-							<div className={styles.head}>
-								<Badge color="#f8f2e7" size="md" text={addresCount()} />
-							</div>
-						</div>
-
-						<div className={styles.flex}>
-							<div
-								role="presentation"
-								className={styles.link_text}
-								onClick={() => {
-									setShowEditBillingAddress(true);
-									setMobalType(false);
-								}}
-							>
-								+ Add Address
-							</div>
-						</div>
-					</div>
-
 					<div
 						role="presentation"
 						className={styles.icon_container}
 						onClick={() => setShowData(!showData)}
-
 					>
 						{showData ? (
 							<IcMArrowRotateDown width={20} height={15} style={{ transform: 'rotate(180deg)' }} />
 						) : (
-							<IcMArrowRotateDown
+							<IcMArrowRotateRight
 								width={20}
 								height={15}
 							/>
 						)}
 					</div>
+
+					<div className={styles.body}>
+						<div className={styles.flex}>
+							<div className={styles.text}>{title}</div>
+
+							<div className={styles.head}>
+								<Badge color="#f3fafa" size="md" text={addresCount()} />
+							</div>
+						</div>
+
+						<div className={styles.flex}>
+							<Button
+								themeType={showData ? 'primary' : 'secondary'}
+								onClick={() => {
+									setShowEditBillingAddress(true);
+									setMobalType(false);
+								}}
+								type="button"
+							>
+								{t('settings:add_address_button_label')}
+							</Button>
+						</div>
+					</div>
+
 				</div>
 
-				<div>{showData ? renderBillingAddress() : null}</div>
+				<div>{showData ? <RenderBillingAddress /> : null}</div>
 			</div>
 
 			{(showEditBillingAddress || addressIdxToUpdate !== null) && (
@@ -113,7 +121,6 @@ function BillingAddresses({
 					<EditBillingAddress
 						handleCloseModal={handleCloseModal}
 						organizationBillingAddressesList={organizationBillingAddressesList}
-            // getOrganizationBillingAddress={getOrganizationBillingAddress}
 						addressIdxToUpdate={addressIdxToUpdate}
 						organizationType={organizationType}
 						mobalType={mobalType}

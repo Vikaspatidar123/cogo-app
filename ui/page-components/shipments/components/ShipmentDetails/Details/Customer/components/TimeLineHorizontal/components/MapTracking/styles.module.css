@@ -4,6 +4,12 @@
 
 .container {
 	position: relative;
+
+	:global {
+		.leaflet-top {
+			z-index: 950;
+		}
+	}
 }
 
 .mobile_view {

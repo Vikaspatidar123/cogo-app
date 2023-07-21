@@ -8,11 +8,11 @@ import { useSelector, useDispatch } from '@/packages/store';
 import { setProfileStoreState } from '@/packages/store/store/profile';
 
 const useMyProfile = () => {
+	const router = useRouter();
+
 	const { profile } = useSelector((state) => state);
 
 	const dispatch = useDispatch();
-
-	const router = useRouter();
 
 	const [showMobileVerificationModal, setShowMobileVerificationModal] = useState(null);
 
@@ -61,7 +61,6 @@ const useMyProfile = () => {
 		getOrganization();
 	}, []);
 
-	// const userDetails = profile || getChannelPartnerUserAPI.data?.list?.[0];
 	return {
 		userDetails: profile || {},
 		showEditProfileDetails,

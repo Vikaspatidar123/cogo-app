@@ -14,7 +14,7 @@ function InputController(props) {
 			name={name}
 			rules={rules}
 			defaultValue={value}
-			render={({ field: { onChange, onBlur, value:newValue } }) => (
+			render={({ field: { onChange, onBlur, value: newValue } }) => (
 				<Input
 					{...rest}
 					key={rest.id}
@@ -25,7 +25,10 @@ function InputController(props) {
 						}
 					}}
 					value={newValue}
-					onBlur={onBlur}
+					onBlur={(event) => {
+						onBlur(event);
+						rest?.handleBlur?.(event);
+					}}
 				/>
 			)}
 		/>

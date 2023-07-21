@@ -5,32 +5,35 @@ import styles from './styles.module.css';
 
 const { startCase, format } = require('@cogoport/utils');
 
-const columns = [
+const getColumns = ({ t }) => [
 	{
-		Header   : 'FILE NAME',
+		Header   : t('documents:table_column_header_1'),
 		accessor : 'name',
 		Cell     : ({ row }) => <div className={styles.file_name}>{startCase(row?.original?.name)}</div>,
 	},
 	{
-		Header   : 'DOCUMENT TYPE',
+		Header   : t('documents:table_column_header_2'),
 		accessor : 'document_type',
 		Cell     : ({ row }) => startCase(row?.original?.document_type),
 	},
 	{
-		Header   : 'DATE UPLOADED',
+		Header   : t('documents:table_column_header_3'),
 		accessor : 'updated_at',
 		Cell     : ({ row }) => format(row?.original?.updated_at, 'dd LLL yyyy'),
 	},
 	{
-		Header   : 'ACTION',
+		Header   : t('documents:table_column_header_4'),
 		accessor : 'image_url',
 		Cell     : ({ row }) => (
 			<>
-				<IcMEyeopen onClick={() => window.open(row?.original?.image_url, '_blank')} className={styles.icon} />
+				<IcMEyeopen
+					onClick={() => window.open(row?.original?.image_url, '_blank')}
+					className={styles.icon}
+				/>
 				<IcMDownload className={styles.icon} onClick={() => downloadFile(row?.original?.image_url)} />
 			</>
 		),
 	},
 ];
 
-export default columns;
+export default getColumns;

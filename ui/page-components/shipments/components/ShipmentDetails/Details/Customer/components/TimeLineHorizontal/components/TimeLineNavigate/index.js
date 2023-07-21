@@ -117,7 +117,7 @@ function TimelineNavigate({
 									fontSize: '12px',
 								}}
 							>
-								{item.container_details[0]?.container_no}
+								{item?.input}
 							</div>
 						) : null))}
 					</div>

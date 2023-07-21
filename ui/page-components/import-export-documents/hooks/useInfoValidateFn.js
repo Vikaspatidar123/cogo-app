@@ -69,6 +69,7 @@ const useInfoValidateFn = ({
 	const prefillData = useCallback(() => {
 		if (typeof window === 'undefined') return;
 		const localStorageFormData = JSON.parse(localStorage.getItem('transportDetails'));
+
 		if (localStorageFormData) {
 			const {
 				exportCountry = {},
@@ -87,9 +88,10 @@ const useInfoValidateFn = ({
 				manufacturingCountry : manufacturingCountry?.id || '',
 				productName          : localStorageName,
 			};
+
 			setValues(obj);
+
 			setTransportDetails(localStorageFormData);
-			localStorage.removeItem('transportDetails');
 		}
 	}, [setTransportDetails, setValues]);
 
@@ -204,6 +206,8 @@ const useInfoValidateFn = ({
 		const { header, lineItem } = getPayloadData(data);
 
 		const resp = await refetchDraft({ header, lineItem, hsCode: data?.hsCode });
+
+		localStorage.removeItem('transportDetails');
 
 		if (resp) {
 			if (!billId) {

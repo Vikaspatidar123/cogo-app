@@ -5,7 +5,7 @@ import Archived from '@/ui/page-components/trade-partner/components/Archived';
 export async function getServerSideProps({ locale }) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common'])),
+			...(await serverSideTranslations(locale, ['common', 'tradePartner'])),
 
 		},
 	};

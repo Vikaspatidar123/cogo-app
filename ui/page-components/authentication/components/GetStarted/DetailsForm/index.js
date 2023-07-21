@@ -16,7 +16,7 @@ import logout from '@/ui/page-components/authentication/utils/getLogout';
 function DetailsForm({ setMode = () => { } }) {
 	const router = useRouter();
 
-	const { profile: { organizations = {} } } = useSelector((state) => state);
+	const { profile: { organizations = [] } } = useSelector((state) => state);
 
 	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:getStarted';
@@ -43,7 +43,7 @@ function DetailsForm({ setMode = () => { } }) {
 	return (
 		<form className={styles.form_container} onSubmit={handleSubmit(onGetStartedApi)}>
 
-			<span onClick={() => { handleBackButton(); }} role="presentation" className={styles.back_button}>
+			<span onClick={() => handleBackButton()} role="presentation" className={styles.back_button}>
 				<IcMArrowBack
 					width="16px"
 					height="16px"

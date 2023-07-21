@@ -1,6 +1,6 @@
-/* eslint-disable no-undef */
-import { Modal, Button } from '@cogoport/components';
+import { Modal, Button, cl } from '@cogoport/components';
 import { IcMEdit, IcMDocument } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import AddEditPocDetails from '../../AddEditPocDetails';
@@ -10,22 +10,19 @@ import styles from './styles.module.css';
 function OtherAddressCard({
 	other_address_data = {},
 	setOtherAddressObjToUpdate = () => {},
-	// getOrganizationOtherAddresses,
 	index = '',
 	setMobalType,
 	setEditOtherAddressKey,
 	address_key,
 	getAdd,
 }) {
-	const [showPocDetails, setShowPocDetails] = useState(false);
+	const { organization_pocs = [] } = other_address_data;
+
+	const { t } = useTranslation(['settings']);
 
 	const [showPocModal, setShowPocModal] = useState(null);
 
 	const [pocToUpdate, setPocToUpdate] = useState({});
-
-	const { organization_pocs = [] } = other_address_data;
-
-	const [firstPoc, ...restPocs] = organization_pocs;
 
 	const taxExemptionDocName = other_address_data.tax_exemption_proof
 		?.split('/')
@@ -41,7 +38,8 @@ function OtherAddressCard({
 	return (
 		<div className={styles.container}>
 			<div className={styles.edit_icon_container}>
-				<IcMEdit
+				<Button
+					themeType="secondary"
 					onClick={() => {
 						setOtherAddressObjToUpdate({
 							address_type: other_address_data.address_type,
@@ -50,34 +48,37 @@ function OtherAddressCard({
 						setMobalType(true);
 						setEditOtherAddressKey(address_key);
 					}}
-					style={{ height: 16, width: 16 }}
-				/>
+					tyep="button"
+				>
+					<div>{t('settings:edit_or_add_button_label_2')}</div>
+					<IcMEdit style={{ height: 14, width: 14, marginLeft: '3px' }} />
+				</Button>
 			</div>
 
 			<div className={styles.basic_billing_details}>
 				<div className={styles.sub_container}>
-					<div className={styles.label_text}>Billing Party Name</div>
+					<div className={styles.label_text}>{t('settings:billing_details_label_1')}</div>
 					<div className={styles.value_text}>
 						{other_address_data.name || '-'}
 					</div>
 				</div>
 
 				<div className={styles.sub_container}>
-					<div className={styles.label_text}>Pincode</div>
+					<div className={styles.label_text}>{t('settings:billing_details_label_5')}</div>
 					<div className={styles.value_text}>
 						{other_address_data.pincode || '-'}
 					</div>
 				</div>
 
 				<div className={styles.sub_container}>
-					<div className={styles.label_text}>Address</div>
+					<div className={styles.label_text}>{t('settings:billing_details_label_3')}</div>
 					<div className={styles.value_text}>
 						{other_address_data.address || '-'}
 					</div>
 				</div>
 
 				<div className={styles.sub_container}>
-					<div className={styles.label_text}>Country</div>
+					<div className={styles.label_text}>{t('settings:billing_details_label_11')}</div>
 					<div className={styles.value_text}>
 						{other_address_data.country.name || '-'}
 					</div>
@@ -87,7 +88,7 @@ function OtherAddressCard({
 			{other_address_data.tax_exemption_proof ? (
 				<div className={styles.tax_details_container}>
 					<div className={styles.sub_container}>
-						<div className={styles.label_text}>Tax Exemption Proof</div>
+						<div className={styles.label_text}>{t('settings:billing_details_placeholder_16')}</div>
 
 						<div className={styles.doc_container}>
 							<div className={styles.flex}>
@@ -101,7 +102,7 @@ function OtherAddressCard({
 									onClick={() => handleOpenDocument(other_address_data.tax_exemption_proof)}
 									role="presentation"
 								>
-									view
+									{t('settings:billing_details_button_label')}
 								</div>
 							</div>
 						</div>
@@ -109,8 +110,8 @@ function OtherAddressCard({
 				</div>
 			) : null}
 
-			{firstPoc ? (
-				<div className={styles.poc_container}>
+			{(organization_pocs || []).map((firstPoc) => (
+				<div className={styles.poc_container} key={firstPoc.name}>
 					<div
 						className={styles.poc_edit_icon_container}
 						onClick={() => {
@@ -119,23 +120,23 @@ function OtherAddressCard({
 						}}
 						role="presentation"
 					>
-						<IcMEdit style={{ width: 12, height: 12 }} />
+						<IcMEdit style={{ width: 16, height: 16 }} />
 					</div>
 
 					<div className={styles.poc_sub_container}>
-						<div className={`${styles.label_text}${styles.poc_details} `}>
-							Poc Name
+						<div className={cl`${styles.label_text} ${styles.poc_details}`}>
+							{t('settings:poc_name_label')}
 						</div>
-						<div className={`${styles.label_text}${styles.poc_details} `}>
+						<div className={cl`${styles.value_text} ${styles.poc_details} `}>
 							{firstPoc?.name || '-'}
 						</div>
 					</div>
 
 					<div className={styles.poc_sub_container}>
-						<div className={`${styles.label_text}${styles.poc_details} `}>
-							Poc Mobile
+						<div className={cl`${styles.label_text} ${styles.poc_details}`}>
+							{t('settings:poc_mobile_label')}
 						</div>
-						<div className={`${styles.label_text}${styles.poc_details} `}>
+						<div className={cl`${styles.value_text} ${styles.poc_details} `}>
 							{firstPoc?.mobile_number
 								? `${firstPoc?.mobile_country_code || ''} ${
 									firstPoc?.mobile_number
@@ -145,18 +146,18 @@ function OtherAddressCard({
 					</div>
 
 					<div className={styles.poc_sub_container}>
-						<div className={`${styles.label_text}${styles.poc_details} `}>
-							Email
+						<div className={cl`${styles.label_text} ${styles.poc_details} `}>
+							{t('settings:poc_email_label')}
 						</div>
-						<div className={`${styles.value_text}${styles.poc_details}`}>
+						<div className={cl`${styles.value_text} ${styles.poc_details}`}>
 							{firstPoc?.email || '-'}
 						</div>
 					</div>
 					<div className={styles.poc_sub_container}>
-						<div className={`${styles.label_text}${styles.poc_details} `}>
-							Allternate Mobile
+						<div className={cl`${styles.label_text} ${styles.poc_details} `}>
+							{t('settings:poc_alternate_mobile_label')}
 						</div>
-						<div className={`${styles.value_text}${styles.poc_details}`}>
+						<div className={cl`${styles.value_text} ${styles.poc_details}`}>
 							{firstPoc?.alternate_mobile_number
 								? `${firstPoc?.alternate_mobile_country_code || ''}
 												${firstPoc?.alternate_mobile_number}`
@@ -164,89 +165,20 @@ function OtherAddressCard({
 						</div>
 					</div>
 				</div>
-			) : null}
-
-			{showPocDetails && restPocs.length ? restPocs.map((poc_details) => (
-				<div className={styles.poc_container}>
-					<div
-						className={styles.poc_edit_icon_container}
-						onClick={() => {
-							setShowPocModal('edit');
-							setPocToUpdate(poc_details);
-						}}
-						role="presentation"
-					>
-						<IcMEdit style={{ width: 10, height: 10 }} />
-					</div>
-
-					<div className={styles.poc_sub_container}>
-						<div className={`${styles.label_text}${styles.poc_details} `}>
-							Pocs Name
-						</div>
-						<div className={`${styles.value_text}${styles.poc_details}`}>
-							{poc_details?.name || '-'}
-						</div>
-					</div>
-
-					<div className={styles.poc_sub_container}>
-						<div className={`${styles.label_text}${styles.poc_details} `}>
-							Pocs Mobile
-						</div>
-						<div className={`${styles.value_text}${styles.poc_details}`}>
-							{poc_details?.mobile_number
-								? `${poc_details?.mobile_country_code || ''} ${
-									poc_details?.mobile_number
-								}`
-								: '-'}
-						</div>
-					</div>
-
-					<div className={styles.poc_sub_container}>
-						<div className={`${styles.label_text}${styles.poc_details} `}>
-							Email
-						</div>
-						<div className={`${styles.value_text}${styles.poc_details}`}>
-							{poc_details?.email || '-'}
-						</div>
-					</div>
-
-					<div className={styles.poc_sub_container}>
-						<div className={`${styles.label_text}${styles.poc_details} `}>
-							Allternate Mobile
-						</div>
-						<div className={`${styles.value_text}${styles.poc_details}`}>
-							{poc_details?.alternate_mobile_number
-								? `${poc_details?.alternate_mobile_country_code || ''} 
-													${poc_details?.alternate_mobile_number}`
-								: '-'}
-						</div>
-					</div>
-				</div>
-			))
-				: null}
+			))}
 
 			<div className={styles.poc_footer}>
-				{organization_pocs.length > 1 ? (
-					<div
-						className={styles.link_text}
-						onClick={() => setShowPocDetails(!showPocDetails)}
-						role="presentation"
-					>
-						{`${showPocDetails ? 'Hide POCs' : 'Show More POCs'} `}
-					</div>
-				) : null}
 
 				<Button
-					style={{
-						marginLeft: 'auto',
-					}}
 					onClick={() => {
 						setShowPocModal('add');
 					}}
 					size="sm"
-					themeType="accent"
+					themeType="secondary"
+					type="button"
+					className={styles.button_1}
 				>
-					Add Poc
+					{t('settings:add_poc_button_label')}
 				</Button>
 			</div>
 

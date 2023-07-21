@@ -32,7 +32,7 @@ function Card({ listItem = {}, loading = false, activeTab, setModalInfo, refetch
 		currentMilestone       : milestones?.[activeContainerIndex - 1],
 		currentContainer       : container_details?.[activeContainerIndex - 1],
 		currentContainerAction : action?.[activeContainerIndex - 1],
-		containerDetailsLength : container_details.length,
+		containerDetailsLength : container_details?.length,
 	}), [action, activeContainerIndex, container_details, milestones]);
 
 	if (isTrackerEmpty && !loading) {

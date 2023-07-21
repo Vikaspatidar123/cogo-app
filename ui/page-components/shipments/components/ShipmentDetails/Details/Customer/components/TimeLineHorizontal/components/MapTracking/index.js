@@ -9,6 +9,7 @@ import { isPastOrPresentDay } from '../../utils/daysconstant';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const CogoMaps = dynamic(() => import('./map'), { ssr: false });
@@ -18,7 +19,6 @@ function TrackerMap({
 	vesselLocationLat,
 	vesselLocationLang,
 	type,
-	width = '50%',
 	height = '80vh',
 	isModal = false,
 	markers = [],
@@ -198,11 +198,11 @@ function TrackerMap({
 	}
 
 	return isLoading ? (
-		<img
+		<Image
 			src={GLOBAL_CONSTANTS.image_url.map_loading}
 			alt="map"
-			height={height}
-			width={width}
+			height={70}
+			width={70}
 			className={isModal ? styles.image : ''}
 		/>
 	) : (

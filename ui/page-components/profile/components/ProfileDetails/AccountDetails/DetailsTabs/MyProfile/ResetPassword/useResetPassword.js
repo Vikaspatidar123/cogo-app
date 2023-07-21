@@ -2,6 +2,7 @@
 import { Toast } from '@cogoport/components';
 import { IcMEyeopen, IcMEyeclose } from '@cogoport/icons-react';
 import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import getControls from './controls';
 
@@ -21,9 +22,11 @@ const useResetPassword = ({
 	setShowPasswordModal = () => {},
 	refetch = () => {},
 }) => {
+	const { t } = useTranslation(['settings']);
+
 	const [passwordInputType, setPasswordInputType] = useState('password');
 
-	const [confirmPasswordInputType, setConfirmPasswordInputType] =		useState('password');
+	const [confirmPasswordInputType, setConfirmPasswordInputType] =	useState('password');
 
 	const [errors, setErrors] = useState({});
 
@@ -32,7 +35,7 @@ const useResetPassword = ({
 		method : 'post',
 	}, { manual: false });
 
-	const controls = getControls();
+	const controls = getControls({ t });
 
 	const newControls = useMemo(() => controls?.map((control) => {
 		const { name = '' } = control;
@@ -59,30 +62,6 @@ const useResetPassword = ({
 
 	const watchPassword = formProps.watch('password');
 	const watchConfirmPassword = formProps.watch('confirmPassword');
-
-	useEffect(() => {
-		setErrors((previousErrors) => ({
-			...previousErrors,
-			password: {
-				type    : '',
-				message : '',
-			},
-		}));
-	}, [watchPassword]);
-
-	useEffect(() => {
-		setErrors((previousErrors) => ({
-			...previousErrors,
-			confirmPassword: {
-				type: '',
-				message:
-					watchConfirmPassword && watchConfirmPassword !== watchPassword
-						? ''
-
-						: '',
-			},
-		}));
-	}, [watchPassword, watchConfirmPassword]);
 
 	const onErrors = (errs = {}) => setErrors({ ...errs });
 
@@ -117,9 +96,7 @@ const useResetPassword = ({
 			setShowPasswordModal(false);
 			refetch();
 
-			Toast.success(
-				'Successfully Updated',
-			);
+			Toast.success(t('settings:billing_details_successfully_updated_toast'));
 		} catch (error) {
 			handleResetPasswordError(error);
 		}
@@ -135,6 +112,29 @@ const useResetPassword = ({
 		resetPassword({ password });
 	};
 
+	useEffect(() => {
+		setErrors((previousErrors) => ({
+			...previousErrors,
+			password: {
+				type    : '',
+				message : '',
+			},
+		}));
+	}, [watchPassword]);
+
+	useEffect(() => {
+		setErrors((previousErrors) => ({
+			...previousErrors,
+			confirmPassword: {
+				type: '',
+				message:
+					watchConfirmPassword && watchConfirmPassword !== watchPassword
+						? ''
+						: '',
+			},
+		}));
+	}, [watchPassword, watchConfirmPassword]);
+
 	return {
 		fields,
 		controls,
@@ -143,7 +143,6 @@ const useResetPassword = ({
 		onSubmit,
 		onErrors,
 		loading,
-		// loading: updateUserPasswordAPI?.loading,
 	};
 };
 

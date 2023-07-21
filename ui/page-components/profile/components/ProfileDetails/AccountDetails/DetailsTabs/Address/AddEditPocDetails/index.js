@@ -1,4 +1,5 @@
 import { Button, Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 import useEditPocDetails from './useEditPocDetails';
@@ -15,6 +16,8 @@ function AddEditPocDetails({
 	type = '',
 	refetch,
 }) {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		fields = {},
 		handleSubmit = () => {},
@@ -35,7 +38,9 @@ function AddEditPocDetails({
 
 	return (
 		<div>
-			<Modal.Header title={showPocModal === 'edit' ? 'Edit Poc' : 'Add POC'} />
+			<Modal.Header title={showPocModal === 'edit' ? t('settings:edit_poc_details_label_1')
+				: t('settings:edit_poc_details_label_2')}
+			/>
 
 			<Modal.Body>
 				<div>
@@ -64,8 +69,9 @@ function AddEditPocDetails({
 					onClick={() => setShowPocModal(false)}
 					size="sd"
 					themeType="secondary"
+					type="button"
 				>
-					Cancel
+					{t('settings:edit_or_add_button_label_1')}
 				</Button>
 
 				<Button
@@ -73,8 +79,10 @@ function AddEditPocDetails({
 					onClick={handleSubmit(onCreate)}
 					size="sm"
 					themeType="primary"
+					type="submit"
 				>
-					{showPocModal === 'edit' ? 'Edit' : 'Add'}
+					{showPocModal === 'edit' ? t('settings:edit_or_add_button_label_2')
+						: t('settings:edit_or_add_button_label_3')}
 				</Button>
 			</Modal.Footer>
 		</div>

@@ -1,7 +1,8 @@
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import { getCountryIds } from '@/ui/commons/utils/getCountryDetails';
+// do not remove
+// import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+// import { getCountryIds } from '@/ui/commons/utils/getCountryDetails';
 
-const SUPPORTED_COUNTRY_CODE = GLOBAL_CONSTANTS.service_supported_countries.ltl_freight.countries;
+// const SUPPORTED_COUNTRY_CODE = GLOBAL_CONSTANTS.service_supported_countries.ltl_freight.countries;
 
 const getControls = () => [
 	{
@@ -14,8 +15,8 @@ const getControls = () => [
 		params      : {
 			apply_sorting : false,
 			filters       : {
-				type : ['pincode', 'seaport', 'airport', 'city', 'warehouse'],
-				id   : getCountryIds({ countryCodes: SUPPORTED_COUNTRY_CODE }),
+				type: ['pincode', 'seaport', 'airport', 'city', 'warehouse'],
+				// id   : getCountryIds({ countryCodes: SUPPORTED_COUNTRY_CODE }),
 			},
 		},
 		rules: { required: 'Origin Location is required' },
@@ -30,8 +31,8 @@ const getControls = () => [
 		params      : {
 			apply_sorting : false,
 			filters       : {
-				type : ['pincode', 'seaport', 'airport', 'city', 'warehouse'],
-				id   : getCountryIds({ countryCodes: SUPPORTED_COUNTRY_CODE }),
+				type: ['pincode', 'seaport', 'airport', 'city', 'warehouse'],
+				// id   : getCountryIds({ countryCodes: SUPPORTED_COUNTRY_CODE }),
 			},
 		},
 		rules: { required: 'Destination Location is required' },

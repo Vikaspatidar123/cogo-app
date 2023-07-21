@@ -56,7 +56,7 @@ function ShipmentPlan() {
 			)}
 
 			{(serviceLoading || loading)
-				? [...Array(isTechops ? 1 : 3)].map(() => <CardLoader />)
+				? [...Array(isTechops ? 1 : 3).keys()].map((ele) => <CardLoader key={ele} />)
 				: (
 					<div className={styles.card_container}>
 						{(list || []).map((item) => (
@@ -69,16 +69,17 @@ function ShipmentPlan() {
 						))}
 					</div>
 				)}
-
-			<div className={styles.pagination_wrapper}>
-				<Pagination
-					type="table"
-					currentPage={page}
-					pageSize={5}
-					totalItems={total_count}
-					onPageChange={(e) => setPagination(e)}
-				/>
-			</div>
+			{total_count > 10 ? (
+				<div className={styles.pagination_wrapper}>
+					<Pagination
+						type="table"
+						currentPage={page}
+						pageSize={10}
+						totalItems={total_count}
+						onPageChange={(e) => setPagination(e)}
+					/>
+				</div>
+			) : null}
 		</>
 	);
 }

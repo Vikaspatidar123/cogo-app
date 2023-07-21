@@ -17,12 +17,15 @@ function TechopsHeader({ loading = false }) {
 					<div className={`${styles.section} ${styles.section_one}`}>
 						{through === 'techops' && <div className={styles.title}>Tech Ops</div>}
 					</div>
+
 					<div className={styles.section}>
 						<IcMArrowBack onClick={back} />
+
 						<div className={styles.refName}>
 							Reference Number :
 							{contractReferenceId || '-'}
 						</div>
+
 						<div className={styles.refName}>
 							TAT :
 							{tats === 'null' ? 0 : tats}
@@ -30,6 +33,7 @@ function TechopsHeader({ loading = false }) {
 							hours
 						</div>
 					</div>
+
 				</div>
 			) : (
 				<Placeholder height="100px" width="100%" margin="10px 0px" />

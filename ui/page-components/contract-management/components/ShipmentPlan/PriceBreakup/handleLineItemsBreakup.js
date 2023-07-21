@@ -4,14 +4,14 @@ import handleLineItems from './handleLineItems';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const handleLineItemsBreakup = (item, details, containerCount, source) => {
-	const { line_items = [] } = item || {};
+const AIR_SERVICES = ['air_freight', 'air_freight_local'];
 
-	const totalPriceDiscounted = item.total_price_discounted;
+const handleLineItemsBreakup = (item, source) => {
+	const { line_items = [], total_price_discounted = '', total_price_currency = '' } = item || {};
 
 	const {
 		container_size,
-		container_type,
+		container_type = '',
 		commodity,
 		packages = [],
 		truck_type = '',
@@ -20,39 +20,23 @@ const handleLineItemsBreakup = (item, details, containerCount, source) => {
 		trade_type = '',
 		volume = '',
 		weight = '',
-	} = details || {};
+	} = item || {};
 
 	const { packing_type = '', handling_type = '' } = packages[0] || {};
 
-	let size = '';
-	let type = '';
-	let comm = '';
-	let truckType = '';
+	let size = container_size ? `${container_size} ft` : '';
+	let type = startCase(container_type || '');
+	const comm = startCase(commodity || '');
+	const truckType = startCase(truck_type || '');
 	let packageType = '';
 	let packageHandlingType = '';
 
-	if (container_size) {
-		if (container_type || commodity) {
-			size = `${container_size} ft, `;
-		} else {
-			size = `${container_size} ft`;
-		}
-	}
-
-	if (container_type) {
-		if (commodity) {
-			type = `${startCase(container_type)}, `;
-		} else {
-			type = startCase(container_type);
-		}
-	}
-
-	if (truck_type) {
-		truckType = startCase(truck_type);
+	if (container_type || commodity) {
+		size = `${container_size} ft, `;
 	}
 
 	if (commodity) {
-		comm = startCase(commodity);
+		type = `${startCase(container_type)}, `;
 	}
 
 	if (packages.length) {
@@ -65,25 +49,23 @@ const handleLineItemsBreakup = (item, details, containerCount, source) => {
 		if (volume) {
 			additonalInfo = `VOL: ${volume}cbm`;
 		}
+
 		if (weight) {
 			additonalInfo += ` WT: ${weight}`;
 		}
-		if (
-			['air_freight', 'air_freight_local'].includes(service_type)
-			&& trade_type !== 'domestic'
-		) {
+
+		if (AIR_SERVICES.includes(service_type) && trade_type !== 'domestic') {
 			return `${size}${type}${comm} ${packageType} ${packageHandlingType} ${additonalInfo}`;
 		}
+
 		if (service_type === 'ftl_freight') {
 			return `${size}${type}${truckType}`;
 		}
-		if (
-			trade_type === 'domestic'
-			&& terminal_charge_type
-			&& service_type === 'air_freight_local'
-		) {
+
+		if (trade_type === 'domestic' && terminal_charge_type && service_type === 'air_freight_local') {
 			return `${size}${type}${comm} ${packageType} ${packageHandlingType} ${additonalInfo}`;
 		}
+
 		return `${size}${type}${comm}`;
 	};
 
@@ -95,8 +77,8 @@ const handleLineItemsBreakup = (item, details, containerCount, source) => {
 			features : handleService(),
 			price    : !isEmpty(line_items)
 				? formatAmount({
-					amount   : totalPriceDiscounted / containerCount,
-					currency : item?.total_price_currency,
+					amount   : total_price_discounted,
+					currency : total_price_currency,
 					options  : {
 						notation : 'standard',
 						style    : 'currency',

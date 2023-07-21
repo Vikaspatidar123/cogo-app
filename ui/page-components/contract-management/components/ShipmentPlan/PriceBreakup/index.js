@@ -6,13 +6,9 @@ import { UNIT_MAPPING } from '../constants';
 import handleLineItemsBreakup from './handleLineItemsBreakup';
 import styles from './styles.module.css';
 
-function PriceBreakup({
-	details = {},
-	setShowBreakup = () => { },
-	source = '',
-}) {
-	const containerCount = details.containers_count || 1;
+function PriceBreakup({ details = {}, source = '' }) {
 	const groupedServices = {};
+	const containerCount = details.containers_count || 1;
 
 	(details || []).forEach((item) => {
 		let service = '';

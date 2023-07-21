@@ -1,7 +1,5 @@
 .container {
-	max-height: 500px;
-	padding: 16px;
-	overflow: scroll;
+	padding:0 16px;
 
 	:global {
 		.ui_modal_header_container {

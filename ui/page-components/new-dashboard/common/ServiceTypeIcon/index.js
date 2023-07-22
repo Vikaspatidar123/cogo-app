@@ -9,7 +9,7 @@ function ServiceTypeIcon({ freight_type = 'fcl_freight' }) {
 		<>
 			<div
 				className={styles.icon_wrapper}
-				style={{ padding: '0.7rem', marginRight: '0.5rem', background: freight[freight_type]?.bgColor }}
+				style={{ background: freight[freight_type]?.bgColor }}
 			>
 				{freight[freight_type]?.icon}
 			</div>

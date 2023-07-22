@@ -8,22 +8,24 @@ import styles from './styles.module.css';
 import { Image, dynamic } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+const SET_TIME = 6500;
+const DEFAULT_COUNT = 0;
 const CogoMaps = dynamic(() => import('./MapsComp'), { ssr: false });
 
 function MapContainer({ height = '60vh', data = {}, activeTab }) {
-	const [count, setCount] = useState(0);
+	const [count, setCount] = useState(DEFAULT_COUNT);
 
 	const { list } = data || {};
 	const { loading, allRoute } = useGetMapRoute({ trackingInfo: list, type: activeTab });
 
 	useEffect(() => {
-		if (loading && count >= 0) {
+		if (loading && count >= DEFAULT_COUNT) {
 			const timeout = setTimeout(() => {
 				setCount((prev) => {
-					if (prev === LOADING_TEXT_COUNT) return 0;
+					if (prev === LOADING_TEXT_COUNT) return DEFAULT_COUNT;
 					return prev + 1;
 				});
-			}, 6500);
+			}, SET_TIME);
 
 			return () => {
 				clearTimeout(timeout);

@@ -5,8 +5,8 @@ import { useRequest } from '@/packages/request';
 
 const useRecentSearches = () => {
 	const [{ loading, data }, trigger] = useRequest({
-		url    : 'get_recommended_spot_searches',
-		method : 'get',
+		url: '/get_recommended_spot_searches',
+		method: 'get',
 	}, { manual: true });
 
 	const fetchSearch = useCallback(() => {

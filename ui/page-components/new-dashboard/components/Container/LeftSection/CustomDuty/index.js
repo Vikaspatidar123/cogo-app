@@ -11,7 +11,12 @@ function CustomDuty() {
 	const { push } = useRouter();
 	const { t } = useTranslation(['dashboard']);
 	return (
-		<div className={styles.container}>
+		<div
+			className={styles.container}
+			style={{
+				backgroundImage: `url(${GLOBAL_CONSTANTS.image_url.duty_image})`,
+			}}
+		>
 			<div className={styles.text}>{t('dashboard:custom_duty_text1')}</div>
 			<div className={styles.seaction}>
 				<div>

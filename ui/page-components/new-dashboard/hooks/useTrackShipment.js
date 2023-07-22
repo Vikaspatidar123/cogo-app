@@ -8,8 +8,8 @@ const useTrackShipment = () => {
 	const { branch_id } = query;
 
 	const [{ loading, data }, trigger] = useRequest({
-		method : 'get',
-		url    : '/list_saas_container_subscriptions_summary',
+		method: 'get',
+		url: '/list_saas_container_subscriptions_summary',
 	}, { manual: true });
 
 	const getSummary = useCallback(() => {
@@ -23,7 +23,7 @@ const useTrackShipment = () => {
 				},
 			});
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	}, [branch_id, trigger]);
 

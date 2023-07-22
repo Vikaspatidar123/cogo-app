@@ -1,10 +1,9 @@
 .icon_wrapper {
 	position: relative;
 	display: flex;
-	align-items: center;
 	justify-content: center;
-	padding: 1.4rem;
-	margin-right: 1.5rem;
+	padding: 11.2px;
+	margin-right: 8px;
 	border-radius: 50%;
 
 	svg {

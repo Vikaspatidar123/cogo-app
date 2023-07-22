@@ -8,8 +8,8 @@ const CreateSportSearch = () => {
 	const { push } = useRouter();
 	const [{ loading }, trigger] = useRequest(
 		{
-			url    : '/create_spot_search',
-			method : 'post',
+			url: '/create_spot_search',
+			method: 'post',
 		},
 		{ manual: true },
 	);
@@ -19,8 +19,6 @@ const CreateSportSearch = () => {
 			const res = await trigger({
 				data: payload,
 			});
-
-			console.log(res, 'data');
 
 			const { data } = res || {};
 

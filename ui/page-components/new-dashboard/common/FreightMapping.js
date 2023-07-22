@@ -5,42 +5,47 @@ import {
 	IcCAir,
 	IcMAirport,
 	IcMTrailorFull,
-	IcCBookmark,
+	IcCFcl,
+	IcAAirflight,
 } from '@cogoport/icons-react';
 
 const getFreightMapping = () => ({
 	lcl_freight: {
-		name        : 'LCL',
-		icon        : <IcCFlcl style={{ width: '25px', height: '25px' }} />,
-		freightLogo : (
-			<IcCLcl style={{ marginRight: '.8rem', marginTop: '0.5rem' }} />
+		name: 'LCL',
+		icon: <IcCFlcl
+			width={22}
+			height={22}
+		/>,
+		freightLogo: (
+			<IcCLcl style={{ marginRight: '12.8px', marginTop: '8px' }} />
 		),
 		secondaryIcon: <IcMShip style={{ width: '15px', marginRight: '10px' }} />,
 	},
 	fcl_freight: {
-		name        : 'FCL',
-		icon        : <IcMShip style={{ width: '18px', height: '18px' }} fill="white" />,
-		bgColor     : '#356EFD',
-		freightLogo : (
-			<img
-				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/containerIcon_new.svg"
-				alt="container"
-				style={{ width: '21px', marginRight: '.8rem', marginTop: '0.5rem' }}
-			/>
-		),
+		name: 'FCL',
+		icon: <IcMShip
+			width={18}
+			height={18}
+			fill="white"
+		/>,
+		bgColor: '#356EFD',
+		freightLogo: <IcCFcl />,
 		secondaryIcon: <IcMShip style={{ width: '15px', marginRight: '10px' }} />,
 	},
 	air_freight: {
-		name        : 'AIR',
-		icon        : <IcCBookmark fill="#EF9B9B" />,
-		bgColor     : '#EF9B9B',
-		freightLogo : (
+		name: 'AIR',
+		icon: <IcAAirflight
+			width={22}
+			height={22}
+		/>,
+		bgColor: '#EF9B9B',
+		freightLogo: (
 			<IcCAir
 				style={{
-					width       : '22px',
-					height      : '22px',
-					marginRight : '.8rem',
-					marginTop   : '0.5rem',
+					width: '22px',
+					height: '22px',
+					marginRight: '12.8px',
+					marginTop: '8px',
 				}}
 			/>
 		),
@@ -49,23 +54,19 @@ const getFreightMapping = () => ({
 		),
 	},
 	trailer_freight: {
-		name : 'Trailer',
-		icon : (
-			<img
-				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/truck_new.svg"
-				alt="truck Icon"
-				style={{ width: '20px', height: '20px' }}
-			/>
-		),
-
-		bgColor     : '#EAEAEA',
-		freightLogo : (
+		name: 'Trailer',
+		icon: <IcMTrailorFull
+			width={22}
+			height={22}
+		/>,
+		bgColor: '#EAEAEA',
+		freightLogo: (
 			<IcMTrailorFull
+				width={22}
+				height={22}
 				style={{
-					width       : '22px',
-					height      : '22px',
-					marginRight : '.8rem',
-					marginTop   : '0.5rem',
+					marginRight: '12.8px',
+					marginTop: '8px',
 				}}
 			/>
 		),
@@ -74,22 +75,21 @@ const getFreightMapping = () => ({
 		),
 	},
 	ltl_freight: {
-		name : 'LTL',
-		icon : (
-			<img
-				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/truck_new.svg"
-				alt="truck Icon"
-				style={{ width: '18px', height: '18px' }}
+		name: 'LTL',
+		icon: (
+			<IcMTrailorFull
+				width={22}
+				height={22}
 			/>
 		),
-		bgColor     : '#EAEAEA',
-		freightLogo : (
+		bgColor: '#EAEAEA',
+		freightLogo: (
 			<IcMTrailorFull
 				style={{
-					width       : '22px',
-					height      : '22px',
-					marginRight : '.8rem',
-					marginTop   : '0.5rem',
+					width: '22px',
+					height: '22px',
+					marginRight: '12.8px',
+					marginTop: '8px',
 				}}
 			/>
 		),
@@ -98,22 +98,20 @@ const getFreightMapping = () => ({
 		),
 	},
 	ftl_freight: {
-		name : 'FTL',
-		icon : (
-			<img
-				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/truck_new.svg"
-				alt="truck Icon"
-				style={{ width: '18px', height: '18px' }}
-			/>
-		),
-		bgColor     : '#EAEAEA',
-		freightLogo : (
+		name: 'FTL',
+		icon: <IcMTrailorFull
+			width={22}
+			height={22}
+			style={{ marginRight: '10px' }}
+		/>,
+		bgColor: '#EAEAEA',
+		freightLogo: (
 			<IcMTrailorFull
 				style={{
-					width       : '22px',
-					height      : '22px',
-					marginRight : '.8rem',
-					marginTop   : '0.5rem',
+					width: '22px',
+					height: '22px',
+					marginRight: '12.8px',
+					marginTop: '8px',
 				}}
 			/>
 		),
@@ -122,22 +120,19 @@ const getFreightMapping = () => ({
 		),
 	},
 	haulage_freight: {
-		name : 'Haulage',
-		icon : (
-			<img
-				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/truck_new.svg"
-				alt="truck Icon"
-				style={{ width: '18px', height: '18px' }}
-			/>
-		),
-		bgColor     : '#EAEAEA',
-		freightLogo : (
+		name: 'Haulage',
+		icon: <IcMTrailorFull
+			width={22}
+			height={22}
+		/>,
+		bgColor: '#EAEAEA',
+		freightLogo: (
 			<IcMTrailorFull
 				style={{
-					width       : '22px',
-					height      : '22px',
-					marginRight : '.8rem',
-					marginTop   : '0.5rem',
+					width: '22px',
+					height: '22px',
+					marginRight: '12.8px',
+					marginTop: '8px',
 				}}
 			/>
 		),
@@ -146,45 +141,56 @@ const getFreightMapping = () => ({
 		),
 	},
 	fcl_customs: {
-		name        : 'FCL Customs',
-		icon        : <IcMShip style={{ width: '18px', height: '18px' }} fill="white" />,
-		bgColor     : '#356EFD',
-		freightLogo : (
-			<img
-				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/containerIcon_new.svg"
-				alt="container"
-				style={{ width: '21px', marginRight: '.8rem', marginTop: '0.5rem' }}
+		name: 'FCL Customs',
+		icon: <IcMShip
+			width={22}
+			height={22}
+			fill="white"
+		/>,
+		bgColor: '#356EFD',
+		freightLogo: (
+			<IcCFcl
+				style={{ width: '21px', marginRight: '.12.8px', marginTop: '8px' }}
 			/>
 		),
-		secondaryIcon: <IcMShip style={{ width: '15px', marginRight: '10px' }} />,
+		secondaryIcon: <IcMShip width={15} style={{ marginRight: '10px' }} />,
 	},
 	fcl_cfs: {
-		name        : 'FCL CFS',
-		icon        : <IcMShip style={{ width: '18px', height: '18px' }} fill="white" />,
-		bgColor     : '#356EFD',
-		freightLogo : (
-			<img
-				src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/containerIcon_new.svg"
-				alt="container"
-				style={{ width: '21px', marginRight: '.8rem', marginTop: '0.5rem' }}
+		name: 'FCL CFS',
+		icon: <IcMShip
+			width={22}
+			height={22}
+			fill="white"
+		/>,
+		bgColor: '#356EFD',
+		freightLogo: (
+			<IcCFcl
+				style={{ width: '21px', marginRight: '12.8px', marginTop: '8px' }}
 			/>
 		),
 		secondaryIcon: <IcMShip style={{ width: '15px', marginRight: '10px' }} />,
 	},
 	lcl_customs: {
-		name        : 'LCL Customs',
-		icon        : <IcCFlcl style={{ width: '25px', height: '25px' }} />,
-		freightLogo : (
-			<IcCLcl style={{ marginRight: '.8rem', marginTop: '0.5rem' }} />
+		name: 'LCL Customs',
+		icon: <IcCFlcl
+			width={22}
+			height={22}
+		/>,
+		freightLogo: (
+			<IcCLcl style={{ marginRight: '.12.8px', marginTop: '8px' }} />
 		),
 		secondaryIcon: <IcMShip style={{ width: '15px', marginRight: '10px' }} />,
 	},
 	air_customs: {
-		name          : 'AIR Customs',
-		icon          : <IcCBookmark fill="#EF9B9B" />,
-		bgColor       : '#EF9B9B',
-		freightLogo   : <IcCAir />,
-		secondaryIcon : (
+		name: 'AIR Customs',
+		icon: <IcAAirflight
+			width={22}
+			height={22}
+			fill="#EF9B9B"
+		/>,
+		bgColor: '#EF9B9B',
+		freightLogo: <IcCAir />,
+		secondaryIcon: (
 			<IcMAirport style={{ width: '15px', marginRight: '10px' }} />
 		),
 	},

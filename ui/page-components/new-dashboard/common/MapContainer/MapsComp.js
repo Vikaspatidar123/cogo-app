@@ -7,23 +7,25 @@ import { PATH_OPTION } from '../../constant';
 import Pointer from './Pointer';
 import Route from './Route';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const LAYER = [
 	{
-		name        : 'Cogo Maps',
-		url         : 'https://api.cogoport.com/cogo-tiles/{z}/{x}/{y}.png',
-		attribution : '',
+		name: 'Cogo Maps',
+		url: 'https://api.cogoport.com/cogo-tiles/{z}/{x}/{y}.png',
+		attribution: '',
 	},
 ];
 
 const getLatLng = ({ route = [] }) => {
 	const routeLength = route?.length;
 	const origin = {
-		lat : route[0]?.lat,
-		lng : route[0]?.lng,
+		lat: route[GLOBAL_CONSTANTS.zeroth_index]?.lat,
+		lng: route[GLOBAL_CONSTANTS.zeroth_index]?.lng,
 	};
 	const destination = {
-		lat : route[routeLength - 1]?.lat,
-		lng : route[routeLength - 1]?.lng,
+		lat: route[routeLength - 1]?.lat,
+		lng: route[routeLength - 1]?.lng,
 	};
 	return { origin, destination };
 };

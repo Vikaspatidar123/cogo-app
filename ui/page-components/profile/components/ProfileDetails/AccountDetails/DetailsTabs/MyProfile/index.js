@@ -1,6 +1,6 @@
-import { Modal } from '@cogoport/components';
-import { IcCFtick, IcMEdit } from '@cogoport/icons-react';
-import { startCase, format } from '@cogoport/utils';
+import { Modal, Button } from '@cogoport/components';
+import { IcMEdit } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import MobileHeader from '../../../../MobileHeader';
 import getWorkScopes from '../../../configurations/work-scopes';
@@ -9,16 +9,18 @@ import EditProfileDetails from './EditProfileDetails';
 import useMyProfile from './hooks/useMyProfile';
 import LoadingState from './LoadingState';
 import MobileVerificationModal from './MobileVerificationModal';
+import ProfileDetails from './ProfileDetails';
 import ResetPassword from './ResetPassword';
 import styles from './styles.module.css';
 
 function MyProfile() {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		loading = false,
 		userDetails = {},
 		showEditProfileDetails = false,
 		setShowEditProfileDetails = () => {},
-		verifyEmailId = () => {},
 		showMobileVerificationModal = null,
 		setShowMobileVerificationModal = () => {},
 		showPasswordModal = false,
@@ -27,7 +29,7 @@ function MyProfile() {
 		onClickBackButton,
 	} = useMyProfile();
 
-	const workScopes = getWorkScopes();
+	const workScopes = getWorkScopes({ t });
 
 	if (loading) {
 		return <LoadingState />;
@@ -41,7 +43,6 @@ function MyProfile() {
 			const displayWorkScope = workScopes.find(
 				(work) => work.value === work_scope,
 			);
-
 			return <div className={styles.value_text}>{displayWorkScope?.label || '-'}</div>;
 		});
 	};
@@ -49,26 +50,37 @@ function MyProfile() {
 	return (
 		<>
 			<MobileHeader
-				heading="My Profile"
+				heading={t('settings:my_profile_heading_text')}
 				onClickBackButton={onClickBackButton}
 			/>
 			<div className={styles.main_container}>
 				{!showEditProfileDetails ? (
 					<div className={styles.flex}>
-						<IcMEdit onClick={() => setShowEditProfileDetails(true)} />
+						<Button themeType="secondary" onClick={() => setShowEditProfileDetails(true)} type="button">
+							<div>{t('settings:edit_or_add_button_label_2')}</div>
+							<IcMEdit
+								width={14}
+								height={14}
+								className={styles.edit_icon}
+							/>
+						</Button>
 					</div>
 				) : null}
 
 				<div className={styles.header_container}>
 					<div className={styles.header_text}>
-						Personal Details
+						{t('settings:my_profile_heading_text')}
 					</div>
 					{!showEditProfileDetails ? (
-						<IcMEdit
-							width={16}
-							height={16}
-							onClick={() => setShowEditProfileDetails(true)}
-						/>
+						<Button themeType="secondary" onClick={() => setShowEditProfileDetails(true)} type="button">
+							<div>{t('settings:edit_or_add_button_label_2')}</div>
+							<IcMEdit
+								width={14}
+								height={14}
+								className={styles.edit_icon}
+							/>
+						</Button>
+
 					) : null}
 				</div>
 
@@ -79,153 +91,15 @@ function MyProfile() {
 						userDetails={userDetails}
 					/>
 				) : (
-					<div className={styles.content}>
-						<div className={styles.details_container}>
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Name
-								</div>
-								<div className={styles.value_text}>{userDetails.name || '-'}</div>
-							</div>
-
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Email
-								</div>
-								<div className={styles.text_icon_container}>
-									<div className={styles.value_text}>{userDetails.email || '-'}</div>
-									{userDetails.email_verified && (
-										<IcCFtick className={styles.icon} />
-									)}
-								</div>
-
-								{userDetails.email && !userDetails.email_verified ? (
-									<div className={styles.text_icon_container}>
-										<div
-											className={styles.verification_text}
-											onClick={() => verifyEmailId()}
-											role="presentation"
-										>
-											Email
-										</div>
-									</div>
-								) : null}
-							</div>
-
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Mobile
-								</div>
-								<div className={styles.text_icon_container}>
-									<div className={styles.value_text}>
-										{userDetails.mobile_number
-											? `${userDetails.mobile_country_code} ${userDetails.mobile_number}`
-											: '-'}
-									</div>
-									{userDetails.mobile_verified && (
-										<IcCFtick className={styles.icon} />
-									)}
-								</div>
-
-								{userDetails.mobile_number && !userDetails.mobile_verified ? (
-									<div className={styles.text_icon_container}>
-										<div
-											className={styles.verification_text}
-											onClick={() => setShowMobileVerificationModal('verify')}
-											role="presentation"
-										>
-											Mobile
-										</div>
-									</div>
-								) : null}
-
-								{userDetails.mobile_number && userDetails.mobile_verified ? (
-									<div className={styles.text_icon_container}>
-										<div
-											className={styles.verification_text}
-											onClick={() => setShowMobileVerificationModal('change')}
-											role="presentation"
-										>
-											Change
-										</div>
-									</div>
-								) : null}
-							</div>
-
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Work Scopes
-								</div>
-								<div className={styles.value_text}>{renderWorkScopes()}</div>
-							</div>
-						</div>
-
-						<div className={styles.details_container}>
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Languages
-								</div>
-								<div className={styles.value_text}>
-									<div className={styles.text_icon_container}>
-										{userDetails.preferred_languages?.length > 0
-											? userDetails.preferred_languages?.map((lang) => (
-												<div className={styles.language_tag}>
-													{startCase(lang)}
-												</div>
-											))
-											: '-'}
-									</div>
-								</div>
-							</div>
-
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Date of Birth
-								</div>
-								<div className={styles.value_text}>
-									{format(
-										userDetails.birth_date,
-										'dd MMM yyyy',
-									) || '-'}
-								</div>
-							</div>
-
-							<div className={styles.sub_container}>
-								<div className={styles.label_text}>
-									Alternate Mobile Numbers
-								</div>
-								<div className={styles.value_text}>
-									{userDetails.alternate_mobile_numbers?.length > 0
-										? userDetails.alternate_mobile_numbers?.map(
-											(mobile_number) => (
-												<div
-													className={styles.value_text}
-												>
-													{`${mobile_number.mobile_country_code} 
-													${mobile_number.mobile_number}`}
-												</div>
-											),
-										)
-										: '-'}
-								</div>
-							</div>
-
-							<div className={styles.sub_container}>
-								<div className={styles.label_text} />
-								<div
-									className={styles.link_text}
-									onClick={() => setShowPasswordModal(true)}
-									role="presentation"
-								>
-									Change Password
-								</div>
-							</div>
-						</div>
-					</div>
+					<ProfileDetails
+						userDetails={userDetails}
+						renderWorkScopes={renderWorkScopes}
+						setShowPasswordModal={setShowPasswordModal}
+					/>
 				)}
 			</div>
 
-			{showPasswordModal && (
+			{showPasswordModal ? (
 				<Modal
 					show={showPasswordModal}
 					onClose={setShowPasswordModal}
@@ -234,14 +108,14 @@ function MyProfile() {
 				>
 					<ResetPassword setShowPasswordModal={setShowPasswordModal} />
 				</Modal>
-			)}
+			) : null}
 
-			{showMobileVerificationModal !== null && (
+			{showMobileVerificationModal !== null ? (
 				<MobileVerificationModal
 					showMobileVerificationModal={showMobileVerificationModal}
 					setShowMobileVerificationModal={setShowMobileVerificationModal}
 				/>
-			)}
+			) : null}
 		</>
 	);
 }

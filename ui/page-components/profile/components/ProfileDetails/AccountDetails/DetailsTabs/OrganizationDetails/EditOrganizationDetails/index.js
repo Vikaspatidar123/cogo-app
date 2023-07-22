@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import useEditOrganizationDetails from '../hooks/useEditOrganizationDetails';
 
@@ -11,6 +12,8 @@ function EditOrganizationDetails({
 	organizationType = '',
 	organizationData = {},
 }) {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		showElements,
 		control,
@@ -25,6 +28,7 @@ function EditOrganizationDetails({
 		organizationData,
 		setShowEditOrganizationDetails,
 	});
+
 	return (
 		<div className={styles.layout_container}>
 			<div className={styles.layout}>
@@ -32,37 +36,36 @@ function EditOrganizationDetails({
 					const Controller = getField(item.type);
 					const show = showElements[item.name];
 					return (
-						show && (
-							<div className={styles.field}>
+						show ? (
+							<div className={styles.field} key={item.name}>
 								<div className={styles.lable}>{item.label}</div>
 								<Controller {...item} control={control} />
 								<div className={styles.errors}>
 									{errors[item?.name]?.message}
 								</div>
 							</div>
-						)
+						) : null
 					);
 				})}
 			</div>
 			<div className={styles.button_container}>
 				<Button
-					themeType="tertiary"
+					themeType="secondary"
 					size="md"
 					disabled={loading}
-					style={{
-						marginRight: 16,
-					}}
 					onClick={() => setShowEditOrganizationDetails(false)}
+					type="button"
+					className={styles.button_1}
 				>
-					Cancel
+					{t('settings:edit_or_add_button_label_1')}
 				</Button>
 				<Button
-					themeType="accent"
 					size="md"
 					disabled={loading}
 					onClick={handleSubmit(onCreate, onError)}
+					type="submit"
 				>
-					Update
+					{t('settings:billing_details_update_label')}
 				</Button>
 			</div>
 		</div>

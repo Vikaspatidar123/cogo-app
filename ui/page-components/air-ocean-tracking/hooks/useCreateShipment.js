@@ -1,9 +1,14 @@
 import { useRequest } from '@/packages/request';
 
-const useCreateShipment = ({ closeHandler = () => {}, refetchTrackerList }) => {
+const UPDATE_API_URL = {
+	ocean : '/create_saas_shipment_details',
+	air   : '/create_saas_air_shipment_details',
+};
+
+const useCreateShipment = ({ closeHandler = () => {}, refetchTrackerList, activeTab = 'ocean' }) => {
 	const [{ loading }, trigger] = useRequest({
 		method : 'post',
-		url    : 'create_saas_shipment_details',
+		url    : UPDATE_API_URL[activeTab],
 	}, { manual: true });
 
 	const updateTrackerInfo = async ({ payload }) => {

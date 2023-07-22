@@ -75,6 +75,7 @@ const useGetShipmentList = (allParams = { isBookingDesk: false }) => {
 			...config,
 			filter_controls: [...defaultControls, ...restFilterControls],
 		},
+		refetchListShipment: getshipment,
 	};
 };
 

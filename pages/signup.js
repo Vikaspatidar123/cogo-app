@@ -5,10 +5,9 @@ import { Signup } from '@/ui/page-components/authentication';
 export async function getServerSideProps({ locale }) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common'])),
+			...(await serverSideTranslations(locale, ['common', 'authentication'])),
 
 		},
 	};
 }
-
 export default Signup;

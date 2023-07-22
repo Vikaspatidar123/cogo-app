@@ -148,11 +148,18 @@
 	"tracking_header_form_control_label_2":"Chọn hàng vận chuyển",
 	"kyc_text_1":"Xác minh KYC là",
 	"kyc_text_2":"Vui lòng tải lên các tài liệu cần thiết để tiến hành thêm.",
-	"kyc_complete_button_text":"Hoàn thành KYC"
-
+	"kyc_complete_button_text":"Hoàn thành KYC",
+	"setPassword_heading": "Đặt mật khẩu",
+	"setPassword_emailVerify_message":"Email của bạn được xác minh thành công",
+	"setPassword_password_label":"Mật khẩu",
+	"setPassword_password_placeholder":"Nhập ở đây...",
+	"setPassword_password_error_1":"Mật khẩu là bắt buộc.",
+	"setPassword_password_error_2":"Mật khẩu không hợp lệ.",
+	"setPassword_confirmPassword_label":"Xác nhận mật khẩu",
+	"setPassword_confirmPassword_placeholder":"Nhập ở đây...",
+	"setPassword_confirmPassword_error":"Xác nhận mật khẩu là bắt buộc.",
+	"setPassword_submit_button":"Nộp",
+	"setPassword_success_message":"Mật khẩu đặt thành công",
+	"setPassword_error": "Không đặt mật khẩu",
+	"setPassword_form_error":"Mật khẩu không hợp lệ."
 }
-
-
-
-
-

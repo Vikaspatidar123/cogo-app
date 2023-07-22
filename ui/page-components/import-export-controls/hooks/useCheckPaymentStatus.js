@@ -1,15 +1,20 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 
+const MAX_API_TRIES = 10;
 let count = 0;
+const API_CALL_TIME = 2000;
+const INCREMENT_BY_ONE = 1;
 
 const useCheckPaymentStatus = ({
 	setShowPendingModal,
 	paymentSuccessHandler,
 	billId,
 }) => {
+	const { t } = useTranslation(['importExportControls']);
 	const [stop, setStop] = useState(false);
 
 	const [{ loading }, trigger] = useRequestBf({
@@ -29,21 +34,18 @@ const useCheckPaymentStatus = ({
 
 			if (resp?.data?.status === 'PAID') {
 				paymentSuccessHandler(resp?.data);
-			} else if (count < 10) {
-				count += 1;
+			} else if (count < MAX_API_TRIES) {
+				count += INCREMENT_BY_ONE;
 				setTimeout(async () => {
 					await checkPaymentStatus();
-				}, 2000);
+				}, API_CALL_TIME);
 			} else {
 				setStop(true);
-				Toast.warn('Payment is Pending', {
-					autoClose : 3000,
-					style     : { background: '#ffffe5' },
-				});
+				Toast.warn(t('importExportControls:api_payment_pending'));
 			}
 			return resp?.data;
 		} catch (err) {
-			console.log(err?.error?.message);
+			console.error(err?.error?.message);
 			return null;
 		}
 	};

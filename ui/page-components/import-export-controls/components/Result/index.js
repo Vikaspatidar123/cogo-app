@@ -1,3 +1,5 @@
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
 import Header from '../../common/Header';
@@ -6,15 +8,19 @@ import iconUrl from '../../utils/iconUrl.json';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { Image, useRouter } from '@/packages/next';
 import ControlResult from '@/ui/commons/components/ImportExportControls';
 
 function EmptyState() {
+	const { t } = useTranslation(['importExportControls']);
+
 	return (
-		<img
+		<Image
 			className={styles.empty_state}
 			src={iconUrl?.emptyState}
-			alt="No Data Found"
+			alt={t('importExportControls:result_empty_state')}
+			width={400}
+			height={400}
 		/>
 	);
 }
@@ -22,6 +28,8 @@ function EmptyState() {
 function Result() {
 	const { query } = useRouter();
 	const { trade_engine_id = '', billId = '' } = query || {};
+
+	const { t } = useTranslation(['importExportControls']);
 
 	const {
 		postTradeEngine,
@@ -48,25 +56,34 @@ function Result() {
 		if (trade_engine_id) {
 			postTradeEngine(trade_engine_id);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [trade_engine_id]);
 
 	return (
 		<div>
-			{tradeEngineLoading && (
-				<img src={iconUrl?.loading} alt="loading" className={styles.loader} />
+			{tradeEngineLoading ? (
+				<Image
+					className={styles.loader}
+					alt={t('importExportControls:loading')}
+					src={iconUrl?.loading}
+					width={200}
+					height={200}
+				/>
+			) : (
+				<>
+					<Header title={t('importExportControls:result_title')} redirect />
+					{!isEmpty(controls) ? (
+						<div className={styles.result_container}>
+							<ControlResult
+								tradeEngineResponse={tradeEngineResp}
+								EmptyState={EmptyState}
+							/>
+						</div>
+					) : (
+						<EmptyState />
+					)}
+				</>
 			)}
-			{!tradeEngineLoading && <Header title="Transaction Results" redirect />}
-			{!tradeEngineLoading && controls.length > 0 && (
-				<div className={styles.result_container}>
-					<ControlResult
-						tradeEngineResponse={tradeEngineResp}
-						EmptyState={EmptyState}
-					/>
-				</div>
-
-			)}
-			{!tradeEngineLoading && controls.length === 0 && <EmptyState />}
 		</div>
 	);
 }

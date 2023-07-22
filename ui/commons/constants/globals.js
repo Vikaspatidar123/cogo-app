@@ -123,8 +123,9 @@ const GLOBAL_CONSTANTS = {
 		'LU',
 		'VN',
 	],
-	image_url             : IMAGE_URLS,
-	onboarding_specialist : {
+	image_url: IMAGE_URLS,
+
+	onboarding_specialist: {
 		name         : 'Kanira Patel',
 		phone_number : '+918976851674',
 		email_id     : 'kanira.patel@cogoport.com',
@@ -210,6 +211,7 @@ const GLOBAL_CONSTANTS = {
 		image_extension: /\.(jpg|jpeg|png|gif|svg)$/i,
 
 	},
+	PROFILE_NAVIGATIONS: ['saas_cogo_subscription', 'saas_finance'],
 };
 
 export default GLOBAL_CONSTANTS;

@@ -1,4 +1,5 @@
 import { Button, Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 import useEditBillingAddress from './useEditBillingAddress';
@@ -14,6 +15,8 @@ function EditBillingAddress({
 	mobalType,
 	getAddress,
 }) {
+	const { t } = useTranslation(['settings']);
+
 	const {
 		control,
 		fields,
@@ -35,24 +38,26 @@ function EditBillingAddress({
 
 	return (
 		<div>
-			<Modal.Header title={`${mobalType ? 'Edit' : ' Add'} Billing Address`} />
+			<Modal.Header title={`${mobalType ? t('settings:edit_or_add_button_label_2')
+				: t('settings:edit_or_add_button_label_3')} ${t('settings:billing_details_placeholder_14')}`}
+			/>
 			<Modal.Body>
 				<div className={styles.layout}>
 					{fields.map((item) => {
 						const Element = getField(item.type);
 						const show = showElements[item.name];
 						return (
-							show && (
+							show ? (
 								<div className={styles.field}>
 									<div className={styles.lable}>{item.label}</div>
 									<Element {...item} control={control} />
-									{errors && (
+									{errors ? (
 										<div className={styles.errors}>
 											{errors[item?.name]?.message}
 										</div>
-									)}
+									) : null}
 								</div>
-							)
+							) : null
 						);
 					})}
 				</div>
@@ -65,12 +70,13 @@ function EditBillingAddress({
 					style={{
 						marginRight: 16,
 					}}
+					type="button"
 				>
-					Cancel
+					{t('settings:edit_or_add_button_label_1')}
 				</Button>
 
-				<Button disabled={loading} onClick={handleSubmit(onCreate)}>
-					{mobalType ? 'Update' : 'Add'}
+				<Button disabled={loading} onClick={handleSubmit(onCreate)} type="submit">
+					{mobalType ? t('settings:billing_details_update_label') : t('settings:billing_details_add_label')}
 				</Button>
 			</Modal.Footer>
 		</div>

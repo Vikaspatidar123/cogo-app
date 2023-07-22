@@ -2,7 +2,7 @@ import { Pagination } from '@cogoport/components';
 import { IcMTrailorFull } from '@cogoport/icons-react';
 import { useState, Fragment, useEffect } from 'react';
 
-import ListSaasSubscriptions from '../../hooks/useListSaasSubscription';
+import useListSaasSubscriptions from '../../hooks/useListSaasSubscription';
 import { isPastOrPresentDay } from '../../utils/constants';
 import { UNSHADED_MILESTONES } from '../../utils/milestone';
 import { INCOTERM_TO_SHIPPERS_RESPONSIBILITY } from '../../utils/milestone_type';
@@ -36,7 +36,7 @@ function TimelineNavigate({
 	servicesForMap = false,
 	rest,
 }) {
-	const { data } = ListSaasSubscriptions();
+	const { data } = useListSaasSubscriptions();
 
 	const {
 		general: { isMobile = false },
@@ -77,21 +77,22 @@ function TimelineNavigate({
 		setIncotermStep(newIncotermStep);
 	}, [incoterm, selectedMilestonesList]);
 
-	useEffect(() => {
-		let mostRecentPastOrPresentMilestoneId = null;
-		selectedMilestonesList.map((combinedMilestones) => {
-			const currentMilestone = combinedMilestones.slice(-1)[0];
-			if (isPastOrPresentDay(currentMilestone?.event_date)) {
-				mostRecentPastOrPresentMilestoneId = currentMilestone?.id;
-			}
-			return false;
-		});
+	// do not remove
+	// useEffect(() => {
+	// 	let mostRecentPastOrPresentMilestoneId = null;
+	// 	selectedMilestonesList.map((combinedMilestones) => {
+	// 		const currentMilestone = combinedMilestones.slice(-1)[0];
+	// 		if (isPastOrPresentDay(currentMilestone?.event_date)) {
+	// 			mostRecentPastOrPresentMilestoneId = currentMilestone?.id;
+	// 		}
+	// 		return false;
+	// 	});
 
-		const anchorTarget = document.getElementById(
-			mostRecentPastOrPresentMilestoneId,
-		);
-		anchorTarget?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
-	}, [selectedMilestonesList]);
+	// 	const anchorTarget = document.getElementById(
+	// 		mostRecentPastOrPresentMilestoneId,
+	// 	);
+	// 	anchorTarget?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
+	// }, [selectedMilestonesList]);
 
 	return servicesForMap ? (
 		<div className={styles.main_container}>
@@ -110,13 +111,13 @@ function TimelineNavigate({
 								role="presentation"
 								className={`${styles.custom_tag} 
                                 ${currentSubscription?.id === item?.id ? styles.set_tracking : ''}`}
-								id={item.container_details[0]?.container_no}
+								id={item?.input}
 								onClick={(e) => handleSubscription(e)}
 								style={{
 									fontSize: '12px',
 								}}
 							>
-								{item.container_details[0]?.container_no}
+								{item?.input}
 							</div>
 						) : null))}
 					</div>

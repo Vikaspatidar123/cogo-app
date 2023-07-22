@@ -39,7 +39,6 @@ specifiers:
   react-google-recaptcha: ^2.1.0
   react-hook-form: ^7.43.2
   react-i18next: ^12.2.0
-  react-progressbar-semicircle: ^1.2.1
   react-redux: ^8.0.5
   react-slick: ^0.29.0
   redux: ^4.2.1
@@ -77,7 +76,6 @@ dependencies:
   react-google-recaptcha: 2.1.0_react@18.2.0
   react-hook-form: 7.45.2_react@18.2.0
   react-i18next: 12.3.1_spyi3zqm3bqfobczid2f6jym6y
-  react-progressbar-semicircle: 1.2.1_biqbaboplfbrettd7655fr4n2y
   react-redux: 8.1.1_egguyi6kvemdtrnkbl3bdoeaey
   react-slick: 0.29.0_biqbaboplfbrettd7655fr4n2y
   redux: 4.2.1
@@ -8510,17 +8508,6 @@ packages:
     dependencies:
       prop-types: 15.8.1
       react: 18.2.0
-    dev: false
-
-  /react-progressbar-semicircle/1.2.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-idSWvbagqUo02H4nsbN6wwGAocNo/rWjRyIudhx3VPSeMg1m/vkjs7Xx4XSfuPLxP1p4DbFL7IW2JoeW9Mz4CQ==}
-    peerDependencies:
-      prop-types: ^15.5.4
-      react: ^15.0.0 || ^16.0.0
-      react-dom: ^15.0.0 || ^16.0.0
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-quill/2.0.0_biqbaboplfbrettd7655fr4n2y:

@@ -11,11 +11,10 @@ function HeaderGreeting() {
 
 	const { name } = useSelector(({ profile }) => profile);
 
-	const { icon, message } = getTimeGreet({ t });
+	const { message } = getTimeGreet({ t });
 
 	return (
 		<div className={styles.container}>
-			{icon}
 			{`${message}, ${name} !`}
 		</div>
 	);

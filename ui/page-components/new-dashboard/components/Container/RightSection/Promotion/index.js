@@ -20,8 +20,8 @@ function Promotion() {
 
 	(promotion || []).forEach((data) => {
 		mainData.push({
-			key: data?.id,
-			render: () => <div>{carouselData(data)}</div>,
+			key    : data?.id,
+			render : () => <div>{carouselData(data)}</div>,
 		});
 	});
 	if (loading) {

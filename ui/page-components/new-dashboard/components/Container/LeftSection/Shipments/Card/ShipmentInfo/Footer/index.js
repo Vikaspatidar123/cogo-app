@@ -25,9 +25,9 @@ function Footer({ item }) {
 								{t('dashboard:onGoingShipments_card_text_1')}
 							</span>
 							{formatDate({
-								date: item?.selected_schedule_departure,
-								dateFormat: GLOBAL_CONSTANTS.formats.date['dd/MMM/yyyy'],
-								formatType: 'date',
+								date       : item?.selected_schedule_departure,
+								dateFormat : GLOBAL_CONSTANTS.formats.date['dd/MMM/yyyy'],
+								formatType : 'date',
 							})}
 						</p>
 					)}
@@ -40,9 +40,9 @@ function Footer({ item }) {
 							{t('dashboard:onGoingShipments_card_text_2')}
 						</span>
 						{formatDate({
-							date: item?.selected_schedule_arrival,
-							dateFormat: GLOBAL_CONSTANTS.formats.date['dd/MMM/yyyy'],
-							formatType: 'date',
+							date       : item?.selected_schedule_arrival,
+							dateFormat : GLOBAL_CONSTANTS.formats.date['dd/MMM/yyyy'],
+							formatType : 'date',
 						})}
 					</p>
 				)}
@@ -56,9 +56,9 @@ function Footer({ item }) {
 							&nbsp;
 						</span>
 						{formatDate({
-							date: item?.last_updated_at,
-							dateFormat: GLOBAL_CONSTANTS.formats.date['dd/MMM/yyyy'],
-							formatType: 'date',
+							date       : item?.last_updated_at,
+							dateFormat : GLOBAL_CONSTANTS.formats.date['dd/MMM/yyyy'],
+							formatType : 'date',
 						})}
 					</p>
 				)}

@@ -147,11 +147,8 @@
 	"tracking_header_form_control_label_3":"Enter Airway bill number",
 	"tracking_header_form_control_invalid_airline_text":"Invalid AirLine Number",
     "tracking_header_form_control_label_4":"Select Airway Line",
-	"tracking_header_form_control_label_2":"Select Shipping Line"
-
-
-
-
-
-
+	"tracking_header_form_control_label_2":"Select Shipping Line",
+	"kyc_text_1":"KYC Verification is",
+	"kyc_text_2":"Kindly upload the required documents to proceed further.",
+	"kyc_complete_button_text":"Complete KYC"
 }

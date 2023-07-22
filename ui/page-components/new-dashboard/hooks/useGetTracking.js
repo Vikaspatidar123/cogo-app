@@ -9,13 +9,13 @@ const getPayload = ({ orgId }) => ({
 
 function useGetTracking() {
 	const { kyc_status, organizationId } = useSelector(({ profile }) => ({
-		kyc_status: profile?.organization?.kyc_status,
-		organizationId: profile?.organization?.id,
+		kyc_status     : profile?.organization?.kyc_status,
+		organizationId : profile?.organization?.id,
 	}));
 
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/get_app_dashboard_tracking',
-		method: 'get',
+		url    : '/get_app_dashboard_tracking',
+		method : 'get',
 	}, { manual: true });
 
 	const {

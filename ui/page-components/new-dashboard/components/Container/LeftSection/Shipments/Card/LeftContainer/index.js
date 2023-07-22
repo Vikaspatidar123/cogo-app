@@ -6,15 +6,15 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 import getText from '@/ui/page-components/new-dashboard/common/getText';
 
-const renderStatus = (ogShipmentData, service, t) => {
+function RenderStatus({ ogShipmentData, service }) {
+	const { t } = useTranslation(['dashboard']);
 	const textObj = getText(ogShipmentData, service, t);
-
 	return (
 		<text className={styles.text} style={{ backgroundColor: textObj.color }}>
 			{textObj.text}
 		</text>
 	);
-};
+}
 
 function LeftContainer({ item }) {
 	const { push } = useRouter();
@@ -30,9 +30,7 @@ function LeftContainer({ item }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.details}>
-
-				{renderStatus(data, services, t)}
-
+				<RenderStatus ogShipmentData={data} service={services} />
 				<Button
 					size="sm"
 					themeType="accent"

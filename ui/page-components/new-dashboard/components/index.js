@@ -6,7 +6,6 @@ function DashBoard() {
 		<div>
 			<Head />
 			<Container />
-
 		</div>
 	);
 }

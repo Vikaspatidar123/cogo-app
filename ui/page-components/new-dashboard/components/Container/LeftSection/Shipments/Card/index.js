@@ -4,8 +4,8 @@ import styles from './styles.module.css';
 
 function Card({ data }) {
 	const items = data.map((item) => ({
-		key: item?.id,
-		render: () => (
+		key    : item?.id,
+		render : () => (
 			<div className={styles.container}>
 				<ShipmentInfo item={item} />
 				<LeftContainer item={item} />

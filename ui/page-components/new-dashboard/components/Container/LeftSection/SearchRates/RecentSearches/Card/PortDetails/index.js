@@ -3,17 +3,10 @@ import { IcMPortArrow } from '@cogoport/icons-react';
 import PortName from './PortName';
 import styles from './styles.module.css';
 
-const SUFFIX = {
-	fcl_freight: 'port',
-	lcl_freight: 'port',
-	air_freight: 'airport',
-	ftl_freight: 'location',
-	ltl_freight: 'location',
-	haulage_freight: 'location',
-	trailer_freight: 'location',
-};
-function PortDetails({ data = {} }) {
-	const { search_type } = data;
+import { SUFFIX } from '@/ui/page-components/new-dashboard/constant';
+
+function PortDetails({ data }) {
+	const { search_type } = data || {};
 
 	const origin = data[`origin_${SUFFIX[search_type]}`] || {};
 	const destination = data[`destination_${SUFFIX[search_type]}`] || {};

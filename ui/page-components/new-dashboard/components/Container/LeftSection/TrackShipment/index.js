@@ -1,5 +1,5 @@
 import { Button, Tabs, TabPanel } from '@cogoport/components';
-import { IcMTracking, IcMAppSearch, IcAAirTracking, IcAOceanTracking } from '@cogoport/icons-react';
+import { IcMTracking } from '@cogoport/icons-react';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
 
@@ -17,17 +17,17 @@ function TrackShipment() {
 
 	const { data } = useTrackShipment();
 	const { list } = data || {};
-	const { allRoute } = useGetMapRoute({ trackingInfo: list, type: 'ocean' });
 	const {
-		loading, formHook, trackingType, setTrackingType, controls,
+		formHook, trackingType, setTrackingType, controls,
 		onSubmitHandler,
 	} = useCreateTracker();
+	const { allRoute } = useGetMapRoute({ trackingInfo: list, type: trackingType });
 
 	const { control, handleSubmit, formState: { errors } } = formHook;
 
 	return (
 		<div className={styles.main_container}>
-			<CogoMaps height="270px" allPoints={allRoute} type="ocean" />
+			<CogoMaps height="270px" allPoints={allRoute} type={trackingType} />
 			<div className={styles.input_box}>
 				<div>
 					<div className={styles.text}>{t('dashboard:track_shipment_text1')}</div>
@@ -37,8 +37,8 @@ function TrackShipment() {
 							themeType="tertiary"
 							onChange={setTrackingType}
 						>
-							<TabPanel name="ocean" title="ocean" />
-							<TabPanel name="air" title="air" />
+							<TabPanel name="ocean" title="Ccean" />
+							<TabPanel name="air" title="Air" />
 						</Tabs>
 					</div>
 
@@ -53,26 +53,6 @@ function TrackShipment() {
 							</div>
 						);
 					})}
-					{/* <InputController
-						name="shipmentNumber"
-						size="sm"
-						className={styles.input_container}
-						placeholder={t('dashboard:shipment_placeholder')}
-						suffix={<IcMAppSearch style={{ marginRight: '10px' }} />}
-						control={control}
-						rules={shipment_rules}
-					/>
-					<p className={styles.errors}>{errors?.shipmentNumber?.message || errors?.shipmentNumber?.type}</p>
-					<AsyncSelectController
-						name="shippingLine"
-						size="sm"
-						className={styles.input_container}
-						placeholder={t('dashboard:shippingline_placeholder')}
-						control={control}
-						asyncKey="shippingline_list"
-						initialCall
-						rules={rules}
-					/> */}
 
 					<div className={styles.button_container}>
 						<Button

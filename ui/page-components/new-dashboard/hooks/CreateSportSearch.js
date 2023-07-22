@@ -5,35 +5,35 @@ import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 
 const CreateSportSearch = () => {
-    const { push } = useRouter();
-    const [{ loading }, trigger] = useRequest(
-        {
-            url: '/create_spot_search',
-            method: 'post',
-        },
-        { manual: true },
-    );
+	const { push } = useRouter();
+	const [{ loading }, trigger] = useRequest(
+		{
+			url    : '/create_spot_search',
+			method : 'post',
+		},
+		{ manual: true },
+	);
 
-    const fetchSearch = useCallback(async ({ payload }) => {
-        try {
-            const res = await trigger({
-                data: payload,
-            });
+	const fetchSearch = useCallback(async ({ payload }) => {
+		try {
+			const res = await trigger({
+				data: payload,
+			});
 
-            console.log(res, 'data');
+			console.log(res, 'data');
 
-            const { data } = res || {};
+			const { data } = res || {};
 
-            push(`/book/${(data || {}).id}`);
-        } catch (error) {
-            Toast.error(error?.message);
-        }
-    }, [push, trigger]);
+			push(`/book/${(data || {}).id}`);
+		} catch (error) {
+			Toast.error(error?.message);
+		}
+	}, [push, trigger]);
 
-    return {
-        fetchSearch,
-        loading,
-    };
+	return {
+		fetchSearch,
+		loading,
+	};
 };
 
 export default CreateSportSearch;

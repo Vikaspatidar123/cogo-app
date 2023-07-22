@@ -21,8 +21,8 @@ const customPeeweeSerializer = (params) => {
 	}, {});
 
 	const paramsStringify = qs.stringify(newParams, {
-		arrayFormat: 'repeat',
-		serializeDate: (date) => formatDateToString(date),
+		arrayFormat   : 'repeat',
+		serializeDate : (date) => formatDateToString(date),
 	});
 
 	return paramsStringify;
@@ -30,8 +30,8 @@ const customPeeweeSerializer = (params) => {
 
 const customSerializer = (params) => {
 	const paramsStringify = qs.stringify(params, {
-		arrayFormat: 'brackets',
-		serializeDate: (date) => format(date),
+		arrayFormat   : 'brackets',
+		serializeDate : (date) => format(date),
 	});
 	return paramsStringify;
 };
@@ -73,13 +73,13 @@ request.interceptors.request.use((oldConfig) => {
 
 	return {
 		...newConfig,
-		paramsSerializer: { serialize: peeweeSerializerRequierd ? customPeeweeSerializer : customSerializer },
-		headers: {
-			authorizationscope: 'organization',
-			authorization: `Bearer: ${token}`,
+		paramsSerializer : { serialize: peeweeSerializerRequierd ? customPeeweeSerializer : customSerializer },
+		headers          : {
+			authorizationscope   : 'organization',
+			authorization        : `Bearer: ${token}`,
 			authorizationparameters,
-			'Content-Type': 'application/json',
-			authorizationscopeid: getOrganizationId(storeKey, oldConfig.ctx),
+			'Content-Type'       : 'application/json',
+			authorizationscopeid : getOrganizationId(storeKey, oldConfig.ctx),
 		},
 
 	};

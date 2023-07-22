@@ -36,7 +36,7 @@ function Head() {
 					</span>
 					{t('dashboard:head_text_2')}
 				</div>
-				<Button size="sm" themeType="accent" onClick={() => onUpgrade()}>
+				<Button size="sm" themeType="accent" type="button" onClick={() => onUpgrade()}>
 					{is_free_plan ? t('dashboard:kycStatus_text_4') : t('dashboard:kycStatus_text_5')}
 				</Button>
 

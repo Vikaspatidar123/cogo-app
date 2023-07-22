@@ -11,7 +11,6 @@ function Search() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>{t('dashboard:search_text')}</div>
-			{/* <SearchForm data={data} /> */}
 			<div className={styles.box}>
 				<div className={styles.icon_box}>
 					<div className={styles.search}>

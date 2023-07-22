@@ -5,8 +5,8 @@ import { useRequest } from '@/packages/request';
 
 function useGetPromotion() {
 	const [{ loading, data: promotionData }, trigger] = useRequest({
-		url: '/get_app_dashboard_promotion',
-		method: 'get',
+		url    : '/get_app_dashboard_promotion',
+		method : 'get',
 	}, { manual: true });
 
 	const getPromotionData = useCallback(async () => {

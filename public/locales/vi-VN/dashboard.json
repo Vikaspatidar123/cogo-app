@@ -61,19 +61,19 @@
 	"bestRates_text_3": "Xem tất cả",
 	"common_airCard_text_1": "Lịch trình hàng không",
 	"common_airCard_text_2": "Lên kế hoạch cho một hàng hóa sắp tới bằng cách sử dụng lịch trình không khí toàn diện.",
-	"common_containerInfo_inputValue": "Pkg",
+	"common_containerInfo_inputValue": "pkg",
 	"common_containerInfo_packageDetails_1": "Bưu kiện",
 	"common_containerInfo_packageDetails_2": "hơn",
 	"common_containerInfo_renderValue_1": "ft",
-	"common_containerInfo_renderValue_2": "1 Container",
-	"common_containerInfo_renderValue_3": "Containers",
+	"common_containerInfo_renderValue_2": "1Container",
+	"common_containerInfo_renderValue_3": "Hộp đựng",
 	"common_containerInfo_renderValue_4": "1 Kiện'",
 	"common_containerInfo_renderValue_5": "Gói",
 	"common_containerInfo_renderValue_6": "1 Xe",
 	"common_containerInfo_renderValue_7": "Xe tải",
-	"common_containerInfo_renderValue_8": "INCO",
-	"common_containerInfo_renderValue_9": "Vol",
-	"common_containerInfo_renderValue_10": "cbm",
+	"common_containerInfo_renderValue_8": "inco",
+	"common_containerInfo_renderValue_9": "Tập",
+	"common_containerInfo_renderValue_10": "CBM",
 	"common_containerInfo_renderValue_11": "Cân nặng",
 	"common_containerInfo_renderValue_12": "Kgs",
 	"common_containerInfo_renderValue_13": "Tỷ lệ số lượng",
@@ -145,7 +145,10 @@
 	"tracking_header_form_control_label_3":"Nhập số hóa đơn hàng không",
 	"tracking_header_form_control_invalid_airline_text":"Số hãng hàng không không hợp lệ",
     "tracking_header_form_control_label_4":"Chọn đường hàng không",
-	"tracking_header_form_control_label_2":"Chọn hàng vận chuyển"
+	"tracking_header_form_control_label_2":"Chọn hàng vận chuyển",
+	"kyc_text_1":"Xác minh KYC là",
+	"kyc_text_2":"Vui lòng tải lên các tài liệu cần thiết để tiến hành thêm.",
+	"kyc_complete_button_text":"Hoàn thành KYC"
 
 }
 

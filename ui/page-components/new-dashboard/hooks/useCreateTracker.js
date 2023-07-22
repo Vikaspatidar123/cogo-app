@@ -10,128 +10,129 @@ import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 
 const API_MAPPING = {
-    ocean: {
-        // operatorApi : '/get_shipping_line_for_search_value',
-        operatorApi: '/get_shipping_line_for_container_no',
-        createApi: '/create_saas_container_subscription',
-        // payloadKey  : 'search_value',
-        payloadKey: 'container_no',
-        operatorKey: 'shippingLine',
-        threshold: 10,
-    },
-    air: {
-        operatorApi: '/get_airline_from_airway_bill',
-        createApi: '/create_saas_air_subscription',
-        payloadKey: 'airway_bill_no',
-        operatorKey: 'airLine',
-        threshold: 3,
-    },
+	ocean: {
+		// operatorApi : '/get_shipping_line_for_search_value',
+		operatorApi : '/get_shipping_line_for_container_no',
+		createApi   : '/create_saas_container_subscription',
+		// payloadKey  : 'search_value',
+		payloadKey  : 'container_no',
+		operatorKey : 'shippingLine',
+		threshold   : 10,
+	},
+	air: {
+		operatorApi : '/get_airline_from_airway_bill',
+		createApi   : '/create_saas_air_subscription',
+		payloadKey  : 'airway_bill_no',
+		operatorKey : 'airLine',
+		threshold   : 3,
+	},
 };
 
 const useCreateTracker = () => {
-    const { query, push } = useRouter();
+	const { query, push } = useRouter();
 
-    const { t } = useTranslation(['common', 'dashboard']);
+	const { t } = useTranslation(['common', 'dashboard']);
 
-    const [trackingType, setTrackingType] = useState('ocean');
+	const [trackingType, setTrackingType] = useState('ocean');
 
-    const { branch_id } = query || {};
+	const { branch_id } = query || {};
 
-    const { operatorApi, createApi, payloadKey, operatorKey, threshold } = API_MAPPING[trackingType];
-    const redirectToTracker = ({ type, id, isFirst = false, fromDashBoard = false }) => {
-        push(
-            `/saas/tools/air-ocean-tracking/list/[trackingType]/
+	const { operatorApi, createApi, payloadKey, operatorKey, threshold } = API_MAPPING[trackingType];
+
+	const redirectToTracker = ({ type, id, isFirst = false, fromDashBoard = false }) => {
+		push(
+			`/saas/tools/air-ocean-tracking/list/[trackingType]/
 			[trackingId]?isFirstVisit=${isFirst}&fromDashBoard=${fromDashBoard}`,
-            `/saas/tools/air-ocean-tracking/list/${type}/${id}?isFirstVisit=${isFirst}&fromDashBoard=${fromDashBoard}`,
-        );
-    };
-    const operatorData = useGetOperatorList();
-    const [{ data }, trigger] = useRequest({
-        method: 'get',
-        url: operatorApi,
-    }, { manual: true });
+			`/saas/tools/air-ocean-tracking/list/${type}/${id}?isFirstVisit=${isFirst}&fromDashBoard=${fromDashBoard}`,
+		);
+	};
+	const operatorData = useGetOperatorList();
+	const [{ data }, trigger] = useRequest({
+		method : 'get',
+		url    : operatorApi,
+	}, { manual: true });
 
-    const [{ loading }, createTrigger] = useRequest({
-        method: 'post',
-        url: createApi,
-    }, { manual: true });
+	const [{ loading }, createTrigger] = useRequest({
+		method : 'post',
+		url    : createApi,
+	}, { manual: true });
 
-    const formHook = useForm();
-    const { watch, reset, setValue } = formHook;
-    const shipmentNumber = watch('shipmentNumber');
+	const formHook = useForm();
+	const { watch, reset, setValue } = formHook;
+	const shipmentNumber = watch('shipmentNumber');
 
-    const controls = headerFormControls({ trackingType, operatorData, t });
+	const controls = headerFormControls({ trackingType, operatorData, t });
 
-    const getOperatorInfo = useCallback(({ shipmentNo }) => {
-        try {
-            trigger({
-                params: {
-                    [payloadKey]: upperCase(shipmentNo),
-                },
-            });
-        } catch (err) {
-            console.error(err);
-        }
-    }, [payloadKey, trigger]);
+	const getOperatorInfo = useCallback(({ shipmentNo }) => {
+		try {
+			trigger({
+				params: {
+					[payloadKey]: upperCase(shipmentNo),
+				},
+			});
+		} catch (err) {
+			console.error(err);
+		}
+	}, [payloadKey, trigger]);
 
-    const createTracker = async ({ payload }) => {
-        try {
-            const res = await createTrigger({
-                data: {
-                    ...payload,
-                    organization_branch_id: branch_id,
-                },
-            });
-            const { id } = res?.data || {};
-            redirectToTracker({ type: trackingType, id, isFirst: true });
-        } catch (err) {
-            console.error(err, 'err');
-        }
-    };
+	const createTracker = async ({ payload }) => {
+		try {
+			const res = await createTrigger({
+				data: {
+					...payload,
+					organization_branch_id: branch_id,
+				},
+			});
+			const { id } = res?.data || {};
+			redirectToTracker({ type: trackingType, id, isFirst: true });
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
-    const prefillOpertorField = useCallback(({ shipmentNo }) => {
-        getOperatorInfo({ shipmentNo });
-    }, [getOperatorInfo]);
+	const prefillOpertorField = useCallback(({ shipmentNo }) => {
+		getOperatorInfo({ shipmentNo });
+	}, [getOperatorInfo]);
 
-    useEffect(() => {
-        reset(defaultValues);
-    }, [reset, trackingType]);
+	useEffect(() => {
+		reset(defaultValues);
+	}, [reset, trackingType]);
 
-    useEffect(() => {
-        if (shipmentNumber?.length === threshold) {
-            prefillOpertorField({ shipmentNo: shipmentNumber });
-        }
-    }, [prefillOpertorField, shipmentNumber, threshold]);
+	useEffect(() => {
+		if (shipmentNumber?.length === threshold) {
+			prefillOpertorField({ shipmentNo: shipmentNumber });
+		}
+	}, [prefillOpertorField, shipmentNumber, threshold]);
 
-    useEffect(() => {
-        if (!isEmpty(data)) {
-            const { result = {}, id = '' } = data || {};
-            const opertorValue = result?.shipping_line_id || id;
-            setValue(operatorKey, opertorValue);
-        }
-    }, [data, operatorKey, setValue]);
+	useEffect(() => {
+		if (!isEmpty(data)) {
+			const { result = {}, id = '' } = data || {};
+			const opertorValue = result?.shipping_line_id || id;
+			setValue(operatorKey, opertorValue);
+		}
+	}, [data, operatorKey, setValue]);
 
-    const onSubmitHandler = (formData) => {
-        const { airLine = '', shipmentNumber: shipmentNo = '', shippingLine = '' } = formData || {};
+	const onSubmitHandler = (formData) => {
+		const { airLine = '', shipmentNumber: shipmentNo = '', shippingLine = '' } = formData || {};
 
-        const payloadMapping = {
-            ocean: {
-                shipping_line_id: shippingLine,
-                search_value: shipmentNo,
-            },
-            air: {
-                airline_id: airLine,
-                airway_bill_no: shipmentNo,
-            },
-        };
-        const payload = payloadMapping[trackingType];
+		const payloadMapping = {
+			ocean: {
+				shipping_line_id : shippingLine,
+				search_value     : shipmentNo,
+			},
+			air: {
+				airline_id     : airLine,
+				airway_bill_no : shipmentNo,
+			},
+		};
+		const payload = payloadMapping[trackingType];
 
-        createTracker({ payload });
-    };
+		createTracker({ payload });
+	};
 
-    return {
-        loading, getOperatorInfo, formHook, setTrackingType, trackingType, controls, onSubmitHandler,
-    };
+	return {
+		loading, getOperatorInfo, formHook, setTrackingType, trackingType, controls, onSubmitHandler,
+	};
 };
 
 export default useCreateTracker;

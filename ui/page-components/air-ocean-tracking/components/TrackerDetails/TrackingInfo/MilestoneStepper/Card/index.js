@@ -23,6 +23,9 @@ const getIconUrl = ({ mapping, type, transportMode }) => {
 	};
 	return obj[type];
 };
+
+const INVALID_VESSEL_NAME = ['N/A'];
+
 function Card({ combineList = [], trackingType = 'ocean' }) {
 	const { location = '', station = '', transport_mode = 'VESSEL' } = combineList?.[0] || {};
 	const combineListLength = combineList.length;
@@ -70,14 +73,14 @@ function Card({ combineList = [], trackingType = 'ocean' }) {
 								<span>
 									{milestone}
 								</span>
-								{vessel_name && (
+								{vessel_name && !INVALID_VESSEL_NAME.includes(vessel_name) ? (
 									<Tooltip
 										content={vessel_name}
 										placement="right"
 									>
 										<IcMInfo className={styles.info_icon} />
 									</Tooltip>
-								)}
+								) : null}
 							</div>
 							<div className={styles.time}>{time}</div>
 						</div>

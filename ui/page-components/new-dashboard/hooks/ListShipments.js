@@ -5,15 +5,15 @@ import { useRequest } from '@/packages/request';
 
 function ListShipments() {
 	const [{ loading, data }, trigger] = useRequest({
-		url: '/list_shipments',
-		method: 'get',
+		url    : '/list_shipments',
+		method : 'get',
 	}, { manual: true });
 
 	const shipmentsData = async (shipment_received, confirmed_by_importer_exporter) => {
 		try {
 			const reqData = {
-				shipment_reciever: shipment_received,
-				confirmation: confirmed_by_importer_exporter,
+				shipment_reciever : shipment_received,
+				confirmation      : confirmed_by_importer_exporter,
 				// page              : 1,
 				// page_limit        : 2,
 			};

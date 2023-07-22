@@ -11,21 +11,21 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const LAYER = [
 	{
-		name: 'Cogo Maps',
-		url: `${process.env.NEXT_PUBLIC_MAPS_BASE_URL}/cogo-tiles/{z}/{x}/{y}.png`,
-		attribution: '',
+		name        : 'Cogo Maps',
+		url         : `${process.env.NEXT_PUBLIC_MAPS_BASE_URL}/cogo-tiles/{z}/{x}/{y}.png`,
+		attribution : '',
 	},
 ];
 
 const getLatLng = ({ route = [] }) => {
 	const routeLength = route?.length;
 	const origin = {
-		lat: route?.[GLOBAL_CONSTANTS.zeroth_index]?.lat,
-		lng: route?.[GLOBAL_CONSTANTS.zeroth_index]?.lng,
+		lat : route?.[GLOBAL_CONSTANTS.zeroth_index]?.lat,
+		lng : route?.[GLOBAL_CONSTANTS.zeroth_index]?.lng,
 	};
 	const destination = {
-		lat: route?.[routeLength - 1]?.lat,
-		lng: route?.[routeLength - 1]?.lng,
+		lat : route?.[routeLength - 1]?.lat,
+		lng : route?.[routeLength - 1]?.lng,
 	};
 	return { origin, destination };
 };

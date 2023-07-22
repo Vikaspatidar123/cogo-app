@@ -29,7 +29,7 @@ function Head() {
 				<div className={styles.icon}>
 					<IcACollaboration />
 				</div>
-				<div>
+				<div className={styles.text}>
 					{t('dashboard:head_text_1')}
 					<span className={styles.premium}>
 						{plan_name}

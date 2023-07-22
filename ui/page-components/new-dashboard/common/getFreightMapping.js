@@ -11,8 +11,8 @@ import {
 
 const getFreightMapping = () => ({
 	lcl_freight: {
-		name: 'LCL',
-		icon: <IcCFlcl
+		name : 'LCL',
+		icon : <IcCFlcl
 			width={22}
 			height={22}
 		/>,
@@ -22,30 +22,30 @@ const getFreightMapping = () => ({
 		secondaryIcon: <IcMShip style={{ width: '15px', marginRight: '10px' }} />,
 	},
 	fcl_freight: {
-		name: 'FCL',
-		icon: <IcMShip
+		name : 'FCL',
+		icon : <IcMShip
 			width={18}
 			height={18}
 			fill="white"
 		/>,
-		bgColor: '#356EFD',
-		freightLogo: <IcCFcl />,
-		secondaryIcon: <IcMShip style={{ width: '15px', marginRight: '10px' }} />,
+		bgColor       : '#356EFD',
+		freightLogo   : <IcCFcl />,
+		secondaryIcon : <IcMShip style={{ width: '15px', marginRight: '10px' }} />,
 	},
 	air_freight: {
-		name: 'AIR',
-		icon: <IcAAirflight
+		name : 'AIR',
+		icon : <IcAAirflight
 			width={22}
 			height={22}
 		/>,
-		bgColor: '#EF9B9B',
-		freightLogo: (
+		bgColor     : '#EF9B9B',
+		freightLogo : (
 			<IcCAir
 				style={{
-					width: '22px',
-					height: '22px',
-					marginRight: '12.8px',
-					marginTop: '8px',
+					width       : '22px',
+					height      : '22px',
+					marginRight : '12.8px',
+					marginTop   : '8px',
 				}}
 			/>
 		),
@@ -54,19 +54,19 @@ const getFreightMapping = () => ({
 		),
 	},
 	trailer_freight: {
-		name: 'Trailer',
-		icon: <IcMTrailorFull
+		name : 'Trailer',
+		icon : <IcMTrailorFull
 			width={22}
 			height={22}
 		/>,
-		bgColor: '#EAEAEA',
-		freightLogo: (
+		bgColor     : '#EAEAEA',
+		freightLogo : (
 			<IcMTrailorFull
 				width={22}
 				height={22}
 				style={{
-					marginRight: '12.8px',
-					marginTop: '8px',
+					marginRight : '12.8px',
+					marginTop   : '8px',
 				}}
 			/>
 		),
@@ -75,21 +75,21 @@ const getFreightMapping = () => ({
 		),
 	},
 	ltl_freight: {
-		name: 'LTL',
-		icon: (
+		name : 'LTL',
+		icon : (
 			<IcMTrailorFull
 				width={22}
 				height={22}
 			/>
 		),
-		bgColor: '#EAEAEA',
-		freightLogo: (
+		bgColor     : '#EAEAEA',
+		freightLogo : (
 			<IcMTrailorFull
 				style={{
-					width: '22px',
-					height: '22px',
-					marginRight: '12.8px',
-					marginTop: '8px',
+					width       : '22px',
+					height      : '22px',
+					marginRight : '12.8px',
+					marginTop   : '8px',
 				}}
 			/>
 		),
@@ -98,20 +98,20 @@ const getFreightMapping = () => ({
 		),
 	},
 	ftl_freight: {
-		name: 'FTL',
-		icon: <IcMTrailorFull
+		name : 'FTL',
+		icon : <IcMTrailorFull
 			width={22}
 			height={22}
 			style={{ marginRight: '10px' }}
 		/>,
-		bgColor: '#EAEAEA',
-		freightLogo: (
+		bgColor     : '#EAEAEA',
+		freightLogo : (
 			<IcMTrailorFull
 				style={{
-					width: '22px',
-					height: '22px',
-					marginRight: '12.8px',
-					marginTop: '8px',
+					width       : '22px',
+					height      : '22px',
+					marginRight : '12.8px',
+					marginTop   : '8px',
 				}}
 			/>
 		),
@@ -120,19 +120,19 @@ const getFreightMapping = () => ({
 		),
 	},
 	haulage_freight: {
-		name: 'Haulage',
-		icon: <IcMTrailorFull
+		name : 'Haulage',
+		icon : <IcMTrailorFull
 			width={22}
 			height={22}
 		/>,
-		bgColor: '#EAEAEA',
-		freightLogo: (
+		bgColor     : '#EAEAEA',
+		freightLogo : (
 			<IcMTrailorFull
 				style={{
-					width: '22px',
-					height: '22px',
-					marginRight: '12.8px',
-					marginTop: '8px',
+					width       : '22px',
+					height      : '22px',
+					marginRight : '12.8px',
+					marginTop   : '8px',
 				}}
 			/>
 		),
@@ -141,14 +141,14 @@ const getFreightMapping = () => ({
 		),
 	},
 	fcl_customs: {
-		name: 'FCL Customs',
-		icon: <IcMShip
+		name : 'FCL Customs',
+		icon : <IcMShip
 			width={22}
 			height={22}
 			fill="white"
 		/>,
-		bgColor: '#356EFD',
-		freightLogo: (
+		bgColor     : '#356EFD',
+		freightLogo : (
 			<IcCFcl
 				style={{ width: '21px', marginRight: '.12.8px', marginTop: '8px' }}
 			/>
@@ -156,14 +156,14 @@ const getFreightMapping = () => ({
 		secondaryIcon: <IcMShip width={15} style={{ marginRight: '10px' }} />,
 	},
 	fcl_cfs: {
-		name: 'FCL CFS',
-		icon: <IcMShip
+		name : 'FCL CFS',
+		icon : <IcMShip
 			width={22}
 			height={22}
 			fill="white"
 		/>,
-		bgColor: '#356EFD',
-		freightLogo: (
+		bgColor     : '#356EFD',
+		freightLogo : (
 			<IcCFcl
 				style={{ width: '21px', marginRight: '12.8px', marginTop: '8px' }}
 			/>
@@ -171,8 +171,8 @@ const getFreightMapping = () => ({
 		secondaryIcon: <IcMShip style={{ width: '15px', marginRight: '10px' }} />,
 	},
 	lcl_customs: {
-		name: 'LCL Customs',
-		icon: <IcCFlcl
+		name : 'LCL Customs',
+		icon : <IcCFlcl
 			width={22}
 			height={22}
 		/>,
@@ -182,15 +182,15 @@ const getFreightMapping = () => ({
 		secondaryIcon: <IcMShip style={{ width: '15px', marginRight: '10px' }} />,
 	},
 	air_customs: {
-		name: 'AIR Customs',
-		icon: <IcAAirflight
+		name : 'AIR Customs',
+		icon : <IcAAirflight
 			width={22}
 			height={22}
 			fill="#EF9B9B"
 		/>,
-		bgColor: '#EF9B9B',
-		freightLogo: <IcCAir />,
-		secondaryIcon: (
+		bgColor       : '#EF9B9B',
+		freightLogo   : <IcCAir />,
+		secondaryIcon : (
 			<IcMAirport style={{ width: '15px', marginRight: '10px' }} />
 		),
 	},

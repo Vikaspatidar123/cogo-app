@@ -4,10 +4,13 @@ import PortName from './PortName';
 import styles from './styles.module.css';
 
 const SUFFIX = {
-	fcl_freight : 'port',
-	lcl_freight : 'port',
-	air_freight : 'airport',
-	ftl_freight : 'location',
+	fcl_freight: 'port',
+	lcl_freight: 'port',
+	air_freight: 'airport',
+	ftl_freight: 'location',
+	ltl_freight: 'location',
+	haulage_freight: 'location',
+	trailer_freight: 'location',
 };
 function PortDetails({ data = {} }) {
 	const { search_type } = data;

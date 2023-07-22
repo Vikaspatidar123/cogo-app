@@ -52,7 +52,8 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "uuid": "^9.0.0",
-    "react-draggable": "^4.0.3"
+    "react-draggable": "^4.0.3",
+    "use-count-up": "^3.0.1"
   },
   "devDependencies": {
     "@cogoport/eslint-config": "^1.1.0",

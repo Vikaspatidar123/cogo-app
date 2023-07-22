@@ -13,19 +13,19 @@ import { useRequest } from '@/packages/request';
 const API_MAPPING = {
 	ocean: {
 		// operatorApi : '/get_shipping_line_for_search_value',
-		operatorApi : '/get_shipping_line_for_container_no',
-		createApi   : '/create_saas_container_subscription',
+		operatorApi: '/get_shipping_line_for_container_no',
+		createApi: '/create_saas_container_subscription',
 		// payloadKey  : 'search_value',
-		payloadKey  : 'container_no',
-		operatorKey : 'shippingLine',
-		threshold   : 10,
+		payloadKey: 'container_no',
+		operatorKey: 'shippingLine',
+		threshold: 10,
 	},
 	air: {
-		operatorApi : '/get_airline_from_airway_bill',
-		createApi   : '/create_saas_air_subscription',
-		payloadKey  : 'airway_bill_no',
-		operatorKey : 'airLine',
-		threshold   : 3,
+		operatorApi: '/get_airline_from_airway_bill',
+		createApi: '/create_saas_air_subscription',
+		payloadKey: 'airway_bill_no',
+		operatorKey: 'airLine',
+		threshold: 3,
 	},
 };
 
@@ -41,13 +41,13 @@ const useCreateTracker = ({ operatorData }) => {
 	const { operatorApi, createApi, payloadKey, operatorKey, threshold } = API_MAPPING[trackingType];
 
 	const [{ data }, trigger] = useRequest({
-		method : 'get',
-		url    : operatorApi,
+		method: 'get',
+		url: operatorApi,
 	}, { manual: true });
 
 	const [{ loading }, createTrigger] = useRequest({
-		method : 'post',
-		url    : createApi,
+		method: 'post',
+		url: createApi,
 	}, { manual: true });
 
 	const { redirectToTracker } = useRedirectFn();
@@ -112,12 +112,12 @@ const useCreateTracker = ({ operatorData }) => {
 
 		const payloadMapping = {
 			ocean: {
-				shipping_line_id : shippingLine,
-				search_value     : shipmentNo,
+				shipping_line_id: shippingLine,
+				search_value: shipmentNo,
 			},
 			air: {
-				airline_id     : airLine,
-				airway_bill_no : shipmentNo,
+				airline_id: airLine,
+				airway_bill_no: shipmentNo,
 			},
 		};
 		const payload = payloadMapping[trackingType];

@@ -89,6 +89,18 @@
 		background: #f3fafa;
 	}
 
+	&.ltl {
+		background: #fee;
+	}
+
+	&.trailer_freight {
+		background: #d7eaff;
+	}
+
+	&.haulage_freight {
+		background: #f2f3fa;
+	}
+
 	.tag_icon {
 		svg {
 			width: 15px;

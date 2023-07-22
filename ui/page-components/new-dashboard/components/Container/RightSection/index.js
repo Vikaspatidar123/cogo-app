@@ -6,7 +6,7 @@ import Promotion from './Promotion';
 function RightSection() {
 	return (
 		<div>
-			<ProfileCompleted />
+			{/* <ProfileCompleted /> */}
 			<CheckKyc />
 			<PayLater />
 			<Promotion />

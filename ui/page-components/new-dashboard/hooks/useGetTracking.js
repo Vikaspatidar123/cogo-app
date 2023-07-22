@@ -13,7 +13,7 @@ function useGetTracking() {
 		organizationId: profile?.organization?.id,
 	}));
 
-	const [{ data }, trigger] = useRequest({
+	const [{ loading, data }, trigger] = useRequest({
 		url: '/get_app_dashboard_tracking',
 		method: 'get',
 	}, { manual: true });
@@ -37,6 +37,6 @@ function useGetTracking() {
 		getDashboardTrackingInfo();
 	}, [getDashboardTrackingInfo]);
 
-	return { airTracking, oceanTracking, kyc_status };
+	return { airTracking, oceanTracking, kyc_status, loading };
 }
 export default useGetTracking;

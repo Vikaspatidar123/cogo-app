@@ -2,13 +2,25 @@
 	display: flex;
 	width: 100%;
 	margin-top: 10px;
+
+	@media (max-width: 767px) {
+		flex-direction: column;
+	}
 }
 
 .seation_1 {
 	width: 70%;
 	margin-right: 10px;
+
+	@media (max-width: 767px) {
+		width: 100%;
+	}
 }
 
 .seation_2 {
 	width: 30%;
+
+	@media (max-width: 767px) {
+		width: 100%;
+	}
 }

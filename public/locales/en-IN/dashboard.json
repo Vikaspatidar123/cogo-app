@@ -133,12 +133,25 @@
 	"search_text":"Search",
 	"book_text":"Book",
 	"cogo_logo":"cogo",
-	"track_shipment_text1":"Track your shipment!",
+	"track_shipment_text1":"Track your shipment now!",
 	"shipment_placeholder":"Search here",
 	"shippingline_placeholder":"Select shipping line",
 	"track_now_button_text":"Track Now",
 	"custom_duty_text1":"Custom Duty Calculator",
 	"custom_duty_text2":"Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
 	"custom_duty_text3":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua.",
-	"custom_duty_text4":"Try Now!"
+	"custom_duty_text4":"Try Now!",
+	"tracking_header_form_control_label_1":"Enter Container No/ BL no",
+	"tracking_header_form_control_required_text":"required",
+	"tracking_header_form_control_label_1":"Enter Container No/ BL no",
+	"tracking_header_form_control_label_3":"Enter Airway bill number",
+	"tracking_header_form_control_invalid_airline_text":"Invalid AirLine Number",
+    "tracking_header_form_control_label_4":"Select Airway Line",
+	"tracking_header_form_control_label_2":"Select Shipping Line"
+
+
+
+
+
+
 }

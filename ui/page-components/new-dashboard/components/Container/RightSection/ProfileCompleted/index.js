@@ -3,7 +3,11 @@ import SemiCircleProgressBar from 'react-progressbar-semicircle';
 
 import styles from './styles.module.css';
 
+import useProgres from '@/ui/page-components/new-dashboard/hooks/useProgres';
+
 function ProfileCompleted() {
+	const { loading, data } = useProgres();
+	console.log(data, 'data', loading);
 	return (
 		<div className={styles.container}>
 			<div>

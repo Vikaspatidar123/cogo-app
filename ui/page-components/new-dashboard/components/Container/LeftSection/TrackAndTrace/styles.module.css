@@ -17,6 +17,10 @@
     display: flex;
     width: 100%;
     margin-top: 10px;
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
 }
 
 .box {
@@ -31,6 +35,10 @@
     background-size: auto;
     border-radius: 5px;
     box-shadow: 0 0 8px rgb(98 127 172 / 20%);
+
+    @media (max-width: 767px) {
+        width: 100%;
+    }
 }
 
 .box:hover {
@@ -57,8 +65,9 @@
 
 .count {
     margin-left: 10px;
-    font-size: 30px;
-    font-weight: 500;
+    font-size: 32px;
+    font-weight: 600;
+    color: #ee3425;
 }
 
 .down {

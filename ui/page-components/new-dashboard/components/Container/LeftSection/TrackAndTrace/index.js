@@ -5,12 +5,13 @@ import styles from './styles.module.css';
 
 import { useRouter, Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import CountCount from '@/ui/page-components/new-dashboard/common/CountCount';
 import useGetTracking from '@/ui/page-components/new-dashboard/hooks/useGetTracking';
 
 function TrackAndTrace() {
     const { push } = useRouter();
     const { t } = useTranslation(['dashboard']);
-    const { airTracking, oceanTracking } = useGetTracking();
+    const { airTracking, oceanTracking, loading } = useGetTracking();
     const { data } = airTracking || {};
     const { data: oceanTrackingData } = oceanTracking || {};
     const { all_cargo = 0, on_track_air_cargos = 0 } = data || {};
@@ -40,7 +41,12 @@ function TrackAndTrace() {
                                     height={20}
                                     width={20}
                                 />
-                                <p className={styles.count}>{all_cargo}</p>
+                                <p className={styles.count}>
+                                    <CountCount
+                                        end_count={all_cargo}
+                                        loading={loading}
+                                    />
+                                </p>
                             </div>
                         </div>
                         <div className={styles.count_card}>
@@ -54,7 +60,12 @@ function TrackAndTrace() {
                                     height={20}
                                     width={25}
                                 />
-                                <p className={styles.count}>{on_track_air_cargos}</p>
+                                <p className={styles.count}>
+                                    <CountCount
+                                        end_count={on_track_air_cargos}
+                                        loading={loading}
+                                    />
+                                </p>
                             </div>
 
                         </div>
@@ -90,7 +101,12 @@ function TrackAndTrace() {
                                     height={20}
                                     width={20}
                                 />
-                                <p className={styles.count}>{container_tracked}</p>
+                                <p className={styles.count}>
+                                    <CountCount
+                                        end_count={container_tracked}
+                                        loading={loading}
+                                    />
+                                </p>
                             </div>
                         </div>
                         <div className={styles.count_card}>
@@ -102,7 +118,12 @@ function TrackAndTrace() {
                                     height={20}
                                     width={25}
                                 />
-                                <p className={styles.count}>{on_track_shipments}</p>
+                                <p className={styles.count}>
+                                    <CountCount
+                                        end_count={on_track_shipments}
+                                        loading={loading}
+                                    />
+                                </p>
                             </div>
 
                         </div>

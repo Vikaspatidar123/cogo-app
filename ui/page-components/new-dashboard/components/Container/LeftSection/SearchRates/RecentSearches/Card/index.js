@@ -9,7 +9,6 @@ import searchTypeMapping from '@/ui/page-components/new-dashboard/utils/searchTy
 
 function Card({ item }) {
 	const { search_type = 'air_freight' } = item || {};
-
 	const mapped = searchTypeMapping[search_type] || {};
 
 	return (
@@ -21,7 +20,7 @@ function Card({ item }) {
 							<span className={styles.tag_icon}>{mapped.icon}</span>
 							<div className={styles.tag_text}>{mapped.tag}</div>
 						</div>
-						<div className={`${styles.port_detail}`}>
+						<div className={styles.port_detail}>
 							<PortDetails data={item} />
 						</div>
 					</div>

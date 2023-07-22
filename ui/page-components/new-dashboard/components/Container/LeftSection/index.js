@@ -16,11 +16,11 @@ function LeftSection() {
 	return (
 		<div>
 			<SearchRates />
-
+			<TrackAndTrace />
 			{(!isEmpty(list.length) && !loading)
 				? <Shipments list={list} />
 				: <ShipmentLoading loading={loading} />}
-			<TrackAndTrace />
+
 			<div className={styles.section}>
 				<div className={styles.box}>
 					<TrackShipment />

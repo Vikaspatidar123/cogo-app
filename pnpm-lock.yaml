@@ -46,6 +46,7 @@ specifiers:
   redux-thunk: ^2.4.2
   slick-carousel: ^1.8.1
   stylelint: ^15.2.0
+  use-count-up: ^3.0.1
   uuid: ^9.0.0
 
 dependencies:
@@ -82,6 +83,7 @@ dependencies:
   redux: 4.2.1
   redux-thunk: 2.4.2_redux@4.2.1
   slick-carousel: 1.8.1
+  use-count-up: 3.0.1_react@18.2.0
   uuid: 9.0.0
 
 devDependencies:
@@ -9491,6 +9493,23 @@ packages:
     dependencies:
       punycode: 2.3.0
     dev: true
+
+  /use-count-up/3.0.1_react@18.2.0:
+    resolution: {integrity: sha512-jlVsXJYje6jh+xwQaCEYrwHoB+nRyillNEmr21bhe9kw7tpRzyrSq9jQs9UOlo+8hCFkuOmjUihL3IjEK/piVg==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+      use-elapsed-time: 3.0.2_react@18.2.0
+    dev: false
+
+  /use-elapsed-time/3.0.2_react@18.2.0:
+    resolution: {integrity: sha512-2EY9lJ5DWbAvT8wWiEp6Ztnl46DjXz2j78uhWbXaz/bg3OfpbgVucCAlcN8Bih6hTJfFTdVYX9L6ySMn5py/wQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /use-sync-external-store/1.2.0_react@18.2.0:
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}

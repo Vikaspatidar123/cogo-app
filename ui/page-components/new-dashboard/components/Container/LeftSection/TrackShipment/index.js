@@ -1,40 +1,59 @@
-import { Button } from '@cogoport/components';
-import { IcMTracking, IcMAppSearch } from '@cogoport/icons-react';
+import { Button, Tabs, TabPanel } from '@cogoport/components';
+import { IcMTracking, IcMAppSearch, IcAAirTracking, IcAOceanTracking } from '@cogoport/icons-react';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
-import { InputController, AsyncSelectController } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
 import useCreateTracker from '@/ui/page-components/new-dashboard/hooks/useCreateTracker';
 import useGetMapRoute from '@/ui/page-components/new-dashboard/hooks/useGetMapRoute';
 import useTrackShipment from '@/ui/page-components/new-dashboard/hooks/useTrackShipment';
 
 const CogoMaps = dynamic(() => import('../../../../common/MapContainer/MapsComp'), { ssr: false });
-const shipment_rules = {
-	required: true,
-	pattern: {
-		value: '/^[A-Z]{4}\d{7}$/',
-		message: 'Invalid AirLine Number',
-	},
-
-};
-const rules = { required: true };
 
 function TrackShipment() {
 	const { t } = useTranslation(['dashboard']);
+
 	const { data } = useTrackShipment();
 	const { list } = data || {};
 	const { allRoute } = useGetMapRoute({ trackingInfo: list, type: 'ocean' });
-	const { formHook, onSubmitHandler } = useCreateTracker();
+	const {
+		loading, formHook, trackingType, setTrackingType, controls,
+		onSubmitHandler,
+	} = useCreateTracker();
+
 	const { control, handleSubmit, formState: { errors } } = formHook;
+
 	return (
 		<div className={styles.main_container}>
 			<CogoMaps height="270px" allPoints={allRoute} type="ocean" />
 			<div className={styles.input_box}>
 				<div>
 					<div className={styles.text}>{t('dashboard:track_shipment_text1')}</div>
-					<InputController
+					<div className={styles.tab_box}>
+						<Tabs
+							activeTab={trackingType}
+							themeType="tertiary"
+							onChange={setTrackingType}
+						>
+							<TabPanel name="ocean" title="ocean" />
+							<TabPanel name="air" title="air" />
+						</Tabs>
+					</div>
+
+					{controls.map((controlItem) => {
+						const { name, type } = controlItem;
+						const Element = getField(type);
+
+						return (
+							<div key={name} className={styles.box}>
+								<Element {...controlItem} control={control} className={styles.input_container} />
+								<p className={styles.errors}>{errors?.[name]?.message || errors?.[name]?.type}</p>
+							</div>
+						);
+					})}
+					{/* <InputController
 						name="shipmentNumber"
 						size="sm"
 						className={styles.input_container}
@@ -53,8 +72,8 @@ function TrackShipment() {
 						asyncKey="shippingline_list"
 						initialCall
 						rules={rules}
-					/>
-					<p className={styles.errors}>{errors?.shippingLine?.message || errors?.shippingLine?.type}</p>
+					/> */}
+
 					<div className={styles.button_container}>
 						<Button
 							size="md"

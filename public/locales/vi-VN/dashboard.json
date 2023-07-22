@@ -139,7 +139,14 @@
 	"custom_duty_text1":"Máy tính thuế tùy chỉnh",
 	"custom_duty_text2":"Lorem Cà rốt cà rốt, Phim đại học nâng cao",
 	"custom_duty_text3":"Lorem rất cà rốt, nhà phát triển đại học cà chua, nhưng tôi sẽ ở trong một temporincididis inquid để làm việc và đau đớn là tuyệt vời.",
-	"custom_duty_text4":"Thử ngay bây giờ!"
+	"custom_duty_text4":"Thử ngay bây giờ!",
+	"tracking_header_form_control_label_1":"Nhập container no/ bl no",
+	"tracking_header_form_control_required_text":"yêu cầu",
+	"tracking_header_form_control_label_3":"Nhập số hóa đơn hàng không",
+	"tracking_header_form_control_invalid_airline_text":"Số hãng hàng không không hợp lệ",
+    "tracking_header_form_control_label_4":"Chọn đường hàng không",
+	"tracking_header_form_control_label_2":"Chọn hàng vận chuyển"
+
 }
 
 

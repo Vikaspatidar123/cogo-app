@@ -7,11 +7,10 @@ function PortName({ location }) {
 	const displayNameLength = splitDisplayName?.length;
 
 	const info1 = (location?.country || {}).name || splitDisplayName[displayNameLength - 1] || '';
-	const info2 = `${location.port_code}, ${info1}`;
-
+	const info2 = `${location?.port_code || ''}, ${info1}`;
 	return (
 		<div className={styles.port_info}>
-			<div className={cl`${styles.text} ${styles.info}`}>{info2}</div>
+			<div className={cl`${styles.text} ${styles.info}`}>{info2 || ''}</div>
 			<Tooltip
 				content={<div style={{ color: 'grey' }}>{location?.name}</div>}
 			>

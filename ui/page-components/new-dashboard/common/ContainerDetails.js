@@ -1,14 +1,14 @@
 import React from 'react';
 
 import ContainerInfo from './ContainerInfo';
-import getFreightMapping from './FreightMapping';
+import getFreightMapping from './getFreightMapping';
+
+const freight = getFreightMapping();
 
 function ContainerDetails({
 	containerInfoData,
 	service_type = 'fcl_freight',
 }) {
-	const freight = getFreightMapping();
-
 	return (
 		<div
 			style={{ display: 'flex', alignItems: 'center' }}

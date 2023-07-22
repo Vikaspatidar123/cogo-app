@@ -1,24 +1,38 @@
+import { isEmpty } from '@cogoport/utils';
+
 const getLocation = (isOrigin, loc) => {
+	const {
+		origin_port = {},
+		origin_airport = {}, origin_location = {},
+		location: local = {}, port = {},
+		airport = {}, pickup = {},
+		destination_airport = {},
+		destination_port = {},
+		destination_location = {},
+		drop = {},
+	} = loc || {};
+
 	let locationData;
+
 	if (isOrigin) {
-		locationData =			loc?.origin_port?.display_name
-			|| loc?.origin_airport?.display_name
-			|| loc?.origin_location?.display_name
-			|| loc?.location?.display_name
-			|| loc?.port?.display_name
-			|| loc?.airport?.display_name
-			|| loc?.pickup?.display_name;
+		locationData = origin_port?.display_name
+			|| origin_airport?.display_name
+			|| origin_location?.display_name
+			|| local?.display_name
+			|| port?.display_name
+			|| airport?.display_name
+			|| pickup?.display_name;
 	} else {
-		locationData =			loc?.destination_port?.display_name
-			|| loc?.destination_airport?.display_name
-			|| loc?.destination_location?.display_name
-			|| loc?.location?.display_name
-			|| loc?.drop?.display_name;
+		locationData = destination_port?.display_name
+			|| destination_airport?.display_name
+			|| destination_location?.display_name
+			|| local?.display_name
+			|| drop?.display_name;
 	}
 
 	const arr = locationData?.split(',');
-	const location = arr?.length > 0 ? arr[0] : '';
-	const country = arr?.length > 0 ? arr.slice(1).join(',') : '';
+	const location = !isEmpty(arr) ? arr[0] : '';
+	const country = !isEmpty(arr) ? arr.slice(1).join(',') : '';
 	return { location, country };
 };
 

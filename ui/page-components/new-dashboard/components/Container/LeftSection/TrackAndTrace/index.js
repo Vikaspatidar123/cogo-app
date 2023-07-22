@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 
 import { useRouter, Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import CountCount from '@/ui/page-components/new-dashboard/common/CountCount';
+import CountCameDown from '@/ui/page-components/new-dashboard/common/CountCameDown';
 import useGetTracking from '@/ui/page-components/new-dashboard/hooks/useGetTracking';
 
 function TrackAndTrace() {
@@ -42,7 +42,7 @@ function TrackAndTrace() {
 									width={20}
 								/>
 								<p className={styles.count}>
-									<CountCount
+									<CountCameDown
 										end_count={all_cargo}
 										loading={loading}
 									/>
@@ -61,7 +61,7 @@ function TrackAndTrace() {
 									width={25}
 								/>
 								<p className={styles.count}>
-									<CountCount
+									<CountCameDown
 										end_count={on_track_air_cargos}
 										loading={loading}
 									/>
@@ -102,7 +102,7 @@ function TrackAndTrace() {
 									width={20}
 								/>
 								<p className={styles.count}>
-									<CountCount
+									<CountCameDown
 										end_count={container_tracked}
 										loading={loading}
 									/>
@@ -119,7 +119,7 @@ function TrackAndTrace() {
 									width={25}
 								/>
 								<p className={styles.count}>
-									<CountCount
+									<CountCameDown
 										end_count={on_track_shipments}
 										loading={loading}
 									/>

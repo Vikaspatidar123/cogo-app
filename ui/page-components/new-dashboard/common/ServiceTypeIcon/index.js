@@ -1,10 +1,10 @@
-import getFreightMapping from '../FreightMapping';
+import getFreightMapping from '../getFreightMapping';
 
 import styles from './styles.module.css';
 
-function ServiceTypeIcon({ freight_type = 'fcl_freight' }) {
-	const freight = getFreightMapping();
+const freight = getFreightMapping();
 
+function ServiceTypeIcon({ freight_type = 'fcl_freight' }) {
 	return (
 		<>
 			<div

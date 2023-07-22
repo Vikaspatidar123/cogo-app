@@ -3,7 +3,7 @@ import { CountUp } from 'use-count-up';
 import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-function CountCount({
+function CountCameDown({
 	end_count = 0, duration = 5,
 	isCounting = true, loading = false,
 }) {
@@ -26,4 +26,4 @@ function CountCount({
 	);
 }
 
-export default CountCount;
+export default CountCameDown;

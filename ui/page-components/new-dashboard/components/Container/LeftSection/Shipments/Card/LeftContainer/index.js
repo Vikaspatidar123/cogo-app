@@ -8,7 +8,7 @@ import getText from '@/ui/page-components/new-dashboard/common/getText';
 
 function RenderStatus({ ogShipmentData, service }) {
 	const { t } = useTranslation(['dashboard']);
-	const textObj = getText(ogShipmentData, service, t);
+	const textObj = getText({ shipment_data: ogShipmentData, services: service, t });
 	return (
 		<text className={styles.text} style={{ backgroundColor: textObj.color }}>
 			{textObj.text}

@@ -2,10 +2,12 @@ import { Placeholder } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
+const LOADING = [...Array(2).keys()];
+
 function Loading() {
 	return (
 		<div className={styles.container}>
-			{[...Array(2).keys()].map((item) => (
+			{LOADING.map((item) => (
 				<Placeholder
 					key={item}
 					height="85px"

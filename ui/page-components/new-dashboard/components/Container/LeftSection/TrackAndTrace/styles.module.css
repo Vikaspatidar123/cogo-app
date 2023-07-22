@@ -1,88 +1,88 @@
 .container {
-    box-sizing: border-box;
-    padding: 6px 15px;
-    margin-top: 10px;
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    box-shadow: 0 0 8px rgb(98 127 172 / 20%);
+	box-sizing: border-box;
+	padding: 6px 15px;
+	margin-top: 10px;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	box-shadow: 0 0 8px rgb(98 127 172 / 20%);
 }
 
 .heading {
-    font-size: 15px;
-    font-weight: 600;
+	font-size: 15px;
+	font-weight: 600;
 }
 
 .section {
-    display: flex;
-    width: 100%;
-    margin-top: 10px;
+	display: flex;
+	width: 100%;
+	margin-top: 10px;
 
-    @media (max-width: 767px) {
-        flex-direction: column;
-    }
+	@media (max-width: 767px) {
+		flex-direction: column;
+	}
 }
 
 .box {
-    position: relative;
-    width: 50%;
-    padding: 6px;
-    margin: 4px;
-    cursor: pointer;
-    background: rgb(255 255 255);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: auto;
-    border-radius: 5px;
-    box-shadow: 0 0 8px rgb(98 127 172 / 20%);
+	position: relative;
+	width: 50%;
+	padding: 6px;
+	margin: 4px;
+	cursor: pointer;
+	background: rgb(255 255 255);
+	background-repeat: no-repeat;
+	background-position: right;
+	background-size: auto;
+	border-radius: 5px;
+	box-shadow: 0 0 8px rgb(98 127 172 / 20%);
 
-    @media (max-width: 767px) {
-        width: 100%;
-    }
+	@media (max-width: 767px) {
+		width: 100%;
+	}
 }
 
 .box:hover {
-    transition: transform 0.3s;
-    transform: scale(1.03);
+	transition: transform 0.3s;
+	transform: scale(1.03);
 }
 
 .head {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 500;
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	font-weight: 500;
 }
 
 .card {
-    display: flex;
-    justify-content: space-around;
-    width: 80%;
+	display: flex;
+	justify-content: space-around;
+	width: 80%;
 }
 
 .count_card {
-    padding: 10px;
+	padding: 10px;
 }
 
 .count {
-    margin-left: 10px;
-    font-size: 32px;
-    font-weight: 600;
-    color: #ee3425;
+	margin-left: 10px;
+	font-size: 32px;
+	font-weight: 600;
+	color: #ee3425;
 }
 
 .down {
-    display: flex;
-    align-items: baseline;
+	display: flex;
+	align-items: baseline;
 }
 
 .text {
-    font-size: 13px;
-    font-weight: 500;
+	font-size: 13px;
+	font-weight: 500;
 }
 
 .img_container {
-    position: absolute;
-    top: -33px;
-    right: -9px;
-    transform: rotate(19deg);
+	position: absolute;
+	top: -33px;
+	right: -9px;
+	transform: rotate(19deg);
 }

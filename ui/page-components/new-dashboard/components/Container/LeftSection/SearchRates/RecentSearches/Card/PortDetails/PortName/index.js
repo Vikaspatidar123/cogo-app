@@ -8,6 +8,7 @@ function PortName({ location }) {
 
 	const info1 = (location?.country || {}).name || splitDisplayName[displayNameLength - 1] || '';
 	const info2 = `${location?.port_code || ''}, ${info1}`;
+
 	return (
 		<div className={styles.port_info}>
 			<div className={cl`${styles.text} ${styles.info}`}>{info2 || ''}</div>

@@ -11,11 +11,9 @@ import { useRequest } from '@/packages/request';
 
 const API_MAPPING = {
 	ocean: {
-		// operatorApi : '/get_shipping_line_for_search_value',
-		operatorApi : '/get_shipping_line_for_container_no',
+		operatorApi : '/get_shipping_line_for_search_value',
 		createApi   : '/create_saas_container_subscription',
-		// payloadKey  : 'search_value',
-		payloadKey  : 'container_no',
+		payloadKey  : 'search_value',
 		operatorKey : 'shippingLine',
 		threshold   : 10,
 	},
@@ -47,6 +45,7 @@ const useCreateTracker = () => {
 		);
 	};
 	const operatorData = useGetOperatorList();
+
 	const [{ data }, trigger] = useRequest({
 		method : 'get',
 		url    : operatorApi,
@@ -90,28 +89,6 @@ const useCreateTracker = () => {
 		}
 	};
 
-	const prefillOpertorField = useCallback(({ shipmentNo }) => {
-		getOperatorInfo({ shipmentNo });
-	}, [getOperatorInfo]);
-
-	useEffect(() => {
-		reset(defaultValues);
-	}, [reset, trackingType]);
-
-	useEffect(() => {
-		if (shipmentNumber?.length === threshold) {
-			prefillOpertorField({ shipmentNo: shipmentNumber });
-		}
-	}, [prefillOpertorField, shipmentNumber, threshold]);
-
-	useEffect(() => {
-		if (!isEmpty(data)) {
-			const { result = {}, id = '' } = data || {};
-			const opertorValue = result?.shipping_line_id || id;
-			setValue(operatorKey, opertorValue);
-		}
-	}, [data, operatorKey, setValue]);
-
 	const onSubmitHandler = (formData) => {
 		const { airLine = '', shipmentNumber: shipmentNo = '', shippingLine = '' } = formData || {};
 
@@ -129,6 +106,24 @@ const useCreateTracker = () => {
 
 		createTracker({ payload });
 	};
+
+	useEffect(() => {
+		reset(defaultValues);
+	}, [reset, trackingType]);
+
+	useEffect(() => {
+		if (shipmentNumber?.length === threshold) {
+			getOperatorInfo({ shipmentNo: shipmentNumber });
+		}
+	}, [getOperatorInfo, shipmentNumber, threshold]);
+
+	useEffect(() => {
+		if (!isEmpty(data)) {
+			const { result = {}, id = '' } = data || {};
+			const opertorValue = result?.shipping_line_id || id;
+			setValue(operatorKey, opertorValue);
+		}
+	}, [data, operatorKey, setValue]);
 
 	return {
 		loading, getOperatorInfo, formHook, setTrackingType, trackingType, controls, onSubmitHandler,

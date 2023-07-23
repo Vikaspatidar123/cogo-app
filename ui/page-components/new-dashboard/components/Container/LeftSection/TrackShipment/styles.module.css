@@ -65,11 +65,7 @@
 	color: #f33;
 }
 
-.tab_box {
-	display: flex;
-	justify-content: center;
-}
-
+.tab_box,
 .box {
 	display: flex;
 	justify-content: center;

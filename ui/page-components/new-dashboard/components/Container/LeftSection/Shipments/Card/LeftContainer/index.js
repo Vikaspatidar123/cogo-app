@@ -9,6 +9,7 @@ import getText from '@/ui/page-components/new-dashboard/common/getText';
 function RenderStatus({ ogShipmentData, service }) {
 	const { t } = useTranslation(['dashboard']);
 	const textObj = getText({ shipment_data: ogShipmentData, services: service, t });
+
 	return (
 		<text className={styles.text} style={{ backgroundColor: textObj.color }}>
 			{textObj.text}
@@ -17,9 +18,11 @@ function RenderStatus({ ogShipmentData, service }) {
 }
 
 function LeftContainer({ item }) {
+	const { documents = '', state = '', service_type = '', shipment_type = '', services = '' } = item || {};
+
 	const { push } = useRouter();
 	const { t } = useTranslation(['dashboard']);
-	const { documents = '', state = '', service_type = '', shipment_type = '', services = '' } = item || {};
+
 	const data = {
 		documents,
 		state,
@@ -31,6 +34,7 @@ function LeftContainer({ item }) {
 		<div className={styles.container}>
 			<div className={styles.details}>
 				<RenderStatus ogShipmentData={data} service={services} />
+
 				<Button
 					size="sm"
 					themeType="accent"
@@ -43,9 +47,11 @@ function LeftContainer({ item }) {
 				>
 					{t('dashboard:onGoingShipments_card_text_5')}
 				</Button>
+
 				{item?.pending_tasks_count ? (
 					<div className={styles.dot}>
 						<div className={styles.dot2} />
+
 						<p className={styles.tasks}>
 							{item?.pending_tasks_count}
 							<span
@@ -54,6 +60,7 @@ function LeftContainer({ item }) {
 								{t('dashboard:onGoingShipments_card_text_4')}
 							</span>
 						</p>
+
 					</div>
 				) : null}
 			</div>

@@ -10,15 +10,21 @@ import useGetTracking from '@/ui/page-components/new-dashboard/hooks/useGetTrack
 
 function TrackAndTrace() {
 	const { push } = useRouter();
+
 	const { t } = useTranslation(['dashboard']);
+
 	const { airTracking, oceanTracking, loading } = useGetTracking();
+
 	const { data } = airTracking || {};
 	const { data: oceanTrackingData } = oceanTracking || {};
+
 	const { all_cargo = 0, on_track_air_cargos = 0 } = data || {};
 	const { container_tracked = 0, on_track_shipments = 0 } = oceanTrackingData || {};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>{t('dashboard:common_trackTraceHeader_text_1')}</div>
+
 			<div className={styles.section}>
 				<div
 					role="presentation"
@@ -29,11 +35,13 @@ function TrackAndTrace() {
 						<IcAAirTracking width={30} height={30} />
 						{t('dashboard:trackAndTrace_airTracking')}
 					</div>
+
 					<div className={styles.card}>
 						<div className={styles.count_card}>
 							<div className={styles.text}>
 								{t('dashboard:common_trackingCard_text_1')}
 							</div>
+
 							<div className={styles.down}>
 								<Image
 									src={GLOBAL_CONSTANTS.image_url.clock_image}
@@ -49,10 +57,12 @@ function TrackAndTrace() {
 								</p>
 							</div>
 						</div>
+
 						<div className={styles.count_card}>
 							<div className={styles.text}>
 								{t('dashboard:common_trackingCard_text_2')}
 							</div>
+
 							<div className={styles.down}>
 								<Image
 									src={GLOBAL_CONSTANTS.image_url.track_image}
@@ -79,6 +89,7 @@ function TrackAndTrace() {
 						/>
 					</div>
 				</div>
+
 				<div
 					role="presentation"
 					className={styles.box}
@@ -89,6 +100,7 @@ function TrackAndTrace() {
 						<IcAOceanTracking width={30} height={30} />
 						{t('dashboard:trackAndTrace_oceanTracking')}
 					</div>
+
 					<div className={styles.card}>
 						<div className={styles.count_card}>
 							<div className={styles.text}>
@@ -109,8 +121,10 @@ function TrackAndTrace() {
 								</p>
 							</div>
 						</div>
+
 						<div className={styles.count_card}>
 							<div className={styles.text}>{t('dashboard:common_trackingCard_text_2')}</div>
+
 							<div className={styles.down}>
 								<Image
 									src={GLOBAL_CONSTANTS.image_url.track_image}
@@ -125,7 +139,6 @@ function TrackAndTrace() {
 									/>
 								</p>
 							</div>
-
 						</div>
 					</div>
 				</div>

@@ -5,13 +5,16 @@ import { useRouter } from '@/packages/next';
 import { trackEvent, APP_EVENT } from '@/ui/commons/constants/analytics';
 import useCreateSearch from '@/ui/page-components/discover_rates/hooks/useCreateSearch';
 import formatMainServiceData from '@/ui/page-components/discover_rates/utils/format-main-service-data';
-import { OTHERPARAMS } from '@/ui/page-components/new-dashboard/constant';
+import { OTHER_PARAMS } from '@/ui/page-components/new-dashboard/constant';
 
 function BtnContainer({ data = {} }) {
+	const { search_type } = data;
+
 	const { push } = useRouter();
 	const { t } = useTranslation(['dashboard']);
+
 	const { createNewSearch } = useCreateSearch({});
-	const { search_type } = data;
+
 	const formattedData = formatMainServiceData(search_type, [
 		{ ...(data || {}), service_type: search_type },
 	]);
@@ -24,9 +27,10 @@ function BtnContainer({ data = {} }) {
 			commodity : data.commodity,
 		};
 
-		(OTHERPARAMS[search_type] || []).forEach((param) => {
+		(OTHER_PARAMS[search_type] || []).forEach((param) => {
 			params[param] = formattedData[param];
 		});
+
 		if (params.search_type === 'fcl_freight') {
 			const container_details = [];
 			let size;

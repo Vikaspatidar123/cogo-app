@@ -25,11 +25,13 @@ function RecentSearches({ data, loading }) {
 		<div className={styles.container}>
 			<div className={styles.head}>
 				<div className={styles.text}>{t('dashboard:bestRates_text_1')}</div>
-				<Button size="md" themeType="tertiary" type="button" onClick={() => push('/book')}>
+
+				<Button themeType="tertiary" type="button" onClick={() => push('/book')}>
 					<span className={styles.view_all}>{t('dashboard:bestRates_text_3')}</span>
 					<IcMArrowRight width={16} height={16} />
 				</Button>
 			</div>
+
 			<div className={styles.card}>
 				{(list || []).map((item) => (
 					<Card

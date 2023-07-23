@@ -74,6 +74,7 @@ export const renderValue = ({ label, data, t }) => {
 		 ${t('dashboard:common_containerInfo_inputValue')},
 		  ${valueForInput?.length} X ${valueForInput?.width} X ${valueForInput?.height}, ${valueForInput?.packing_type}`
 		: '';
+
 	const packageDetails = `${t('dashboard:common_containerInfo_packageDetails_1')}:
 	 ${inputValue} ${packages?.length > 1
 	? `+ ${(packages?.length || 0) - 1} ${t('dashboard:common_containerInfo_packageDetails_2')}`
@@ -148,7 +149,7 @@ export const renderValue = ({ label, data, t }) => {
 	}
 };
 
-export const OTHERPARAMS = {
+export const OTHER_PARAMS = {
 	fcl_freight     : ['origin_port_id', 'destination_port_id'],
 	lcl_freight     : ['origin_port_id', 'destination_port_id', 'inco_term'],
 	air_freight     : ['origin_airport_id', 'destination_airport_id', 'inco_term'],

@@ -35,11 +35,10 @@ function Shipments({ list }) {
 				className={styles.bottom}
 				onClick={() => push('/shipments', '/shipments')}
 			>
-				<p
-					className={styles.viewall}
-				>
+				<p className={styles.viewall}>
 					{t('dashboard:onGoingShipments_text_1')}
 				</p>
+
 				<IcMArrowNext className={styles.arrow} />
 			</div>
 		</div>

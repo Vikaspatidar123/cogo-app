@@ -28,6 +28,7 @@ function TrackShipment() {
 	return (
 		<div className={styles.main_container}>
 			<CogoMaps height="270px" allPoints={allRoute} type={trackingType} />
+
 			<div className={styles.input_box}>
 				<div>
 					<div className={styles.text}>{t('dashboard:track_shipment_text1')}</div>

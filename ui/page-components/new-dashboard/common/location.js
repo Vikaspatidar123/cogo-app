@@ -12,7 +12,10 @@ const getLocation = (isOrigin, loc) => {
 		drop = {},
 	} = loc || {};
 
-	let locationData;
+	let locationData = destination_port?.display_name || destination_airport?.display_name
+		|| destination_location?.display_name
+		|| local?.display_name
+		|| drop?.display_name;
 
 	if (isOrigin) {
 		locationData = origin_port?.display_name
@@ -22,12 +25,6 @@ const getLocation = (isOrigin, loc) => {
 			|| port?.display_name
 			|| airport?.display_name
 			|| pickup?.display_name;
-	} else {
-		locationData = destination_port?.display_name
-			|| destination_airport?.display_name
-			|| destination_location?.display_name
-			|| local?.display_name
-			|| drop?.display_name;
 	}
 
 	const arr = locationData?.split(',');

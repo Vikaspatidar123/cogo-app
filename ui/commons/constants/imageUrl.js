@@ -62,7 +62,7 @@ const IMAGE_URLS = {
 	road_map_image   : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/road-map.svg',
 	pay_later_widget : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/newadd.svg',
 	company_logo:
-		'https://cogoport-production.sgp1.digitaloceanspaces.com/92f7f7340ff071a93fcacfca9956b32a/company-info-icon.svg',
+	'https://cogoport-production.sgp1.digitaloceanspaces.com/92f7f7340ff071a93fcacfca9956b32a/company-info-icon.svg',
 	neo_background_image       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/backgroundNeo.png',
 	vault_lock_image           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/lock 2.svg',
 	calendar_image             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/date.png',

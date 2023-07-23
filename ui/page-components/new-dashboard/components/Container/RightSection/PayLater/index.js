@@ -18,13 +18,14 @@ function PayLater() {
 				{' '}
 				{t('dashboard:pay_later_text_2')}
 			</div>
+
 			<div className={styles.des}>
 				{t('dashboard:pay_later_text_3')}
 			</div>
+
 			<div className={styles.button}>
 				<Button
 					type="button"
-					size="md"
 					themeType="secondary"
 					onClick={() => push('/pay-later')}
 				>

@@ -27,10 +27,8 @@ const doc = {
 	air_freight_service : 'airway_bill',
 };
 const unconfirmedStates = ['shipment_received', 'init'];
-const unconfirmedServiceStates = [
-	'awaiting_service_provider_confirmation',
-	'init',
-];
+const unconfirmedServiceStates = ['awaiting_service_provider_confirmation', 'init'];
+
 const statusMappings = (t) => ({
 	confirmed: {
 		icon : 'tick',
@@ -94,9 +92,7 @@ const getText = ({ shipment_data, services, t }) => {
 	const isAllocated = service?.state === 'awaiting_service_provider_confirmation';
 
 	const isBookingConfirmed = !unconfirmedStates.includes(state);
-	const isMainServiceConfirmed = !unconfirmedServiceStates.includes(
-		service?.state || '',
-	);
+	const isMainServiceConfirmed = !unconfirmedServiceStates.includes(service?.state || '');
 
 	const name = {
 		fcl_freight : t('dashboard:getTexts_fcl_freight'),

@@ -12,9 +12,12 @@ import { KycCampaign as KYC } from '@/ui/page-components/discover_rates/common/K
 
 function CheckKyc() {
 	const { t } = useTranslation(['dashboard']);
+
 	const { profile } = useSelector((state) => state);
 	const { kyc_status, kyc_rejection_reason } = profile?.organization || {};
+
 	const [open, setOpen] = useState(false);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.box}>
@@ -24,6 +27,7 @@ function CheckKyc() {
 					width={60}
 					height={60}
 				/>
+
 				<div>
 					<div className={styles.heading}>
 						{t('dashboard:kyc_text_1')}
@@ -31,11 +35,11 @@ function CheckKyc() {
 						{kyc_status}
 						!
 					</div>
-					<div className={styles.des}>
-						{kyc_rejection_reason
-							|| t('dashboard:kyc_text_2')}
 
+					<div className={styles.des}>
+						{kyc_rejection_reason || t('dashboard:kyc_text_2')}
 					</div>
+
 					<div className={styles.button}>
 						{kyc_status !== 'verified' ? (
 							<Button
@@ -51,6 +55,7 @@ function CheckKyc() {
 					</div>
 				</div>
 			</div>
+
 			{open && (
 				<Modal
 					show={open}

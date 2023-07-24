@@ -25,12 +25,12 @@ function TotalOutstanding({ statsList = {} }) {
 				<div className={styles.card_box}>
 					<div className={styles.card_text}>
 						{formatAmount({
-							amount: total_outstanding_amount || 0,
+							amount  : total_outstanding_amount || 0,
 							currency,
-							options: {
-								style: 'currency',
-								currencyDisplay: 'code',
-								maximumFractionDigits: 0,
+							options : {
+								style                 : 'currency',
+								currencyDisplay       : 'code',
+								maximumFractionDigits : 0,
 							},
 						})}
 					</div>

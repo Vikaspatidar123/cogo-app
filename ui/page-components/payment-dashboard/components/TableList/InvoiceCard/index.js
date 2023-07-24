@@ -81,7 +81,6 @@ function InvoiceCard({ loading, invoiceDetails }) {
 								justifyContent : 'space-around',
 								alignItems     : 'flex-start',
 							}}
-
 						>
 							<div className={styles.flex} style={{ alignItems: 'left' }}>
 								<div className={styles.head}>Invoice Date</div>
@@ -107,7 +106,6 @@ function InvoiceCard({ loading, invoiceDetails }) {
 									justifyContent : 'space-around',
 									alignItems     : 'left',
 								}}
-
 							>
 								<div className={styles.head}>Shipment ID</div>
 								<text style={{
@@ -122,54 +120,48 @@ function InvoiceCard({ loading, invoiceDetails }) {
 								<Popover
 									placement="bottom"
 									className={styles.popover_wrapper}
-									content={
-										item?.invoicePdfUrl?.length > 0
-											? (
-												<div className={styles.flex} style={{ width: '100%' }}>
-													<div className={styles.flex} style={{ width: '158px' }}>
-														<div
-															className={styles.flex}
-															style={{
-																width  : '100%',
-																border : '1px solid rgba(0, 0, 0, 0.1)',
-															}}
-														/>
+									content={item?.invoicePdfUrl?.length > 0 ? (
+										<div className={styles.flex} style={{ width: '100%' }}>
+											<div className={styles.flex} style={{ width: '158px' }}>
+												<div
+													className={styles.flex}
+													style={{
+														width  : '100%',
+														border : '1px solid rgba(0, 0, 0, 0.1)',
+													}}
+												/>
 
-														<div
-															className={styles.flex}
-															role="presentation"
-															style={{ alignItems: 'center' }}
-															onClick={() => window.open(item?.invoicePdfUrl, '_blank')}
-														>
-															<IcMDocument width={28} height={28} />
-															<text
-																style={{ marginLeft: '15px' }}
-															>
-																View and Download
-																{' '}
-																<br />
-																{' '}
-																Invoice
-															</text>
-														</div>
-													</div>
+												<div
+													className={styles.flex}
+													role="presentation"
+													style={{ alignItems: 'center' }}
+													onClick={() => window.open(item?.invoicePdfUrl, '_blank')}
+												>
+													<IcMDocument width={28} height={28} />
+													<text
+														style={{ marginLeft: '15px' }}
+													>
+														View and Download
+														{' '}
+														<br />
+														{' '}
+														Invoice
+													</text>
 												</div>
-											)
-
-											: (
-												<div className={styles.flex} style={{ width: '100%' }}>
-													<div className={styles.flex} style={{ alignItems: 'center' }}>
-														<IcMDocument width={28} height={28} />
-														<text
-															style={{ marginLeft: '15px', color: '#fff' }}
-														>
-															INVOICE NOT AVAILABLE
-														</text>
-													</div>
-												</div>
-											)
-
-									}
+											</div>
+										</div>
+									) : (
+										<div className={styles.flex} style={{ width: '100%' }}>
+											<div className={styles.flex} style={{ alignItems: 'center' }}>
+												<IcMDocument width={28} height={28} />
+												<text
+													style={{ marginLeft: '15px', color: '#fff' }}
+												>
+													INVOICE NOT AVAILABLE
+												</text>
+											</div>
+										</div>
+									)}
 									interactive
 								>
 									<div className={styles.flex} direction="column">

@@ -1,4 +1,4 @@
-import { Checkbox, Modal, Tooltip, cl } from '@cogoport/components';
+import { Checkbox, Modal, Tooltip, cl, Button } from '@cogoport/components';
 import { IcMInfo, IcMHome } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React from 'react';
@@ -142,15 +142,9 @@ function InvoicingPartyItem({
 					);
 				})}
 			</Modal.Body>
-			<Modal.Footer>
-				<div
-					className={styles.add_address}
-					role="presentation"
-					onClick={() => onClickAddAddress()}
-				>
-					+ Add Address
-				</div>
-			</Modal.Footer>
+			<Button themeType="linkUi" onClick={() => onClickAddAddress()}>
+				+ Add Address
+			</Button>
 		</div>
 	);
 }

@@ -11,12 +11,14 @@ const GLOBAL_CONSTANTS = {
 		IN : '5f1f94fa-25da-40de-968d-0254abd24ba6',
 		VN : 'ba3222c0-98f7-4ecd-a378-edf148530f70',
 	},
+
 	currency_code: {
 		INR : 'INR',
 		USD : 'USD',
 		EUR : 'EUR',
 		GBP : 'GBP',
 		AED : 'AED',
+		VND : 'VND',
 	},
 	currency_locale: {
 		INR : 'en-IN',

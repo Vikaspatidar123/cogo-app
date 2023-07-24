@@ -1,8 +1,10 @@
 import { IcAIdea } from '@cogoport/icons-react';
 
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
-const getControls = ({ t, orgCountryCode }) => {
+const getControls = ({ t }) => {
+	const geo = getGeoConstants();
+
 	const field = [
 		{
 			label       : t('hsClassification:hs_code_classification_filter_label_1'),
@@ -42,7 +44,7 @@ const getControls = ({ t, orgCountryCode }) => {
 
 	const defaultValues = {
 		searchBy : 'PRODUCT',
-		country  : GLOBAL_CONSTANTS.hs_code_country_ids?.[orgCountryCode],
+		country  : geo.uuid.hs_code_country_id,
 	};
 
 	return { field, defaultValues };

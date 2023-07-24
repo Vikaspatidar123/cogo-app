@@ -6,10 +6,15 @@ import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
 const getFormattedPayload = ({ val, captchaResponse, leadUserId }) => {
-	const { business_name, country_id } = val;
+	const { name, email, business_name, country_id, mobile_number, is_whatsapp_number } = val || {};
 
 	return {
 		lead_user_id              : leadUserId || undefined,
+		name,
+		email,
+		mobile_country_code       : mobile_number.country_code,
+		mobile_number             : mobile_number.number,
+		is_whatsapp_number,
 		business_name,
 		country_id,
 		google_recaptcha_response : captchaResponse,

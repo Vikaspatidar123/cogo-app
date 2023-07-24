@@ -7,6 +7,7 @@ import Filters from '../Filters';
 import styles from './styles.module.css';
 
 const LOADING_ROWS_COUNT = 6;
+const PAGE_LIMIT = 10;
 
 function AllFiles({ data = {}, loading = false, filters = {}, setFilters = () => {} }) {
 	const { page = 1 } = filters || {};
@@ -33,7 +34,7 @@ function AllFiles({ data = {}, loading = false, filters = {}, setFilters = () =>
 					type="table"
 					currentPage={page}
 					totalItems={total_count}
-					pageSize={10}
+					pageSize={PAGE_LIMIT}
 					onPageChange={(e) => {
 						setFilters((prev) => ({
 							...prev,

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import IMAGE_URLS from './imageUrl';
 
 const GLOBAL_CONSTANTS = {
@@ -212,6 +213,22 @@ const GLOBAL_CONSTANTS = {
 
 	},
 	PROFILE_NAVIGATIONS: ['saas_cogo_subscription', 'saas_finance'],
+
+	ORG_DOCS_SAMPLE_LINKS: {
+		iec                           : 'https://cogoport-production.sgp1.digitaloceanspaces.com/c8cfaa65c6d3e59b38d13e0900985e18/IEC_format%20%281%29.png',
+		gst                           : 'https://cogoport-production.sgp1.digitaloceanspaces.com/95c72c88842372e66c57bbdf221ebeb5/GST-Registration-Certificate-Sample-Annexure-A%20%281%29.png',
+		incorporation_certificate     : 'https://cogoport-production.sgp1.digitaloceanspaces.com/b0e35c0aa25953e5e08e5644cd396420/Certificate-Of-Incorporation.jpeg',
+		memorandum                    : 'https://cogoport-production.sgp1.digitaloceanspaces.com/02bdaad19978dbb68f367485bfe19bf2/MOA-AOA_sample%20template%20%281%29.png',
+		bank_letterhead               : 'https://cogoport-production.sgp1.digitaloceanspaces.com/c49dce5b0e71e0c3d8845b007e46eb9b/Bank%20Authorisation%20Letter%20-%20New%20%281%29.pdf',
+		gst_return_form_3b            : 'https://cogoport-production.sgp1.digitaloceanspaces.com/dc278220e954a2c54cf65be2684c1e23/GSTR-3B-Return-Format%20%281%29.png',
+		authorization_letter_cha      : 'https://cogoport-production.sgp1.digitaloceanspaces.com/a554c3cdb8e16a1c9de7fa18e95959ff/CHA%20authority%20letter%20format%20copy%20%281%29.tiff',
+		kyc                           : 'https://cogoport-production.sgp1.digitaloceanspaces.com/739799d6ba4ee67a4098765d32a67058/KYC%20%281%29%20%281%29.pdf',
+		board_resolution              : 'https://cogoport-production.sgp1.digitaloceanspaces.com/b65deadb0adb1a7216ff06ab13ab2161/Template-NonGovt-BoardResolution-2021_page-0001-724x1024%20%281%29.jpeg',
+		letter_to_custom_commissioner : 'https://cogoport-production.sgp1.digitaloceanspaces.com/ab637cead9e949aada5115faf89871b4/Covering%20Letter-Request%20letter%20to%20Assis%3Adeputy%20commissionar.doc',
+		ad_code_letter                : 'https://cogoport-production.sgp1.digitaloceanspaces.com/2ed56b771e89c3f7f77edc002776bfa8/authorized-dealership-ad-code-letter-format%20%281%29.jpeg',
+		lut_copy                      : 'https://cogoport-production.sgp1.digitaloceanspaces.com/98432eb67e0dd4c09fcaca028fda3658/letter-of-undertaking-lut-%20%281%29.jpeg',
+		membership_certificate        : 'https://cogoport-production.sgp1.digitaloceanspaces.com/ca59d74941869eb1ebd5ee85fd8d445d/RCMC%20%281%29%20%281%29.pdf',
+	},
 };
 
 export default GLOBAL_CONSTANTS;

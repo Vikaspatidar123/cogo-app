@@ -50,7 +50,12 @@ function ServiceWiseHeading({
 					style={{ width: '200px' }}
 				/>
 
-				<Button themeType="accent" className={styles.button} onClick={handleSubmit}>
+				<Button
+					themeType="accent"
+					type="button"
+					className={styles.button}
+					onClick={handleSubmit}
+				>
 					Submit
 				</Button>
 			</div>

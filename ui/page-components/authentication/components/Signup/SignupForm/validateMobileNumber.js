@@ -1,5 +1,5 @@
 async function validateMobileNumber(props) {
-	const { setCustomError, fetchLeadUserTrigger, payload } = props;
+	const { setCustomError, fetchLeadUserTrigger, payload, t } = props;
 
 	try {
 		await fetchLeadUserTrigger({
@@ -9,7 +9,7 @@ async function validateMobileNumber(props) {
 		setCustomError('');
 		return true;
 	} catch (error) {
-		setCustomError('Mobile Number is Invalid');
+		setCustomError(t('authentication:signup_mobile_error'));
 
 		return false;
 	}

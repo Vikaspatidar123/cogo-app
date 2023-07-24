@@ -131,6 +131,7 @@ function SignupForm({
 							payload: getFormattedPayload({ formValues, leadUserId }),
 							setCustomError,
 							fetchLeadUserTrigger,
+							t,
 						}),
 					}}
 					mode="onBlur"

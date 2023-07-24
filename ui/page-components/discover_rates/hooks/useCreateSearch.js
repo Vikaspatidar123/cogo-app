@@ -64,6 +64,13 @@ const useCreateSearch = ({
 		createServices = {},
 		is_service = false,
 	) => {
+		console.log(
+			'🚀 ~ file: useCreateSearch.js:67 ~ 		rawParams',
+			rawParams,
+			serviceMode,
+			createServices,
+			is_service,
+		);
 		const spotSearchParams = { ...rawParams, search_type: serviceMode };
 
 		const formattedSpotSearchParams = formatCreateSearch(
@@ -124,6 +131,7 @@ const useCreateSearch = ({
 	};
 
 	const handleCreate = async (values, optionsValues) => {
+		console.log('🚀 ~ file: useCreateSearch.js:127 ~ handleCreate ~ values, optionsValues:', values, optionsValues);
 		setLoading(true);
 		const { container_type_commodity, ...restOptions } = optionsValues;
 		const rawParams = {
@@ -240,6 +248,7 @@ const useCreateSearch = ({
 	});
 
 	const submitData = async (values, e) => {
+		console.log('🚀 ~ file: useCreateSearch.js:243 ~ submitData ~ values, e:', values, e);
 		e.preventDefault();
 		if (optionsControls.display.length > 0) {
 			options.handleSubmit(

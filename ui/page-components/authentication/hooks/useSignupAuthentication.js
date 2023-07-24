@@ -61,10 +61,10 @@ const useSignupAuthentication = ({
 			} else {
 				Toast.error(t('authentication:forgotPassword_error_message'));
 			}
-
-			recaptchaRef?.current?.reset();
 		} catch (err) {
 			Toast.error(getApiErrorString(err?.response?.data) || t('authentication:signup_error_message'));
+		} finally {
+			recaptchaRef?.current?.reset();
 		}
 	};
 

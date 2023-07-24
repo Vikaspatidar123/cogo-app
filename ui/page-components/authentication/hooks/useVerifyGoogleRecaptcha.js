@@ -6,7 +6,7 @@ function useVerifyGoogleRecaptcha() {
 	const recaptchaRef = useRef({});
 
 	const [{ loading: captchaLoading }, trigger] = useRequest({
-		url    : 'verify_google_recaptcha',
+		url    : '/verify_google_recaptcha',
 		method : 'get',
 	}, { manual: true });
 

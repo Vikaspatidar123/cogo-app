@@ -16,7 +16,7 @@ const getFormattedPayload = (props) => {
 const useLeadUserDetails = ({ setLeadUserId = () => {} }) => {
 	const [{ loading }, trigger] = useRequest(
 		{
-			url    : 'create_saas_sign_up_lead_user',
+			url    : '/create_saas_sign_up_lead_user',
 			method : 'post',
 		},
 		{ manual: true },
@@ -33,6 +33,7 @@ const useLeadUserDetails = ({ setLeadUserId = () => {} }) => {
 
 			setLeadUserId(res?.id);
 		} catch (err) {
+			setLeadUserId('');
 			console.error(err);
 		}
 	};

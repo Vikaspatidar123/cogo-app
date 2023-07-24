@@ -1,5 +1,5 @@
-import { IcMCross } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
+import React from 'react';
 
 import { UNIT_MAPPING } from '../constants';
 
@@ -8,10 +8,9 @@ import styles from './styles.module.css';
 
 function PriceBreakup({ details = {}, source = '' }) {
 	const groupedServices = {};
-	const containerCount = details.containers_count || 1;
 
 	(details || []).forEach((item) => {
-		let service = '';
+		let service = item?.service_type;
 		if (item?.service) {
 			if (item?.trade_type === 'import') {
 				service = `destination_${item?.service_name}_${item?.service}`;
@@ -24,8 +23,6 @@ function PriceBreakup({ details = {}, source = '' }) {
 			service = `destination_${item?.service_type}`;
 		} else if (item?.trade_type === 'export') {
 			service = `origin_${item?.service_type}`;
-		} else {
-			service = item?.service_type;
 		}
 		groupedServices[service] = [...(groupedServices[service] || []), item];
 	});
@@ -45,49 +42,56 @@ function PriceBreakup({ details = {}, source = '' }) {
 		return `${tradeType} ${service} (${startCase(serviceType)})`;
 	};
 
-	let newData = [];
-
-	(Object.keys(groupedServices) || []).forEach((service) => {
-		newData = [
-			...newData,
-			{
-				service: (groupedServices[service] || [])[0]?.service
-					? handleServicesNames(service)
-					: startCase(service),
-				properties: (groupedServices[service] || []).map((item) => (
-					handleLineItemsBreakup(item, details, containerCount, source)))[0],
-			},
-		];
-	});
+	const newData = Object.keys(groupedServices).map((service) => ({
+		service: (groupedServices[service] || [])[0]?.service
+			? handleServicesNames(service)
+			: startCase(service),
+		properties: (groupedServices[service] || []).map((item) => handleLineItemsBreakup(item, source)),
+	}));
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.title}>
-				<div className={styles.title_text}>Detailed Breakup</div>
-				<IcMCross cursor="pointer" onClick={() => setShowBreakup(false)} />
-			</div>
-			{(newData || []).map((item, itmIndex) => {
-				const { price } = item.properties.pop();
-				return (
-					<>
-						<div className={styles.price_title} key={item[itmIndex]?.features}>
-							<div className={styles.basic_title}>{item.service}</div>
-							<div className={styles.basic_price}>{price}</div>
-						</div>
-						<div className={styles.info_data}>
-							{item.properties.map((itm) => (
-								<div className={styles.info}>
-									<div className={styles.info_text}>{itm.features}</div>
-									<div className={styles.info_price}>
-										{itm.price}
-										{' '}
-										{UNIT_MAPPING[itm.unit]}
-									</div>
+			{(newData || []).map((data) => {
+				const { properties } = data;
+				return properties.map((property, itemIndex) => {
+					const { features, price = '' } = property[property.length - 1] || {};
+
+					return (
+						<React.Fragment key={property?.[itemIndex]?.features}>
+							<div className={styles.price_title}>
+								<div className={styles.basic_details}>
+									<div className={styles.basic_title}>{data?.service}</div>
+									{features ? (
+										<div className={styles.detail_container}>
+											(
+											{features}
+											)
+										</div>
+									) : null}
+
+									<div className={styles.basic_price}>{price}</div>
 								</div>
-							))}
-						</div>
-					</>
-				);
+							</div>
+
+							<div className={styles.info_data}>
+								{property.map((item, index) => {
+									if (index === property.length - 1) return null;
+
+									return (
+										<div className={styles.info} key={item?.features}>
+											<div className={styles.info_text}>{item.features}</div>
+											<div className={styles.info_price}>
+												{item?.price}
+												{' '}
+												{UNIT_MAPPING[item?.unit]}
+											</div>
+										</div>
+									);
+								})}
+							</div>
+						</React.Fragment>
+					);
+				});
 			})}
 		</div>
 	);

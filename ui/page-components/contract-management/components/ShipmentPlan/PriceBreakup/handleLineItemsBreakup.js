@@ -28,8 +28,8 @@ const handleLineItemsBreakup = (item, source) => {
 	let type = startCase(container_type || '');
 	const comm = startCase(commodity || '');
 	const truckType = startCase(truck_type || '');
-	let packageType = '';
-	let packageHandlingType = '';
+	const packageType = startCase(packing_type || '');
+	const packageHandlingType = startCase(handling_type);
 
 	if (container_type || commodity) {
 		size = `${container_size} ft, `;
@@ -37,11 +37,6 @@ const handleLineItemsBreakup = (item, source) => {
 
 	if (commodity) {
 		type = `${startCase(container_type)}, `;
-	}
-
-	if (packages.length) {
-		packageType = startCase(packing_type);
-		packageHandlingType = startCase(handling_type);
 	}
 
 	const handleService = () => {

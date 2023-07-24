@@ -15,7 +15,7 @@ function PortName({ location }) {
 			<Tooltip
 				content={<div style={{ color: 'grey' }}>{location.name}</div>}
 			>
-				<div className={cl`${styles.text} ${styles.name}`}>{location.name.substring(0, 11) || ''}</div>
+				<div className={cl`${styles.text} ${styles.name}`}>{location.name?.substring(0, 11) || ''}</div>
 			</Tooltip>
 		</div>
 	);

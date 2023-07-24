@@ -10,7 +10,9 @@ export const getItemDisplayString = ({ count, itemType }) => {
 };
 
 export const generateServiceDisplayName = (serviceName) => {
-	if (typeof serviceName !== 'string') return '';
+	if (typeof serviceName !== 'string') {
+		return '';
+	}
 
 	const service = serviceName.split('_');
 

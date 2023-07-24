@@ -33,7 +33,7 @@ function Filters({
 					suffix={(
 						<IcMCross
 							onClick={() => onQueryChange('')}
-							style={{ cursor: 'pointer', marginTop: '5px' }}
+							style={{ cursor: 'pointer', marginRight: '5px' }}
 						/>
 					)}
 					onChange={(e) => {

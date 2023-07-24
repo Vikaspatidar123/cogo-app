@@ -12,7 +12,7 @@ function Header({ statsList = {} }) {
 	return (
 		<div className={styles.container}>
 			<div>
-				<div className={styles.heading}> Payment Dashboard</div>
+				<div className={styles.heading}>Payment Dashboard</div>
 				<div className={cl`${styles.web_view} ${styles.des}`}>
 					Get all the financial assistance you need from us.
 				</div>
@@ -26,11 +26,11 @@ function Header({ statsList = {} }) {
 				/>
 				<div className={styles.amount}>
 					{formatAmount({
-						amount  : on_account_amount?.toFixed(2),
+						amount: on_account_amount?.toFixed(2),
 						currency,
-						options : {
-							style           : 'currency',
-							currencyDisplay : 'code',
+						options: {
+							style: 'currency',
+							currencyDisplay: 'code',
 						},
 					})}
 				</div>

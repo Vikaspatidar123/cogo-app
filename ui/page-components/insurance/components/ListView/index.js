@@ -17,6 +17,9 @@ import FilterSection from './Filter';
 import styles from './styles.module.css';
 import TableComponent from './Table';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function ListView() {
 	const [activeTab, setActiveTab] = useState('ALL');
 	const [cancelModal, setCancelModal] = useState(false);
@@ -97,13 +100,13 @@ function ListView() {
 			</div>
 			<div className={styles.flex_end}>
 				{showFaq === 'none' &&				(
-					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/faq.svg"
-						alt=""
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.faq_image}
+						alt="faq_logo"
 						onClick={() => setFaq('block')}
 						role="presentation"
-						width="60px"
-						height="45px"
+						width={60}
+						height={45}
 					/>
 				)}
 			</div>

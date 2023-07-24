@@ -1,8 +1,11 @@
 import { Pill } from '@cogoport/components';
 import { IcCCompleteJourney } from '@cogoport/icons-react';
+import { addDays } from '@cogoport/utils';
 
 import styles from '../components/Details/CargoDetails/styles.module.css';
 import { INCOTERMOPTIONS } from '../constants/incotermOptions';
+
+import { Image } from '@/packages/next';
 
 const ONE_MONTH_FROM_TODAY = 31;
 
@@ -40,7 +43,14 @@ const controls = [
 			value: x.locationId,
 			label:
 	<div className={styles.country_flag_options}>
-		{x.countryFlagIcon ? <img src={x.countryFlagIcon} alt="cogo" /> : <IcCCompleteJourney />}
+		{x.countryFlagIcon ? (
+			<Image
+				src={x.countryFlagIcon}
+				alt="cogo"
+				width={24}
+				height={24}
+			/>
+		) : <IcCCompleteJourney />}
 		<div>{x.countryName}</div>
 		{x?.countryType === 'BLOCKED' && (
 			<Pill color="red">{x?.countryType}</Pill>
@@ -83,7 +93,7 @@ const controls = [
 		placeholder : 'Transit Start Date',
 		type        : 'datepicker',
 		minDate     : new Date(),
-		maxDate     : new Date().setDate(new Date().getDate() + ONE_MONTH_FROM_TODAY),
+		maxDate     : addDays(new Date(), ONE_MONTH_FROM_TODAY),
 	},
 	{
 		name        : 'locationFrom',

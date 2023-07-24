@@ -81,6 +81,7 @@ const IMAGE_URLS = {
 	logo_without_footer       : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/logo-cogoport.svg',
 	create_ticket_empty_state : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/empty-state.svg',
 	empty_url                 : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty-item.svg',
+	faq_image                 : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/faq.svg',
 };
 
 export default IMAGE_URLS;

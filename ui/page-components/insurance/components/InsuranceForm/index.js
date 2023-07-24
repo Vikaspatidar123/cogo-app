@@ -1,5 +1,6 @@
 import { Tooltip, Chips } from '@cogoport/components';
 import { IcMArrowBack } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import FAQComponent from '../../common/FAQComponent';
@@ -11,6 +12,7 @@ import InsuredDetails from '../InsuredDetails';
 import styles from './styles.module.css';
 
 import { Image, useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function InsuranceFrom() {
 	const { query } = useRouter();
@@ -61,11 +63,10 @@ function InsuranceFrom() {
 						size="lg"
 					/>
 					<Image
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/faq.svg"
+						src={GLOBAL_CONSTANTS.image_url.faq_image}
 						onClick={() => {
 							setFaq('block');
 						}}
-						role="presentation"
 						alt="faq_button"
 						className={showFaq === 'block' ? styles.faq_hidden : styles.faq}
 						width={60}
@@ -77,7 +78,7 @@ function InsuranceFrom() {
 					/>
 				</div>
 
-				{policyId && Object.keys(draftDetailsPrefilling || {})?.length > 0 && (
+				{policyId && !isEmpty(draftDetailsPrefilling) && (
 					<InsuredDetails
 						type={type}
 						activeTab={activeTab}

@@ -1,5 +1,5 @@
 import { Modal } from '@cogoport/components';
-import { format, startCase } from '@cogoport/utils';
+import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
 import BuyModal from '../BuyModal';
@@ -12,6 +12,25 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
 
 const { DetailsContainer, HeaderTitle, SectionTitle, AvatarComponent } = getComponents();
+
+const DETAILS_ARRAY = [
+	{
+		label : 'GST No',
+		value : 'gstin',
+	},
+	{
+		label : 'City',
+		value : 'billingCity',
+	},
+	{
+		label : 'State',
+		value : 'billingState',
+	},
+	{
+		label : 'Pincode',
+		value : 'billingPincode',
+	},
+];
 
 function PreviewModal({
 	formDetails = {},
@@ -30,10 +49,6 @@ function PreviewModal({
 		institutionName = '',
 		partyName = '',
 		billingAddress = '',
-		gstin = '',
-		billingCity = '',
-		billingState = '',
-		billingPincode = '',
 		incoterm = '',
 		cargoDescription = '',
 		packaging = '',
@@ -85,12 +100,12 @@ function PreviewModal({
 			<Modal.Body>
 				<AvatarComponent name={name} />
 				<div className={styles.address_div}>
-					{cogoPolicyNo && (
+					{cogoPolicyNo ? (
 						<div>
 							<div className={styles.label}>Policy No.</div>
 							<div className={styles.email_value}>{cogoPolicyNo}</div>
 						</div>
-					)}
+					) : null}
 					<div className={styles.label}>Contact Address</div>
 					<div className={styles.email_value}>
 						{email}
@@ -122,10 +137,10 @@ function PreviewModal({
 							</div>
 						</div>
 						<div className={styles.row}>
-							<DetailsContainer label="GST No" value={gstin} />
-							<DetailsContainer label="City" value={billingCity} />
-							<DetailsContainer label="State" value={billingState} />
-							<DetailsContainer label="Pincode" value={billingPincode} />
+							{DETAILS_ARRAY.map((item) => {
+								const { label = '', value = '' } = item || {};
+								return <DetailsContainer label={label} value={formDetails[value]} />;
+							})}
 						</div>
 					</div>
 				</div>
@@ -195,7 +210,7 @@ function PreviewModal({
 								label="Transit start date"
 								value={formatDate({
 									date       : transitDate || transitStartDate,
-									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+									dateFormat : GLOBAL_CONSTANTS.formats.date['dd-MM-yyyy'],
 									formatType : 'date',
 								})}
 								className="commodity"
@@ -221,7 +236,11 @@ function PreviewModal({
 							/>
 							<DetailsContainer
 								label="Invoice Date"
-								value={format(watcher[3] || invoiceDate, 'dd MMM yy')}
+								value={formatDate({
+									date       : watcher[3] || invoiceDate,
+									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MM yyyy'],
+									formatType : 'date',
+								})}
 								className="commodity"
 							/>
 						</div>

@@ -1,5 +1,7 @@
 import { IcMExportfile, IcMImportfile } from '@cogoport/icons-react';
 
+const FIRST_INDEX = 1;
+
 const getChipOptions = ({ activeStepper = [], sid = 'false' }) => [
 	{
 		suffix          : 'Import',
@@ -7,7 +9,7 @@ const getChipOptions = ({ activeStepper = [], sid = 'false' }) => [
 		prefix          : <IcMImportfile height={25} width={25} />,
 		backgroundColor : '#7278AD',
 		color           : '#eee7e7',
-		disabled        : (activeStepper?.[1] !== 'pro' || sid === 'true'),
+		disabled        : (activeStepper?.[FIRST_INDEX] !== 'pro' || sid === 'true'),
 	},
 	{
 		suffix          : 'Export',
@@ -15,7 +17,7 @@ const getChipOptions = ({ activeStepper = [], sid = 'false' }) => [
 		prefix          : <IcMExportfile height={25} width={25} />,
 		backgroundColor : '#7278AD',
 		color           : '#eee7e7',
-		disabled        : (activeStepper?.[1] !== 'pro' || sid === 'true'),
+		disabled        : (activeStepper?.[FIRST_INDEX] !== 'pro' || sid === 'true'),
 	},
 ];
 

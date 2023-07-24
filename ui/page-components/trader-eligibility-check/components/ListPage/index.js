@@ -65,7 +65,7 @@ function ListPage() {
 						<Image
 							className={style2.svg_style}
 							src={GLOBAL_CONSTANTS.image_url.heading_icon}
-							alt=""
+							alt="heading_icon"
 							width={40}
 							height={40}
 						/>

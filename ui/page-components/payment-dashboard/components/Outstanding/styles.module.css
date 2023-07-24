@@ -1,0 +1,64 @@
+.container {
+    display: flex;
+    flex-direction: row;
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
+}
+
+.web_view {
+    display: flex;
+
+    @media (max-width: 767px) {
+        display: none;
+    }
+}
+
+.mobile_view {
+    display: none;
+
+    @media (max-width: 767px) {
+        display: block;
+    }
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @media (max-width: 767px) {
+        flex-direction: row;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+}
+
+.card {
+    display: flex;
+    flex: 2;
+
+    @media (max-width: 767px) {
+        height: 120px;
+    }
+}
+
+.card_box {
+    display: flex;
+    flex: 2;
+}
+
+.styled_row {
+    display: flex;
+    width: 100%;
+    padding: 16px 0 16px 16px;
+    margin: 4px 0 0 4px;
+    margin-bottom: 16px;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.flex {
+    display: flex;
+}

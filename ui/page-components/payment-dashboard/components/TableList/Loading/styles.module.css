@@ -1,0 +1,39 @@
+.box {
+	padding: 4px;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: rgb(0 0 0 / 15%) 0 0 15px;
+	opacity: 0.4;
+}
+
+.line {
+	padding: 4px;
+	background-color: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	box-shadow: rgb(0 0 0 / 15%) 0 0 15px;
+	opacity: 0.4;
+}
+
+.panel {
+	display: flex;
+	flex-direction: row;
+
+	&.margin {
+		margin-top: 16px;
+	}
+}
+
+.buttons {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-left: 15%;
+}
+
+.flex {
+	display: block;
+	margin-bottom: 16px;
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
+}

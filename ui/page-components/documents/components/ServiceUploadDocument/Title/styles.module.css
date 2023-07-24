@@ -15,7 +15,7 @@
 
 .listTitle {
 	display: flex;
-	max-width: 24vw;
+	max-width: 90%;
 	overflow: hidden;
 	font-size: 14px;
 	font-weight: 500;

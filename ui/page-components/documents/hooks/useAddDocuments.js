@@ -20,6 +20,7 @@ const useAddDocuments = ({
 					service_type: serviceType || undefined,
 				},
 			});
+
 			setDocumentDetails({ name: '' });
 			refetch(serviceType ? { service_type: serviceType } : {});
 		} catch (e) {

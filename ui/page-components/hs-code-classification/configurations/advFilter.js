@@ -1,6 +1,8 @@
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const getControls = ({ t }) => {
+	const geo = getGeoConstants();
+
 	const CONTROLS = [
 		{
 			label       : t('hsClassification:hs_code_classification_filter_label_1'),
@@ -8,7 +10,7 @@ const getControls = ({ t }) => {
 			type        : 'async_select',
 			placeholder : t('hsClassification:hs_code_classification_filter_placeholder_1'),
 			asyncKey    : 'hs_code_countries',
-			value       : GLOBAL_CONSTANTS.hs_code_country_ids.IN,
+			value       : geo.uuid.hs_code_country_id,
 			valueKey    : 'id',
 			labelKey    : 'countryName',
 			initialCall : true,

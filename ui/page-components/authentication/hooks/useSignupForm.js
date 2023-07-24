@@ -36,7 +36,7 @@ const useSignupForm = ({
 			}
 		}
 
-		if ((name && email && hasMobileValues)) {
+		if (name && email && hasMobileValues) {
 			onLeadUserDetails({ leadUserId, formValues });
 		}
 	};

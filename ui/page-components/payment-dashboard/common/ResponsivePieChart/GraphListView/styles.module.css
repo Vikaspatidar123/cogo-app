@@ -12,6 +12,16 @@
 	font-weight: 700;
 }
 
+.styled_row {
+	display: flex;
+	padding: 5px;
+	background: #fff;
+
+	:nth-child(even) {
+		background: #f9f9f9;
+	}
+}
+
 .container {
 	width: 100%;
 
@@ -30,16 +40,6 @@
 
 .styled_col {
 	padding: 4px;
-}
-
-.styled_row {
-	display: flex;
-	padding: 5px;
-	background: #fff;
-
-	:nth-child(even) {
-		background: #f9f9f9;
-	}
 }
 
 .flex {

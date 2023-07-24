@@ -17,7 +17,7 @@ export default {
 		amount: {
 			scope: {
 				admin: {
-					locale: 'vi-VN',
+					locale: 'en-SG',
 				},
 			},
 			options: {},
@@ -39,13 +39,13 @@ export default {
 	},
 	notification_polling_interval : 300000,
 	lcw_timer                     : 10000,
-	customer_support              : 'support.vn@cogoport.com',
+	customer_support              : 'support.sg@cogoport.com',
 	default_agent                 : {
-		name                  : 'Lam Ngoc Ha',
-		email                 : 'support.vn@cogoport.com',
-		mobile_country_code   : '+84',
-		mobile_number         : '961435779',
-		mobile_number_eformat : '84961435779',
+		name                  : 'Kanira Patel',
+		email                 : 'support@cogoport.com',
+		mobile_country_code   : '+91',
+		mobile_number         : '8976851674',
+		mobile_number_eformat : '918976851674',
 	},
 	uuid: {
 		super_admin_id              : '5de782f6-f59d-41fc-84f4-8425dc1fa670',
@@ -368,23 +368,28 @@ export default {
 
 	others: {
 		registration_number: {
-			label      : 'VAT',
+			label      : 'UEN',
 			pattern    : /^[0-9]{1}[0-9]{9}$|^[0-3]{1}[0-9]{9}-?[0-9]{3}$/,
 			max_length : 15,
 		},
+
 		identification_number: {
 			label: 'Registration Number',
 		},
+
 		address: {
 			label: 'Registration Extract',
 		},
+
 		economic_zone: {
 			label: 'Non-Tariff Zone',
 		},
+
 		pan_number: {
 			label   : 'PAN',
 			pattern : '',
 		},
+
 		navigations: {
 			common: {
 				validate_registration_number : false,

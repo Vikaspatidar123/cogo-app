@@ -2,7 +2,6 @@ import { Pagination } from '@cogoport/components';
 import { IcMTrailorFull } from '@cogoport/icons-react';
 import { useState, Fragment, useEffect } from 'react';
 
-import useListSaasSubscriptions from '../../hooks/useListSaasSubscription';
 import { isPastOrPresentDay } from '../../utils/constants';
 import { UNSHADED_MILESTONES } from '../../utils/milestone';
 import { INCOTERM_TO_SHIPPERS_RESPONSIBILITY } from '../../utils/milestone_type';
@@ -36,8 +35,6 @@ function TimelineNavigate({
 	servicesForMap = false,
 	rest,
 }) {
-	const { data } = useListSaasSubscriptions();
-
 	const {
 		general: { isMobile = false },
 	} = useSelector((state) => state);
@@ -105,9 +102,11 @@ function TimelineNavigate({
 			{allContainers.length > 0 ? (
 				<div style={{ display: 'flex', flexDirection: 'column' }}>
 					<div className={styles.tag_title}>Tracking Information</div>
+
 					<div className={styles.container}>
-						{(data?.list || []).map((item) => (item?.container_details?.length !== 0 ? (
+						{(allContainers || []).map((item) => (item?.container_details?.length !== 0 ? (
 							<div
+								key={item?.input}
 								role="presentation"
 								className={`${styles.custom_tag} 
                                 ${currentSubscription?.id === item?.id ? styles.set_tracking : ''}`}
@@ -121,6 +120,7 @@ function TimelineNavigate({
 							</div>
 						) : null))}
 					</div>
+
 					<div className={styles.pagination_container}>
 						<Pagination
 							type="compact"

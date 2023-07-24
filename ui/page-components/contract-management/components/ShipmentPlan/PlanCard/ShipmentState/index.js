@@ -23,6 +23,7 @@ function ShipmentState({ itemData }) {
 			{shipmentStat.map(({ label, count }) => (
 				<div className={styles.card}>
 					<div className={styles.label}>{label}</div>
+
 					<div className={styles.sub_label}>
 						{count}
 						{' '}

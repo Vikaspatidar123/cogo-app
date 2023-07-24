@@ -43,7 +43,9 @@ function Utilisation({ itemData = {} }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.progress_container}>
+
 				<div className={styles.stats}>
+
 					<div className={styles.contract_title}>
 						{KEYS_MAPPING[service_type]?.booked
 							> KEYS_MAPPING[service_type]?.req
@@ -52,6 +54,7 @@ function Utilisation({ itemData = {} }) {
 						{' '}
 						Utilisation
 					</div>
+
 					{service_type && (
 						<div className={styles.utilisation_count}>
 							{KEYS_MAPPING[service_type]?.booked?.toFixed(0)}

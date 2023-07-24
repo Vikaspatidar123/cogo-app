@@ -13,8 +13,8 @@ import styles from './styles.module.css';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const geo = getGeoConstants();
 function ResponsivePieChart({ data, heading, isKamWise, loading }) {
+	const geo = getGeoConstants();
 	const [showListView, setShowListView] = useState(false);
 	const [isSortBy, setIsSortBy] = useState('');
 	const isEmpty = (data || []).every((el) => el.value === 0);
@@ -52,10 +52,10 @@ function ResponsivePieChart({ data, heading, isKamWise, loading }) {
 					<ResponsivePie
 						data={data}
 						margin={{
-							top    : 20,
-							right  : 30,
-							bottom : 20,
-							left   : 20,
+							top: 20,
+							right: 30,
+							bottom: 20,
+							left: 20,
 						}}
 						endAngle={-360}
 						cornerRadius={3}
@@ -63,8 +63,8 @@ function ResponsivePieChart({ data, heading, isKamWise, loading }) {
 						colors={COLORS}
 						borderWidth={1}
 						borderColor={{
-							from      : 'color',
-							modifiers : [['darker', 0.2]],
+							from: 'color',
+							modifiers: [['darker', 0.2]],
 						}}
 						enableArcLinkLabels={false}
 						enableArcLabels={false}
@@ -75,8 +75,8 @@ function ResponsivePieChart({ data, heading, isKamWise, loading }) {
 						arcLabelsRadiusOffset={0.55}
 						arcLabelsSkipAngle={5}
 						arcLabelsTextColor={{
-							from      : 'color',
-							modifiers : [['darker', 2]],
+							from: 'color',
+							modifiers: [['darker', 2]],
 						}}
 						tooltip={({ datum: { label, value, color } }) => (
 							<div className={styles.tool_tip_div}>
@@ -89,12 +89,12 @@ function ResponsivePieChart({ data, heading, isKamWise, loading }) {
 									:
 									<div className={styles.tool_tip_amount}>
 										{formatAmount({
-											amount   : value || 0,
-											currency : geo.country.currency.code,
-											options  : {
-												style                 : 'currency',
-												currencyDisplay       : 'symbol',
-												maximumFractionDigits : 0,
+											amount: value || 0,
+											currency: geo.country.currency.code,
+											options: {
+												style: 'currency',
+												currencyDisplay: 'symbol',
+												maximumFractionDigits: 0,
 											},
 										})}
 									</div>

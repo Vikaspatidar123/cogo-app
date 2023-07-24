@@ -11,11 +11,9 @@ import TaxInvoiceModal from './TaxInvoiceModal';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import formatDate from '@/ui/commons/utils/formatDate';
 
-const geo = getGeoConstants();
-
 function InvoiceCard({ loading, invoiceDetails }) {
 	const [show, setShow] = useState(false);
-
+	const geo = getGeoConstants();
 	function RenderIcons({ item }) {
 		if (item.service_type === 'fcl_freight') {
 			return <IcMFship fill="#356EFD" />;

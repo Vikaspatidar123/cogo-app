@@ -6,9 +6,8 @@ import styles from './styles.module.css';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const geo = getGeoConstants();
-
 function GraphListView({ isKamWise, isSortBy, setIsSortBy, sortedData }) {
+	const geo = getGeoConstants();
 	return (
 		<div className={styles.container}>
 			<div className={styles.flex}>
@@ -40,12 +39,12 @@ function GraphListView({ isKamWise, isSortBy, setIsSortBy, sortedData }) {
 						<div className={styles.styled_row}>
 							<div className={styles.amount}>
 								{formatAmount({
-									amount   : item.value || 0,
-									currency : geo.country.currency.code,
-									options  : {
-										style                 : 'currency',
-										currencyDisplay       : 'code',
-										maximumFractionDigits : 0,
+									amount: item.value || 0,
+									currency: geo.country.currency.code,
+									options: {
+										style: 'currency',
+										currencyDisplay: 'code',
+										maximumFractionDigits: 0,
 									},
 								})}
 							</div>

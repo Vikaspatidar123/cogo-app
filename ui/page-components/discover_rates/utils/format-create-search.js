@@ -10,6 +10,8 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import { getCountryCode } from '@/ui/commons/utils/getCountryDetails';
 import getFormattedValues from '@/ui/commons/utils/getFormattedValues';
 
+const HAULAGE_SERVICES = ['haulage_freight', 'barge_freight'];
+
 const FCL_CUSTOMS_SUPPORTED_COUNTRY = GLOBAL_CONSTANTS.service_supported_countries.fcl_customs.countries;
 
 const mergeContainerDetails = (containers) => {
@@ -635,7 +637,7 @@ const formatDataForSingleService = ({
 		];
 	}
 
-	if (['haulage_freight', 'barge_freight'].includes(mode)) {
+	if (HAULAGE_SERVICES.includes(mode)) {
 		let service_type = '';
 
 		if (

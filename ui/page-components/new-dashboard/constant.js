@@ -30,13 +30,6 @@ export const PATH_OPTION = {
 	land  : { color: '#136f29', weight: 2 },
 };
 
-export const LOADING_TEXT = [
-	'Tracking your shipment in real-time...',
-	'Monitoring the progress of your shipment...',
-	'Tracking the movement of your shipment for detailed updates...',
-	'Fetching the latest tracking information for your package...',
-];
-
 export const LOADING_TEXT_COUNT = 3;
 
 export const SUFFIX = {
@@ -78,75 +71,60 @@ export const renderValue = ({ label, data, t }) => {
 	const packageDetails = `${t('dashboard:common_containerInfo_packageDetails_1')}:
 	 ${inputValue} ${packages?.length > 1
 	? `+ ${(packages?.length || 0) - 1} ${t('dashboard:common_containerInfo_packageDetails_2')}`
-	: ''
-}`;
+	: ''}`;
 
-	switch (label) {
-		case 'container_size':
+	const renderValueMapping = {
+		container_size: () => {
 			if (data.container_size?.includes('HC')) {
 				return data.container_size?.replace('HC', 'ft HC');
 			}
 			return `${data.container_size || '--'}ft`;
-		case 'containers_count':
+		},
+		containers_count: () => {
 			if (!data.containers_count) {
 				return null;
 			}
-
 			if (data.containers_count === 1) {
 				return t('dashboard:common_containerInfo_renderValue_2');
 			}
-
 			return `${data.containers_count} ${t('dashboard:common_containerInfo_renderValue_3')}`;
-		case 'packages_count':
+		},
+		packages_count: () => {
 			if (!data.packages_count) {
 				return null;
 			}
-
 			if (data.packages_count === 1) {
 				return t('dashboard:common_containerInfo_renderValue_4');
 			}
-
 			return `${data.packages_count} "${t('dashboard:common_containerInfo_renderValue_5')}"`;
-		case 'trucks_count':
+		},
+		trucks_count: () => {
 			if (!data.trucks_count) {
 				return null;
 			}
-
 			if (data.trucks_count === 1) {
 				return t('dashboard:common_containerInfo_renderValue_6');
 			}
+			return `${data.trucks_count} ${t('dashboard:common_containerInfo_renderValue_7')}`;
+		},
+		container_type : () => startCase(data.container_type || ''),
+		trade_type     : () => startCase(data.trade_type || ''),
+		commodity      : () => startCase(data.commodity || ''),
+		inco_term      : () => `${t('dashboard:common_containerInfo_renderValue_8')} -
+		${upperCase(data.inco_term || '')}`,
+		packages : () => (packages?.length === 0 ? null : packageDetails),
+		volume   : () => `${t('dashboard:common_containerInfo_renderValue_9')}. -
+		 ${data.volume} ${t('dashboard:common_containerInfo_renderValue_10')}`,
+		weight: () => `${t('dashboard:common_containerInfo_renderValue_11')}.
+		 - ${data.weight} ${t('dashboard:common_containerInfo_renderValue_12')}`,
+		haulage_type        : () => startCase(data.haulage_type || ''),
+		transport_mode      : () => startCase(data.transport_mode || ''),
+		cargo_stacking_type : () => startCase(data.cargo_stacking_type || ''),
+		msds_document       : () => (data.commodity_details?.[0].msds_document ? `msds${(<IcCFtick />)}` : null),
+	};
 
-			return `${data.trucks_count} t('dashboard:common_containerInfo_renderValue_7')`;
-		case 'container_type':
-			return startCase(data.container_type || '');
-		case 'trade_type':
-			return startCase(data.trade_type || '');
-		case 'commodity':
-			return startCase(data.commodity || '');
-		case 'inco_term':
-			return `${t('dashboard:common_containerInfo_renderValue_8')} - ${upperCase(data.inco_term || '')}`;
-		case 'packages':
-			if (packages?.length === 0) {
-				return null;
-			}
-			return packageDetails;
-		case 'volume':
-			return `${t('dashboard:common_containerInfo_renderValue_9')}. - ${data.volume
-			} ${t('dashboard:common_containerInfo_renderValue_10')}`;
-		case 'weight':
-			return `${t('dashboard:common_containerInfo_renderValue_11')}. - ${data.weight
-			} ${t('dashboard:common_containerInfo_renderValue_12')}`;
-		case 'haulage_type':
-			return startCase(data.haulage_type || '');
-		case 'transport_mode':
-			return startCase(data.transport_mode || '');
-		case 'cargo_stacking_type':
-			return startCase(data.cargo_stacking_type || '');
-		case 'msds_document':
-			return data.commodity_details?.[0].msds_document ? `msds${(<IcCFtick />)}` : null;
-		default:
-			return null;
-	}
+	const result = renderValueMapping[label]?.();
+	return result || null;
 };
 
 export const OTHER_PARAMS = {

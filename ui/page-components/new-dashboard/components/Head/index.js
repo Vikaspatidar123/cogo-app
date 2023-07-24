@@ -13,7 +13,7 @@ function Head() {
 	const { push } = useRouter();
 	const { t } = useTranslation(['dashboard']);
 	const { subscriptionData } = useGetSubscription();
-	const { data } = subscriptionData?.dashboard_products || [];
+	const { data } = subscriptionData?.dashboard_products || {};
 	const { is_free_plan = false, plan_name = '' } = data || {};
 
 	const onUpgrade = () => {

@@ -9,8 +9,16 @@
 }
 
 .view_all {
-	color: #034afd !important;
+	display: flex;
+	align-items: center;
+	font-size: 13px;
+	color: #034afd;
 	text-decoration-line: underline;
+	cursor: pointer;
+}
+
+.view_all:hover {
+	transform: scale(0.9);
 }
 
 .card {

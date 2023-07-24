@@ -17,7 +17,7 @@ const useGetSubscription = () => {
 		const params = { organization_id: profile.organization.id };
 		try {
 			const res = await trigger({ params });
-			if (!res.hasError) {
+			if (res) {
 				setSubscriptionData(res.data);
 			}
 			return res;

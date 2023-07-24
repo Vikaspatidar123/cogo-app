@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
-function ListShipments() {
+function useListShipments() {
 	const [{ loading, data }, trigger] = useRequest({
 		url    : '/list_shipments',
 		method : 'get',
@@ -14,8 +14,7 @@ function ListShipments() {
 			const reqData = {
 				shipment_reciever : shipment_received,
 				confirmation      : confirmed_by_importer_exporter,
-				// page              : 1,
-				// page_limit        : 2,
+
 			};
 			const res = await trigger({ params: reqData });
 			const { datas } = res;
@@ -34,4 +33,4 @@ function ListShipments() {
 	}, []);
 	return { loading, shipmentsData, data };
 }
-export default ListShipments;
+export default useListShipments;

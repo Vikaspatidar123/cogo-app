@@ -69,5 +69,9 @@
 }
 
 .button:hover {
-	background: red !important;
+	:global {
+		.ui_button_container {
+			background: red;
+		}
+	}
 }

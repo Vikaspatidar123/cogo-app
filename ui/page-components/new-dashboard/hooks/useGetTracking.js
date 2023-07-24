@@ -29,7 +29,7 @@ function useGetTracking() {
 				params: getPayload({ orgId: organizationId }),
 			});
 		} catch (err) {
-			console.error(err?.message || ' Please try again.');
+			console.error(err?.message);
 		}
 	}, [organizationId, trigger]);
 

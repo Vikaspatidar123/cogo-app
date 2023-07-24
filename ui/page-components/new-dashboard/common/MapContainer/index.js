@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { LOADING_TEXT, LOADING_TEXT_COUNT } from '../../constant';
+import { LOADING_TEXT_COUNT } from '../../constant';
 import useGetMapRoute from '../../hooks/useGetMapRoute';
 
 import styles from './styles.module.css';
@@ -41,7 +41,6 @@ function MapContainer({ height = '60vh', data = {}, activeTab }) {
 				<div className={styles.loader_container}>
 					<div className={styles.loading_content}>
 						<Image src={GLOBAL_CONSTANTS.image_url.tracking_loader} width={200} height={40} alt="loading" />
-						<p>{LOADING_TEXT[count]}</p>
 					</div>
 					<div className={styles.modal} />
 				</div>

@@ -1,6 +1,6 @@
 import { isEmpty } from '@cogoport/utils';
 
-import ListShipments from '../../../hooks/ListShipments';
+import useListShipments from '../../../hooks/useListShipments';
 
 import CustomDuty from './CustomDuty';
 import SearchRates from './SearchRates';
@@ -11,7 +11,7 @@ import TrackAndTrace from './TrackAndTrace';
 import TrackShipment from './TrackShipment';
 
 function LeftSection() {
-	const { loading, data } = ListShipments();
+	const { loading, data } = useListShipments();
 	const list = data?.list || [];
 	return (
 		<div>

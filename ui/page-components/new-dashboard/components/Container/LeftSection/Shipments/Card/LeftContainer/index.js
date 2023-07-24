@@ -34,20 +34,19 @@ function LeftContainer({ item }) {
 		<div className={styles.container}>
 			<div className={styles.details}>
 				<RenderStatus ogShipmentData={data} service={services} />
-
-				<Button
-					size="sm"
-					themeType="accent"
-					type="button"
-					onClick={() => push(
-						'/shipments/[id]',
-						`/shipments/${item?.id}`,
-					)}
-					className={styles.button}
-				>
-					{t('dashboard:onGoingShipments_card_text_5')}
-				</Button>
-
+				<div className={styles.button}>
+					<Button
+						size="sm"
+						themeType="accent"
+						onClick={() => push(
+							'/shipments/[id]',
+							`/shipments/${item?.id}`,
+						)}
+						className={styles.button}
+					>
+						{t('dashboard:onGoingShipments_card_text_5')}
+					</Button>
+				</div>
 				{item?.pending_tasks_count ? (
 					<div className={styles.dot}>
 						<div className={styles.dot2} />

@@ -9,21 +9,19 @@ import { useRouter } from '@/packages/next';
 function Promotion() {
 	const { push } = useRouter();
 
-	const { loading = false, promotionData = {} } = useGetPromotion();
-	const { promotion = [] } = promotionData || [];
+	const { loading = false, promotionData } = useGetPromotion();
+	const { promotion = [] } = promotionData || {};
 	const carouselData = (data) => (
 		<div onClick={() => push(data?.route_url)} role="presentation">
+			{/* img use for url comeing from backend its changes any time */}
 			<img className={styles.image} src={data?.image_url} alt="img" />
 		</div>
 	);
-	const mainData = [];
+	const mainData = (promotion || []).map((data) => ({
+		key    : data?.id,
+		render : () => <div>{carouselData(data)}</div>,
+	}));
 
-	(promotion || []).forEach((data) => {
-		mainData.push({
-			key    : data?.id,
-			render : () => <div>{carouselData(data)}</div>,
-		});
-	});
 	if (loading) {
 		return <Placeholder height="450px" />;
 	}

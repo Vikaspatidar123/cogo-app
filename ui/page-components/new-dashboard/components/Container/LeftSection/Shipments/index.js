@@ -3,7 +3,7 @@ import { IcMArrowNext } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
-import Card from './Card';
+import card from './Card';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
@@ -11,7 +11,7 @@ import { useRouter } from '@/packages/next';
 function Shipments({ list }) {
 	const { push } = useRouter();
 	const { t } = useTranslation(['dashboard']);
-	const carouselData = Card({ data: list });
+	const carouselData = card({ data: list });
 	if (isEmpty(carouselData)) {
 		return null;
 	}

@@ -2,7 +2,7 @@ import LeftContainer from './LeftContainer';
 import ShipmentInfo from './ShipmentInfo';
 import styles from './styles.module.css';
 
-function Card({ data }) {
+function card({ data }) {
 	const items = data.map((item) => ({
 		key    : item?.id,
 		render : () => (
@@ -14,4 +14,4 @@ function Card({ data }) {
 	}));
 	return items;
 }
-export default Card;
+export default card;

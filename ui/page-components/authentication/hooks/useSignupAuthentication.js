@@ -33,7 +33,7 @@ const useSignupAuthentication = ({
 	} = useVerifyGoogleRecaptcha();
 
 	const [{ loading }, trigger] = useRequest({
-		url    : 'create_lead_organization_on_sign_up',
+		url    : '/create_lead_organization_on_sign_up',
 		method : 'post',
 	}, { manual: true });
 

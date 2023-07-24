@@ -36,11 +36,13 @@ function InnerForm({ value = {}, setActiveCollapse = () => {}, addDocument = () 
 
 	const mutatedControls = [];
 	formControls.forEach((cont) => {
-		if (cont.name === 'doc_validity'
+		const controlItem = cont || {};
+
+		if (controlItem.name === 'doc_validity'
 		&& MANDATORY_VALIDITY_DOCS.includes(value?.doc_name)) {
-			cont.rules = { required: { value: true, message: 'Document Validity is required' } };
+			controlItem.rules = { required: { value: true, message: 'Document Validity is required' } };
 		}
-		mutatedControls.push(cont);
+		mutatedControls.push(controlItem);
 	});
 
 	return (

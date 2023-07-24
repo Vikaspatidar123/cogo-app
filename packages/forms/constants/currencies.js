@@ -16,10 +16,12 @@ const optionsAll = [];
 		});
 	}
 });
-const prefferdCurrencies = ['INR', 'VND', 'USD', 'GBP', 'EUR'];
-const prefferedOptons = optionsAll.filter((option) => prefferdCurrencies.includes(option.key));
+const prefferedCurrencies = ['INR', 'VND', 'USD', 'GBP', 'EUR'];
+
+const prefferedOptons = optionsAll.filter((option) => prefferedCurrencies.includes(option.key));
+
 const restOptionsList = optionsAll.filter(
-	(option) => !prefferdCurrencies.includes(option.key),
+	(option) => !prefferedCurrencies.includes(option.key),
 );
 // const restOptions = sort(restOptionsList, { key: 'label' });
 const options = [...prefferedOptons, ...restOptionsList];

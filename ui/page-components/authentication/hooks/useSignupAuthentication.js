@@ -1,23 +1,23 @@
 import { Toast } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
-import { useRef, useState } from 'react';
+
+import useVerifyGoogleRecaptcha from './useVerifyGoogleRecaptcha';
 
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
-const getFormattedPayload = ({ val, captchaResponse, leadUserId }) => {
+const getFormattedPayload = ({ val, leadUserId }) => {
 	const { name, email, business_name, country_id, mobile_number, is_whatsapp_number } = val || {};
 
 	return {
-		lead_user_id              : leadUserId || undefined,
+		lead_user_id        : leadUserId || undefined,
 		name,
 		email,
-		mobile_country_code       : mobile_number.country_code,
-		mobile_number             : mobile_number.number,
+		mobile_country_code : mobile_number.country_code,
+		mobile_number       : mobile_number.number,
 		is_whatsapp_number,
 		business_name,
 		country_id,
-		google_recaptcha_response : captchaResponse,
 	};
 };
 
@@ -26,11 +26,13 @@ const useSignupAuthentication = ({
 }) => {
 	const { t } = useTranslation(['authentication']);
 
-	const [captchaLoading, setCaptchaLoading] = useState(false);
+	const {
+		recaptchaRef,
+		captchaLoading,
+		onVerifyingCaptcha,
+	} = useVerifyGoogleRecaptcha();
 
-	const recaptchaRef = useRef({});
-
-	const [{ loading: signupLoading }, trigger] = useRequest({
+	const [{ loading }, trigger] = useRequest({
 		url    : 'create_lead_organization_on_sign_up',
 		method : 'post',
 	}, { manual: true });
@@ -39,35 +41,38 @@ const useSignupAuthentication = ({
 		e.preventDefault();
 
 		try {
-			setCaptchaLoading(true);
+			const captchaRes = await onVerifyingCaptcha();
 
-			const captchaResponse = await recaptchaRef.current.executeAsync();
+			if (captchaRes?.data) {
+				const payload = getFormattedPayload({ val, leadUserId });
 
-			setCaptchaLoading(false);
+				const res = await trigger({
+					data: payload,
+				});
 
-			const payload = getFormattedPayload({ val, captchaResponse, leadUserId });
+				const { data } = res || {};
 
-			const res = await trigger({
-				data: payload,
-			});
+				setMode('otp_form');
 
-			const { data } = res || {};
+				setUserDetails((prev) => ({
+					...prev,
+					...data,
+				}));
+			} else {
+				Toast.error(t('authentication:forgotPassword_error_message'));
+			}
 
-			setMode('otp_form');
-
-			setUserDetails((prev) => ({
-				...prev,
-				...data,
-			}));
+			recaptchaRef?.current?.reset();
 		} catch (err) {
 			Toast.error(getApiErrorString(err?.response?.data) || t('authentication:signup_error_message'));
 		}
 	};
 
 	return {
-		loading: signupLoading || captchaLoading,
+		loading,
 		onSignupAuthentication,
 		recaptchaRef,
+		captchaLoading,
 	};
 };
 

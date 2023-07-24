@@ -37,9 +37,10 @@ function SignupForm({
 	const [customError, setCustomError] = useState('');
 
 	const {
-		onSignupAuthentication,
 		loading,
+		onSignupAuthentication,
 		recaptchaRef,
+		captchaLoading,
 	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId });
 
 	const { onLeadUserDetails } = useLeadUserDetails({ setLeadUserId });
@@ -212,6 +213,7 @@ function SignupForm({
 			</div>
 
 			<Button
+				disabled={captchaLoading}
 				loading={loading}
 				type="submit"
 				size="lg"

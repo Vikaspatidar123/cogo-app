@@ -98,10 +98,10 @@ function TableList({
 						<div
 							className={styles.flex}
 							style={{
-								padding: '20px',
-								paddingBottom: '30px',
-								justifyContent: 'center',
-								alignItems: 'center',
+								padding        : '20px',
+								paddingBottom  : '30px',
+								justifyContent : 'center',
+								alignItems     : 'center',
 							}}
 						>
 							{renderPagination()}

@@ -20,12 +20,12 @@ function PieChartLegends({ data, isKamWise, colors }) {
 							:
 							<div className={styles.amount}>
 								{formatAmount({
-									amount: item.value || 0,
-									currency: geo.country.currency.code,
-									options: {
-										style: 'currency',
-										currencyDisplay: 'symbol',
-										maximumFractionDigits: 0,
+									amount   : item.value || 0,
+									currency : geo.country.currency.code,
+									options  : {
+										style                 : 'currency',
+										currencyDisplay       : 'symbol',
+										maximumFractionDigits : 0,
 									},
 								})}
 							</div>

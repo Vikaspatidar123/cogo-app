@@ -44,12 +44,12 @@ function InvoiceCard({ loading, invoiceDetails }) {
 					<div
 						className={styles.flex}
 						style={{
-							padding: '10px',
-							width: '100%',
-							backgroundColor: '#FFFFFF',
-							borderRadius: '4px',
-							margin: '8px 2px',
-							boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.15',
+							padding         : '10px',
+							width           : '100%',
+							backgroundColor : '#FFFFFF',
+							borderRadius    : '4px',
+							margin          : '8px 2px',
+							boxShadow       : '0px 0px 15px rgba(0, 0, 0, 0.15',
 						}}
 					>
 						<div className={styles.flex} style={{ flex: '2', justifyContent: 'space-between' }}>
@@ -66,9 +66,9 @@ function InvoiceCard({ loading, invoiceDetails }) {
 									{' '}
 									<span style={{ fontWeight: 'bold' }}>
 										{formatDate({
-											date: item?.dueDate,
-											dateFormat: geo.formats.date.default,
-											formatType: 'date',
+											date       : item?.dueDate,
+											dateFormat : geo.formats.date.default,
+											formatType : 'date',
 										})}
 									</span>
 								</text>
@@ -77,9 +77,9 @@ function InvoiceCard({ loading, invoiceDetails }) {
 						<div
 							className={styles.flex}
 							style={{
-								marginTop: '10px',
-								justifyContent: 'space-around',
-								alignItems: 'flex-start',
+								marginTop      : '10px',
+								justifyContent : 'space-around',
+								alignItems     : 'flex-start',
 							}}
 
 						>
@@ -87,9 +87,9 @@ function InvoiceCard({ loading, invoiceDetails }) {
 								<div className={styles.head}>Invoice Date</div>
 								<text>
 									{formatDate({
-										date: item?.invoiceDate,
-										dateFormat: geo.formats.date.default,
-										formatType: 'date',
+										date       : item?.invoiceDate,
+										dateFormat : geo.formats.date.default,
+										formatType : 'date',
 									})}
 								</text>
 							</div>
@@ -104,15 +104,15 @@ function InvoiceCard({ loading, invoiceDetails }) {
 							<div
 								className={styles.flex}
 								style={{
-									justifyContent: 'space-around',
-									alignItems: 'left',
+									justifyContent : 'space-around',
+									alignItems     : 'left',
 								}}
 
 							>
 								<div className={styles.head}>Shipment ID</div>
 								<text style={{
-									color: '#333333',
-									alignItems: 'center',
+									color      : '#333333',
+									alignItems : 'center',
 								}}
 								>
 									{!item?.job?.id ? 'NA' : item?.job?.id}
@@ -130,8 +130,8 @@ function InvoiceCard({ loading, invoiceDetails }) {
 														<div
 															className={styles.flex}
 															style={{
-																width: '100%',
-																border: '1px solid rgba(0, 0, 0, 0.1)',
+																width  : '100%',
+																border : '1px solid rgba(0, 0, 0, 0.1)',
 															}}
 														/>
 
@@ -176,12 +176,12 @@ function InvoiceCard({ loading, invoiceDetails }) {
 										<div className={styles.head}>Amount</div>
 										<text
 											style={{
-												border: '0.5px solid #E0E0E0',
-												borderBottom: '2px solid #67C676',
-												borderRadius: '2px',
-												padding: '1px 6px',
-												marginBottom: '2px',
-												textAlign: 'center',
+												border       : '0.5px solid #E0E0E0',
+												borderBottom : '2px solid #67C676',
+												borderRadius : '2px',
+												padding      : '1px 6px',
+												marginBottom : '2px',
+												textAlign    : 'center',
 											}}
 										>
 											{item?.grandTotal

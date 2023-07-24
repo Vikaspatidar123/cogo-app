@@ -1,33 +1,33 @@
+import { IcAIdea } from '@cogoport/icons-react';
+
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const getControls = ({ t }) => {
 	const geo = getGeoConstants();
 
-	const CARDFILTER = [
+	const field = [
 		{
 			label       : t('hsClassification:hs_code_classification_filter_label_1'),
 			name        : 'country',
-			type        : 'select',
+			type        : 'async_select',
 			placeholder : t('hsClassification:hs_code_classification_filter_placeholder_1'),
 			asyncKey    : 'hs_code_countries',
-			value       : geo.uuid.hs_code_country_id,
 			valueKey    : 'id',
 			labelKey    : 'countryName',
 			initialCall : true,
-			theme       : 'admin',
-			className   : 'primary md',
+			className   : 'select',
 		},
 		{
 			label       : t('hsClassification:hs_code_classification_filter_label_2'),
 			name        : 'searchBy',
 			placeholder : t('hsClassification:hs_code_classification_filter_placeholder_2'),
 			type        : 'select',
-			value       : 'PRODUCT',
 			options     : [
-				{ label: 'HS Code', value: 'HS_CODE' },
-				{ label: 'Product', value: 'PRODUCT' },
+				{ label: t('hsClassification:basic_filter_opt_1'), value: 'HS_CODE' },
+				{ label: t('hsClassification:basic_filter_opt_2'), value: 'PRODUCT' },
 			],
-			className: 'try',
+			className: 'select',
+
 		},
 		{
 			name        : 'searchTerm',
@@ -36,10 +36,18 @@ const getControls = ({ t }) => {
 			type        : 'text',
 			value       : '',
 			rules       : { required: true },
+			className   : 'input_select',
+			prefix      : <IcAIdea width={20} height={20} />,
+
 		},
 	];
 
-	return CARDFILTER;
+	const defaultValues = {
+		searchBy : 'PRODUCT',
+		country  : geo.uuid.hs_code_country_id,
+	};
+
+	return { field, defaultValues };
 };
 
 export default getControls;

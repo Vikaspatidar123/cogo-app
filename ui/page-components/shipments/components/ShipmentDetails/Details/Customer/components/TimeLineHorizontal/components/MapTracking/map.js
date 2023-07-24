@@ -22,6 +22,11 @@ const lineOptions = { color: '#f37166', weight: 2 };
 const remainingRoutelineOptions = { color: '#1867D2', weight: 2 };
 const center = { lat: '28.679079', lng: '77.069710' };
 
+const corner1 = L.latLng(-90, -350);
+const corner2 = L.latLng(90, 350);
+
+const bounds = L.latLngBounds(corner1, corner2);
+
 function MapComp({
 	completedPoints,
 	remainingPoints,
@@ -34,10 +39,8 @@ function MapComp({
 	markers = [],
 	centerMap = {},
 }) {
-	const [map, setMap] = useState();
-	const corner1 = L.latLng(-90, -200);
-	const corner2 = L.latLng(90, 200);
-	const bounds = L.latLngBounds(corner1, corner2);
+	const [map, setMap] = useState(null);
+
 	const curvePointLength = curvePoints.length;
 	const heightVariable = isMobile ? '300px' : height;
 

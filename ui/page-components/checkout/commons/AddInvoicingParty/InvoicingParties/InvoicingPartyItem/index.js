@@ -142,7 +142,7 @@ function InvoicingPartyItem({
 					);
 				})}
 			</Modal.Body>
-			<Button themeType="linkUi" onClick={() => onClickAddAddress()}>
+			<Button themeType="linkUi" type="button" onClick={onClickAddAddress}>
 				+ Add Address
 			</Button>
 		</div>

@@ -6,8 +6,8 @@ import { useSelector } from '@/packages/store';
 const useGetServiceWiseOutstandings = () => {
 	const { registration_number, kyc_status } = useSelector(
 		({ profile }) => ({
-			registration_number: profile?.organization?.registration_number,
-			kyc_status: profile?.organization?.kyc_status,
+			registration_number : profile?.organization?.registration_number,
+			kyc_status          : profile?.organization?.kyc_status,
 		}),
 	);
 
@@ -15,9 +15,9 @@ const useGetServiceWiseOutstandings = () => {
 
 	const [{ loading, data }, trigger] = useRequest(
 		{
-			url: '/get_service_wise_outstanding_stats',
-			method: 'get',
-			autoCancel: true,
+			url        : '/get_service_wise_outstanding_stats',
+			method     : 'get',
+			autoCancel : true,
 		},
 		{ manual: true },
 	);
@@ -33,8 +33,8 @@ const useGetServiceWiseOutstandings = () => {
 	}, []);
 
 	return {
-		serviceWiseLoading: loading,
-		serviceWiseStats: data || [],
+		serviceWiseLoading : loading,
+		serviceWiseStats   : data || [],
 	};
 };
 

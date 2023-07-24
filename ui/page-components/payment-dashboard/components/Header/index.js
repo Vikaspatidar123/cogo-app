@@ -8,38 +8,38 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Header({ statsList = {} }) {
-    const { on_account_amount = 0, currency } = statsList;
-    return (
-        <div className={styles.container}>
-            <div>
-                <div className={styles.heading}> Payment Dashboard</div>
-                <div className={cl`${styles.web_view} ${styles.des}`}>
-                    Get all the financial assistance you need from us.
-                </div>
-            </div>
-            <div className={styles.mobile_view}>
-                <Image
-                    src={GLOBAL_CONSTANTS.image_url.dollar_url}
-                    alt="dollar"
-                    width={21}
-                    height={21}
-                />
-                <div className={styles.amount}>
-                    {formatAmount({
-                        amount: on_account_amount?.toFixed(2),
-                        currency,
-                        options: {
-                            style: 'currency',
-                            currencyDisplay: 'code',
-                        },
-                    })}
-                </div>
-            </div>
-            <div className={styles.web_view}>
-                <Contact />
-            </div>
-        </div>
-    );
+	const { on_account_amount = 0, currency } = statsList;
+	return (
+		<div className={styles.container}>
+			<div>
+				<div className={styles.heading}> Payment Dashboard</div>
+				<div className={cl`${styles.web_view} ${styles.des}`}>
+					Get all the financial assistance you need from us.
+				</div>
+			</div>
+			<div className={styles.mobile_view}>
+				<Image
+					src={GLOBAL_CONSTANTS.image_url.dollar_url}
+					alt="dollar"
+					width={21}
+					height={21}
+				/>
+				<div className={styles.amount}>
+					{formatAmount({
+                    	amount  : on_account_amount?.toFixed(2),
+                    	currency,
+                    	options : {
+                    		style           : 'currency',
+                    		currencyDisplay : 'code',
+                    	},
+					})}
+				</div>
+			</div>
+			<div className={styles.web_view}>
+				<Contact />
+			</div>
+		</div>
+	);
 }
 
 export default Header;

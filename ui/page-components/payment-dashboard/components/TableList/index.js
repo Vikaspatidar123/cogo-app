@@ -25,17 +25,17 @@ const geo = getGeoConstants();
 
 function TableList({
 	loading,
-	setQuery,
+	// setQuery,
 	pageData,
 	invoiceDetails,
 	searchQuery,
-	setSearchQuery,
+	// setSearchQuery,
 	orderBy,
 	setOrderBy,
-	requestType,
-	setRequestType,
+	// requestType,
+	// setRequestType,
 	setPagination,
-	getInvoiceDetails,
+	// getInvoiceDetails,
 	onQueryChange,
 	setInvoiceStatus,
 	invoiceStatus,
@@ -45,9 +45,9 @@ function TableList({
 		() => [
 			{
 
-				Header: <div className={styles.head}>INVOICE ID</div>,
-				accessor: 'invoiceNumber',
-				Cell: ({ value }) => (
+				Header   : <div className={styles.head}>INVOICE ID</div>,
+				accessor : 'invoiceNumber',
+				Cell     : ({ value }) => (
 					<div className={styles.data}>
 						<Tooltip placement="right" content={value}>
 							<div className={styles.over_flow_div}>{value || '-'}</div>
@@ -56,10 +56,10 @@ function TableList({
 				),
 			},
 			{
-				Header: <div className={styles.head}>SHIPMENT ID</div>,
-				accessor: 'id',
-				width: 1,
-				Cell: ({ row: { original } }) => (
+				Header   : <div className={styles.head}>SHIPMENT ID</div>,
+				accessor : 'id',
+				width    : 1,
+				Cell     : ({ row: { original } }) => (
 					<text>
 						<div className={styles.flex} style={{ flexDirection: 'row', justifyContent: 'center' }}>
 							<div className={styles.shipment_id_style} style={{ color: 'black' }}>
@@ -70,10 +70,10 @@ function TableList({
 				),
 			},
 			{
-				Header: <div className={styles.head}>TYPE OF SERVICE</div>,
-				accessor: 'shipmentType',
-				width: 1,
-				Cell: ({ row: { original } }) => (
+				Header   : <div className={styles.head}>TYPE OF SERVICE</div>,
+				accessor : 'shipmentType',
+				width    : 1,
+				Cell     : ({ row: { original } }) => (
 					<div className={styles.head}>
 						{!original?.job?.shipmentType
 							? 'NA'
@@ -88,8 +88,8 @@ function TableList({
 						className={styles.head}
 						role="presentation"
 						onClick={() => setOrderBy((prev) => ({
-							key: 'grandTotal',
-							order: prev.order === 'Asc' ? 'Desc' : 'Asc',
+							key   : 'grandTotal',
+							order : prev.order === 'Asc' ? 'Desc' : 'Asc',
 						}))}
 					>
 						<div
@@ -116,19 +116,19 @@ function TableList({
 						&nbsp;AMOUNT
 					</div>
 				),
-				accessor: 'grandTotal',
-				width: 1,
-				Cell: ({ row: { original } }) => (
+				accessor : 'grandTotal',
+				width    : 1,
+				Cell     : ({ row: { original } }) => (
 					<div className={styles.head} style={{ fontWeight: 'bold' }}>
 						{!original.grandTotal
 							? 'NA'
 							: formatAmount({
-								amount: original?.grandTotal || 0,
-								currency: original?.currency,
-								options: {
-									style: 'currency',
-									currencyDisplay: 'code',
-									maximumFractionDigits: 0,
+								amount   : original?.grandTotal || 0,
+								currency : original?.currency,
+								options  : {
+									style                 : 'currency',
+									currencyDisplay       : 'code',
+									maximumFractionDigits : 0,
 								},
 							})}
 					</div>
@@ -140,8 +140,8 @@ function TableList({
 						className={styles.head}
 						role="presentation"
 						onClick={() => setOrderBy((prev) => ({
-							key: 'balanceAmount',
-							order: prev.order === 'Asc' ? 'Desc' : 'Asc',
+							key   : 'balanceAmount',
+							order : prev.order === 'Asc' ? 'Desc' : 'Asc',
 						}))}
 					>
 						<div
@@ -167,19 +167,19 @@ function TableList({
 						&nbsp;AMOUNT DUE
 					</div>
 				),
-				accessor: 'balanceAmount',
-				width: 1,
-				Cell: ({ row: { original } }) => (
+				accessor : 'balanceAmount',
+				width    : 1,
+				Cell     : ({ row: { original } }) => (
 					<div className={styles.head} style={{ fontWeight: 'bold' }}>
 						{!original.balanceAmount
 							? 'NA'
 							: formatAmount({
-								amount: original?.balanceAmount || 0,
-								currency: original?.currency,
-								options: {
-									style: 'currency',
-									currencyDisplay: 'code',
-									maximumFractionDigits: 0,
+								amount   : original?.balanceAmount || 0,
+								currency : original?.currency,
+								options  : {
+									style                 : 'currency',
+									currencyDisplay       : 'code',
+									maximumFractionDigits : 0,
 								},
 							})}
 					</div>
@@ -191,8 +191,8 @@ function TableList({
 						className={styles.head}
 						role="presentation"
 						onClick={() => setOrderBy((prev) => ({
-							key: 'invoiceDate',
-							order: prev.order === 'Asc' ? 'Desc' : 'Asc',
+							key   : 'invoiceDate',
+							order : prev.order === 'Asc' ? 'Desc' : 'Asc',
 						}))}
 					>
 						<div
@@ -219,16 +219,16 @@ function TableList({
 						&nbsp;INVOICE DATE
 					</div>
 				),
-				accessor: 'invoiceDate',
-				width: 2,
-				Cell: ({ cell: { value } }) => (
+				accessor : 'invoiceDate',
+				width    : 2,
+				Cell     : ({ cell: { value } }) => (
 					<div className={styles.head}>
 						{!value
 							? 'NA'
 							: formatDate({
-								date: value,
-								dateFormat: geo.formats.date.default,
-								formatType: 'date',
+								date       : value,
+								dateFormat : geo.formats.date.default,
+								formatType : 'date',
 							})}
 					</div>
 				),
@@ -240,8 +240,8 @@ function TableList({
 						role="presentation"
 						onClick={() => {
 							setOrderBy((prev) => ({
-								key: 'dueDate',
-								order: prev.order === 'Asc' ? 'Desc' : 'Asc',
+								key   : 'dueDate',
+								order : prev.order === 'Asc' ? 'Desc' : 'Asc',
 							}));
 						}}
 					>
@@ -270,28 +270,28 @@ function TableList({
 						&nbsp;DUE DATE
 					</div>
 				),
-				accessor: 'dueDate',
-				width: 2,
-				Cell: ({ cell: { value } }) => (
+				accessor : 'dueDate',
+				width    : 2,
+				Cell     : ({ cell: { value } }) => (
 					<div className={styles.head}>
 						<IcCRedCircle size={11.2} />
 						<text style={{ fontSize: '12px', marginLeft: '5px' }}>
 							{!value
 								? 'NA'
 								: formatDate({
-									date: value,
-									dateFormat: geo.formats.date.default,
-									formatType: 'date',
+									date       : value,
+									dateFormat : geo.formats.date.default,
+									formatType : 'date',
 								})}
 						</text>
 					</div>
 				),
 			},
 			{
-				Header: <div className={styles.head}>STATUS</div>,
-				accessor: 'paymentStatus',
-				width: 1,
-				Cell: ({ cell: { value } }) => (
+				Header   : <div className={styles.head}>STATUS</div>,
+				accessor : 'paymentStatus',
+				width    : 1,
+				Cell     : ({ cell: { value } }) => (
 					<div className={styles.head}>
 						<div className={styles.status_wrapper}>
 							<div>{!value ? 'NA' : value}</div>
@@ -300,20 +300,20 @@ function TableList({
 				),
 			},
 			{
-				Header: <div className={styles.head}>DOWNLOAD</div>,
-				accessor: 'invoicePdfUrl',
-				width: 1,
-				Cell: ({ cell: { value } }) => (
+				Header   : <div className={styles.head}>DOWNLOAD</div>,
+				accessor : 'invoicePdfUrl',
+				width    : 1,
+				Cell     : ({ cell: { value } }) => (
 					<div className={styles.head}>
 						{value?.length !== 0 ? (
 							<Button
 								size="sm"
 								onClick={() => window.open(value)}
 								style={{
-									backgroundColor: '#2C3E50',
-									marginLeft: '4px',
-									display: 'flex',
-									alignItems: 'center',
+									backgroundColor : '#2C3E50',
+									marginLeft      : '4px',
+									display         : 'flex',
+									alignItems      : 'center',
 								}}
 							>
 								<IcMDownload size={28} />
@@ -391,10 +391,10 @@ function TableList({
 						<div
 							className={styles.flex}
 							style={{
-								padding: '20px',
-								paddingBottom: '30px',
-								justifyContent: 'center',
-								alignItems: 'center',
+								padding        : '20px',
+								paddingBottom  : '30px',
+								justifyContent : 'center',
+								alignItems     : 'center',
 							}}
 						>
 							{renderPagination()}

@@ -68,10 +68,9 @@
 }
 
 .over_flow_div {
+	width: 150px;
 	max-width: 156px;
 	overflow: hidden;
-	font-size: 14px;
-	font-weight: 500;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }

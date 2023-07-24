@@ -26,12 +26,12 @@ function PaidOnAccount({ statsList }) {
 					<div className={styles.paid_card}>
 						<div className={styles.paid_card_text}>
 							{formatAmount({
-								amount: on_account_amount || 0,
+								amount  : on_account_amount || 0,
 								currency,
-								options: {
-									style: 'currency',
-									currencyDisplay: 'code',
-									maximumFractionDigits: 0,
+								options : {
+									style                 : 'currency',
+									currencyDisplay       : 'code',
+									maximumFractionDigits : 0,
 								},
 							})}
 						</div>

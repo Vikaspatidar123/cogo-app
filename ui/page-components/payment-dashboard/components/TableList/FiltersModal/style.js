@@ -1,5 +1,5 @@
-import styled from '@cogoport/front/styled';
 import { Modal, Select } from '@cogoport/front/components';
+import styled from '@cogoport/front/styled';
 
 export const ModalWrapper = styled(Modal)`
 	.ui-modal-close-btn {

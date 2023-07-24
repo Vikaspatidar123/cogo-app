@@ -7,8 +7,8 @@ import { useSelector } from '@/packages/store';
 const useGetOrganizationOutstandings = () => {
 	const { registration_number, kyc_status } = useSelector(
 		({ profile }) => ({
-			registration_number: profile?.organization?.registration_number,
-			kyc_status: profile?.organization?.kyc_status,
+			registration_number : profile?.organization?.registration_number,
+			kyc_status          : profile?.organization?.kyc_status,
 		}),
 	);
 
@@ -18,9 +18,9 @@ const useGetOrganizationOutstandings = () => {
 
 	const [{ loading }, trigger] = useRequest(
 		{
-			url: '/list_sage_ar_outstandings',
-			method: 'get',
-			autoCancel: true,
+			url        : '/list_sage_ar_outstandings',
+			method     : 'get',
+			autoCancel : true,
 		},
 		{ manual: true },
 	);

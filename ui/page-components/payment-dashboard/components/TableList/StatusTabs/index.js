@@ -1,9 +1,10 @@
-import React from 'react';
-import Flex from '@cogoport/front/components/Flex';
 import Button from '@cogoport/front/components/Button';
+import Flex from '@cogoport/front/components/Flex';
+import React from 'react';
+
 import { ButtonWrapper } from '../styles';
 
-const StatusTabs = ({ loading, requestType, setRequestType }) => {
+function StatusTabs({ loading, requestType, setRequestType }) {
 	return (
 		<Flex justifyContent="center">
 			<ButtonWrapper disabled={loading} style={{ borderRadius: '10px' }}>
@@ -26,6 +27,6 @@ const StatusTabs = ({ loading, requestType, setRequestType }) => {
 			</ButtonWrapper>
 		</Flex>
 	);
-};
+}
 
 export default StatusTabs;

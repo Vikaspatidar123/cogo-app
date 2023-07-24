@@ -40,12 +40,12 @@ function GraphListView({ isKamWise, isSortBy, setIsSortBy, sortedData }) {
 						<div className={styles.styled_row}>
 							<div className={styles.amount}>
 								{formatAmount({
-									amount: item.value || 0,
-									currency: geo.country.currency.code,
-									options: {
-										style: 'currency',
-										currencyDisplay: 'code',
-										maximumFractionDigits: 0,
+									amount   : item.value || 0,
+									currency : geo.country.currency.code,
+									options  : {
+										style                 : 'currency',
+										currencyDisplay       : 'code',
+										maximumFractionDigits : 0,
 									},
 								})}
 							</div>

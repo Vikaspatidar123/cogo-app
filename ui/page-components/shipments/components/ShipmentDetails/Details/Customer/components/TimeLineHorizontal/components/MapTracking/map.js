@@ -39,7 +39,7 @@ function MapComp({
 	markers = [],
 	centerMap = {},
 }) {
-	const [map, setMap] = useState();
+	const [map, setMap] = useState(null);
 
 	const curvePointLength = curvePoints.length;
 	const heightVariable = isMobile ? '300px' : height;

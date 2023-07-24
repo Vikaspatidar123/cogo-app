@@ -1,5 +1,6 @@
 import { Pagination } from '@cogoport/components';
 import { IcMTrailorFull } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useState, Fragment, useEffect } from 'react';
 
 import { isPastOrPresentDay } from '../../utils/constants';
@@ -104,7 +105,7 @@ function TimelineNavigate({
 					<div className={styles.tag_title}>Tracking Information</div>
 
 					<div className={styles.container}>
-						{(allContainers || []).map((item) => (item?.container_details?.length !== 0 ? (
+						{(allContainers || []).map((item) => (!isEmpty(item?.container_details) ? (
 							<div
 								key={item?.input}
 								role="presentation"

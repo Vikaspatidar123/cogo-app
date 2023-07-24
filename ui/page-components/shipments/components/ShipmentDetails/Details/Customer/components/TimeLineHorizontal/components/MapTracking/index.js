@@ -190,9 +190,9 @@ function TrackerMap({
 						type={type}
 						width="97%"
 						height="70vh"
-						isModal="true"
 						markers={markers}
 						isGetSeaRoute={isGetSeaRoute}
+						isModal
 					/>
 				</div>
 

@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, cl } from '@cogoport/components';
 import { format, isEmpty, startCase } from '@cogoport/utils';
 import React from 'react';
 
@@ -9,14 +9,17 @@ import Route from '../Route';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
+import formatDate from '@/ui/commons/utils/formatDate';
+
+const STATUS = ['completed', 'ongoing', 'cancelled'];
 
 function ManualShipmentCard({
 	requestData = [],
 	loading = false,
 	itemData = {},
 }) {
-	const { push } = useRouter();
 	const {
 		destination_port = {},
 		origin_port = {},
@@ -24,6 +27,8 @@ function ManualShipmentCard({
 		origin_airport = {},
 		service_type = '',
 	} = itemData || {};
+
+	const { push } = useRouter();
 
 	return (
 		<>
@@ -51,55 +56,72 @@ function ManualShipmentCard({
 						} = shipmentData || {};
 
 						const count = containers?.[0]?.containers_count;
-						const isActive = ['completed', 'ongoing', 'cancelled'].includes(
-							state,
-						);
+						const isActive = STATUS.includes(state);
 
 						return (
 							<div className={styles.container}>
 								<div className={`${styles.shipment_date} ${styles.state}`}>
 									{shipment_date && isActive && (
-										<div className={styles.date}>{format(shipment_date, 'dd MMM')}</div>
+										<div className={styles.date}>
+											{formatDate({
+												date       : shipment_date,
+												dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM'],
+												formatType : 'date',
+											})}
+										</div>
 									)}
+
 									<div className={`${styles.circle} ${styles.state}`}>
 										<div className={`${styles.dot} ${styles.state}`} />
 									</div>
+
 									{index === requestData.length - 1 && (
 										<div className={`${styles.journey_start_circle} ${styles.state}`}>
 											<div className={`${styles.journey_start_circle} ${styles.state}`} />
 										</div>
 									)}
 								</div>
+
 								{!isEmpty(shipmentData) ? (
 									<div className={styles.card}>
 										<div className={styles.left_side}>
+
 											<div className={styles.section}>
 												<div className={styles.shipment_id}>
 													SID :
 													{serial_id}
 												</div>
+
 												{validity_start && validity_end && (
 													<div className={styles.tag}>
-														{format(validity_start, 'dd MMM yy')}
+														{formatDate({
+															date       : validity_start,
+															dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+															formatType : 'date',
+														})}
 														{' '}
 														-
 														{' '}
-														{format(validity_end, 'dd MMM yy')}
+														{formatDate({
+															date       : validity_end,
+															dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+															formatType : 'date',
+														})}
 													</div>
 												)}
+
 												<div className={styles.tag}>
 													{getUnit(service_type)}
 													{' '}
 													Shipped :
 													{count}
 												</div>
-												<div className={`${styles.tag}
-												 ${styles.state}`}
-												>
-													{startCase(state)}
 
+												<div className={cl`${styles.tag}  ${styles.state}`}>
+													{startCase(state)}
 												</div>
 											</div>
+
 											<div className={`${styles.section} ${styles.section_two}`}>
 												<Route
 													destinationPort={destination_port}
@@ -110,19 +132,21 @@ function ManualShipmentCard({
 												/>
 											</div>
 										</div>
+
 										<div className={styles.right_side}>
 											<div className={styles.freight_price}>
 												{formatAmount({
 													amount   : net_total,
-													currency : net_total_price_currency || 'INR',
+													currency : net_total_price_currency,
 													options  : {
 														notation : 'standard',
 														style    : 'currency',
 													},
 												})}
 											</div>
+
 											<Button
-												className="secondary md"
+												themeType="tertiary"
 												onClick={() => push('/shipments/[id]', `/shipments/${id}`)}
 											>
 												View Shipment
@@ -137,6 +161,7 @@ function ManualShipmentCard({
 											:
 											{count}
 										</div>
+
 										{requestedStatus && (
 											<div className={`${styles.tag} ${styles.requested_status}`}>
 												Request
@@ -144,6 +169,7 @@ function ManualShipmentCard({
 												{startCase(requestedStatus)}
 											</div>
 										)}
+
 										{created_at && (
 											<div className={styles.tag}>
 												Requested on:
@@ -158,6 +184,7 @@ function ManualShipmentCard({
 					})}
 				</div>
 			)}
+
 			{isEmpty(requestData) && (
 				<div className={styles.empty_state}>
 					<div className={styles.content}>

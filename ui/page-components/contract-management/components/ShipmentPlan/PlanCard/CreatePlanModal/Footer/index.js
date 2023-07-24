@@ -14,7 +14,7 @@ function Footer({
 			<div className={styles.message}>*Average transit time in your trade route is 30 days</div>
 
 			<div className={styles.actions}>
-				<Button onClick={() => setShowModal(false)} themeType="secondary">
+				<Button onClick={() => setShowModal(false)} themeType="secondary" className={styles.cancel_btn}>
 					Cancel
 				</Button>
 				<Button disable={loading} themeType="accent" onClick={handleSubmit(handleFormSubmit)}>

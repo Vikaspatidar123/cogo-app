@@ -108,6 +108,7 @@ export const productControls = [
 		options : [
 			{ label: 'INR', value: 'INR' },
 			{ label: 'USD', value: 'USD' },
+			{ label: 'VND', value: 'VND' },
 		],
 		rules: { required: true },
 	},

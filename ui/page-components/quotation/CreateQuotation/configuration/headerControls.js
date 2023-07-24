@@ -26,6 +26,7 @@ const headerControls = ({ id = '', organization = {} }) => [
 		options     : [
 			{ label: 'INR', value: 'INR' },
 			{ label: 'USD', value: 'USD' },
+			{ label: 'VND', value: 'VND' },
 		],
 		rules : { required: true },
 		style : { width: '120px' },

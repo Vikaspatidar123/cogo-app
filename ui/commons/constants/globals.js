@@ -5,6 +5,9 @@ const GLOBAL_CONSTANTS = {
 		IN : '6fd98605-9d5d-479d-9fac-cf905d292b88',
 		VN : 'b67d40b1-616c-4471-b77b-de52b4c9f2ff',
 		SG : '04bd1037-c110-4aad-8ecc-fc43e9d4069d',
+		TH : '6d92cf58-3392-44c3-8e1b-09192f98f8be',
+		ID : 'ef9a7145-b1b6-46ff-8de7-a348de635574',
+		CN : '6d92cf58-3392-44c3-8e1b-09192f98f8ad',
 	},
 
 	hs_code_country_ids: {
@@ -16,11 +19,19 @@ const GLOBAL_CONSTANTS = {
 		EUR : 'EUR',
 		GBP : 'GBP',
 		AED : 'AED',
+		SGD : 'SGD',
+		THB : 'THB',
+		IDR : 'IDR',
+		CNY : 'CNY',
 	},
 	currency_locale: {
 		INR : 'en-IN',
 		USD : 'en-US',
 		VND : 'vi-VN',
+		SGD : 'en-SG',
+		THB : 'th-TH',
+		IDR : 'id-ID',
+		CNY : 'zh-CN',
 	},
 
 	cargo_insurance: {

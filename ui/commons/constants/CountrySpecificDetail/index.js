@@ -1,13 +1,21 @@
 import { getByKey } from '@cogoport/utils';
 
 import getCountryDetails from '../../utils/getCountryDetails';
+import CN from '../geo/CN';
 import defaultInfo from '../geo/default';
+import ID from '../geo/ID';
 import IN from '../geo/IN';
+import SG from '../geo/SG';
+import TH from '../geo/TH';
 import VN from '../geo/VN';
 
 const COUNTRY_SPECIFIC_DATA = {
 	IN      : IN.others,
 	VN      : VN.others,
+	CN      : CN.others,
+	SG      : SG.others,
+	TH      : TH.others,
+	ID      : ID.others,
 	default : defaultInfo,
 };
 

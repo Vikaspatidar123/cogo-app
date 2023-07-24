@@ -1,5 +1,5 @@
 import { Popover, Modal } from '@cogoport/components';
-import { IcMFship, IcMLcl, IcMAir, IcCRedCircle, LclCircle } from '@cogoport/icons-react';
+import { IcMFship, IcMLcl, IcMAir, IcCRedCircle, LclCircle, IcMDocument } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
 import { Service } from '../../../constants/service-mapping';
@@ -143,11 +143,7 @@ function InvoiceCard({ loading, invoiceDetails }) {
 														style={{ alignItems: 'center' }}
 														onClick={() => window.open(item?.invoicePdfUrl, '_blank')}
 													>
-														<img
-															src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ic-shipping-documents.svg"
-															alt="shipping docs"
-															style={{ width: 28, height: 28 }}
-														/>
+														<IcMDocument width={28} height={28} />
 														<text
 															style={{ marginLeft: '15px' }}
 														>
@@ -163,11 +159,7 @@ function InvoiceCard({ loading, invoiceDetails }) {
 										) : (
 											<div className={styles.flex} style={{ width: '100%' }}>
 												<div className={styles.flex} style={{ alignItems: 'center' }}>
-													<img
-														src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ic-shipping-documents.svg"
-														alt="shipping docs"
-														style={{ width: 28, height: 28 }}
-													/>
+													<IcMDocument width={28} height={28} />
 													<text
 														style={{ marginLeft: '15px', color: '#fff' }}
 													>

@@ -25,6 +25,7 @@ const useLeadUserDetails = ({ setLeadUserId = () => {} }) => {
 	const onLeadUserDetails = async (props) => {
 		try {
 			const payload = getFormattedPayload(props);
+
 			const response = await trigger({
 				data: payload,
 			});
@@ -33,8 +34,9 @@ const useLeadUserDetails = ({ setLeadUserId = () => {} }) => {
 
 			setLeadUserId(res?.id);
 		} catch (err) {
-			setLeadUserId('');
 			console.error(err);
+
+			setLeadUserId('');
 		}
 	};
 

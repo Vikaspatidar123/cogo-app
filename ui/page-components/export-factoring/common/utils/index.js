@@ -1,11 +1,11 @@
-const { Pill } = require('@cogoport/components');
+import { Pill } from "@cogoport/components";
 
-const Count = 1;
-export const getAccordianTitle = ({ placeholder, listLength = 0 }) => (
+const COUNT = 1;
+export const AccordianTitle = ({ placeholder, listLength = 0 }) => (
 	<div>
-		<div>{`${placeholder} ${(listLength >= Count) ? listLength : ''}`}</div>
-		<Pill color={listLength >= Count ? 'green' : 'yellow'} size="sm">
-			{listLength >= Count ? 'Completed' : 'Pending'}
+		<div>{`${placeholder} ${(listLength >= COUNT) ? listLength : ''}`}</div>
+		<Pill color={listLength >= COUNT ? 'green' : 'yellow'} size="sm">
+			{listLength >= COUNT ? 'Completed' : 'Pending'}
 		</Pill>
 	</div>
 );

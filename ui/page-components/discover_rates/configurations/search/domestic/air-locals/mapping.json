@@ -3,5 +3,5 @@
 		"import":
 		["import_haulage_freight",
 		"import_transportation",
-		"import_air_customs"];
+		"import_air_customs"]
 }

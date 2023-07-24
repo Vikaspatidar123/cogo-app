@@ -12,18 +12,15 @@ import { Service } from '../../constants/service-mapping';
 
 import styles from './styles.module.css';
 
-import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 import formatDate from '@/ui/commons/utils/formatDate';
 
-const geo = getGeoConstants();
-
-const getColumns = ({ setOrderBy, orderBy }) => [
+const getColumns = ({ setOrderBy, orderBy, geo }) => [
 	{
 
-		Header   : <div className={styles.head}>INVOICE ID</div>,
-		accessor : 'invoiceNumber',
-		Cell     : ({ row: { original } }) => {
+		Header: <div className={styles.head}>INVOICE ID</div>,
+		accessor: 'invoiceNumber',
+		Cell: ({ row: { original } }) => {
 			const value = original?.invoiceNumber || original?.proformaNumber;
 
 			return (
@@ -36,10 +33,10 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 		},
 	},
 	{
-		Header   : <div className={styles.head}>SHIPMENT ID</div>,
-		accessor : 'id',
-		width    : 1,
-		Cell     : ({ row: { original } }) => (
+		Header: <div className={styles.head}>SHIPMENT ID</div>,
+		accessor: 'id',
+		width: 1,
+		Cell: ({ row: { original } }) => (
 			<text>
 				<div className={styles.flex} style={{ flexDirection: 'row', justifyContent: 'center' }}>
 					<div className={styles.shipment_id_style} style={{ color: 'black' }}>
@@ -50,10 +47,10 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 		),
 	},
 	{
-		Header   : <div className={styles.head}>TYPE OF SERVICE</div>,
-		accessor : 'shipmentType',
-		width    : 1,
-		Cell     : ({ row: { original } }) => (
+		Header: <div className={styles.head}>TYPE OF SERVICE</div>,
+		accessor: 'shipmentType',
+		width: 1,
+		Cell: ({ row: { original } }) => (
 			<div className={styles.head}>
 				{!original?.job?.shipmentType
 					? 'NA'
@@ -68,8 +65,8 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 				className={styles.head}
 				role="presentation"
 				onClick={() => setOrderBy((prev) => ({
-					key   : 'grandTotal',
-					order : prev.order === 'Asc' ? 'Desc' : 'Asc',
+					key: 'grandTotal',
+					order: prev.order === 'Asc' ? 'Desc' : 'Asc',
 				}))}
 			>
 				<div
@@ -78,9 +75,9 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 					style={{
 						flexDirection: 'column',
 						transform:
-                                        orderBy.key === 'grandTotal'
-                                        && orderBy.order === 'Asc'
-                            && 'rotate(180deg)',
+							orderBy.key === 'grandTotal'
+							&& orderBy.order === 'Asc'
+							&& 'rotate(180deg)',
 					}}
 				>
 					<IcMArrowRotateRight
@@ -93,22 +90,22 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 						style={{ transform: 'rotate(270deg)', cursor: 'pointer' }}
 					/>
 				</div>
-                &nbsp;AMOUNT
+				&nbsp;AMOUNT
 			</div>
 		),
-		accessor : 'grandTotal',
-		width    : 1,
-		Cell     : ({ row: { original } }) => (
+		accessor: 'grandTotal',
+		width: 1,
+		Cell: ({ row: { original } }) => (
 			<div className={styles.head} style={{ fontWeight: 'bold' }}>
 				{!original.grandTotal
 					? 'NA'
 					: formatAmount({
-						amount   : original?.grandTotal || 0,
-						currency : original?.currency,
-						options  : {
-							style                 : 'currency',
-							currencyDisplay       : 'code',
-							maximumFractionDigits : 0,
+						amount: original?.grandTotal || 0,
+						currency: original?.currency,
+						options: {
+							style: 'currency',
+							currencyDisplay: 'code',
+							maximumFractionDigits: 0,
 						},
 					})}
 			</div>
@@ -120,8 +117,8 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 				className={styles.head}
 				role="presentation"
 				onClick={() => setOrderBy((prev) => ({
-					key   : 'balanceAmount',
-					order : prev.order === 'Asc' ? 'Desc' : 'Asc',
+					key: 'balanceAmount',
+					order: prev.order === 'Asc' ? 'Desc' : 'Asc',
 				}))}
 			>
 				<div
@@ -129,9 +126,9 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 					style={{
 						flexDirection: 'column',
 						transform:
-                                        orderBy.key === 'balanceAmount'
-                            && orderBy.order === 'Asc'
-                            && 'rotate(180deg)',
+							orderBy.key === 'balanceAmount'
+							&& orderBy.order === 'Asc'
+							&& 'rotate(180deg)',
 					}}
 				>
 					<IcMArrowRotateRight
@@ -144,22 +141,22 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 						style={{ transform: 'rotate(270deg)', cursor: 'pointer' }}
 					/>
 				</div>
-                &nbsp;AMOUNT DUE
+				&nbsp;AMOUNT DUE
 			</div>
 		),
-		accessor : 'balanceAmount',
-		width    : 1,
-		Cell     : ({ row: { original } }) => (
+		accessor: 'balanceAmount',
+		width: 1,
+		Cell: ({ row: { original } }) => (
 			<div className={styles.head} style={{ fontWeight: 'bold' }}>
 				{!original.balanceAmount
 					? 'NA'
 					: formatAmount({
-						amount   : original?.balanceAmount || 0,
-						currency : original?.currency,
-						options  : {
-							style                 : 'currency',
-							currencyDisplay       : 'code',
-							maximumFractionDigits : 0,
+						amount: original?.balanceAmount || 0,
+						currency: original?.currency,
+						options: {
+							style: 'currency',
+							currencyDisplay: 'code',
+							maximumFractionDigits: 0,
 						},
 					})}
 			</div>
@@ -171,8 +168,8 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 				className={styles.head}
 				role="presentation"
 				onClick={() => setOrderBy((prev) => ({
-					key   : 'invoiceDate',
-					order : prev.order === 'Asc' ? 'Desc' : 'Asc',
+					key: 'invoiceDate',
+					order: prev.order === 'Asc' ? 'Desc' : 'Asc',
 				}))}
 			>
 				<div
@@ -180,9 +177,9 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 					style={{
 						flexDirection: 'column',
 						transform:
-                                        orderBy.key === 'invoiceDate'
-                                        && orderBy.order === 'Asc'
-                                        && 'rotate(180deg)',
+							orderBy.key === 'invoiceDate'
+							&& orderBy.order === 'Asc'
+							&& 'rotate(180deg)',
 						cursor: 'pointer',
 					}}
 				>
@@ -196,21 +193,21 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 						style={{ transform: 'rotate(270deg)' }}
 					/>
 				</div>
-                &nbsp;INVOICE DATE
+				&nbsp;INVOICE DATE
 			</div>
 		),
-		accessor : 'invoiceDate',
-		width    : 2,
-		Cell     : ({ row: { original } }) => {
+		accessor: 'invoiceDate',
+		width: 2,
+		Cell: ({ row: { original } }) => {
 			const value = original?.invoiceDate || original?.proformaDate;
 			return (
 				<div className={styles.head}>
 					{!value
 						? 'NA'
 						: formatDate({
-							date       : value,
-							dateFormat : geo.formats.date.default,
-							formatType : 'date',
+							date: value,
+							dateFormat: geo.formats.date.default,
+							formatType: 'date',
 						})}
 				</div>
 			);
@@ -223,8 +220,8 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 				role="presentation"
 				onClick={() => {
 					setOrderBy((prev) => ({
-						key   : 'dueDate',
-						order : prev.order === 'Asc' ? 'Desc' : 'Asc',
+						key: 'dueDate',
+						order: prev.order === 'Asc' ? 'Desc' : 'Asc',
 					}));
 				}}
 			>
@@ -232,10 +229,10 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 					className={styles.flex}
 					direction="column"
 					style={{
-						flexDirection : 'column',
-						transform     : orderBy.key === 'dueDate'
-                                                && orderBy.order === 'Asc'
-                                                && 'rotate(180deg)',
+						flexDirection: 'column',
+						transform: orderBy.key === 'dueDate'
+							&& orderBy.order === 'Asc'
+							&& 'rotate(180deg)',
 						cursor: 'pointer',
 					}}
 				>
@@ -249,31 +246,31 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 						style={{ transform: 'rotate(270deg)' }}
 					/>
 				</div>
-                &nbsp;DUE DATE
+				&nbsp;DUE DATE
 			</div>
 		),
-		accessor : 'dueDate',
-		width    : 2,
-		Cell     : ({ cell: { value } }) => (
+		accessor: 'dueDate',
+		width: 2,
+		Cell: ({ cell: { value } }) => (
 			<div className={styles.head}>
 				<IcCRedCircle size={11.2} />
 				<text style={{ fontSize: '12px', marginLeft: '5px' }}>
 					{!value
 						? 'NA'
 						: formatDate({
-							date       : value,
-							dateFormat : geo.formats.date.default,
-							formatType : 'date',
+							date: value,
+							dateFormat: geo.formats.date.default,
+							formatType: 'date',
 						})}
 				</text>
 			</div>
 		),
 	},
 	{
-		Header   : <div className={styles.head}>STATUS</div>,
-		accessor : 'paymentStatus',
-		width    : 1,
-		Cell     : ({ cell: { value } }) => (
+		Header: <div className={styles.head}>STATUS</div>,
+		accessor: 'paymentStatus',
+		width: 1,
+		Cell: ({ cell: { value } }) => (
 			<div className={styles.head}>
 				<div className={styles.status_wrapper}>
 					<div>{!value ? 'NA' : value}</div>
@@ -282,10 +279,10 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 		),
 	},
 	{
-		Header   : <div className={styles.head}>DOWNLOAD</div>,
-		accessor : 'invoicePdfUrl',
-		width    : 1,
-		Cell     : ({ row: { original } }) => {
+		Header: <div className={styles.head}>DOWNLOAD</div>,
+		accessor: 'invoicePdfUrl',
+		width: 1,
+		Cell: ({ row: { original } }) => {
 			const value = original?.invoicePdfUrl || original?.proformaPdfUrl;
 
 			return (
@@ -295,10 +292,10 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 							size="sm"
 							onClick={() => window.open(value)}
 							style={{
-								backgroundColor : '#2C3E50',
-								marginLeft      : '4px',
-								display         : 'flex',
-								alignItems      : 'center',
+								backgroundColor: '#2C3E50',
+								marginLeft: '4px',
+								display: 'flex',
+								alignItems: 'center',
 							}}
 						>
 							<IcMDownload size={28} />

@@ -11,6 +11,8 @@ import InvoiceCard from './InvoiceCard';
 import Loader from './Loading';
 import styles from './styles.module.css';
 
+import getGeoConstants from '@/ui/commons/constants/geo';
+
 function TableList({
 	loading,
 	// setQuery,
@@ -29,7 +31,10 @@ function TableList({
 	invoiceStatus,
 	pagination,
 }) {
-	const columns = useMemo(() => getColumns({ setOrderBy, orderBy }), [orderBy, setOrderBy]);
+	const geo = getGeoConstants();
+
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	const columns = useMemo(() => getColumns({ setOrderBy, orderBy, geo }), [orderBy, setOrderBy]);
 
 	const renderTable = () => {
 		if (!invoiceDetails?.length) {
@@ -93,10 +98,10 @@ function TableList({
 						<div
 							className={styles.flex}
 							style={{
-								padding        : '20px',
-								paddingBottom  : '30px',
-								justifyContent : 'center',
-								alignItems     : 'center',
+								padding: '20px',
+								paddingBottom: '30px',
+								justifyContent: 'center',
+								alignItems: 'center',
 							}}
 						>
 							{renderPagination()}

@@ -21,16 +21,17 @@ const controls = [
 		initialCall        : true,
 		getModifiedOptions : (options) => (options || []).map((x) => ({
 			...x,
-			value: x.id,
-			label:
-	<>
-		<div>{x.commodity}</div>
-		<div>
-			(
-			{x.subCommodity}
-			)
-		</div>
-	</>,
+			value : x.id,
+			label : (
+				<>
+					<div>{x.commodity}</div>
+					<div>
+						(
+						{x.subCommodity}
+						)
+					</div>
+				</>
+			),
 		})),
 	},
 	{
@@ -122,13 +123,13 @@ const controls = [
 ];
 
 const getControls = ({
-	setCommodityName = () => {},
+	setCommodityName = () => { },
 	activeTab = '',
 	formDetails = {},
-	setDescription = () => {},
+	setDescription = () => { },
 	transitType = '',
-	setCountryCode = () => {},
-	setCountryDetails = () => {},
+	setCountryCode = () => { },
+	setCountryDetails = () => { },
 }) => controls.map((control) => {
 	if (control.name === 'policyCommodityId') {
 		return {
@@ -143,8 +144,11 @@ const getControls = ({
 	if (control.name === 'policyCountryId') {
 		return {
 			...control,
-			placeholder  : activeTab === 'IMPORT' ? 'Origin Country' : 'Destination Country',
-			handleChange : (e) => {
+			placeholder:
+				activeTab === 'IMPORT'
+					? 'Origin Country'
+					: 'Destination Country',
+			handleChange: (e) => {
 				setCountryDetails({
 					checkSantion      : e?.countryType,
 					sanctionedCountry : e?.countryName,
@@ -152,16 +156,22 @@ const getControls = ({
 				setCountryCode(e?.countryCode);
 			},
 			params: {
-				transitMode: transitType === 'Ocean' ? 'SEA' : transitType?.toUpperCase() || '',
+				transitMode:
+					transitType === 'Ocean'
+						? 'SEA'
+						: transitType?.toUpperCase() || '',
 			},
 		};
 	}
 	if (control.name === 'incoterm') {
 		return {
 			...control,
-			options: activeTab === 'IMPORT'
-				? INCOTERMOPTIONS.filter((option) => option.value !== 'CIF')
-				: INCOTERMOPTIONS,
+			options:
+				activeTab === 'IMPORT'
+					? INCOTERMOPTIONS.filter(
+						(option) => option.value !== 'CIF',
+					)
+					: INCOTERMOPTIONS,
 		};
 	}
 

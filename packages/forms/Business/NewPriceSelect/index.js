@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { Input, Select } from '@cogoport/components';
 
 import currencyOpt from '../../constants/currencies';

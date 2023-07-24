@@ -15,10 +15,9 @@ function AdvFilters({
 	loading,
 	resetDrillDownHandler,
 	setSearchTag,
-	orgCountryCode,
 }) {
 	const { t } = useTranslation(['common', 'hsClassification']);
-	const { field, defaultValues } = getControls({ orgCountryCode, t });
+	const { field, defaultValues } = getControls({ t });
 
 	const {
 		handleSubmit,

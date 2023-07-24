@@ -2,8 +2,6 @@ import AdvFilters from './AdvFilters';
 import BaseFilters from './BaseFilters';
 import styles from './styles.module.css';
 
-import { useSelector } from '@/packages/store';
-
 const FILTER_COMPONENT = {
 	normalSearch  : BaseFilters,
 	advanceSearch : AdvFilters,
@@ -17,9 +15,6 @@ function Filters({
 	resetDrillDownHandler,
 	setSearchTag,
 }) {
-	const { organization } = useSelector((state) => state.profile);
-	const orgCountryCode = organization?.country?.country_code;
-
 	const FilterComponent = FILTER_COMPONENT[labeledValue];
 
 	return (
@@ -30,7 +25,6 @@ function Filters({
 				loading={loading}
 				resetDrillDownHandler={resetDrillDownHandler}
 				setSearchTag={setSearchTag}
-				orgCountryCode={orgCountryCode}
 			/>
 		</div>
 	);

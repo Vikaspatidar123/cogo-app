@@ -15,11 +15,10 @@ function BaseFilters({
 	loading,
 	resetDrillDownHandler,
 	setSearchTag,
-	orgCountryCode,
 }) {
 	const { t } = useTranslation(['common', 'hsClassification']);
 
-	const { field, defaultValues } = getControls({ t, orgCountryCode });
+	const { field, defaultValues } = getControls({ t });
 
 	const {
 		handleSubmit,

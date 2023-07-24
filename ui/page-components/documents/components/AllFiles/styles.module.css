@@ -16,3 +16,8 @@
 	display: flex;
 	justify-content: flex-end;
 }
+
+.table_wrapper {
+	width: 100%;
+	overflow-x: scroll;
+}

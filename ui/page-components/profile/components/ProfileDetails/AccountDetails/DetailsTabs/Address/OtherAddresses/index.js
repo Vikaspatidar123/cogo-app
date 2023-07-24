@@ -1,8 +1,11 @@
-import { Modal, Badge } from '@cogoport/components';
+import { Modal, Badge, Button } from '@cogoport/components';
 import {
 	IcMArrowRotateDown,
+	IcMArrowRotateRight,
 	IcMFtaskNotCompleted,
 } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import EditOtherAddress from './EditOtherAddress';
@@ -11,8 +14,14 @@ import OtherAddressCard from './OtherAddressCard';
 import styles from './styles.module.css';
 import getOtherAddressOptions from './utils/get-other-address-options';
 
+const ZERO_COUNT = 0;
+
 function OtherAddresses({ addressesData, addressLoading, getAdd }) {
-	const OTHER_ADDRESSES_MAPPING = getOtherAddressOptions();
+	const organizationOtherAddressesList = addressesData?.list || [];
+
+	const { t } = useTranslation(['settings']);
+
+	const OTHER_ADDRESSES_MAPPING = getOtherAddressOptions({ t });
 
 	const [editOtherAddresKey, setEditOtherAddressKey] = useState(null);
 
@@ -21,21 +30,19 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 	const [showData, setShowData] = useState({});
 	const [mobalType, setMobalType] = useState(false);
 
-	const organizationOtherAddressesList = addressesData?.list || [];
-
 	const filterAddress = (address_key) => {
 		const listData = (organizationOtherAddressesList || []).filter(
 			(item) => item.address_type === address_key.api_property_key,
 		);
 		return listData || [];
 	};
-	const renderAddressCards = ({ address_key }) => {
+	function RenderAddressCards({ address_key }) {
 		const data = filterAddress(address_key);
-		if ((data || []).length === 0) {
+		if (isEmpty(data)) {
 			return (
 				<div className={styles.empty}>
 					<IcMFtaskNotCompleted width={40} height={40} />
-					<div className={styles.no_data}>No data Found</div>
+					<div className={styles.no_data}>{t('settings:no_data_found_text')}</div>
 				</div>
 			);
 		}
@@ -49,13 +56,22 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 				address_key={address_key}
 				organizationOtherAddressesList={organizationOtherAddressesList}
 				getAdd={getAdd}
+				key={other_address_data.name}
 			/>
 		));
-	};
+	}
 
 	const handleCloseModal = () => {
 		setEditOtherAddressKey(null);
 		setOtherAddressObjToUpdate({});
+	};
+
+	const handleClick = ({ address_key }) => {
+		setShowData((ps) => ({
+			...ps,
+			[address_key.api_property_key]:
+				!ps[address_key.api_property_key],
+		}));
 	};
 
 	if (addressLoading) {
@@ -63,90 +79,85 @@ function OtherAddresses({ addressesData, addressLoading, getAdd }) {
 	}
 	const addresCount = (address_key) => {
 		const count = filterAddress(address_key).length;
-		const value = count === 0 ? 'No Address(s) Added' : `${count} Address(s) Added`;
+		const value = count === ZERO_COUNT ? t('settings:addresses_not_found_text_1')
+			: `${count} ${t('settings:addresses_added_text_1')}`;
 		return value;
 	};
 
 	return (
 		<>
 			{Object.values(OTHER_ADDRESSES_MAPPING).map((address_key) => (
-				<div className={styles.main_container}>
+				<div className={styles.main_container} key={address_key.api_property_key}>
 					<div className={styles.flex}>
+						<div
+							className={styles.icon_container}
+							onClick={() => handleClick({ address_key })}
+							role="presentation"
+							key={address_key.api_property_key}
+						>
+							{showData[address_key.api_property_key] ? (
+								<IcMArrowRotateDown width={20} height={15} style={{ transform: 'rotate(180deg)' }} />
+							) : (
+								<IcMArrowRotateRight
+									width={20}
+									height={15}
+								/>
+							)}
+						</div>
+
 						<div className={styles.body}>
 							<div className={styles.flex}>
 								<div className={styles.head}>
 									<div className={styles.text}>{address_key.label}</div>
 									<Badge
 										className={styles.badge}
-										color="#f8f2e7"
+										color="#f3fafa"
 										size="md"
 										text={addresCount(address_key)}
 									/>
 								</div>
 							</div>
 							<div className={styles.flex}>
-								<div
-									className={styles.link_text}
+								<Button
 									onClick={() => {
 										setEditOtherAddressKey(address_key);
 										setMobalType(false);
 									}}
-									role="presentation"
+									themeType={showData[address_key.api_property_key] ? 'primary' : 'secondary'}
+									type="button"
 								>
-									+ Add Address
-								</div>
+									{t('settings:add_address_button_label')}
+								</Button>
 							</div>
 						</div>
 
-						<div
-							className={styles.icon_container}
-							onClick={() => setShowData((ps) => ({
-								...ps,
-								[address_key.api_property_key]:
-									!ps[address_key.api_property_key],
-							}))}
-							role="presentation"
-						>
-							{showData[address_key.api_property_key] ? (
-								<IcMArrowRotateDown width={20} height={15} style={{ transform: 'rotate(180deg)' }} />
-							) : (
-								<IcMArrowRotateDown
-									width={20}
-									height={15}
-
-								/>
-							)}
-						</div>
 					</div>
 
 					<div>
-						{showData[address_key.api_property_key]
-              && renderAddressCards({ address_key })}
+						{showData[address_key.api_property_key] ? (
+							<RenderAddressCards address_key={address_key} />
+						) : null}
 					</div>
 				</div>
 			))}
 
-			{(!!editOtherAddresKey
-        || Object.keys(otherAddressObjToUpdate).length !== 0) && (
-	<Modal
-		show={
-            !!editOtherAddresKey
-            || Object.keys(otherAddressObjToUpdate).length !== 0
-          }
-		onClose={handleCloseModal}
-		closeOnOuterClick={handleCloseModal}
-		size="lg"
-	>
-		<EditOtherAddress
-			organizationOtherAddressesList={organizationOtherAddressesList}
-			otherAddressObjToUpdate={otherAddressObjToUpdate}
-			address_key={editOtherAddresKey}
-			handleCloseModal={handleCloseModal}
-			getAdd={getAdd}
-			mobalType={mobalType}
-		/>
-	</Modal>
-			)}
+			{(!!editOtherAddresKey || !isEmpty(Object.keys(otherAddressObjToUpdate))) ? (
+				<Modal
+					show
+					onClose={handleCloseModal}
+					closeOnOuterClick={handleCloseModal}
+					size="lg"
+				>
+					<EditOtherAddress
+						organizationOtherAddressesList={organizationOtherAddressesList}
+						otherAddressObjToUpdate={otherAddressObjToUpdate}
+						address_key={editOtherAddresKey}
+						handleCloseModal={handleCloseModal}
+						getAdd={getAdd}
+						mobalType={mobalType}
+					/>
+				</Modal>
+			) : null}
 		</>
 	);
 }

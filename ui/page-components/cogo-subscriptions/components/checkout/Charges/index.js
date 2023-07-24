@@ -89,7 +89,6 @@ function Charges({
 	});
 
 	const crossedAmount = plan?.metadata?.display_pricing?.[`${query?.period}`]?.[preValue];
-
 	return (
 		<div>
 			<div className={styles.wrapper}>

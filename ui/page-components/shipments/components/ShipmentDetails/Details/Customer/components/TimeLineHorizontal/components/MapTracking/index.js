@@ -1,12 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Modal, cl } from '@cogoport/components';
 import { IcMFitView } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
 import { isPastOrPresentDay } from '../../utils/daysconstant';
 
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const CogoMaps = dynamic(() => import('./map'), { ssr: false });
 
@@ -15,7 +19,6 @@ function TrackerMap({
 	vesselLocationLat,
 	vesselLocationLang,
 	type,
-	width = '50%',
 	height = '80vh',
 	isModal = false,
 	markers = [],
@@ -23,25 +26,19 @@ function TrackerMap({
 	isGetSeaRoute = false,
 }) {
 	const [isTrackerMapModalOpen, setTrackerMapModal] = useState(false);
-	const [currentMilestone, setCurrentMilestone] = useState(false);
 	const [isLoading, setLoading] = useState(true);
 	const [curvePoints, setCurvePoints] = useState([]);
 	const [completedPoints, setCompletedPoints] = useState([]);
 	const [remainingPoints, setRemainingPoints] = useState([]);
 	const isMobile = false;
+
 	const latIndex = isGetSeaRoute ? 0 : 1;
 	const lngIndex = isGetSeaRoute ? 1 : 0;
-
-	const curvePoint = points?.map((a) => ({
-		lat : a[latIndex],
-		lng : a[lngIndex],
-	}));
 
 	let center = {};
 
 	const resetPointAndMarkers = () => {
 		setLoading(true);
-		setCurrentMilestone(false);
 		setCurvePoints([]);
 		setRemainingPoints([]);
 		setCompletedPoints([]);
@@ -59,12 +56,12 @@ function TrackerMap({
 				x1 = parseFloat(inputPoints[0].lat);
 				x3 = parseFloat(inputPoints[1].lat);
 				x2 = Math.max(x1, x3) + 20;
-				const lat_x =					(1 - t) * ((1 - t) * x1 + t * x2) + t * ((1 - t) * x2 + t * x3);
+				const lat_x = (1 - t) * ((1 - t) * x1 + t * x2) + t * ((1 - t) * x2 + t * x3);
 
 				x1 = parseFloat(inputPoints[0].lng);
 				x3 = parseFloat(inputPoints[1].lng);
 				x2 = (x1 + x3) / 2;
-				const lng_x =					(1 - t) * ((1 - t) * x1 + t * x2) + t * ((1 - t) * x2 + t * x3);
+				const lng_x = (1 - t) * ((1 - t) * x1 + t * x2) + t * ((1 - t) * x2 + t * x3);
 
 				bezierPoints.push({
 					lat : lat_x,
@@ -95,20 +92,15 @@ function TrackerMap({
 			if (type === 'air') {
 				resetPointAndMarkers();
 				const res = points?.map((p, idx) => {
-					if (
-						![
-							p.arrival_lat,
-							p.arrival_long,
-							p.departure_lat,
-							p.departure_long,
-						].includes(null)
-						&& ![
-							p.arrival_lat,
-							p.arrival_long,
-							p.departure_lat,
-							p.departure_long,
-						].includes(undefined)
-					) {
+					const ptArr = [
+						p?.arrival_lat,
+						p?.arrival_long,
+						p?.departure_lat,
+						p?.departure_long,
+					];
+					const isValidPtArr = ptArr.every((pt) => pt);
+
+					if (isValidPtArr) {
 						const isCurrentMilestonePastOrPresent = isPastOrPresentDay(
 							p.actual_arrival_time,
 						);
@@ -121,9 +113,7 @@ function TrackerMap({
 							lat : p.arrival_lat,
 							lng : p.arrival_long,
 						};
-						if (isCurrentMilestonePastOrPresent) {
-							setCurrentMilestone(dest);
-						}
+
 						createBezier(
 							[source, dest],
 							0.001,
@@ -140,13 +130,6 @@ function TrackerMap({
 						setLoading(false);
 					}, 0);
 				}
-			} else if (type === 'ocean_schedule') {
-				setRemainingPoints(curvePoint);
-
-				setCurvePoints(curvePoint);
-				setTimeout(() => {
-					setLoading(false);
-				}, 0);
 			} else {
 				points?.map((p) => {
 					let c = p;
@@ -180,15 +163,6 @@ function TrackerMap({
 		}
 	}, [points.length]);
 
-	useEffect(() => {
-		if (type === 'ocean_schedule' && curvePoints.length > 0) {
-			setLoading(true);
-			setTimeout(() => {
-				setLoading(false);
-			}, 0);
-		}
-	}, [markers]);
-
 	if (!isLoading && curvePoints.length > 0) {
 		center = {
 			lat : curvePoints[Math.ceil(curvePoints.length / 2)].lat,
@@ -217,17 +191,18 @@ function TrackerMap({
 					height="50vh"
 					isModal="true"
 					markers={markers}
+					isGetSeaRoute={isGetSeaRoute}
 				/>
 			</Modal>
 		);
 	}
 
 	return isLoading ? (
-		<img
-			src="https://cogoport-maps.s3.ap-south-1.amazonaws.com/world+(2).svg"
+		<Image
+			src={GLOBAL_CONSTANTS.image_url.map_loading}
 			alt="map"
-			height={height}
-			width={width}
+			height={70}
+			width={70}
 			className={isModal ? styles.image : ''}
 		/>
 	) : (
@@ -243,7 +218,6 @@ function TrackerMap({
 					completedPoints={completedPoints}
 					remainingPoints={remainingPoints}
 					curvePoints={curvePoints}
-					currentMilestone={currentMilestone}
 					height={height}
 					vesselLocationLat={vesselLocationLat}
 					vesselLocationLang={vesselLocationLang}
@@ -252,7 +226,7 @@ function TrackerMap({
 					mapCenter={center}
 				/>
 			</div>
-			{points.length === 0 && (
+			{isEmpty(points) && (
 				<div className={styles.loading_screen}>
 					<div className={styles.map_unable}>Unable to load map for this shipment</div>
 

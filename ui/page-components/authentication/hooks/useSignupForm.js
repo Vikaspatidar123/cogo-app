@@ -66,7 +66,8 @@ const useSignupForm = ({
 			setValue('mobile_number', { country_code: mobile_country_code });
 			setValue('country_id', id);
 		}
-	}, [hasMobileValues, setValue]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	useEffect(() => {
 		if (hasMobileValues) {

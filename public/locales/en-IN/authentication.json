@@ -41,6 +41,7 @@
     "signupLoading_prompt_7":"Hang in there, we're almost done...",
     "signupLoading_prompt_8":"Working on it, almost ready for you...",
     "signupLoading_prompt_9":"Just a little more, almost finished...",
+    "getStarted_back_heading":"Go Back to Dashboard",
     "getStarted_title": "Enter Company Details",
     "getStarted_company_label": "Company Name",
     "getStarted_company_placeholder": "Enter your Company Name",

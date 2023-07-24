@@ -6,6 +6,8 @@ import Filters from '../Filters';
 
 import styles from './styles.module.css';
 
+const LOADING_ROWS_COUNT = 6;
+
 function AllFiles({ data = {}, loading = false, filters = {}, setFilters = () => {} }) {
 	const { page = 1 } = filters || {};
 	const { total_count = 0, list = [] } = data || {};
@@ -17,14 +19,15 @@ function AllFiles({ data = {}, loading = false, filters = {}, setFilters = () =>
 		<div>
 			<Filters setFilters={setFilters} filters={filters} />
 
-			<Table
-				columns={columns || []}
-				data={list || []}
-				loading={loading}
-				loadingRowsCount={6}
-				className={styles.table}
-			/>
-
+			<div className={styles.table_wrapper}>
+				<Table
+					columns={columns || []}
+					data={list || []}
+					loading={loading}
+					loadingRowsCount={LOADING_ROWS_COUNT}
+					className={styles.table}
+				/>
+			</div>
 			<div className={styles.pagination_wrapper}>
 				<Pagination
 					type="table"

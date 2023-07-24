@@ -11,6 +11,7 @@ import Uploader from './Uploader';
 function Documents() {
 	const [filters, setFilters] = useState({});
 	const [show, setShow] = useState(false);
+
 	const [documentDetails, setDocumentDetails] = useState({});
 	const [serviceType, setServiceType] = useState('');
 	const [showServiceList, setShowServiceList] = useState('');

@@ -12,29 +12,30 @@ import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
 
+const getOptions = ({ t }) => [
+	{
+		value : 'ocean',
+		label : (
+			<div className={styles.options_container}>
+				<IcAOceanTracking width={25} height={25} />
+				<div className={styles.option_text}>{t('airOceanTracking:ocean_toggle_label')}</div>
+			</div>
+		),
+	},
+	{
+		value : 'air',
+		label : (
+			<div className={styles.options_container}>
+				<IcAAirTracking width={25} height={25} />
+				<div className={styles.option_text}>{t('airOceanTracking:air_toggle_label')}</div>
+			</div>
+		),
+	},
+];
+
 function Header() {
 	const { t } = useTranslation(['common', 'airOceanTracking']);
-
-	const options = [
-		{
-			value : 'ocean',
-			label : (
-				<div className={styles.options_container}>
-					<IcAOceanTracking width={25} height={25} />
-					<div className={styles.option_text}>{t('airOceanTracking:ocean_toggle_label')}</div>
-				</div>
-			),
-		},
-		{
-			value : 'air',
-			label : (
-				<div className={styles.options_container}>
-					<IcAAirTracking width={25} height={25} />
-					<div className={styles.option_text}>{t('airOceanTracking:air_toggle_label')}</div>
-				</div>
-			),
-		},
-	];
+	const options = getOptions({ t });
 
 	const [csvModal, setCsvModal] = useState(false);
 

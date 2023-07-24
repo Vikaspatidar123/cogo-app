@@ -18,6 +18,8 @@ const COLOR = {
 	consignee : 'orange',
 };
 
+const SINGLE_DETAIL_INDEX = 1;
+
 function InfoContainer({
 	containerDetails = [], currContainerDetails = {}, setCurrContainerDetails,
 	shipmentInfo = {}, trackingType, poc_details = [], airwayBillNo = '',
@@ -68,13 +70,13 @@ function InfoContainer({
 			</div>
 
 			<div className={cl`${styles.info}
-				${containerDetails.length > 1 ? styles.without_info_field : styles.info_field}`}
+				${containerDetails?.length > SINGLE_DETAIL_INDEX ? styles.without_info_field : styles.info_field}`}
 			>
 				<p className={styles.info_text}>
 					{trackingType === 'ocean' ? CARD_TITLE.CONTAINER_NO : CARD_TITLE}
 				</p>
 
-				{containerDetails.length > 1
+				{containerDetails?.length > SINGLE_DETAIL_INDEX
 					? (
 						<Select
 							size="sm"

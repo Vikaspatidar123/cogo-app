@@ -1,5 +1,7 @@
 import { IcMAirport, IcMPort } from '@cogoport/icons-react';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const FILTER_MAPPING = {
 	AIR: {
 		paramsKey         : 'airport',
@@ -106,10 +108,13 @@ export const productControls = [
 		type    : 'select',
 		label   : 'Currency',
 		options : [
-			{ label: 'INR', value: 'INR' },
-			{ label: 'USD', value: 'USD' },
-			{ label: 'VND', value: 'VND' },
-		],
+			GLOBAL_CONSTANTS.currency_code.INR,
+			GLOBAL_CONSTANTS.currency_code.USD,
+			GLOBAL_CONSTANTS.currency_code.VND,
+		].map((currencyCode) => ({
+			label : currencyCode,
+			value : currencyCode,
+		})),
 		rules: { required: true },
 	},
 ];

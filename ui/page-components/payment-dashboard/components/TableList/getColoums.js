@@ -23,13 +23,17 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 
 		Header   : <div className={styles.head}>INVOICE ID</div>,
 		accessor : 'invoiceNumber',
-		Cell     : ({ value }) => (
-			<div className={styles.data}>
-				<Tooltip placement="right" content={value}>
-					<div className={styles.over_flow_div}>{value || '-'}</div>
-				</Tooltip>
-			</div>
-		),
+		Cell     : ({ row: { original } }) => {
+			const value = original?.invoiceNumber || original?.proformaNumber;
+
+			return (
+				<div className={styles.data}>
+					<Tooltip placement="right" content={value}>
+						<div className={styles.over_flow_div}>{value || '-'}</div>
+					</Tooltip>
+				</div>
+			);
+		},
 	},
 	{
 		Header   : <div className={styles.head}>SHIPMENT ID</div>,
@@ -197,17 +201,20 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 		),
 		accessor : 'invoiceDate',
 		width    : 2,
-		Cell     : ({ cell: { value } }) => (
-			<div className={styles.head}>
-				{!value
-					? 'NA'
-					: formatDate({
-						date       : value,
-						dateFormat : geo.formats.date.default,
-						formatType : 'date',
-					})}
-			</div>
-		),
+		Cell     : ({ row: { original } }) => {
+			const value = original?.invoiceDate || original?.proformaDate;
+			return (
+				<div className={styles.head}>
+					{!value
+						? 'NA'
+						: formatDate({
+							date       : value,
+							dateFormat : geo.formats.date.default,
+							formatType : 'date',
+						})}
+				</div>
+			);
+		},
 	},
 	{
 		Header: (
@@ -278,25 +285,29 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 		Header   : <div className={styles.head}>DOWNLOAD</div>,
 		accessor : 'invoicePdfUrl',
 		width    : 1,
-		Cell     : ({ cell: { value } }) => (
-			<div className={styles.head}>
-				{!isEmpty(value) ? (
-					<Button
-						size="sm"
-						onClick={() => window.open(value)}
-						style={{
-							backgroundColor : '#2C3E50',
-							marginLeft      : '4px',
-							display         : 'flex',
-							alignItems      : 'center',
-						}}
-					>
-						<IcMDownload size={28} />
-						Invoice
-					</Button>
-				) : ('NA')}
-			</div>
-		),
+		Cell     : ({ row: { original } }) => {
+			const value = original?.invoicePdfUrl || original?.proformaPdfUrl;
+
+			return (
+				<div className={styles.head}>
+					{!isEmpty(value) ? (
+						<Button
+							size="sm"
+							onClick={() => window.open(value)}
+							style={{
+								backgroundColor : '#2C3E50',
+								marginLeft      : '4px',
+								display         : 'flex',
+								alignItems      : 'center',
+							}}
+						>
+							<IcMDownload size={28} />
+							Invoice
+						</Button>
+					) : ('NA')}
+				</div>
+			);
+		},
 	},
 ];
 

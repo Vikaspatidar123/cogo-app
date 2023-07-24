@@ -22,13 +22,13 @@ function TaxInvoiceModal() {
 					<div
 						className={styles.flex}
 						style={{
-							width: '30px',
-							height: '30px',
-							backgroundColor: '#D9EAFD',
-							borderRadius: '30px',
-							justifyContent: 'center',
-							alignItems: 'center',
-							boxShadow: '0px 2px 25px rgba(56, 59, 68, 0.1)',
+							width           : '30px',
+							height          : '30px',
+							backgroundColor : '#D9EAFD',
+							borderRadius    : '30px',
+							justifyContent  : 'center',
+							alignItems      : 'center',
+							boxShadow       : '0px 2px 25px rgba(56, 59, 68, 0.1)',
 						}}
 					>
 						<img
@@ -40,14 +40,14 @@ function TaxInvoiceModal() {
 					<div
 						className={styles.flex}
 						style={{
-							width: '30px',
-							height: '30px',
-							backgroundColor: '#D9EAFD',
-							borderRadius: '30px',
-							justifyContent: 'center',
-							alignItems: 'center',
-							boxShadow: '0px 2px 25px rgba(56, 59, 68, 0.1)',
-							marginLeft: '10px',
+							width           : '30px',
+							height          : '30px',
+							backgroundColor : '#D9EAFD',
+							borderRadius    : '30px',
+							justifyContent  : 'center',
+							alignItems      : 'center',
+							boxShadow       : '0px 2px 25px rgba(56, 59, 68, 0.1)',
+							marginLeft      : '10px',
 						}}
 					>
 						<img
@@ -61,11 +61,11 @@ function TaxInvoiceModal() {
 			<div
 				className={styles.flex}
 				style={{
-					width: '100%',
-					height: '650px',
-					backgroundColor: '#C4C4C4',
-					borderRadius: '4px',
-					marginTop: '10px',
+					width           : '100%',
+					height          : '650px',
+					backgroundColor : '#C4C4C4',
+					borderRadius    : '4px',
+					marginTop       : '10px',
 				}}
 			/>
 		</div>

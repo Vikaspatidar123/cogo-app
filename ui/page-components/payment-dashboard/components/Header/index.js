@@ -9,7 +9,6 @@ import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Header({ statsList = {} }) {
 	const { on_account_amount = 0, currency } = statsList;
-
 	return (
 		<div className={styles.container}>
 			<div>

@@ -11,8 +11,8 @@ const useGetInvoiceDetails = () => {
 	const [invoiceDetails, setInvoiceDetails] = useState([]);
 	const [searchQuery, setSearchQuery] = useState();
 	const [orderBy, setOrderBy] = useState({
-		key: '',
-		order: '',
+		key   : '',
+		order : '',
 	});
 	const [pagination, setPagination] = useState(1);
 	const [pageData, setPageData] = useState({});
@@ -20,16 +20,16 @@ const useGetInvoiceDetails = () => {
 	const [invoiceStatus, setInvoiceStatus] = useState('UNPAID');
 
 	const { organizationId, kyc_status } = useSelector(({ profile }) => ({
-		organizationId: profile?.organization?.id,
-		kyc_status: profile?.organization?.kyc_status,
+		organizationId : profile?.organization?.id,
+		kyc_status     : profile?.organization?.kyc_status,
 	}));
 
 	const triggerApi = kyc_status === 'verified' && organizationId !== null;
 
 	const [{ data }, trigger] = useRequestBf({
-		url: '/sales/invoice/list',
-		authKey: 'get_sales_invoice_list',
-		method: 'get',
+		url     : '/sales/invoice/list',
+		authKey : 'get_sales_invoice_list',
+		method  : 'get',
 	}, { manual: true });
 
 	const onQueryChange = (value) => {
@@ -39,13 +39,13 @@ const useGetInvoiceDetails = () => {
 	};
 
 	const params = {
-		q: query || undefined,
-		paymentStatus: invoiceStatus,
-		bookingPartyId: organizationId,
-		pageLimit: 10,
-		sortType: orderBy.order || undefined,
-		sortBy: orderBy.key || undefined,
-		page: pagination,
+		q              : query || undefined,
+		paymentStatus  : invoiceStatus,
+		bookingPartyId : organizationId,
+		pageLimit      : 10,
+		sortType       : orderBy.order || undefined,
+		sortBy         : orderBy.key || undefined,
+		page           : pagination,
 	};
 
 	const getInvoiceDetails = async () => {

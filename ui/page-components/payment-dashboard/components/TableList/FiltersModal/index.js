@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
 import { Flex, Text, Button, Select } from '@cogoport/front/components';
 import { IcMFilter, IcMSearchdark, IcMRefresh } from '@cogoport/icons-react';
-import { ModalWrapper, SearchContainer, SelectWrapper } from './style';
+import React, { useState } from 'react';
+
 import statusOptions from '../../../constants/status-options';
+
+import { ModalWrapper, SearchContainer, SelectWrapper } from './style';
 
 const options = [];
 for (let i = 0; i < 100; i += 1) {
@@ -20,7 +22,7 @@ const Sort_By_Options = [
 	{ label: 'Decending', value: 'Desc' },
 ];
 
-const FiltersModal = ({
+function FiltersModal({
 	getInvoiceDetails,
 	setRequestType,
 	searchQuery,
@@ -30,7 +32,7 @@ const FiltersModal = ({
 	setPagination,
 	setInvoiceStatus,
 	invoiceStatus,
-}) => {
+}) {
 	const [show, setShow] = useState(false);
 	const onClick = () => {
 		setShow(true);
@@ -47,27 +49,27 @@ const FiltersModal = ({
 		<Flex>
 			<Flex
 				style={{
-					width: '30px',
-					height: '30px',
-					backgroundColor: '#FFFFFF',
-					borderRadius: '30px',
-					justifyContent: 'center',
-					alignItems: 'center',
-					boxShadow: '0px 2px 25px rgba(56, 59, 68, 0.1)',
+					width           : '30px',
+					height          : '30px',
+					backgroundColor : '#FFFFFF',
+					borderRadius    : '30px',
+					justifyContent  : 'center',
+					alignItems      : 'center',
+					boxShadow       : '0px 2px 25px rgba(56, 59, 68, 0.1)',
 				}}
 			>
 				<IcMFilter fill="#356EFD" size={16.8} onClick={() => onClick()} />
 			</Flex>
 			<Flex
 				style={{
-					width: '30px',
-					height: '30px',
-					backgroundColor: '#FFFFFF',
-					borderRadius: '30px',
-					justifyContent: 'center',
-					alignItems: 'center',
-					marginLeft: '8px',
-					boxShadow: '0px 2px 25px rgba(56, 59, 68, 0.1)',
+					width           : '30px',
+					height          : '30px',
+					backgroundColor : '#FFFFFF',
+					borderRadius    : '30px',
+					justifyContent  : 'center',
+					alignItems      : 'center',
+					marginLeft      : '8px',
+					boxShadow       : '0px 2px 25px rgba(56, 59, 68, 0.1)',
 				}}
 			>
 				<IcMRefresh onClick={() => getInvoiceDetails()} size={21} />
@@ -107,10 +109,10 @@ const FiltersModal = ({
 						</Flex>
 						<SearchContainer
 							style={{
-								width: '100%',
-								height: '44px',
-								border: '1px solid #E0E0E0',
-								margin: '10px 0px',
+								width  : '100%',
+								height : '44px',
+								border : '1px solid #E0E0E0',
+								margin : '10px 0px',
 							}}
 						>
 							<IcMSearchdark className="input-icons" />
@@ -167,9 +169,7 @@ const FiltersModal = ({
 							<Flex flex={1} marginLeft={5}>
 								<SelectWrapper
 									style={{ width: '100%' }}
-									onChange={(e) =>
-										setOrderBy((rest) => ({ ...rest, order: e }))
-									}
+									onChange={(e) => setOrderBy((rest) => ({ ...rest, order: e }))}
 									placeholder="Sort By"
 									value={orderBy.order}
 									options={Sort_By_Options}
@@ -190,6 +190,6 @@ const FiltersModal = ({
 			)}
 		</Flex>
 	);
-};
+}
 
 export default FiltersModal;

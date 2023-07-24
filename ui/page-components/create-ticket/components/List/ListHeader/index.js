@@ -8,7 +8,7 @@ function ListHeader({ fields, setOrderBy, setParams, params, orderBy }) {
 		<div className={styles.container}>
 			<div className={styles.row}>
 				{(fields || []).map((field) => (
-					<div key={field?.key} className={styles?.[field.key]}>
+					<div key={field?.key} className={cl`${styles.card_header_col} ${styles?.[field.key]}`}>
 						{field.sort ? (
 							<div className={styles.card_title}>
 								<IcMArrowRotateUp

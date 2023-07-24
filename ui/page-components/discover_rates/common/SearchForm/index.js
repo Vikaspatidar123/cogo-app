@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-// import usei18n from '@cogo/i18n';
 import { Checkbox, Toast, cl, Button } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
 import React, {
@@ -30,6 +29,7 @@ const containerDetailsModes = [
 	'trailer_freight',
 	'haulage_freight',
 	'fcl_customs',
+	'barge_freight',
 ];
 
 const getRFQControls = (optControls, index) => optControls.form.map((item) => ({
@@ -62,7 +62,6 @@ function Form(
 ) {
 	const { is_org_pass_through } = extraParams;
 
-	// const { keywords } = usei18n();
 	const [loading, setLoading] = useState(false);
 	const [show, setShow] = useState(false);
 	const [location, setLocation] = useState({});

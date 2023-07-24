@@ -13,6 +13,11 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
+const redirectDiscover = ({ org_id, branch_id }) => {
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/book`;
+	window.open(callBackUrl, '_blank');
+};
+
 function FreightModal({
 	showFreightModal,
 	setShowFreightModal,
@@ -34,7 +39,7 @@ function FreightModal({
 	const { rates = [] } = spotSearchData || {};
 
 	const { query } = useRouter();
-	const { org_id = '', branch_id = '', account_type = '' } = query || {};
+	const { org_id = '', branch_id = '' } = query || {};
 
 	const serviceType = transportMode === 'OCEAN' ? 'FCL' : 'AIR';
 	const payload = spotSearchPayload({
@@ -66,10 +71,6 @@ function FreightModal({
 		}
 		setShowFreightModal(false);
 	};
-	const redirectDiscover = () => {
-		const callBackUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/book`;
-		window.open(callBackUrl, '_blank');
-	};
 
 	useEffect(() => {
 		spotSearchHandler();
@@ -81,7 +82,12 @@ function FreightModal({
 				<IcAFinancial height={30} width={30} />
 				<div className={styles.title_div}>Freight Rates</div>
 			</div>
-			<div className={styles.hyperlink} role="presentation" onClick={redirectDiscover}>
+
+			<div
+				className={styles.hyperlink}
+				role="presentation"
+				onClick={() => redirectDiscover({ org_id, branch_id })}
+			>
 				Discover Rates
 			</div>
 		</div>

@@ -47,13 +47,13 @@ const useDraft = () => {
 	const [{ loading }, trigger] = useRequestBf({
 		method  : 'post',
 		url     : '/saas/trade-engine/controls/draft',
-		authkey : 'post_saas_trade_engine_controls_draft',
+		authKey : 'post_saas_trade_engine_controls_draft',
 	}, { manual: true });
 
 	const [{ loading: getDraftLoading, data: getDraftData }, getDraftTrigger] = useRequestBf({
 		method  : 'get',
 		url     : '/saas/trade-engine/draft',
-		authkey : 'get_saas_trade_engine_draft',
+		authKey : 'get_saas_trade_engine_draft',
 	}, { manual: true });
 
 	const refetchDraft = async (props) => {

@@ -94,7 +94,7 @@ const getRoomHelpers = ({
 	const updateRoom = async (room_id) => {
 		const messageFireBase = doc(firestore, `${GLOBAL_CONSTANTS.firebase_paths.platform_chat}/${room_id}`);
 		const getRoomData = await getDoc(messageFireBase);
-		const { session_type = 'bot', user_channel_ids: userChannelId } =			getRoomData.data() || {};
+		const { session_type = 'bot', user_channel_ids: userChannelId, agent_type = 'bot' } = getRoomData.data() || {};
 
 		const userNameHash = name ? { user_name: name?.toUpperCase() } : {};
 
@@ -109,6 +109,7 @@ const getRoomHelpers = ({
 			user_email,
 			userDetails,
 			business_name,
+			agent_type,
 		});
 
 		await updateDoc(messageFireBase, payload);

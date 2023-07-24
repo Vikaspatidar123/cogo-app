@@ -33,7 +33,7 @@ const useGetSummary = () => {
 						organization_branch_id : branch_id,
 						shipment_status        : globalFilter?.shipment_status,
 					},
-					page                 : 1,
+					page                 : globalFilter.page,
 					page_limit           : 7,
 					filter_data_required : true,
 				},

@@ -91,20 +91,15 @@ function MapContainer({
 						departureLatitude,
 						departureLongitude,
 					}) => {
-						if (
-							![
-								arrivalLatitude,
-								arrivalLongitude,
-								departureLatitude,
-								departureLongitude,
-							].includes(null)
-							&& ![
-								arrivalLatitude,
-								arrivalLongitude,
-								departureLatitude,
-								departureLongitude,
-							].includes(undefined)
-						) {
+						const pointArr = [
+							arrivalLatitude,
+							arrivalLongitude,
+							departureLatitude,
+							departureLongitude,
+						];
+						const isValidPtArr = pointArr.every((pt) => pt);
+
+						if (isValidPtArr) {
 							const source = {
 								lat : departureLatitude,
 								lng : departureLongitude,

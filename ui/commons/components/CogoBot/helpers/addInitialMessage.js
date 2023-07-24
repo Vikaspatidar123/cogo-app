@@ -19,7 +19,8 @@ const USER_WHATSAPP_QR = {
 		message   : 'Scan using WhatsApp or click on button below',
 		media_url : GLOBAL_CONSTANTS.image_url.whatsapp_qr,
 	},
-	created_at: Date.now(),
+	created_at : Date.now(),
+	agent_type : 'bot',
 };
 
 const WHATSAPP_QR_META_DATA = {
@@ -45,7 +46,8 @@ const addInitialMessage = async ({ roomId, firestore, name, sendMessage }) => {
 		response          : {
 			message: welcomeMessage,
 		},
-		created_at: Date.now(),
+		created_at : Date.now(),
+		agent_type : 'bot',
 	};
 
 	await addDoc(userMessageCollection, userChat);

@@ -7,7 +7,7 @@ const useGetTicketsUnreadCount = () => {
 	const { trigger, data } = useTicketsRequest({
 		url     : '/unread_count',
 		method  : 'get',
-		authkey : 'get_tickets_unread_count',
+		authKey : 'get_tickets_unread_count',
 	}, { manual: false });
 
 	const getUnreadTicketsCount = () => {

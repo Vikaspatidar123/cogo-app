@@ -16,7 +16,7 @@ const optionsAll = [];
 		});
 	}
 });
-const prefferdCurrencies = ['INR', 'USD', 'GBP', 'EUR'];
+const prefferdCurrencies = ['INR', 'VND', 'USD', 'GBP', 'EUR'];
 const prefferedOptons = optionsAll.filter((option) => prefferdCurrencies.includes(option.key));
 const restOptionsList = optionsAll.filter(
 	(option) => !prefferdCurrencies.includes(option.key),

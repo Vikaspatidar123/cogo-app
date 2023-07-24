@@ -66,5 +66,7 @@
     "hs_code_classification_hs_code_control_label_2":"Mã HS",
     "hs_code_classification_add_bookmark_toast_1":"Được thêm thành công trong danh sách yêu thích",
     "hs_code_classification_remove_bookmark_toast_1":"Bị xóa thành công khỏi danh sách yêu thích",
-    "alt_text_for_empty_image":"Trống"
+    "alt_text_for_empty_image":"Trống",
+    "basic_filter_opt_1":"Mã HS",
+    "basic_filter_opt_2":"Sản phẩm"
 }

@@ -48,19 +48,5 @@
 }
 
 .cargo_value_container {
-	.core-ui-input-root {
-		height: 32px !important;
-	}
-
-	.core-ui-select__control {
-		height: 32px !important;
-	}
-
-	.core-ui-select__single-value {
-		top: 15% !important;
-	}
-
-	.core-ui-select-caret-icon {
-		margin-bottom: 18px;
-	}
+	width: 350px;
 }

@@ -17,7 +17,6 @@
 
 .panel {
 	display: flex;
-	flex-direction: row;
 
 	&.margin {
 		margin-top: 16px;

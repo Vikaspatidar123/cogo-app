@@ -7,7 +7,7 @@ const Service = {
 		bgColor : '#356EFD',
 	},
 	air_freight: {
-		name: 'Air	Freight',
+		name: 'Air Freight',
 	},
 	ltl_freight: {
 		name: 'LTL Freight',

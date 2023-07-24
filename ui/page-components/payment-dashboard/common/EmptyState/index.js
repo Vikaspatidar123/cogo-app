@@ -9,7 +9,7 @@ function EmptyState({ containerHeight = '' }) {
 	return (
 		<div className={styles.empty_card}>
 			<div className={styles.container}>
-				<div className={styles.wrapper} style={{ height: `${containerHeight}:360px` }}>
+				<div className={styles.wrapper} style={{ height: `${containerHeight}` }}>
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.empty_url}
 						height={100}

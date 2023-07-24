@@ -14,7 +14,7 @@ function TaxInvoiceModal() {
 							Tax Invoice
 						</text>
 						<text style={{ color: '#333333' }}>
-							FCL Freight |Invoice ID 667TBT
+							FCL Freight |Invoice ID
 						</text>
 					</div>
 				</div>

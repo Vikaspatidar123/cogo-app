@@ -26,11 +26,12 @@ function Header({ statsList = {} }) {
 				/>
 				<div className={styles.amount}>
 					{formatAmount({
-						amount: on_account_amount?.toFixed(2),
+						amount  : on_account_amount,
 						currency,
-						options: {
-							style: 'currency',
-							currencyDisplay: 'code',
+						options : {
+							style                 : 'currency',
+							currencyDisplay       : 'code',
+							maximumFractionDigits : 2,
 						},
 					})}
 				</div>

@@ -12,7 +12,7 @@ function PaymentPopover() {
 					style={{ width: 28, height: 28 }}
 				/>
 				<text style={{ fontSize: '500px', color: '#828282', marginLeft: '10px' }}>
-					Make Paymnet
+					Make Payment
 				</text>
 			</div>
 			<div className={styles.flex} style={{ width: '100%', border: '1px solid rgba(0, 0, 0, 0.1)' }} />

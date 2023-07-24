@@ -72,9 +72,10 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 					className={styles.flex}
 					direction="column"
 					style={{
-						flexDirection : 'column',
-						transform     : orderBy.key === 'grandTotal'
-                            && orderBy.order === 'Asc'
+						flexDirection: 'column',
+						transform:
+                                        orderBy.key === 'grandTotal'
+                                        && orderBy.order === 'Asc'
                             && 'rotate(180deg)',
 					}}
 				>
@@ -122,10 +123,11 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 				<div
 					className={styles.flex}
 					style={{
-						flexDirection : 'column',
-						transform     : orderBy.key === 'balanceAmount'
-                                        && orderBy.order === 'Asc'
-                                        && 'rotate(180deg)',
+						flexDirection: 'column',
+						transform:
+                                        orderBy.key === 'balanceAmount'
+                            && orderBy.order === 'Asc'
+                            && 'rotate(180deg)',
 					}}
 				>
 					<IcMArrowRotateRight
@@ -174,9 +176,9 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 					style={{
 						flexDirection: 'column',
 						transform:
-                                            orderBy.key === 'invoiceDate'
-                                            && orderBy.order === 'Asc'
-                                            && 'rotate(180deg)',
+                                        orderBy.key === 'invoiceDate'
+                                        && orderBy.order === 'Asc'
+                                        && 'rotate(180deg)',
 						cursor: 'pointer',
 					}}
 				>
@@ -225,8 +227,8 @@ const getColumns = ({ setOrderBy, orderBy }) => [
 					style={{
 						flexDirection : 'column',
 						transform     : orderBy.key === 'dueDate'
-                            && orderBy.order === 'Asc'
-                            && 'rotate(180deg)',
+                                                && orderBy.order === 'Asc'
+                                                && 'rotate(180deg)',
 						cursor: 'pointer',
 					}}
 				>

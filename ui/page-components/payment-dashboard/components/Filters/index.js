@@ -5,10 +5,6 @@ import statusOptions from '../../constants/status-options';
 
 import styles from './styles.module.css';
 
-const options = [];
-for (let i = 0; i < 100; i += 1) {
-	options.push({ label: `label${i}`, value: `value${i}` });
-}
 function Filters({
 	onQueryChange,
 	searchQuery,

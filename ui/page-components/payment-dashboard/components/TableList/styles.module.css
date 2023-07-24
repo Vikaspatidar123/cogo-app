@@ -94,7 +94,7 @@
 }
 
 .web_view {
-	display: flex;
+	display: contents;
 
 	@media (max-width: 767px) {
 		display: none;

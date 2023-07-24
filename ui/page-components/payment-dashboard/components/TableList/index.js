@@ -5,11 +5,12 @@ import {
 	IcMArrowRotateRight,
 	IcMArrowRotateLeft,
 } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import React, { useMemo } from 'react';
 
 import { Service } from '../../constants/service-mapping';
+import Filters from '../Filters';
 
-// import Filters from '../Filters';
 import EmptyTable from './EmptyTable';
 // import FiltersModal from './FiltersModal';
 import InvoiceCard from './InvoiceCard';
@@ -38,6 +39,7 @@ function TableList({
 	onQueryChange,
 	setInvoiceStatus,
 	invoiceStatus,
+	pagination,
 }) {
 	const columns = useMemo(
 		() => [
@@ -344,12 +346,10 @@ function TableList({
 		<div className={styles.flex} style={{ alignItems: 'center' }}>
 			<Pagination
 				className="md"
-				pagination={pageData.pageIndex}
-				total={pageData.totalRecords}
-				pageLimit={10}
-				setPagination={(val) => {
-					setPagination(val);
-				}}
+				currentPage={pagination}
+				totalItems={pageData.totalRecords}
+				pageSize={10}
+				onPageChange={(val) => setPagination(val)}
 			/>
 		</div>
 	);
@@ -385,7 +385,7 @@ function TableList({
 				)} */}
 			</div>
 			<div className={`${styles.flex} ${styles.mobile_view}`} style={{ flexDirection: 'column' }}>
-				{invoiceDetails?.length > 0 ? (
+				{!isEmpty(invoiceDetails) ? (
 					<>
 						<InvoiceCard invoiceDetails={invoiceDetails} loading={loading} />
 						<div
@@ -405,16 +405,16 @@ function TableList({
 				)}
 			</div>
 			<div className={styles.web_view}>
-				{/* <Flex justifyContent="space-between">
-						<Filters
-							searchQuery={searchQuery}
-							onQueryChange={onQueryChange}
-							setPagination={setPagination}
-							setInvoiceStatus={setInvoiceStatus}
-							invoiceStatus={invoiceStatus}
-						/>
-						{invoiceDetails?.length > 0 && renderPagination()}
-					</Flex> */}
+				<div className={styles.flex} style={{ justifyContent: 'space-between' }}>
+					<Filters
+						searchQuery={searchQuery}
+						onQueryChange={onQueryChange}
+						setPagination={setPagination}
+						setInvoiceStatus={setInvoiceStatus}
+						invoiceStatus={invoiceStatus}
+					/>
+					{!isEmpty(invoiceDetails) && renderPagination()}
+				</div>
 				{renderTable()}
 			</div>
 		</div>

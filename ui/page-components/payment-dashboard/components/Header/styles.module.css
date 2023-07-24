@@ -1,38 +1,38 @@
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 6px 0 3px;
 }
 
 .web_view {
-    display: flex;
+	display: flex;
 
-    @media (max-width: 768px) {
-        display: none;
-    }
+	@media (max-width: 768px) {
+		display: none;
+	}
 }
 
 .mobile_view {
-    display: none;
+	display: none;
 
-    @media (max-width: 768px) {
-        display: block;
-    }
+	@media (max-width: 768px) {
+		display: block;
+	}
 }
 
 .heading {
-    margin-bottom: 5px;
-    font-size: 22px;
+	margin-bottom: 5px;
+	font-size: 22px;
 }
 
 .des {
-    font-size: 14px;
-    color: #4f4f4f;
+	font-size: 14px;
+	color: #4f4f4f;
 }
 
 .amount {
-    margin: 0 0 0 8px;
-    font-weight: 700;
-    color: rgb(103 198 118);
+	margin: 0 0 0 8px;
+	font-weight: 700;
+	color: rgb(103 198 118);
 }

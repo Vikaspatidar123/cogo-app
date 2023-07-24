@@ -1,65 +1,65 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    padding: 16px;
-    margin: 8px;
-    background-color: rgb(245 247 250);
-    border: 1px solid #fff,;
-    border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: auto;
+	padding: 16px;
+	margin: 8px;
+	background-color: rgb(245 247 250);
+	border: 1px solid #fff,;
+	border-radius: 10px;
 
-    @media (max-width: 767px) {
-        width: 337px;
-        height: 100%;
-        margin: 0 10px 0 0;
-    }
+	@media (max-width: 767px) {
+		width: 337px;
+		height: 100%;
+		margin: 0 10px 0 0;
+	}
 }
 
 .head {
-    display: flex;
-    flex: 1;
+	display: flex;
+	flex: 1;
 }
 
 .head_text {
-    margin-bottom: 20px;
-    margin-left: 10px;
-    color: #4f4f4f;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	color: #4f4f4f;
 
-    @media (max-width: 767px) {
-        margin-bottom: 10px;
-        font-size: 12px;
-    }
+	@media (max-width: 767px) {
+		margin-bottom: 10px;
+		font-size: 12px;
+	}
 }
 
 .card {
-    display: flex;
-    justify-content: space-between;
-    float: 2;
+	display: flex;
+	justify-content: space-between;
+	float: 2;
 }
 
 .box {
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .paid_card {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .paid_card_text {
-    font-size: 24px;
+	font-size: 24px;
 
-    @media (max-width: 767px) {
-        font-size: 18px;
-    }
+	@media (max-width: 767px) {
+		font-size: 18px;
+	}
 }
 
 .paid_text {
-    color: #333;
+	color: #333;
 
-    @media (max-width: 767px) {
-        font-size: 10px;
-    }
+	@media (max-width: 767px) {
+		font-size: 10px;
+	}
 }

@@ -72,7 +72,7 @@ function EditProfileDetails({
 					themeType="accent"
 					type="submit"
 				>
-					{t('settongs:billing_details_update_label')}
+					{t('settings:billing_details_update_label')}
 				</Button>
 			</div>
 		</div>

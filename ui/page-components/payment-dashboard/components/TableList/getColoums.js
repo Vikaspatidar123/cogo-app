@@ -40,7 +40,8 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 			<text>
 				<div className={styles.flex} style={{ flexDirection: 'row', justifyContent: 'center' }}>
 					<div className={styles.shipment_id_style} style={{ color: 'black' }}>
-						{!original?.job?.id ? 'NA' : original?.job?.id}
+						{!original?.job?.jobNumber
+							? 'NA' : original?.job?.jobNumber}
 					</div>
 				</div>
 			</text>

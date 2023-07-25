@@ -92,3 +92,8 @@ export { default as FClCFSEnquiryCreateControls } from './enquiry/fcl-cfs-contro
 export { default as FCLLocalsControls } from './search/domestic/fcl-locals/form.controls';
 export { default as LCLLocalsControls } from './search/domestic/lcl-locals/form.controls';
 export { default as AIRLocalsControls } from './search/domestic/air-locals/form.controls';
+
+// Barge
+
+export { default as BargeControls } from './search/domestic/barge/form.controls';
+export { default as BargeQuickSearchControls } from './search/domestic/barge/quick-search.control';

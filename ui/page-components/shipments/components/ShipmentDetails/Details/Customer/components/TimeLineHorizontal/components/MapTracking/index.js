@@ -178,21 +178,24 @@ function TrackerMap({
 	if (isTrackerMapModalOpen) {
 		return (
 			<Modal
-				className="xl"
+				size="xl"
 				onClose={() => setTrackerMapModal(!isTrackerMapModalOpen)}
 				show={isTrackerMapModalOpen}
 			>
-				<TrackerMap
-					points={points}
-					vesselLocationLat={vesselLocationLat}
-					vesselLocationLang={vesselLocationLang}
-					type={type}
-					width="97%"
-					height="50vh"
-					isModal="true"
-					markers={markers}
-					isGetSeaRoute={isGetSeaRoute}
-				/>
+				<div className={styles.modal_body}>
+					<TrackerMap
+						points={points}
+						vesselLocationLat={vesselLocationLat}
+						vesselLocationLang={vesselLocationLang}
+						type={type}
+						width="97%"
+						height="70vh"
+						markers={markers}
+						isGetSeaRoute={isGetSeaRoute}
+						isModal
+					/>
+				</div>
+
 			</Modal>
 		);
 	}

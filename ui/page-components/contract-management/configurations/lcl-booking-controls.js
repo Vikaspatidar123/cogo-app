@@ -1,8 +1,10 @@
 import { addDays } from '@cogoport/utils';
 
-const lclControls = (contractValidity, departureDate) => {
+const lclControls = ({ contractValidity, departureDate, primaryServicesDetailsArray = [] }) => {
+	const { primary_service_id = '' } = primaryServicesDetailsArray?.[0] || {};
+
 	const { contractEndDate } = contractValidity || {};
-	return [
+	const fields = [
 		{
 			name        : 'packages_count',
 			inlineLabel : 'Packages Count',
@@ -52,16 +54,6 @@ const lclControls = (contractValidity, departureDate) => {
 			rules       : { required: 'Shipping line required' },
 		},
 		{
-			inlineLabel : 'Cargo Weight per Container(in metric tons)',
-			placeholder : 'Cargo Wt per Container',
-			name        : 'cargo_weight_per_container',
-			type        : 'number',
-			span        : 6,
-			className   : 'primary lg',
-			value       : 18,
-			rules       : { required: 'Required' },
-		},
-		{
 			inlineLabel : 'Departure',
 			name        : 'departure',
 			type        : 'datepicker',
@@ -81,7 +73,22 @@ const lclControls = (contractValidity, departureDate) => {
 			disabled    : !departureDate,
 			minDate     : departureDate,
 		},
+		{
+			name  : 'primary_service_id',
+			value : primary_service_id,
+			type  : 'hidden',
+			style : { display: 'none' },
+			span  : 0.1,
+		},
 	];
+
+	const defaultValues = {
+		packages_count : 1,
+		weight         : 1,
+		primary_service_id,
+	};
+
+	return { defaultValues, fields };
 };
 
 export default lclControls;

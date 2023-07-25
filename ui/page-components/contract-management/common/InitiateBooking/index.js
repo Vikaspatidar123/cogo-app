@@ -19,35 +19,33 @@ import FormElement from '@/ui/page-components/discover_rates/common/FormElement'
 function InitiateBooking({
 	data = {},
 	showBookingModal,
-	setShowBookingModal = () => { },
-	readyForBooking,
+	setShowBookingModal = () => {},
+	primaryServicesDetails: primaryServicesDetailsArray = [],
+	contractId = '',
+	added_additional_services: additionalServices = [],
 }) {
 	const [departureDate, setDepartureDate] = useState('');
+	const [intialFormData, setIntialFormData] = useState({});
+
 	const {
 		service_type = 'fcl_freight',
 		upcoming_shipment_data: upcomingShipmentData = {},
-		additional_services: additionalServices = [],
 		contractStartDate,
 		contractEndDate,
 		source,
 		contract_type,
-		service_details,
 	} = data || {};
 
 	const contractValidity = {
 		contractStartDate,
 		contractEndDate,
 	};
-	const { createBooking, loading } = useCreateContractBooking();
 
-	const isFtlPresentInFcl = additionalServices.includes('ftl_freight')
-		&& service_type === 'fcl_freight';
-
-	const truckingServices = ['ftl_freight', 'ltl_freight'];
-	const isTruckingPresentInLcl = additionalServices.every((i) => truckingServices.includes(i))
-		&& service_type === 'lcl_freight';
-
+	const isFtlPresentInFcl = additionalServices.includes('ftl_freight') && service_type === 'fcl_freight';
+	const isTruckingPresentInLcl = additionalServices.includes('ftl_freight') && service_type === 'lcl_freight';
 	const contractWithCogoport = source === 'manual' && contract_type === 'with_cogoport';
+
+	const { createBooking, loading } = useCreateContractBooking();
 
 	const showElementsFunc = (controlItems, values) => {
 		const showElements = {};
@@ -73,27 +71,42 @@ function InitiateBooking({
 		});
 		return showElements;
 	};
-	const fclArray = service_details?.filter(
-		(item) => item.service_type === 'fcl_freight',
-	);
-	const attributes = (fclArray || []).map((item) => ({
-		container_size           : item.container_size,
-		commodity                : item.commodity,
-		container_type_commodity : {
-			container_type : item.container_type,
-			commodity      : item.commodity,
-		},
-		container_type             : item.container_type,
-		containers_count           : item.containers_count,
-		cargo_weight_per_container : item.cargo_weight_per_container,
-	}));
+
 	const SERVICE_CONTROLS_MAPPING = {
-		fcl_freight : fclControls({ contractValidity, departureDate, fclArray, attributes }),
-		lcl_freight : lclControls(contractValidity, departureDate),
-		air_freight : airControls(contractValidity, departureDate),
+		fcl_freight: fclControls({
+			contractValidity,
+			departureDate,
+			primaryServicesDetailsArray,
+			setIntialFormData,
+		}),
+		lcl_freight: lclControls({
+			contractValidity,
+			departureDate,
+			primaryServicesDetailsArray,
+		}),
+		air_freight: airControls({
+			contractValidity,
+			departureDate,
+			primaryServicesDetailsArray,
+		}),
 	};
 
-	const controls = SERVICE_CONTROLS_MAPPING[service_type] || [];
+	const { defaultValues, fields } = SERVICE_CONTROLS_MAPPING[service_type] || [];
+
+	// const fclArray = service_details?.filter(
+	// 	(item) => item.service_type === 'fcl_freight',
+	// );
+	// const attributes = (fclArray || []).map((item) => ({
+	// 	container_size           : item.container_size,
+	// 	commodity                : item.commodity,
+	// 	container_type_commodity : {
+	// 		container_type : item.container_type,
+	// 		commodity      : item.commodity,
+	// 	},
+	// 	container_type             : item.container_type,
+	// 	containers_count           : item.containers_count,
+	// 	cargo_weight_per_container : item.cargo_weight_per_container,
+	// }));
 
 	const {
 		handleSubmit,
@@ -101,14 +114,10 @@ function InitiateBooking({
 		setValue,
 		watch,
 		control,
-	} = useForm({
-		defaultValues: {
-			attributes,
-		},
-	});
+	} = useForm({ defaultValues });
 
 	const formValues = watch();
-	const showElements = showElementsFunc(controls, formValues);
+	const showElements = showElementsFunc(fields, formValues);
 	const shipmentStartDate = watch('departure');
 
 	useEffect(() => {
@@ -137,7 +146,6 @@ function InitiateBooking({
 	return (
 		<Modal
 			show={showBookingModal}
-			className="primary md"
 			onClose={() => setShowBookingModal(false)}
 			onOuterClick={() => setShowBookingModal(false)}
 		>
@@ -152,7 +160,6 @@ function InitiateBooking({
 								Details
 							</div>
 						</div>
-
 					)}
 					/>
 
@@ -181,7 +188,7 @@ function InitiateBooking({
 				<form>
 					<div className={styles.row}>
 						<FormElement
-							controls={controls}
+							controls={fields}
 							control={control}
 							showElements={showElements}
 							errors={errors}

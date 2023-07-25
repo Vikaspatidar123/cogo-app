@@ -1,21 +1,21 @@
+import { cl } from '@cogoport/components';
 import React from 'react';
 
 import { getUnit } from '../../../../../utils/getUnit';
 
 import styles from './styles.module.css';
 
-function Utilisation({ itemData = {} }) {
+const getKeysMapping = ({ itemData }) => {
 	const {
 		max_containers_count = 0,
 		booked_containers_count = 0,
 		booked_volume = 0,
-		service_type = '',
 		max_volume = 0,
 		max_weight = 0,
 		booked_weight = 0,
 	} = itemData || {};
 
-	const KEYS_MAPPING = {
+	return {
 		fcl_freight: {
 			req    : max_containers_count || 0,
 			booked : booked_containers_count || 0,
@@ -29,13 +29,16 @@ function Utilisation({ itemData = {} }) {
 			booked : booked_weight || 0,
 		},
 	};
+};
 
-	const utilisationCountExceed = Number(KEYS_MAPPING[service_type]?.booked)
-		< Number(KEYS_MAPPING[service_type]?.req);
-	const percent = Number(KEYS_MAPPING[service_type]?.booked)
-		/ Number(KEYS_MAPPING[service_type]?.req);
-	const isOverflow = Number(KEYS_MAPPING[service_type]?.booked)
-		- Number(KEYS_MAPPING[service_type]?.req);
+function Utilisation({ itemData = {} }) {
+	const { service_type = '' } = itemData || {};
+
+	const KEYS_MAPPING = getKeysMapping({ itemData });
+
+	const utilisationCountExceed = Number(KEYS_MAPPING[service_type]?.booked) < Number(KEYS_MAPPING[service_type]?.req);
+	const percent = Number(KEYS_MAPPING[service_type]?.booked) / Number(KEYS_MAPPING[service_type]?.req);
+	const isOverflow = Number(KEYS_MAPPING[service_type]?.booked) - Number(KEYS_MAPPING[service_type]?.req);
 
 	const isEqualAndOvered = utilisationCountExceed < percent && isOverflow !== 0;
 	const barWidth = isEqualAndOvered ? `${isOverflow}px` : `${percent * 250}px`;
@@ -66,7 +69,7 @@ function Utilisation({ itemData = {} }) {
 
 				{isEqualAndOvered ? <div className={styles.low_progress} />
 					: (
-						<div className={styles.progress} overflow={isEqualAndOvered}>
+						<div className={cl`${styles.progress} ${isEqualAndOvered ? styles.progress_bg : ''}`}>
 							<div className={styles.percentage} style={{ width: barWidth }} />
 						</div>
 					)}

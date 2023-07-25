@@ -22,6 +22,7 @@
 }
 
 .custom_tag {
+	width: 28%;
 	height: fit-content;
 	padding: 2px 6px;
 	padding: 8px;
@@ -34,8 +35,9 @@
 }
 
 .set_tracking {
-	color: #f2f2f2;
-	background-color: #356efd;
+	font-weight: 600;
+	color: #fff;
+	background-color: #f37166;
 }
 
 .location_text {

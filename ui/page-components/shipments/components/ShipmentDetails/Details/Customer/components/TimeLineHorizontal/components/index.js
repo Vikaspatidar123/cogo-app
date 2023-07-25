@@ -6,19 +6,18 @@ import useGetAllOceanRoutes from '../hooks/useGetAllOceanRoute';
 
 import MapAndDetails from './MapAndDetails';
 import styles from './styles.module.css';
-import TimelineNavigate from './TimeLineNavigate';
-import Tracking from './Tracking';
+// import TimelineNavigate from './TimeLineNavigate';
 
 import { useRequest } from '@/packages/request';
 
 function TrackerInfomation({
 	currentSubscription,
-	allContainers = [],
-	setCurrentSubscription = () => {},
+	// allContainers = [],
+	// setCurrentSubscription = () => {},
 	setQuickAction = () => {},
 	servicesList = [],
 	loading = false,
-	...rest
+	// ...rest
 }) {
 	const [{ shipment_data }] = useContext(ShipmentDetailContext);
 
@@ -73,44 +72,41 @@ function TrackerInfomation({
 	}, [id]);
 
 	return (
-		<>
-			<Tracking />
-			<div className={styles.container}>
+		<div className={styles.container}>
 
-				<MapAndDetails
-					setQuickAction={setQuickAction}
-					mapLoading={loading2 || loading || routeLoading}
-					isTrackerEmpty={isTrackerEmpty}
-					mapPoints={mapPoints}
-					trackerDetails={trackerDetails}
-					selectedContainerId={selectedContainerId}
-					setSelectedContainerId={setSelectedContainerId}
-					handleShareModal={() => setShareModal(!isShareModalOpen)}
-					selectedContainer={selectedContainer}
-					setSelectedMilestonesList={setSelectedMilestonesList}
-					selectedMilestonesList={selectedMilestonesList}
-					setPreditiveEta={setPreditiveEta}
-					setVesselName={setVesselName}
-					servicesList={servicesList}
-					servicesForMap={servicesForMap}
-					loading={loading || loading2}
-				/>
+			<MapAndDetails
+				setQuickAction={setQuickAction}
+				mapLoading={loading2 || loading || routeLoading}
+				isTrackerEmpty={isTrackerEmpty}
+				mapPoints={mapPoints}
+				trackerDetails={trackerDetails}
+				selectedContainerId={selectedContainerId}
+				setSelectedContainerId={setSelectedContainerId}
+				handleShareModal={() => setShareModal(!isShareModalOpen)}
+				selectedContainer={selectedContainer}
+				setSelectedMilestonesList={setSelectedMilestonesList}
+				selectedMilestonesList={selectedMilestonesList}
+				setPreditiveEta={setPreditiveEta}
+				setVesselName={setVesselName}
+				servicesList={servicesList}
+				servicesForMap={servicesForMap}
+				loading={loading || loading2}
+			/>
 
-				<TimelineNavigate
-					selectedMilestonesList={selectedMilestonesList}
-					containerSubbscription={trigger2}
-					allContainers={allContainers}
-					trackerDetails={trackerDetails}
-					currentSubscription={currentSubscription}
-					setCurrentSubscription={setCurrentSubscription}
-					preditiveEta={preditiveEta}
-					vesselName={vesselName}
-					servicesForMap={servicesForMap}
-					rest={rest}
-					loading={loading}
-				/>
-			</div>
-		</>
+			{/* <TimelineNavigate
+				selectedMilestonesList={selectedMilestonesList}
+				containerSubbscription={trigger2}
+				allContainers={allContainers}
+				trackerDetails={trackerDetails}
+				currentSubscription={currentSubscription}
+				setCurrentSubscription={setCurrentSubscription}
+				preditiveEta={preditiveEta}
+				vesselName={vesselName}
+				servicesForMap={servicesForMap}
+				rest={rest}
+				loading={loading}
+			/> */}
+		</div>
 	);
 }
 

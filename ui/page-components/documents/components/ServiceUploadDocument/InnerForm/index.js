@@ -15,7 +15,7 @@ function InnerForm({
 }) {
 	const { t } = useTranslation(['documents']);
 
-	const MANDATORY_VALIDITY_DOCS = [
+	const mandatory_validity_docs = [
 		t('documents:custom_service_doc_1'),
 		t('documents:custom_service_doc_2'),
 		t('documents:custom_service_doc_3'),
@@ -30,8 +30,12 @@ function InnerForm({
 		formControls.forEach((cont) => {
 			const controlItem = cont || {};
 
-			if (controlItem.name === 'doc_validity' && MANDATORY_VALIDITY_DOCS.includes(value?.doc_name)) {
-				controlItem.rules = { required: { value: true, message: 'Document Validity is required' } };
+			if (controlItem.name === 'doc_validity') {
+				if (mandatory_validity_docs.includes(value?.doc_name)) {
+					controlItem.rules = { required: { value: true, message: 'Document Validity is required' } };
+				} else {
+					controlItem.rules = undefined;
+				}
 			}
 			mutatedControls.push(controlItem);
 		});

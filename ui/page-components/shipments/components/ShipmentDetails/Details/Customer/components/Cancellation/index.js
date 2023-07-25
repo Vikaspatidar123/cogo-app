@@ -57,6 +57,10 @@ function Cancellation({
 
 	const { state, stakeholder_types, shipment_type } = shipment_data || {};
 
+	const tradePartyType = shipment_data?.trade_party_type;
+	const tradeType = shipment_data?.all_services[0]?.trade_type;
+	const is_end_to_end = shipment_data?.is_end_to_end;
+
 	const showToStakeholders = stakeholder_types?.some((ele) => showCancellationStakeholders?.includes(ele));
 
 	const isServiceCancellable =		shipment_type === 'domestic_air_freight'
@@ -88,26 +92,31 @@ function Cancellation({
 		return null;
 	};
 	return (
-		<div className={styles.container}>
-			<Popover
-				interactive
-				visible={show && !showCancel}
-				show={show}
-				theme="light"
-				arrow={false}
-				onClickOutside={() => setShow(false)}
-				render={renderContent()}
-			>
-				<div
-					role="presentation"
-					className={styles.icon_container}
-					id="bm_show_options_btn"
-					onClick={() => setShow(true)}
-				>
-					<IcMOverflowDot />
+		<div>
+			{tradePartyType !== 'shipper' && tradeType !== 'import' && is_end_to_end ? (
+				<div className={styles.container}>
+					<Popover
+						interactive
+						visible={show && !showCancel}
+						show={show}
+						theme="light"
+						arrow={false}
+						onClickOutside={() => setShow(false)}
+						render={renderContent()}
+					>
+						<div
+							role="presentation"
+							className={styles.icon_container}
+							id="bm_show_options_btn"
+							onClick={() => setShow(true)}
+						>
+							<IcMOverflowDot />
+						</div>
+					</Popover>
 				</div>
-			</Popover>
+			) : null}
 		</div>
+
 	);
 }
 

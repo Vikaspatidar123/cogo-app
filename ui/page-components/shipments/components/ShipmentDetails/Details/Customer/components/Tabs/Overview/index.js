@@ -26,6 +26,8 @@ function Overview({
 	const possibleFullRoute = possibleFullRouteConfigs?.[mainServiceName];
 
 	const { renderItem } = helperFuncs(servicesList, primary_service);
+	const tradePartyType = shipment_data?.trade_party_type;
+	const is_end_to_end = shipment_data?.is_end_to_end;
 
 	const serviceObj = {
 		origin              : [],
@@ -45,7 +47,8 @@ function Overview({
 					<div className={styles.service_container}>
 						<div className={styles.card_block}>
 							<div className={styles.heading}>ORIGIN SERVICES</div>
-							{(serviceObj.origin || []).map((service) => (
+							{tradePartyType === 'shipper' && is_end_to_end
+							&& (serviceObj.origin || []).map((service) => (
 								<ServiceDetails
 									cancelUpsellFor={cancelUpsellOriginFor}
 									serviceData={service}
@@ -71,7 +74,8 @@ function Overview({
 						<div className={styles.line} />
 						<div className={styles.card_block}>
 							<div className={styles.heading}> DESTINATION SERVICES </div>
-							{(serviceObj.destination || []).map((service) => (
+							{tradePartyType === 'consignee' && is_end_to_end
+							&& (serviceObj.destination || []).map((service) => (
 								<ServiceDetails
 									cancelUpsellFor={cancelUpsellDestinationFor}
 									serviceData={service}

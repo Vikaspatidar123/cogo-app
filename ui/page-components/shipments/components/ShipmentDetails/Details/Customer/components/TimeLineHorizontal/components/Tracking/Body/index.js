@@ -5,11 +5,13 @@ import useOceanRoute from '../hooks/useOceanRoute';
 
 import EmptyState from './EmptyState';
 import LoadingState from './LoadingState';
+import MilestoneStepper from './MilestoneStepper';
 import styles from './styles.module.css';
-import TrackingData from './TrackingData';
 import TrackingMap from './TrackingMap';
 
-function Body({ list = [], loading = false }) {
+import { mergeOceanMilestone, mergeAirMilestone } from '@/ui/page-components/air-ocean-tracking/utils/mergeMilestone';
+
+function Body({ list = [], loading = false, shipmentType }) {
 	const [oceanPoints, setOceanPoints] = useState([]);
 	const [mapPoints, setMapPoints] = useState([]);
 
@@ -17,6 +19,8 @@ function Body({ list = [], loading = false }) {
 
 	const container_no = list?.[0]?.container_details?.map((c) => c?.container_no)
 		.flat();
+	const combineMileStoneList = shipmentType === 'ocean' ? mergeOceanMilestone(listToRender)
+		: mergeAirMilestone(listToRender);
 
 	const { routesLoading } = useOceanRoute({
 		setMapPoints,
@@ -36,9 +40,7 @@ function Body({ list = [], loading = false }) {
 	const renderComponent = () => {
 		if (loading) {
 			return (
-				<div className={styles.container}>
-					<LoadingState />
-				</div>
+				<LoadingState type={shipmentType} />
 			);
 		}
 
@@ -47,20 +49,19 @@ function Body({ list = [], loading = false }) {
 		}
 
 		return (
-			<TrackingData
-				data={listToRender}
-				shippingLine={list?.[0]?.shipping_line}
-			/>
+			<MilestoneStepper combineMileStoneList={combineMileStoneList} trackingType={shipmentType} />
 		);
 	};
 
 	return (
 		<div className={styles.tracking_info}>
 			{renderComponent()}
-			<TrackingMap
-				routesLoading={routesLoading || loading}
-				points={oceanPoints}
-			/>
+			{!loading && (
+				<TrackingMap
+					routesLoading={routesLoading || loading}
+					points={oceanPoints}
+				/>
+			)}
 		</div>
 	);
 }

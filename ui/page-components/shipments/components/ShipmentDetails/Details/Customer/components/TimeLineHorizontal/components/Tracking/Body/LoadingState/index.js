@@ -1,28 +1,41 @@
 import { Placeholder } from '@cogoport/components';
-import React from 'react';
-import { v4 as uuid } from 'uuid';
-
-import VerticleLine from '../TrackingData/VerticleLine';
+import { IcMAirTracking, IcMOceanTracking } from '@cogoport/icons-react';
+import Image from 'next/image';
 
 import styles from './styles.module.css';
 
-const PLACEHOLDER_NUMBER = 4;
-const LAST_PLACEHOLDER_INDEX = 3;
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const LoadingState = () => [...Array(PLACEHOLDER_NUMBER)].map((v, idx) => (
-	<div className={styles.single_item} key={uuid()}>
-		<VerticleLine zIndex={idx} isLast={idx === LAST_PLACEHOLDER_INDEX} />
+const getLoadingArr = (n) => [...Array(n).keys()];
+const LOADING_ARR = getLoadingArr(3);
+const LOADING_ICON = {
+	ocean : <IcMOceanTracking width={40} height={40} fill="#838383" />,
+	air   : <IcMAirTracking width={40} height={40} fill="#838383" />,
+};
 
-		<div className={styles.main}>
-			<div className={styles.heading}>
-				<Placeholder width="320px" height="28px" />
+function Loader({ type = 'ocean' }) {
+	return (
+		<div className={styles.container}>
+			<div className={styles.milestone_loader}>
+				{LOADING_ARR.map((ele) => (
+					<div key={ele} className={styles.card}>
+						<Placeholder height="35x" margin="0px 0px 20px 0px" />
+						<Placeholder height="100px">
+							{LOADING_ICON[type]}
+						</Placeholder>
+					</div>
+				))}
 			</div>
-
-			<div className={styles.gap}>
-				<Placeholder height="22px" />
+			<div className={styles.map_loader}>
+				<Image
+					src={GLOBAL_CONSTANTS.image_url.map_loading}
+					width={800}
+					height={500}
+					alt="loading"
+				/>
 			</div>
 		</div>
-	</div>
-));
+	);
+}
 
-export default LoadingState;
+export default Loader;

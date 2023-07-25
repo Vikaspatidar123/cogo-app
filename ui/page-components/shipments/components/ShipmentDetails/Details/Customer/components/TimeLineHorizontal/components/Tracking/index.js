@@ -7,6 +7,10 @@ import Header from './Header';
 import useGetSaasContainerSubscription from './hooks/useGetSaasContainerSubscription';
 import styles from './styles.module.css';
 
+const shipmentTypeMapping = {
+	fcl_freight : 'ocean',
+	air_freight : 'air',
+};
 function Tracking() {
 	const [{ shipment_data: shipmentData }] = useContext(ShipmentDetailContext);
 	const [containerNo, setContainerNo] = useState('');
@@ -14,7 +18,7 @@ function Tracking() {
 	const { loading, data: list } = useGetSaasContainerSubscription({
 		shipmentId: shipmentData?.id,
 	});
-
+	const shipmentType = shipmentTypeMapping[shipmentData?.shipment_type] || 'ocean';
 	const ContainerOptions = Array.isArray(list)
 		? (list || [])
 			.filter((e) => e?.type === 'CONTAINER_NO')
@@ -35,7 +39,7 @@ function Tracking() {
 				containerNo={containerNo || ContainerOptions?.[0]?.value}
 				shipmentId={shipmentData?.id}
 			/>
-			<Body list={trackingData} loading={loading} />
+			<Body list={trackingData} loading={loading} shipmentType={shipmentType} />
 		</div>
 	);
 }

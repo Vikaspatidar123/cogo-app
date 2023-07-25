@@ -1,6 +1,7 @@
 .map {
 	z-index: 90 !important;
 	width: 650px;
+	margin-left: 20px;
 }
 
 .loading {

@@ -2,13 +2,12 @@ import { cl, Tooltip } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 import { useTranslation } from 'react-i18next';
 
-import getMappingObject from '../../../../../constant/card';
-
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
+import getMappingObject from '@/ui/page-components/air-ocean-tracking/constant/card';
 
 const widthProp = {
 	VESSEL : 35,
@@ -26,6 +25,7 @@ const getIconUrl = ({ mapping, type, transportMode }) => {
 function Card({ combineList = [], trackingType = 'ocean' }) {
 	const { location = '', station = '', transport_mode = 'VESSEL' } = combineList?.[0] || {};
 	const combineListLength = combineList.length;
+
 	const { t } = useTranslation(['common', 'airOceanTracking']);
 
 	const GET_MAPPING = getMappingObject({ t });

@@ -16,16 +16,18 @@ const lineOptions = { color: 'green' };
 const remainingRoutelineOptions = { color: 'blue' };
 const center = { lat: '28.679079', lng: '77.069710' };
 
+const corner1 = L.latLng(-90, -200);
+const corner2 = L.latLng(90, 200);
+const bounds = L.latLngBounds(corner1, corner2);
+
 function MapComp({
 	completedPoints,
 	remainingPoints,
 	curvePoints,
 	currentMilestone,
 }) {
-	const [map, setMap] = useState();
-	const corner1 = L.latLng(-90, -200);
-	const corner2 = L.latLng(90, 200);
-	const bounds = L.latLngBounds(corner1, corner2);
+	const [map, setMap] = useState(null);
+
 	const curvePointLength = curvePoints?.length;
 
 	useEffect(() => {
@@ -46,12 +48,12 @@ function MapComp({
 				+ '<a href="https://leafletjs.com/" target="_blank" >Leaflet</a>',
 			);
 		}
-	}, [map, bounds]);
+	}, [map]);
 
 	return (
 		<CogoMaps
 			key={JSON.stringify(curvePoints)}
-			style={{ height: '700px', width: '100%' }}
+			style={{ height: '600px', width: '100%' }}
 			baseLayer={LAYER}
 			zoom={2.9}
 			minZoom={2}

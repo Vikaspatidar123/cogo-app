@@ -1,33 +1,30 @@
-.main {
+.container {
 	display: flex;
-	flex-direction: column;
-	gap: 12px;
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 16px;
-	color: #393f70;
-	letter-spacing: 0.04em;
+	align-items: flex-start;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 20px;
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+	}
 }
 
-.gap {
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
+.milestone_loader {
+	width: 38%;
 }
 
-.heading {
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 18px;
-	color: #393f70;
+.map_loader {
+	width: 60%;
+	height: 80vh;
+	border: 1px solid #e0e0e0;
+	border-radius: 12px;
 }
 
-.single_item {
-	position: relative;
-	display: flex;
-	gap: 10px;
-	align-items: center;
-	height: 100px;
-	padding-bottom: 10px;
-	margin: 0 30px;
+.card {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid #e0e0e0;
+	border-radius: 12px;
+	box-shadow: 0 6px 20px rgb(220 224 249 / 50%);
 }

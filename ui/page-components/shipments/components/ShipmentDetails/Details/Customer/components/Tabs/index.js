@@ -28,7 +28,6 @@ function TabSections({
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [quickAction]);
-
 	return (
 		<main className={styles.container} id="ie_tabs">
 			<RelationshipManager />

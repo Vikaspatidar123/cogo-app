@@ -1,0 +1,28 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+}
+
+.content {
+	font-size: 16px;
+	color: #393f70;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 80%;
+	padding: 60px 30px 36px;
+	background: #fff;
+}
+
+.empty_card {
+	width: 100%;
+	min-width: 260px;
+	padding: 20px 8px;
+}

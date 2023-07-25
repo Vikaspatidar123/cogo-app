@@ -175,7 +175,7 @@ function Charges(props, ref) {
 					<span>Quotation Total:</span>
 					{formatAmount({
 						amount   : totalQuotation,
-						currency : 'INR',
+						currency : watchCurrency || rest.orgCurrency,
 						options  : {
 							style                 : 'currency',
 							currencyDisplay       : 'symbol',

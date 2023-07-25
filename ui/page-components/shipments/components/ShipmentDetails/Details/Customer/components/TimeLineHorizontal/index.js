@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 import TrackerInfomation from './components';
 import ListSaasSubscriptions from './hooks/useListSaasSubscription';
@@ -12,11 +12,11 @@ function TimeLineHorizontal({
 	const { data = {}, loading, setPage } = ListSaasSubscriptions();
 
 	const { list = [], page = 0, page_limit = 0, total_count = 0 } = data || {};
-	const container_data =	list?.filter((item) => item?.type === 'CONTAINER_NO') || [];
+	const container_data =	useMemo(() => list?.filter((item) => item?.type === 'CONTAINER_NO') || [], [list]);
+
 	useEffect(() => {
 		setCurrentSubscription(container_data?.[0]);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [container_data?.length]);
+	}, [container_data]);
 
 	return (
 		<TrackerInfomation

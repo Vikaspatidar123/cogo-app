@@ -10,7 +10,7 @@ import { useSelector } from '@/packages/store';
 const useGetBusiness = (props) => {
 	const { organization } = useSelector((state) => state.profile);
 
-	const [{ loading }, getBusinessApi] = useRequest({
+	const [{ loading }, trigger] = useRequest({
 		url    : 'get_business',
 		method : 'get',
 	}, { manual: true });
@@ -24,11 +24,12 @@ const useGetBusiness = (props) => {
 		watchBusinessName = '',
 		setValue = () => {},
 		registrationNumberType = '',
+		action = '',
 	} = props;
 
 	const getGstAddress = useCallback(async () => {
 		try {
-			const response = await getBusinessApi.trigger({
+			const response = await trigger({
 				params: {
 					identity_number : watchTaxNumber,
 					identity_type   : registrationNumberType,
@@ -56,43 +57,42 @@ const useGetBusiness = (props) => {
 				setValue('pincode', (!isEmpty(addresses) && (addresses[0] || {}).pincode) || '');
 				setValue('address', (!isEmpty(addresses) && (addresses[0] || {}).address) || '');
 				setValue('name', trade_name || business_name || '');
-			} else {
-				setValue('tax_number', '');
-				setValue('pincode', '');
-				setValue('address', '');
-				setValue('name', '');
-				setValue('business_name', '');
-				setValue('company_type', '');
 			}
 		} catch (error) {
 			console.error('error :: ', error);
 		}
-	}, [getBusinessApi, organization, registrationNumberType, setValue, watchBusinessName, watchTaxNumber]);
+	}, [trigger, organization, registrationNumberType, setValue, watchBusinessName, watchTaxNumber]);
 
-	const onBlurTaxPanGstinControl = useCallback(() => {
-		if (
-			registrationNumberType === ''
-			|| ![10, 15].includes(watchTaxNumber.length)
-		) {
+	const onBlurTaxPanGstinControl = () => {
+		if (registrationNumberType === '' || ![10, 15].includes(watchTaxNumber.length)) {
 			return;
 		}
 
 		getGstAddress();
-	}, [getGstAddress, registrationNumberType, watchTaxNumber.length]);
+	};
 
 	useEffect(() => {
+		if (action === 'edit') {
+			return;
+		}
+
 		if (registrationNumberType === 'tax') {
 			onBlurTaxPanGstinControl();
 		}
 		if (watchTaxNumber === 'GST_NOT_FOUND') {
-			getGstAddress();
+			setValue('tax_number', '');
+			setValue('pincode', '');
+			setValue('address', '');
+			setValue('name', '');
+			setValue('business_name', '');
+			setValue('company_type', '');
 		}
-	}, [getGstAddress, onBlurTaxPanGstinControl, registrationNumberType, watchTaxNumber]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [watchTaxNumber]);
 
 	return {
-		getBusinessApi,
 		onBlurTaxPanGstinControl,
-		loading,
+		getBusinessLoading: loading,
 	};
 };
 

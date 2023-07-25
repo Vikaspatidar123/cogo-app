@@ -7,47 +7,44 @@ import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const CogoMaps = dynamic(() => import('./map'), { ssr: false });
-
+const SET_TIME = 0;
 function TrackingMap({
 	points = [],
 	routesLoading = false,
+	shipmentType,
 }) {
 	const [isLoading, setLoading] = useState(true);
 	const [curvePoints, setCurvePoints] = useState([]);
 	const [remainingPoints, setRemainingPoints] = useState([]);
-
+	const point = shipmentType === 'ocean' ? curvePoints : points;
 	useEffect(() => {
-		if (points?.length > 0) {
+		if (points?.length > 0 && shipmentType === 'ocean') {
 			points?.map((p) => {
-				let c = p;
-				if (typeof p?.[0] === 'object') {
-					c = p.flat();
-				}
 				setRemainingPoints((prevPoints) => [
 					...prevPoints,
 					{
-						lat : c?.[1],
-						lng : c?.[0],
+						lat : p?.[GLOBAL_CONSTANTS.one_index],
+						lng : p?.[GLOBAL_CONSTANTS.zeroth_index],
 					},
 				]);
 				setCurvePoints((prevPoints) => [
 					...prevPoints,
 					{
-						lat : c?.[1],
-						lng : c?.[0],
+						lat : p?.[GLOBAL_CONSTANTS.one_index],
+						lng : p?.[GLOBAL_CONSTANTS.zeroth_index],
 					},
 				]);
 				return true;
 			});
 			setTimeout(() => {
 				setLoading(false);
-			}, 0);
+			}, SET_TIME);
 		} else {
 			setTimeout(() => {
 				setLoading(false);
-			}, 0);
+			}, SET_TIME);
 		}
-	}, [points, points?.length]);
+	}, [points, points?.length, shipmentType]);
 
 	if (routesLoading || isLoading) {
 		return (
@@ -64,10 +61,7 @@ function TrackingMap({
 
 	return (
 		<div className={styles.map}>
-			<CogoMaps
-				remainingPoints={remainingPoints}
-				curvePoints={curvePoints}
-			/>
+			<CogoMaps curvePoints={point} remainingPoints={remainingPoints} />
 		</div>
 	);
 }

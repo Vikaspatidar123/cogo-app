@@ -16,7 +16,7 @@ const LAYER = [
 	},
 ];
 
-const lineOptions = { color: 'green' };
+const lineOptions = { color: 'red' };
 const remainingRoutelineOptions = { color: 'blue' };
 const center = { lat: '28.679079', lng: '77.069710' };
 

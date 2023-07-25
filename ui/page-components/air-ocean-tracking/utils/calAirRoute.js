@@ -61,6 +61,7 @@ const calAirRoute = ({ list = [] }) => {
 
 	list.forEach((airDetails) => {
 		const mapPoints = [];
+
 		const { airway_bill_no = '', air_flight_info = [], data: milestoneData = [] } = airDetails || {};
 
 		if (!isEmpty(air_flight_info)) {
@@ -105,6 +106,7 @@ const calAirRoute = ({ list = [] }) => {
 			allAirRoute.push({ route, airWayNo: airway_bill_no });
 		}
 	});
+
 	return allAirRoute;
 };
 

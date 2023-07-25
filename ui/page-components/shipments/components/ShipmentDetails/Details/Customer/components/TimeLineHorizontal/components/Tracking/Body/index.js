@@ -12,7 +12,7 @@ import TrackingMap from './TrackingMap';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import { mergeOceanMilestone, mergeAirMilestone } from '@/ui/page-components/air-ocean-tracking/utils/mergeMilestone';
 
-function Body({ list = [], loading = false, shipmentType }) {
+function Body({ list = [], loading = false, shipmentType, allAirRoute = [] }) {
 	const [oceanPoints, setOceanPoints] = useState([]);
 	const [mapPoints, setMapPoints] = useState([]);
 
@@ -21,7 +21,7 @@ function Body({ list = [], loading = false, shipmentType }) {
 	const container_no = list?.[GLOBAL_CONSTANTS.zeroth_index]?.container_details?.map((c) => c?.container_no)
 		.flat();
 	const combineMileStoneList = shipmentType === 'ocean' ? mergeOceanMilestone(listToRender)
-		: mergeAirMilestone(listToRender);
+		: mergeAirMilestone(list);
 
 	const { routesLoading } = useOceanRoute({
 		setMapPoints,
@@ -37,7 +37,10 @@ function Body({ list = [], loading = false, shipmentType }) {
 			);
 		}
 	}, [list, mapPoints]);
-
+	const points = {
+		air   : allAirRoute?.[0]?.route,
+		ocean : oceanPoints,
+	};
 	const renderComponent = () => {
 		if (loading) {
 			return (
@@ -45,7 +48,7 @@ function Body({ list = [], loading = false, shipmentType }) {
 			);
 		}
 
-		if (isEmpty(listToRender)) {
+		if (isEmpty(combineMileStoneList)) {
 			return <EmptyState />;
 		}
 
@@ -60,7 +63,8 @@ function Body({ list = [], loading = false, shipmentType }) {
 			{!loading && (
 				<TrackingMap
 					routesLoading={routesLoading || loading}
-					points={oceanPoints}
+					points={points[shipmentType]}
+					shipmentType={shipmentType}
 				/>
 			)}
 		</div>

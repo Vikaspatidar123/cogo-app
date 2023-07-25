@@ -8,6 +8,7 @@ import useGetSaasContainerSubscription from './hooks/useGetSaasContainerSubscrip
 import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import calAirRoute from '@/ui/page-components/air-ocean-tracking/utils/calAirRoute';
 
 const SHIPMENT_TYPE_MAPPING = {
 	fcl_freight : 'ocean',
@@ -16,12 +17,11 @@ const SHIPMENT_TYPE_MAPPING = {
 function Tracking() {
 	const [{ shipment_data: shipmentData }] = useContext(ShipmentDetailContext);
 	const [containerNo, setContainerNo] = useState('');
+	const shipmentType = SHIPMENT_TYPE_MAPPING[shipmentData?.shipment_type] || 'ocean';
 
 	const { loading, data: list } = useGetSaasContainerSubscription({
-		shipmentId: shipmentData?.id,
+		id: shipmentData?.id, shipmentType,
 	});
-
-	const shipmentType = SHIPMENT_TYPE_MAPPING[shipmentData?.shipment_type] || 'ocean';
 
 	const ContainerOptions = Array.isArray(list)
 		? (list || [])
@@ -34,6 +34,11 @@ function Tracking() {
 			(e) => e?.input === (containerNo || ContainerOptions?.[GLOBAL_CONSTANTS.zeroth_index]?.value),
 		)
 		: [];
+	const points = {
+		ocean : trackingData,
+		air   : list?.data,
+	};
+	const allAirRoute = calAirRoute({ list: [list] });
 
 	return (
 		<div className={styles.container}>
@@ -43,7 +48,12 @@ function Tracking() {
 				containerNo={containerNo || ContainerOptions?.[GLOBAL_CONSTANTS.zeroth_index]?.value}
 				shipmentId={shipmentData?.id}
 			/>
-			<Body list={trackingData} loading={loading} shipmentType={shipmentType} />
+			<Body
+				list={points[shipmentType]}
+				loading={loading}
+				shipmentType={shipmentType}
+				allAirRoute={allAirRoute}
+			/>
 		</div>
 	);
 }

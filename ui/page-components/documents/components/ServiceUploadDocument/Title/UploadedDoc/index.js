@@ -29,7 +29,7 @@ export default function UploadedDoc({
 
 	return (
 		<div className={styles.success_container}>
-			<div style={{ display: 'flex', width: '88%' }}>
+			<div style={{ display: 'flex', width: '100%' }}>
 				<div className={styles.success_info_doc}>
 					{t('documents:document_number')}
 					{' '}
@@ -63,7 +63,7 @@ export default function UploadedDoc({
 				</div>
 			</div>
 
-			<div>
+			<div className={styles.icon_wrap}>
 				<IcMEyeopen
 					onClick={() => window.open(uploadedDoc?.image_url, '_blank')}
 					className={styles.icon}
@@ -75,34 +75,36 @@ export default function UploadedDoc({
 				/>
 			</div>
 
-			<Modal size="md" show={show} onClose={() => setShow(false)} placement="center">
-				<Modal.Header title={t('documents:delete_confirmation_title')} />
+			{show ? (
+				<Modal size="md" show={show} onClose={() => setShow(false)} placement="center">
+					<Modal.Header title={t('documents:delete_confirmation_title')} />
 
-				<Modal.Body>
-					{t('documents:delete_confirmation')}
-				</Modal.Body>
+					<Modal.Body>
+						{t('documents:delete_confirmation')}
+					</Modal.Body>
 
-				<Modal.Footer>
-					<div className={styles.modal_body}>
-						<Button
-							style={{ margin: '0 8px 0 0' }}
-							themeType="secondary"
-							onClick={() => setShow(false)}
-							loading={loading}
-						>
-							{t('documents:cancel_btn')}
-						</Button>
+					<Modal.Footer>
+						<div className={styles.modal_body}>
+							<Button
+								style={{ margin: '0 8px 0 0' }}
+								themeType="secondary"
+								onClick={() => setShow(false)}
+								loading={loading}
+							>
+								{t('documents:cancel_btn')}
+							</Button>
 
-						<Button
-							themeType="primary"
-							onClick={handleDelete}
-							loading={loading}
-						>
-							{t('documents:save_btn')}
-						</Button>
-					</div>
-				</Modal.Footer>
-			</Modal>
+							<Button
+								themeType="primary"
+								onClick={handleDelete}
+								loading={loading}
+							>
+								{t('documents:save_btn')}
+							</Button>
+						</div>
+					</Modal.Footer>
+				</Modal>
+			) : null}
 		</div>
 	);
 }

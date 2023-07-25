@@ -14,7 +14,7 @@ function ServiceWiseHeading({
 
 	const handleSubmit = () => {
 		if (isEmpty(serviceType)) {
-			Toast.error('Please select a service!');
+			Toast.error(t('documents:empty_service_err_msz'));
 			return;
 		}
 

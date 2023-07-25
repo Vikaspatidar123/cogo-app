@@ -36,7 +36,7 @@
 
 	:global {
 		.ui_collapse_icon {
-			color: white;
+			display: none;
 		}
 
 		.ui_collapse_container {

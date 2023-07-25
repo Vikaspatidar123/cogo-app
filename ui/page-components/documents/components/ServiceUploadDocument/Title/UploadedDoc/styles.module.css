@@ -2,11 +2,13 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 100%;
+	width: 50%;
 }
 
 .success_info_doc {
+	display: flex;
 	flex-basis: 35%;
+	flex-direction: column;
 	overflow: hidden;
 	color: #828282;
 	text-overflow: ellipsis;
@@ -18,7 +20,9 @@
 }
 
 .success_info {
+	display: flex;
 	flex-basis: 25%;
+	flex-direction: column;
 	color: #828282;
 }
 
@@ -33,4 +37,8 @@
 	display: flex;
 	justify-content: flex-end;
 	width: 100%;
+}
+
+.icon_wrap {
+	display: flex;
 }

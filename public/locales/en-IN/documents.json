@@ -63,5 +63,6 @@
     "upload_service_doc_heading":"Upload Service Documents",
     "or":"or",
     "service_specific_upload_heading":"Upload or Check Documents for Specific Services",
-    "submit_btn":"Submit"
+    "submit_btn":"Submit",
+    "empty_service_err_msz":"Please select a service!"
 }

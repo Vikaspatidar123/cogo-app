@@ -59,7 +59,9 @@ function Title({
 						content={doc_data?.doc_name}
 						placement="bottom"
 					>
-						{doc_data?.doc_name}
+						<div className={styles.doc_name}>
+							{doc_data?.doc_name}
+						</div>
 					</Tooltip>
 				</div>
 			</div>

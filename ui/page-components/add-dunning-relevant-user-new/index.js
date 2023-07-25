@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import controls from './controls';
 import useCreateDunningUserInvitationNew from './hooks/useCreateDunningUserInvitationNew';
@@ -10,8 +11,9 @@ import getField from '@/packages/forms/Controlled';
 import getWidth from '@/ui/page-components/discover_rates/common/SearchForm/utils/getWidth';
 
 function AddRelevantUserNew() {
-	const { handleSubmit, formState, getValues, control } = useForm();
+	const { t } = useTranslation(['common']);
 
+	const { handleSubmit, formState, getValues, control } = useForm();
 	const { errors = {} } = formState;
 	const {
 		loading,
@@ -31,12 +33,12 @@ function AddRelevantUserNew() {
 			) : (
 				<div>
 					<div className={styles.heading}>
-						<h1>Add User To Receive Outstanding Reminders</h1>
+						<h1>{t('common:add_user_dunning_heading')}</h1>
 					</div>
 
 					<div className={styles.layout}>
 						<div>
-							{controls.map((item) => {
+							{(controls(t) || []).map((item) => {
 								const Element = getField(item.type);
 								return (
 									<div className={styles.field} style={{ width: getWidth(item.span) }}>
@@ -58,7 +60,7 @@ function AddRelevantUserNew() {
 								onClick={handleSubmit(onSubmit)}
 								disabled={loading}
 							>
-								Add User
+								{t('common:add_user')}
 							</Button>
 						</div>
 					</div>

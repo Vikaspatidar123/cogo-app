@@ -1,30 +1,28 @@
 import patterns from '@/ui/commons/configurations/patterns';
 
-const controls = [
+const controls = (t) => [
 	{
 		name        : 'name',
 		type        : 'text',
 		span        : 12,
-		label       : 'Name',
-		placeholder : 'Enter Name',
+		label       : t('common:rightPanel_registration_controls_name_label'),
+		placeholder : t('common:rightPanel_registration_controls_name_label'),
 		size        : 'lg',
 	},
 	{
-		label       : 'Mobile Number',
+		label       : t('common:rightPanel_tabs_mobile_controls_mobile_label'),
 		name        : 'mobile_number',
-		placeholder : 'Enter Mobile Number',
+		placeholder : t('common:loginField_mobile_placeholder'),
 		type        : 'mobile_number',
 		span        : 12,
 		size        : 'lg',
 	},
 	{
 		name        : 'email',
-		label       : 'Email Address',
+		label       : t('common:rightPanel_tabs_email_title'),
 		type        : 'email',
 		span        : 12,
-		placeholder : 'Enter Email Address',
-		theme       : 'admin',
-		className   : 'primary lg',
+		placeholder : t('common:loginField_email_placeholder'),
 		size        : 'lg',
 		rules       : {
 			pattern: {
@@ -34,9 +32,9 @@ const controls = [
 		},
 	},
 	{
-		label       : 'Work Scopes',
+		label       : t('common:work_scope_label'),
 		name        : 'work_scopes',
-		placeholder : 'Select Work Scopes',
+		placeholder : t('common:work_scope_label'),
 		type        : 'select',
 		span        : 12,
 		size        : 'lg',

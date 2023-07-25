@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles.module.css';
 
@@ -7,6 +8,8 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function SuccessPage() {
 	const Router = useRouter();
+	const { t } = useTranslation(['common']);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.content}>
@@ -18,14 +21,14 @@ function SuccessPage() {
 						height={300}
 					/>
 				</div>
-				<h1>Thank you for your valuable time!</h1>
-				<h2 className={styles.success_text}>User Added Succesfully.</h2>
+				<h1>{t('common:dunning_user_added_response_message')}</h1>
+				<h2 className={styles.success_text}>{t('common:dunning_user_added_successfully')}</h2>
 				<Button
 					size="lg"
 					className={styles.btn}
 					onClick={() => Router.push('/login')}
 				>
-					Go To Login Page
+					{t('common:go_to_login_page')}
 				</Button>
 			</div>
 		</div>

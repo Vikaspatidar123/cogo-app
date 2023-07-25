@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const IMAGE_URLS = {
 	cogoport_logo        : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cogoport.svg',
 	iec_red_flag         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/redFlag.svg',
@@ -76,7 +77,8 @@ const IMAGE_URLS = {
 		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/reshot-icon-checklist-YUWL2XGFTQ%202.png',
 	custom_hover_image:
 		'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/reshot-icon-checklist-YUWL2XGFTQ%201.svg',
-	cogoport_avatar           : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/avatar-placeholder.webp',
+	cogoport_avatar:
+		'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/avatar-placeholder.webp',
 	spinner_loader            : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ic-spinner.svg',
 	logo_without_footer       : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/logo-cogoport.svg',
 	create_ticket_empty_state : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/empty-state.svg',
@@ -87,6 +89,32 @@ const IMAGE_URLS = {
 	orange_image              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/orange-rect.svg',
 	payment_loading           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ic-spinner_app.svg',
 	invoices_image            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/invoices_app.svg',
+	iec:
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/c8cfaa65c6d3e59b38d13e0900985e18/IEC_format%20%281%29.png',
+	gst:
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/95c72c88842372e66c57bbdf221ebeb5/GST-Registration-Certificate-Sample-Annexure-A%20%281%29.png',
+	incorporation_certificate:
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/b0e35c0aa25953e5e08e5644cd396420/Certificate-Of-Incorporation.jpeg',
+	memorandum:
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/02bdaad19978dbb68f367485bfe19bf2/MOA-AOA_sample%20template%20%281%29.png',
+	bank_letterhead:
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/c49dce5b0e71e0c3d8845b007e46eb9b/Bank%20Authorisation%20Letter%20-%20New%20%281%29.pdf',
+	gst_return_form_3b:
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/dc278220e954a2c54cf65be2684c1e23/GSTR-3B-Return-Format%20%281%29.png',
+	authorization_letter_cha:
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/a554c3cdb8e16a1c9de7fa18e95959ff/CHA%20authority%20letter%20format%20copy%20%281%29.tiff',
+	kyc:
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/739799d6ba4ee67a4098765d32a67058/KYC%20%281%29%20%281%29.pdf',
+	board_resolution:
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/b65deadb0adb1a7216ff06ab13ab2161/Template-NonGovt-BoardResolution-2021_page-0001-724x1024%20%281%29.jpeg',
+	letter_to_custom_commissioner:
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/ab637cead9e949aada5115faf89871b4/Covering%20Letter-Request%20letter%20to%20Assis%3Adeputy%20commissionar.doc',
+	ad_code_letter:
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/2ed56b771e89c3f7f77edc002776bfa8/authorized-dealership-ad-code-letter-format%20%281%29.jpeg',
+	lut_copy:
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/98432eb67e0dd4c09fcaca028fda3658/letter-of-undertaking-lut-%20%281%29.jpeg',
+	membership_certificate:
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/ca59d74941869eb1ebd5ee85fd8d445d/RCMC%20%281%29%20%281%29.pdf',
 };
 
 export default IMAGE_URLS;

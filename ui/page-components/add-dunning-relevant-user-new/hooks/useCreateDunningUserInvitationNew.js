@@ -25,29 +25,25 @@ const useCreateDunningUserInvitationNew = () => {
 	const createDunningUserInvitation = async (val) => {
 		const { email, name, mobile_number, work_scopes } = val || {};
 		const { number, country_code } = mobile_number || {};
-		if (isEmpty(email) || isEmpty(name) || isEmpty(work_scopes) || isEmpty(number)
-		|| isEmpty(country_code)) {
-			Toast.error('Please Fill All The Fields');
-		} else {
-			try {
-				const payload = {
-					userToken         : token,
-					email,
-					name,
-					mobileNumber      : number,
-					mobileCountryCode : country_code,
-					workScopes        : [work_scopes],
-				};
-				await trigger({
-					data: payload,
-				});
-				setShowSuccessPage(true);
-			} catch (error) {
-				if (error?.error?.user) {
-					Toast.error(error?.error?.user?.[GLOBAL_CONSTANTS.zeroth_index]);
-				} else {
-					Toast.error(error?.message);
-				}
+
+		try {
+			const payload = {
+				userToken         : token,
+				email,
+				name,
+				mobileNumber      : number,
+				mobileCountryCode : country_code,
+				workScopes        : [work_scopes],
+			};
+			await trigger({
+				data: payload,
+			});
+			setShowSuccessPage(true);
+		} catch (error) {
+			if (error?.error?.user) {
+				Toast.error(error?.error?.user?.[GLOBAL_CONSTANTS.zeroth_index]);
+			} else {
+				Toast.error(error?.message);
 			}
 		}
 	};

@@ -8,6 +8,7 @@ const controls = (t) => [
 		label       : t('common:rightPanel_registration_controls_name_label'),
 		placeholder : t('common:rightPanel_registration_controls_name_label'),
 		size        : 'lg',
+		rules       : { required: t('common:rightPanel_registration_controls_name_is_required') },
 	},
 	{
 		label       : t('common:rightPanel_tabs_mobile_controls_mobile_label'),
@@ -16,6 +17,16 @@ const controls = (t) => [
 		type        : 'mobile_number',
 		span        : 12,
 		size        : 'lg',
+		rules       : {
+			required : true,
+			validate : (value) => {
+				const { country_code:mobileCountryCode, number:mobileNumber } = value || {};
+				if (!mobileNumber || !mobileCountryCode) {
+					return t('common:loginField_mobile_error');
+				}
+				return undefined;
+			},
+		},
 	},
 	{
 		name        : 'email',
@@ -25,9 +36,10 @@ const controls = (t) => [
 		placeholder : t('common:loginField_email_placeholder'),
 		size        : 'lg',
 		rules       : {
-			pattern: {
+			required : t('common:loginField_email_error'),
+			pattern  : {
 				value   : patterns.EMAIL,
-				message : 'Invalid Email Address',
+				message : t('common:invalid_email'),
 			},
 		},
 	},
@@ -38,6 +50,7 @@ const controls = (t) => [
 		type        : 'select',
 		span        : 12,
 		size        : 'lg',
+		rules       : { required: t('common:required') },
 		options     : [
 			{ label: 'Finance Manager', value: 'i_am_finance_manager' },
 			{ label: 'Logistics Manager', value: 'i_am_logistics_manager' },

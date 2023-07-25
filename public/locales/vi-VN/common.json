@@ -244,5 +244,8 @@
     "go_to_login_page": "Chuyển đến trang đăng nhập",
     "add_user_dunning_heading": "Thêm người dùng để nhận lời nhắc xuất sắc",
     "add_user": "Thêm người dùng",
-    "work_scope_label": "Phạm vi làm việc"
+    "work_scope_label": "Phạm vi làm việc",
+    "required": "Yêu cầu",
+    "invalid_email":"Địa chỉ email không hợp lệ"
+
 }

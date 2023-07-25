@@ -1,9 +1,9 @@
 import { Placeholder } from '@cogoport/components';
 import { IcMAirTracking, IcMOceanTracking } from '@cogoport/icons-react';
-import Image from 'next/image';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const getLoadingArr = (n) => [...Array(n).keys()];

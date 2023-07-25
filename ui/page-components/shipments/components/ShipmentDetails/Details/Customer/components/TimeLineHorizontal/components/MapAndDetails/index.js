@@ -9,16 +9,7 @@ import BreadCrumbs from '../Breadcrumbs';
 import styles from './styles.module.css';
 
 function MapAndDetails({
-	// mapLoading = false,
-	// mapPoints = [],
-	// trackerDetails = [],
-	// selectedContainer = '',
-	// isTrackEmpty = false,
 	setQuickAction,
-	// selectedMilestonesList = '',
-	// setSelectedMilestonesList,
-	// setPreditiveEta,
-	// setVesselName,
 	servicesForMap = false,
 	loading = false,
 }) {
@@ -26,19 +17,6 @@ function MapAndDetails({
 		<div className={cl`${styles.left_panel} ${servicesForMap ? styles.show_tracking : ''}`}>
 			<BreadCrumbs servicesForMap={servicesForMap} />
 
-			{/* {!isTrackEmpty && !mapLoading && servicesForMap ? (
-				<TrackMapNavigate
-					mapPoints={mapPoints}
-					trackerDetails={trackerDetails}
-					selectedContainer={selectedContainer}
-					setSelectedMilestonesList={setSelectedMilestonesList}
-					selectedMilestonesList={selectedMilestonesList}
-					setPreditiveEta={setPreditiveEta}
-					setVesselName={setVesselName}
-				/>
-			) : (
-				renderEmpty()
-			)} */}
 			<ServicDetails servicesForMap={servicesForMap} loading={loading} />
 
 			<div className={cl`${styles.panels} ${styles.actions}`}>

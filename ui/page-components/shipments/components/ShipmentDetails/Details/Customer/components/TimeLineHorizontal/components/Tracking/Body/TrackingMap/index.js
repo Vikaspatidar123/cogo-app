@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const CogoMaps = dynamic(() => import('./map'), { ssr: false });
 
 function TrackingMap({
@@ -49,11 +52,11 @@ function TrackingMap({
 	if (routesLoading || isLoading) {
 		return (
 			<div className={styles.map}>
-				<img
-					src="https://cogoport-maps.s3.ap-south-1.amazonaws.com/world+(2).svg"
-					alt="map-loader"
-					width="100%"
-					height={700}
+				<Image
+					src={GLOBAL_CONSTANTS.image_url.map_loading}
+					width={600}
+					height={600}
+					alt="loading"
 				/>
 			</div>
 		);

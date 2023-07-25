@@ -93,19 +93,6 @@ function TrackerInfomation({
 				loading={loading || loading2}
 			/>
 
-			{/* <TimelineNavigate
-				selectedMilestonesList={selectedMilestonesList}
-				containerSubbscription={trigger2}
-				allContainers={allContainers}
-				trackerDetails={trackerDetails}
-				currentSubscription={currentSubscription}
-				setCurrentSubscription={setCurrentSubscription}
-				preditiveEta={preditiveEta}
-				vesselName={vesselName}
-				servicesForMap={servicesForMap}
-				rest={rest}
-				loading={loading}
-			/> */}
 		</div>
 	);
 }

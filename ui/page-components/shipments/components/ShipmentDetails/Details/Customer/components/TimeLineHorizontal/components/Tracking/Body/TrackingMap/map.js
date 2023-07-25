@@ -1,8 +1,12 @@
 import { CogoMaps, L } from '@cogoport/maps';
 import { useState, useEffect } from 'react';
 
+import { MAP_ATTRIBUTE, SET_TIME } from '../constants';
+
 import Pointer from './Pointer';
 import Route from './Route';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const LAYER = [
 	{
@@ -33,7 +37,7 @@ function MapComp({
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 			if (map) map.invalidateSize(true);
-		}, 200);
+		}, SET_TIME);
 		return () => {
 			clearTimeout(timeout);
 		};
@@ -42,11 +46,7 @@ function MapComp({
 	useEffect(() => {
 		if (map) {
 			map.setMaxBounds(bounds);
-			map?.attributionControl?.setPrefix(
-				'<a href="https://www.cogoport.com/en/terms-and-conditions/" target="_blank">&copy; Cogoport T&C</a>|'
-				+ '<a href="https://www.cogoport.com/en/privacy-policy/" target="_blank">Privacy & data protection</a>|'
-				+ '<a href="https://leafletjs.com/" target="_blank" >Leaflet</a>',
-			);
+			map?.attributionControl?.setPrefix(MAP_ATTRIBUTE);
 		}
 	}, [map]);
 
@@ -63,10 +63,9 @@ function MapComp({
 		>
 			{curvePoints?.length > 0 && (
 				<Pointer
-					lat={curvePoints?.[0]?.lat}
-					lng={curvePoints?.[0]?.lng}
-					iconSvg="source"
-					map={map}
+					lat={curvePoints?.[GLOBAL_CONSTANTS.zeroth_index]?.lat}
+					lng={curvePoints?.[GLOBAL_CONSTANTS.zeroth_index]?.lng}
+					type="origin"
 				/>
 			)}
 
@@ -74,21 +73,18 @@ function MapComp({
 				<Pointer
 					lat={currentMilestone?.lat}
 					lng={currentMilestone?.lng}
-					iconSvg="current-location"
-					map={map}
+					type="origin"
 				/>
 			)}
 			{completedPoints?.length > 0 && (
 				<Route
 					positions={completedPoints}
-					map={map}
 					pathOptions={lineOptions}
 				/>
 			)}
 			{remainingPoints?.length > 0 && (
 				<Route
 					positions={remainingPoints}
-					map={map}
 					pathOptions={remainingRoutelineOptions}
 				/>
 			)}
@@ -99,8 +95,7 @@ function MapComp({
 				<Pointer
 					lat={curvePoints?.[curvePointLength - 1]?.lat}
 					lng={curvePoints?.[curvePointLength - 1]?.lng}
-					iconSvg="destination-icon"
-					map={map}
+					type="destination"
 				/>
 			)}
 		</CogoMaps>

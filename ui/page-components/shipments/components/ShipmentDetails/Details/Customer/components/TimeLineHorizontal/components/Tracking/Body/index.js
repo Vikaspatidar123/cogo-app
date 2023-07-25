@@ -9,15 +9,16 @@ import MilestoneStepper from './MilestoneStepper';
 import styles from './styles.module.css';
 import TrackingMap from './TrackingMap';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import { mergeOceanMilestone, mergeAirMilestone } from '@/ui/page-components/air-ocean-tracking/utils/mergeMilestone';
 
 function Body({ list = [], loading = false, shipmentType }) {
 	const [oceanPoints, setOceanPoints] = useState([]);
 	const [mapPoints, setMapPoints] = useState([]);
 
-	const listToRender = list?.[0]?.data?.[0]?.tracking_data;
+	const listToRender = list?.[GLOBAL_CONSTANTS.zeroth_index]?.data?.[GLOBAL_CONSTANTS.zeroth_index]?.tracking_data;
 
-	const container_no = list?.[0]?.container_details?.map((c) => c?.container_no)
+	const container_no = list?.[GLOBAL_CONSTANTS.zeroth_index]?.container_details?.map((c) => c?.container_no)
 		.flat();
 	const combineMileStoneList = shipmentType === 'ocean' ? mergeOceanMilestone(listToRender)
 		: mergeAirMilestone(listToRender);
@@ -25,14 +26,14 @@ function Body({ list = [], loading = false, shipmentType }) {
 	const { routesLoading } = useOceanRoute({
 		setMapPoints,
 		container_no,
-		saas_container_subscription_id : list?.[0]?.id,
-		type                           : list?.[0]?.type,
+		saas_container_subscription_id : list?.[GLOBAL_CONSTANTS.zeroth_index]?.id,
+		type                           : list?.[GLOBAL_CONSTANTS.zeroth_index]?.type,
 	});
 
 	useEffect(() => {
 		if (mapPoints?.length) {
 			setOceanPoints(
-				mapPoints.find((x) => x.container_no === list?.[0]?.input)?.route,
+				mapPoints.find((x) => x.container_no === list?.[GLOBAL_CONSTANTS.zeroth_index]?.input)?.route,
 			);
 		}
 	}, [list, mapPoints]);

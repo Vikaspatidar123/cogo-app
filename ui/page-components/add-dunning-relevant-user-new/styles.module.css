@@ -1,0 +1,23 @@
+.heading {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+.layout {
+    margin: auto;
+    width: 50%;
+}
+
+.errors {
+	min-height: 16px;
+	margin: 4px 0px;
+	font-size: var(--font-size-md);
+	line-height: 16px;
+	color: var(--color-primary-error-red-1);
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+}

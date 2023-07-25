@@ -26,6 +26,7 @@ const getIconUrl = ({ mapping, type, transportMode }) => {
 function Card({ combineList = [], trackingType = 'ocean' }) {
 	const { location = '', station = '', transport_mode = 'VESSEL' } = combineList?.[0] || {};
 	const combineListLength = combineList.length;
+
 	const { t } = useTranslation(['common', 'airOceanTracking']);
 
 	const GET_MAPPING = getMappingObject({ t });

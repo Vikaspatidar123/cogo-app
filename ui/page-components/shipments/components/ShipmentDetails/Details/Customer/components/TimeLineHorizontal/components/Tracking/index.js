@@ -23,7 +23,7 @@ function Tracking() {
 
 	const shipmentType = SHIPMENT_TYPE_MAPPING[shipmentData?.shipment_type] || 'ocean';
 
-	const ContainerOptions = Array.isArray(list)
+	const containerOptions = Array.isArray(list)
 		? (list || [])
 			.filter((e) => e?.type === 'CONTAINER_NO')
 			?.map((e) => ({ label: e?.input, value: e?.input }))
@@ -31,16 +31,16 @@ function Tracking() {
 
 	const trackingData = Array.isArray(list)
 		? (list || []).filter(
-			(e) => e?.input === (containerNo || ContainerOptions?.[GLOBAL_CONSTANTS.zeroth_index]?.value),
+			(e) => e?.input === (containerNo || containerOptions?.[GLOBAL_CONSTANTS.zeroth_index]?.value),
 		)
 		: [];
 
 	return (
 		<div className={styles.container}>
 			<Header
-				ContainerOptions={ContainerOptions}
+				containerOptions={containerOptions}
 				setContainerNo={setContainerNo}
-				containerNo={containerNo || ContainerOptions?.[GLOBAL_CONSTANTS.zeroth_index]?.value}
+				containerNo={containerNo || containerOptions?.[GLOBAL_CONSTANTS.zeroth_index]?.value}
 				shipmentId={shipmentData?.id}
 			/>
 			<Body list={trackingData} loading={loading} shipmentType={shipmentType} />

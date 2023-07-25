@@ -3,7 +3,7 @@ import { Select } from '@cogoport/components';
 import styles from './styles.module.css';
 
 function Header({
-	ContainerOptions = [],
+	containerOptions = [],
 	setContainerNo = () => {},
 	containerNo = '',
 
@@ -17,7 +17,7 @@ function Header({
 				placeholder="Container no"
 				value={containerNo}
 				onChange={(e) => setContainerNo(e)}
-				options={ContainerOptions || []}
+				options={containerOptions || []}
 			/>
 		</div>
 	);

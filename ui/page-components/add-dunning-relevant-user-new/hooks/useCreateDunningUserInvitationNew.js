@@ -1,5 +1,4 @@
 import { Toast } from '@cogoport/components';
-import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import GLOBAL_CONSTANTS from '../../../commons/constants/globals';

@@ -1,9 +1,8 @@
-/* eslint-disable import/no-unresolved */
 import { Input, Select } from '@cogoport/components';
 
-import styles from './styles.module.css';
+import currencyOpt from '../../constants/currencies';
 
-import countryCode from '@/.data-store/constants/countries.json';
+import styles from './styles.module.css';
 
 function PriceSelect({
 	value,
@@ -25,10 +24,7 @@ function PriceSelect({
 	const handleNumberChange = (e) => {
 		onChange({ ...(value || {}), [numberKey]: e });
 	};
-	const formattedList = countryCode.map((code) => ({
-		value : code?.currency_code,
-		label : code?.currency_code,
-	}));
+
 	const props = {};
 	if (select2 && select2.includes('new')) {
 		if (select2.includes('big')) {
@@ -89,7 +85,7 @@ function PriceSelect({
 			<div className={styles.col_container_1} style={{ paddingRight: 0 }}>
 				<Select
 					{...props}
-					options={formattedList}
+					options={currencyOpt}
 					value={currency}
 					readOnly={false}
 					onChange={handleCodeChange}

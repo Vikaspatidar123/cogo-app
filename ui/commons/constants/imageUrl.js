@@ -50,7 +50,7 @@ const IMAGE_URLS = {
 	empty_state              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg',
 	globe                    : 'https://cdn.cogoport.io/cms-prod/cogo_partner/vault/original/globe-language.png',
 	cogoport_image:
-	'https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg',
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg',
 	pen_image        : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/tds-doc-icon.svg',
 	premium_image    : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/crown_new.svg',
 	loader           : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/spinner.svg',
@@ -81,6 +81,11 @@ const IMAGE_URLS = {
 	logo_without_footer       : 'https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/logo-cogoport.svg',
 	create_ticket_empty_state : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/empty-state.svg',
 	empty_url                 : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty-item.svg',
+	dollar_url                : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/dollar.svg',
+	green_image               : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/green-rect.svg',
+	orange_image              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/orange-rect.svg',
+	payment_loading           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/ic-spinner_app.svg',
+	invoices_image            : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/invoices_app.svg',
 };
 
 export default IMAGE_URLS;

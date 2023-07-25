@@ -64,5 +64,6 @@
     "or":"or",
     "service_specific_upload_heading":"Upload or Check Documents for Specific Services",
     "submit_btn":"Submit",
-    "empty_service_err_msz":"Please select a service!"
+    "empty_service_err_msz":"Please select a service!",
+    "document_validity_err_msz":"Document Validity is required"
 }

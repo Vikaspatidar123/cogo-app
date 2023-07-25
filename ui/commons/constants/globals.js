@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import IMAGE_URLS from './imageUrl';
 
 const GLOBAL_CONSTANTS = {

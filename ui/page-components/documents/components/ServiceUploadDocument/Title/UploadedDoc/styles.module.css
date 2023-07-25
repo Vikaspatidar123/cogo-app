@@ -1,0 +1,44 @@
+.success_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 50%;
+}
+
+.success_info_doc {
+	display: flex;
+	flex-basis: 35%;
+	flex-direction: column;
+	overflow: hidden;
+	color: #828282;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.info {
+	color: #231;
+}
+
+.success_info {
+	display: flex;
+	flex-basis: 25%;
+	flex-direction: column;
+	color: #828282;
+}
+
+.icon {
+	width: 20px;
+	height: 20px;
+	margin: 0 10px;
+	cursor: pointer;
+}
+
+.modal_body {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+.icon_wrap {
+	display: flex;
+}

@@ -13,7 +13,7 @@ function useVerifyGoogleRecaptcha() {
 	const onVerifyingCaptcha = async () => {
 		const captchaResponse = await recaptchaRef.current.executeAsync();
 
-		return trigger({ params: { google_recaptcha_response: captchaResponse } });
+		return trigger({ params: { google_recaptcha_response: captchaResponse, platform: 'app' } });
 	};
 
 	return {

@@ -2,6 +2,7 @@ import { TabPanel, Tabs } from '@cogoport/components';
 import { useEffect } from 'react';
 
 import RelationshipManager from '../RelationshipManager';
+import Tracking from '../TimeLineHorizontal/components/Tracking';
 
 import IEDocuments from './IEDocuments';
 import IEPocAndSop from './IEPocAndSop';
@@ -58,6 +59,9 @@ function TabSections({
 							quickAction={quickAction}
 							setQuickAction={setQuickAction}
 						/>
+					</TabPanel>
+					<TabPanel name="tracking" title="TRACKING">
+						<Tracking />
 					</TabPanel>
 				</Tabs>
 			</section>

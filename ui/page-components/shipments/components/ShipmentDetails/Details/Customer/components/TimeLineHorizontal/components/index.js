@@ -32,8 +32,8 @@ function TrackerInfomation({
 	const [trackerDetails, setTrackerDetails] = useState([]);
 	const [mapPoints, setMapPoints] = useState([]);
 	const [selectedMilestonesList, setSelectedMilestonesList] = useState([]);
-	const [preditiveEta, setPreditiveEta] = useState({});
-	const [vesselName, setVesselName] = useState('');
+	// const [preditiveEta, setPreditiveEta] = useState({});
+	// const [vesselName, setVesselName] = useState('');
 	const { routeLoading, getAllOceanRoutes } = useGetAllOceanRoutes({ setMapPoints });
 
 	const isTrackerEmpty = trackerDetails?.tracking_status !== 'Found';
@@ -86,8 +86,8 @@ function TrackerInfomation({
 				selectedContainer={selectedContainer}
 				setSelectedMilestonesList={setSelectedMilestonesList}
 				selectedMilestonesList={selectedMilestonesList}
-				setPreditiveEta={setPreditiveEta}
-				setVesselName={setVesselName}
+				// setPreditiveEta={setPreditiveEta}
+				// setVesselName={setVesselName}
 				servicesList={servicesList}
 				servicesForMap={servicesForMap}
 				loading={loading || loading2}

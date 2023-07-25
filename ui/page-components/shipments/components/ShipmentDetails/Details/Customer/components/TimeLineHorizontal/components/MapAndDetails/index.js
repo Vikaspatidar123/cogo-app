@@ -5,7 +5,6 @@ import QuickActions from '../../../QuickActions';
 import ServicDetails from '../../../ServiceDetails';
 import BreadCrumbs from '../Breadcrumbs';
 // import TrackMapNavigate from '../TrackMapNavigate';
-import Tracking from '../Tracking';
 
 import styles from './styles.module.css';
 
@@ -23,31 +22,9 @@ function MapAndDetails({
 	servicesForMap = false,
 	loading = false,
 }) {
-	// const renderEmpty = () => {
-	// 	if (mapLoading) {
-	// 		return (
-	// 			<img
-	// 				src="https://cogoport-maps.s3.ap-south-1.amazonaws.com/world+(2).svg"
-	// 				alt=""
-	// 				width={800}
-	// 				height={300}
-	// 			/>
-	// 		);
-	// 	}
-
-	// 	return servicesForMap ? (
-	// 		<div style={{ height: '400px', width: '100%', alignItems: 'center' }}>
-	// 			<div style={{ textAlign: 'center', width: '100%', marginTop: '100px' }}>
-	// 				No Data Found for the Container
-	// 			</div>
-	// 		</div>
-	// 	) : null;
-	// };
 	return (
 		<div className={cl`${styles.left_panel} ${servicesForMap ? styles.show_tracking : ''}`}>
 			<BreadCrumbs servicesForMap={servicesForMap} />
-
-			<Tracking />
 
 			{/* {!isTrackEmpty && !mapLoading && servicesForMap ? (
 				<TrackMapNavigate

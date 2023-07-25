@@ -1,3 +1,4 @@
+import { isEmpty } from '@cogoport/utils';
 import React, { useState, useEffect } from 'react';
 
 import useOceanRoute from '../hooks/useOceanRoute';
@@ -32,26 +33,32 @@ function Body({ list = [], loading = false }) {
 		}
 	}, [list, mapPoints]);
 
-	if (loading) {
+	const renderComponent = () => {
+		if (loading) {
+			return (
+				<div className={styles.container}>
+					<LoadingState />
+				</div>
+			);
+		}
+
+		if (isEmpty(listToRender)) {
+			return <EmptyState />;
+		}
+
 		return (
-			<div className={styles.container}>
-				<LoadingState />
-			</div>
+			<TrackingData
+				data={listToRender}
+				shippingLine={list?.[0]?.shipping_line}
+			/>
 		);
-	}
+	};
 
 	return (
 		<div className={styles.tracking_info}>
-			{!loading && !listToRender?.length ? (
-				<EmptyState />
-			) : (
-				<TrackingData
-					data={listToRender}
-					shippingLine={list?.[0]?.shipping_line}
-				/>
-			)}
+			{renderComponent()}
 			<TrackingMap
-				routesLoading={routesLoading}
+				routesLoading={routesLoading || loading}
 				points={oceanPoints}
 			/>
 		</div>

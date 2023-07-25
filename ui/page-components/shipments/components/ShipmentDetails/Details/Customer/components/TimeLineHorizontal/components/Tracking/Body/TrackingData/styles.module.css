@@ -2,7 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	width: 50%;
-	max-height: 92vh;
+	max-height: 84vh;
 	padding: 25px 15px 15px;
 	margin-right: 15px;
 	overflow-y: auto;

@@ -47,7 +47,16 @@ function TrackingMap({
 	}, [points, points?.length]);
 
 	if (routesLoading || isLoading) {
-		return <div className={styles.loading}>Loading...</div>;
+		return (
+			<div className={styles.map}>
+				<img
+					src="https://cogoport-maps.s3.ap-south-1.amazonaws.com/world+(2).svg"
+					alt="map-loader"
+					width="100%"
+					height={700}
+				/>
+			</div>
+		);
 	}
 
 	return (

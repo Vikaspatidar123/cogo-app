@@ -15,7 +15,7 @@ const LoadingState = () => [...Array(PLACEHOLDER_NUMBER)].map((v, idx) => (
 
 		<div className={styles.main}>
 			<div className={styles.heading}>
-				<Placeholder width="120px" height="28px" />
+				<Placeholder width="320px" height="28px" />
 			</div>
 
 			<div className={styles.gap}>

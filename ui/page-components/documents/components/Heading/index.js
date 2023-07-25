@@ -8,8 +8,6 @@ import styles from './styles.module.css';
 import { useSelector } from '@/packages/store';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-
 function Heading({
 	setShow = () => {},
 	documentDetails = {},
@@ -23,6 +21,8 @@ function Heading({
 	filters = {},
 }) {
 	const { t } = useTranslation(['documents']);
+
+	const geo = getGeoConstants();
 
 	const { user_data } = useSelector(({ profile }) => ({
 		user_data: profile || {},

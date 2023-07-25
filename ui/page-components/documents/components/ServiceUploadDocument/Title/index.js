@@ -1,6 +1,7 @@
 import { Button, Pill, Tooltip } from '@cogoport/components';
 import { IcMCloudUpload } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 import UploadedDoc from './UploadedDoc';
@@ -13,12 +14,14 @@ const COLOR_MAPPING = {
 };
 
 function UnuploadedDoc({ sampleLink = '' }) {
+	const { t } = useTranslation(['documents']);
+
 	return (
 		<div className={styles.init_title}>
 			{sampleLink ? (
 				<div className={styles.sampleLink}>
 					<a href={sampleLink} target="_blank" rel="noreferrer">
-						View Sample Doc
+						{t('documents:sample_doc_btn')}
 					</a>
 				</div>
 			) : null }
@@ -26,7 +29,7 @@ function UnuploadedDoc({ sampleLink = '' }) {
 			<Button themeType="secondary">
 				<IcMCloudUpload />
 				<div style={{ padding: '0 4px 0 0' }} />
-				Upload
+				{t('documents:upload_btn')}
 			</Button>
 		</div>
 	);

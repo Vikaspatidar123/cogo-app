@@ -1,5 +1,6 @@
 import { Collapse, Placeholder } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { checkFileList } from '../../constants/checkFileList';
@@ -20,9 +21,11 @@ function ServiceUploadDocument({
 	serviceType = '', data = [], loading = false, addDocument = () => {}, addDocumentLoading = false,
 	refetch = () => {},
 }) {
+	const { t } = useTranslation(['documents']);
+
 	const [activeCollapse, setActiveCollapse] = useState('');
 
-	const options = checkFileList.map((value, index) => ({
+	const options = checkFileList(t)?.map((value, index) => ({
 		key   : index.toString(),
 		title : <Title
 			doc_data={value}
@@ -43,7 +46,7 @@ function ServiceUploadDocument({
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>
-				Upload Service Documents
+				{t('documents:upload_service_doc_heading')}
 			</div>
 
 			{loading ? (

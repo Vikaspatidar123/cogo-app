@@ -1,113 +1,113 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-export const checkFileList = [
+export const checkFileList = (t) => [
 	{
-		doc_name : 'Pan Card copy of Firm/Company/Propreitor(signed and stamped)',
+		doc_name : t('documents:custom_service_doc_1'),
 		doc_type : 'kyc_docs',
 	},
 	{
-		doc_name : 'Pan of Director(signed and stamped) ',
+		doc_name : t('documents:custom_service_doc_2'),
 		doc_type : 'kyc_docs',
 	},
 	{
-		doc_name : 'Aadhaar of Director(signed and stamp)',
+		doc_name : t('documents:custom_service_doc_3'),
 		doc_type : 'kyc_docs',
 	},
 	{
-		doc_name    : 'IEC Copy(signed and stamp)',
+		doc_name    : t('documents:custom_service_doc_4'),
 		doc_type    : 'kyc_docs',
-		sample_link : GLOBAL_CONSTANTS.ORG_DOCS_SAMPLE_LINKS.iec,
+		sample_link : GLOBAL_CONSTANTS.organization_documents_sample_link.iec,
 	},
 	{
-		doc_name    : 'GST Registration(signed and stamp)',
+		doc_name    : t('documents:custom_service_doc_5'),
 		doc_type    : 'company_tax_docs',
-		sample_link : GLOBAL_CONSTANTS.ORG_DOCS_SAMPLE_LINKS.gst,
+		sample_link : GLOBAL_CONSTANTS.organization_documents_sample_link.gst,
 	},
 	{
-		doc_name    : 'Certificate of Incorporation',
+		doc_name    : t('documents:custom_service_doc_6'),
 		doc_type    : 'company_registration_docs',
-		sample_link : GLOBAL_CONSTANTS.ORG_DOCS_SAMPLE_LINKS.incorporation_certificate,
+		sample_link : GLOBAL_CONSTANTS.organization_documents_sample_link.incorporation_certificate,
 	},
 	{
-		doc_name    : 'Memorandum & Article of Association',
+		doc_name    : t('documents:custom_service_doc_7'),
 		doc_type    : 'company_registration_docs',
-		sample_link : GLOBAL_CONSTANTS.ORG_DOCS_SAMPLE_LINKS.memorandum,
+		sample_link : GLOBAL_CONSTANTS.organization_documents_sample_link.memorandum,
 	},
 	{
-		doc_name : 'Self-attested company/LLP master data',
+		doc_name : t('documents:custom_service_doc_8'),
 		doc_type : 'company_registration_docs',
 	},
 	{
-		doc_name    : 'Bank Authorization Letter on Bank\'s letterhead(signed & stamp)',
+		doc_name    : t('documents:custom_service_doc_9'),
 		doc_type    : 'company_financial_docs',
-		sample_link : GLOBAL_CONSTANTS.ORG_DOCS_SAMPLE_LINKS.bank_letterhead,
+		sample_link : GLOBAL_CONSTANTS.organization_documents_sample_link.bank_letterhead,
 	},
 	{
-		doc_name    : 'Last 3 months GST Return Form-3B( signed and stamped)',
+		doc_name    : t('documents:custom_service_doc_10'),
 		doc_type    : 'company_tax_docs',
-		sample_link : GLOBAL_CONSTANTS.ORG_DOCS_SAMPLE_LINKS.gst_return_form_3b,
+		sample_link : GLOBAL_CONSTANTS.organization_documents_sample_link.gst_return_form_3b,
 	},
 	{
-		doc_name    : 'Original Authorization Letter to CHA( signed and stamped)',
+		doc_name    : t('documents:custom_service_doc_11'),
 		doc_type    : 'company_general_docs',
-		sample_link : GLOBAL_CONSTANTS.ORG_DOCS_SAMPLE_LINKS.authorization_letter_cha,
+		sample_link : GLOBAL_CONSTANTS.organization_documents_sample_link.authorization_letter_cha,
 	},
 	{
-		doc_name    : 'KYC letter on customer\'s letterhead(signed &stamped)',
+		doc_name    : t('documents:custom_service_doc_12'),
 		doc_type    : 'kyc_docs',
-		sample_link : GLOBAL_CONSTANTS.ORG_DOCS_SAMPLE_LINKS.kyc,
+		sample_link : GLOBAL_CONSTANTS.organization_documents_sample_link.kyc,
 	},
 	{
-		doc_name : 'ITR of last 2 years(firm/Propreitor/Directors)',
+		doc_name : t('documents:custom_service_doc_13'),
 		doc_type : 'company_tax_docs',
 	},
 	{
-		doc_name : 'Balance Sheet of last 2 financial years',
+		doc_name : t('documents:custom_service_doc_14'),
 		doc_type : 'company_financial_docs',
 	},
 	{
-		doc_name    : 'Board Resolution(only for company)',
+		doc_name    : t('documents:custom_service_doc_15'),
 		doc_type    : 'company_registration_docs',
-		sample_link : GLOBAL_CONSTANTS.ORG_DOCS_SAMPLE_LINKS.board_resolution,
+		sample_link : GLOBAL_CONSTANTS.organization_documents_sample_link.board_resolution,
 	},
 	{
-		doc_name : 'Partnership deed or Certificate of Incorporation(for LLP or Individual Owner)',
+		doc_name : t('documents:custom_service_doc_16'),
 		doc_type : 'company_registration_docs',
 	},
 	{
-		doc_name : 'Address Proof (Electricity Bill/Landline Telephone Bill/Rent Agreement)',
+		doc_name : t('documents:custom_service_doc_17'),
 		doc_type : 'kyc_docs',
 	},
 	{
-		doc_name    : 'Request Letter Addressed to Assistant/Deputy Commissioner of Custom at Desired Port',
+		doc_name    : t('documents:custom_service_doc_18'),
 		doc_type    : 'company_general_docs',
-		sample_link : GLOBAL_CONSTANTS.ORG_DOCS_SAMPLE_LINKS.letter_to_custom_commissioner,
+		sample_link : GLOBAL_CONSTANTS.organization_documents_sample_link.letter_to_custom_commissioner,
 	},
 	{
-		doc_name : 'Last 6 Months Bank Statement',
+		doc_name : t('documents:custom_service_doc_19'),
 		doc_type : 'company_financial_docs',
 	},
 	{
-		doc_name : 'Cancelled Cheque',
+		doc_name : t('documents:custom_service_doc_20'),
 		doc_type : 'company_financial_docs',
 	},
 	{
-		doc_name    : 'Original AD code letter from Bank',
+		doc_name    : t('documents:custom_service_doc_21'),
 		doc_type    : 'company_financial_docs',
-		sample_link : GLOBAL_CONSTANTS.ORG_DOCS_SAMPLE_LINKS.ad_code_letter,
+		sample_link : GLOBAL_CONSTANTS.organization_documents_sample_link.ad_code_letter,
 	},
 	{
-		doc_name : 'Insurance Certificate',
+		doc_name : t('documents:custom_service_doc_22'),
 		doc_type : 'company_financial_docs',
 	},
 	{
-		doc_name    : 'Acknowledgement copy of LUT of current financial year',
+		doc_name    : t('documents:custom_service_doc_23'),
 		doc_type    : 'company_tax_docs',
-		sample_link : GLOBAL_CONSTANTS.ORG_DOCS_SAMPLE_LINKS.lut_copy,
+		sample_link : GLOBAL_CONSTANTS.organization_documents_sample_link.lut_copy,
 	},
 	{
-		doc_name    : 'Registration cum Membership certificate of concern authority',
+		doc_name    : t('documents:custom_service_doc_24'),
 		doc_type    : 'company_general_docs',
-		sample_link : GLOBAL_CONSTANTS.ORG_DOCS_SAMPLE_LINKS.membership_certificate,
+		sample_link : GLOBAL_CONSTANTS.organization_documents_sample_link.membership_certificate,
 	},
 ];

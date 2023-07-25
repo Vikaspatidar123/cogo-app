@@ -214,7 +214,7 @@ const GLOBAL_CONSTANTS = {
 	},
 	PROFILE_NAVIGATIONS: ['saas_cogo_subscription', 'saas_finance'],
 
-	ORG_DOCS_SAMPLE_LINKS: {
+	organization_documents_sample_link: {
 		iec                           : 'https://cogoport-production.sgp1.digitaloceanspaces.com/c8cfaa65c6d3e59b38d13e0900985e18/IEC_format%20%281%29.png',
 		gst                           : 'https://cogoport-production.sgp1.digitaloceanspaces.com/95c72c88842372e66c57bbdf221ebeb5/GST-Registration-Certificate-Sample-Annexure-A%20%281%29.png',
 		incorporation_certificate     : 'https://cogoport-production.sgp1.digitaloceanspaces.com/b0e35c0aa25953e5e08e5644cd396420/Certificate-Of-Incorporation.jpeg',

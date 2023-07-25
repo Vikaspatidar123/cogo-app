@@ -17,7 +17,7 @@ export const formControls = [
 		label                 : 'Document Validity Till',
 		dateFormat            : GLOBAL_CONSTANTS.formats.date['dd/MM/yyyy'],
 		span                  : 4,
-		placeholder           : 'dd/MM/yyyy',
+		placeholder           : GLOBAL_CONSTANTS.formats.date['dd/MM/yyyy'],
 		size                  : 'sm',
 		isPreviousDaysAllowed : 'true',
 	},

@@ -1,5 +1,6 @@
 import { cl, Modal, Button } from '@cogoport/components';
 import { IcMEyeopen, IcMDelete } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import useDeleteDocument from '../../../../hooks/useDeleteDocument';
@@ -13,11 +14,9 @@ export default function UploadedDoc({
 	uploadedDoc = {},
 	refetch = () => {},
 }) {
-	const [show, setShow] = useState(false);
+	const { t } = useTranslation(['documents']);
 
-	const onClose = () => {
-		setShow(false);
-	};
+	const [show, setShow] = useState(false);
 
 	const {
 		deleteDocument,
@@ -32,7 +31,7 @@ export default function UploadedDoc({
 		<div className={styles.success_container}>
 			<div style={{ display: 'flex', width: '88%' }}>
 				<div className={styles.success_info_doc}>
-					Document Number :
+					{t('documents:document_number')}
 					{' '}
 					<span className={styles.info}>
 						{uploadedDoc?.data?.document_number}
@@ -40,7 +39,7 @@ export default function UploadedDoc({
 				</div>
 
 				<div className={styles.success_info}>
-					Valid Till :
+					{t('documents:valid_till')}
 					{' '}
 					<span className={styles.info}>
 						{formatDate({
@@ -52,7 +51,7 @@ export default function UploadedDoc({
 				</div>
 
 				<div className={styles.success_info}>
-					Uploaded on :
+					{t('documents:uploaded_on')}
 					{' '}
 					<span className={styles.info}>
 						{formatDate({
@@ -76,11 +75,11 @@ export default function UploadedDoc({
 				/>
 			</div>
 
-			<Modal size="md" show={show} onClose={onClose} placement="center">
-				<Modal.Header title="Are you sure?" />
+			<Modal size="md" show={show} onClose={() => setShow(false)} placement="center">
+				<Modal.Header title={t('documents:delete_confirmation_title')} />
 
 				<Modal.Body>
-					Do you wish to delete the document?
+					{t('documents:delete_confirmation')}
 				</Modal.Body>
 
 				<Modal.Footer>
@@ -88,10 +87,10 @@ export default function UploadedDoc({
 						<Button
 							style={{ margin: '0 8px 0 0' }}
 							themeType="secondary"
-							onClick={onClose}
+							onClick={() => setShow(false)}
 							loading={loading}
 						>
-							Cancel
+							{t('documents:cancel_btn')}
 						</Button>
 
 						<Button
@@ -99,7 +98,7 @@ export default function UploadedDoc({
 							onClick={handleDelete}
 							loading={loading}
 						>
-							Save
+							{t('documents:save_btn')}
 						</Button>
 					</div>
 				</Modal.Footer>

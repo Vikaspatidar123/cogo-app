@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { formControls } from './controls';
 import styles from './styles.module.css';
@@ -6,17 +7,38 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
-const MANDATORY_VALIDITY_DOCS = [
-	'Copy of Pan Card of Firm/Company/Propreitor(signed and stamped)',
-	'Pan of director(signed and stamp)',
-	'Aadhaar of director(signed and stamp)',
-	'IEC copy (signed and stamp)',
-	'Memorandum & Article of association',
-	'Self-attested company/LLP master data',
-	'Board Resolution if company',
-];
+function InnerForm({
+	value = {},
+	setActiveCollapse = () => {},
+	addDocument = () => {},
+	addDocumentLoading = false,
+}) {
+	const { t } = useTranslation(['documents']);
 
-function InnerForm({ value = {}, setActiveCollapse = () => {}, addDocument = () => {}, addDocumentLoading = false }) {
+	const MANDATORY_VALIDITY_DOCS = [
+		t('documents:custom_service_doc_1'),
+		t('documents:custom_service_doc_2'),
+		t('documents:custom_service_doc_3'),
+		t('documents:custom_service_doc_4'),
+		t('documents:custom_service_doc_7'),
+		t('documents:custom_service_doc_8'),
+		t('documents:custom_service_doc_15'),
+	];
+
+	const getMutatedFields = () => {
+		const mutatedControls = [];
+		formControls.forEach((cont) => {
+			const controlItem = cont || {};
+
+			if (controlItem.name === 'doc_validity' && MANDATORY_VALIDITY_DOCS.includes(value?.doc_name)) {
+				controlItem.rules = { required: { value: true, message: 'Document Validity is required' } };
+			}
+			mutatedControls.push(controlItem);
+		});
+
+		return mutatedControls;
+	};
+
 	const {
 		handleSubmit,
 		control,
@@ -34,21 +56,10 @@ function InnerForm({ value = {}, setActiveCollapse = () => {}, addDocument = () 
 		setActiveCollapse('');
 	};
 
-	const mutatedControls = [];
-	formControls.forEach((cont) => {
-		const controlItem = cont || {};
-
-		if (controlItem.name === 'doc_validity'
-		&& MANDATORY_VALIDITY_DOCS.includes(value?.doc_name)) {
-			controlItem.rules = { required: { value: true, message: 'Document Validity is required' } };
-		}
-		mutatedControls.push(controlItem);
-	});
-
 	return (
 		<div className={styles.inner_form}>
 			<div className={styles.form}>
-				{mutatedControls.map((item) => {
+				{getMutatedFields(value).map((item) => {
 					const { label, name, component } = item || {};
 					const Element = getField(component);
 
@@ -80,11 +91,11 @@ function InnerForm({ value = {}, setActiveCollapse = () => {}, addDocument = () 
 					onClick={() => setActiveCollapse('')}
 					disabled={addDocumentLoading}
 				>
-					Cancel
+					{t('documents:cancel_btn')}
 				</Button>
 
 				<Button onClick={handleSubmit(onSubmit)} disabled={addDocumentLoading}>
-					Save
+					{t('documents:save_btn')}
 				</Button>
 			</div>
 		</div>

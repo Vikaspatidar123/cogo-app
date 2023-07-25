@@ -1,4 +1,3 @@
-import { Placeholder } from '@cogoport/components';
 import { IcMPortArrow } from '@cogoport/icons-react';
 
 import getLocations from '../../../../../../../helpers/locationShipment';
@@ -8,7 +7,7 @@ import styles from './styles.module.css';
 
 import { getServiceInfo } from '@/ui/page-components/shipments/utils/getServiceInfo';
 
-function PortDetails({ shipment_data, primary_service = {}, loading = false }) {
+function PortDetails({ shipment_data, primary_service = {} }) {
 	const { origin, destination } = getLocations(
 		'service_type',
 		primary_service || {},
@@ -22,7 +21,7 @@ function PortDetails({ shipment_data, primary_service = {}, loading = false }) {
 			return (
 				<>
 					<div className={styles.flag} />
-					{!loading && origin && <RouteItem location={origin} />}
+					{origin && <RouteItem location={origin} />}
 				</>
 			);
 		}
@@ -30,15 +29,13 @@ function PortDetails({ shipment_data, primary_service = {}, loading = false }) {
 		return (
 			<div className={styles.location_wrapper}>
 				<div className={styles.flag} />
-				{loading && <Placeholder />}
-				{!loading && origin && <RouteItem location={origin} />}
+				{ origin && <RouteItem location={origin} />}
 
 				<div className={styles.icon_wrapper}>
 					<IcMPortArrow width={28} height={28} />
 				</div>
 				<div className={styles.flag} />
-				{loading && <Placeholder />}
-				{!loading && destination && <RouteItem location={destination} />}
+				{destination && <RouteItem location={destination} />}
 			</div>
 		);
 	};

@@ -23,16 +23,14 @@ function Tracking() {
 		id: shipmentData?.id, shipmentType,
 	});
 
-	const ContainerOptions = Array.isArray(list)
-		? (list || [])
-			.filter((e) => e?.type === 'CONTAINER_NO')
-			?.map((e) => ({ label: e?.input, value: e?.input }))
+	const containerOptions = Array.isArray(list) ? (list || [])
+		.filter((e) => e?.type === 'CONTAINER_NO')
+		?.map((e) => ({ label: e?.input, value: e?.input }))
 		: [];
 
-	const trackingData = Array.isArray(list)
-		? (list || []).filter(
-			(e) => e?.input === (containerNo || ContainerOptions?.[GLOBAL_CONSTANTS.zeroth_index]?.value),
-		)
+	const trackingData = Array.isArray(list) ? (list || []).filter(
+		(e) => e?.input === (containerNo || containerOptions?.[GLOBAL_CONSTANTS.zeroth_index]?.value),
+	)
 		: [];
 	const points = {
 		ocean : trackingData,
@@ -43,9 +41,9 @@ function Tracking() {
 	return (
 		<div className={styles.container}>
 			<Header
-				ContainerOptions={ContainerOptions}
+				containerOptions={containerOptions}
 				setContainerNo={setContainerNo}
-				containerNo={containerNo || ContainerOptions?.[GLOBAL_CONSTANTS.zeroth_index]?.value}
+				containerNo={containerNo || containerOptions?.[GLOBAL_CONSTANTS.zeroth_index]?.value}
 				shipmentId={shipmentData?.id}
 			/>
 			<Body

@@ -7,8 +7,10 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import useLeadUserDetails from '../../../hooks/useLeadUserDetails';
 import useSignupAuthentication from '../../../hooks/useSignupAuthentication';
 import useSignupForm from '../../../hooks/useSignupForm';
+import getFormattedPayload from '../../../utils/getFormattedPayload';
 
 import styles from './styles.module.css';
+import validateMobileNumber from './validateMobileNumber';
 
 import {
 	InputController,
@@ -37,12 +39,12 @@ function SignupForm({
 	const [customError, setCustomError] = useState('');
 
 	const {
-		onSignupAuthentication,
 		loading,
+		onSignupAuthentication,
 		recaptchaRef,
 	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId });
 
-	const { onLeadUserDetails } = useLeadUserDetails({ setLeadUserId });
+	const { onLeadUserDetails, fetchLeadUserTrigger } = useLeadUserDetails({ setLeadUserId });
 
 	const {
 		handleSubmit,
@@ -124,10 +126,15 @@ function SignupForm({
 					name="mobile_number"
 					placeholder={t(`${translationKey}_mobile_placeholder`)}
 					rules={{
-						required: t(`${translationKey}_mobile_error`),
+						required : t(`${translationKey}_mobile_error`),
+						validate : () => validateMobileNumber({
+							payload: getFormattedPayload({ formValues, leadUserId }),
+							setCustomError,
+							fetchLeadUserTrigger,
+							t,
+						}),
 					}}
 					mode="onBlur"
-					handleBlur={() => generateSignUpLeadUser({ source: 'mobile_number' })}
 				/>
 
 				<span className={styles.errors}>

@@ -1,6 +1,7 @@
 import { isEmpty } from '@cogoport/utils';
 
 import { useRequest } from '@/packages/request';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const LAT_INDEX = 1;
 const LNG_INDEX = 0;
@@ -66,8 +67,10 @@ const useGetAllOceanRoutes = ({ setMapPoints }) => {
 
 					const pre_points = (container || []).map((a) => a?.data).flat();
 
+					if (isEmpty(pre_points)) return undefined;
+
 					const coordinates = {
-						originLatLng      : pre_points?.[0],
+						originLatLng      : pre_points?.[GLOBAL_CONSTANTS.zeroth_index],
 						destinationLatLng : pre_points?.[pre_points.length - 1],
 					};
 					return getRoute({ coordinates });

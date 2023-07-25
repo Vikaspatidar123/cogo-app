@@ -60,5 +60,8 @@
     "custom_service_doc_22":"Insurance Certificate",
     "custom_service_doc_23":"Acknowledgement copy of LUT of current financial year",
     "custom_service_doc_24":"Registration cum Membership certificate of concern authority",
-    "upload_service_doc_heading":"Upload Service Documents"
+    "upload_service_doc_heading":"Upload Service Documents",
+    "or":"or",
+    "service_specific_upload_heading":"Upload or Check Documents for Specific Services",
+    "submit_btn":"Submit"
 }

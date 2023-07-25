@@ -1,5 +1,6 @@
 import { Button, Select, Toast } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -9,6 +10,8 @@ function ServiceWiseHeading({
 	refetch = () => {},
 	setShowServiceList = () => {},
 }) {
+	const { t } = useTranslation(['documents']);
+
 	const handleSubmit = () => {
 		if (isEmpty(serviceType)) {
 			Toast.error('Please select a service!');
@@ -32,11 +35,11 @@ function ServiceWiseHeading({
 	return (
 		<div className={styles.header}>
 			<div className={styles.or}>
-				or
+				{t('documents:or')}
 			</div>
 
 			<div className={styles.title}>
-				Upload or Check Documents for Specific Services
+				{t('documents:service_specific_upload_heading')}
 			</div>
 
 			<div className={styles.form}>
@@ -56,7 +59,7 @@ function ServiceWiseHeading({
 					className={styles.button}
 					onClick={handleSubmit}
 				>
-					Submit
+					{t('documents:submit_btn')}
 				</Button>
 			</div>
 		</div>

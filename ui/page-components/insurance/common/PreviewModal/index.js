@@ -231,8 +231,10 @@ function PreviewModal({
 							<DetailsContainer
 								label="Consignment Value"
 								value={cargoAmount
-									? `${watcher[GLOBAL_CONSTANTS.zeroth_index] || 'INR'} ${cargoAmount || 0}`
-									: `${watcher[GLOBAL_CONSTANTS.zeroth_index] || 'INR'} ${watcher[FIRST_INDEX] || 0}`}
+									? `${watcher[GLOBAL_CONSTANTS.zeroth_index] || 'INR'}
+										${cargoAmount || GLOBAL_CONSTANTS.zeroth_index}`
+									: `${watcher[GLOBAL_CONSTANTS.zeroth_index] || 'INR'} ${watcher[FIRST_INDEX]
+										|| GLOBAL_CONSTANTS.zeroth_index}`}
 								className="commodity"
 							/>
 							<DetailsContainer

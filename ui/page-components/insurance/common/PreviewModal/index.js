@@ -13,6 +13,12 @@ import formatDate from '@/ui/commons/utils/formatDate';
 
 const { DetailsContainer, HeaderTitle, SectionTitle, AvatarComponent } = getComponents();
 
+const FIRST_INDEX = 1;
+
+const SECOND_INDEX = 2;
+
+const THIRD_INDEX = 3;
+
 const DETAILS_ARRAY = [
 	{
 		label : 'GST No',
@@ -139,7 +145,7 @@ function PreviewModal({
 						<div className={styles.row}>
 							{DETAILS_ARRAY.map((item) => {
 								const { label = '', value = '' } = item || {};
-								return <DetailsContainer label={label} value={formDetails[value]} />;
+								return <DetailsContainer label={label} value={formDetails[value]} key={label} />;
 							})}
 						</div>
 					</div>
@@ -225,19 +231,19 @@ function PreviewModal({
 							<DetailsContainer
 								label="Consignment Value"
 								value={cargoAmount
-									? `${watcher[0] || 'INR'} ${cargoAmount || 0}`
-									: `${watcher[0] || 'INR'} ${watcher[1] || 0}`}
+									? `${watcher[GLOBAL_CONSTANTS.zeroth_index] || 'INR'} ${cargoAmount || 0}`
+									: `${watcher[GLOBAL_CONSTANTS.zeroth_index] || 'INR'} ${watcher[FIRST_INDEX] || 0}`}
 								className="commodity"
 							/>
 							<DetailsContainer
 								label="Invoice No."
-								value={watcher[2] || invoiceNo}
+								value={watcher[SECOND_INDEX] || invoiceNo}
 								className="commodity"
 							/>
 							<DetailsContainer
 								label="Invoice Date"
 								value={formatDate({
-									date       : watcher[3] || invoiceDate,
+									date       : watcher[THIRD_INDEX] || invoiceDate,
 									dateFormat : GLOBAL_CONSTANTS.formats.date['dd MM yyyy'],
 									formatType : 'date',
 								})}

@@ -1,7 +1,7 @@
 import { Button } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
 
-import controls from './controls';
+import getControls from './getControls';
 import useCreateDunningUserInvitationNew from './hooks/useCreateDunningUserInvitationNew';
 import styles from './styles.module.css';
 import SuccessPage from './SuccessPage';
@@ -26,6 +26,8 @@ function AddRelevantUserNew() {
 		createDunningUserInvitation(values);
 	};
 
+	const formControls = getControls(t);
+
 	return (
 		<div>
 			{showSuccessPage ? (
@@ -38,7 +40,7 @@ function AddRelevantUserNew() {
 
 					<div className={styles.layout}>
 						<div>
-							{(controls(t) || []).map((item) => {
+							{(formControls || []).map((item) => {
 								const Element = getField(item.type);
 								return (
 									<div className={styles.field} style={{ width: getWidth(item.span) }}>

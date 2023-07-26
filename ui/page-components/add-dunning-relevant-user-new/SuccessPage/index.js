@@ -7,7 +7,7 @@ import { Image, useRouter } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function SuccessPage() {
-	const Router = useRouter();
+	const router = useRouter();
 	const { t } = useTranslation(['common']);
 
 	return (
@@ -26,7 +26,7 @@ function SuccessPage() {
 				<Button
 					size="lg"
 					className={styles.btn}
-					onClick={() => Router.push('/login')}
+					onClick={() => router.push('/login')}
 				>
 					{t('common:go_to_login_page')}
 				</Button>

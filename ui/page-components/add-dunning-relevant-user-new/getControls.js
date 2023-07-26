@@ -1,6 +1,6 @@
-import patterns from '@/ui/commons/configurations/patterns';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const controls = (t) => [
+const getControls = (t) => [
 	{
 		name        : 'name',
 		type        : 'text',
@@ -38,7 +38,7 @@ const controls = (t) => [
 		rules       : {
 			required : t('common:loginField_email_error'),
 			pattern  : {
-				value   : patterns.EMAIL,
+				value   : GLOBAL_CONSTANTS.patterns.EMAIL,
 				message : t('common:invalid_email'),
 			},
 		},
@@ -60,4 +60,4 @@ const controls = (t) => [
 	},
 ];
 
-export default controls;
+export default getControls;

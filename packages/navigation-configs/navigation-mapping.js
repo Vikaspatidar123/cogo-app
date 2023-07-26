@@ -9,7 +9,6 @@
 // isSubNavs is used to show sub navigations
 import {
 	IcMContractRates,
-	IcMFfreferigeratedCargoType,
 	IcADutiesTaxes,
 	IcAFormsAndCertificates,
 	IcAFinancial,

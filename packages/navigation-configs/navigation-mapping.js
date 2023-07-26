@@ -34,7 +34,7 @@ import {
 	IcARfq,
 	IcMAppPayment,
 	IcATransactionHistory,
-	IcMUsersManageAccounts
+	IcMUsersManageAccounts,
 } from '@cogoport/icons-react';
 
 // eslint-disable-next-line import/no-unresolved, import/extensions
@@ -289,7 +289,7 @@ const navigationMappings = ({ t = () => { } }) => {
 						icon  : <IcMFfreferigeratedCargoType width={40} height={40} />,
 						href  : '/saas/transaction-history',
 						as    : '/saas/transaction-history',
-						icon:<IcATransactionHistory  width={20} height={20}/>
+						icon  : <IcATransactionHistory width={20} height={20} />,
 					},
 					{
 						key   : 'saas_finance-payment_dashboard',
@@ -297,7 +297,7 @@ const navigationMappings = ({ t = () => { } }) => {
 						icon  : <IcMFfreferigeratedCargoType width={40} height={40} />,
 						href  : '/payment-dashboard',
 						as    : '/payment-dashboard',
-						icon:<IcMAppPayment width={20} height={20} />
+						icon  : <IcMAppPayment width={20} height={20} />,
 					},
 				],
 			},
@@ -338,7 +338,7 @@ const navigationMappings = ({ t = () => { } }) => {
 						title : t(`${translationKey}_subscriptions_options_manageSubscription_label`),
 						href  : '/saas/cogo-subscriptions/manage-subscription',
 						as    : '/saas/cogo-subscriptions/manage-subscription',
-						icon:<IcMUsersManageAccounts width={20} height={20} />
+						icon  : <IcMUsersManageAccounts width={20} height={20} />,
 					},
 					{
 						key   : 'saas_cogo_subscription-balance_history',
@@ -346,7 +346,7 @@ const navigationMappings = ({ t = () => { } }) => {
 						type  : 'link',
 						href  : '/saas/cogo-subscriptions/balance-history',
 						as    : '/saas/cogo-subscriptions/balance-history',
-						icon:<IcATransactionHistory width={20} height={20} />
+						icon  : <IcATransactionHistory width={20} height={20} />,
 					},
 				],
 			},

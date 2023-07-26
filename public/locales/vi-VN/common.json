@@ -246,6 +246,6 @@
     "add_user": "Thêm người dùng",
     "work_scope_label": "Phạm vi làm việc",
     "required": "Yêu cầu",
-    "invalid_email":"Địa chỉ email không hợp lệ"
-
+    "invalid_email":"Địa chỉ email không hợp lệ",
+    "Success":"Thành công"
 }

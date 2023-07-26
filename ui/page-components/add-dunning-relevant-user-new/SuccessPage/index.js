@@ -1,5 +1,5 @@
 import { Button } from '@cogoport/components';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -16,7 +16,7 @@ function SuccessPage() {
 				<div>
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.success_image}
-						alt="Success"
+						alt={t('common:Success')}
 						width={300}
 						height={300}
 					/>

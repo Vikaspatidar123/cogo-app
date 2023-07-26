@@ -246,5 +246,6 @@
     "add_user": "Add User",
     "work_scope_label": "Work Scopes",
     "required": "Required",
-    "invalid_email":"Invalid Email Address"
+    "invalid_email":"Invalid Email Address",
+    "Success":"Success"
 }

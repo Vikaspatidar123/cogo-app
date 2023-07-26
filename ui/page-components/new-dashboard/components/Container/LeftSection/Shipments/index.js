@@ -24,7 +24,7 @@ function Shipments({ list }) {
 				slides={carouselData}
 				autoScroll
 				timeInterval={2000}
-				showDots
+				showDots={false}
 				showArrow={false}
 				size="sm"
 				className={styles.carousel}
@@ -35,7 +35,7 @@ function Shipments({ list }) {
 				className={styles.bottom}
 				onClick={() => push('/shipments', '/shipments')}
 			>
-				<p className={styles.viewall}>
+				<p className={styles.view_all}>
 					{t('dashboard:onGoingShipments_text_1')}
 				</p>
 

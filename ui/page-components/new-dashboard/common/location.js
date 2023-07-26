@@ -1,5 +1,7 @@
 import { isEmpty } from '@cogoport/utils';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const getLocation = (isOrigin, loc) => {
 	const {
 		origin_port = {},
@@ -28,8 +30,8 @@ const getLocation = (isOrigin, loc) => {
 	}
 
 	const arr = locationData?.split(',');
-	const location = !isEmpty(arr) ? arr[0] : '';
-	const country = !isEmpty(arr) ? arr.slice(1).join(',') : '';
+	const location = !isEmpty(arr) ? arr[GLOBAL_CONSTANTS.zeroth_index] : '';
+	const country = !isEmpty(arr) ? arr.slice(GLOBAL_CONSTANTS.one_index).join(',') : '';
 	return { location, country };
 };
 

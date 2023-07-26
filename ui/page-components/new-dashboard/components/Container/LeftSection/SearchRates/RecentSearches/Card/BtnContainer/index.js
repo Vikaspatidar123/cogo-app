@@ -12,6 +12,7 @@ function BtnContainer({ data = {} }) {
 	const { search_type } = data;
 
 	const { push } = useRouter();
+
 	const { t } = useTranslation(['dashboard']);
 
 	const { createNewSearch } = useCreateSearch({});
@@ -32,22 +33,22 @@ function BtnContainer({ data = {} }) {
 			params[param] = formattedData[param];
 		});
 
-		const container_details = [];
-
 		if (params.search_type === 'fcl_freight' || params.search_type === 'fcl_customs') {
-			params.containers.forEach((container) => {
+			const container_details = params.containers.map((container) => {
 				const {
-					container_size, container_type_commodity, containers_count,
+					container_size,
+					container_type_commodity,
+					containers_count,
 					cargo_weight_per_container,
 				} = container;
 				const { container_type, commodity } = container_type_commodity;
-				container_details.push({
+				return {
 					container_count : containers_count,
 					container_size,
 					container_type,
 					commodity,
 					weight          : cargo_weight_per_container,
-				});
+				};
 			});
 
 			trackEvent(APP_EVENT.search_past_spot_rates, {
@@ -97,16 +98,16 @@ function BtnContainer({ data = {} }) {
 				truck_count : params.trucks_count,
 			});
 		} else if (params.search_type === 'ltl_freight') {
-			const packages_values = [];
-			params.packages.forEach((details) => {
+			const packages_values = params.packages.map((details) => {
 				const { packing_type, dimensions, packages_count } = details;
 				const { length, width, height } = dimensions;
 				const dimension = `${length}*${width}*${height}`;
-				packages_values.push({
+
+				return {
 					type  : packing_type,
 					dimension,
 					count : packages_count,
-				});
+				};
 			});
 
 			trackEvent(APP_EVENT.search_past_spot_rates, {

@@ -9,7 +9,9 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function CustomDuty() {
 	const { push } = useRouter();
+
 	const { t } = useTranslation(['dashboard']);
+
 	return (
 		<div
 			className={styles.container}

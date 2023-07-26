@@ -1,4 +1,3 @@
-import { Button } from '@cogoport/components';
 import { IcMArrowRight } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';

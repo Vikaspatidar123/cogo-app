@@ -9,7 +9,6 @@
 // isSubNavs is used to show sub navigations
 import {
 	IcMContractRates,
-	IcMFfreferigeratedCargoType,
 	IcADutiesTaxes,
 	IcAFormsAndCertificates,
 	IcAFinancial,
@@ -286,7 +285,6 @@ const navigationMappings = ({ t = () => { } }) => {
 					{
 						key   : 'saas_finance-transaction_history',
 						title : t(`${translationKey}_finance_options_transactionHistory_label`),
-						icon  : <IcMFfreferigeratedCargoType width={40} height={40} />,
 						href  : '/saas/transaction-history',
 						as    : '/saas/transaction-history',
 						icon  : <IcATransactionHistory width={20} height={20} />,
@@ -294,7 +292,6 @@ const navigationMappings = ({ t = () => { } }) => {
 					{
 						key   : 'saas_finance-payment_dashboard',
 						title : t(`${translationKey}_finance_options_paymentDashboard_label`),
-						icon  : <IcMFfreferigeratedCargoType width={40} height={40} />,
 						href  : '/payment-dashboard',
 						as    : '/payment-dashboard',
 						icon  : <IcMAppPayment width={20} height={20} />,

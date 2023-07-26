@@ -7,6 +7,8 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
 
+const INCREASE_NEW_MESSAGE_COUNT = 1;
+
 const useSendFirebaseMessage = ({
 	firestore,
 	roomId,
@@ -21,14 +23,13 @@ const useSendFirebaseMessage = ({
 	const roomCollection = doc(firestore, `${PLATFORM_CHAT_PATH}/${roomId}`);
 
 	const addMessageToFirestore = async (userChat) => {
-		await addDoc(messageCollection, userChat);
 		const userRoom = await getDoc(roomCollection);
-		const oldCount = userRoom.data().new_message_count;
-
+		const { new_message_count: oldCount = 0, agent_type = 'bot' } = userRoom.data() || {};
+		await addDoc(messageCollection, { ...userChat, agent_type });
 		updateDoc(roomCollection, {
-			new_message_count         : oldCount + 1,
+			new_message_count         : oldCount + INCREASE_NEW_MESSAGE_COUNT,
 			last_message_document     : userChat,
-			last_message              : userChat.response.message || '',
+			last_message              : userChat?.response.message || '',
 			has_admin_unread_messages : true,
 			updated_at                : Date.now(),
 			new_message_sent_at       : Date.now(),
@@ -40,7 +41,7 @@ const useSendFirebaseMessage = ({
 		buttonId = null,
 		type = '',
 		file = {},
-		reset = () => {},
+		reset = () => { },
 	}) => {
 		if (sendMessageLoading || !(message || !isEmpty(file))) {
 			return;

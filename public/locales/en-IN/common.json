@@ -237,5 +237,15 @@
 	"components_header_tickets_keymapping_all":"All",	
 	"components_header_tickets_keymapping_open":"Open",	
 	"components_header_tickets_keymapping_solved":"Solved",
-	"components_header_tickets_keymapping_rejected":"Rejected"
+	"components_header_tickets_keymapping_rejected":"Rejected",
+    "layouts_app_header_navigation_finance_options_paymentDashboard_label":"Payment Dashboard",
+    "dunning_user_added_response_message": "Thank you for your valuable time!",
+    "dunning_user_added_successfully": "User Added Succesfully.",
+    "go_to_login_page": "Go To Login Page",
+    "add_user_dunning_heading": "Add User To Receive Outstanding Reminders",
+    "add_user": "Add User",
+    "work_scope_label": "Work Scopes",
+    "required": "Required",
+    "invalid_email":"Invalid Email Address",
+    "Success":"Success"
 }

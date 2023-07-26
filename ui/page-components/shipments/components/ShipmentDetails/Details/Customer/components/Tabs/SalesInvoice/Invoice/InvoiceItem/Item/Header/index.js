@@ -47,7 +47,7 @@ function Header({ children, invoice = {}, shipmentData = {} }) {
 					</div>
 
 					<div className={styles.gst}>
-						<div className={styles.label}>{`${REGISTRATION_LABEL} Number }`}</div>
+						<div className={styles.label}>{`${REGISTRATION_LABEL} Number `}</div>
 						<Popover
 							theme="light"
 							interactive

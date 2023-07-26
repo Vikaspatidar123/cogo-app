@@ -6,9 +6,11 @@
 
 .styled_tag {
 	width: max-content;
-	max-width: 200px;
+	max-width: 150px;
 	padding: 4px;
 	margin-right: 8px;
+	margin-bottom: 4px;
+	overflow: hidden;
 	font-size: 12px;
 	font-weight: 400;
 	color: #4f4f4f;

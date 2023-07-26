@@ -31,7 +31,7 @@ function ActivateModal({
 			closable={false}
 		>
 
-			<Modal.Body>
+			<Modal.Body className={styles.styled_modal}>
 				<div className={styles.image_container}>
 					<div className={styles.image}>
 						<Image
@@ -44,13 +44,14 @@ function ActivateModal({
 				</div>
 				<div className={styles.div_title}>{t('subscriptions:activating_plan_text')}</div>
 				<div className={styles.div_title}>
-					{t('subscriptions:active_conformation_message')}
+					<div>{t('subscriptions:active_conformation_message')}</div>
 					<div className={styles.plan_text}>
-						{description}
-						{' '}
-						{t('subscriptions:plan_text')}
+						<div className={styles.plan}>
+							{description}
+						</div>
+						<div>{t('subscriptions:plan_text')}</div>
 					</div>
-					{t('subscriptions:now_text')}
+					<div>{t('subscriptions:now_text')}</div>
 				</div>
 			</Modal.Body>
 			<Modal.Footer>

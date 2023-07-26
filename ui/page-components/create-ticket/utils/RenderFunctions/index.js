@@ -3,12 +3,11 @@ import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
-import { Link } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 import formatDate from '@/ui/commons/utils/formatDate';
 
-const ItemFunctions = ({
+const itemFunctions = ({
 	handleCheckboxSelect = () => {},
 	handleBoxSelect = () => {},
 	selectedInvoices = {},
@@ -32,11 +31,11 @@ const ItemFunctions = ({
 		)),
 		handleUrlLink: (item, field) => (item?.[field.urlKey] ? (
 			<div className={styles.wrapper}>
-				<Link href={item.pdf_url} target="_blank">
+				<a href={item.pdf_url} target="_blank" className={styles.anchor_tag} rel="noreferrer">
 					{item.invoice_number}
-				</Link>
+				</a>
 				{item?.[field?.tagKey] && (
-					<Pill size="sm">{startCase(item?.[field?.tagKey])}</Pill>
+					<Pill size="sm" color="blue">{startCase(item?.[field?.tagKey])}</Pill>
 				)}
 			</div>
 		) : (
@@ -46,7 +45,7 @@ const ItemFunctions = ({
 			<div className={styles.wrapper}>
 				<div className={styles.title}>{item?.[field.key]}</div>
 				{item?.[field?.tagKey] && (
-					<Pill size="sm">{startCase(item?.[field?.tagKey])}</Pill>
+					<Pill size="sm" color="blue">{startCase(item?.[field?.tagKey])}</Pill>
 				)}
 			</div>
 		) : (
@@ -106,7 +105,7 @@ const ItemFunctions = ({
 					</div>
 				</Tooltip>
 				{item?.[field?.tagKey] && (
-					<Pill size="sm">{startCase(item?.[field?.tagKey])}</Pill>
+					<Pill size="sm" color="blue">{startCase(item?.[field?.tagKey])}</Pill>
 				)}
 			</div>
 		) : (
@@ -131,7 +130,6 @@ const ItemFunctions = ({
 		handleCheckbox: (item, field) => (item?.[field.key] ? (
 			<div className={styles.title}>
 				<Checkbox
-					className="primary lg"
 					checked={Object.keys(selectedInvoices || {}).includes(
 						item?.[field.key],
 					)}
@@ -144,7 +142,6 @@ const ItemFunctions = ({
 		handleSelect: (item, field) => (item?.[field.key] ? (
 			<div className={styles.title}>
 				<Checkbox
-					className="primary lg"
 					checked={(selectedpayments || []).includes(item?.[field.key])}
 					onChange={() => handleBoxSelect(item)}
 				/>
@@ -158,4 +155,4 @@ const ItemFunctions = ({
 	};
 };
 
-export default ItemFunctions;
+export default itemFunctions;

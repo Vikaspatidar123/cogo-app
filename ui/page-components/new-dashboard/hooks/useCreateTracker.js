@@ -112,7 +112,7 @@ const useCreateTracker = () => {
 	}, [reset, trackingType]);
 
 	useEffect(() => {
-		if (shipmentNumber?.length > threshold) {
+		if (shipmentNumber?.length >= threshold) {
 			getOperatorInfo({ shipmentNo: shipmentNumber });
 		}
 	}, [getOperatorInfo, shipmentNumber, threshold]);

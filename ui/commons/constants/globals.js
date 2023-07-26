@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import IMAGE_URLS from './imageUrl';
 
 const GLOBAL_CONSTANTS = {
@@ -155,7 +156,8 @@ const GLOBAL_CONSTANTS = {
 		ajeet: 'ajeet@cogoport.com',
 	},
 
-	zeroth_index: 0,
+	zeroth_index : 0,
+	one_index    : 1,
 
 	service_supported_countries: {
 		ftl_freight: {

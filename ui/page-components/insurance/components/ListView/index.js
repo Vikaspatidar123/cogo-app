@@ -1,12 +1,10 @@
-import { Input, Chips, Button, Table, Pagination } from '@cogoport/components';
+import { Input, Button, Pagination } from '@cogoport/components';
 import { IcMPlus, IcMSearchlight } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import CancellationAndConfirmModal from '../../common/CancellationModal';
-import EmptyState from '../../common/EmptyState';
 import FAQComponent from '../../common/FAQComponent';
-import NoData from '../../common/NoData';
 import PreviewModal from '../../common/PreviewModal';
 import redirectUrl from '../../common/redirectUrl';
 import renderFunctions from '../../common/renderFunctions';
@@ -16,8 +14,11 @@ import userSummary from '../../hooks/useGetSummaryDetails';
 import useList from '../../hooks/useList';
 
 import FilterSection from './Filter';
-import segementedOpt from './Options/index';
 import styles from './styles.module.css';
+import TableComponent from './Table';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function ListView() {
 	const [activeTab, setActiveTab] = useState('ALL');
@@ -26,7 +27,7 @@ function ListView() {
 	const [showPreviewModal, setShowPreviewModal] = useState(false);
 	const [cancellationPolicyDetails, setcancellationPolicyDetails] = useState('');
 
-	const { loading, data, setFilters, filters, setSort, sort, refetch } = useList({ activeTab });
+	const { loading:listLoading, data, setFilters, filters, setSort, sort, refetch } = useList({ activeTab });
 
 	const { summaryData, summaryLoading } = userSummary({ activeTab, filters, sort });
 
@@ -99,42 +100,27 @@ function ListView() {
 			</div>
 			<div className={styles.flex_end}>
 				{showFaq === 'none' &&				(
-					<img
-						src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/faq.svg"
-						alt=""
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.faq_image}
+						alt="faq_logo"
 						onClick={() => setFaq('block')}
 						role="presentation"
-						width="60px"
-						height="45px"
+						width={60}
+						height={45}
 					/>
 				)}
 			</div>
-			{(isEmpty(data) && !loading) ? <EmptyState /> : (
-				<>
-					<div className={styles.segment_faq}>
-						<Chips
-							size="lg"
-							items={segementedOpt(summaryData, activeTab, summaryLoading)}
-							selectedItems={activeTab}
-							onItemChange={handleTabChange}
-							className={styles.chips}
-						/>
-					</div>
-					{data?.list?.length > 0 ? (
-						<div className={styles.tables_wrapper}>
-							<Table
-								columns={fields || []}
-								data={list || []}
-								loading={loading}
-								loadingRowsCount={10}
-								className={styles.table}
-								type="block"
-							/>
-						</div>
-					) : <NoData />}
-				</>
-			)}
-			{data?.list?.length > 0 && (
+			<TableComponent
+				fields={fields}
+				list={list}
+				summaryData={summaryData}
+				activeTab={activeTab}
+				handleTabChange={handleTabChange}
+				data={data}
+				loading={(listLoading || summaryLoading)}
+				summaryLoading={summaryLoading}
+			/>
+			{!isEmpty(data?.list) && (
 				<div className={styles.pagination_div}>
 					<Pagination
 						type="table"

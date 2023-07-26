@@ -111,6 +111,31 @@
 		color: #ee3425;
 	}
 
+	.days_1 {
+		position: absolute;
+		left: 106px;
+		margin-bottom: 3px;
+		font-size: 12px;
+		font-weight: 700;
+		color: #ee3425;
+	}
+
+	.activate_later_days {
+		position: absolute;
+		left: 10px;
+		font-size: 12px;
+		font-weight: 700;
+		color: #ee3425;
+	}
+
+	.activate_later_days_2 {
+		position: absolute;
+		left: 7px;
+		font-size: 12px;
+		font-weight: 700;
+		color: #ee3425;
+	}
+
 	.date_box {
 		position: relative;
 		display: flex;

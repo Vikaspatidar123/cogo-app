@@ -1,4 +1,4 @@
-import { isEmpty, startCase } from '@cogoport/utils';
+import { addDays, isEmpty, startCase } from '@cogoport/utils';
 
 import handleLineItems from './handleLineItems';
 
@@ -39,8 +39,12 @@ const handleLineItemsBreakup = (item, source) => {
 		}
 	}
 
-	if (commodity) {
-		type = `${startCase(container_type)}, `;
+	if (container_type) {
+		type = startCase(container_type);
+
+		if (commodity) {
+			type = `${startCase(container_type)}, `;
+		}
 	}
 
 	const handleService = () => {
@@ -67,9 +71,7 @@ const handleLineItemsBreakup = (item, source) => {
 
 		return `${size}${type}${comm}`;
 	};
-	console.log(type, 'type');
 
-	console.log(handleService(), 'handleService()');
 	return [
 		...(!isEmpty(line_items)
 			? handleLineItems({ items: line_items, source })

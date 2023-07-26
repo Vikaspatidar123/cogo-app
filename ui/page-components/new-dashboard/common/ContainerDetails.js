@@ -11,7 +11,7 @@ function ContainerDetails({
 }) {
 	return (
 		<div
-			style={{ display: 'flex', alignItems: 'center' }}
+			style={{ display: 'flex', alignItems: 'end' }}
 			wrap="wrap"
 		>
 			{freight[service_type]?.freightLogo}

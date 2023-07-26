@@ -30,7 +30,7 @@
 	"quotations_text_2": "View All",
 	"quotations_quotationCard_text_1": "View Quote",
 	"quotations_quotationCard_text_2": "Sent on:",
-	"onGoingShipments_text_1": "Your Ongoing Shipments",
+	"onGoingShipments_text_1": "View All Shipments",
 	"onGoingShipments_text_2": "View All",
 	"onGoingShipments_card_text_1": "ETD:",
 	"onGoingShipments_card_text_2": "ETA:",
@@ -165,7 +165,12 @@
 	"setPassword_form_error":"Password does not match.",
 	"tracking_header_form_control_required_text_1":"Container No/ BL no is required",
 	"tracking_header_form_control_required_text_2":"Shipping Line is required",
-	"tracking_header_form_control_required_text_4":"Airway Line is required"
+	"tracking_header_form_control_required_text_4":"Airway Line is required",
+	"schedule_title_text":"Schedules",
+	"schedule_title_text_1":"Ocean Schedules",
+	"schedule_title_text_2":"Plan an upcoming shipment using comprehensive shipping schedules.",
+	"schedule_title_text_3":"Air Schedule",
+	"schedule_title_text_4":"Plan an upcoming cargo using comprehensive air schedules."
 
 
 

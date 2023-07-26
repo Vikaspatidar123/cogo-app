@@ -19,9 +19,22 @@ function Shipments({ list }) {
 		return null;
 	}
 	return (
-		<div className={styles.container}>
-			<div className={styles.heading}>
-				{t('dashboard:onGoingShipments_text_1')}
+		<div>
+			<div className={styles.head_box}>
+				<div className={styles.heading}>
+					{t('dashboard:onGoingShipments_text_1')}
+				</div>
+				<div
+					role="presentation"
+					className={cl`${styles.bottom} ${styles.view_all}`}
+					onClick={() => push('/shipments', '/shipments')}
+				>
+					<p>
+						{t('dashboard:onGoingShipments_text_1')}
+					</p>
+
+					<IcMArrowNext className={styles.arrow} />
+				</div>
 			</div>
 			<Carousel
 				slides={carouselData}
@@ -33,17 +46,6 @@ function Shipments({ list }) {
 				className={styles.carousel}
 			/>
 
-			<div
-				role="presentation"
-				className={cl`${styles.bottom} ${styles.view_all}`}
-				onClick={() => push('/shipments', '/shipments')}
-			>
-				<p>
-					{t('dashboard:onGoingShipments_text_1')}
-				</p>
-
-				<IcMArrowNext className={styles.arrow} />
-			</div>
 		</div>
 
 	);

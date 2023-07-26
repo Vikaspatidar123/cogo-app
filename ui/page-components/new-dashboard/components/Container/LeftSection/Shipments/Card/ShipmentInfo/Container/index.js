@@ -1,7 +1,8 @@
-import { IcMArrowNext } from '@cogoport/icons-react';
+import { IcMPortArrow } from '@cogoport/icons-react';
 
 import { getLocation } from '../../../../../../../common/location';
 
+import PortName from './PortName';
 import styles from './styles.module.css';
 
 import ContainerDetails from '@/ui/page-components/new-dashboard/common/ContainerDetails';
@@ -42,29 +43,25 @@ function Container({ item }) {
 				) : (
 					<div className={styles.second_data}>
 						<div className={styles.origin}>
-							{originLocation}
-
+							<PortName data={originLocation} />
 							<span className={styles.location_span}>
 								{originCountry}
 							</span>
 						</div>
 
 						<div className={styles.icon}>
-							<IcMArrowNext />
+							<IcMPortArrow size={1.1} style={{ margin: '-16px 10px 0' }} />
 						</div>
-
 						<div />
 
 						<div className={styles.origin}>
-							{destinationLocation}
-
+							<PortName data={destinationLocation} />
 							<span className={styles.location_span}>
 								{destinationCountry}
 							</span>
 						</div>
 					</div>
 				)}
-
 			<ContainerDetails
 				containerInfoData={containerInfoData}
 				service_type={item?.service_type || item?.shipment_type}

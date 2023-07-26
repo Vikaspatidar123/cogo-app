@@ -20,7 +20,7 @@ const getFreightMapping = () => ({
 		name          : 'FCL',
 		icon          : <IcMShip width={18} height={18} fill="white" />,
 		bgColor       : '#356EFD',
-		freightLogo   : <IcCFcl />,
+		freightLogo   : <IcCFcl width={18} height={18} />,
 		secondaryIcon : <IcMShip style={{ width: '15px', marginRight: '10px' }} />,
 	},
 	air_freight: {

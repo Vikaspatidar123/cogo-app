@@ -30,7 +30,7 @@
 	"quotations_text_2": "Xem tất cả",
 	"quotations_quotationCard_text_1": "Xem báo giá",
 	"quotations_quotationCard_text_2": "Gửi trên:",
-	"onGoingShipments_text_1": "Các lô hàng đang diễn ra của bạn",
+	"onGoingShipments_text_1": "Xem tất cả các lô hàng",
 	"onGoingShipments_text_2": "Xem tất cả",
 	"onGoingShipments_card_text_1": "etd:",
 	"onGoingShipments_card_text_2": "Và:",
@@ -164,5 +164,11 @@
 	"setPassword_form_error":"Mật khẩu không hợp lệ.",
 	"tracking_header_form_control_required_text_1":"Container không/ bl không được yêu cầu",
 	"tracking_header_form_control_required_text_2":"Dòng vận chuyển là bắt buộc",
-	"tracking_header_form_control_required_text_4":"Đường thở là bắt buộc"
+	"tracking_header_form_control_required_text_4":"Đường thở là bắt buộc",
+	"schedule_title_text":"Lịch trình",
+	"schedule_title_text_1":"Lịch trình đại dương",
+	"schedule_title_text_2":"Lập kế hoạch một lô hàng sắp tới bằng cách sử dụng lịch vận chuyển toàn diện.",
+	"schedule_title_text_3":"Lịch trình hàng không",
+	"schedule_title_text_4":"Lên kế hoạch cho một hàng hóa sắp tới bằng cách sử dụng lịch trình không khí toàn diện."
+
 }

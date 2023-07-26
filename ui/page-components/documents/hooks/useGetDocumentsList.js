@@ -10,7 +10,7 @@ const useGetDocumentsList = ({ filters = {} }) => {
 		url    : 'list_organization_documents',
 	}, { manual: true, autoCancel: false });
 
-	const fetchDocuments = useCallback(async () => {
+	const fetchDocuments = useCallback(async (val) => {
 		try {
 			await trigger({
 				params: {
@@ -18,8 +18,10 @@ const useGetDocumentsList = ({ filters = {} }) => {
 						status        : 'active',
 						query,
 						document_type : documentTypeFilter,
+						...(val || {}),
 					},
 					page,
+					page_limit: val?.service_type ? 30 : 10,
 				},
 			});
 		} catch (e) {

@@ -287,6 +287,13 @@ const navigationMappings = ({ t = () => { } }) => {
 						href  : '/saas/transaction-history',
 						as    : '/saas/transaction-history',
 					},
+					{
+						key   : 'saas_finance-payment_dashboard',
+						title : t(`${translationKey}_finance_options_paymentDashboard_label`),
+						icon  : <IcMFfreferigeratedCargoType width={40} height={40} />,
+						href  : '/payment-dashboard',
+						as    : '/payment-dashboard',
+					},
 				],
 			},
 

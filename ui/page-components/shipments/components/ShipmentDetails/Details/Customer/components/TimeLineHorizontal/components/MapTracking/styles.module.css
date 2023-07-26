@@ -59,3 +59,7 @@
 	flex-direction: row;
 	justify-content: space-evenly;
 }
+
+.modal_body {
+	padding: 20px;
+}

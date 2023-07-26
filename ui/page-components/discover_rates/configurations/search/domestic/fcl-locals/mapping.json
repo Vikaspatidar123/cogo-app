@@ -1,6 +1,7 @@
 {
 	"export": ["export_transportation", "export_haulage_freight", "export_fcl_cfs", "export_fcl_customs"],
-		"import": ["import_haulage_freight",
+		"import":
+		["import_haulage_freight",
 		"import_transportation",
 		"import_fcl_cfs",
 		"import_fcl_customs"]

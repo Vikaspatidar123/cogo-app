@@ -1,12 +1,12 @@
 import { Button } from '@cogoport/components';
-import { IcAIdea } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 import React, { useEffect } from 'react';
 
 import getControls from '../../../../configurations/advFilter';
 import styles from '../styles.module.css';
 
-import { AsyncSelectController, SelectController, useForm, InputController } from '@/packages/forms';
+import { useForm } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function AdvFilters({
@@ -15,10 +15,9 @@ function AdvFilters({
 	loading,
 	resetDrillDownHandler,
 	setSearchTag,
-	countryOptions,
 }) {
 	const { t } = useTranslation(['common', 'hsClassification']);
-	const field = getControls({ countryOptions, t });
+	const { field, defaultValues } = getControls({ t });
 
 	const {
 		handleSubmit,
@@ -26,7 +25,7 @@ function AdvFilters({
 		setValue,
 		formState: { errors },
 		control,
-	} = useForm();
+	} = useForm({ defaultValues });
 
 	const onSubmit = (data) => {
 		refetchSearch(data);
@@ -55,23 +54,23 @@ function AdvFilters({
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className={styles.filter_container}>
 				<div className={styles.fields_container}>
-					<AsyncSelectController {...field[0]} control={control} className={styles.select} />
-					<SelectController {...field[1]} control={control} className={styles.select} />
-					<div>
-						<InputController
-							{...field[2]}
-							className={styles.input_select}
-							control={control}
-							prefix={<IcAIdea width={20} height={20} />}
-						/>
-						{errors.searchTerm && (
-							<div className={styles.error_message}>
-								{errors.searchTerm.type}
+
+					{field.map((config) => {
+						const { name, type, className } = config;
+						const Element = getField(type);
+						return (
+							<div key={name}>
+								<Element {...config} control={control} className={styles?.[className]} />
+								{errors?.[name] ? (
+									<p className={styles.error_message}>
+										{errors[name]?.type}
+									</p>
+								) : null}
 							</div>
-						)}
-					</div>
-					<SelectController {...field[3]} control={control} className={styles.select} />
+						);
+					})}
 				</div>
+
 				<div className={styles.button_container}>
 					<Button
 						size="md"

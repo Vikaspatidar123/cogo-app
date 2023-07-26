@@ -22,7 +22,7 @@ const handleLineItemsBreakup = (item, source) => {
 		weight = '',
 	} = item || {};
 
-	const { packing_type = '', handling_type = '' } = packages[0] || {};
+	const { packing_type = '', handling_type = '' } = packages?.[0] || {};
 
 	let size = container_size ? `${container_size} ft` : '';
 	let type = startCase(container_type || '');

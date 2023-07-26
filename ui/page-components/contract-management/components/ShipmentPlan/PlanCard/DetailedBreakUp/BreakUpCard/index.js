@@ -4,7 +4,7 @@ import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import { SERVICE_UNIT_MAPPING, SERVICE_VISE_KEYS_MAPPING } from '../../../../../constants';
-import generateServiceDisplayName from '../../../../../utils/getDisplayNames';
+import {generateServiceDisplayName} from '../../../../../utils/getDisplayNames';
 import ServiceIcon from '../../../../../utils/getServiceIcon';
 import PriceBreakup from '../../../PriceBreakup';
 

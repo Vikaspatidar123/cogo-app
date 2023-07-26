@@ -162,5 +162,12 @@
 	"setPassword_submit_button":"Submit",
 	"setPassword_success_message":"Password Set Successfully",
 	"setPassword_error": "Failed to Set Password",
-	"setPassword_form_error":"Password does not match."
+	"setPassword_form_error":"Password does not match.",
+	"tracking_header_form_control_required_text_1":"Container No/ BL no is required",
+	"tracking_header_form_control_required_text_2":"Shipping Line is required",
+	"tracking_header_form_control_required_text_4":"Airway Line is required"
+
+
+
+
 }

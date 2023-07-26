@@ -161,5 +161,8 @@
 	"setPassword_submit_button":"Nộp",
 	"setPassword_success_message":"Mật khẩu đặt thành công",
 	"setPassword_error": "Không đặt mật khẩu",
-	"setPassword_form_error":"Mật khẩu không hợp lệ."
+	"setPassword_form_error":"Mật khẩu không hợp lệ.",
+	"tracking_header_form_control_required_text_1":"Container không/ bl không được yêu cầu",
+	"tracking_header_form_control_required_text_2":"Dòng vận chuyển là bắt buộc",
+	"tracking_header_form_control_required_text_4":"Đường thở là bắt buộc"
 }

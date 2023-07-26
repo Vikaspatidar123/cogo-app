@@ -14,7 +14,7 @@ const headerFormControls = ({ trackingType = 'ocean', operatorData = {}, t }) =>
 			name        : 'shipmentNumber',
 			type        : 'text',
 			placeholder : t('dashboard:tracking_header_form_control_label_1'),
-			rules       : { required: t('dashboard:tracking_header_form_control_required_text') },
+			rules       : { required: t('dashboard:tracking_header_form_control_required_text_1') },
 			size        : 'sm',
 		},
 		{
@@ -23,7 +23,7 @@ const headerFormControls = ({ trackingType = 'ocean', operatorData = {}, t }) =>
 			asyncKey    : 'shippingline_list',
 			initialCall : true,
 			placeholder : t('dashboard:tracking_header_form_control_label_2'),
-			rules       : { required: t('dashboard:tracking_header_form_control_required_text') },
+			rules       : { required: t('dashboard:tracking_header_form_control_required_text_2') },
 			size        : 'sm',
 		},
 	];
@@ -49,7 +49,7 @@ const headerFormControls = ({ trackingType = 'ocean', operatorData = {}, t }) =>
 			initialCall : true,
 			size        : 'sm',
 			placeholder : t('dashboard:tracking_header_form_control_label_4'),
-			rules       : { required: t('dashboard:tracking_header_form_control_required_text') },
+			rules       : { required: t('dashboard:tracking_header_form_control_required_text_4') },
 
 		},
 	];

@@ -15,7 +15,7 @@ const API_MAPPING = {
 		createApi   : '/create_saas_container_subscription',
 		payloadKey  : 'search_value',
 		operatorKey : 'shippingLine',
-		threshold   : 10,
+		threshold   : 4,
 	},
 	air: {
 		operatorApi : '/get_airline_from_airway_bill',
@@ -112,16 +112,15 @@ const useCreateTracker = () => {
 	}, [reset, trackingType]);
 
 	useEffect(() => {
-		if (shipmentNumber?.length === threshold) {
+		if (shipmentNumber?.length > threshold) {
 			getOperatorInfo({ shipmentNo: shipmentNumber });
 		}
 	}, [getOperatorInfo, shipmentNumber, threshold]);
 
 	useEffect(() => {
 		if (!isEmpty(data)) {
-			const { result = {}, id = '' } = data || {};
-			const opertorValue = result?.shipping_line_id || id;
-			setValue(operatorKey, opertorValue);
+			const { shipping_line_id, id } = data || {};
+			setValue(operatorKey, shipping_line_id || id);
 		}
 	}, [data, operatorKey, setValue]);
 

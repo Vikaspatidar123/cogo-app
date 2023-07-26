@@ -17,6 +17,10 @@ const suggestDate = formatDate({
 	formatType : 'date',
 });
 
+const FIRST_ELEMENT = 0;
+const SECOND_ELEMENT = 1;
+const FOURTH_ELEMENT = 3;
+
 function ReasonType({
 	fields,
 	setValue,
@@ -49,8 +53,8 @@ function ReasonType({
 			<div className={styles.content}>
 
 				<div className={styles.field}>
-					<p className={styles.label}>{fields[0]?.label}</p>
-					<InputController control={control} {...fields?.[0]} />
+					<p className={styles.label}>{fields[FIRST_ELEMENT]?.label}</p>
+					<InputController control={control} {...fields?.[FIRST_ELEMENT]} />
 				</div>
 
 				<div className={styles.suggestion}>
@@ -63,13 +67,13 @@ function ReasonType({
 				</div>
 
 				<p className={styles.label}>Please select reason for creation of Quotation</p>
-				<RadioController control={control} {...fields?.[1]} radioGroup />
+				<RadioController control={control} {...fields?.[SECOND_ELEMENT]} radioGroup />
 
 				{watchReasonType === 'bidding' ? (
 					<div className={styles.date_container}>
-						<p className={styles.label}>{fields[3].label}</p>
+						<p className={styles.label}>{fields[FOURTH_ELEMENT].label}</p>
 
-						<DatepickerController {...fields[3]} control={control} />
+						<DatepickerController {...fields[FOURTH_ELEMENT]} control={control} />
 						<p className={styles.error}>
 							{errors.bidding_date ? errors.bidding_date?.message : null}
 						</p>

@@ -7,11 +7,14 @@ import Route from './Route';
 import ShippingLineInfo from './ShippingLineInfo';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getConfiguration from '@/ui/page-components/manage-rfq/configurations/SearchFormControls/getConfiguration';
 import useGetOperatorsById from '@/ui/page-components/manage-rfq/hooks/useGetOperatorsById';
 
 const MANDATORY_TYPE = 'mandatory_shipping_lines';
 const SERVICES_ARR = ['fcl_freight', 'air_freight', 'lcl_freight'];
+const ZERO_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+
 function DraftSearchLayout({
 	item,
 	index,
@@ -50,7 +53,7 @@ function DraftSearchLayout({
 		shipping_frequency = 0,
 		custom_shipping_frequency,
 		is_transit_shipment = false,
-	} = item?.search_rates?.[0] || {};
+	} = item?.search_rates?.[GLOBAL_CONSTANTS.zeroth_index] || {};
 
 	const {
 		price,
@@ -83,9 +86,12 @@ function DraftSearchLayout({
 	}, 0);
 
 	const isAdditionalRemarks =	detentionDemurrageCount !== 0 || price?.price !== '';
-	const commodityRemarks = serviceType === 'fcl_freight' ? containers?.[0]?.container_remarks : container_remarks;
-	const shippingRemarks = remarks[0] || {};
-	const hasKey = 'calculate_by' in (item?.search_rates?.[0] || {});
+	const commodityRemarks = serviceType === 'fcl_freight'
+		? containers?.[ZERO_INDEX]?.container_remarks : container_remarks;
+
+	const shippingRemarks = remarks[ZERO_INDEX] || {};
+	const hasKey = 'calculate_by' in (item?.search_rates?.[ZERO_INDEX] || {});
+
 	const serviceDetails = getConfiguration('service-details', serviceType);
 
 	const prefferedType = serviceType !== 'air_freight'

@@ -12,13 +12,16 @@ import PortPairs from './portpairs';
 import styles from './styles.module.css';
 
 import { InputController, DatepickerController, useForm } from '@/packages/forms';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 
 function CreateContract({
 	formData,
 	setShowContractCreation = () => {},
 	setShowModal = () => {},
 }) {
-	const rfqId = formData?.[0]?.rfq_id || '';
+	const rfqId = formData?.[ZEROTH_INDEX]?.rfq_id || '';
 
 	const { nameSuggestions } = getNameSuggestions({
 		formData,

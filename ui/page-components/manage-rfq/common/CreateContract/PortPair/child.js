@@ -9,6 +9,8 @@ import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
+const LAST_ELEMENT = -1;
+
 function PortContent({ classType, item, locationType, portType }) {
 	const {
 		name = '',
@@ -25,7 +27,7 @@ function PortContent({ classType, item, locationType, portType }) {
 					)
 				</div>
 			</div>
-			<div className={styles.port_header}>{display_name.split(',').at(-1).trim()}</div>
+			<div className={styles.port_header}>{display_name.split(',').at(LAST_ELEMENT).trim()}</div>
 		</>
 	);
 }

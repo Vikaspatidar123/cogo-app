@@ -1,5 +1,11 @@
 import { startCase } from '@cogoport/utils';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const zerothIndex = GLOBAL_CONSTANTS.zeroth_index;
+const firstIndex = GLOBAL_CONSTANTS.first_index;
+const secondIndex = 2;
+
 const getNameSuggestions = ({ formData }) => {
 	let nameSuggestions = [];
 
@@ -28,15 +34,11 @@ const getNameSuggestions = ({ formData }) => {
 		)?.split(',');
 
 		const tempOriginName = (
-			originPort?.[1]
-			|| originPort?.[2]
-			|| originPort?.[0]
+			originPort?.[firstIndex] || originPort?.[secondIndex] || originPort?.[zerothIndex]
 		)?.trim();
 
 		const tempDestinationName = (
-			destinationPort?.[1]
-			|| destinationPort?.[2]
-			|| destinationPort?.[0]
+			destinationPort?.[firstIndex] || destinationPort?.[secondIndex] || destinationPort?.[zerothIndex]
 		)?.trim();
 
 		addName(tempOriginName);

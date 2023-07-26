@@ -7,6 +7,7 @@ import useSelectCard from '../../../../../../hooks/useSelectCard';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import RateCard from '@/ui/page-components/manage-rfq/common/RateCard';
 
 const TITLE_MAPPING = {
@@ -15,8 +16,11 @@ const TITLE_MAPPING = {
 	spot_rates       : 'Spot Rates',
 	negotiated_rates : 'Supply Rates',
 };
+const SERVICE = ['recommended', 'spot_rates'];
 
 const EXCLUDED_RATES = ['cheapest', 'max_detention', 'min_transit', 'negotiated_rates'];
+const START_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+const DEFAULT_END_INDEX = 1;
 
 function ViewRateCard({
 	title = 'recomended',
@@ -56,7 +60,7 @@ function ViewRateCard({
 			<div className={styles.title}>{TITLE_MAPPING[title]}</div>
 
 			{rate_cards
-				.slice(0, showAllRateCards ? number_of_rate_cards : 1)
+				.slice(START_INDEX, showAllRateCards ? number_of_rate_cards : DEFAULT_END_INDEX)
 				.map((item) => {
 					const { card_state } = item;
 					const isSelected = radioSelected?.[rfq_search_id]?.id === (item?.rfq_rate_card_id || item?.card)
@@ -66,7 +70,7 @@ function ViewRateCard({
 					return (
 						<div className={styles.card_tile} key={item?.rfq_rate_card_id || item?.card}>
 							<div className={styles.radio_circle_container}>
-								{['recommended', 'spot_rates'].includes(title) ? (
+								{SERVICE.includes(title) ? (
 									<div
 										className={cl`${styles.radio_circle}  ${isSelected ? styles.is_selected : ''}`}
 										role="presentation"

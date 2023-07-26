@@ -8,6 +8,7 @@ import PortPair from './PortPair';
 import styles from './styles.module.css';
 
 const mapping = { fcl_freight: 'FCL', lcl_freight: 'LCL', air_freight: 'AIR' };
+const MAX_COUNT = 50;
 
 const getErrorData = ({ totalCount = 0, errorKey = '' }) => {
 	const errorMapping = {
@@ -28,7 +29,7 @@ const getEligibilityData = ({ watch = () => {} }) => {
 		if (item?.max_containers_count) { totalCount += Number(item?.max_containers_count); }
 	});
 
-	return { hasEligibleCount: totalCount >= 50, totalCount };
+	return { hasEligibleCount: totalCount >= MAX_COUNT, totalCount };
 };
 
 const getErrorsNumber = ({ errorArray = [], formData = [] }) => {

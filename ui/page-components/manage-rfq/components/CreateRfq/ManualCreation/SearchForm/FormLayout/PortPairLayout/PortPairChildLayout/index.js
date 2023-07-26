@@ -12,6 +12,8 @@ import getServiceslist from '@/ui/page-components/manage-rfq/helpers/getServices
 import getCommoditySubType from '@/ui/page-components/manage-rfq/utils/getCommoditySubType';
 import getwidth from '@/ui/page-components/manage-rfq/utils/getWidth';
 
+const SHIPPING_FREQ = ['shipping_frequency', 'custom_shipping_frequency'];
+
 function PortPairChildLayout(props) {
 	const {
 		controls,
@@ -195,7 +197,7 @@ function PortPairChildLayout(props) {
 
 		data = [
 			...data,
-			...controls.filter((item) => ['shipping_frequency', 'custom_shipping_frequency'].includes(item.name)),
+			...controls.filter((item) => SHIPPING_FREQ.includes(item.name)),
 		];
 	} else if (mode === 'lcl_freight') {
 		data = controls.filter(

@@ -20,7 +20,7 @@ function Tags({
 	return (
 		<div className={styles.container}>
 			{Object.keys(rest).map((item) => (
-				<div className={styles.styled_tag}>
+				<div key={item} className={styles.styled_tag}>
 					{tags[item]}
 					{' '}
 					{CONTAINER_STATUS[item]}

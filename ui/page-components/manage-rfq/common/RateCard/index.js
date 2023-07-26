@@ -10,6 +10,8 @@ import RatePerContainer from './RatePerContainer';
 import ShippingCompany from './ShippingCompany';
 import styles from './styles.module.css';
 
+const RATE_INCREMENT = 1;
+
 const titleDisplay = ({ rfqStatus, title }) => {
 	const MARGIN_NAME_DISPLAY = {
 		recommended : 'View Break-Up',
@@ -28,7 +30,7 @@ const ratesCount = ({ ratesBreakdown }) => {
 	(servicesIds || []).forEach((key) => {
 		const { is_rate_available } = service_rates[key] || {};
 		if (!is_rate_available) {
-			noRatesCount += 1;
+			noRatesCount += RATE_INCREMENT;
 		}
 	});
 	return noRatesCount;

@@ -31,6 +31,7 @@ function ShippingCompany({
 	return (
 		<div className={styles.container}>
 			<div className={styles.shipping_line_info}>
+				{/* logo url is comming from backend */}
 				{logo_url ? <img alt="logo" className={styles.image} src={logo_url} /> : null}
 				<div>{business_name}</div>
 			</div>

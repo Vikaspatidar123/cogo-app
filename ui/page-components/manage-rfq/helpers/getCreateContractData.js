@@ -1,5 +1,7 @@
 import getInfo from './getInfo';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const getAttribute = {
 	fcl_freight : 'containers_count',
 	lcl_freight : 'packages_count',
@@ -13,6 +15,7 @@ const reqCommodities = [
 	'commodity',
 	'inco_term',
 ];
+const zerothIndex = GLOBAL_CONSTANTS.zeroth_index;
 
 const getCommodities = (searchParams) => {
 	const { search_type } = searchParams || {};
@@ -26,7 +29,7 @@ const getCommodities = (searchParams) => {
 			.map((value) => value?.valueText);
 	});
 
-	const reqCount = containerSearchParam?.[0]?.[getAttribute[search_type]];
+	const reqCount = containerSearchParam?.[zerothIndex]?.[getAttribute[search_type]];
 
 	return { commoditieData, reqCount };
 };
@@ -69,7 +72,7 @@ const getCreateContractData = ({ selectedData, cardIds }) => {
 			destination_port,
 			origin_airport,
 			destination_airport,
-			card        : cardIds[key]?.split('/')[0],
+			card        : cardIds[key]?.split('/')[zerothIndex],
 			commodities : commoditieData,
 			service_type,
 			reqCount,

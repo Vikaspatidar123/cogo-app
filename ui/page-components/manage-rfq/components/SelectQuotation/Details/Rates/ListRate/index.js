@@ -10,6 +10,7 @@ import ViewRateCards from './ViewRateCards';
 import Title from '@/ui/page-components/manage-rfq/common/TitleCard';
 
 const LOADING_ARRAY = [...Array(3).keys()];
+const SERVICE = ['recommended', 'spot_rates'];
 
 function ListRate({
 	activePortPair,
@@ -55,7 +56,7 @@ function ListRate({
 			)}
 			<div className={styles.card_view}>
 				{Object.keys(rfq_rates).map((item) => {
-					if (!['recommended', 'spot_rates'].includes(item)) return null;
+					if (!SERVICE.includes(item)) return null;
 					return (
 						<ViewRateCards
 							key={item}

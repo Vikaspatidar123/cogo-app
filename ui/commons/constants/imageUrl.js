@@ -88,6 +88,7 @@ const IMAGE_URLS = {
 	create_ticket_empty_state : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/empty-state.svg',
 	empty_url                 : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty-item.svg',
 	duty_image                : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/bubble-29%201.png',
+	faq_image                 : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/faq.svg',
 	dollar_url                : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/dollar.svg',
 	green_image               : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/green-rect.svg',
 	orange_image              : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/orange-rect.svg',

@@ -3,7 +3,7 @@ import { useRequestPublic } from '@/packages/request';
 const useGetNews = () => {
 	const [{ loading, data }] = useRequestPublic({
 		method : 'get',
-		url    : 'datastore/tables/Blogs/rows',
+		url    : '/datastore/tables/Notifications/rows',
 		params : {
 			published : true,
 			limit     : 3,

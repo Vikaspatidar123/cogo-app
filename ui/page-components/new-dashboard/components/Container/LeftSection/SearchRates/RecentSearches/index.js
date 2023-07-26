@@ -1,4 +1,4 @@
-import { IcMArrowRight } from '@cogoport/icons-react';
+import { IcMArrowNext } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
@@ -9,10 +9,15 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
+const START_INDEX = 0;
+const END_INDEX = 2;
+
 function RecentSearches({ data, loading }) {
 	const { push } = useRouter();
+
 	const { t } = useTranslation(['dashboard']);
-	const list = data.slice(0, 2) || [];
+
+	const list = data?.slice(START_INDEX, END_INDEX) || [];
 
 	if (loading) {
 		return <Loading />;
@@ -25,15 +30,6 @@ function RecentSearches({ data, loading }) {
 			<div className={styles.head}>
 				<div className={styles.text}>{t('dashboard:bestRates_text_1')}</div>
 
-				<div
-					role="presentation"
-					type="button"
-					onClick={() => push('/book')}
-					className={styles.view_all}
-				>
-					<span>{t('dashboard:bestRates_text_3')}</span>
-					<IcMArrowRight width={16} height={16} />
-				</div>
 			</div>
 
 			<div className={styles.card}>
@@ -44,7 +40,15 @@ function RecentSearches({ data, loading }) {
 					/>
 				))}
 			</div>
-
+			<div
+				role="presentation"
+				type="button"
+				onClick={() => push('/book')}
+				className={styles.view_all}
+			>
+				<span>{t('dashboard:bestRates_text_3')}</span>
+				<IcMArrowNext />
+			</div>
 		</div>
 	);
 }

@@ -13,7 +13,7 @@ function Card({ item }) {
 
 	return (
 		<div>
-			<div className={styles.desktop_view}>
+			<div>
 				<div className={cl`${styles.container}`}>
 					<div className={styles.row}>
 						<div className={cl`${styles.icon_container} ${styles[mapped?.cssLabel]}`}>
@@ -32,7 +32,6 @@ function Card({ item }) {
 						<div>
 							<BtnContainer data={item} />
 						</div>
-
 					</div>
 				</div>
 			</div>

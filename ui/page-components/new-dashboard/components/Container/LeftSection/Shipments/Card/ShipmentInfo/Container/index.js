@@ -23,26 +23,29 @@ function Container({ item }) {
 		volum                      : item?.volum,
 		weight                     : item?.weight,
 	};
-
+	const originLocation = getLocation(true, item).location;
+	const originCountry = getLocation(true, item).country;
+	const destinationLocation = getLocation(false, item).location;
+	const destinationCountry = getLocation(false, item).country;
 	return (
 		<div className={styles.container}>
 
 			{onlySingleLocation.includes(item?.service_type || item?.shipment_type)
 				? (
 					<div className={styles.second_data}>
-						{getLocation(true, item).location}
+						{originLocation}
 
 						<span className={styles.location_span}>
-							{getLocation(false, item).country}
+							{originCountry}
 						</span>
 					</div>
 				) : (
 					<div className={styles.second_data}>
 						<div className={styles.origin}>
-							{getLocation(true, item).location}
+							{originLocation}
 
 							<span className={styles.location_span}>
-								{getLocation(false, item).country}
+								{originCountry}
 							</span>
 						</div>
 
@@ -53,10 +56,10 @@ function Container({ item }) {
 						<div />
 
 						<div className={styles.origin}>
-							{getLocation(false, item).location}
+							{destinationLocation}
 
 							<span className={styles.location_span}>
-								{getLocation(false, item).country}
+								{destinationCountry}
 							</span>
 						</div>
 					</div>

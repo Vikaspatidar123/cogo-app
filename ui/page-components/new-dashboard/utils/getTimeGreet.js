@@ -1,19 +1,21 @@
+import { MORANING_TIME, NOON_TIME, EVENING_TIME } from '../constant';
+
 const getTimeGreet = ({ t }) => {
 	const curHr = new Date().getHours();
 
-	if (curHr < 12) {
+	if (curHr < MORANING_TIME) {
 		return {
 			message: t('dashboard:greetings_morning'),
 		};
 	}
 
-	if (curHr < 16) {
+	if (curHr < NOON_TIME) {
 		return {
 			message: t('dashboard:greetings_noon'),
 		};
 	}
 
-	if (curHr < 19) {
+	if (curHr < EVENING_TIME) {
 		return {
 			message: t('dashboard:greetings_evening'),
 		};

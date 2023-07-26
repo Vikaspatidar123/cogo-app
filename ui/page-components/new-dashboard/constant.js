@@ -1,5 +1,7 @@
 import { IcCFtick } from '@cogoport/icons-react';
-import { startCase, upperCase } from '@cogoport/utils';
+import { isEmpty, startCase, upperCase } from '@cogoport/utils';
+
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 export const airValueKeys = {
 	cubic_metre : 'CBM',
@@ -32,6 +34,10 @@ export const PATH_OPTION = {
 
 export const LOADING_TEXT_COUNT = 3;
 
+export const MORANING_TIME = 12;
+export const NOON_TIME = 16;
+export const EVENING_TIME = 19;
+
 export const SUFFIX = {
 	fcl_freight     : 'port',
 	lcl_freight     : 'port',
@@ -60,7 +66,8 @@ export const LABELS = [
 
 export const renderValue = ({ label, data, t }) => {
 	const { packages } = data || {};
-	const valueForInput = Array.isArray(packages) && packages?.length > 0 ? packages[0] : null;
+	const valueForInput = Array.isArray(packages) && !isEmpty(packages)
+		? packages[GLOBAL_CONSTANTS.zeroth_index] : null;
 
 	const inputValue = valueForInput
 		? `${valueForInput.packages_count}

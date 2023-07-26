@@ -7,6 +7,7 @@ import { useRouter } from '@/packages/next';
 
 function Search() {
 	const { push } = useRouter();
+
 	const { t } = useTranslation(['dashboard']);
 
 	return (

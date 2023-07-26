@@ -1,6 +1,7 @@
 import { IcAAirTracking, IcAOceanTracking } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 
+import Card from './Card';
 import styles from './styles.module.css';
 
 import { useRouter, Image } from '@/packages/next';
@@ -37,48 +38,8 @@ function TrackAndTrace() {
 					</div>
 
 					<div className={styles.card}>
-						<div className={styles.count_card}>
-							<div className={styles.text}>
-								{t('dashboard:common_trackingCard_text_1')}
-							</div>
-
-							<div className={styles.down}>
-								<Image
-									src={GLOBAL_CONSTANTS.image_url.clock_image}
-									alt={t('dashboard:cogo_logo')}
-									height={20}
-									width={20}
-								/>
-								<p className={styles.count}>
-									<CountCameDown
-										end_count={all_cargo}
-										loading={loading}
-									/>
-								</p>
-							</div>
-						</div>
-
-						<div className={styles.count_card}>
-							<div className={styles.text}>
-								{t('dashboard:common_trackingCard_text_2')}
-							</div>
-
-							<div className={styles.down}>
-								<Image
-									src={GLOBAL_CONSTANTS.image_url.track_image}
-									alt={t('dashboard:cogo_logo')}
-									height={20}
-									width={25}
-								/>
-								<p className={styles.count}>
-									<CountCameDown
-										end_count={on_track_air_cargos}
-										loading={loading}
-									/>
-								</p>
-							</div>
-
-						</div>
+						<Card loading={loading} count={all_cargo} />
+						<Card loading={loading} count={on_track_air_cargos} />
 					</div>
 					<div className={styles.img_container}>
 						<Image
@@ -102,44 +63,8 @@ function TrackAndTrace() {
 					</div>
 
 					<div className={styles.card}>
-						<div className={styles.count_card}>
-							<div className={styles.text}>
-								{t('dashboard:common_trackingCard_text_1')}
-							</div>
-							<div className={styles.down}>
-								<Image
-									src={GLOBAL_CONSTANTS.image_url.clock_image}
-									alt={t('dashboard:cogo_logo')}
-									height={20}
-									width={20}
-								/>
-								<p className={styles.count}>
-									<CountCameDown
-										end_count={container_tracked}
-										loading={loading}
-									/>
-								</p>
-							</div>
-						</div>
-
-						<div className={styles.count_card}>
-							<div className={styles.text}>{t('dashboard:common_trackingCard_text_2')}</div>
-
-							<div className={styles.down}>
-								<Image
-									src={GLOBAL_CONSTANTS.image_url.track_image}
-									alt={t('dashboard:cogo_logo')}
-									height={20}
-									width={25}
-								/>
-								<p className={styles.count}>
-									<CountCameDown
-										end_count={on_track_shipments}
-										loading={loading}
-									/>
-								</p>
-							</div>
-						</div>
+						<Card loading={loading} count={container_tracked} />
+						<Card loading={loading} count={on_track_shipments} />
 					</div>
 				</div>
 			</div>

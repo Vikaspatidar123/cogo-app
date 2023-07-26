@@ -35,7 +35,7 @@
 
 	@media screen and (max-width: 767px) {
 		box-sizing: border-box;
-		width: 275px;
+		width: 310px;
 		padding: 10px;
 		background: rgb(255 255 255) !important;
 		border: 1px solid rgb(209 209 225);
@@ -50,10 +50,6 @@
 
 	.port_detail {
 		margin-left: 10px;
-
-		@media screen and (max-width: 767px) {
-			display: none;
-		}
 	}
 
 	&.info {
@@ -144,7 +140,6 @@
 	width: 80%;
 
 	@media screen and (max-width: 767px) {
-		width: 100%;
 		margin-top: 11px;
 	}
 }

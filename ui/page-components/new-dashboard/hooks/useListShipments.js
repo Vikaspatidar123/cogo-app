@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -9,7 +9,7 @@ function useListShipments() {
 		method : 'get',
 	}, { manual: true });
 
-	const shipmentsData = async (shipment_received, confirmed_by_importer_exporter) => {
+	const shipmentsData = useCallback(async (shipment_received, confirmed_by_importer_exporter) => {
 		try {
 			const reqData = {
 				shipment_reciever : shipment_received,
@@ -25,12 +25,11 @@ function useListShipments() {
 			);
 			return null;
 		}
-	};
+	}, [trigger]);
 
 	useEffect(() => {
 		shipmentsData();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [shipmentsData]);
 	return { loading, shipmentsData, data };
 }
 export default useListShipments;

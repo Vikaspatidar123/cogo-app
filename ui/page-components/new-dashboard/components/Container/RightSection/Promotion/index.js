@@ -14,7 +14,7 @@ function Promotion() {
 	const carouselData = (data) => (
 		<div onClick={() => push(data?.route_url)} role="presentation">
 			{/* img use for url comeing from backend its changes any time */}
-			<img className={styles.image} src={data?.image_url} alt="img" />
+			<img className={styles.image} src={data?.image_url} alt="promotion" />
 		</div>
 	);
 	const mainData = (promotion || []).map((data) => ({

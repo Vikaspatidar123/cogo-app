@@ -1,4 +1,4 @@
-import { Carousel } from '@cogoport/components';
+import { Carousel, cl } from '@cogoport/components';
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
@@ -10,8 +10,11 @@ import { useRouter } from '@/packages/next';
 
 function Shipments({ list }) {
 	const { push } = useRouter();
+
 	const { t } = useTranslation(['dashboard']);
+
 	const carouselData = card({ data: list });
+
 	if (isEmpty(carouselData)) {
 		return null;
 	}
@@ -23,8 +26,8 @@ function Shipments({ list }) {
 			<Carousel
 				slides={carouselData}
 				autoScroll
-				timeInterval={2000}
-				showDots={false}
+				timeInterval={10000}
+				showDots
 				showArrow={false}
 				size="sm"
 				className={styles.carousel}
@@ -32,10 +35,10 @@ function Shipments({ list }) {
 
 			<div
 				role="presentation"
-				className={styles.bottom}
+				className={cl`${styles.bottom} ${styles.view_all}`}
 				onClick={() => push('/shipments', '/shipments')}
 			>
-				<p className={styles.view_all}>
+				<p>
 					{t('dashboard:onGoingShipments_text_1')}
 				</p>
 

@@ -31,42 +31,27 @@ function ContainerInfo({ data = {} }) {
 	const { t } = useTranslation(['dashboard']);
 
 	return (
-		<>
-			<div className={styles.desktop_view}>
-				<Tooltip content={<RenderBox data={data} />} placement="bottom" className={styles.tool_content}>
+		<div>
+			<Tooltip content={<RenderBox data={data} />} placement="bottom" className={styles.tool_content}>
 
-					<div className={styles.info_box}>
+				<div className={styles.info_box}>
 
-						{LABELS.map((label) => {
-							const chipValue = data[label] ? renderValue({ label, data, t }) : null;
+					{LABELS.map((label) => {
+						const chipValue = data[label] ? renderValue({ label, data, t }) : null;
 
-							if (!chipValue) return null;
-							return <Pill key={label} size="sm">{chipValue}</Pill>;
-						})}
-					</div>
-				</Tooltip>
-			</div>
-
-			<div className={styles.mobile_view}>
-				<Tooltip content={<RenderBox data={data} />} placement="bottom" className={styles.tool_content}>
-					<div className={cl`${styles.asd} ${styles.info_box}`}>
-
-						{LABELS.map((label) => {
-							const chipValue = data[label] ? renderValue({ label, data, t }) : null;
-							if (!chipValue) return null;
-
-							return (
-								<span key={label} className={styles.container_info}>
+						if (!chipValue) return null;
+						return (
+							<>
+								<Pill key={label} size="sm" className={styles.desktop_view}>{chipValue}</Pill>
+								<span key={label} className={cl`${styles.container_info} ${styles.mobile_view}`}>
 									{chipValue}
 								</span>
-							);
-						})}
-
-					</div>
-				</Tooltip>
-			</div>
-
-		</>
+							</>
+						);
+					})}
+				</div>
+			</Tooltip>
+		</div>
 	);
 }
 

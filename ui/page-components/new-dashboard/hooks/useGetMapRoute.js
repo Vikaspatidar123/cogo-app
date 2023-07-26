@@ -5,6 +5,7 @@ import { useRequest } from '@/packages/request';
 
 const DEFAULT_LAT_INDEX = 0;
 const DEFAULT_LNG_INDEX = 1;
+const ROUNDED_NUMBER = 2;
 const getUniqueArrElements = (arr) => arr.reduce((accumulator, current) => {
 	const found = accumulator.some(
 		(item) => JSON.stringify(item) === JSON.stringify(current),
@@ -34,12 +35,12 @@ const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
 			});
 			const apiData = resp?.data || {};
 			const routeInfo = apiData?.routes || [];
-			const routeArr = (routeInfo || []).map((ele) => [ele?.route]).flat(2);
+			const routeArr = (routeInfo || []).map((ele) => [ele?.route]).flat(ROUNDED_NUMBER);
 			const uniqueRouteArr = getUniqueArrElements(routeArr);
 
 			return uniqueRouteArr;
 		} catch (err) {
-			console.error(err, 'err');
+			console.error(err);
 			return null;
 		}
 	}, [trigger]);

@@ -6,6 +6,12 @@
 	border: 1px solid #e0e0e0;
 	border-radius: 4px;
 	box-shadow: 0 0 8px rgb(98 127 172 / 20%);
+
+	:global {
+		.ui_carousel_container + div {
+			bottom: -10px !important;
+		}
+	}
 }
 
 .heading {
@@ -15,14 +21,15 @@
 
 .bottom {
 	display: flex;
-	align-items: center;
 	justify-content: flex-end;
 	padding-top: 5px;
 	cursor: pointer;
 }
 
 .view_all {
+	align-items: center;
 	padding-right: 5px;
-	color: rgb(53 110 253);
+	font-size: 13px;
+	color: #356efd;
 	text-decoration: underline;
 }

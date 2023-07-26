@@ -69,8 +69,8 @@ function PriceBreakup({ details = {}, source = '' }) {
 										</div>
 									) : null}
 
-									<div className={styles.basic_price}>{price}</div>
 								</div>
+								<div className={styles.basic_price}>{price}</div>
 							</div>
 
 							<div className={styles.info_data}>

@@ -4,7 +4,7 @@ import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import { SERVICE_UNIT_MAPPING, SERVICE_VISE_KEYS_MAPPING } from '../../../../../constants';
-import {generateServiceDisplayName} from '../../../../../utils/getDisplayNames';
+import { generateServiceDisplayName } from '../../../../../utils/getDisplayNames';
 import ServiceIcon from '../../../../../utils/getServiceIcon';
 import PriceBreakup from '../../../PriceBreakup';
 
@@ -71,12 +71,7 @@ function BreakUpCard({ service = {}, source = '' }) {
 											</div>
 										)}
 									>
-										<div
-											className={styles.service_tag}
-											style={{ background: '#CFEAED' }}
-										>
-											View More
-										</div>
+										<Pill color="blue">View More</Pill>
 									</Tooltip>
 								</div>
 							) : null}
@@ -86,8 +81,10 @@ function BreakUpCard({ service = {}, source = '' }) {
 					<div style={{ display: 'flex', marginInline: '4px', marginTop: '4px' }}>
 						{!isEmpty(additional_services) && (
 							<Pill>
-								<ServiceIcon service={additional_services[0]} />
-								{generateServiceDisplayName(additional_services[0])}
+								<span style={{ display: 'flex' }}>
+									<ServiceIcon service={additional_services[0]} />
+									{generateServiceDisplayName(additional_services[0])}
+								</span>
 							</Pill>
 						)}
 

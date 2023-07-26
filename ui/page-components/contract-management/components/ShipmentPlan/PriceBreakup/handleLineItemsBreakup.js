@@ -24,15 +24,19 @@ const handleLineItemsBreakup = (item, source) => {
 
 	const { packing_type = '', handling_type = '' } = packages?.[0] || {};
 
-	let size = container_size ? `${container_size} ft` : '';
+	let size = '';
 	let type = startCase(container_type || '');
 	const comm = startCase(commodity || '');
 	const truckType = startCase(truck_type || '');
 	const packageType = startCase(packing_type || '');
 	const packageHandlingType = startCase(handling_type);
 
-	if (container_type || commodity) {
-		size = `${container_size} ft, `;
+	if (container_size) {
+		size = `${container_size} ft`;
+
+		if (container_type || commodity) {
+			size = `${container_size} ft, `;
+		}
 	}
 
 	if (commodity) {
@@ -63,7 +67,9 @@ const handleLineItemsBreakup = (item, source) => {
 
 		return `${size}${type}${comm}`;
 	};
+	console.log(type, 'type');
 
+	console.log(handleService(), 'handleService()');
 	return [
 		...(!isEmpty(line_items)
 			? handleLineItems({ items: line_items, source })
@@ -75,8 +81,9 @@ const handleLineItemsBreakup = (item, source) => {
 					amount   : total_price_discounted,
 					currency : total_price_currency,
 					options  : {
-						notation : 'standard',
-						style    : 'currency',
+						notation        : 'standard',
+						style           : 'currency',
+						currencyDisplay : 'code',
 					},
 				})
 				: 'Local charges will be billed at Actual',

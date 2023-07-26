@@ -12,8 +12,10 @@ const handleLineItems = ({ items = [], source = '' }) => {
 				amount  : priceValue,
 				currency,
 				options : {
-					notation : 'standard',
-					style    : 'currency',
+					notation        : 'standard',
+					style           : 'currency',
+					currencyDisplay : 'code',
+
 				},
 			}),
 		});

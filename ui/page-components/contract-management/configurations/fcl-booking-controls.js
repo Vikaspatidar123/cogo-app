@@ -1,9 +1,8 @@
 import { addDays } from '@cogoport/utils';
-import { useEffect } from 'react';
 
 import CONTAINER_SIZES from '@/ui/commons/constants/CONTAINER_SIZES';
 
-const fclControls = ({ contractValidity, departureDate, primaryServicesDetailsArray, setIntialFormData }) => {
+const fclControls = ({ contractValidity, departureDate, primaryServicesDetailsArray }) => {
 	const { contractEndDate } = contractValidity || {};
 
 	const attributes = primaryServicesDetailsArray.map((item) => ({
@@ -19,18 +18,13 @@ const fclControls = ({ contractValidity, departureDate, primaryServicesDetailsAr
 		primary_service_id         : item?.primary_service_id,
 	}));
 
-	useEffect(() => {
-		setIntialFormData(attributes);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
 	const fields = [
 		{
 			inlineLabel : 'Departure',
 			name        : 'departure',
 			type        : 'datepicker',
 			placeholder : 'Select Departure Date',
-			span        : 6,
+			span        : 4,
 			rules       : { required: 'Required' },
 			minDate     : addDays(new Date(), 1),
 			maxDate     : contractEndDate,
@@ -40,7 +34,7 @@ const fclControls = ({ contractValidity, departureDate, primaryServicesDetailsAr
 			inlineLabel : 'Arrival',
 			placeholder : 'Select Arrival Date',
 			type        : 'datepicker',
-			span        : 6,
+			span        : 4,
 			rules       : { required: 'Required' },
 			disabled    : !departureDate,
 			minDate     : departureDate,
@@ -53,7 +47,7 @@ const fclControls = ({ contractValidity, departureDate, primaryServicesDetailsAr
 			caret       : true,
 			inlineLabel : 'Shipping lines',
 			placeholder : 'Select shipping line',
-			span        : 6,
+			span        : 4,
 			rules       : { required: 'Shipping line required' },
 		},
 		{
@@ -72,21 +66,22 @@ const fclControls = ({ contractValidity, departureDate, primaryServicesDetailsAr
 			style           : { control: { width: '200px' } },
 			rules           : { required: 'Inco-term is required' },
 			activeTradeType : 'import',
-			value           : primaryServicesDetailsArray[0]?.inco_term,
 			disabled        : true,
+			span            : 4,
+
 		},
 		{
 			name        : 'attributes',
 			inlineLabel : 'Container',
 			type        : 'fieldArray',
 			showButtons : false,
-			value       : attributes,
+			showDivider : true,
 			controls    : [
 				{
 					label         : 'Container Type',
 					name          : 'container_type_commodity',
 					type          : 'container_type-commodity',
-					span          : 6,
+					span          : 2.8,
 					controlFields : {
 						container_type: {
 							label          : 'Container Type',
@@ -134,7 +129,6 @@ const fclControls = ({ contractValidity, departureDate, primaryServicesDetailsAr
 					name  : 'primary_service_id',
 					type  : 'hidden',
 					style : { display: 'none' },
-					span  : 0.1,
 				},
 			],
 		},

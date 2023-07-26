@@ -9,6 +9,7 @@
 	align-self: stretch;
 	justify-content: space-between;
 	padding: 12px 16px;
+	cursor: pointer;
 	background: var(--greyscale-secondary-white, #fff);
 	border-radius: 4px;
 

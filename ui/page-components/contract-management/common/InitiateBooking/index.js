@@ -1,6 +1,5 @@
-import { Modal, Popover, Button } from '@cogoport/components';
-import { IcMInfo } from '@cogoport/icons-react';
-import { format } from '@cogoport/utils';
+import { Modal, Button, cl, ButtonIcon } from '@cogoport/components';
+import { IcMCross } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
 
 import airControls from '../../configurations/air-booking-controls';
@@ -9,7 +8,7 @@ import lclControls from '../../configurations/lcl-booking-controls';
 import { SERVICE_ICON_MAPPING } from '../../configurations/service-icon-mapping';
 import useCreateContractBooking from '../../hooks/useCreateContractBooking';
 import { formattedBookingPayload } from '../../utils/getFormattedBookingPayload';
-import { getUnit } from '../../utils/getUnit';
+import { getSubUnit } from '../../utils/getUnit';
 
 import styles from './styles.module.css';
 
@@ -77,7 +76,6 @@ function InitiateBooking({
 			contractValidity,
 			departureDate,
 			primaryServicesDetailsArray,
-			setIntialFormData,
 		}),
 		lcl_freight: lclControls({
 			contractValidity,
@@ -92,21 +90,6 @@ function InitiateBooking({
 	};
 
 	const { defaultValues, fields } = SERVICE_CONTROLS_MAPPING[service_type] || [];
-
-	// const fclArray = service_details?.filter(
-	// 	(item) => item.service_type === 'fcl_freight',
-	// );
-	// const attributes = (fclArray || []).map((item) => ({
-	// 	container_size           : item.container_size,
-	// 	commodity                : item.commodity,
-	// 	container_type_commodity : {
-	// 		container_type : item.container_type,
-	// 		commodity      : item.commodity,
-	// 	},
-	// 	container_type             : item.container_type,
-	// 	containers_count           : item.containers_count,
-	// 	cargo_weight_per_container : item.cargo_weight_per_container,
-	// }));
 
 	const {
 		handleSubmit,
@@ -125,7 +108,7 @@ function InitiateBooking({
 	}, [shipmentStartDate]);
 
 	const handleFormSubmit = async (item) => {
-		const formattedData = formattedBookingPayload({ item, data });
+		const formattedData = formattedBookingPayload({ item, data, contractId });
 		await createBooking(formattedData);
 	};
 
@@ -134,6 +117,13 @@ function InitiateBooking({
 		start_date = '',
 		end_date = '',
 	} = upcomingShipmentData || {};
+
+	useEffect(() => {
+		if (service_type === 'fcl_freight') {
+			setIntialFormData(defaultValues?.attributes);
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	useEffect(() => {
 		setValue('containers_count', quantity);
@@ -145,44 +135,35 @@ function InitiateBooking({
 
 	return (
 		<Modal
+			size="xl"
 			show={showBookingModal}
 			onClose={() => setShowBookingModal(false)}
 			onOuterClick={() => setShowBookingModal(false)}
 		>
 			<div>
-				<div>
-					<Modal.Header title={(
-						<div style={{ display: 'flex' }}>
-							{' '}
-							{SERVICE_ICON_MAPPING[service_type]}
-							<div className={styles.text}>
-								{getUnit(service_type)}
-								Details
-							</div>
-						</div>
-					)}
-					/>
 
-					{!readyForBooking && (
-						<Popover
-							placement="bottom"
-							content={(
-								<div className={styles.Content}>
-									You can initiate booking once contract validity begin which is
-									on
-									<span>
-										{format(contractStartDate, 'dd MMM yyyy')}
-									</span>
-								</div>
-							)}
-							interactive
-							theme="light-border"
-						>
-							<div>
-								<IcMInfo />
-							</div>
-						</Popover>
-					)}
+				<div className={cl`${styles.header} ${styles.modal_header}`}>
+					<div className={styles.header}>
+						{SERVICE_ICON_MAPPING[service_type]}
+						<h3 className={styles.title}>
+							{getSubUnit(service_type)}
+							{' '}
+							Details
+						</h3>
+					</div>
+					<div className={styles.header}>
+						{service_type === 'fcl_freight' ? (
+							<Button
+								themeType="secondary"
+								onClick={() => {
+									setValue('attributes', intialFormData);
+								}}
+							>
+								Get Contract Services
+							</Button>
+						) : null}
+						<ButtonIcon icon={<IcMCross />} onClick={() => setShowBookingModal(false)} />
+					</div>
 				</div>
 
 				<form>
@@ -195,16 +176,16 @@ function InitiateBooking({
 							noScroll
 						/>
 					</div>
-					<Modal.Footer>
-						<Button
-							disabled={loading || !readyForBooking}
-							onClick={handleSubmit(handleFormSubmit)}
-							style={{ float: 'right', margin: '10px' }}
-						>
-							create booking
-						</Button>
-					</Modal.Footer>
 				</form>
+				<Modal.Footer>
+					<Button
+						type="button"
+						disabled={loading}
+						onClick={handleSubmit(handleFormSubmit)}
+					>
+						Create booking
+					</Button>
+				</Modal.Footer>
 			</div>
 		</Modal>
 	);

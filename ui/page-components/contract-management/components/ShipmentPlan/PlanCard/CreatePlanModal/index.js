@@ -53,7 +53,7 @@ function CreatePlanModal({
 
 	const primaryServiceId = freightDetails.find(
 		(service) => service.is_primary_service,
-	).id;
+	)?.id;
 
 	const { validity_end_date, validity_start_date } = contract_data;
 

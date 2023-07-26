@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  if: github.event.issue.pull_request && contains(github.event.comment.body, '/build')
+
+  init:
+    name: Init
+    if: ${{ github.triggering_actor != 'dependabot[bot]' }}
+    uses: ./.github/workflows/reusable-run-setup.yml
+    secrets: inherit
+
+  build:
+    name: Test
+    needs: init
+    uses: ./.github/workflows/reusable-test-build.yml
+    secrets: inherit
+    
+
+  needs:
+    - init # required to wait when the main job is done
+    - build # required to wait when the main job is done
+
+  runs-on: ubuntu-latest
+
+  if: ${{ always() }} # required to stop the runner even if the error happened in the previous jobs

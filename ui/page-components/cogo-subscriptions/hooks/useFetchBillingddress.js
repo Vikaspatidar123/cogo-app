@@ -18,7 +18,7 @@ const useFetchBillingAddress = ({ profile, setAddressWithoutGst }) => {
 	}, { manual: true });
 
 	const params = useMemo(() => ({
-		filters    : { organization_id: profile?.organization.id },
+		filters    : { organization_id: profile?.organization?.id, trade_party_type: 'self' },
 		page_limit : DEFAULT_PAGE_LIMIT,
 		page       : DEFAULT_PAGE,
 	}), [profile?.organization.id]);

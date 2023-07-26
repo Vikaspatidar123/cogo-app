@@ -23,14 +23,14 @@ function TrackingMap({
 				setRemainingPoints((prevPoints) => [
 					...prevPoints,
 					{
-						lat : p?.[GLOBAL_CONSTANTS.one_index],
+						lat : p?.[GLOBAL_CONSTANTS.first_index],
 						lng : p?.[GLOBAL_CONSTANTS.zeroth_index],
 					},
 				]);
 				setCurvePoints((prevPoints) => [
 					...prevPoints,
 					{
-						lat : p?.[GLOBAL_CONSTANTS.one_index],
+						lat : p?.[GLOBAL_CONSTANTS.first_index],
 						lng : p?.[GLOBAL_CONSTANTS.zeroth_index],
 					},
 				]);

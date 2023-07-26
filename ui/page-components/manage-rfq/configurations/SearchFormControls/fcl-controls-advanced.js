@@ -68,6 +68,7 @@ const controls = () => [
 		name        : 'export_transportation_location_id',
 		placeholder : 'Search via pincode',
 		type        : 'async_select',
+		initialCall : true,
 		caret       : true,
 		asyncKey    : 'locations',
 		grouped     : ['city'],
@@ -90,7 +91,7 @@ const controls = () => [
 		label     : 'Truck Type',
 		type      : 'select',
 		caret     : true,
-		optionKey : 'truck-types',
+		optionKey : 'truck_types',
 		span      : 8,
 		condition : {
 			export_transportation_cargo_handling_type : ['stuffing_at_dock'],
@@ -216,6 +217,7 @@ const controls = () => [
 		name        : 'import_transportation_location_id',
 		placeholder : 'Search via pincode',
 		type        : 'async_select',
+		initialCall : true,
 		caret       : true,
 		span        : 12,
 		asyncKey    : 'locations',
@@ -240,7 +242,7 @@ const controls = () => [
 		label     : 'Truck Type',
 		type      : 'select',
 		caret     : true,
-		optionKey : 'truck-types',
+		optionKey : 'truck_types',
 		span      : 8,
 		condition : {
 			import_transportation_cargo_handling_type : ['destuffing_at_dock'],

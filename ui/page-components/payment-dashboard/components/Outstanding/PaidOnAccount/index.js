@@ -7,7 +7,12 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function PaidOnAccount({ statsList }) {
-	const { on_account_amount = 0, currency } = statsList;
+	const {
+		onAccount,
+	} = statsList || {};
+
+	const { ledgerAmount, ledgerCurrency } = onAccount || {};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.head}>
@@ -26,9 +31,9 @@ function PaidOnAccount({ statsList }) {
 					<div className={styles.paid_card}>
 						<div className={styles.paid_card_text}>
 							{formatAmount({
-								amount  : on_account_amount || 0,
-								currency,
-								options : {
+								amount   : ledgerAmount || 0,
+								currency : ledgerCurrency,
+								options  : {
 									style                 : 'currency',
 									currencyDisplay       : 'code',
 									maximumFractionDigits : 0,

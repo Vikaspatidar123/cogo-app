@@ -1,11 +1,11 @@
 import { cl } from '@cogoport/components';
-import { startCase } from '@cogoport/utils';
+// import { startCase } from '@cogoport/utils';
 import React from 'react';
 
-import ResponsivePieChart from '../../common/ResponsivePieChart';
-import DueInData from '../../constants/due-in-data';
+// import ResponsivePieChart from '../../common/ResponsivePieChart';
+// import DueInData from '../../constants/due-in-data';
 import useGetOrganizationOutstandings from '../../hooks/useGetOrganizationOutstandings';
-import useGetServiceWiseOutstandings from '../../hooks/useGetServiceWiseOutstanding';
+// import useGetServiceWiseOutstandings from '../../hooks/useGetServiceWiseOutstanding';
 
 import PaidOnAccount from './PaidOnAccount';
 import PayLaterWidgets from './PayLaterWidgets';
@@ -20,16 +20,16 @@ function Outstanding() {
 		country_code: profile?.organization?.country?.country_code,
 	}));
 
-	const { statsList, statsLoading } = useGetOrganizationOutstandings();
+	const { statsList } = useGetOrganizationOutstandings();
 
-	const { serviceWiseLoading, serviceWiseStats } = useGetServiceWiseOutstandings();
+	// const { serviceWiseLoading, serviceWiseStats } = useGetServiceWiseOutstandings();
 
-	const serviceDataPoints = (serviceWiseStats || []).map((item, index) => ({
-		id        : index,
-		label     : startCase(item.shipment_type) || '-',
-		sub_label : startCase(item.shipment_type) || '-',
-		value     : item.total_open_invoice_amount || 0,
-	}));
+	// const serviceDataPoints = (serviceWiseStats || []).map((item, index) => ({
+	// 	id        : index,
+	// 	label     : startCase(item.shipment_type) || '-',
+	// 	sub_label : startCase(item.shipment_type) || '-',
+	// 	value     : item.total_open_invoice_amount || 0,
+	// }));
 
 	return (
 		<div className={styles.container}>
@@ -50,7 +50,7 @@ function Outstanding() {
 					</div>
 				</div>
 
-				<div className={cl`${styles.card} ${styles.web_view}`}>
+				{/* <div className={cl`${styles.card} ${styles.web_view}`}>
 					<div className={styles.styled_row}>
 						<ResponsivePieChart
 							data={DueInData({ statsList })}
@@ -66,7 +66,7 @@ function Outstanding() {
 							isKamWise={false}
 						/>
 					</div>
-				</div>
+				</div> */}
 			</div>
 
 			<div className={styles.web_view}>

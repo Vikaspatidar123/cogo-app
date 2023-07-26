@@ -16,19 +16,20 @@ const useGetInvoiceDetails = () => {
 	const [pagination, setPagination] = useState(1);
 	const [pageData, setPageData] = useState({});
 	const [loading, setLoading] = useState(false);
-	const [invoiceStatus, setInvoiceStatus] = useState('UNPAID');
+	const [invoiceStatus, setInvoiceStatus] = useState('unpaid');
 
-	const { organizationId, kyc_status } = useSelector(({ profile }) => ({
+	const { organizationId, kyc_status, entity_code } = useSelector(({ profile }) => ({
 		organizationId : profile?.organization?.id,
 		kyc_status     : profile?.organization?.kyc_status,
+		entity_code    : profile?.organization?.entity_code,
 	}));
 
 	const triggerApi = kyc_status === 'verified' && organizationId !== null;
 
 	const [{ data }, trigger] = useRequestBf({
-		url     : '/sales/invoice/list',
-		authKey : 'get_sales_invoice_list',
+		url     : '/sales/outstanding/invoice-list',
 		method  : 'get',
+		authKey : 'get_sales_outstanding_invoice_list',
 	}, { manual: true });
 
 	const onQueryChange = (value) => {
@@ -38,13 +39,15 @@ const useGetInvoiceDetails = () => {
 	};
 
 	const params = {
-		q              : query || undefined,
-		paymentStatus  : invoiceStatus || undefined,
-		bookingPartyId : organizationId,
-		pageLimit      : 10,
-		sortType       : orderBy.order || undefined,
-		sortBy         : orderBy.key || undefined,
-		page           : pagination,
+		query      : query || undefined,
+		status     : invoiceStatus || undefined,
+		orgId      : 'ef676434-5f7e-4c0d-9c4a-93adbd8ce76c',
+		pageLimit  : 10,
+		sortType   : orderBy.order || undefined,
+		sortBy     : orderBy.key || undefined,
+		page       : pagination,
+		cogoEntity : entity_code,
+		role       : 'cf2c9d24-e1e0-4223-a228-69ebbdc349c1',
 	};
 
 	const getInvoiceDetails = async () => {

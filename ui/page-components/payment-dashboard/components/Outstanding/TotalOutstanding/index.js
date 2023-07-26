@@ -7,7 +7,12 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function TotalOutstanding({ statsList = {} }) {
-	const { total_outstanding_amount = 0, currency } = statsList;
+	const {
+		totalOutstanding,
+	} = statsList || {};
+
+	const { ledgerAmount, ledgerCurrency } = totalOutstanding || {};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.heading}>
@@ -25,12 +30,11 @@ function TotalOutstanding({ statsList = {} }) {
 				<div className={styles.card_box}>
 					<div className={styles.card_text}>
 						{formatAmount({
-							amount  : total_outstanding_amount || 0,
-							currency,
-							options : {
-								style                 : 'currency',
-								currencyDisplay       : 'code',
-								maximumFractionDigits : 0,
+							amount   : ledgerAmount || 0,
+							currency : ledgerCurrency,
+							options  : {
+								style           : 'currency',
+								currencyDisplay : 'code',
 							},
 						})}
 					</div>

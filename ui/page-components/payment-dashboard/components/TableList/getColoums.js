@@ -1,36 +1,74 @@
-import { Tooltip, Button } from '@cogoport/components';
+import { Tooltip, Button, Pill } from '@cogoport/components';
 import {
 	IcCRedCircle,
 	IcMDownload,
 	IcMArrowRotateRight,
 	IcMArrowRotateLeft,
 } from '@cogoport/icons-react';
-import { isEmpty } from '@cogoport/utils';
+import { isEmpty, getByKey, startCase } from '@cogoport/utils';
 import React from 'react';
 
-import { Service } from '../../constants/service-mapping';
+import { getDocumentNumber, getDocumentUrl } from '../../utils/getDocumentNumber';
 
 import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 import formatDate from '@/ui/commons/utils/formatDate';
 
+const INVOICE_TYPE = {
+	REIMBURSEMENT : '#FEF1DF',
+	CREDIT_NOTE   : '#D9EAFD',
+	INVOICE       : '#CDF7D4',
+};
+
 const getColumns = ({ setOrderBy, orderBy, geo }) => [
 	{
 
 		Header   : <div className={styles.head}>INVOICE ID</div>,
-		accessor : 'invoiceNumber',
-		Cell     : ({ row: { original } }) => {
-			const value = original?.invoiceNumber || original?.proformaNumber;
-
-			return (
+		accessor : (row) => (
+			(
 				<div className={styles.data}>
-					<Tooltip placement="right" content={value}>
-						<div className={styles.over_flow_div}>{value || '-'}</div>
-					</Tooltip>
+					<div className={styles.fieldPair}>
+						{(getDocumentNumber({ itemData: row }))?.length > 10 ? (
+							<Tooltip
+								interactive
+								placement="top"
+								content={(
+									<div className={styles.tool_tip}>
+										{getDocumentNumber({ itemData: row })}
+									</div>
+								)}
+							>
+								<text
+									className={styles.link}
+									onClick={() => window.open(getDocumentUrl({ itemData: row }), '_blank')}
+									role="presentation"
+								>
+									{`${(getDocumentNumber({ itemData: row }))}`}
+								</text>
+							</Tooltip>
+						)
+							: (
+								<div
+									className={styles.link}
+									onClick={() => window.open(getDocumentUrl({ itemData: row }), '_blank')}
+									role="presentation"
+								>
+									{getDocumentNumber({ itemData: row })}
+								</div>
+							)}
+						<div>
+							<Pill size="sm" color={INVOICE_TYPE[(getByKey(row, 'invoiceType'))]}>
+
+								{row?.eInvoicePdfUrl ? 'E INVOICE' : startCase(getByKey(row, 'invoiceType'))}
+
+							</Pill>
+						</div>
+					</div>
 				</div>
-			);
-		},
+			)
+		),
+		id: 'invoice_number',
 	},
 	{
 		Header   : <div className={styles.head}>SHIPMENT ID</div>,
@@ -40,8 +78,8 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 			<text>
 				<div className={styles.flex} style={{ flexDirection: 'row', justifyContent: 'center' }}>
 					<div className={styles.shipment_id_style} style={{ color: 'black' }}>
-						{!original?.job?.jobNumber
-							? 'NA' : original?.job?.jobNumber}
+						{!original?.sidNo
+							? 'NA' : original?.sidNo}
 					</div>
 				</div>
 			</text>
@@ -49,13 +87,13 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 	},
 	{
 		Header   : <div className={styles.head}>TYPE OF SERVICE</div>,
-		accessor : 'shipmentType',
+		accessor : 'serviceType',
 		width    : 1,
-		Cell     : ({ row: { original } }) => (
+		Cell     : ({ cell: { value } }) => (
 			<div className={styles.head}>
-				{!original?.job?.shipmentType
+				{!value
 					? 'NA'
-					: Service?.[original?.job?.shipmentType]?.name}
+					: startCase(value)}
 				{' '}
 			</div>
 		),
@@ -66,8 +104,8 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 				className={styles.head}
 				role="presentation"
 				onClick={() => setOrderBy((prev) => ({
-					key   : 'grandTotal',
-					order : prev.order === 'Asc' ? 'Desc' : 'Asc',
+					key   : 'invoiceAmount',
+					order : prev.order === 'asc' ? 'desc' : 'asc',
 				}))}
 			>
 				<div
@@ -76,8 +114,8 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 					style={{
 						flexDirection: 'column',
 						transform:
-							orderBy.key === 'grandTotal'
-							&& orderBy.order === 'Asc'
+							orderBy.key === 'invoiceAmount'
+							&& orderBy.order === 'asc'
 							&& 'rotate(180deg)',
 					}}
 				>
@@ -94,15 +132,15 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 				&nbsp;AMOUNT
 			</div>
 		),
-		accessor : 'grandTotal',
+		accessor : 'invoiceAmount',
 		width    : 1,
 		Cell     : ({ row: { original } }) => (
 			<div className={styles.head} style={{ fontWeight: 'bold' }}>
-				{!original.grandTotal
+				{!original.invoiceAmount
 					? 'NA'
 					: formatAmount({
-						amount   : original?.grandTotal || 0,
-						currency : original?.currency,
+						amount   : original?.invoiceAmount || 0,
+						currency : original?.invoiceCurrency,
 						options  : {
 							style                 : 'currency',
 							currencyDisplay       : 'code',
@@ -119,7 +157,7 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 				role="presentation"
 				onClick={() => setOrderBy((prev) => ({
 					key   : 'balanceAmount',
-					order : prev.order === 'Asc' ? 'Desc' : 'Asc',
+					order : prev.order === 'asc' ? 'desc' : 'asc',
 				}))}
 			>
 				<div
@@ -128,7 +166,7 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 						flexDirection: 'column',
 						transform:
 							orderBy.key === 'balanceAmount'
-							&& orderBy.order === 'Asc'
+							&& orderBy.order === 'asc'
 							&& 'rotate(180deg)',
 					}}
 				>
@@ -153,7 +191,7 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 					? 'NA'
 					: formatAmount({
 						amount   : original?.balanceAmount || 0,
-						currency : original?.currency,
+						currency : original?.invoiceCurrency,
 						options  : {
 							style                 : 'currency',
 							currencyDisplay       : 'code',
@@ -170,7 +208,7 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 				role="presentation"
 				onClick={() => setOrderBy((prev) => ({
 					key   : 'invoiceDate',
-					order : prev.order === 'Asc' ? 'Desc' : 'Asc',
+					order : prev.order === 'asc' ? 'desc' : 'asc',
 				}))}
 			>
 				<div
@@ -179,7 +217,7 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 						flexDirection: 'column',
 						transform:
 							orderBy.key === 'invoiceDate'
-							&& orderBy.order === 'Asc'
+							&& orderBy.order === 'asc'
 							&& 'rotate(180deg)',
 						cursor: 'pointer',
 					}}
@@ -199,20 +237,17 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 		),
 		accessor : 'invoiceDate',
 		width    : 2,
-		Cell     : ({ row: { original } }) => {
-			const value = original?.invoiceDate || original?.proformaDate;
-			return (
-				<div className={styles.head}>
-					{!value
-						? 'NA'
-						: formatDate({
-							date       : value,
-							dateFormat : geo.formats.date.default,
-							formatType : 'date',
-						})}
-				</div>
-			);
-		},
+		Cell     : ({ cell: { value } }) => (
+			<div className={styles.head}>
+				{!value
+					? 'NA'
+					: formatDate({
+						date       : value,
+						dateFormat : geo.formats.date.default,
+						formatType : 'date',
+					})}
+			</div>
+		),
 	},
 	{
 		Header: (
@@ -222,7 +257,7 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 				onClick={() => {
 					setOrderBy((prev) => ({
 						key   : 'dueDate',
-						order : prev.order === 'Asc' ? 'Desc' : 'Asc',
+						order : prev.order === 'asc' ? 'desc' : 'asc',
 					}));
 				}}
 			>
@@ -232,7 +267,7 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 					style={{
 						flexDirection : 'column',
 						transform     : orderBy.key === 'dueDate'
-							&& orderBy.order === 'Asc'
+							&& orderBy.order === 'asc'
 							&& 'rotate(180deg)',
 						cursor: 'pointer',
 					}}
@@ -269,7 +304,7 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 	},
 	{
 		Header   : <div className={styles.head}>STATUS</div>,
-		accessor : 'paymentStatus',
+		accessor : 'status',
 		width    : 1,
 		Cell     : ({ cell: { value } }) => (
 			<div className={styles.head}>
@@ -284,7 +319,7 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 		accessor : 'invoicePdfUrl',
 		width    : 1,
 		Cell     : ({ row: { original } }) => {
-			const value = original?.invoicePdfUrl || original?.proformaPdfUrl;
+			const value = 	getDocumentUrl({ itemData: original });
 
 			return (
 				<div className={styles.head}>

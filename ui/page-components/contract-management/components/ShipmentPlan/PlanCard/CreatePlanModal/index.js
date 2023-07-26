@@ -65,9 +65,9 @@ function CreatePlanModal({
 	const check = compareAsc(toDate(validity_start_date), new Date());
 
 	const days = differenceInDays(
-		toDate(validity_end_date).setUTCHours(23, 59, 59, 999),
+		new Date(validity_end_date),
 		check === 1
-			? toDate(validity_start_date).setUTCHours(0, 0, 0, 0)
+			? new Date(validity_start_date).setUTCHours(0, 0, 0, 0)
 			: new Date().setUTCHours(0, 0, 0, 0),
 	) + 1;
 
@@ -87,17 +87,17 @@ function CreatePlanModal({
 		getValues,
 		setValue,
 		control,
-	} = useForm({
-		defaultValues: {
-			create_plan: [
-				{
-					max_count  : '',
-					date_range : '',
-				},
-			],
-		},
-	});
+		watch,
 
+	} = useForm();
+
+	console.log('watch', watch());
+	useEffect(() => {
+		setValue('create_plan', [{
+			max_count  : '',
+			date_range : {},
+		}]);
+	}, []);
 	const handleFormSubmit = async (data) => {
 		await createBulkContractUtilisation({
 			data,
@@ -125,8 +125,7 @@ function CreatePlanModal({
 			}
 
 			if (
-				schedule === 'evenly'
-				&& frequency !== ''
+				schedule === 'evenly' && frequency !== ''
 				&& ((frequency === 'others' && freqCount !== '') || frequency !== 'others')
 			) {
 				const newDays = frequency === 'others' ? freqCount : frequency;
@@ -139,7 +138,7 @@ function CreatePlanModal({
 
 				setError(false);
 
-				setValue('create_plan', [...Array(firstChild)].map((_, index) => {
+				const val = [...Array(firstChild)].map((_, index) => {
 					const tempEndDate = addDays(
 						check === 1 ? toDate(validity_start_date) : new Date(),
 						(index + 1) * newDays - 1,
@@ -153,19 +152,18 @@ function CreatePlanModal({
 					const newEndDate = checkEnd === 1 ? toDate(validity_end_date) : toDate(tempEndDate);
 
 					return {
-						max_count:
-							index >= firstChild - extraShipments
-								? secoundChild + 1
-								: secoundChild,
-						date_range: {
+						max_count  : '',
+						date_range : {
 							startDate: addDays(
 								check === 1 ? toDate(validity_start_date) : new Date(),
-								index * newDays,
+								index * newDays || 1,
 							),
 							endDate: newEndDate,
 						},
 					};
-				}));
+				});
+				console.log(val, 'cal');
+				setValue('create_plan', val);
 			}
 		} else {
 			const freq_days = [3, 7, 15].includes(
@@ -179,13 +177,13 @@ function CreatePlanModal({
 			}
 
 			setDisableOptions(true);
-			setFrequency(freq_days);
+			setFrequency(`${freq_days}`);
 			setSchedule(plan_data?.[0]?.booking_schedule_type);
 			setValue('create_plan', (plan_data || []).map((data) => ({
 				max_count  : data?.max_count || data?.max_volume || data?.max_weight,
 				date_range : {
-					startDate : new Date(data?.validity_start_date),
-					endDate   : new Date(data?.validity_end_date),
+					startDate : data?.validity_start_date,
+					endDate   : data?.validity_end_date,
 				},
 				id: data?.id,
 			})));

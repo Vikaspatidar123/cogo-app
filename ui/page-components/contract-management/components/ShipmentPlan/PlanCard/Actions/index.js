@@ -51,38 +51,38 @@ function Actions({
 
 	return (
 		<div className={styles.container}>
-			{!isExistingManual && (
+			{/* {!isExistingManual && (
 				<>
-					{showCreateUpdateBtn && !isEmpty(planData) && (
-						<div
-							role="presentation"
-							className={styles.edit_btn}
-							onClick={() => setShowModal(true)}
-						>
-							Edit Plan
-						</div>
-					)}
-
+					{showCreateUpdateBtn && !isEmpty(planData) && ( */}
+			<div
+				role="presentation"
+				className={styles.edit_btn}
+				onClick={() => setShowModal(true)}
+			>
+				Edit Plan
+			</div>
+			{/* )} */}
+			{/*
 					{showCreateUpdateBtn
 						&& isEmpty(planData)
-						&& !utilisationCountExceed && (
-							<div
-								role="presentation"
-								className={styles.edit_btn}
-								onClick={() => setShowModal(true)}
-							>
-								Create Plan
-							</div>
-					)}
-					{status !== 'rejected' && (
-						<Button themeType="secondary" type="button" onClick={viewShipmentPlan}>
-							{showPlanBox ? 'Hide' : 'Shipment'}
-							{' '}
-							Plan
-						</Button>
-					)}
-				</>
-			)}
+						&& !utilisationCountExceed && ( */}
+			<div
+				role="presentation"
+				className={styles.edit_btn}
+				onClick={() => setShowModal(true)}
+			>
+				Create Plan
+			</div>
+			{/* )} */}
+			{/* {status !== 'rejected' && ( */}
+			<Button themeType="secondary" type="button" onClick={viewShipmentPlan}>
+				{showPlanBox ? 'Hide' : 'Shipment'}
+				{' '}
+				Plan
+			</Button>
+			{/* )} */}
+			{/* </> */}
+			{/* )} */}
 
 			{withShippingLineContract && (
 				<>

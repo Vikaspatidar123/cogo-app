@@ -34,7 +34,7 @@ function Child({
 
 			{controls.map((controlItem) => {
 				const Element = getField(controlItem.type);
-				console.log(controlItem, 'controlItem');
+
 				if (!Element) return null;
 				return (
 					<div className={styles.list} style={{ width: getWidth(controlItem?.span) }}>

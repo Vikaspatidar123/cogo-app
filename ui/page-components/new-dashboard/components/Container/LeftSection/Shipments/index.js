@@ -26,7 +26,7 @@ function Shipments({ list }) {
 			<Carousel
 				slides={carouselData}
 				autoScroll
-				timeInterval={10000}
+				timeInterval={5000}
 				showDots
 				showArrow={false}
 				size="sm"

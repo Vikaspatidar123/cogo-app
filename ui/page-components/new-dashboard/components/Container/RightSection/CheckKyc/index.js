@@ -19,7 +19,7 @@ function CheckKyc() {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<div className={styles.container}>
+		<div className={`${styles.container} ${kyc_status === 'verified' ? styles.verified : styles.panding}`}>
 			<div className={styles.box}>
 				<Image
 					src={GLOBAL_CONSTANTS.image_url.kyc_image}

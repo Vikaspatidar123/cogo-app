@@ -6,6 +6,9 @@ import { getPanHolderStatus } from '../utils/getPanHolderStatus';
 
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 
 const useGetBusiness = (props) => {
 	const { organization } = useSelector((state) => state.profile);
@@ -54,12 +57,12 @@ const useGetBusiness = (props) => {
 				setValue('company_type', companyBasedOnPanNumber);
 			} else if (watchTaxNumber.length === 15) {
 				setValue('tax_number', watchTaxNumber);
-				setValue('pincode', (!isEmpty(addresses) && (addresses[0] || {}).pincode) || '');
-				setValue('address', (!isEmpty(addresses) && (addresses[0] || {}).address) || '');
+				setValue('pincode', (!isEmpty(addresses) && (addresses[ZEROTH_INDEX] || {}).pincode) || '');
+				setValue('address', (!isEmpty(addresses) && (addresses[ZEROTH_INDEX] || {}).address) || '');
 				setValue('name', trade_name || business_name || '');
 			}
 		} catch (error) {
-			console.error('error :: ', error);
+			console.error('error', error);
 		}
 	}, [trigger, organization, registrationNumberType, setValue, watchBusinessName, watchTaxNumber]);
 

@@ -1,8 +1,13 @@
 import { Pill } from '@cogoport/components';
 import { IcCCompleteJourney } from '@cogoport/icons-react';
+import { addDays } from '@cogoport/utils';
 
 import styles from '../components/Details/CargoDetails/styles.module.css';
 import { INCOTERMOPTIONS } from '../constants/incotermOptions';
+
+import { Image } from '@/packages/next';
+
+const ONE_MONTH_FROM_TODAY = 31;
 
 const get = (formObject = {}, key = '') => formObject[key] || null;
 
@@ -16,16 +21,17 @@ const controls = [
 		initialCall        : true,
 		getModifiedOptions : (options) => (options || []).map((x) => ({
 			...x,
-			value: x.id,
-			label:
-	<>
-		<div>{x.commodity}</div>
-		<div>
-			(
-			{x.subCommodity}
-			)
-		</div>
-	</>,
+			value : x.id,
+			label : (
+				<>
+					<div>{x.commodity}</div>
+					<div>
+						(
+						{x.subCommodity}
+						)
+					</div>
+				</>
+			),
 		})),
 	},
 	{
@@ -38,7 +44,14 @@ const controls = [
 			value: x.locationId,
 			label:
 	<div className={styles.country_flag_options}>
-		{x.countryFlagIcon ? <img src={x.countryFlagIcon} alt="cogo" /> : <IcCCompleteJourney />}
+		{x.countryFlagIcon ? (
+			<Image
+				src={x.countryFlagIcon}
+				alt="cogo"
+				width={24}
+				height={24}
+			/>
+		) : <IcCCompleteJourney />}
 		<div>{x.countryName}</div>
 		{x?.countryType === 'BLOCKED' && (
 			<Pill color="red">{x?.countryType}</Pill>
@@ -77,12 +90,11 @@ const controls = [
 		type        : 'text',
 	},
 	{
-		name                  : 'transitDate',
-		placeholder           : 'Transit Start Date',
-		type                  : 'datepicker',
-		minDate               : new Date(Date.now() + 4 * 24 * 60 * 60 * 1000),
-		maxDate               : new Date().setDate(new Date().getDate() + 31),
-		isPreviousDaysAllowed : false,
+		name        : 'transitDate',
+		placeholder : 'Transit Start Date',
+		type        : 'datepicker',
+		minDate     : new Date(),
+		maxDate     : addDays(new Date(), ONE_MONTH_FROM_TODAY),
 	},
 	{
 		name        : 'locationFrom',
@@ -111,13 +123,13 @@ const controls = [
 ];
 
 const getControls = ({
-	setCommodityName = () => {},
+	setCommodityName = () => { },
 	activeTab = '',
 	formDetails = {},
-	setDescription = () => {},
+	setDescription = () => { },
 	transitType = '',
-	setCountryCode = () => {},
-	setCountryDetails = () => {},
+	setCountryCode = () => { },
+	setCountryDetails = () => { },
 }) => controls.map((control) => {
 	if (control.name === 'policyCommodityId') {
 		return {
@@ -132,8 +144,11 @@ const getControls = ({
 	if (control.name === 'policyCountryId') {
 		return {
 			...control,
-			placeholder  : activeTab === 'IMPORT' ? 'Origin Country' : 'Destination Country',
-			handleChange : (e) => {
+			placeholder:
+				activeTab === 'IMPORT'
+					? 'Origin Country'
+					: 'Destination Country',
+			handleChange: (e) => {
 				setCountryDetails({
 					checkSantion      : e?.countryType,
 					sanctionedCountry : e?.countryName,
@@ -141,16 +156,22 @@ const getControls = ({
 				setCountryCode(e?.countryCode);
 			},
 			params: {
-				transitMode: transitType === 'Ocean' ? 'SEA' : transitType?.toUpperCase() || '',
+				transitMode:
+					transitType === 'Ocean'
+						? 'SEA'
+						: transitType?.toUpperCase() || '',
 			},
 		};
 	}
 	if (control.name === 'incoterm') {
 		return {
 			...control,
-			options: activeTab === 'IMPORT'
-				? INCOTERMOPTIONS.filter((option) => option.value !== 'CIF')
-				: INCOTERMOPTIONS,
+			options:
+				activeTab === 'IMPORT'
+					? INCOTERMOPTIONS.filter(
+						(option) => option.value !== 'CIF',
+					)
+					: INCOTERMOPTIONS,
 		};
 	}
 

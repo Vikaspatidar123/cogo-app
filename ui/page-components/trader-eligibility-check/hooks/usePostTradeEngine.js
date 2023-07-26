@@ -32,11 +32,11 @@ const usePostTradeEngine = () => {
 					tradeEngineInputId : draftIdFromAddon || draftId,
 				},
 			});
-			if (res?.data) {
+			if (res?.data && (draftIdFromAddon || draftId)) {
 				getTradeEngineList({ draftIdFromAddon, draftId });
 			}
 		} catch (error) {
-			const code = error?.error?.errorCode || '';
+			const code = error?.response?.data?.errorCode || '';
 			if (code === 'ERR_1000') {
 				getTradeEngineList({ draftIdFromAddon, draftId });
 			} else {
@@ -47,9 +47,8 @@ const usePostTradeEngine = () => {
 
 	return {
 		createTradeEngine,
-		createTradeEngineLoading: loading,
 		tradeEngineResponse,
-		getTradeEngineListLoading,
+		getTradeEngineListLoading: loading || getTradeEngineListLoading,
 	};
 };
 

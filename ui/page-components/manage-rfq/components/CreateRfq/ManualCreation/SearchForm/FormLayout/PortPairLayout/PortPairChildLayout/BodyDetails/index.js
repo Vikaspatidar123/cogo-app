@@ -28,6 +28,8 @@ function BodyDetails(props) {
 		showElements = {},
 		buttonText,
 		setValue,
+		hscodeDetails,
+		setHscodeDetails = () => {},
 		watchSearchRates,
 		shippingLinesDetails,
 		setShippingLinesDetails,
@@ -68,6 +70,8 @@ function BodyDetails(props) {
 								controls={controls}
 								name={name}
 								setValue={setValue}
+								hscodeDetails={hscodeDetails}
+								setHscodeDetails={setHscodeDetails}
 								containersListLength={fields.length}
 								locationName={locationName}
 								remove={remove}

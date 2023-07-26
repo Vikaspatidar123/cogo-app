@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import Ports from '../../../common/PortCards';
 import getCreateContractData from '../../../helpers/getCreateContractData';
@@ -12,17 +12,25 @@ function Details({
 	spot_searches,
 	portPairloading,
 	activePortPair,
-	formData,
 	listFilters,
 	setListFilter = () => {},
 	stats = {},
 	setFormData = () => {},
 	setActivePortPair = () => {},
 	setShowContractCreation = () => {},
+	spotSearch,
 }) {
-	const [selectedData, setSelectedData] = useState({});
 	const [cardIds, setCardIds] = useState({});
-	const selectedPairs = Object.keys(selectedData).length;
+	const [selectedData, setSelectedData] = useState({});
+	const [radioSelected, setRadioSelected] = useState({});
+
+	const selectedPairs = useMemo(() => Object.keys(selectedData).reduce((acc, curr) => {
+		if (selectedData[curr]) {
+			return acc + 1;
+		}
+		return acc;
+	}, 0), [selectedData]);
+
 	const totalLength = spot_searches.length;
 
 	const { portPairRateloading, portPairRates } = useGetRfqSearch({
@@ -32,7 +40,6 @@ function Details({
 	});
 
 	const { spot_search } = portPairRates || {};
-	const spotSearchId = spot_searches[activePortPair]?.id || '';
 
 	useEffect(() => {
 		const result = getCreateContractData({
@@ -41,7 +48,8 @@ function Details({
 			cardIds,
 		});
 		setFormData(result);
-	}, [cardIds, selectedData, setFormData, spot_searches]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [selectedData]);
 
 	return (
 		<div className={styles.container}>
@@ -66,11 +74,12 @@ function Details({
 				selectedData={selectedData}
 				setSelectedData={setSelectedData}
 				setCardIds={setCardIds}
+				radioSelected={radioSelected}
+				setRadioSelected={setRadioSelected}
+				spotSearch={spotSearch}
 			/>
 			<Footer
 				selectedPairs={selectedPairs}
-				formData={formData}
-				spotSearchId={spotSearchId}
 				setShowContractCreation={setShowContractCreation}
 			/>
 		</div>

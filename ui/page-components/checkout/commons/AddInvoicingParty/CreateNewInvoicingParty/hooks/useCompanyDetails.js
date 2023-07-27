@@ -7,6 +7,8 @@ import { useForm } from '@/packages/forms';
 import patterns from '@/ui/commons/configurations/patterns';
 import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
+const ORG_INFO = ['business_name', 'company_type'];
+
 const useCompanyDetails = ({
 	filledDetails = {},
 	setFilledDetails = () => {},
@@ -100,6 +102,44 @@ const useCompanyDetails = ({
 		newFields[controlName] = newField;
 	});
 
+	const newControlsField = {};
+
+	companyDetailsControls.forEach((config) => {
+		let newField = { ...config };
+		if (config.name === 'registration_number') {
+			newField = {
+				...config,
+				onBlur: () => onBlurTaxPanGstinControl(),
+				...(businessApiLoading && {
+					suffix: <Loader themeType="primary" />,
+				}),
+
+				...(validate_registration_number && { maxLength: 10 }),
+				label: IDENTIFICAITON_LABEL,
+
+				rules: {
+					...(newField.rules || {}),
+					pattern: {},
+					...(validate_registration_number && {
+						pattern: {
+							value   : patterns.PAN_NUMBER,
+							message : 'PAN is invalid',
+						},
+					}),
+				},
+			};
+		}
+
+		if (ORG_INFO.includes(config.name)) {
+			newField = {
+				...config,
+				disabled: businessApiLoading,
+			};
+		}
+
+		newControlsField[config.name] = newField;
+	});
+
 	const newErrors = {};
 	Object.entries(errors).forEach(([key, value]) => {
 		if (key === 'registration_number') {
@@ -118,7 +158,7 @@ const useCompanyDetails = ({
 		orgControls,
 		additionalOrgControls,
 		companyDetailsControls,
-		companyDetailsFormProps  : { ...companyDetailsFormProps },
+		companyDetailsFormProps  : { ...companyDetailsFormProps, fields: newControlsField },
 		control,
 	};
 };

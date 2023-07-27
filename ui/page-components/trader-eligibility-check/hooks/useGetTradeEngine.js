@@ -11,13 +11,15 @@ const useGetTradeEngine = () => {
 
 	const getTradeEngineList = useCallback(async ({ draftId, draftIdFromAddon }) => {
 		try {
-			await trigger({
-				params: {
-					tradeEngineInputId: draftIdFromAddon || draftId,
-				},
-			});
+			if (draftId || draftIdFromAddon) {
+				await trigger({
+					params: {
+						tradeEngineInputId: draftIdFromAddon || draftId,
+					},
+				});
+			}
 		} catch (error) {
-			console.log(error?.error?.message);
+			console.error(error?.error?.message);
 		}
 	}, [trigger]);
 

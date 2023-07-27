@@ -71,11 +71,11 @@ function List({
 				<div className={styles.card_div}>
 					<div className={styles.pagination_wrapper}>
 						<Pagination
-							className="md"
-							pageLimit={page_limit}
-							pagination={page}
-							total={total_count}
-							setPagination={(val) => setParams({ ...params, page: val })}
+							type="table"
+							currentPage={page}
+							totalItems={total_count}
+							pageSize={page_limit}
+							onPageChange={(val) => setParams({ ...params, page: val })}
 						/>
 					</div>
 				</div>

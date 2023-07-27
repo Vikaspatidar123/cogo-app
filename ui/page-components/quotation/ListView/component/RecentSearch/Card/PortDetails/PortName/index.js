@@ -2,6 +2,11 @@ import { Tooltip, cl } from '@cogoport/components';
 
 import styles from '../styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const MAX_NAME_LENGTH = 11;
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+
 function PortName({ location }) {
 	const splitDisplayName = (location.display_name || '').split(',');
 	const displayNameLength = splitDisplayName?.length;
@@ -15,7 +20,9 @@ function PortName({ location }) {
 			<Tooltip
 				content={<div style={{ color: 'grey' }}>{location.name}</div>}
 			>
-				<div className={cl`${styles.text} ${styles.name}`}>{location.name?.substring(0, 11) || ''}</div>
+				<div className={cl`${styles.text} ${styles.name}`}>
+					{location.name?.substring(ZEROTH_INDEX, MAX_NAME_LENGTH) || ''}
+				</div>
 			</Tooltip>
 		</div>
 	);

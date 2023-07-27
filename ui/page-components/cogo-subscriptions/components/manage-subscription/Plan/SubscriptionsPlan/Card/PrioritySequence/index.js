@@ -22,7 +22,7 @@ function PrioritySequence({ expiresIn }) {
 				height={25}
 				className={styles.calender_image}
 			/>
-			<span className={styles.days}>{expiresIn}</span>
+			<span className={expiresIn.length === 1 ? styles.days_1 : styles.days}>{expiresIn}</span>
 			<span className={styles.date}>
 				{expiresIn === START_COUNT
 					? t('subscriptions:day_text')

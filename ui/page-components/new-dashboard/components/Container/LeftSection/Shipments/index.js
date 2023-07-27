@@ -4,6 +4,7 @@ import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
 import card from './Card';
+import CreateShipment from './CreateShipment';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
@@ -16,7 +17,7 @@ function Shipments({ list }) {
 	const carouselData = card({ data: list });
 
 	if (isEmpty(carouselData)) {
-		return null;
+		return <CreateShipment />;
 	}
 	return (
 		<div>

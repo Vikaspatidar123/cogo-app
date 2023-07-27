@@ -23,6 +23,20 @@ function Head() {
 	const onUpgrade = () => {
 		push('/saas/cogo-subscriptions/manage-subscription');
 	};
+	const content = (
+		<div>
+			{t('dashboard:head_text_3')}
+			<span className={styles.premium}>
+				{plan_name}
+			</span>
+			{t('dashboard:head_text_4')}
+		</div>
+	);
+
+	const PLAN_MAPPING = {
+		true  : t('dashboard:head_text_1'),
+		false : content,
+	};
 
 	return (
 		<div className={styles.container}>
@@ -36,11 +50,12 @@ function Head() {
 				</div>
 
 				<div className={styles.text}>
-					{t('dashboard:head_text_1')}
+					{/* {t('dashboard:head_text_1')}
 					<span className={styles.premium}>
 						{plan_name}
 					</span>
-					{t('dashboard:head_text_2')}
+					{t('dashboard:head_text_2')} */}
+					{PLAN_MAPPING[is_free_plan]}
 				</div>
 				<div className={styles.button}>
 					<Button size="sm" themeType="accent" type="button" onClick={() => onUpgrade()}>

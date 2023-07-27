@@ -128,8 +128,10 @@
 	"export_factoring_text_2":"là ngay xung quanh góc.",
 	"export_factoring_text_3":"Dễ dàng đăng ký trực tuyến chỉ trong vài phút",
 	"export_factoring_text_4":"Tài chính lên tới 90% giá trị hóa đơn thương mại của bạn và tận dụng giới hạn bảo hiểm miễn phí tài sản thế chấp.",
-	"head_text_1":"Bạn là của chúng tôi",
+	"head_text_1":"Mở khóa các tính năng cao cấp với các kế hoạch thành viên của chúng tôi!",
 	"head_text_2":"Người dùng đã đăng ký",
+	"head_text_3":"Tận hưởng những lợi ích của ",
+	"head_text_4":"Kế hoạch thành viên.",
 	"book_text":"Sách",
 	"cogo_logo":"đường",
 	"track_shipment_text1":"Theo dõi lô hàng của bạn!",
@@ -169,6 +171,7 @@
 	"schedule_title_text_1":"Lịch trình đại dương",
 	"schedule_title_text_2":"Lập kế hoạch một lô hàng sắp tới bằng cách sử dụng lịch vận chuyển toàn diện.",
 	"schedule_title_text_3":"Lịch trình không khí",
-	"schedule_title_text_4":"Lên kế hoạch cho một hàng hóa sắp tới bằng cách sử dụng lịch trình không khí toàn diện."
+	"schedule_title_text_4":"Lên kế hoạch cho một hàng hóa sắp tới bằng cách sử dụng lịch trình không khí toàn diện.",
+	"shipment_create_title_text":"Tạo lô hàng mới"
 
 }

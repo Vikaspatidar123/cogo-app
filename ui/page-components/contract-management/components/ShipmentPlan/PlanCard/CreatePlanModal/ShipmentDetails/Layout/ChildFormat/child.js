@@ -1,10 +1,9 @@
-import { IcMDelete, IcMPlusInCircle } from '@cogoport/icons-react';
+import { IcMDelete } from '@cogoport/icons-react';
 
 import FieldArrayComponent from './FieldArrayComponent';
 import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
-import getWidth from '@/ui/page-components/checkout/utils/getWidth';
 
 function Child({
 	controls,
@@ -14,8 +13,6 @@ function Child({
 	name,
 	remove,
 	schedule,
-	showDeleteButton = true,
-	noDeleteButtonTill = 0,
 	disabled = false,
 	handleAppendChild = () => { },
 	showButtons,
@@ -23,75 +20,74 @@ function Child({
 	vesselOptionsLength,
 }) {
 	return (
-		<div className={styles.container}>
-			<div className={`${styles.styled_row} form-fields-${name}-${index}`}>
+		<>
+			{' '}
+			<div className={styles.container}>
+				<div className={`${styles.styled_row} form-fields-${name}-${index}`}>
 
-				{controls.map((controlItem) => {
-					const { type = '', label } = controlItem;
+					{controls.map((controlItem) => {
+						const { type = '', label } = controlItem;
 
-					if (!controlItem) {
-						return null;
-					}
-					if (type === 'fieldArray') {
-						const arrayName = `create_plan.${index}.sub_create_plan`;
+						if (!controlItem) {
+							return null;
+						}
+						if (type === 'fieldArray') {
+							const arrayName = `create_plan.${index}.sub_create_plan`;
+
+							return (
+								<FieldArrayComponent
+									key={`child_format_${index}`}
+									{...controlItem}
+									name={arrayName}
+									control={control}
+									vesselOptionsLength={vesselOptionsLength}
+								/>
+
+							);
+						}
+
+						const Element = getField(controlItem.type);
+						if (!Element) return null;
 
 						return (
-							<FieldArrayComponent
-								key={`child_format_${index}`}
-								{...controlItem}
-								name={arrayName}
-								control={control}
-								vesselOptionsLength={vesselOptionsLength}
-							/>
+							<>
+								{label ? <div className={styles.label}>{label}</div> : null}
 
-						);
-					}
-
-					const Element = getField(controlItem.type);
-					if (!Element) return null;
-
-					return (
-						<>
-							{label ? <div className={styles.label}>{label}</div> : null}
-
-							<Element
-								{...controlItem}
-							// width="100%"
-								control={control}
-								key={`${name}.${index}.${controlItem.name}`}
-								id={`${name}.${index}.${controlItem.name}`}
-								name={`${name}.${index}.${controlItem.name}`}
-							/>
-						</>
-					);
-				})}
-
-				{schedule === 'randomly' && !isEditPlan && (
-					<>
-						{showDeleteButton && index >= noDeleteButtonTill && !disabled ? (
-							<div className={styles.remove_icon}>
-								<IcMDelete
-									width={20}
-									height={20}
-									onClick={() => remove(index, 1)}
+								<Element
+									{...controlItem}
+									control={control}
+									key={`${name}.${index}.${controlItem.name}`}
+									id={`${name}.${index}.${controlItem.name}`}
+									name={`${name}.${index}.${controlItem.name}`}
 								/>
-							</div>
-						) : null}
-						{showButtons && !disabled ? (
-							<div className={styles.add_icon}>
-								{index === listLength - 1 && (
-									<IcMPlusInCircle
-										width={20}
-										height={20}
-										onClick={() => handleAppendChild()}
-									/>
-								)}
-							</div>
-						) : null}
-					</>
-				)}
+							</>
+						);
+					})}
+				</div>
 			</div>
-		</div>
+
+			{schedule === 'randomly' && !isEditPlan && (
+
+				<div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+					{showButtons && !disabled && index === listLength - 1 ? (
+
+						<>
+							<div role="presentation" className={styles.remove_icon} onClick={() => remove(index, 1)}>
+								Delete Prev
+								<IcMDelete width={16} height={16} />
+							</div>
+
+							<div role="presentation" className={styles.add_icon} onClick={() => handleAppendChild()}>
+								+ Add New
+							</div>
+						</>
+					) : null}
+
+				</div>
+			)}
+
+		</>
+
 	);
 }
 

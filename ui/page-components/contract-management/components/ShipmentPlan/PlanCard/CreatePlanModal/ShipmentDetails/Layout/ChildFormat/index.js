@@ -48,6 +48,7 @@ function ChildFormat(
 					index={index}
 					control={control}
 					controls={controls}
+					listLength={fields.length}
 					name={name}
 					schedule={schedule}
 					remove={remove}

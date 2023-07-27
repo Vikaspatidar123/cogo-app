@@ -11,7 +11,6 @@ import useSavePdcDocsDetails from '@/ui/page-components/export-factoring/hooks/u
 function AddEditPdcInfo({
 	doc = {},
 	data = {},
-	showPdcForm,
 	setShowPdcForm,
 	refetch,
 	creditRequest,
@@ -21,7 +20,7 @@ function AddEditPdcInfo({
 	const addPdcDocControls = getAddPdcDocControls();
 
 	const {
-		control, watch, handleSubmit, setValue, formState: { errors },
+		control, handleSubmit, setValue, formState: { errors },
 	} = useForm();
 
 	const { loading, onPdcDocSave } = useSavePdcDocsDetails({
@@ -35,7 +34,7 @@ function AddEditPdcInfo({
 		if (id) {
 			setValue('postdated_cheque', document_url);
 		}
-	}, [doc]);
+	}, [doc, document_url, id, setValue]);
 
 	return (
 		<div className={styles.container}>
@@ -45,7 +44,7 @@ function AddEditPdcInfo({
 					return (
 						item?.type
 						&& (
-							<div className={styles.field}>
+							<div className={styles.field} key={item.name}>
 								<div className={styles.field_name}>{item?.label}</div>
 								<Element control={control} {...item} />
 								<div className={styles.error_text}>

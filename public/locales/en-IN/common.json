@@ -1,6 +1,6 @@
 {
     "text_1":"Not registered yet?",
-    "text_2":"SignUp",
+    "text_2":"Sign Up",
     "text_3":"Please enter your credentials to login",
     "email_groupButton": "Email",
     "mobile_groupButton": "Mobile",
@@ -37,7 +37,7 @@
     "rightPanel_registration_links_termsAndPrivacyPolicy_links_terms_href": "https://www.cogoport.com/en-IN/terms-and-conditions/",
     "rightPanel_registration_links_termsAndPrivacyPolicy_links_privacyPolicy_href": "https://www.cogoport.com/en-IN/privacy-policy/",
     "rightPanel_registration_mobile_number_is_required":"Number is required.",
-    "rightPanel_signupLink_link": "SignUp",
+    "rightPanel_signupLink_link": "Sign Up",
     "rightPanel_verification_texts_1": "Verify through email or mobile number",
     "rightPanel_verification_texts_2": "You need to verify your email or phone to complete signup.",
     "rightPanel_verification_texts_3": "Verification code has been sent to",
@@ -63,6 +63,7 @@
     "layouts_app_header_navigation_tools_options_liveVessel_label": "Live Vessel Tracking",
     "layouts_app_header_navigation_premium_services_label": "Premium Services",
     "layouts_app_header_navigation_premium_services_options_insurance_label": "Insurance",
+    "layouts_app_header_navigation_premium_services_options_exportFactoring_label":"Export Factoring",
     "layouts_app_header_navigation_premium_services_options_dutiesTaxes_label": "Duties & Taxes Calculator",
     "layouts_app_header_navigation_premium_services_options_traderEligibility_label": "Trader Eligibility Check",
     "layouts_app_header_navigation_premium_services_options_importExportDocuments_label": "Import/Export Documents",
@@ -95,6 +96,7 @@
     "layouts_app_header_navigation_tools_options_trackAndTrace_description": "Track and Trace your shipments",
     "layouts_app_header_navigation_tools_options_liveVessel_description": "Real time vessel position",
     "layouts_app_header_navigation_premium_services_options_insurance_description": "Secure your cargo and avoid high unwanted costs",
+    "layouts_app_header_navigation_premium_services_options_exportFactoring_description": "Get collateral free working capital on commercial invoices",
     "layouts_app_header_navigation_premium_services_options_dutiesTaxes_description": "Know the total amount you will have to pay to plan better",
     "layouts_app_header_navigation_premium_services_options_traderEligibility_description": "Check that your parter is legally permitted to trade",
     "layouts_app_header_navigation_premium_services_options_importExportDocuments_description": "Know the documents you would need to avoid delays",
@@ -111,5 +113,14 @@
     "add_new_account_button":"+ Add New Account",
     "kyc_verified":"Verified",
     "kyc_rejected":"KYC Rejected",
-    "kyc_pending":"KYC Pending"
+    "kyc_pending":"KYC Pending",
+    "loading_text":"Loading...",
+    "user_invitation_text":"User Invitation",
+    "accept_user_text":"The link you received in email is already used or expired",
+    "accept_user_message":"Try Setting your Password Again?",
+    "email_verification":"Email Verification Failed!",
+    "send_email_text":"Send Verification Email",
+    "token_invalid_text":"Token is invalid",
+    "token_expired_text":"Token has expired"
+
 }

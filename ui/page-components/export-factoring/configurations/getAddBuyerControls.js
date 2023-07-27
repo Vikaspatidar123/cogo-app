@@ -64,36 +64,6 @@ const controls = [
 			},
 		],
 	},
-	// {
-	// 	name        : 'credit_period',
-	// 	type        : 'text',
-	// 	placeholder : 'Credit Period (Days)',
-	// 	label       : 'Credit Period (Days)',
-	// 	span        : 6,
-	// 	rules       : { required: 'Credit Period is required' },
-	// },
-	// {
-	// 	name        : 'credit_period_type',
-	// 	label       : 'Date From',
-	// 	type        : 'select',
-	// 	placeholder : 'Date From',
-	// 	span        : 6,
-	// 	rules       : { required: 'Date is required' },
-	// 	options     : [
-	// 		{
-	// 			label : 'Purchase order date',
-	// 			value : 'Purchase order date',
-	// 		},
-	// 		{
-	// 			label : 'Commercial invoice date',
-	// 			value : 'Commercial invoice date',
-	// 		},
-	// 		{
-	// 			label : 'Bill of Lading date',
-	// 			value : 'Bill of Lading date',
-	// 		},
-	// 	],
-	// },
 	{
 		name        : 'address_line_one',
 		label       : 'Company Address',
@@ -158,13 +128,12 @@ const controls = [
 		className : 'primary md',
 	},
 	{
-		name               : 'poc_details',
-		type               : 'fieldArray',
-		showButtons        : true,
-		buttonText         : 'Add Poc',
-		// noDeleteButtonTill : 0,
-		value              : [{}],
-		controls           : [
+		name        : 'poc_details',
+		type        : 'fieldArray',
+		showButtons : true,
+		buttonText  : 'Add Poc',
+		value       : [{}],
+		controls    : [
 			{
 				name        : 'name',
 				type        : 'text',

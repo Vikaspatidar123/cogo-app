@@ -15,7 +15,7 @@ const useSavePoDocsDetails = ({
 	refetch,
 	creditRequest,
 }) => {
-	const [{ data, loading }, trigger] = useRequest(
+	const [{ loading }, trigger] = useRequest(
 		{
 			method : 'post',
 			url    : 'update_credit_application',

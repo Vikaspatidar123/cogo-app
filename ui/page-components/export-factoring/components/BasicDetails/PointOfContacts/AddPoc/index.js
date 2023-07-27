@@ -24,7 +24,7 @@ function AddPOC({
 				{ADDPOC_CONTROLS.map((item) => {
 					const Element = getField(item.type);
 					return (
-						<div className={styles.field}>
+						<div className={styles.field} key={item?.name}>
 							<Element control={control} {...item} />
 							<div className={styles.error_text}>
 								{errors?.[item?.name]?.message || errors?.[item?.name]?.type }

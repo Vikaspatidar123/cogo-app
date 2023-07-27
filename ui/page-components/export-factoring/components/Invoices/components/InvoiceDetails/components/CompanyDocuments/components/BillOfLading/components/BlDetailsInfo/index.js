@@ -65,19 +65,19 @@ function BlDetailsInfo({
 					rejection_reason={rejection_reason}
 				/>
 			</div>
-			<div className={styles.mainContainer}>
+			<div className={styles.main_container}>
 				{!showEditForm ? (
 					<>
-						<div className={styles.topContainer}>
+						<div className={styles.top_container}>
 							<Tooltip
 								content={<PdfViewer url={document_url} width="100%" />}
 								placement="right"
 								theme="light"
 								interactive
 							>
-								<div className={styles.linkBox}>
+								<div className={styles.link_box}>
 									<IcMPdf height="30px" width="20px" />
-									<div className={styles.mainHead}>Doc</div>
+									<div className={styles.main_head}>Doc</div>
 								</div>
 							</Tooltip>
 							<div style={{ display: 'flex', alignItems: 'center' }}>
@@ -91,7 +91,8 @@ function BlDetailsInfo({
 								)}
 								{(statusTag === 'review_requested' || status === 'active') && (
 									<div
-										className={styles.mainHead}
+										role="presentation"
+										className={styles.main_head}
 										onClick={() => setShowEditForm((pv) => !pv)}
 									>
 										Edit
@@ -99,21 +100,21 @@ function BlDetailsInfo({
 								)}
 							</div>
 						</div>
-						<div className={styles.detailsContainer}>
-							<div className={styles.dataDiv}>
-								<div className={styles.labelText}>
+						<div className={styles.details_container}>
+							<div className={styles.data_div}>
+								<div className={styles.label_text}>
 									BL No:
 								</div>
-								<div className={styles.valueText}>
+								<div className={styles.value_text}>
 									{document_number}
 								</div>
 							</div>
 
-							<div className={styles.dataDiv}>
-								<div className={styles.labelText}>
+							<div className={styles.data_div}>
+								<div className={styles.label_text}>
 									BL Date:
 								</div>
-								<div className={styles.valueText}>
+								<div className={styles.value_text}>
 									{formatDate({
 										date       : document_date,
 										formatType : 'date',
@@ -121,78 +122,78 @@ function BlDetailsInfo({
 								</div>
 							</div>
 
-							<div className={styles.dataDiv}>
-								<div className={styles.labelText}>
+							<div className={styles.data_div}>
+								<div className={styles.label_text}>
 									Vessel Name
 								</div>
-								<div className={styles.valueText}>
+								<div className={styles.value_text}>
 									{vessel_name}
 								</div>
 							</div>
 
-							<div className={styles.dataDiv}>
-								<div className={styles.labelText}>
+							<div className={styles.data_div}>
+								<div className={styles.label_text}>
 									Consignee Name
 								</div>
-								<div className={styles.valueText}>
+								<div className={styles.value_text}>
 									{consignee_name}
 								</div>
 							</div>
 
-							<div className={styles.dataDiv}>
-								<div className={styles.labelText}>
+							<div className={styles.data_div}>
+								<div className={styles.label_text}>
 									Consignee Country
 								</div>
-								<div className={styles.valueText}>
+								<div className={styles.value_text}>
 									{consignee_country.name}
 								</div>
 							</div>
 
-							<div className={styles.dataDiv}>
-								<div className={styles.labelText}>
+							<div className={styles.data_div}>
+								<div className={styles.label_text}>
 									Shipping Line
 								</div>
-								<div className={styles.valueText}>
+								<div className={styles.value_text}>
 									{shipping_line.name}
 								</div>
 							</div>
 
-							<div className={styles.dataDiv}>
-								<div className={styles.labelText}>
+							<div className={styles.data_div}>
+								<div className={styles.label_text}>
 									Destination Port
 								</div>
-								<div className={styles.valueText}>
+								<div className={styles.value_text}>
 									{destination_port.name}
 								</div>
 							</div>
 
-							<div className={styles.dataDiv}>
-								<div className={styles.labelText}>
+							<div className={styles.data_div}>
+								<div className={styles.label_text}>
 									Origin Country
 								</div>
-								<div className={styles.valueText}>
+								<div className={styles.value_text}>
 									{origin_country.name}
 								</div>
 							</div>
 
-							<div className={styles.dataDiv}>
-								<div className={styles.labelText}>
+							<div className={styles.data_div}>
+								<div className={styles.label_text}>
 									Container Number
 								</div>
-								<div className={styles.valueText}>
+								<div className={styles.value_text}>
 									{container_number?.map((x) => (
-										<div className={styles.containerBox} key={x}>{x}</div>
+										<div className={styles.container_box} key={x}>{x}</div>
 									))}
 								</div>
 							</div>
 
-							<div className={styles.dataDiv}>
-								<div className={styles.labelText}>
+							<div className={styles.data_div}>
+								<div className={styles.label_text}>
 									Goods
 								</div>
-								<div className={styles.valueText}>
+								<div className={styles.value_text}>
 									{goods?.map((x) => (
-										<div className={styles.containerBox} key={x}>{x}</div>
+										<div className={styles.container_box} key={x}>{x}</div>
 									))}
 								</div>
 							</div>

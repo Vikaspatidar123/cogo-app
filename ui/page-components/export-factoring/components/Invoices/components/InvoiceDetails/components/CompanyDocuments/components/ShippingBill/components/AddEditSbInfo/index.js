@@ -31,7 +31,7 @@ function AddEditSbInfo({
 			setValue('sb_number', document_number);
 			setValue('marine_insurance', document_url);
 		}
-	}, [doc]);
+	}, [doc, document_date, document_number, document_url, id, setValue]);
 
 	const { loading, onSbDocSave } = useSaveSbDocsDetails({
 		doc,
@@ -50,7 +50,7 @@ function AddEditSbInfo({
 					return (
 						item?.type
 						&& (
-							<div className={styles.field}>
+							<div className={styles.field} key={item.name}>
 								<div className={styles.field_name}>{item?.label}</div>
 								<Element control={control} {...item} />
 								<div className={styles.error_text}>

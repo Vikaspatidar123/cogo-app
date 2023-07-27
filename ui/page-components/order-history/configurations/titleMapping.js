@@ -1,8 +1,8 @@
-const TITLE_MAPPING = {
-	DUTIES    : 'Duties & Taxes',
-	SCREENING : 'Trader Eligibility Check',
-	DOCUMENTS : 'Import/Export Documents',
-	CONTROLS  : 'Import/Export Controls',
-};
+const getTitle = ({ t }) => ({
+	DUTIES    : t('orderHistory:modal_dt_title'),
+	SCREENING : t('orderHistory:modal_tec_title'),
+	DOCUMENTS : t('orderHistory:modal_doc_title'),
+	CONTROLS  : t('orderHistory:modal_control_title'),
+});
 
-export default TITLE_MAPPING;
+export default getTitle;

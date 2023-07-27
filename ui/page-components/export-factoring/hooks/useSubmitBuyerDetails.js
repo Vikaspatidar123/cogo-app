@@ -9,7 +9,7 @@ const useSubmitBuyerDetails = ({
 	countryData,
 	refetch,
 }) => {
-	const [{ data, loading }, trigger] = useRequest(
+	const [{ loading }, trigger] = useRequest(
 		{
 			method : 'post',
 			url    : 'create_export_factoring_buyer_details',

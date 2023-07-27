@@ -2,12 +2,12 @@
     margin: 20px 0px;
 }
 
-.mainContainer{
+.main_container{
     margin: 4px 0px;
 	border: 1px solid #e0e0e0;
 	border-radius: 6px;
 }
-.topContainer{
+.top_container{
     display: flex;
 	justify-content: space-between;
 	border: 1px solid #e0e0e0;
@@ -16,32 +16,31 @@
 	align-items: center;
 	background: #fdfbf6;
 }
-.linkBox{
+.link_box{
     display: flex;
     cursor: pointer;
     align-items: center;
 }
-.mainHead{
+.main_head{
 	font-size: 16px;
 	text-decoration-line: underline;
 	color: #034afd;
 	padding: 4px 10px;
 }
 
-.detailsContainer{
+.details_container{
     width: 100%;
     display: flex;
-    /* justify-content: space-between; */
     flex-wrap: wrap;
     padding: 10px 30px 10px 10px;
 }
 
-.labelText{
+.label_text{
     font-size: 16px;
     color: #828282;
 }
 
-.valueText{
+.value_text{
     font-size: 16px;
     color: #221f20;
     font-weight: 550;
@@ -51,7 +50,7 @@
 	flex-wrap: wrap;
 
 }
-.dataDiv{
+.data_div{
     width: 33%;
     padding: 10px 0px;
 }

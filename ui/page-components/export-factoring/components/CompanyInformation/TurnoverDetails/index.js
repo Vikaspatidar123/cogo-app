@@ -1,7 +1,6 @@
-import { Select } from '@cogoport/components';
 import React, { useEffect } from 'react';
-import { useForm } from '@/packages/forms';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 
 export const controls = [
@@ -42,7 +41,7 @@ export const controls = [
 ];
 
 function TurnoverDetails({ setUpdatedValues }) {
-	const { control, handleSubmit, watch } = useForm();
+	const { control, watch } = useForm();
 	const allFields = watch();
 	useEffect(() => {
 		const spiltStringValue = allFields.turnOver?.split('-') || [];
@@ -62,7 +61,7 @@ function TurnoverDetails({ setUpdatedValues }) {
 			Select Turn Over
 			{controls.map((item) => {
 				const Element = getField(item.type);
-				return <Element control={control} {...item} />;
+				return <Element key={item.name} control={control} {...item} />;
 			})}
 		</div>
 	);

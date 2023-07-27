@@ -44,6 +44,7 @@ function Invoices({
 							themeType="primary"
 							size="md"
 							onClick={() => setOpenFundingRequest((pv) => !pv)}
+							type="button"
 						>
 							Create Funding Request
 						</Button>

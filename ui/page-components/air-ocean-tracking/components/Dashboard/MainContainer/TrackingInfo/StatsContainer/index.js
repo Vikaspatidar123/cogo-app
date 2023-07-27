@@ -1,11 +1,16 @@
 import { cl } from '@cogoport/components';
+import { useTranslation } from 'react-i18next';
 
-import STATS_MAPPING from '../../../../../constant/statsMapping';
+import getStatsMapping from '../../../../../constant/statsMapping';
 
 import styles from './styles.module.css';
 
 function StatsContainer({ stats: statsData = {}, globalFilter, setGlobalFilter }) {
 	const { shipment_status: prevStatus } = globalFilter;
+
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const STATS_MAPPING = getStatsMapping({ t });
 
 	const clickHandler = (key) => {
 		if (key === prevStatus) {

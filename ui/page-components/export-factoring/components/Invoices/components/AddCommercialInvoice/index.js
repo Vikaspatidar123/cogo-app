@@ -57,18 +57,16 @@ function AddCommercialInvoice({
 					</div>
 				</div>
 				<form className={styles.formDiv}>
-					{addCommercialInvoiceControls.map((item) => {
-						if (item.type === 'fieldArray') {
-							return (
-								<FieldArray
-									{...item}
-									control={control}
-									name={item.name}
-									error={errors?.[item.name]}
-								/>
-							);
-						}
-					})}
+					{addCommercialInvoiceControls.map((item) => (
+						<FieldArray
+							key={item.name}
+							{...item}
+							control={control}
+							name={item.name}
+							error={errors?.[item.name]}
+						/>
+
+					))}
 				</form>
 			</Modal.Body>
 			<Modal.Footer>

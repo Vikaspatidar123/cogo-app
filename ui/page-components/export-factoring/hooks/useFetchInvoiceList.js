@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -19,7 +19,7 @@ const useFetchInvoiceList = ({
 		},
 	);
 
-	const fetchInvoiceList = async () => {
+	const fetchInvoiceList = useCallback(async () => {
 		try {
 			await trigger({
 				params: {
@@ -34,13 +34,13 @@ const useFetchInvoiceList = ({
 		} catch (error) {
 			console.error(error, 'err');
 		}
-	};
+	}, [getCreditRequestResponse?.credit_export_factoring_id, pagination, searchValue, trigger]);
 
 	useEffect(() => {
 		if (pagination || searchValue) {
 			fetchInvoiceList();
 		}
-	}, [pagination, searchValue]);
+	}, [fetchInvoiceList, pagination, searchValue]);
 
 	return {
 		fetchInvoiceList,

@@ -31,7 +31,7 @@ function AddEditPoInfo({
 			setValue('po_date', new Date(document_date));
 			setValue('purchase_order', document_url);
 		}
-	}, [doc]);
+	}, [doc, document_date, document_number, document_url, id, setValue]);
 
 	const { loading, onPoDocSave } = useSavePoDocsDetails({
 		doc,
@@ -44,13 +44,13 @@ function AddEditPoInfo({
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.formDiv}>
+			<div className={styles.form_div}>
 				{addPoDocControls.map((item) => {
 					const Element = getField(item?.type);
 					return (
 						item?.type
 						&& (
-							<div className={styles.field}>
+							<div className={styles.field} key={item.name}>
 								<div className={styles.field_name}>{item?.label}</div>
 								<Element control={control} {...item} />
 								<div className={styles.error_text}>
@@ -63,7 +63,7 @@ function AddEditPoInfo({
 				})}
 			</div>
 
-			<div className={styles.buttonFlex}>
+			<div className={styles.button_flex}>
 				<Button
 					type="button"
 					size="md"

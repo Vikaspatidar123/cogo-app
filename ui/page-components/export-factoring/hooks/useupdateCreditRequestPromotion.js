@@ -27,7 +27,7 @@ const useUpdateCreditRequestPromotion = ({
 			setAction('removed');
 			console.error(e);
 		}
-	}, [getCreditRequestResponse?.id, setAction, trigger]);
+	}, [getCreditRequestResponse?.credit_id, setAction, trigger]);
 
 	return { updateCreditPromotion, loading, data };
 };

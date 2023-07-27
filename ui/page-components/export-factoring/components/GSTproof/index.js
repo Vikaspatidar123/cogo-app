@@ -1,6 +1,6 @@
 import { Button } from '@cogoport/components';
 import { IcMFtick, IcMTick } from '@cogoport/icons-react';
-import { startCase } from '@cogoport/utils';
+import { isEmpty, startCase } from '@cogoport/utils';
 
 import useCreateOrganizationCreditRequest from '../../hooks/useCreateCreditRequest';
 
@@ -53,7 +53,7 @@ function GSTproof({
 								{startCase(tax_number)}
 							</div>
 						)}
-						{address.length > 0 &&						(
+						{!isEmpty(address) &&						(
 							<div className={styles.detail}>
 								<IcMFtick fill="#849E4C" width={14} height={14} />
 								{' '}
@@ -69,6 +69,7 @@ function GSTproof({
 								themeType="secondary"
 								size="sm"
 								onClick={() => setProofUrl('')}
+								type="button"
 							>
 								Upload New
 							</Button>
@@ -78,6 +79,7 @@ function GSTproof({
 								disabled={loading}
 								loading={loading}
 								onClick={handleSubmit(submit)}
+								type="button"
 							>
 								<IcMTick />
 								Confirm

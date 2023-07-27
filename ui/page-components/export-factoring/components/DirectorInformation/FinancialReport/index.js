@@ -29,7 +29,7 @@ function FinancialReport({
 				<div className={styles.heading}>Financial Report</div>
 				{financial_data.map((item) => (
 
-					<div>
+					<div key={item.select_year}>
 						{item.select_year}
 						<div className={styles.file_wrapper}>
 							<FilePreview name="Finacial Report" url={item.financial_report} />
@@ -58,7 +58,7 @@ function FinancialReport({
 					/>
 				))}
 				<div className={styles.footer_container}>
-					<Button onClick={handleSubmit(saveValues)}>Save</Button>
+					<Button onClick={handleSubmit(saveValues)} type="button">Save</Button>
 				</div>
 			</div>
 		</div>

@@ -6,8 +6,9 @@ import FilePreview from '../../../common/FilePreview';
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-function OfferLetterWaiting({ active = {}, getCreditRequestResponse = {}, refetch = () => {} }) {
+function OfferLetterWaiting({ getCreditRequestResponse = {} }) {
 	const { documents = {}, status = '' } = getCreditRequestResponse || {};
 	const { offer_letter = {} } = documents;
 	return (
@@ -15,7 +16,7 @@ function OfferLetterWaiting({ active = {}, getCreditRequestResponse = {}, refetc
 			<div className={styles.header}>
 				<div className={styles.doc_icon}>
 					<Image
-						src="https://cdn.cogoport.io/cms-prod/cogo_public/vault/original/Document_Offer_letter_icon.svg"
+						src={GLOBAL_CONSTANTS.image_url.ef_offer_letter_waiting}
 						alt="document-offer-letter-waiting"
 						width="150px"
 					/>

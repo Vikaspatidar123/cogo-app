@@ -7,6 +7,7 @@ import BasicDetails from '../BasicDetails';
 import Buyers from '../Buyers';
 import CompanyInformation from '../CompanyInformation';
 import DirectorInformation from '../DirectorInformation';
+import Invoices from '../Invoices';
 import OfferLetterDetails from '../OfferLetterDetails';
 import { OfferLetterWaiting } from '../WaitingScreens';
 
@@ -22,29 +23,39 @@ const RENDERING_FORM = {
 	finance_assessment    : ApplicationProcess,
 	approved              : ApplicationProcess,
 };
-const tabsPanelMapping = [{
-	name         : 'application',
-	title        : 'Application',
-	SubComponent : ApplicationProcess,
-},
-{
-	name         : 'Buyers',
-	title        : 'Buyers',
-	SubComponent : Buyers,
-},
-	// {
-	// 	name         : 'Invoices',
-	// 	title        : 'Invoices',
-	// 	SubComponent : Invoices,
-	// },
+const tabsPanelMapping = (status) => {
+	const tabsConfig = [
+		{
+			name         : 'application',
+			title        : 'Application',
+			SubComponent : ApplicationProcess,
+		},
+		{
+			name         : 'Buyers',
+			title        : 'Buyers',
+			SubComponent : Buyers,
+		},
+		{
+			name         : 'Invoices',
+			title        : 'Invoices',
+			SubComponent : Invoices,
+		},
+	];
 
-];
+	if (status !== 'approved') {
+		tabsConfig.splice(2, 1);
+	}
+
+	return tabsConfig;
+};
+
 function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, loading }) {
 	const [activeTab, setActiveTab] = useState('application');
 	const { flags = {} } = getCreditRequestResponse;
 	const Component = flags?.offer_letter === 'complete' && active === 'awaiting_offer_letter'
 		? RENDERING_FORM.offer_letter_complete : RENDERING_FORM[active];
 
+	const { status = '' } = getCreditRequestResponse || {};
 
 	return (
 		<div className={styles.form}>
@@ -54,13 +65,13 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 					themeType="tertiary"
 					onChange={setActiveTab}
 				>
-					{tabsPanelMapping.map(({ title = '', SubComponent, name = '' }) => {
+					{tabsPanelMapping(status).map(({ title = '', SubComponent, name = '' }) => {
 						const MappedComponet = flags?.offer_letter === 'complete'
 						&& (active === 'awaiting_offer_letter') && activeTab === 'application'
 							? RENDERING_FORM.offer_letter_complete : SubComponent;
 
 						return (
-							<TabPanel name={name} title={title}>
+							<TabPanel name={name} title={title} key={name}>
 								{(active === 'locked' && activeTab === 'application')
 									? (
 										<OfferLetterWaiting

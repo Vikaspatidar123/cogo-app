@@ -57,7 +57,7 @@ function ApplicationProcess({ active = {}, getCreditRequestResponse = {}, refetc
 					title = '',
 					Component, status = '', name = '',
 				}) => (
-					<TabPanel name={name} title={title} badge={status}>
+					<TabPanel name={name} title={title} badge={status} key={name}>
 						<Component
 							active={active}
 							getCreditRequestResponse={getCreditRequestResponse}

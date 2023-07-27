@@ -1,5 +1,3 @@
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-
 const controls = [
 	{
 		name        : 'ci_number',
@@ -18,19 +16,8 @@ const controls = [
 		placeholder           : '',
 		span                  : 6,
 		isPreviousDaysAllowed : true,
-		// maxDate     : new Date(),
 		rules                 : { required: true },
 	},
-	// {
-	// 	name      : 'invoice_currency',
-	// 	label     : 'Currency',
-	// 	type      : 'select',
-	// 	optionKey : 'currencies',
-	// 	value     : `${GLOBAL_CONSTANTS.currency_code.USD}`,
-	// 	disabled  : true,
-	// 	span      : 2,
-	// 	rules     : { required: 'This is required' },
-	// },
 	{
 		name        : 'invoice_amount',
 		label       : 'Gross Invoice Amount',
@@ -88,7 +75,6 @@ const controls = [
 		type                  : 'datepicker',
 		placeholder           : '',
 		span                  : 6,
-		// minDate               : new Date(Date.now() + 4 * 24 * 60 * 60 * 1000),
 		maxDate               : new Date(),
 		isPreviousDaysAllowed : true,
 		rules                 : { required: true },

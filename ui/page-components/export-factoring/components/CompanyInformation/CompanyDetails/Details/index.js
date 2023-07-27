@@ -17,7 +17,6 @@ function Details({ data = {}, setShowEdit = () => {},	updatedValues = {}, getCre
 	const { org_iec_number = '' } = getCreditRequestResponse || {};
 	const { date_of_incorporation: update_date_of_incorporation = '', cin } = updatedValues;
 
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.company_name}>

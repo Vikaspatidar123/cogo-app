@@ -104,6 +104,7 @@ function InvoiceDetails({
 							<Button
 								themeType="link"
 								onClick={() => setShowFundingSummary((pv) => !pv)}
+								type="button"
 							>
 								View Funding summary
 							</Button>
@@ -146,7 +147,7 @@ function InvoiceDetails({
 						const ChildrenComponent = formFields.children;
 						const SubChildrenComponent = formFields.subChildren;
 						return (
-							<div className={styles.step}>
+							<div className={styles.step} key={details}>
 								<div className={styles.stepper}>
 									<div className={styles.circle} />
 									{details !== 'disbursement' && <div className={styles.line} />}

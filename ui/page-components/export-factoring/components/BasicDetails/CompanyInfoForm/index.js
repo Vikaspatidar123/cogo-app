@@ -1,7 +1,6 @@
 import { Checkbox } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import Uploader from '../../../common/Uploader';
 import { getCompanyControls } from '../../../configurations/getCompanyBasicDetailsControls';
@@ -11,6 +10,7 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
+import { useSelector } from '@/packages/store';
 
 function CompanyInfoForm({ getCreditRequestResponse, refetch = () => {} }) {
 	const { profile } = useSelector((state) => state);

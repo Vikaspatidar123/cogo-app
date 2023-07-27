@@ -76,7 +76,7 @@ function TraderEligibilityModal({ tradeEngineResponse = {} }) {
 			) : (
 				<div className={cl`${styles.list_wrapper} ${styles.verifieduser}`}>
 					<Image
-						src={GLOBAL_CONSTANTS.image_url.secure_profile_icon}
+						src={GLOBAL_CONSTANTS.image_url.secure_icon}
 						alt={t('tecResult:tec_secure_alt')}
 						height={100}
 						width={100}

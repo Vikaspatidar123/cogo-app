@@ -11,6 +11,9 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const MIN_POC_VERIFIED = 1;
 
 const getAccordianTitle = ({ placeholder, pocLength }) => (
 	<div className={styles.pill_container}>
@@ -18,8 +21,8 @@ const getAccordianTitle = ({ placeholder, pocLength }) => (
 			{`${placeholder} ${pocLength}`}
 
 		</div>
-		<Pill color={pocLength >= 1 ? 'green' : 'yellow'} size="sm">
-			{pocLength >= 1 ? 'Completed' : 'Pending'}
+		<Pill color={pocLength >= MIN_POC_VERIFIED ? 'green' : 'yellow'} size="sm">
+			{pocLength >= MIN_POC_VERIFIED ? 'Completed' : 'Pending'}
 		</Pill>
 	</div>
 );
@@ -58,9 +61,7 @@ function PointOfContacts({ getCreditRequestResponse = {}, refetch = () => { } })
 
 				{(pocControls || []).map((item, index) => {
 					const Element = getField(item.type);
-					// const pocStatus = getPocStatus(item.name);
 					return (
-
 						<div className={styles.field} key={item.name}>
 							{!addNewPoc ? (
 								<>
@@ -68,6 +69,7 @@ function PointOfContacts({ getCreditRequestResponse = {}, refetch = () => { } })
 									{item.name !== 'user' && (
 										<div className={styles.button_wrapper}>
 											<Button
+												type="button"
 												themeType="secondary"
 												onClick={() => setAddNewPoc(true)}
 											>
@@ -75,6 +77,7 @@ function PointOfContacts({ getCreditRequestResponse = {}, refetch = () => { } })
 												Add New
 											</Button>
 											<Button
+												type="button"
 												themeType="accent"
 												className={styles.save_button}
 												onClick={() => (
@@ -89,7 +92,7 @@ function PointOfContacts({ getCreditRequestResponse = {}, refetch = () => { } })
 									)}
 								</>
 							) : (
-								index === 0 && (
+								index === GLOBAL_CONSTANTS.zeroth_index && (
 									<AddPOC
 										setPOCDetails={setPOCDetails}
 										setAddNewPoc={setAddNewPoc}
@@ -106,7 +109,7 @@ function PointOfContacts({ getCreditRequestResponse = {}, refetch = () => { } })
 					);
 				})}
 				{(getCreditRequestResponse?.poc_details
-							&& getCreditRequestResponse?.poc_details?.length) >= 1 && (
+							&& getCreditRequestResponse?.poc_details?.length) >= MIN_POC_VERIFIED && (
 								<PocList
 									list={getCreditRequestResponse?.poc_details}
 								/>

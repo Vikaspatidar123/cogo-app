@@ -55,11 +55,11 @@ function UndatedCheques({ refetch = () => {}, udcCheque, getCreditRequestRespons
 		}
 	};
 
-	if (!isEmpty(undated_cheque.length)) {
+	if (!isEmpty(undated_cheque)) {
 		return (
 			<div className={styles.container}>
 				{undated_cheque.map((item) => (
-					<FilePreview key={item.document_type} name={item.document_type} url={item.document_url} />
+					<FilePreview key={item?.id} name={item.document_type} url={item.document_url} />
 				))}
 			</div>
 		);
@@ -89,7 +89,9 @@ function UndatedCheques({ refetch = () => {}, udcCheque, getCreditRequestRespons
 				</form>
 			</div>
 			<div className={styles.btn_container}>
-				<Button onClick={handleSubmit(submitCheque)} loading={loading} disabled={loading}> Submit</Button>
+				<Button type="button" onClick={handleSubmit(submitCheque)} loading={loading} disabled={loading}>
+					Submit
+				</Button>
 			</div>
 		</div>
 	);

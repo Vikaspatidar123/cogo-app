@@ -3,12 +3,10 @@ import { IcMPdf } from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import PopoverAlert from '../../../../../../common/PopoverAlert';
-import AddEditCiInfo from '../../../CommercialInvoice/components/AddEditCiInfo';
 import AddEditPoInfo from '../AddEditPoInfo';
 
 import styles from './styles.module.css';
 
-import formatAmount from '@/ui/commons/utils/formatAmount';
 import formatDate from '@/ui/commons/utils/formatDate';
 import PdfViewer from '@/ui/page-components/export-factoring/common/PdfViewer';
 import StatusBox from '@/ui/page-components/export-factoring/common/StatusBox';
@@ -81,6 +79,7 @@ function PoDetailsInfo({
 								)}
 								{(statusTag === 'review_requested' || status === 'active') && (
 									<div
+										role="presentation"
 										className={styles.mainHead}
 										onClick={() => setShowEditForm((pv) => !pv)}
 									>

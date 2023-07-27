@@ -35,6 +35,7 @@ function BankDetails({
 				<div>
 					{!isEmpty(exporter_account_infos) && exporter_account_infos?.map((bank, index) => (
 						<BankInfo
+							key={bank?.id}
 							bank={bank}
 							index={index}
 							refetch={refetch}

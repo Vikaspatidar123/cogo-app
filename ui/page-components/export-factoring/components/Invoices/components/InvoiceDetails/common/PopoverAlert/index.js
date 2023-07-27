@@ -28,6 +28,7 @@ function PopoverAlert({
 			interactive
 		>
 			<div
+				role="presentation"
 				className={styles.editText}
 				onClick={() => setShowDeleteForm(!showDeleteForm)}
 			>

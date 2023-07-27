@@ -23,12 +23,13 @@ function Coupons({ getCreditRequestResponse = {} }) {
 	return (
 		<div className={styles.coupons}>
 			{(list || []).map((coupon) => (
-				<div className={styles.coupon}>
+				<div className={styles.coupon} key={coupon.name}>
 					<Image src={coupon.thumbnail_image} width="auto" height="auto" alt="coupon" />
 					<div className={styles.name}>{coupon.name}</div>
 					{action !== 'applied'
 						? (
 							<Button
+								type="button"
 								onClick={() => updateCreditPromotion({ type: 'applied', coupon })}
 								loading={loading}
 							>
@@ -37,6 +38,7 @@ function Coupons({ getCreditRequestResponse = {} }) {
 						)
 						: (
 							<Button
+								type="button"
 								onClick={() => updateCreditPromotion({ type: 'removed', coupon })}
 								loading={loading}
 								themeType="secondary"

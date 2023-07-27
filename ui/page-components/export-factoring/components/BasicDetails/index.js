@@ -59,32 +59,31 @@ function BasicDetails({ active = {}, getCreditRequestResponse = {}, refetch = ()
 				<Checkbox />
 				<div className={styles.terms}>
 					I accept the Cogoport
-					<span onClick={() => window.open(
-						'https://www.cogoport.com/en-IN/terms-and-conditions',
-						'_blank',
-					)}
+					{' '}
+					<a
+						href="https://www.cogoport.com/en-IN/terms-and-conditions"
+						target="_blank"
+						rel="noopener noreferrer"
 					>
-						{' '}
 						Terms of Service
-						{' '}
-
-					</span>
+					</a>
+					{' '}
 					and
-					<span onClick={() => window.open(
-						'https://www.cogoport.com/en-IN/privacy-policy',
-						'_blank',
-					)}
+					{' '}
+					<a
+						href="https://www.cogoport.com/en-IN/privacy-policy"
+						target="_blank"
+						rel="noopener noreferrer"
 					>
 						Privacy Policy
-
-					</span>
+					</a>
 				</div>
 			</div>
 			<div className={styles.button_wrapper}>
 				<Button
 					onClick={proceedToPay}
 					loading={paymentLoding}
-
+					type="button"
 				>
 					Proceed to pay
 				</Button>

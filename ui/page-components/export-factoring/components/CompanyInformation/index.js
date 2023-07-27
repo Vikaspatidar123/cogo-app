@@ -1,5 +1,4 @@
-import { Loader, Button, Toast } from '@cogoport/components';
-import { format } from '@cogoport/utils';
+import { Loader, Button } from '@cogoport/components';
 import { useState } from 'react';
 
 import useGetCompanyFinanceData from '../../hooks/useGetCompanyFinanceData';
@@ -68,7 +67,6 @@ function CompanyInformation({
 		if (resp) {
 			refetch();
 		}
-
 	};
 
 	if (loading || !data) {
@@ -94,6 +92,7 @@ function CompanyInformation({
 			)}
 			<div className={styles.btn_container}>
 				<Button
+					type="button"
 					onClick={handleGetOfferLetter}
 					loading={updateCreditLoading}
 					disabled={updateCreditLoading}

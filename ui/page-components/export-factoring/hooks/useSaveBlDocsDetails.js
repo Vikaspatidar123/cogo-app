@@ -1,21 +1,15 @@
 import { Toast } from '@cogoport/components';
 
-import { TERMS_AND_CONDITIONS } from '../components/Invoices/components/InvoiceDetails/common/constant';
-
 import { useRequest } from '@/packages/request';
-
-const getDocExtention = (url) => url.split('.').pop();
 
 const useSaveBlDocsDetails = ({
 	data: invoiceData,
 	setShowBlForm = () => {},
 	showBlForm,
-	is_deleted = false,
-	doc = {},
 	refetch,
 	creditRequest,
 }) => {
-	const [{ data, loading }, trigger] = useRequest(
+	const [{ loading }, trigger] = useRequest(
 		{
 			method : 'post',
 			url    : 'update_credit_application',
@@ -23,7 +17,7 @@ const useSaveBlDocsDetails = ({
 		{ manual: true },
 	);
 
-	const onBlDocSave = async (value) => {
+	const onBlDocSave = async () => {
 		let invoice_document_details = {};
 		invoice_document_details = {
 			shipment_serial_id : invoiceData?.shipment_details?.shipment_serial_id,

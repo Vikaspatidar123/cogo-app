@@ -1,5 +1,4 @@
 import { Toast } from '@cogoport/components';
-import { useState, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
 
@@ -10,7 +9,7 @@ const useSubmitCommercialInvoiceDetails = ({
 
 	setOpenAddInvoice,
 }) => {
-	const [{ data, loading }, trigger] = useRequest(
+	const [{ loading }, trigger] = useRequest(
 		{
 			method : 'post',
 			url    : 'update_credit_application',

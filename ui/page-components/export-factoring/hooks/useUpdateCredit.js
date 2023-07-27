@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useRequest } from '@/packages/request';
 
 export const useUpdateCredit = () => {

@@ -10,9 +10,10 @@ import { getAddInvoiceDocumentsControls } from
 	'@/ui/page-components/export-factoring/configurations/getAddInvoiceDocumentsControls';
 import useSaveCiDocsDetails from '@/ui/page-components/export-factoring/hooks/useSaveCiDocsDetails';
 
+const MIN_NET_INVOICE_VALUE = 0;
+
 function AddEditCiInfo({
 	data = {},
-	showCiForm,
 	creditRequest,
 	setShowCiForm,
 	refetch,
@@ -56,26 +57,26 @@ function AddEditCiInfo({
 			setValue('due_date', new Date(due_date));
 			setValue('commercial_invoice', document_url);
 		}
-	}, [data]);
+	}, [data, setValue, document_url]);
 
 	useEffect(() => {
-		const amt = (advance_rate
-			* (watchValues?.invoice_amount?.price - watchValues?.prior_payment))
-			/ 100;
-		setNetInvoice(watchValues?.invoice_amount?.price - watchValues?.prior_payment);
+		const invoiceAmount = watchValues?.invoice_amount?.price || 0;
+		const priorPayment = watchValues?.prior_payment || 0;
+
+		const amt = (advance_rate * (invoiceAmount - priorPayment)) / 100;
+		setNetInvoice(invoiceAmount - priorPayment);
 		setAmount(amt);
-	}, [watchValues]);
+	}, [watchValues, advance_rate]);
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.formDiv}>
-				{/* <form> */}
 				{addInvoiceDocumentsControls.map((item) => {
 					const Element = getField(item?.type);
 					return (
 						item?.type
 						&& (
-							<div className={styles.field}>
+							<div className={styles.field} key={item.name}>
 								<div className={styles.field_name}>{item?.label}</div>
 								<Element control={control} {...item} />
 								<div className={styles.error_text}>
@@ -86,7 +87,6 @@ function AddEditCiInfo({
 						)
 					);
 				})}
-				{/* </form> */}
 			</div>
 			<div className={styles.flexDiv}>
 				<div>
@@ -117,7 +117,7 @@ function AddEditCiInfo({
 				</div>
 			</div>
 			<div className={styles.errorDiv}>
-				{netInvoice < 0 && (
+				{netInvoice < MIN_NET_INVOICE_VALUE && (
 					'Prior Payment Cannot be more than Invoice Amount'
 				)}
 			</div>
@@ -139,7 +139,7 @@ function AddEditCiInfo({
 					onClick={handleSubmit(onCIDocSave)}
 					loading={loading}
 					disabled={
-							loading || netInvoice < 0 || commercial_invoice === 'approved'
+							loading || netInvoice < MIN_NET_INVOICE_VALUE || commercial_invoice === 'approved'
 						}
 				>
 					Save

@@ -1,7 +1,8 @@
 import { cl, Popover, Button, Select, Input } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
-import STATS_MAPPING from '../../../../constant/statsMapping';
+import getStatsMapping from '../../../../constant/statsMapping';
 
 import FilterContent from './FilterContent';
 import styles from './styles.module.css';
@@ -12,6 +13,10 @@ function FilterSection({
 	const { activeTab = '' } = globalFilter;
 	const { inputValue, selectValue } = filter;
 
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const STATS_MAPPING = getStatsMapping({ t });
+
 	return (
 		<div className={cl`${styles.flex_box} ${styles.filter_section}`}>
 			<Input
@@ -19,14 +24,14 @@ function FilterSection({
 				className={styles.search_field}
 				value={inputValue}
 				onChange={(e) => setFilter((prev) => ({ ...prev, inputValue: e }))}
-				placeholder="Search"
+				placeholder={t('airOceanTracking:tracking_filer_section_placeholder_1')}
 				suffix={<IcMSearchlight />}
 			/>
 
 			<Select
 				size="sm"
 				className={styles.select_field}
-				placeholder="Select Status"
+				placeholder={t('airOceanTracking:tracking_filer_section_placeholder_2')}
 				options={STATS_MAPPING}
 				value={selectValue}
 				onChange={selectValueChangeHandler}
@@ -47,7 +52,7 @@ function FilterSection({
 				)}
 			>
 				<Button themeType="accent" type="button">
-					Filters
+					{t('airOceanTracking:tracking_filters_popover_button_label')}
 				</Button>
 			</Popover>
 		</div>

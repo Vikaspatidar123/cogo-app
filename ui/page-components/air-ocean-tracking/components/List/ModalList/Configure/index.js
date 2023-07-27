@@ -1,4 +1,5 @@
 import { Tabs, TabPanel } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import Commodity from './Commodity';
@@ -6,20 +7,6 @@ import CustomizeAlert from './CustomizeAlert';
 import DetentionDemurrage from './DetentionDemurrage';
 import RefNumber from './RefNumber';
 import styles from './styles.module.css';
-
-const configTab = {
-	ocean: {
-		commodity         : 'Commodity',
-		detentionDemurage : 'Detention & Demurage',
-		referenceNo       : 'Reference Number',
-		CustomizedAlerts  : 'Customized Alert & Poc Details',
-	},
-	air: {
-		commodity        : 'Commodity',
-		referenceNo      : 'Reference Number',
-		CustomizedAlerts : 'Poc Details',
-	},
-};
 
 const COMPONENT_MAPPING = {
 	detentionDemurage : DetentionDemurrage,
@@ -29,6 +16,22 @@ const COMPONENT_MAPPING = {
 };
 
 function Configure({ closeHandler, shipmentId, refetchTrackerList, activeTab = 'ocean', shipmentInfo = {} }) {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const configTab = {
+		ocean: {
+			commodity         : t('airOceanTracking:tracking_configuration_tab_panel_1'),
+			detentionDemurage : t('airOceanTracking:tracking_configuration_tab_panel_2'),
+			referenceNo       : t('airOceanTracking:tracking_configuration_tab_panel_3'),
+			CustomizedAlerts  : t('airOceanTracking:tracking_configuration_tab_panel_4'),
+		},
+		air: {
+			commodity        : t('airOceanTracking:tracking_configuration_tab_panel_1'),
+			referenceNo      : t('airOceanTracking:tracking_configuration_tab_panel_3'),
+			CustomizedAlerts : t('airOceanTracking:tracking_configuration_tab_panel_5'),
+		},
+	};
+
 	const [configureTab, setConfigureTab] = useState('commodity');
 	const Component = COMPONENT_MAPPING?.[configureTab];
 

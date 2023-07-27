@@ -59,7 +59,7 @@ function NoaSigning({
 				{DETAILS_ARRAY.map((details) => {
 					const formFields = formMapping[details];
 					return (
-						<div className={styles.step}>
+						<div className={styles.step} key={details}>
 							<div className={styles.stepper}>
 								<div
 									className={styles.circle}

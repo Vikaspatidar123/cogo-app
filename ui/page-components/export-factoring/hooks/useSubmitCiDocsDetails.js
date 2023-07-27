@@ -9,7 +9,7 @@ const useSubmitCiDocsDetails = ({
 	creditRequest,
 	refetch,
 }) => {
-	const [{ data, loading }, trigger] = useRequest(
+	const [{ loading }, trigger] = useRequest(
 		{
 			method : 'post',
 			url    : 'send_ef_document_details_to_cogowallet',

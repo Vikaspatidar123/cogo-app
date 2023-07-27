@@ -1,4 +1,4 @@
-import { Accordion, Pill, Button } from '@cogoport/components';
+import { Accordion, Button } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
@@ -11,7 +11,6 @@ import styles from './styles.module.css';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 import StatusBox from '@/ui/page-components/export-factoring/common/StatusBox';
-import StatusTag from '@/ui/page-components/export-factoring/common/StatusTag';
 
 const titleInfo = ({ company_name, buyer_approval_status }) => (
 	<div className={styles.headerDiv}>
@@ -25,7 +24,6 @@ const titleInfo = ({ company_name, buyer_approval_status }) => (
 function BuyersList({
 	refetch,
 	buyers = {},
-	index,
 	getCreditRequestResponse = {},
 }) {
 	const [openAddPoc, setOpenAddPoc] = useState(false);
@@ -58,22 +56,22 @@ function BuyersList({
 							</div>
 							<div className={styles.valueText}>
 								{formatAmount({
-									amount: utilized_amount,
+									amount  : utilized_amount,
 									currency,
-									options: {
-										style: 'currency',
-										currencyDisplay: 'symbol',
-										maximumFractionDigits: 2,
+									options : {
+										style                 : 'currency',
+										currencyDisplay       : 'symbol',
+										maximumFractionDigits : 2,
 									},
 								})}
 								/
 								{formatAmount({
-									amount: total_limit,
+									amount  : total_limit,
 									currency,
-									options: {
-										style: 'currency',
-										currencyDisplay: 'symbol',
-										maximumFractionDigits: 2,
+									options : {
+										style                 : 'currency',
+										currencyDisplay       : 'symbol',
+										maximumFractionDigits : 2,
 									},
 								})}
 								&nbsp;(
@@ -139,7 +137,7 @@ function BuyersList({
 				</div>
 				<div>
 					{!isEmpty(poc_details) && poc_details?.map((poc) => (
-						<PocDetails poc={poc} />
+						<PocDetails poc={poc} key={poc.id} />
 					))}
 
 				</div>

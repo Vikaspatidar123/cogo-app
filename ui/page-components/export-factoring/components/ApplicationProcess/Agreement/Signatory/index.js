@@ -80,7 +80,7 @@ function Signatory({
 							const Element = getField(item.type);
 							if (item.show) {
 								return (
-									<div className={styles.field}>
+									<div className={styles.field} key={item.name}>
 										<div className={styles.field_name}>
 											{item.placeholder}
 										</div>

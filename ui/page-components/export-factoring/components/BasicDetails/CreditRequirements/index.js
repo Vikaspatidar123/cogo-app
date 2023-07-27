@@ -54,7 +54,7 @@ function CreditRequirements({ getCreditRequestResponse = {}, refetch = () => { }
 						);
 					})}
 					<div className={styles.button_wrapper}>
-						<Button themeType="secondary" onClick={handleSubmit(submit)} loading={loading}>
+						<Button type="button" themeType="secondary" onClick={handleSubmit(submit)} loading={loading}>
 							Save
 						</Button>
 					</div>

@@ -1,3 +1,5 @@
+import patterns from '@/ui/commons/configurations/patterns';
+
 const SIGNATORY_CONTROLS = [
 	{
 		name        : 'signatory',
@@ -23,7 +25,7 @@ const SIGNATORY_CONTROLS = [
 		rules       : {
 			required : true,
 			pattern  : {
-				value   : /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/,
+				value   : patterns.EMAIL,
 				message : 'Enter Valid email',
 			},
 		},

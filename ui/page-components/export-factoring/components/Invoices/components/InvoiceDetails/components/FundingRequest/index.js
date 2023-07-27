@@ -1,12 +1,10 @@
 import { Button } from '@cogoport/components';
 import React, { useState } from 'react';
 
-// import ReviewDetails from './components/ReviewDetails';
 import ReviewDetails from './components/ReviewDetails';
 import styles from './styles.module.css';
 
 import StatusTag from '@/ui/page-components/export-factoring/common/StatusTag';
-// import ReviewDetails from './components/ReviewDetails';
 
 function FundingRequest({
 	creditRequest = {},
@@ -14,16 +12,9 @@ function FundingRequest({
 	refetch,
 }) {
 	const {
-		created_at = '',
-		invoice_number = '',
-		invoice_amount = '',
-		currency = '',
 		documents = {},
 		overall_document_status = {},
 		status = '',
-		buyer_name = '',
-		offer_receivable_details = {},
-		noa_details = {},
 	} = data || {};
 
 	const { offer_receivable: status_offer_receivable = '', ...rest } = overall_document_status;
@@ -44,6 +35,7 @@ function FundingRequest({
 				<StatusTag status={status_offer_receivable} />
 				<Button
 					size="md"
+					type="button"
 					themeType="primary"
 					style={{ marginRight: '20px' }}
 					disabled={

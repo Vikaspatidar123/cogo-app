@@ -1,9 +1,9 @@
 import { Modal, Button } from '@cogoport/components';
 import { useState, useEffect } from 'react';
-import { useForm } from '@/packages/forms';
 
 import styles from './styles.module.css';
 
+import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import FieldArray from '@/ui/page-components/export-factoring/common/FieldArray';
 import { getAddBuyerControls } from '@/ui/page-components/export-factoring/configurations/getAddBuyerControls';
@@ -19,7 +19,7 @@ function AddBuyerModal({ refetch, openAddBuyer, setOpenAddBuyer, getCreditReques
 	});
 
 	const {
-		control, watch, handleSubmit, setValue, formState: { errors },
+		control, handleSubmit, setValue, formState: { errors },
 	} = useForm();
 
 	const { onSubmit, loading } = useSubmitBuyerDetails({
@@ -34,7 +34,7 @@ function AddBuyerModal({ refetch, openAddBuyer, setOpenAddBuyer, getCreditReques
 		setValue('city', addressDetail?.name);
 		setValue('country', addressDetail?.country?.country_id);
 		setValue('state', addressDetail?.region?.name);
-	}, [addressDetail]);
+	}, [addressDetail, setValue]);
 
 	return (
 		<Modal
@@ -51,6 +51,7 @@ function AddBuyerModal({ refetch, openAddBuyer, setOpenAddBuyer, getCreditReques
 						if (item.type === 'fieldArray') {
 							return (
 								<FieldArray
+									key={item.name}
 									{...item}
 									control={control}
 									name={item.name}
@@ -61,7 +62,7 @@ function AddBuyerModal({ refetch, openAddBuyer, setOpenAddBuyer, getCreditReques
 
 						const Element = getField(item?.type);
 						return (
-							<div className={styles.field}>
+							<div className={styles.field} key={item.name}>
 								<div className={styles.field_name}>{item?.label}</div>
 								<Element control={control} {...item} />
 								<div className={styles.error_text}>

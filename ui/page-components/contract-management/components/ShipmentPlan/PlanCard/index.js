@@ -347,25 +347,25 @@ function PlanCard({
 				/>
 			) : null}
 
-			{showPlanBox && isPlanAbsent && source !== 'manual' && (
-				<CreatePlanBox setShowModal={setShowModal} loading={loading} />
-			)}
+			{/* {showPlanBox && isPlanAbsent && source !== 'manual' && ( */}
+			<CreatePlanBox setShowModal={setShowModal} loading={loading} />
+			{/* )} */}
 
-			{!isPlanAbsent && showPlanBox && source !== 'manual' && (
-				<ShipmentCard
-					shipmentData={shipmentData}
-					loading={loading}
-					itemData={itemData}
-				/>
-			)}
+			{/* {!isPlanAbsent && showPlanBox && source !== 'manual' && ( */}
+			<ShipmentCard
+				shipmentData={shipmentData}
+				loading={loading}
+				itemData={itemData}
+			/>
+			{/* )} */}
 
-			{showPlanBox && source === 'manual' && (
-				<ManualShipmentCard
-					requestData={requestData}
-					loading={loading}
-					itemData={itemData}
-				/>
-			)}
+			{/* {showPlanBox && source === 'manual' && ( */}
+			<ManualShipmentCard
+				requestData={requestData}
+				loading={loading}
+				itemData={itemData}
+			/>
+			{/* )} */}
 
 			{showModal && (
 				<CreatePlanModal

@@ -1,11 +1,12 @@
 import { differenceInDays } from '@cogoport/utils';
 
-export const formattedBookingPayload = ({ item = {}, data = {} }) => {
+export const formattedBookingPayload = ({ item = {}, data = {}, contractId = '' }) => {
 	const { service_id, service_type, contract_services_utilisation_id } =		data || {};
 
 	return {
 		service_id,
 		service_type,
+		contract_id: contractId,
 		contract_services_utilisation_id:
 			contract_services_utilisation_id || undefined,
 		source : 'contract',

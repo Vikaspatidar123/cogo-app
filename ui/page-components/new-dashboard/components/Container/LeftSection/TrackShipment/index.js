@@ -38,7 +38,7 @@ function TrackShipment() {
 							themeType="tertiary"
 							onChange={setTrackingType}
 						>
-							<TabPanel name="ocean" title="Ccean" />
+							<TabPanel name="ocean" title="Ocean" />
 							<TabPanel name="air" title="Air" />
 						</Tabs>
 					</div>

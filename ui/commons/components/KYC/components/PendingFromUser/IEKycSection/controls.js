@@ -15,7 +15,7 @@ const controls = [
 		type        : 'text',
 		span        : 4,
 		label       : 'Organization’s PAN/Registration Number',
-		placeholder : 'Type your organization’s PAN number',
+		placeholder : 'Type your organization’s PAN/Registration number',
 		rules       : { required: 'Required' },
 	},
 	{

@@ -10,7 +10,9 @@ function Promotion() {
 	const { push } = useRouter();
 
 	const { loading = false, promotionData } = useGetPromotion();
+
 	const { promotion = [] } = promotionData || {};
+
 	const carouselData = (data) => (
 		<div onClick={() => push(data?.route_url)} role="presentation">
 			{/* img use for url comeing from backend its changes any time */}

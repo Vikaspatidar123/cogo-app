@@ -1,6 +1,6 @@
 .container {
 	padding: 20px;
-	margin-top: 10px;
+	margin: 12px 0;
 	background: linear-gradient(180deg, #d6e3ff 0%, rgb(239 244 253 / 0%) 100%);
 	border: 1px solid var(--white, #fff);
 	border-radius: 10px;

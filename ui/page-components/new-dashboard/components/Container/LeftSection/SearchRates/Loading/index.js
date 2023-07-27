@@ -2,7 +2,7 @@ import { Placeholder } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
-const LOADING = [...Array(2).keys()];
+const LOADING = [...Array(3).keys()];
 
 function Loading() {
 	return (

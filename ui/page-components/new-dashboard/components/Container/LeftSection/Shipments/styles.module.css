@@ -3,21 +3,6 @@
 	font-weight: 600;
 }
 
-.bottom {
-	display: flex;
-	justify-content: flex-end;
-	padding-top: 5px;
-	cursor: pointer;
-}
-
-.view_all {
-	align-items: center;
-	padding-right: 5px;
-	font-size: 13px;
-	color: #356efd;
-	text-decoration: underline;
-}
-
 .box {
 	width: 50%;
 	padding: 10px;

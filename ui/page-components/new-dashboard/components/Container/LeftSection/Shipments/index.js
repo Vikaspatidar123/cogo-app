@@ -1,4 +1,4 @@
-import { Carousel, cl } from '@cogoport/components';
+import { Carousel, cl, Button } from '@cogoport/components';
 import { IcMArrowNext } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
@@ -24,17 +24,18 @@ function Shipments({ list }) {
 				<div className={styles.heading}>
 					{t('dashboard:onGoingShipments_text_1')}
 				</div>
-				<div
-					role="presentation"
+
+				<Button
 					className={cl`${styles.bottom} ${styles.view_all}`}
 					onClick={() => push('/shipments', '/shipments')}
+					size="md"
+					themeType="linkUi"
+					type="button"
 				>
-					<p>
-						{t('dashboard:onGoingShipments_text_1')}
-					</p>
-
+					{t('dashboard:onGoingShipments_text_1')}
 					<IcMArrowNext className={styles.arrow} />
-				</div>
+				</Button>
+
 			</div>
 			<Carousel
 				slides={carouselData}

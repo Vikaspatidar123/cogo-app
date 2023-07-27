@@ -12,11 +12,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: end;
-	padding-right: 10px;
-	font-size: 13px;
-	color: #356efd;
-	text-decoration-line: underline;
-	cursor: pointer;
 }
 
 .card {

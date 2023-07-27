@@ -28,15 +28,16 @@ function CustomDuty() {
 					<div className={styles.text_des}>
 						{t('dashboard:custom_duty_text3')}
 					</div>
-					<Button
-						themeType="accent"
-						className={styles.button}
-						type="button"
-						onClick={() => push('/saas/premium-services/duties-taxes-calculator')}
-					>
-						{t('dashboard:custom_duty_text4')}
+					<div className={styles.button}>
+						<Button
+							themeType="accent"
+							type="button"
+							onClick={() => push('/saas/premium-services/duties-taxes-calculator')}
+						>
+							{t('dashboard:custom_duty_text4')}
 
-					</Button>
+						</Button>
+					</div>
 
 				</div>
 

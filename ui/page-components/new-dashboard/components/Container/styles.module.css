@@ -8,7 +8,7 @@
 }
 
 .seation_1 {
-	width: 73%;
+	width: 75%;
 	margin-right: 10px;
 
 	@media (max-width: 767px) {
@@ -17,7 +17,7 @@
 }
 
 .seation_2 {
-	width: 27%;
+	width: 25%;
 
 	@media (max-width: 767px) {
 		width: 100%;

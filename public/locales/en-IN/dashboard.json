@@ -138,8 +138,8 @@
 	"shippingline_placeholder":"Select shipping line",
 	"track_now_button_text":"Track Now",
 	"custom_duty_text1":"Custom Duty Calculator",
-	"custom_duty_text2":"Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
-	"custom_duty_text3":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua.",
+	"custom_duty_text2":"Calculate all applicable duties & taxes for any combination of countries and cargo across the world quickly",
+	"custom_duty_text3":"Knowing your duties before shipping can help you to avoid unexpected costs and delays",
 	"custom_duty_text4":"Try Now!",
 	"tracking_header_form_control_label_1":"Enter Container No/ BL no",
 	"tracking_header_form_control_required_text":"required",
@@ -169,7 +169,7 @@
 	"schedule_title_text":"Schedules",
 	"schedule_title_text_1":"Ocean Schedules",
 	"schedule_title_text_2":"Plan an upcoming shipment using comprehensive shipping schedules.",
-	"schedule_title_text_3":"Air Schedule",
+	"schedule_title_text_3":"Air Schedules",
 	"schedule_title_text_4":"Plan an upcoming cargo using comprehensive air schedules."
 
 

@@ -1,6 +1,6 @@
 .container {
 	box-sizing: border-box;
-	padding: 20px;
+	padding: 18px;
 	margin-left: 10px;
 	background: #fff;
 	background-repeat: no-repeat;
@@ -8,6 +8,7 @@
 	background-size: auto;
 	border: 1px solid #e0e0e0;
 	border-radius: 4px;
+	border-radius: 5px;
 	box-shadow: 0 0 8px rgb(98 127 172 / 20%);
 }
 
@@ -17,7 +18,7 @@
 }
 
 .des {
-	margin-top: 20px;
+	margin-top: 10px;
 	font-size: 16px;
 	font-weight: 500px;
 	color: #7278ad;
@@ -36,6 +37,14 @@
 
 .button {
 	margin-top: 30px;
+}
+
+.button:hover {
+	:global {
+		.ui_button_container {
+			background: #ee3425;
+		}
+	}
 }
 
 .seaction {

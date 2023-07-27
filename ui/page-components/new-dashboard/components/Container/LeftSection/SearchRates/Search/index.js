@@ -1,3 +1,4 @@
+import { Button } from '@cogoport/components';
 import { IcMSearchlight, IcMArrowNext } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 
@@ -28,14 +29,15 @@ function Search() {
 					</div>
 				</div>
 
-				<div
-					className={styles.rates}
-					role="presentation"
+				<Button
 					onClick={() => push('/book')}
+					size="md"
+					themeType="linkUi"
+					type="button"
 				>
 					<span>{t('dashboard:yourDeals_text_4')}</span>
 					<IcMArrowNext />
-				</div>
+				</Button>
 			</div>
 		</div>
 	);

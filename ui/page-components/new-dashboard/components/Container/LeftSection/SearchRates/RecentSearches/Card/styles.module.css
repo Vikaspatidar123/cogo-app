@@ -30,7 +30,14 @@
 	border-radius: 6px;
 
 	&:hover {
-		filter: drop-shadow(0 4px 80px rgb(0 0 0 / 15%));
+		transition: transform 0.8s;
+		transform: scale(1.05, 1.05);
+
+		:global {
+			.ui_button_container {
+				background: #ee3425;
+			}
+		}
 	}
 
 	@media screen and (max-width: 767px) {

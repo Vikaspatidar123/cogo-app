@@ -1,6 +1,6 @@
 .container {
 	padding: 20px;
-	margin-top: 12px;
+	margin-top: 20px;
 	border-radius: 4px;
 }
 
@@ -9,7 +9,7 @@
 }
 
 .verified {
-	background: linear-gradient(180deg, #8ade99 0%, #aae0b4 100%);
+	background: linear-gradient(180deg, #8ade99 0%, #ddebc0 100%);
 }
 
 .box {

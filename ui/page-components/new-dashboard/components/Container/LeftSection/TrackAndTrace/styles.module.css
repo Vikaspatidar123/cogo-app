@@ -1,10 +1,10 @@
 .container {
 	box-sizing: border-box;
 	padding: 6px 15px;
-	margin-top: 10px;
+	margin-top: 20px;
 	background: #fff;
 	border: 1px solid #e0e0e0;
-	border-radius: 4px;
+	border-radius: 5px;
 	box-shadow: 0 0 8px rgb(98 127 172 / 20%);
 }
 
@@ -42,7 +42,7 @@
 }
 
 .box:hover {
-	transition: transform 0.3s;
+	transition: transform 0.6s;
 	transform: scale(1.03);
 }
 

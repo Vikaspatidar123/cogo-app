@@ -137,8 +137,8 @@
 	"shippingline_placeholder":"Chọn hàng vận chuyển",
 	"track_now_button_text":"Theo dõi ngay bây giờ",
 	"custom_duty_text1":"Máy tính thuế tùy chỉnh",
-	"custom_duty_text2":"Lorem Cà rốt cà rốt, Phim đại học nâng cao",
-	"custom_duty_text3":"Lorem rất cà rốt, nhà phát triển đại học cà chua, nhưng tôi sẽ ở trong một temporincididis inquid để làm việc và đau đớn là tuyệt vời.",
+	"custom_duty_text2":"Tính toán tất cả các nhiệm vụ và thuế hiện hành cho bất kỳ sự kết hợp giữa các quốc gia và hàng hóa trên thế giới một cách nhanh chóng",
+	"custom_duty_text3":"Biết nhiệm vụ của bạn trước khi vận chuyển có thể giúp bạn tránh các chi phí và sự chậm trễ bất ngờ",
 	"custom_duty_text4":"Thử ngay bây giờ!",
 	"tracking_header_form_control_label_1":"Nhập container no/ bl no",
 	"tracking_header_form_control_required_text":"yêu cầu",
@@ -168,7 +168,7 @@
 	"schedule_title_text":"Lịch trình",
 	"schedule_title_text_1":"Lịch trình đại dương",
 	"schedule_title_text_2":"Lập kế hoạch một lô hàng sắp tới bằng cách sử dụng lịch vận chuyển toàn diện.",
-	"schedule_title_text_3":"Lịch trình hàng không",
+	"schedule_title_text_3":"Lịch trình không khí",
 	"schedule_title_text_4":"Lên kế hoạch cho một hàng hóa sắp tới bằng cách sử dụng lịch trình không khí toàn diện."
 
 }

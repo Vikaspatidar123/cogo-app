@@ -1,5 +1,7 @@
 import { useRequest } from '@/packages/request';
 
+const DEFAULT_PAGE_LIMIT = 2000;
+
 const createOptions = (list = []) => (
 	(list || []).map((ele) => ({
 		...ele,
@@ -21,7 +23,7 @@ const useGetOperatorList = () => {
 			filters: {
 				operator_type: 'airline',
 			},
-			page_limit: 2000,
+			page_limit: DEFAULT_PAGE_LIMIT,
 		},
 	}, { manual: false });
 

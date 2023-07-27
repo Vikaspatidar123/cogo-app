@@ -51,7 +51,6 @@ function CreateContract({
 			show={showContract}
 			onClose={() => setShowContract(false)}
 			onOuterClick={() => setShowContract(false)}
-			className="secondary md"
 		>
 			<>
 				<Modal.Header title="Request Contract">

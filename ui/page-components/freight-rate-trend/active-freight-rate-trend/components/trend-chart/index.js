@@ -1,91 +1,119 @@
 import { ResponsiveLine } from '@cogoport/charts/line';
-import { format } from '@cogoport/utils';
-import { useTranslation } from 'next-i18next';
+import { format, isEmpty } from '@cogoport/utils';
 
+import RenderSkeleton from './RenderSkeleton';
 import styles from './styles.module.css';
 import ToolTipComponent from './tooltipComponent';
 
-function TrendChart({ labels, datasets = [] }) {
-	const { t } = useTranslation(['frt']);
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+function TrendChart({ labels, datasets = [], trendDetails, loading, currency }) {
 	const data = (datasets || []).map((item) => {
-		const id = item.name;
-		const temp_data = item.values.map((val, index) => ({
+		const id = item?.name;
+		const temp_data = item?.values?.map((val, index) => ({
 			x : format(labels[index], 'yyyy-MM-dd'),
 			y : val,
 		}));
+
 		return { id, data: temp_data };
 	});
-
+	if (loading) {
+		return <RenderSkeleton />;
+	}
 	return (
 		<div>
-			<div className={styles.legend}>
-				<div className={styles.legend_list}>
-					<div className={styles.circle1} />
-					<div className={styles.legend_text}>{t('frt:chart_avg')}</div>
-				</div>
-				<div className={styles.legend_list}>
-					<div className={styles.circle2} />
-					<div className={styles.legend_text}>{t(':chart_min')}</div>
-				</div>
-				<div className={styles.legend_list}>
-					<div className={styles.circle3} />
-					<div className={styles.legend_text}>{t(':chart_max')}</div>
-				</div>
-			</div>
-			<div className={styles.chart_container}>
-				<div className={styles.chart}>
-					<ResponsiveLine
-						margin={{
-							top    : 15,
-							right  : 20,
-							bottom : 70,
-							left   : 60,
-						}}
-						data={data}
-						xScale={{
-							type      : 'time',
-							format    : '%Y-%m-%d',
-							useUTC    : false,
-							precision : 'day',
-						}}
-						yScale={{
-							type: 'linear',
-						}}
-						xFormat="time:%Y-%m-%d"
-						axisLeft={{
-							orient         : 'left',
-							tickSize       : 5,
-							tickPadding    : 5,
-							tickRotation   : 0,
-							legend         : 'Rates (USD)',
-							legendOffset   : -45,
-							legendPosition : 'middle',
-						}}
-						axisBottom={{
-							format         : '%b %d',
-							orient         : 'bottom',
-							tickSize       : 5,
-							tickPadding    : 5,
-							tickValues     : 'every 14 days',
-							legendOffset   : 36,
-							legendPosition : 'middle',
-						}}
-					// eslint-disable-next-line react/no-unstable-nested-components
-						tooltip={({ point }) => (
-							<ToolTipComponent point={point} data={data} />
-						)}
-						enableGridY
-						enableGridX={false}
-						enablePoints={false}
-						enableSlices={false}
-						pointColor={{ theme: 'background' }}
-						pointBorderWidth={5}
-						pointBorderColor={{ from: 'serieColor' }}
-						useMesh
-					/>
-				</div>
-			</div>
+			{!isEmpty(data) && trendDetails?.comparison_chart_data
+				?.datasets[GLOBAL_CONSTANTS.zeroth_index].values[GLOBAL_CONSTANTS.zeroth_index] ? (
+					<div className={styles.chart}>
+						<ResponsiveLine
+							margin={{ top: 10, right: 40, bottom: 20, left: 60 }}
+							data={data}
+							xScale={{
+								type      : 'time',
+								format    : '%Y-%m-%d',
+								useUTC    : false,
+								precision : 'day',
+							}}
+							yScale={{
+								type: 'linear',
+							}}
+							xFormat="time:%Y-%m-%d"
+							curve="natural"
+							axisTop={null}
+							axisRight={null}
+							axisBottom={{
+								format         : '%b %d',
+								orient         : 'bottom',
+								tickSize       : 5,
+								tickPadding    : 5,
+								tickValues     : 'every 14 days',
+								legendOffset   : 36,
+								legendPosition : 'middle',
+							}}
+							axisLeft={{
+								orient         : 'left',
+								tickSize       : 5,
+								tickPadding    : 5,
+								tickRotation   : 0,
+								legend         : `Rates (${currency})`,
+								legendOffset   : -55,
+								legendPosition : 'middle',
+							}}
+							nableGridY
+							enableGridX={false}
+							enablePoints={false}
+							enableSlices={false}
+							useMesh
+							colors={{ scheme: 'nivo' }}
+							pointSize={9}
+							pointColor={{ from: 'color', modifiers: [] }}
+							pointBorderWidth={2}
+							pointBorderColor="#ffffff"
+							pointLabelYOffset={-21}
+							enableArea
+							areaOpacity={0.1}
+							isInteractive
+							tooltip={({ point }) => (
+								<ToolTipComponent point={point} data={data} currency={currency} />
+							)}
+							legends={[
+								{
+									anchor            : 'top-right',
+									direction         : 'row',
+									justify           : false,
+									translateX        : 27,
+									translateY        : -46,
+									itemsSpacing      : 6,
+									itemDirection     : 'left-to-right',
+									itemWidth         : 85,
+									itemHeight        : 10,
+									itemOpacity       : 0.75,
+									symbolSize        : 13,
+									symbolShape       : 'circle',
+									symbolBorderColor : 'rgba(0, 0, 0, .5)',
+									effects           : [
+										{
+											on    : 'hover',
+											style : {
+												itemBackground : 'rgba(0, 0, 0, .03)',
+												itemOpacity    : 1,
+											},
+										},
+									],
+								},
+							]}
+						/>
+					</div>
+				) : (
+					<div className={styles.empty_state}>
+						<Image
+							src={GLOBAL_CONSTANTS.image_url.empty_state}
+							width={400}
+							height={400}
+						/>
+					</div>
+				)}
 		</div>
 	);
 }

@@ -4,41 +4,35 @@ import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import { getCommodityOptionMapping } from '../../common/commodity-mappings';
+import { DEFAULT_FILTERS } from '../../constants';
 
 import filterControls from './filter-controls';
 import styles from './styles.module.css';
 
+import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function FilterForm({
-	commodity,
-	setCommodity,
-	dateRangePickerValue,
-	setDateRangePickerValue,
-	filteredCurrency,
-	setFilteredCurrency,
-	containerSize,
-	setContainerSize,
-	containerType,
-	setContainerType,
-	setShippingLine,
+	setFilters,
+	filters,
 }) {
 	const { t } = useTranslation(['frt']);
+	const { profile } = useSelector((state) => state);
+
+	const { organization } = profile || {};
+
+	const { country } = organization || {};
 	const [dropDown, setDropDown] = useState(false);
 	const now = new Date();
 
 	const COMMODITY_OPTIONS_MAPPING = getCommodityOptionMapping({ t });
 
 	const handleClear = () => {
-		setCommodity('');
-		setDateRangePickerValue({
-			startDate : new Date(now.setMonth(now.getMonth() - 6)),
-			endDate   : new Date(new Date().setMonth(new Date().getMonth() + 1)),
-		});
-		setFilteredCurrency();
-		setContainerSize('');
-		setContainerType('');
-		setShippingLine('');
+		setFilters(DEFAULT_FILTERS({ country }));
 	};
-
+	const setValue = ({ key, value }) => {
+		setFilters((prev) => ({ ...prev, [key]: value }));
+	};
 	const content = (
 		<div className={styles.filter_item}>
 			<div className={styles.container1}>
@@ -46,8 +40,8 @@ function FilterForm({
 					<div className={styles.input_title_text}>{t('frt:filter_container_size')}</div>
 					<Select
 						placeholder="Size"
-						value={containerSize}
-						onChange={setContainerSize}
+						value={filters.containerSize}
+						onChange={(value) => setValue({ value, key: 'containerSize' })}
 						options={filterControls.find((x) => x.name === 'container-size').options}
 						style={{ width: '150px' }}
 					/>
@@ -56,8 +50,12 @@ function FilterForm({
 					<div className={styles.input_title_text}>{t('frt:filter_container_type')}</div>
 					<Select
 						placeholder="type"
-						value={containerType}
-						onChange={setContainerType}
+						value={filters.containerType}
+						onChange={(value) => setFilters((prev) => ({
+							...prev,
+							containerType : value,
+							commodities   : COMMODITY_OPTIONS_MAPPING[value]?.[GLOBAL_CONSTANTS.zeroth_index]?.value,
+						}))}
 						options={filterControls.find((x) => x.name === 'container_type').options}
 						style={{ width: '150px' }}
 					/>
@@ -69,18 +67,17 @@ function FilterForm({
 					{t('frt:filter_commodity')}
 					<Select
 						placeholder="commodity"
-						value={commodity}
-						onChange={setCommodity}
-						options={COMMODITY_OPTIONS_MAPPING[containerType]}
+						value={filters.commodities}
+						onChange={(value) => setValue({ value, key: 'commodities' })}
+						options={COMMODITY_OPTIONS_MAPPING[filters.containerType]}
 						style={{ width: '150px' }}
 					/>
 				</div>
 				<div className={styles.select_div}>
 					<div className={styles.input_title_text}>{t('frt:filter_currency')}</div>
 					<Select
-						placeholder="USD"
-						value={filteredCurrency}
-						onChange={setFilteredCurrency}
+						value={filters.filteredCurrency}
+						onChange={(value) => setValue({ value, key: 'filteredCurrency' })}
 						options={filterControls.find((x) => x.name === 'currency').options}
 						style={{ width: '150px' }}
 					/>
@@ -91,8 +88,15 @@ function FilterForm({
 					<div className={styles.input_title_text}>{t('frt:filter_data_range')}</div>
 					<DateRangepicker
 						style={{ marginRight: '10px' }}
-						value={dateRangePickerValue || new Date(now.setMonth(now.getMonth() - 6))}
-						onChange={setDateRangePickerValue}
+						value={{
+							startDate : filters.validity_start,
+							endDate   : filters.validity_end,
+						} || new Date(now.setMonth(now.getMonth() - 6))}
+						onChange={(value) => setFilters((prev) => ({
+							...prev,
+							validity_start : value.startDate,
+							validity_end   : value.endDate,
+						}))}
 						isPreviousDaysAllowed
 					/>
 				</div>
@@ -114,7 +118,6 @@ function FilterForm({
 	return (
 		<div className={styles.container}>
 			<Popover
-				theme="light"
 				caret={false}
 				placement="bottom-start"
 				animation="shift-away"

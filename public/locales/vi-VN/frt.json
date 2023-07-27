@@ -67,6 +67,9 @@
     "commodity_option_iso_tank_radioactive_material_7":"Vật liệu phóng xạ 7",
     "commodity_option_iso_tank_corrosives_8":"Ăn mòn 8",
     "commodity_option_iso_tank_miscellaneous_dangerous_goods_9":"Hàng hóa nguy hiểm linh tinh 9",
-    "commodity_option_open_side_general":"Tổng quan"
+    "commodity_option_open_side_general":"Tổng quan",
+    "tab_text_1":"Hằng ngày",
+    "tab_text_2":"Hàng tuần",
+    "tab_text_3":"Hàng tháng"
 
 }

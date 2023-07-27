@@ -67,5 +67,8 @@
     "commodity_option_iso_tank_radioactive_material_7":"Radioactive Material 7",
     "commodity_option_iso_tank_corrosives_8":"Corrosives 8",
     "commodity_option_iso_tank_miscellaneous_dangerous_goods_9":"Miscellaneous Dangerous Goods 9",
-    "commodity_option_open_side_general":"General"
+    "commodity_option_open_side_general":"General",
+    "tab_text_1":"Daily",
+    "tab_text_2":"Weekly",
+    "tab_text_3":"Monthly"
 }

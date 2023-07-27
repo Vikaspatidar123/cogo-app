@@ -5,7 +5,7 @@ on:
     types: [created]
 
 jobs:
-  if: github.event.issue.pull_request && contains(github.event.comment.body, '/lint')
+  if: github.event.issue.pull_request && (contains(github.event.comment.body, '/lint') || contains(github.event.comment.body, '/checks'))
 
   init:
     name: Init

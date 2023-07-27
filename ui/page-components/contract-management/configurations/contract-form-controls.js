@@ -16,7 +16,7 @@ const ShipmentPlanControls = ({ validity_start, validity_end }) => [
 					min      : 1,
 					max      : 5000,
 				},
-				span: 4,
+				span: 2,
 			},
 			{
 				name         : 'date_range',
@@ -26,7 +26,7 @@ const ShipmentPlanControls = ({ validity_start, validity_end }) => [
 				minDate      : validity_start,
 				maxDate      : validity_end,
 				showOptional : false,
-				span         : 4,
+				span         : 6,
 				rules        : { required: 'This is required' },
 			},
 		],

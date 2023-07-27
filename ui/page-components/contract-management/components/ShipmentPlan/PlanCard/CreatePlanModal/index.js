@@ -65,9 +65,9 @@ function CreatePlanModal({
 	const check = compareAsc(toDate(validity_start_date), new Date());
 
 	const days = differenceInDays(
-		toDate(validity_end_date).setUTCHours(23, 59, 59, 999),
+		new Date(validity_end_date).setUTCHours(23, 59, 59, 999),
 		check === 1
-			? toDate(validity_start_date).setUTCHours(0, 0, 0, 0)
+			? new Date(validity_start_date).setUTCHours(0, 0, 0, 0)
 			: new Date().setUTCHours(0, 0, 0, 0),
 	) + 1;
 
@@ -138,8 +138,7 @@ function CreatePlanModal({
 				}
 
 				setError(false);
-
-				setValue('create_plan', [...Array(firstChild)].map((_, index) => {
+				const value = [...Array(firstChild)].map((_, index) => {
 					const tempEndDate = addDays(
 						check === 1 ? toDate(validity_start_date) : new Date(),
 						(index + 1) * newDays - 1,
@@ -160,12 +159,13 @@ function CreatePlanModal({
 						date_range: {
 							startDate: addDays(
 								check === 1 ? toDate(validity_start_date) : new Date(),
-								index * newDays,
+								(index * newDays) || 1,
 							),
 							endDate: newEndDate,
 						},
 					};
-				}));
+				});
+				setValue('create_plan', value);
 			}
 		} else {
 			const freq_days = [3, 7, 15].includes(
@@ -184,8 +184,8 @@ function CreatePlanModal({
 			setValue('create_plan', (plan_data || []).map((data) => ({
 				max_count  : data?.max_count || data?.max_volume || data?.max_weight,
 				date_range : {
-					startDate : new Date(data?.validity_start_date),
-					endDate   : new Date(data?.validity_end_date),
+					startDate : data?.validity_start_date,
+					endDate   : data?.validity_end_date,
 				},
 				id: data?.id,
 			})));

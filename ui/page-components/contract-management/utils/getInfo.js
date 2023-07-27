@@ -17,60 +17,22 @@ const dataObject = [
 ];
 
 const dataFormat = (item, data) => {
-	if (item.value === 'container_size') {
-		return {
-			valueKey  : item.key,
-			valueText : `${data[item.value]} FT`,
-			value     : item.value,
-		};
-	}
-	if (item.value === 'containers_count') {
-		return {
-			valueKey  : item.key,
-			valueText : `${data[item.value]} Container`,
-			value     : item.value,
-		};
-	}
-	if (item.value === 'inco_term') {
-		return {
-			valueKey  : item.key,
-			valueText : `${upperCase(data[item.value])}`,
-			value     : item.value,
-		};
-	}
-	if (item.value === 'volume') {
-		return {
-			valueKey  : item.key,
-			valueText : `${data[item.value]} cbm`,
-			value     : item.value,
-		};
-	}
-	if (item.value === 'weight') {
-		return {
-			valueKey  : item.key,
-			valueText : `${data[item.value]} kg`,
-			value     : item.value,
-		};
-	}
-	if (item.value === 'cargo_weight_per_container') {
-		return {
-			valueKey  : item.key,
-			valueText : `${data[item.value]} MT`,
-			value     : item.value,
-		};
-	}
-	if (item.value === 'packages_count') {
-		return {
-			valueKey  : item.key,
-			valueText : `${data[item.value]} pkg`,
-			value     : item.value,
-		};
-	}
-	return {
-		valueKey  : item.key,
-		valueText : startCase(data[item.value]),
-		value     : item.value,
+	const mapping = {
+		container_size             : `${data[item.value]} FT`,
+		containers_count           : `${data[item.value]} Container`,
+		inco_term                  : `${upperCase(data[item.value])}`,
+		volume                     : `${data[item.value]} cbm`,
+		weight                     : `${data[item.value]} kg`,
+		cargo_weight_per_container : `${data[item.value]} MT`,
+		packages_count             : `${data[item.value]} pkg`,
+		default                    : startCase(data[item.value]),
 	};
+
+	return ({
+		valueKey  : item.key,
+		value     : item.value,
+		valueText : mapping[item.value] || mapping.default,
+	});
 };
 
 const getInfo = (data = {}) => {

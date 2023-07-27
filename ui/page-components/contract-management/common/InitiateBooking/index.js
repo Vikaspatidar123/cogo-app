@@ -35,13 +35,17 @@ function InitiateBooking({
 		contract_type,
 	} = data || {};
 
+	const { quantity = '1', start_date = '', end_date = '' } = upcomingShipmentData || {};
+
 	const contractValidity = {
 		contractStartDate,
 		contractEndDate,
 	};
 
 	const isFtlPresentInFcl = additionalServices.includes('ftl_freight') && service_type === 'fcl_freight';
+
 	const isTruckingPresentInLcl = additionalServices.includes('ftl_freight') && service_type === 'lcl_freight';
+
 	const contractWithCogoport = source === 'manual' && contract_type === 'with_cogoport';
 
 	const { createBooking, loading } = useCreateContractBooking();
@@ -103,20 +107,14 @@ function InitiateBooking({
 	const showElements = showElementsFunc(fields, formValues);
 	const shipmentStartDate = watch('departure');
 
+	const handleFormSubmit = (item) => {
+		const formattedData = formattedBookingPayload({ item, data, contractId });
+		createBooking(formattedData);
+	};
+
 	useEffect(() => {
 		setDepartureDate(shipmentStartDate);
 	}, [shipmentStartDate]);
-
-	const handleFormSubmit = async (item) => {
-		const formattedData = formattedBookingPayload({ item, data, contractId });
-		await createBooking(formattedData);
-	};
-
-	const {
-		quantity = '1',
-		start_date = '',
-		end_date = '',
-	} = upcomingShipmentData || {};
 
 	useEffect(() => {
 		if (service_type === 'fcl_freight') {
@@ -155,6 +153,7 @@ function InitiateBooking({
 						{service_type === 'fcl_freight' ? (
 							<Button
 								themeType="secondary"
+								type="button"
 								onClick={() => {
 									setValue('attributes', intialFormData);
 								}}

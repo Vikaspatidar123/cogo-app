@@ -30,10 +30,8 @@ function Route({
 		port_code: destinationCode = '',
 		name: destinationName = '',
 	} = destination || {};
-
 	const { name: originMainPortName = '' } = origin_main_port || {};
 	const { name: destinationMainPortName = '' } = destination_main_port || {};
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.location}>
@@ -42,9 +40,7 @@ function Route({
 					portName={originName}
 					portCode={port_code}
 				/>
-
 				<div className={styles.country}>{startCase(countryName(display_name || ''))}</div>
-
 				{originMainPortName ? (
 					<div className={styles.country}>
 						via
@@ -52,24 +48,19 @@ function Route({
 						{originMainPortName}
 					</div>
 				) : null}
-
 			</div>
-
 			<div className={styles.icon}>
 				<IcMPortArrow />
 			</div>
-
 			<div className={styles.location}>
 				<TooltipContent
 					portDisplayName={destinationDisplayName}
 					portName={destinationName}
 					portCode={destinationCode}
 				/>
-
 				<div className={styles.country}>
 					{startCase(countryName(destinationDisplayName || ''))}
 				</div>
-
 				{destinationMainPortName ? (
 					<div className={styles.country}>
 						via

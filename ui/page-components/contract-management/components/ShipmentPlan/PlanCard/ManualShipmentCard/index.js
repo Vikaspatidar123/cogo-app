@@ -15,6 +15,7 @@ import formatDate from '@/ui/commons/utils/formatDate';
 
 const STATUS = ['completed', 'ongoing', 'cancelled'];
 const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+
 function ManualShipmentCard({
 	requestData = [],
 	loading = false,
@@ -61,6 +62,7 @@ function ManualShipmentCard({
 						return (
 							<div className={styles.container}>
 								<div className={`${styles.shipment_date} ${styles.state}`}>
+
 									{shipment_date && isActive && (
 										<div className={styles.date}>
 											{formatDate({

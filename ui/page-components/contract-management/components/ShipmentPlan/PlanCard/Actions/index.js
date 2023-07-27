@@ -15,17 +15,16 @@ function Actions({
 	contractStatus = '',
 	source = '',
 	contract_type = '',
-	setOpen = () => {},
-	setShowPlanBox = () => {},
-	setShowModal = () => {},
-	setShowBookingModal = () => {},
-	getShipmentPlans = () => {},
-	setShowBreakup = () => {},
+	setOpen = () => { },
+	setShowPlanBox = () => { },
+	setShowModal = () => { },
+	setShowBookingModal = () => { },
+	getShipmentPlans = () => { },
+	setShowBreakup = () => { },
 	utilisationCountExceed,
 }) {
 	const { query } = useRouter();
 	const { through = '', contract_status = '' } = query || {};
-
 	const disabledBooking = status !== 'locked'
 		|| contractStatus !== 'active'
 		|| through === 'techops'
@@ -48,7 +47,6 @@ function Actions({
 	const withShippingLineContract = source === 'manual'
 		&& contract_type === 'with_carrier'
 		&& contract_status !== 'expired';
-
 	return (
 		<div className={styles.container}>
 			{!isExistingManual && (

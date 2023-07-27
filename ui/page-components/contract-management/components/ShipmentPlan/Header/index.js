@@ -10,6 +10,10 @@ import { getItemDisplayString } from '../../../utils/getDisplayNames';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const START_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+const END_INDEX = 3;
 
 const MAPPING = {
 	fcl_freight: {
@@ -46,6 +50,7 @@ function Header({ data, loading }) {
 					<div className={styles.left}>
 						<IcMArrowBack onClick={back} className={styles.icon} />
 						{through === 'techops' && <div className={styles.custom_tag}>Tech Ops</div>}
+
 						<div className={styles.custom_tag}>
 							Contract ID :
 							{' '}
@@ -95,7 +100,11 @@ function Header({ data, loading }) {
 							return (
 								<div key={type} className={styles.contract_info}>
 									<div className={styles.service_icon}>{SERVICE_ICON_MAPPING[type]}</div>
-									<div className={styles.service_name}>{upperCase(type).slice(0, 3)}</div>
+
+									<div className={styles.service_name}>
+										{upperCase(type).slice(START_INDEX, END_INDEX)}
+									</div>
+
 									<div className={styles.tag}>{count}</div>
 								</div>
 							);

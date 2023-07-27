@@ -1,5 +1,5 @@
 import { Modal } from '@cogoport/components';
-import { addDays, compareAsc, differenceInDays, toDate } from '@cogoport/utils';
+import { addDays, compareAsc, differenceInDays, isEmpty, toDate } from '@cogoport/utils';
 import React, { useEffect, useState } from 'react';
 
 import { getUnit } from '../../../../utils/getUnit';
@@ -62,6 +62,7 @@ function CreatePlanModal({
 	const volumeLeft = max_volume - booked_volume;
 
 	const useCount = containersLeft || weightLeft || volumeLeft;
+
 	const check = compareAsc(toDate(validity_start_date), new Date());
 
 	const days = differenceInDays(
@@ -111,7 +112,7 @@ function CreatePlanModal({
 	};
 
 	useEffect(() => {
-		if ((plan_data || []).length === 0) {
+		if (isEmpty(plan_data)) {
 			const firstChild = Math.floor(days / (frequency === 'others' ? freqCount : frequency)) || 1;
 			const secoundChild = Math.floor(useCount / firstChild);
 
@@ -181,6 +182,7 @@ function CreatePlanModal({
 			setDisableOptions(true);
 			setFrequency(freq_days);
 			setSchedule(plan_data?.[0]?.booking_schedule_type);
+
 			setValue('create_plan', (plan_data || []).map((data) => ({
 				max_count  : data?.max_count || data?.max_volume || data?.max_weight,
 				date_range : {

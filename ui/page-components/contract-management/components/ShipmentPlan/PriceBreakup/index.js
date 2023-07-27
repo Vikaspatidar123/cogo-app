@@ -46,6 +46,7 @@ function PriceBreakup({ details = {}, source = '' }) {
 		service: (groupedServices[service] || [])[0]?.service
 			? handleServicesNames(service)
 			: startCase(service),
+
 		properties: (groupedServices[service] || []).map((item) => handleLineItemsBreakup(item, source)),
 	}));
 
@@ -53,6 +54,7 @@ function PriceBreakup({ details = {}, source = '' }) {
 		<div className={styles.container}>
 			{(newData || []).map((data) => {
 				const { properties } = data;
+
 				return properties.map((property, itemIndex) => {
 					const { features, price = '' } = property[property.length - 1] || {};
 

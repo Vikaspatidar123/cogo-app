@@ -14,6 +14,8 @@ import TechopsHeader from './TechopsHeader';
 
 import { useRouter } from '@/packages/next';
 
+const MAX_COUNT = 10;
+
 function ShipmentPlan() {
 	const { query } = useRouter();
 	const { contract_id = '', techOpsServiceId = '', through = '' } = query || {};
@@ -69,12 +71,12 @@ function ShipmentPlan() {
 						))}
 					</div>
 				)}
-			{total_count > 10 ? (
+			{total_count > MAX_COUNT ? (
 				<div className={styles.pagination_wrapper}>
 					<Pagination
 						type="table"
 						currentPage={page}
-						pageSize={10}
+						pageSize={MAX_COUNT}
 						totalItems={total_count}
 						onPageChange={(e) => setPagination(e)}
 					/>

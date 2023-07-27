@@ -17,11 +17,13 @@ function Validity({ validity_left_days, validity_end, validity_start, contractSt
 				{' '}
 				to
 				{' '}
+
 				{formatDate({
 					date       : validity_end,
 					dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
 					formatType : 'date',
 				})}
+
 				{validity_left_days && contractStatus === 'active' && (
 					<span>
 						{validity_left_days}

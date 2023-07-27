@@ -8,6 +8,8 @@ import styles from './styles.module.css';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+const DEFAULT_SERVICE_LENGTH = 2;
+const MINIMUN_SERVICE_LENGTH = 1;
 
 const ViewServices = ({ serviceDetails }) => (serviceDetails || []).map((detail, index) => {
 	if (!index) return null;
@@ -71,23 +73,25 @@ function Commodities({ itemData }) {
 				<div className={styles.service_tag}>{startCase(service_type)}</div>
 
 				{!isEmpty(additionalServices) && (
-					<div className={styles.service_tag}>{startCase(additionalServices?.[0])}</div>
+					<div className={styles.service_tag}>{startCase(additionalServices?.[ZEROTH_INDEX])}</div>
 				)}
 
-				{additionalServices?.length > 1 && (
+				{additionalServices?.length > MINIMUN_SERVICE_LENGTH && (
 					<Tooltip
 						interactive
 						placement="right"
 						content={(
 							<div className={styles.add_services}>
 								{(additionalServices.slice(1) || [])
-									.map((v) => <div key={v} className={styles.service_tag}>{startCase(v)}</div>)}
+									.map((service) => (
+										<div key={service} className={styles.service_tag}>{startCase(service)}</div>
+									))}
 							</div>
 						)}
 					>
 						<div className={styles.service_tag} style={{ background: '#CFEAED' }}>
 							+
-							{(additionalServices?.length || 2) - 1}
+							{(additionalServices?.length || DEFAULT_SERVICE_LENGTH) - MINIMUN_SERVICE_LENGTH}
 							{' '}
 							More
 						</div>

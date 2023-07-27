@@ -18,6 +18,15 @@ import ShipmentPlanControls from '@/ui/page-components/contract-management/confi
 import useCreateBulkContractUtilisation from
 	'@/ui/page-components/contract-management/hooks/useCreateBulkContractUtilisation';
 
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+const FIRST_INDEX = GLOBAL_CONSTANTS.first_index;
+const HOUR_VAL = 23;
+const MINUTE_VAL = 59;
+const SEC_VAL = 59;
+const MS_VAL = 999;
+
+const DEFAULT_TIME = GLOBAL_CONSTANTS.zeroth_index;
+
 function CreatePlanModal({
 	showModal,
 	setShowModal,
@@ -66,10 +75,10 @@ function CreatePlanModal({
 	const check = compareAsc(toDate(validity_start_date), new Date());
 
 	const days = differenceInDays(
-		new Date(validity_end_date).setUTCHours(23, 59, 59, 999),
+		new Date(validity_end_date).setUTCHours(HOUR_VAL, MINUTE_VAL, SEC_VAL, MS_VAL),
 		check === 1
-			? new Date(validity_start_date).setUTCHours(0, 0, 0, 0)
-			: new Date().setUTCHours(0, 0, 0, 0),
+			? new Date(validity_start_date).setUTCHours(DEFAULT_TIME, DEFAULT_TIME, DEFAULT_TIME, DEFAULT_TIME)
+			: new Date().setUTCHours(DEFAULT_TIME, DEFAULT_TIME, DEFAULT_TIME, DEFAULT_TIME),
 	) + 1;
 
 	const { createBulkContractUtilisation, loading = false } = useCreateBulkContractUtilisation({
@@ -113,7 +122,7 @@ function CreatePlanModal({
 
 	useEffect(() => {
 		if (isEmpty(plan_data)) {
-			const firstChild = Math.floor(days / (frequency === 'others' ? freqCount : frequency)) || 1;
+			const firstChild = Math.floor(days / (frequency === 'others' ? freqCount : frequency)) || FIRST_INDEX;
 			const secoundChild = Math.floor(useCount / firstChild);
 
 			if (schedule === 'randomly' || (frequency === 'others' && freqCount === '')) {
@@ -170,18 +179,18 @@ function CreatePlanModal({
 			}
 		} else {
 			const freq_days = [3, 7, 15].includes(
-				plan_data?.[0]?.booking_frequency_days,
+				plan_data?.[ZEROTH_INDEX]?.booking_frequency_days,
 			)
-				? plan_data?.[0]?.booking_frequency_days
+				? plan_data?.[ZEROTH_INDEX]?.booking_frequency_days
 				: 'others';
 
 			if (freq_days === 'others') {
-				setFreqCount(plan_data?.[0]?.booking_frequency_days);
+				setFreqCount(plan_data?.[ZEROTH_INDEX]?.booking_frequency_days);
 			}
 
 			setDisableOptions(true);
 			setFrequency(freq_days);
-			setSchedule(plan_data?.[0]?.booking_schedule_type);
+			setSchedule(plan_data?.[ZEROTH_INDEX]?.booking_schedule_type);
 
 			setValue('create_plan', (plan_data || []).map((data) => ({
 				max_count  : data?.max_count || data?.max_volume || data?.max_weight,

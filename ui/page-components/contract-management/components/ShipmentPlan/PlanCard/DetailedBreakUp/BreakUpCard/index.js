@@ -104,7 +104,7 @@ function BreakUpCard({ service = {}, source = '' }) {
 								content={(
 									<div className={styles.add_service}>
 										{(additional_services.slice(1) || []).map((currService) => (
-											<Pill className="in_loop">
+											<Pill key={currService}>
 												<ServiceIcon service={currService} />
 												{generateServiceDisplayName(currService)}
 											</Pill>

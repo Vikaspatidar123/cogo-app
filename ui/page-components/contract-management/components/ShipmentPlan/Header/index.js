@@ -57,7 +57,7 @@ function Header({ data, loading }) {
 							{contract_reference_id || '--'}
 						</div>
 
-						{contract_name && (
+						{contract_name ? (
 							<Tooltip
 								content={<div>{contract_name}</div>}
 								placement="right"
@@ -68,7 +68,7 @@ function Header({ data, loading }) {
 									{startCase(contract_name)}
 								</div>
 							</Tooltip>
-						)}
+						) : null}
 
 						{status ? <div className={cl`${styles.status} ${styles[status]}`}>{STATUS[status]}</div> : null}
 

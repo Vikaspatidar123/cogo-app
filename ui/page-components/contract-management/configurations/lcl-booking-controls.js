@@ -1,7 +1,11 @@
 import { addDays } from '@cogoport/utils';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+
 const lclControls = ({ contractValidity, departureDate, primaryServicesDetailsArray = [] }) => {
-	const { primary_service_id = '' } = primaryServicesDetailsArray?.[0] || {};
+	const { primary_service_id = '' } = primaryServicesDetailsArray?.[ZEROTH_INDEX] || {};
 
 	const { contractEndDate } = contractValidity || {};
 	const fields = [

@@ -34,10 +34,6 @@
 	flex-direction: column;
 }
 
-.in_loop {
-	margin: 2px 0;
-}
-
 .service_tag {
 	display: flex;
 	align-items: center;

@@ -150,11 +150,11 @@ function PlanCard({
 	return (
 		<div className={cl`${styles.container} ${status === '' ? styles.add_padding : ''}`}>
 			<div className={styles.flex_box}>
-				{status && (
+				{status ? (
 					<div className={cl`${styles.status_tag} ${styles[`${status}_${contractStatus}`]}`}>
 						{contractStatus === 'active' ? serviceStateWithQuery : serviceState}
 					</div>
-				)}
+				) : null}
 
 				<Validity
 					validity_left_days={validity_left_days}

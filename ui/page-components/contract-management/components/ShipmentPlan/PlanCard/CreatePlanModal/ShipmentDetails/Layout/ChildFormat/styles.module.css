@@ -1,7 +1,6 @@
 .styled_row {
 	display: flex;
 	flex-direction: row;
-	flex-flow: unset !important;
 	margin: 10px 14px 0;
 	margin-left: 18px !important;
 }

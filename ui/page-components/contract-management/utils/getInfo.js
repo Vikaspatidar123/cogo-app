@@ -27,6 +27,7 @@ const dataFormat = (item, data) => {
 		packages_count             : `${data[item.value]} pkg`,
 		default                    : startCase(data[item.value]),
 	};
+
 	return ({
 		valueKey  : item.key,
 		value     : item.value,

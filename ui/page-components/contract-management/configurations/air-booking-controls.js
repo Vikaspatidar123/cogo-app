@@ -1,9 +1,10 @@
 import { addDays } from '@cogoport/utils';
 
-const airControls = (contractValidity, departureDate) => {
+const airControls = ({ contractValidity, departureDate, primaryServicesDetailsArray = [] }) => {
 	const { contractEndDate } = contractValidity || {};
+	const { primary_service_id = '' } = primaryServicesDetailsArray?.[0] || {};
 
-	return [
+	const fields = [
 		{
 			name        : 'packages_count',
 			inlineLabel : 'Packages Count',
@@ -53,7 +54,25 @@ const airControls = (contractValidity, departureDate) => {
 			disabled    : !departureDate,
 			minDate     : departureDate,
 		},
+		{
+			name  : 'primary_service_id',
+			value : primary_service_id,
+			type  : 'hidden',
+			style : { display: 'none' },
+			span  : 0.1,
+		},
 	];
+
+	const defaultValues = {
+		packages_count : 1,
+		volume         : 1,
+		weight         : 1,
+		primary_service_id,
+	};
+
+	return {
+		fields, defaultValues,
+	};
 };
 
 export default airControls;

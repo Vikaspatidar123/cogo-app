@@ -21,7 +21,7 @@ export const controls = ({ country_code, rest }) => {
 			rules : {
 				required: `${IDENTIFICAITON_LABEL} is required`,
 			},
-			placeholder: 'PAN',
+			placeholder: IDENTIFICAITON_LABEL,
 		},
 		{
 			name     : 'utility_bill_document_url',

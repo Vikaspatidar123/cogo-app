@@ -66,10 +66,11 @@ function CreatePlanModal({
 	const volumeLeft = max_volume - booked_volume;
 
 	const useCount = containersLeft || weightLeft || volumeLeft;
+
 	const check = compareAsc(toDate(validity_start_date), new Date());
 
 	const days = differenceInDays(
-		new Date(validity_end_date),
+		new Date(validity_end_date).setUTCHours(23, 59, 59, 999),
 		check === 1
 			? new Date(validity_start_date).setUTCHours(0, 0, 0, 0)
 			: new Date().setUTCHours(0, 0, 0, 0),
@@ -147,8 +148,7 @@ function CreatePlanModal({
 				}
 
 				setError(false);
-
-				const val = [...Array(firstChild)].map((_, index) => {
+				const value = [...Array(firstChild)].map((_, index) => {
 					const tempEndDate = addDays(
 						check === 1 ? toDate(validity_start_date) : new Date(),
 						(index + 1) * newDays - 1,
@@ -165,14 +165,13 @@ function CreatePlanModal({
 						date_range: {
 							startDate: addDays(
 								check === 1 ? toDate(validity_start_date) : new Date(),
-								index * newDays || 1,
+								(index * newDays) || 1,
 							),
 							endDate: newEndDate,
 						},
 					};
 				});
-				console.log(val, 'cal');
-				setValue('create_plan', val);
+				setValue('create_plan', value);
 			}
 		} else {
 			const freq_days = [3, 7, 15].includes(
@@ -188,7 +187,15 @@ function CreatePlanModal({
 			setDisableOptions(true);
 			setFrequency(`${freq_days}`);
 			setSchedule(plan_data?.[0]?.booking_schedule_type);
-			setValue('create_plan', modifiedGroupedData.create_plan);
+
+			setValue('create_plan', (plan_data || []).map((data) => ({
+				max_count  : data?.max_count || data?.max_volume || data?.max_weight,
+				date_range : {
+					startDate : data?.validity_start_date,
+					endDate   : data?.validity_end_date,
+				},
+				id: data?.id,
+			})));
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [frequency, schedule, freqCount, plan_data]);

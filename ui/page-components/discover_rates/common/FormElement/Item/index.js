@@ -66,7 +66,7 @@ function Item({ formValue, ...rest }) {
 				{restProps.type === 'container_type-commodity' ? (
 					<Element
 						width="100%"
-						{...restProps}
+						{...rest}
 						{...props}
 						className={className}
 						id={`search_form_${rest.name}`}
@@ -93,7 +93,7 @@ function Item({ formValue, ...rest }) {
 						{((!restProps?.collapse || !value) && (
 							<Element
 								width="100%"
-								{...restProps}
+								{...rest}
 								{...props}
 								size="sm"
 								className={className}

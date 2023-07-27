@@ -21,6 +21,12 @@
 .flex_box {
 	display: flex;
 	align-items: center;
+
+	:global {
+		.ui_pill_text {
+			white-space: nowrap;
+		}
+	}
 }
 
 .add_service {

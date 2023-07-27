@@ -11,7 +11,14 @@ import PriceBreakup from '../../../PriceBreakup';
 import getValueProps from './getValueProps';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
+
+const END_INDEX = 3;
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+const START_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+const DEFAULT_SERVICE_LENGTH = 2;
+const MINIMUN_SERVICE_LENGTH = 1;
 
 const SERVICE_PRICE_MAPPING = {
 	basic_freight             : 'Basic Freight',
@@ -49,12 +56,13 @@ function BreakUpCard({ service = {}, source = '' }) {
 				>
 					<div className={styles.flex_box}>
 						<div className={styles.flex_box}>
-							{Object.values(valueProps.details).slice(0, 3)
+							{Object.values(valueProps.details).slice(START_INDEX, END_INDEX)
 								.map((value) => (
 									<Pill key={value}>{value}</Pill>
 								))}
 
-							{Object.values(valueProps.details).length > 3 ? (
+							{Object.values(valueProps.details).length > END_INDEX ? (
+
 								<div className={styles.flex_box}>
 									<Tooltip
 										interactive
@@ -62,7 +70,7 @@ function BreakUpCard({ service = {}, source = '' }) {
 										content={(
 											<div className={styles.add_service}>
 												{Object.values(valueProps.details)
-													.slice(3)
+													.slice(END_INDEX)
 													.map((value) => (
 														<Pill className={styles.in_loop} key={value}>
 															{value}
@@ -74,6 +82,7 @@ function BreakUpCard({ service = {}, source = '' }) {
 										<Pill color="blue">View More</Pill>
 									</Tooltip>
 								</div>
+
 							) : null}
 						</div>
 					</div>
@@ -82,13 +91,13 @@ function BreakUpCard({ service = {}, source = '' }) {
 						{!isEmpty(additional_services) && (
 							<Pill>
 								<span style={{ display: 'flex' }}>
-									<ServiceIcon service={additional_services[0]} />
-									{generateServiceDisplayName(additional_services[0])}
+									<ServiceIcon service={additional_services[ZEROTH_INDEX]} />
+									{generateServiceDisplayName(additional_services[ZEROTH_INDEX])}
 								</span>
 							</Pill>
 						)}
 
-						{additional_services?.length > 1 && (
+						{additional_services?.length > MINIMUN_SERVICE_LENGTH && (
 							<Tooltip
 								interactive
 								placement="right"
@@ -105,7 +114,7 @@ function BreakUpCard({ service = {}, source = '' }) {
 							>
 								<div className={styles.service_tag} style={{ background: '#CFEAED' }}>
 									+
-									{(additional_services?.length || 2) - 1}
+									{(additional_services?.length || DEFAULT_SERVICE_LENGTH) - MINIMUN_SERVICE_LENGTH}
 									{' '}
 									More
 								</div>
@@ -124,6 +133,7 @@ function BreakUpCard({ service = {}, source = '' }) {
 							Shipments
 						</p>
 					</div>
+
 					<div>
 						<p className={cl`${styles.text} ${styles.light}`}>Completed </p>
 						<p className={cl`${styles.text} ${styles.bold}`}>
@@ -132,6 +142,7 @@ function BreakUpCard({ service = {}, source = '' }) {
 							Shipments
 						</p>
 					</div>
+
 					<div>
 						<p className={cl`${styles.text} ${styles.light}`}>
 							{SERVICE_VISE_KEYS_MAPPING[service_type]?.utilization}
@@ -142,9 +153,11 @@ function BreakUpCard({ service = {}, source = '' }) {
 				</div>
 
 				<div className={styles.service_flex_box}>
+
 					{Object.keys(SERVICE_PRICE_MAPPING).map((info) => (
 						<div key={info}>
 							<p className={cl`${styles.text} ${styles.light}`}>{SERVICE_PRICE_MAPPING[info]}</p>
+
 							<p className={cl`${styles.text} ${styles.price_bold}`}>
 								{formatAmount({
 									amount   : service?.[info].price,
@@ -155,6 +168,7 @@ function BreakUpCard({ service = {}, source = '' }) {
 										minimumFractionDigits : 2,
 									},
 								})}
+
 								<span style={{ fontWeight: '300' }}>
 									{SERVICE_UNIT_MAPPING[service_type]}
 								</span>

@@ -5,6 +5,14 @@
 	width: 100%;
 }
 
+.back_button {
+	display: flex;
+	align-items: center;
+	width: fit-content;
+	margin-bottom: 24px;
+	cursor: pointer;
+}
+
 .card_heading {
 	padding-bottom: 24px;
 	color: var(--color-secondary-greyscale-2);

@@ -20,17 +20,20 @@ function ShipmentState({ itemData }) {
 
 	return (
 		<div className={styles.container}>
-			{shipmentStat.map(({ label, count }) => (
-				<div className={styles.card}>
-					<div className={styles.label}>{label}</div>
+			{shipmentStat.map((stats) => {
+				const { label, count } = stats;
+				return (
+					<div key={label} className={styles.card}>
+						<div className={styles.label}>{label}</div>
 
-					<div className={styles.sub_label}>
-						{count}
-						{' '}
-						{count > 1 ? 'Shipments' : 'Shipment'}
+						<div className={styles.sub_label}>
+							{count}
+							{' '}
+							{count > 1 ? 'Shipments' : 'Shipment'}
+						</div>
 					</div>
-				</div>
-			))}
+				);
+			})}
 
 			<div className={styles.utilization}>
 				<Utilizations itemData={itemData} />

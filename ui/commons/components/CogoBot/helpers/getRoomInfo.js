@@ -36,6 +36,7 @@ const getRoomInfo = ({
 	sender                 : getCookie('cogo_bot_token') || '',
 	previous_tag           : 'new_user',
 	previous_tag_count     : 0,
+	agent_type             : 'bot',
 });
 
 export default getRoomInfo;

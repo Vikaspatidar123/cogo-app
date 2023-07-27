@@ -7,7 +7,7 @@ function DetailedBreakUp({ freightDetails, source, convenienceRate }) {
 	return (
 		<div className={styles.container}>
 			{freightDetails.map((service) => (
-				<BreakUpCard key={service.id} service={service} source={source} />
+				<BreakUpCard key={service?.id} service={service} source={source} />
 			))}
 			<PriceBreakup details={[convenienceRate]} source={source} />
 		</div>

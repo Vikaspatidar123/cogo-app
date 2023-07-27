@@ -37,10 +37,13 @@ function Utilisation({ itemData = {} }) {
 	const KEYS_MAPPING = getKeysMapping({ itemData });
 
 	const utilisationCountExceed = Number(KEYS_MAPPING[service_type]?.booked) < Number(KEYS_MAPPING[service_type]?.req);
+
 	const percent = Number(KEYS_MAPPING[service_type]?.booked) / Number(KEYS_MAPPING[service_type]?.req);
+
 	const isOverflow = Number(KEYS_MAPPING[service_type]?.booked) - Number(KEYS_MAPPING[service_type]?.req);
 
 	const isEqualAndOvered = utilisationCountExceed < percent && isOverflow !== 0;
+
 	const barWidth = isEqualAndOvered ? `${isOverflow}px` : `${percent * 250}px`;
 
 	return (

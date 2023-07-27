@@ -1,5 +1,4 @@
-import { Toast, Tooltip } from '@cogoport/components';
-import { IcMInfo } from '@cogoport/icons-react';
+import { Toast } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useCallback, useEffect } from 'react';
@@ -28,7 +27,6 @@ const useInfoValidateFn = ({
 	watchExport = '',
 	watchImport = '',
 	setShowPendingModal,
-	styles,
 	getDraftData = {},
 }) => {
 	const { hsCode = '', name: productName = '', description = '' } = selectedData || {};
@@ -69,6 +67,7 @@ const useInfoValidateFn = ({
 	const prefillData = useCallback(() => {
 		if (typeof window === 'undefined') return;
 		const localStorageFormData = JSON.parse(localStorage.getItem('transportDetails'));
+
 		if (localStorageFormData) {
 			const {
 				exportCountry = {},
@@ -87,9 +86,10 @@ const useInfoValidateFn = ({
 				manufacturingCountry : manufacturingCountry?.id || '',
 				productName          : localStorageName,
 			};
+
 			setValues(obj);
+
 			setTransportDetails(localStorageFormData);
-			localStorage.removeItem('transportDetails');
 		}
 	}, [setTransportDetails, setValues]);
 
@@ -130,26 +130,6 @@ const useInfoValidateFn = ({
 			header,
 			lineItem,
 		};
-	};
-
-	const renderLabel = (name, label) => {
-		if (name === 'hsCode') {
-			return (
-				<div className={styles.label_container}>
-					{label}
-					<Tooltip
-						content={t('importExportDoc:hscode_subtitle')}
-						placement="right-start"
-						animation="shift-toward"
-					>
-						<div>
-							<IcMInfo />
-						</div>
-					</Tooltip>
-				</div>
-			);
-		}
-		return <p>{label}</p>;
 	};
 
 	const getKey = (name) => {
@@ -204,6 +184,8 @@ const useInfoValidateFn = ({
 		const { header, lineItem } = getPayloadData(data);
 
 		const resp = await refetchDraft({ header, lineItem, hsCode: data?.hsCode });
+
+		localStorage.removeItem('transportDetails');
 
 		if (resp) {
 			if (!billId) {
@@ -266,7 +248,6 @@ const useInfoValidateFn = ({
 		submitHandler,
 		changeHandler,
 		validateSubmitHandler,
-		renderLabel,
 		getKey,
 		withHsHandler,
 		errorHandler,

@@ -68,6 +68,7 @@ function FormElement({
 					if (item?.name === 'truck_type') {
 						return show ? (
 							<div
+								key={item.name}
 								className={styles.col}
 								style={{ width: item?.span ? getWidth(item?.span) : '100%' }}
 							>
@@ -83,6 +84,7 @@ function FormElement({
 					}
 					return show ? (
 						<div
+							key={item.name}
 							className={styles.col}
 							style={{ width: item?.span ? getWidth(item?.span) : '100%' }}
 						>

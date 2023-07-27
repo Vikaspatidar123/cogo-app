@@ -1,5 +1,4 @@
 .container {
-	/* padding: 0px 8px; */
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -20,7 +19,7 @@
 .divider {
 	height: 1px;
 	margin-bottom: 8px;
-	background-color: _grey.divider;
+	background-color: grey;
 }
 
 .button_div {

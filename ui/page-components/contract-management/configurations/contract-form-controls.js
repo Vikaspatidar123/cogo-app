@@ -32,7 +32,7 @@ const ShipmentPlanControls = ({
 				minDate      : validity_start,
 				maxDate      : validity_end,
 				showOptional : false,
-				span         : 4,
+				span         : 6,
 				rules        : { required: 'This is required' },
 			},
 			{

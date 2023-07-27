@@ -1,10 +1,12 @@
-import { addDays, isEmpty, startCase } from '@cogoport/utils';
+import { isEmpty, startCase } from '@cogoport/utils';
 
 import handleLineItems from './handleLineItems';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const AIR_SERVICES = ['air_freight', 'air_freight_local'];
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 
 const handleLineItemsBreakup = (item, source) => {
 	const { line_items = [], total_price_discounted = '', total_price_currency = '' } = item || {};
@@ -22,7 +24,7 @@ const handleLineItemsBreakup = (item, source) => {
 		weight = '',
 	} = item || {};
 
-	const { packing_type = '', handling_type = '' } = packages?.[0] || {};
+	const { packing_type = '', handling_type = '' } = packages?.[ZEROTH_INDEX] || {};
 
 	let size = '';
 	let type = startCase(container_type || '');

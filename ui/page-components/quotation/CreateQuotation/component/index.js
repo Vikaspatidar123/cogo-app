@@ -141,6 +141,7 @@ function CreateQuotation() {
 						consignmentValue={consignmentValue}
 						createQuoteHook={createQuoteHook}
 						watchCurrency={watchCurrency}
+						orgCurrency={orgCurrency}
 						ref={(r) => {
 							quoteRef.current.charges = r;
 						}}

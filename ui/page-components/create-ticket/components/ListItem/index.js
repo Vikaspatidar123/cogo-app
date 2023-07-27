@@ -1,6 +1,6 @@
 import { Placeholder, cl } from '@cogoport/components';
 
-import ItemFunctions from '../../utils/RenderFunctions';
+import itemFunctions from '../../utils/RenderFunctions';
 
 import styles from './styles.module.css';
 
@@ -15,7 +15,7 @@ function ListItem({
 	handleBoxSelect,
 	selectedpayments,
 }) {
-	const { newFunctions } = ItemFunctions({
+	const { newFunctions } = itemFunctions({
 		handleCheckboxSelect,
 		selectedInvoices,
 		handleBoxSelect,
@@ -31,7 +31,7 @@ function ListItem({
 				>
 					{!loading ? (
 						<div className={styles.title_black}>
-							{getValue(item, singleItem, false, newFunctions)}
+							{getValue(item, singleItem, newFunctions)}
 						</div>
 					) : (
 						<Placeholder height="20px" />

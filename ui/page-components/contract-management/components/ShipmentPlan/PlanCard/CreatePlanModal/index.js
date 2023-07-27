@@ -48,7 +48,6 @@ function CreatePlanModal({
 	} = itemData || {};
 
 	const vesselOptionsLength = containerDetailsOptions.length;
-	console.log('modifiedGroupedData', modifiedGroupedData);
 	const [frequency, setFrequency] = useState('');
 	const [schedule, setSchedule] = useState('');
 	const [disableOptions, setDisableOptions] = useState(false);
@@ -187,15 +186,7 @@ function CreatePlanModal({
 			setDisableOptions(true);
 			setFrequency(`${freq_days}`);
 			setSchedule(plan_data?.[0]?.booking_schedule_type);
-
-			setValue('create_plan', (plan_data || []).map((data) => ({
-				max_count  : data?.max_count || data?.max_volume || data?.max_weight,
-				date_range : {
-					startDate : data?.validity_start_date,
-					endDate   : data?.validity_end_date,
-				},
-				id: data?.id,
-			})));
+			setValue('create_plan', modifiedGroupedData.create_plan);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [frequency, schedule, freqCount, plan_data]);

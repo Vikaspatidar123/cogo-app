@@ -32,7 +32,8 @@ const ShipmentPlanControls = ({
 				minDate      : validity_start,
 				maxDate      : validity_end,
 				showOptional : false,
-				span         : 6,
+				className    : 'primary md',
+				span         : 4,
 				rules        : { required: 'This is required' },
 			},
 			{
@@ -61,7 +62,6 @@ const ShipmentPlanControls = ({
 						...(containerDetailsOptions.length === '1'
 							? { value: containerDetailsOptions[0]?.value }
 							: {}),
-
 					},
 					{
 						name      : 'max_count',

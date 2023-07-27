@@ -25,7 +25,7 @@ function Child({
 }) {
 	return (
 		<div
-			style={{ display: 'flex', alignItems: 'center', width: '100%' }}
+			style={{ display: 'flex', alignItems: 'center', width: '100%', marginBottom: '10px' }}
 			className={`form-fieldArray-content form-fieldArray-${name}-${index}`}
 			key={field.id}
 		>
@@ -60,13 +60,12 @@ function Child({
 
 					<div
 						className={styles.col}
-						style={{ width: getWidth(controlItem?.span) }}
 
 					>
 						{controlItem.label ? <div>{controlItem.label}</div> : null}
 
 						<Element
-							style={{ width: getWidth(12) }}
+							style={{ width: '200px' }}
 							{...controlItem}
 							control={control}
 							key={`${name}.${index}.${controlItem.name}`}
@@ -76,16 +75,6 @@ function Child({
 					</div>
 				);
 			})}
-
-			{showDeleteButton && index >= noDeleteButtonTill && !disabled && (
-				<div
-					type="button"
-					role="presentation"
-					onClick={() => remove(index, 1)}
-				>
-					<IcMDelete height={20} width={20} />
-				</div>
-			)}
 
 			{showButtons
 			&& !disabled
@@ -106,6 +95,17 @@ function Child({
 					/>
 				</div>
 			)}
+
+			{showDeleteButton && index >= noDeleteButtonTill && !disabled && (
+				<div
+					type="button"
+					role="presentation"
+					onClick={() => remove(index, 1)}
+				>
+					<IcMDelete height={20} width={20} />
+				</div>
+			)}
+
 		</div>
 	);
 }

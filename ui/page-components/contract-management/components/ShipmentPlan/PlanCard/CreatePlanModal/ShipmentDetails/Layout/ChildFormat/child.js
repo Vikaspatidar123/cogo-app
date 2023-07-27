@@ -23,7 +23,7 @@ function Child({
 	vesselOptionsLength,
 }) {
 	return (
-		<div style={{ borderBottom: '1px dashed #a5a5a5' }}>
+		<div className={styles.container}>
 			<div className={`${styles.styled_row} form-fields-${name}-${index}`}>
 
 				{controls.map((controlItem) => {
@@ -56,7 +56,6 @@ function Child({
 
 							<Element
 								{...controlItem}
-								style={{ width: getWidth(controlItem?.span) }}
 							// width="100%"
 								control={control}
 								key={`${name}.${index}.${controlItem.name}`}

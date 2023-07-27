@@ -4,6 +4,14 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: 16px;
+
+	:global {
+		.ui_datepicker_container {
+			>div {
+				width: 100%;
+			}
+		}
+	}
 }
 
 .styled_form_item {

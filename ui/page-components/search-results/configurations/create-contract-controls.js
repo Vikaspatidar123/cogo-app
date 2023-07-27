@@ -11,11 +11,11 @@ const createContracts = () => [
 	{
 		name           : 'validity_start',
 		label          : 'Start Date',
+		placeholder    : 'Start Date',
 		type           : 'datepicker',
 		withTimePicker : false,
 		span           : 6,
 		rules          : { required: 'Start date required' },
-		placeholder    : ' ',
 	},
 	{
 		name           : 'validity_end',
@@ -24,7 +24,7 @@ const createContracts = () => [
 		withTimePicker : false,
 		span           : 6,
 		rules          : { required: 'End date required' },
-		placeholder    : ' ',
+		placeholder    : 'End Date',
 	},
 	{
 		name  : 'max_containers_count',

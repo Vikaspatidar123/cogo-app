@@ -1,7 +1,5 @@
 import { Tooltip } from '@cogoport/components';
 
-import styles from '../styles.module.css';
-
 const START_INDEX = 0;
 const END_INDEX = 25;
 function PortName({ data }) {

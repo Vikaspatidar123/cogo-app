@@ -16,7 +16,7 @@ jobs:
   lint:
     name: Test
     needs: init
-    uses: ./.github/workflows/reusable-test-lint.yml
+    uses: ./.github/workflows/comment-test-lint.yml
     secrets: inherit
 
 

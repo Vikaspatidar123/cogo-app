@@ -116,7 +116,13 @@ function FilterForm({
 
 	);
 	return (
-		<div className={styles.container}>
+		<div
+			role="presentation"
+			className={styles.container}
+			onClick={() => {
+				setDropDown(!dropDown);
+			}}
+		>
 			<Popover
 				caret={false}
 				placement="bottom-start"
@@ -127,13 +133,16 @@ function FilterForm({
 				onClickOutside={() => setDropDown(false)}
 			>
 				<div
-					role="presentation"
-					className={styles.filter_button_Ctn}
-					onClick={() => {
-						setDropDown(!dropDown);
-					}}
+					className={styles.filter_button_ctn}
+
 				>
-					<div style={{ display: 'flex' }}>
+					<div
+						role="presentation"
+						style={{ display: 'flex' }}
+						onClick={() => {
+							setDropDown(!dropDown);
+						}}
+					>
 						<div className={styles.filter_icon}>
 							<IcMFilter />
 						</div>

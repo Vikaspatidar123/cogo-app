@@ -72,6 +72,7 @@ function ActiveFreightRateTrend() {
 
 				/>
 			</div>
+
 			<Tabs
 				themeType="tertiary"
 				activeTab={activeTab}
@@ -86,6 +87,7 @@ function ActiveFreightRateTrend() {
 				))}
 
 			</Tabs>
+
 			<div className={styles.container}>
 				<div className={styles.heading}>{t('frt:trend_chart_title')}</div>
 				<TrendChart

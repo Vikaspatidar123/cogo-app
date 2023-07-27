@@ -11,7 +11,11 @@ import PriceBreakup from '../../../PriceBreakup';
 import getValueProps from './getValueProps';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
+
+const START_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+const END_INDEX = 3;
 
 const SERVICE_PRICE_MAPPING = {
 	basic_freight             : 'Basic Freight',
@@ -49,12 +53,12 @@ function BreakUpCard({ service = {}, source = '' }) {
 				>
 					<div className={styles.flex_box}>
 						<div className={styles.flex_box}>
-							{Object.values(valueProps.details).slice(0, 3)
+							{Object.values(valueProps.details).slice(START_INDEX, END_INDEX)
 								.map((value) => (
 									<Pill key={value}>{value}</Pill>
 								))}
 
-							{Object.values(valueProps.details).length > 3 ? (
+							{Object.values(valueProps.details).length > END_INDEX ? (
 								<div className={styles.flex_box}>
 									<Tooltip
 										interactive

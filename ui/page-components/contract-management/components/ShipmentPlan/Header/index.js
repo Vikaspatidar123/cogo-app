@@ -65,14 +65,14 @@ function Header({ data, loading }) {
 							</Tooltip>
 						)}
 
-						{status && <div className={cl`${styles.status} ${styles[status]}`}>{STATUS[status]}</div>}
+						{status ? <div className={cl`${styles.status} ${styles[status]}`}>{STATUS[status]}</div> : null}
 
-						{source && (
+						{source ? (
 							<div className={styles.status}>
 								Created from
 								{startCase(source)}
 							</div>
-						)}
+						) : null}
 					</div>
 					{/* <Terms
 							onClick={() => {
@@ -93,7 +93,7 @@ function Header({ data, loading }) {
 							});
 
 							return (
-								<div className={styles.contract_info}>
+								<div key={type} className={styles.contract_info}>
 									<div className={styles.service_icon}>{SERVICE_ICON_MAPPING[type]}</div>
 									<div className={styles.service_name}>{upperCase(type).slice(0, 3)}</div>
 									<div className={styles.tag}>{count}</div>

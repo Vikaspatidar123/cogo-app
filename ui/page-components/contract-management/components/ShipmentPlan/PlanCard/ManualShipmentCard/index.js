@@ -14,7 +14,7 @@ import formatAmount from '@/ui/commons/utils/formatAmount';
 import formatDate from '@/ui/commons/utils/formatDate';
 
 const STATUS = ['completed', 'ongoing', 'cancelled'];
-
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 function ManualShipmentCard({
 	requestData = [],
 	loading = false,
@@ -55,7 +55,7 @@ function ManualShipmentCard({
 							created_at: shipment_date = '',
 						} = shipmentData || {};
 
-						const count = containers?.[0]?.containers_count;
+						const count = containers?.[ZEROTH_INDEX]?.containers_count;
 						const isActive = STATUS.includes(state);
 
 						return (

@@ -1,5 +1,6 @@
 import { cl } from '@cogoport/components';
 import { IcMDelete } from '@cogoport/icons-react';
+import { useEffect, useMemo } from 'react';
 
 import styles from './styles.module.css';
 
@@ -25,11 +26,43 @@ function BodyDetailsChildFormat(props) {
 		showElements = {},
 		setShippingLinesDetails = () => {},
 		shippingLinesDetails,
+		hscodeDetails,
+		setHscodeDetails = () => {},
+		setValue,
 	} = props;
 
 	const { params, updateCache, getCacheOptions, keysMapping } = useGetOperatorsConfig({
 		formValues: checkFieldArray?.[index],
 	});
+
+	const { searchRatePrefix } = useMemo(() => ({
+		searchRatePrefix: `search_rates.${index}.remarks.0`,
+	}), [index]);
+
+	const watchMandatoryShipping = watch(`${searchRatePrefix}.shipping_line`);
+
+	useEffect(() => {
+		if (watchMandatoryShipping) {
+			if (mode === 'air_freight') {
+				setValue(`${searchRatePrefix}.preferred_air_lines`, []);
+				setValue(`${searchRatePrefix}.excluded_air_lines`, []);
+			} else {
+				setValue(`${searchRatePrefix}.preferred_shipping_lines`, []);
+				setValue(`${searchRatePrefix}.excluded_shipping_lines`, []);
+			}
+		} else {
+			setValue(`${searchRatePrefix}.mandatory_shipping_lines`, []);
+		}
+	}, [watchMandatoryShipping, searchRatePrefix, mode, setValue]);
+
+	useEffect(() => {
+		controls.forEach((controlItem) => {
+			const { name: itmName } = controlItem;
+			const milestoneName = `${locationName}.${index}.${itmName}`;
+			setValue(milestoneName, field[itmName]);
+		});
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div className={styles.container}>
@@ -65,7 +98,29 @@ function BodyDetailsChildFormat(props) {
 								},
 							});
 						}
+
+						if (controlItem.name === 'hs_code') {
+							setHscodeDetails({
+								...hscodeDetails,
+								[mode]: { ...hscodeDetails?.[mode], [handleIndex]: val },
+							});
+						}
 					};
+
+					if (
+						watchMandatoryShipping
+						&& (milestoneName.includes('preferred')
+							|| milestoneName.includes('exclude'))
+					) {
+						return null;
+					}
+
+					if (
+						!watchMandatoryShipping
+						&& milestoneName.includes('mandatory_shipping_lines')
+					) {
+						return null;
+					}
 
 					if (watch) {
 						return (

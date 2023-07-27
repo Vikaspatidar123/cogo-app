@@ -1,6 +1,6 @@
 import { useRouter } from '@/packages/next';
 
-const PUBLIC_PAGE_BLOG = 'https://www.cogoport.com/knowledge-center/news-updates';
+const PUBLIC_PAGE_NOTIFICATION = 'https://www.cogoport.com/en-IN/notifications';
 
 const useRedirectFn = () => {
 	const { push } = useRouter();
@@ -32,8 +32,8 @@ const useRedirectFn = () => {
 		);
 	};
 
-	const redirectToBlogs = () => {
-		window.open(PUBLIC_PAGE_BLOG);
+	const redirectToNotifications = () => {
+		window.open(PUBLIC_PAGE_NOTIFICATION);
 	};
 
 	return {
@@ -41,7 +41,7 @@ const useRedirectFn = () => {
 		redirectToTracker,
 		redirectToList,
 		redirectToDashboard,
-		redirectToBlogs,
+		redirectToNotifications,
 	};
 };
 

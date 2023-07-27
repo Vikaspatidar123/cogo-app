@@ -6,11 +6,6 @@ const app_contract_management = [
 		service_name : 'location',
 	},
 	{
-		api         : 'list_operators',
-		access_type : 'private',
-		feature     : 'contract',
-	},
-	{
 		api          : 'get_contract_stats',
 		access_type  : 'private',
 		feature      : 'contract',

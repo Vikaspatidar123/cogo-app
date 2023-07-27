@@ -4,7 +4,7 @@ import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
 const useCreateContractRfq = ({
-	RfqId = '',
+	rfqId = '',
 	setShowContractCreation = () => {},
 	setShowModal = () => {},
 }) => {
@@ -13,11 +13,11 @@ const useCreateContractRfq = ({
 		url    : '/create_rfq_contracts',
 	}, { manual: true });
 
-	const onContractRequest = async (values) => {
+	const onContractRequest = async ({ values }) => {
 		try {
 			const payload = {
 				...values,
-				id     : RfqId,
+				id     : rfqId,
 				status : 'pending_approval',
 			};
 			await trigger({ data: payload });

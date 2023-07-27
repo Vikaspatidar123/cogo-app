@@ -51,7 +51,7 @@
 .button_container {
 	display: flex;
 	justify-content: end;
-	margin: 3% 7% 14% 0%;
+	margin: 8% 7% 6% 0%;
 }
 
 .button_container:hover {

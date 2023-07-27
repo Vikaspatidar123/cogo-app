@@ -1,11 +1,12 @@
 import { cl, Modal } from '@cogoport/components';
 import { IcMArrowDown, IcMArrowUp } from '@cogoport/icons-react';
-import { isEmpty } from '@cogoport/utils';
+import { isEmpty, startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
 import InitiateBooking from '../../../common/InitiateBooking';
 import RequestBooking from '../../../common/RequestBooking';
 import useGetContractShipmentData from '../../../hooks/useGetContractShipmentData';
+import getCommodityName from '../../../utils/getCommodityName';
 import { RD_STATUS_MAPPING } from '../constants';
 
 import Actions from './Actions';
@@ -23,6 +24,52 @@ import Validity from './Validity';
 import { useRouter } from '@/packages/next';
 
 const serviceState = 'APPROVAL PENDING';
+
+const formatPlanData = ({ plan_data: data, containerDetailsMapping }) => {
+	const groupedData = data.reduce((accumulator, entry) => {
+		const { validity_start, validity_end } = entry;
+		const key = `${validity_start}_${validity_end}`;
+
+		return {
+			...accumulator,
+			[key]: [...(accumulator[key] || []), entry],
+		};
+	}, {});
+
+	const modifiedGroupedData = Object.entries(groupedData).reduce(
+		(accumulator, [key, entry]) => {
+			const [validity_start, validity_end] = key.split('_');
+
+			return {
+				...accumulator,
+				create_plan: [
+					...accumulator.create_plan,
+					{
+						date_range: {
+							startDate : new Date(validity_start),
+							endDate   : new Date(validity_end),
+						},
+						sub_create_plan: entry.reduce((acc, curr) => {
+							const { contract_service_id, max_count, id } = curr;
+
+							return [
+								...acc,
+								{
+									max_count,
+									vessel_select : containerDetailsMapping[contract_service_id],
+									id            : id || undefined,
+								},
+							];
+						}, []),
+					},
+				],
+			};
+		},
+		{ create_plan: [] },
+	);
+
+	return modifiedGroupedData;
+};
 
 const getKeysMapping = ({ itemData = {} }) => {
 	const {
@@ -117,7 +164,12 @@ function PlanCard({
 	const primaryServiceDetail = freightDetails.find(
 		(detail) => detail.is_primary_service,
 	);
-	const { id: serviceId = '', status } = primaryServiceDetail || {};
+
+	const {
+		id: serviceId = '',
+		status,
+		[`contract_${service_type}_location_detail_id`]: serviceLocationId = '',
+	} = primaryServiceDetail;
 
 	const bookingData = {
 		service_type,
@@ -136,7 +188,7 @@ function PlanCard({
 		shipmentPlanData = {},
 		getShipmentPlans = () => { },
 		requestData = [],
-	} = useGetContractShipmentData({ isExistingManual });
+	} = useGetContractShipmentData({ isExistingManual, serviceLocationId });
 
 	const { shipment_data: shipmentData = [], plan_data = [] } = shipmentPlanData || {};
 	const isPlanAbsent = isEmpty(shipmentData);
@@ -146,6 +198,59 @@ function PlanCard({
 
 	const utilisationCountExceed = Number(KEYS_MAPPING[service_type]?.booked)
 		> Number(KEYS_MAPPING[service_type]?.req);
+
+	const { containerDetailsOptions, containerDetails } = freightDetails.reduce(
+		(acc, item) => {
+			const {
+				container_size,
+				container_type,
+				commodity,
+				id: dataServiceId,
+				service_type: serviceType = '',
+			} = item;
+
+			const labelMapping = {
+				fcl_freight: `${container_size} ft (${startCase(
+					container_type,
+				)}) (${getCommodityName(commodity)})`,
+				lcl_freight : `${getCommodityName(commodity)}`,
+				air_freight : `${getCommodityName(commodity)}`,
+			};
+
+			return {
+				...acc,
+				containerDetailsOptions: [
+					...acc.containerDetailsOptions,
+					{
+						label : labelMapping[serviceType],
+						value : `${container_size}_${dataServiceId}`,
+					},
+				],
+				containerDetails: {
+					...acc.containerDetails,
+					[dataServiceId]: {
+						container_size : `${container_size} ft`,
+						container_type : startCase(container_type),
+						commodity      : getCommodityName(commodity),
+					},
+				},
+			};
+		},
+		{ containerDetailsOptions: [], containerDetails: {} },
+	);
+
+	const containerDetailsMapping = containerDetailsOptions.reduce(
+		(acc, item) => {
+			const { value } = item;
+			return { ...acc, [value.split('_')[1]]: value };
+		},
+		{},
+	);
+
+	const modifiedGroupedData = formatPlanData({
+		plan_data,
+		containerDetailsMapping,
+	});
 
 	return (
 		<div className={cl`${styles.container} ${status === '' ? styles.add_padding : ''}`}>
@@ -271,6 +376,8 @@ function PlanCard({
 					setShowModal={setShowModal}
 					getShipmentPlans={getShipmentPlans}
 					getServiceDetails={getServiceDetails}
+					modifiedGroupedData={modifiedGroupedData}
+					containerDetailsOptions={containerDetailsOptions}
 				/>
 			)}
 

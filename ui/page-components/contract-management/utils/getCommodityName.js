@@ -13,7 +13,7 @@ const DEFAULT_COMMODITY_NAME = 'General';
 const getCommodityName = (commodity) => {
 	if (!commodity) return DEFAULT_COMMODITY_NAME;
 
-	const commodityData = COMMODITY_NAME_MAPPING[commodity];
+	const commodityData = COMMODITY_NAME_MAPPING[`${commodity}`];
 
 	return commodityData?.name || startCase(commodity);
 };

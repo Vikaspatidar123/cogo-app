@@ -1,34 +1,27 @@
 .styled_row {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-	margin: 0 15px 14px;
+  display: flex;
+  flex-direction: row;
+  flex-flow: unset !important;
+  margin: 0 16px 14px;
+  margin-left: 18px !important;
 }
 
 .styled_col {
-	display: flex;
-	flex-direction: column;
-	padding-left: 0 !important;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0 !important;
 }
 
 .remove_icon {
-	display: flex;
-	align-items: center;
-	margin-left: 5px;
-	cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  cursor: pointer;
 }
 
 .addIcon {
-	display: flex;
-	align-items: center;
-	margin-left: 10px;
-	cursor: pointer;
-}
-
-.shipment_no {
-	display: flex;
-	align-items: center;
-	font-size: 14px;
-	text-decoration-line: underline;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  cursor: pointer;
 }

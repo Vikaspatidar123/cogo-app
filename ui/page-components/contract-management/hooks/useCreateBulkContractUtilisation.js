@@ -5,12 +5,50 @@ import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const mergeAndTransformData = (data) => data.create_plan.reduce((acc, curr) => {
+	const { date_range, sub_create_plan } = curr;
+
+	const { startDate, endDate } = date_range;
+
+	return [
+		...acc,
+		...sub_create_plan.map((item) => {
+			const { id, vessel_select, max_count } = item;
+
+			return {
+				contract_service_id : vessel_select.split('_')[1],
+				max_count,
+				validity_end        : new Date(endDate).toISOString(),
+				validity_start      : new Date(startDate).toISOString(),
+				id                  : id || undefined,
+				status              : 'active',
+			};
+		}),
+	];
+}, []);
+
+const finalMergeAndTransformData = ({ oldData, newData }) => {
+	const allNewIds = newData.map((item) => item.id);
+
+	const inactiveItems = oldData.reduce((acc, item) => {
+		const { id = '' } = item;
+
+		if (allNewIds.includes(id)) {
+			return acc;
+		}
+
+		return [...acc, { ...item, status: 'inactive' }];
+	}, []);
+
+	return [...newData, ...inactiveItems];
+};
 const useCreateBulkContractUtilisation = ({
-	requestedContainerCount,
+
 	getShipmentPlans = () => { },
 	isEditPlan,
 	freqCount,
 	getServiceDetails = () => { },
+	planData,
 }) => {
 	const { query } = useRouter();
 	const { through = '' } = query || {};
@@ -52,15 +90,6 @@ const useCreateBulkContractUtilisation = ({
 			];
 		});
 
-		const getMaxContainers = (d) => Number(d?.max_count);
-		const getValidity = (v) => v.validity_start;
-		let totalContainers = 0;
-		let validity = 0;
-		newutilizations?.forEach((el) => {
-			totalContainers += getMaxContainers(el);
-			validity += getValidity(el);
-		});
-
 		// if (freqCount === '' && frequency === '') {
 		// 	Toast.error('Please select shipment frequency');
 		// 	return;
@@ -82,12 +111,14 @@ const useCreateBulkContractUtilisation = ({
 			const payload = {
 				performed_by_id        : userId,
 				performed_by_type      : userType,
-				contract_service_id    : serviceId,
 				booking_frequency_days : frequency === 'others' ? freqCount : frequency,
 				booking_schedule_type  : schedule,
-				utilisations           : newutilizations,
-				service_type           : serviceType,
-				source                 : through === 'techops' ? 'tech_ops' : undefined,
+				utilisations           : finalMergeAndTransformData({
+					oldData : planData,
+					newData : mergeAndTransformData(data),
+				}),
+				service_type : serviceType,
+				source       : through === 'techops' ? 'tech_ops' : undefined,
 			};
 
 			await trigger({
@@ -98,8 +129,8 @@ const useCreateBulkContractUtilisation = ({
 				`Plan ${isEditPlan ? 'updated' : 'created'} successfully !!`,
 			);
 
-			await getServiceDetails();
-			await getShipmentPlans(serviceId, serviceType);
+			getServiceDetails();
+			getShipmentPlans(serviceId, serviceType);
 		} catch (err) {
 			if (err?.error?.message) {
 				Toast.error(err?.error?.message);

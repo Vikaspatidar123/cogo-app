@@ -1,5 +1,5 @@
 import { Modal } from '@cogoport/components';
-import { addDays, compareAsc, differenceInDays, toDate } from '@cogoport/utils';
+import { addDays, compareAsc, differenceInDays, isEmpty, toDate } from '@cogoport/utils';
 import React, { useEffect, useState } from 'react';
 
 import { getUnit } from '../../../../utils/getUnit';
@@ -25,6 +25,8 @@ function CreatePlanModal({
 	isEditPlan,
 	plan_data = [],
 	getShipmentPlans = () => {},
+	modifiedGroupedData,
+	containerDetailsOptions,
 	getServiceDetails = () => {},
 }) {
 	const {
@@ -45,6 +47,8 @@ function CreatePlanModal({
 		[`${serviceType}_services`]: freightDetails = [],
 	} = itemData || {};
 
+	const vesselOptionsLength = containerDetailsOptions.length;
+	console.log('modifiedGroupedData', modifiedGroupedData);
 	const [frequency, setFrequency] = useState('');
 	const [schedule, setSchedule] = useState('');
 	const [disableOptions, setDisableOptions] = useState(false);
@@ -72,14 +76,16 @@ function CreatePlanModal({
 	) + 1;
 
 	const { createBulkContractUtilisation, loading = false } = useCreateBulkContractUtilisation({
-		requestedContainerCount: useCount,
+		requestedContainerCount : useCount,
 		getShipmentPlans,
 		isEditPlan,
 		freqCount,
 		getServiceDetails,
+		freightDetails,
+		planData                : plan_data,
 	});
 
-	const newControls = ShipmentPlanControls({ validity_start_date, validity_end_date });
+	const newControls = ShipmentPlanControls({ validity_start_date, validity_end_date, containerDetailsOptions });
 
 	const {
 		handleSubmit,
@@ -88,16 +94,22 @@ function CreatePlanModal({
 		setValue,
 		control,
 		watch,
+	} = useForm({
+		defaultValues: [{
+			date_range: {
+			},
+			sub_create_plan: [{}],
+		}],
+	});
 
-	} = useForm();
+	// useEffect(() => {
+	// 	console.log('ff');
+	// 	setValue('create_plan', [{
+	// 		max_count  : '',
+	// 		date_range : { startDate: '', endDate: '' },
+	// 	}]);
+	// }, [setValue]);
 
-	console.log('watch', watch());
-	useEffect(() => {
-		setValue('create_plan', [{
-			max_count  : '',
-			date_range : {},
-		}]);
-	}, []);
 	const handleFormSubmit = async (data) => {
 		await createBulkContractUtilisation({
 			data,
@@ -111,9 +123,8 @@ function CreatePlanModal({
 	};
 
 	useEffect(() => {
-		if ((plan_data || []).length === 0) {
+		if (isEmpty(plan_data)) {
 			const firstChild = Math.floor(days / (frequency === 'others' ? freqCount : frequency)) || 1;
-			const secoundChild = Math.floor(useCount / firstChild);
 
 			if (schedule === 'randomly' || (frequency === 'others' && freqCount === '')) {
 				setValue('create_plan', [
@@ -129,7 +140,6 @@ function CreatePlanModal({
 				&& ((frequency === 'others' && freqCount !== '') || frequency !== 'others')
 			) {
 				const newDays = frequency === 'others' ? freqCount : frequency;
-				const extraShipments = useCount % firstChild;
 
 				if (firstChild < 1 || days < 1) {
 					setError(true);
@@ -152,8 +162,7 @@ function CreatePlanModal({
 					const newEndDate = checkEnd === 1 ? toDate(validity_end_date) : toDate(tempEndDate);
 
 					return {
-						max_count  : '',
-						date_range : {
+						date_range: {
 							startDate: addDays(
 								check === 1 ? toDate(validity_start_date) : new Date(),
 								index * newDays || 1,
@@ -179,14 +188,7 @@ function CreatePlanModal({
 			setDisableOptions(true);
 			setFrequency(`${freq_days}`);
 			setSchedule(plan_data?.[0]?.booking_schedule_type);
-			setValue('create_plan', (plan_data || []).map((data) => ({
-				max_count  : data?.max_count || data?.max_volume || data?.max_weight,
-				date_range : {
-					startDate : data?.validity_start_date,
-					endDate   : data?.validity_end_date,
-				},
-				id: data?.id,
-			})));
+			setValue('create_plan', modifiedGroupedData.create_plan);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [frequency, schedule, freqCount, plan_data]);
@@ -194,7 +196,7 @@ function CreatePlanModal({
 	return (
 		<Modal
 			show={showModal}
-			className="primary lg"
+			size="lg"
 			onClose={() => setShowModal(false)}
 		>
 			<div>
@@ -211,7 +213,7 @@ function CreatePlanModal({
 							destination_main_port={destination_main_port}
 						/>
 					</div>
-					<div style={{ display: 'flex' }}>
+					<div style={{ display: 'flex', color: '#F68B21' }}>
 						<div className={styles.validity}>
 							Validity :
 							{' '}
@@ -281,11 +283,13 @@ function CreatePlanModal({
 									contractServiceId={primaryServiceId}
 									serviceType={serviceType}
 									freqCount={freqCount}
+									vesselOptionsLength={vesselOptionsLength}
 									isEditPlan={isEditPlan}
 								/>
 							)}
 						</>
 					)}
+
 				</Modal.Body>
 				<Modal.Footer>
 					<Footer

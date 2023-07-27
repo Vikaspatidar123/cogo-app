@@ -66,7 +66,7 @@ function BreakUpCard({ service = {}, source = '' }) {
 										content={(
 											<div className={styles.add_service}>
 												{Object.values(valueProps.details)
-													.slice(3)
+													.slice(END_INDEX)
 													.map((value) => (
 														<Pill className={styles.in_loop} key={value}>
 															{value}

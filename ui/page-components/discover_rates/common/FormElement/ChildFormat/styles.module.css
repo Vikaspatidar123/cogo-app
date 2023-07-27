@@ -19,7 +19,7 @@
 .divider {
 	height: 1px;
 	margin-bottom: 8px;
-	background-color: _grey.divider;
+	background-color: grey;
 }
 
 .button_div {

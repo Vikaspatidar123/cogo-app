@@ -71,12 +71,13 @@ const fclControls = ({ contractValidity, departureDate, primaryServicesDetailsAr
 
 		},
 		{
-			name        : 'attributes',
-			inlineLabel : 'Container',
-			type        : 'fieldArray',
-			showButtons : false,
-			showDivider : true,
-			controls    : [
+			name             : 'attributes',
+			inlineLabel      : 'Container',
+			type             : 'fieldArray',
+			showButtons      : false,
+			showDivider      : true,
+			showDeleteAlways : true,
+			controls         : [
 				{
 					label         : 'Container Type',
 					name          : 'container_type_commodity',

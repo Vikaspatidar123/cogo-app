@@ -5,12 +5,16 @@ import getInfo from '../../../../utils/getInfo';
 
 import styles from './styles.module.css';
 
-const ViewServices = ({ serviceDetails }) => serviceDetails.map((detail, index) => {
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+
+const ViewServices = ({ serviceDetails }) => (serviceDetails || []).map((detail, index) => {
 	if (!index) return null;
 
 	return (
 		<div className={styles.tag_container}>
-			{detail.map((data) => (
+			{(detail || []).map((data) => (
 				<div className={styles.tooltip_tag} key={data?.valueText}>{data?.valueText}</div>
 			))}
 		</div>
@@ -29,7 +33,7 @@ function Commodities({ itemData }) {
 
 	const serviceDetails = primaryServicesDetails.map(getInfo);
 
-	const initalServices = serviceDetails?.[0];
+	const initalServices = serviceDetails?.[ZEROTH_INDEX];
 
 	const additionalServices = [
 		...new Set(

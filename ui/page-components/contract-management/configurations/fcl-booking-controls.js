@@ -6,15 +6,15 @@ const fclControls = ({ contractValidity, departureDate, primaryServicesDetailsAr
 	const { contractEndDate } = contractValidity || {};
 
 	const attributes = primaryServicesDetailsArray.map((item) => ({
-		container_size           : item.container_size,
-		commodity                : item.commodity,
+		container_size           : item?.container_size,
+		commodity                : item?.commodity,
 		container_type_commodity : {
-			container_type : item.container_type,
-			commodity      : item.commodity,
+			container_type : item?.container_type,
+			commodity      : item?.commodity,
 		},
-		container_type             : item.container_type,
-		containers_count           : item.containers_count,
-		cargo_weight_per_container : item.cargo_weight_per_container,
+		container_type             : item?.container_type,
+		containers_count           : item?.containers_count,
+		cargo_weight_per_container : item?.cargo_weight_per_container,
 		primary_service_id         : item?.primary_service_id,
 	}));
 

@@ -1,14 +1,14 @@
-.headFlex{
-    display: flex;
-    justify-content: flex-start;
-    padding: 20px 10px ;
+.headFlex {
+	display: flex;
+	justify-content: flex-start;
+	padding: 20px 10px;
 	border: 1px solid #e0e0e0;
-	border-radius: 0px 0px 3px 3px;
+	border-radius: 0 0 3px 3px;
 }
 
-.tableHeader{
-    display: flex;
-    flex-wrap: wrap;
+.tableHeader {
+	display: flex;
+	flex-wrap: wrap;
 	font-size: 14px;
 	color: #221f20;
 }

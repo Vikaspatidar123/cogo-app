@@ -1,0 +1,9 @@
+.sub_modal_container {
+	position: absolute;
+	top: 0;
+	right: 100%;
+	width: 90%;
+	margin-right: 10px;
+	background: #fff;
+	border-radius: 6px;
+}

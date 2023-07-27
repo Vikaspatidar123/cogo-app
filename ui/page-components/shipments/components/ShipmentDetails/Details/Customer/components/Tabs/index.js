@@ -29,10 +29,10 @@ function TabSections({
 	}, [quickAction]);
 
 	return (
-		<div className={styles.container} id="ie_tabs">
+		<main className={styles.container} id="ie_tabs">
 			<RelationshipManager />
 
-			<div className={styles.content}>
+			<section className={styles.content}>
 				<Tabs activeTab={activeTab} onChange={handleTabChange}>
 					<TabPanel name="services" title="SERVICES">
 						<Overview
@@ -60,8 +60,8 @@ function TabSections({
 						/>
 					</TabPanel>
 				</Tabs>
-			</div>
-		</div>
+			</section>
+		</main>
 	);
 }
 

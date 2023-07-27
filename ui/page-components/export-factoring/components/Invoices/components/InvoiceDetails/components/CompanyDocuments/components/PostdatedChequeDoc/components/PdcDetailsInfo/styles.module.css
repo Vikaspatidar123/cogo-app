@@ -1,56 +1,60 @@
-.container{
-    margin: 20px 0px;
+.container {
+	margin: 20px 0;
 }
 
-.mainContainer{
-    margin: 4px 0px;
+.mainContainer {
+	margin: 4px 0;
 	border: 1px solid #e0e0e0;
 	border-radius: 6px;
 }
-.topContainer{
-    display: flex;
-	justify-content: space-between;
-	border: 1px solid #e0e0e0;
-	border-radius: 6px;
-	padding: 10px 8px;
+
+.topContainer {
+	display: flex;
 	align-items: center;
+	justify-content: space-between;
+	padding: 10px 8px;
 	background: #fdfbf6;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
 }
-.linkBox{
-    display: flex;
-    cursor: pointer;
-    align-items: center;
+
+.linkBox {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
 }
-.mainHead{
-	font-size: 16px;
-	text-decoration-line: underline;
-	color: #034afd;
+
+.mainHead {
 	padding: 4px;
+	font-size: 16px;
+	color: #034afd;
+	text-decoration-line: underline;
 }
 
-.detailsContainer{
-    width: 100%;
-    display: flex;
-    /* justify-content: space-between; */
-    flex-wrap: wrap;
-    padding: 10px 30px 10px 10px;
+.detailsContainer {
+	display: flex;
+
+	/* justify-content: space-between; */
+	flex-wrap: wrap;
+	width: 100%;
+	padding: 10px 30px 10px 10px;
 }
 
-.labelText{
-    font-size: 16px;
-    color: #828282;
+.labelText {
+	font-size: 16px;
+	color: #828282;
 }
 
-.valueText{
-    font-size: 16px;
-    color: #221f20;
-    padding-bottom: 6px;
-	word-wrap: break-word;
+.valueText {
 	display: flex;
 	flex-wrap: wrap;
-
+	padding-bottom: 6px;
+	font-size: 16px;
+	color: #221f20;
+	word-wrap: break-word;
 }
-.dataDiv{
-    width: 33%;
-    padding: 10px 0px;
+
+.dataDiv {
+	width: 33%;
+	padding: 10px 0;
 }

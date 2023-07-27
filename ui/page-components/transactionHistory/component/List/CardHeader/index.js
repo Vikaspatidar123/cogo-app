@@ -1,3 +1,4 @@
+import { cl } from '@cogoport/components';
 import { IcMArrowRotateDown } from '@cogoport/icons-react';
 import React from 'react';
 
@@ -34,7 +35,7 @@ function CardHeader({
 					<div className={styles.rotate_icon}>
 						{field.sorting && (
 							<IcMArrowRotateDown
-								className={sort.sortType === 'ASC' ? 'rotate' : 'no-rotate'}
+								className={cl`${styles.icon} ${sort.sortType === 'ASC' ? styles.rotate : ''}`}
 								onClick={() => handleOnchange(field)}
 							/>
 						)}

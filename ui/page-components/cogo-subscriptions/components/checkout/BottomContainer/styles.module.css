@@ -1,0 +1,21 @@
+.bottom_container {
+	position: relative;
+	right: 0;
+	bottom: -20px;
+	left: 0;
+	width: 100%;
+	padding: 20px 0;
+	margin: 0 auto;
+	text-align: center;
+	background: #fffce6;
+
+	@media (min-width: 767px) {
+		border-top-left-radius: 95% 195%;
+		border-top-right-radius: 95% 195%;
+	}
+}
+
+.text_1 {
+	font-size: 17px;
+	font-weight: 600;
+}

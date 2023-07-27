@@ -9,7 +9,7 @@
 
 .row {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: space-between;
 	padding: 12px;
 }
@@ -75,7 +75,7 @@
 }
 
 .scroll {
-	max-height: 344px;
+	max-height: 444px;
 	overflow-x: auto;
 }
 

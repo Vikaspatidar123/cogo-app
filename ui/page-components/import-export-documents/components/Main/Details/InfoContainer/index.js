@@ -1,4 +1,5 @@
-import { cl, Button } from '@cogoport/components';
+import { cl, Button, Tooltip } from '@cogoport/components';
+import { IcMInfo } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
@@ -19,6 +20,28 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { useRouter } from '@/packages/next';
+
+function RenderLabelText({ name, label }) {
+	const { t } = useTranslation(['importExportDoc']);
+
+	if (name === 'hsCode') {
+		return (
+			<div className={styles.label_container}>
+				{label}
+				<Tooltip
+					content={t('importExportDoc:hscode_subtitle')}
+					placement="right-start"
+					animation="shift-toward"
+				>
+					<div>
+						<IcMInfo />
+					</div>
+				</Tooltip>
+			</div>
+		);
+	}
+	return <p>{label}</p>;
+}
 
 function InfoContainer({
 	transportDetails = {},
@@ -76,7 +99,6 @@ function InfoContainer({
 		changeHandler,
 		validateSubmitHandler,
 		getKey,
-		renderLabel,
 		withHsHandler,
 		errorHandler,
 	} = infoValidateFn({
@@ -98,7 +120,6 @@ function InfoContainer({
 		watchExport,
 		watchImport,
 		setShowPendingModal,
-		styles,
 		getDraftData,
 	});
 
@@ -113,7 +134,7 @@ function InfoContainer({
 					return (
 						<div className={styles.col} key={name}>
 							<div className={styles.label_container}>
-								{renderLabel(name, label)}
+								<RenderLabelText name={name} label={label} />
 								{sublabel && (
 									<p className={styles.sub_label}>
 										(

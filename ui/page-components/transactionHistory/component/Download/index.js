@@ -8,45 +8,51 @@ import TransactionModal from '../TransactionModal';
 import styles from './styles.module.css';
 
 function Download({ data }) {
-	const { getService, transactionData = {}, loading } = useService();
-	const [show, setShow] = useState(false);
-	const {
-		billRefId = '', billStatus = '', billType = '',
-	} = data || {};
+	const { billRefId = '', billStatus = '', billType = '', requestType = '' } = data || {};
 
-	const download = () => {
-		window.open(data.invoicePdfUrl, '_blank');
-	};
-	const service = () => {
+	const [show, setShow] = useState(false);
+
+	const { getService, transactionData = {}, loading } = useService();
+
+	const serviceHandler = () => {
 		getService(billRefId);
 		setShow(true);
 	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.icon}>
-				{billStatus === 'PAID' && data?.invoicePdfUrl && (
+				{(billStatus === 'PAID' && data?.invoicePdfUrl) ? (
 					<Tooltip content="Download Invoice" theme="light" animation="shift-away">
 						<div>
-							<IcMDownload onClick={() => download()} width={20} height={20} />
+							<IcMDownload
+								onClick={() => window.open(data.invoicePdfUrl, '_blank')}
+								width={20}
+								height={20}
+							/>
 						</div>
 					</Tooltip>
-				)}
-				{billStatus === 'PAID' && billType === 'PREMIUM_SERVICES' && (
+				) : null}
+
+				{(billStatus === 'PAID' && billType === 'PREMIUM_SERVICES') ? (
 					<Tooltip content="Service" animation="shift-away" theme="light">
 						<div className={styles.service}>
-							<IcMServices onClick={() => service()} width={20} height={20} />
+							<IcMServices onClick={serviceHandler} width={20} height={20} />
 						</div>
 					</Tooltip>
-				)}
+				) : null}
+
 			</div>
-			{show && (
+
+			{show ? (
 				<TransactionModal
 					paymentSuccess={show}
 					setPaymentSuccess={setShow}
 					transactionData={transactionData}
-					getTransactionLoading={loading}
+					loading={loading}
+					requestType={requestType}
 				/>
-			)}
+			) : null}
 		</div>
 	);
 }

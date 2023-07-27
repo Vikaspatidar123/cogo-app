@@ -1,9 +1,6 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants//globals';
-import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
 
-const { country_code: INDIA_COUNTRY_CODE } = getCountryDetails({
-	country_id: GLOBAL_CONSTANTS.country_ids.IN,
-});
+const SUPPORTED_COUNTRY_CODE = GLOBAL_CONSTANTS.service_supported_countries.fcl_freight.countries;
 
 const fclControls = () => [
 	{
@@ -143,7 +140,7 @@ const fclControls = () => [
 			},
 		],
 		condition: {
-			destination_country : [INDIA_COUNTRY_CODE],
+			destination_country : SUPPORTED_COUNTRY_CODE,
 			inco_term           : [
 				'dap',
 				'ddp',
@@ -173,7 +170,7 @@ const fclControls = () => [
 			},
 		],
 		condition: {
-			origin_country : [INDIA_COUNTRY_CODE],
+			origin_country : SUPPORTED_COUNTRY_CODE,
 			inco_term      : ['dap', 'ddp', 'dat', 'cif', 'cfr', 'cip'],
 		},
 	},

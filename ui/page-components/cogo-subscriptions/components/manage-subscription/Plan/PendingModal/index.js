@@ -1,8 +1,38 @@
 import { Modal, Button } from '@cogoport/components';
-import { IcMInformation } from '@cogoport/icons-react';
+import { IcCSad, IcCVeryHappy, IcMInformation } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useCallback, useEffect } from 'react';
 
+import {
+	SET_TIME,
+	MAX_API_TRIES,
+	CLOSE_TIME,
+} from '../../../../constants/dimensions';
+
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const textForSubscriptionStatusMapping = ({ status, t }) => {
+	const Mapping = {
+		failed             : t('subscriptions:payment_failed_status_text'),
+		activation_pending : t('subscriptions:payment_pending_status_text'),
+		pending            : t('subscriptions:checking_payment_description_text'),
+		default            : t('subscriptions:checking_payment_description_text'),
+	};
+	return Mapping[status] || Mapping.default;
+};
+
+const iconForSubscriptionStatusMapping = ({ status }) => {
+	const Mapping = {
+		failed             : IcCSad,
+		activation_pending : IcCVeryHappy,
+		pending            : IcMInformation,
+		default            : IcMInformation,
+	};
+	return Mapping[status] || Mapping.default;
+};
 
 function PendingModal({
 	razorLoading,
@@ -12,20 +42,23 @@ function PendingModal({
 	setAddModal,
 }) {
 	const { status = '' } = paymentStatus || {};
+	const { t } = useTranslation(['subscriptions']);
+
+	const Icon = iconForSubscriptionStatusMapping({ status });
 
 	const closeModalHandler = useCallback(() => {
 		setRazorLoading(false);
 	}, [setRazorLoading]);
 
 	useEffect(() => {
-		if (apiTries < 10 && status === 'active') {
+		if (apiTries < MAX_API_TRIES && status === 'active') {
 			setAddModal(true);
 			setRazorLoading(false);
 		}
-		if (apiTries > 10) {
+		if (apiTries > MAX_API_TRIES) {
 			setTimeout(() => {
 				closeModalHandler();
-			}, 10000);
+			}, SET_TIME);
 		}
 	}, [apiTries, closeModalHandler, setAddModal, setRazorLoading, status]);
 
@@ -33,31 +66,45 @@ function PendingModal({
 		<Modal
 			size="md"
 			placement="top"
-			className="primary md"
 			show={razorLoading}
 			closeOnOuterClick={false}
 			showCloseIcon={false}
 		>
-			{apiTries < 10 && status !== 'active' && (
+			{apiTries < MAX_API_TRIES && status !== 'active' ? (
 				<div className={styles.container}>
-					<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg" alt="cogo" />
-					<div className={styles.title}> Hang on! Checking payment status...</div>
-					<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg" alt="cogo" />
-				</div>
-			)}
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.loading_banner}
+						alt={t('subscriptions:cogo_text')}
+						width={300}
+						height={200}
+					/>
+					<div className={styles.title}>{t('subscriptions:checking_payment_text')}</div>
 
-			{apiTries > 9 && (
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.loading}
+						alt={t('subscriptions:cogo_text')}
+						width={30}
+						height={30}
+					/>
+				</div>
+			) : null}
+
+			{apiTries > CLOSE_TIME ? (
 				<div className={styles.container}>
-					<IcMInformation fill="#FBDC00" width={52} height={52} />
+					<Icon width={52} height={52} fill="#FBDC00" />
 					<div className={`${styles.txt} ${styles.error}`}>
-						Sorry, It took longer than usual. We will notify you once payment is
-						successful
+						{textForSubscriptionStatusMapping({ t, status })}
 					</div>
-					<Button size="md" themeType="secondary" onClick={closeModalHandler}>
-						Close
+					<Button
+						size="md"
+						themeType="secondary"
+						onClick={closeModalHandler}
+						type="button"
+					>
+						{t('subscriptions:close_text')}
 					</Button>
 				</div>
-			)}
+			) : null}
 		</Modal>
 	);
 }

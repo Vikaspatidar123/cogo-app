@@ -8,5 +8,7 @@
 }
 
 .back_to_shipment {
-	cursor: pointer;
+	> div {
+		cursor: pointer;
+	}
 }

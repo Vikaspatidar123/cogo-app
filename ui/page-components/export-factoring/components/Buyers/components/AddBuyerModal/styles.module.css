@@ -1,14 +1,14 @@
-.formDiv{
-    width: 100%;
+.formDiv {
 	display: flex;
-	justify-content: space-between;
 	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
 }
 
 .field {
 	width: 48%;
+	padding-left: 20px;
 	margin: 0 0 15px;
-    padding-left: 20px;
 }
 
 .field_name {

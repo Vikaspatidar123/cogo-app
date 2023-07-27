@@ -1,22 +1,26 @@
 import COMMODITY_TYPE_MAPPING from '../configurations/SearchFormControls/air-commodity-mapping';
 
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryDetails from '@/ui/page-components/manage-rfq/utils/getCountryDetails';
-
-const INDIA_COUNTRY_CODE = getCountryDetails({
-	country_id: GLOBAL_CONSTANTS.country_ids.IN,
-}).country_code;
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
 const getCommoditySubTypeoptions = ({
 	originPort = {},
 	destinationPort = {},
 	commodityType = '',
 }) => {
+	const { use_domestic_transport: origin } = getCountrySpecificData({
+		country_code : originPort?.country_code,
+		accessorType : 'navigations',
+		accessor     : 'manage_rfq',
+	});
+
+	const { use_domestic_transport: destination } = getCountrySpecificData({
+		country_code : destinationPort?.country_code,
+		accessorType : 'navigations',
+		accessor     : 'manage_rfq',
+	});
+
 	if (commodityType !== '') {
-		if (
-			originPort?.country_code === INDIA_COUNTRY_CODE
-			&& destinationPort?.country_code === INDIA_COUNTRY_CODE
-		) {
+		if (origin && destination) {
 			return COMMODITY_TYPE_MAPPING?.domestic_transport?.[commodityType];
 		}
 		return COMMODITY_TYPE_MAPPING?.international_freight?.[commodityType];

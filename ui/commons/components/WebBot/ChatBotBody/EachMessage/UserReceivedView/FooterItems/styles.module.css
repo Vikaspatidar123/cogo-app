@@ -1,0 +1,76 @@
+.list_button {
+	width: 100%;
+	padding: 6px;
+	margin-top: 3px;
+	cursor: pointer;
+	background-color: #fff;
+	border-radius: 6px;
+	box-shadow: 0 2px 3px 0 #627fac33;
+}
+
+.list_container {
+	margin-top: 6px;
+	color: #615f5f;
+	background-color: #fff;
+	border: 1px solid #f9f9f9;
+	border-radius: 6px;
+	box-shadow: 0 0 5px 0 #627fac33;
+}
+
+.button_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+.right_space {
+	margin-right: 3px;
+}
+
+.list_item_desc {
+	font-size: 11px;
+}
+
+.list_item {
+	padding: 10px 12px;
+	cursor: pointer;
+	border-bottom: 1px solid #e0e0e0;
+
+	&:last-child {
+		border: none;
+	}
+}
+
+.list_item_loading {
+	padding: 10px 12px;
+	cursor: not-allowed;
+	border-bottom: 1px solid #e0e0e0;
+
+	&:last-child {
+		border: none;
+	}
+}
+
+.button-text {
+	padding: 10px 12px;
+	font-size: 12px;
+	font-weight: 600;
+	text-align: center;
+	cursor: pointer;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.button_text_loading {
+	padding: 10px 12px;
+	font-size: 12px;
+	font-weight: 600;
+	text-align: center;
+	cursor: not-allowed;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.list_item_title {
+	font-size: 12px;
+	font-weight: 600;
+}

@@ -1,56 +1,56 @@
-.headerDiv{
-    display: flex;
-    justify-content: space-between;
-    min-width: 1000px;
-    margin: 10px 0px;
+.headerDiv {
+	display: flex;
+	justify-content: space-between;
+	min-width: 1000px;
+	margin: 10px 0;
 }
 
-.header{
-    font-size: 16px;
-    font-weight: 500;
+.header {
+	font-size: 16px;
+	font-weight: 500;
 }
 
-.labelText{
-    font-size: 12px;
-    font-weight: 400;
-    color: #4F4F4F;
+.labelText {
+	font-size: 12px;
+	font-weight: 400;
+	color: #4f4f4f;
 }
 
-.valueText{
-    font-size: 14px;
-    font-weight: 500;
-    color: #221F20;
+.valueText {
+	font-size: 14px;
+	font-weight: 500;
+	color: #221f20;
 }
 
-.dataDiv{
-    width: 30%;
-    padding: 10px 0px;
+.dataDiv {
+	width: 30%;
+	padding: 10px 0;
 }
 
-.flexDiv{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.horizontalLine{
-	margin: 10px 0px;
-	border-bottom: 1px solid #d6def1;
+.flexDiv {
+	display: flex;
+	flex-wrap: wrap;
 	width: 100%;
-	align-items: center;
 }
 
-.barGraph{
-    width: 60%;
+.horizontalLine {
+	align-items: center;
+	width: 100%;
+	margin: 10px 0;
+	border-bottom: 1px solid #d6def1;
+}
+
+.barGraph {
+	width: 60%;
 	height: 20px;
+	margin-right: 20px;
 	background: #d6def1;
 	border-radius: 20px;
-	margin-right: 20px;
 }
 
-.utilizeDiv{
-    height: 20px;
+.utilizeDiv {
+	height: 20px;
 	color: #304e94;
-	border-radius: 20px;
 	background: #304e94;
+	border-radius: 20px;
 }

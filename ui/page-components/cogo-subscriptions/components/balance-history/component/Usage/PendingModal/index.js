@@ -1,10 +1,20 @@
 import { Modal, Button } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useCallback, useEffect } from 'react';
 
+import {
+	SET_TIME,
+	PAINTING_TIME,
+	CLOSE_TIME,
+	MAX_API_TRIES,
+} from '../../../../../constants/dimensions';
 import redirectUrl from '../../../../../utils/redirectUrl';
 
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function PendingModal({
 	pendingModal,
@@ -17,6 +27,7 @@ function PendingModal({
 	setAddModal,
 }) {
 	const { status = '' } = paymentStatus || {};
+	const { t } = useTranslation(['subscriptions']);
 	const { redirectBalanceHistory } = redirectUrl();
 
 	const closeModalHandler = useCallback(() => {
@@ -27,55 +38,65 @@ function PendingModal({
 	}, [redirectBalanceHistory, setAddModal, setPendingModal, setRazorLoading]);
 
 	useEffect(() => {
-		if (apiTries > 10) {
+		if (apiTries > MAX_API_TRIES || status === 'active') {
 			setTimeout(() => {
 				closeModalHandler();
-			}, 10000);
+			}, SET_TIME);
 		}
-	}, [apiTries, closeModalHandler]);
-
-	useEffect(() => {
-		if (status === 'active') {
-			setTimeout(() => {
-				closeModalHandler();
-			}, 10000);
-		}
-	}, [closeModalHandler, status]);
+	}, [apiTries, closeModalHandler, status]);
 
 	return (
 		<Modal
-			className="primary md"
 			show={pendingModal}
-			closable={apiTries < 10 && status === 'active'}
+			closable={apiTries < PAINTING_TIME && status === 'active'}
 			onClose={closeModalHandler}
 		>
-			{apiTries < 10 && status !== 'active' && (
+			{apiTries < PAINTING_TIME && status !== 'active' && (
 				<div className={styles.container}>
-					<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-banner.svg" alt="cogo" />
-					<div className={styles.title}>Hang on! Checking payment status...</div>
-					<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg" alt="cogo" />
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.loading_banner}
+						alt={t('subscriptions:loading_text')}
+						width={300}
+						height={200}
+					/>
+					<div className={styles.title}>{t('subscriptions:checking_payment_text')}</div>
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.loading}
+						alt={t('subscriptions:cogo_text')}
+						width={30}
+						height={30}
+					/>
 				</div>
 			)}
-			{apiTries < 10 && status === 'active' && (
+			{apiTries < PAINTING_TIME && status === 'active' && (
 				<div className={styles.container}>
-					<img src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.svg" alt="cogo" />
-					<div className={styles.title}>Congratulations !</div>
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.success_image}
+						alt={t('subscriptions:cogo_text')}
+						width={300}
+						height={200}
+					/>
+					<div className={styles.title}>{t('subscriptions:congratulations_text')}</div>
 					<div className={styles.txt}>
-						{`Successfully added ${quantity} ${name}`}
-						{' '}
+						{`${t('subscriptions:successfully_added_text')} ${quantity} ${name}`}
 					</div>
 				</div>
 			)}
 
-			{apiTries > 9 && (
+			{apiTries > CLOSE_TIME && (
 				<div className={styles.container}>
 					<IcMInformation fill="#FBDC00" width={52} height={52} />
 					<div className={`${styles.txt} ${styles.error}`}>
-						Sorry, It took longer than usual. We will notify you once payment is
-						successful
+						{t('subscriptions:notify_message_text')}
 					</div>
-					<Button size="sm" themeType="secondary" onClick={closeModalHandler}>
-						Close
+					<Button
+						size="sm"
+						themeType="secondary"
+						type="button"
+						onClick={closeModalHandler}
+					>
+						{t('subscriptions:close_text')}
+
 					</Button>
 				</div>
 			)}

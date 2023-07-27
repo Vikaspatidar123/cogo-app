@@ -7,8 +7,6 @@ import styles from './styles.module.css';
 import { useRequest } from '@/packages/request';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
-const geo = getGeoConstants();
-
 function SelectOrganization({
 	importer_exporter_details = {},
 	setImporterExporterDetails = () => {},
@@ -24,6 +22,7 @@ function SelectOrganization({
 	} = useSelector(({ profile }) => ({
 		user_profile: profile,
 	}));
+	const geo = getGeoConstants();
 
 	const [impExpDetails, setImpExpDetails] = useState(selectedOrg);
 	const [settingPriorDetails, setIsSettingPriorDetails] = useState(false);

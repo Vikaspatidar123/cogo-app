@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styles from './styles.module.css';
+import { isEmpty } from '@cogoport/utils';
 
 const backgroundStatus = ({ status }) => {
 	if (['active', 'approval_pending'].includes(status)) return '#f9da7f';
@@ -9,14 +10,14 @@ const backgroundStatus = ({ status }) => {
 	return '#f9da7f';
 };
 
-const statusFormat = (status = '') => ({ active: 'pending' }[status] ?? status);
+const statusFormat = ({ status = '' }) => ({ active: 'pending' }[status] ?? status);
 function StatusTag({ status = '' }) {
 	return (
 		<div style={{ display: 'flex', alignItems: 'center' }}>
 			<div className={styles.statusCircle} style={{ backgroundColor: backgroundStatus({ status }) }} />
 			<div className={styles.heading}>
-				{(status || '')?.length > 0
-					? statusFormat(status)?.replaceAll('_', ' ')?.toUpperCase()
+				{!isEmpty(status)
+					? statusFormat({ status })?.replaceAll('_', ' ')?.toUpperCase()
 					: 'PENDING'}
 			</div>
 		</div>

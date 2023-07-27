@@ -29,6 +29,7 @@ const PUBLIC_PATHS = [
 	'/accept-invite/[id]',
 	'/verify-sign-up-saas/[token]',
 	'/raise-cancellation-ticket',
+	'/create-ticket/[token]',
 	'/draft-airway-bill/[id]',
 	'/unsubscribe-container-update/[id]',
 ];

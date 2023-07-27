@@ -5,9 +5,7 @@ import { getOrgControls, getAdditionalOrgControls } from '../../utils/controls';
 
 import { useForm } from '@/packages/forms';
 import patterns from '@/ui/commons/configurations/patterns';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
 const useCompanyDetails = ({
 	filledDetails = {},
@@ -37,13 +35,24 @@ const useCompanyDetails = ({
 	const watchCountryId = watch('country_id');
 	const watchBusinessName = watch('business_name');
 
-	const isCountryIndia = watchCountryId === INDIA_COUNTRY_ID;
+	const { validate_registration_number } = getCountrySpecificData({
+		country_id   : watchCountryId,
+		accessorType : 'navigations',
+		accessor     : 'common',
+	});
+
+	const IDENTIFICAITON_LABEL = getCountrySpecificData({
+		country_id   : watchCountryId,
+		accessorType : 'identification_number',
+		accessor     : 'label',
+
+	});
 
 	const { getBusinessApi = {}, onBlurTaxPanGstinControl = () => {} } = useGetBusiness({
 		watchTaxNumber         : watchPan?.toUpperCase(),
 		watchBusinessName,
 		setValues,
-		registrationNumberType : isCountryIndia ? 'registration' : '',
+		registrationNumberType : validate_registration_number ? 'registration' : '',
 	});
 
 	const onSubmit = (values = {}) => {
@@ -66,12 +75,12 @@ const useCompanyDetails = ({
 				...(businessApiLoading && {
 					suffix: <Loader themeType="primary" />,
 				}),
-				...(isCountryIndia && { maxLength: 10 }),
-				label : isCountryIndia ? 'PAN' : 'Registration Number',
+				...(validate_registration_number && { maxLength: 10 }),
+				label : IDENTIFICAITON_LABEL,
 				rules : {
 					...(newField.rules || {}),
 					pattern: {},
-					...(isCountryIndia && {
+					...(validate_registration_number && {
 						pattern: {
 							value   : patterns.PAN_NUMBER,
 							message : 'PAN is invalid',
@@ -94,7 +103,7 @@ const useCompanyDetails = ({
 	const newErrors = {};
 	Object.entries(errors).forEach(([key, value]) => {
 		if (key === 'registration_number') {
-			if (!isCountryIndia && value.type === 'pattern') {
+			if (!validate_registration_number && value.type === 'pattern') {
 				return;
 			}
 		}

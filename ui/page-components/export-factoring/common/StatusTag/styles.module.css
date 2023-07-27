@@ -1,25 +1,28 @@
-
-.statusCircle{
+.statusCircle {
 	width: 8px;
 	height: 8px;
-	border-radius: 50%;
 	margin-right: 8px;
 	background-color: #f9da7f;
+	border-radius: 50%;
+
 	&.approval_pending {
 		background-color: #f9da7f;
 	}
+
 	&.rejected {
 		background-color: #ee3425;
 	}
+
 	&.approved {
 		background-color: #67c676;
 	}
+
 	&.settled {
 		background-color: #67c676;
 	}
 }
 
-.heading{
-	color: #2c3e50;
+.heading {
 	font-weight: 400;
+	color: #2c3e50;
 }

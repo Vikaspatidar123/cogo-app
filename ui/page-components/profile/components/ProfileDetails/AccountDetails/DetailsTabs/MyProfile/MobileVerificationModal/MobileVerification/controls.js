@@ -1,12 +1,12 @@
-const getControls = () => [
+const getControls = ({ t }) => [
 	{
 		name        : 'mobileNumber',
-		label       : 'Mobile Number',
+		label       : t('settings:mobile_number_verification_label'),
 		type        : 'mobile_number',
 		inputType   : 'number',
-		placeholder : 'Mobile Number*',
+		placeholder : t('settings:mobile_number_verification_placeholder'),
 		rules       : {
-			required: true,
+			required: t('settings:settings_field_required_text'),
 		},
 	},
 ];

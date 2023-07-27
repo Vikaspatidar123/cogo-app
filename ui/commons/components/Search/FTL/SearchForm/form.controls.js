@@ -1,14 +1,14 @@
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+// do not remove
+// import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+// import { getCountryIds } from '@/ui/commons/utils/getCountryDetails';
 
-const { IN: INDIA_COUNTRY_ID, VN: VIETNAM_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
+// const SUPPORTED_COUNTRY_CODE = GLOBAL_CONSTANTS.service_supported_countries.ftl_freight.countries;
 
-const countryIds = [INDIA_COUNTRY_ID, VIETNAM_COUNTRY_ID];
-
-const getControls = ({ t }) => [
+const getControls = () => [
 	{
-		label             : t('discoverRates:origin_location_label'),
+		label             : 'Origin Location',
 		name              : 'origin_location_id',
-		placeholder       : t('discoverRates:all_mode_placeholder'),
+		placeholder       : 'Port/Airport/Pincode/Railway Terminal',
 		includedInOptions : false,
 		type              : 'async_select',
 		asyncKey          : 'locations',
@@ -16,16 +16,16 @@ const getControls = ({ t }) => [
 		params            : {
 			apply_sorting : false,
 			filters       : {
-				type       : ['seaport', 'airport', 'pincode', 'railway_terminal'],
-				country_id : countryIds,
+				type: ['seaport', 'airport', 'pincode', 'railway_terminal'],
+				// id   : getCountryIds({ countryCodes: SUPPORTED_COUNTRY_CODE }),
 			},
 		},
-		rules: { required: t('discoverRates:origin_port_error_message') },
+		rules: { required: 'Origin Location is required' },
 	},
 	{
-		label             : t('discoverRates:destination_location_label'),
+		label             : 'Destination Location',
 		name              : 'destination_location_id',
-		placeholder       : t('discoverRates:all_mode_placeholder'),
+		placeholder       : 'Port/Airport/Pincode/Railway Terminal',
 		includedInOptions : false,
 		type              : 'async_select',
 		asyncKey          : 'locations',
@@ -33,11 +33,11 @@ const getControls = ({ t }) => [
 		params            : {
 			apply_sorting : false,
 			filters       : {
-				type       : ['seaport', 'airport', 'pincode', 'railway_terminal'],
-				country_id : countryIds,
+				type: ['seaport', 'airport', 'pincode', 'railway_terminal'],
+				// id   : getCountryIds({ countryCodes: SUPPORTED_COUNTRY_CODE }),
 			},
 		},
-		rules: { required: t('discoverRates:destination_port_error_message') },
+		rules: { required: 'Destination Location is required' },
 	},
 ];
 export default getControls;

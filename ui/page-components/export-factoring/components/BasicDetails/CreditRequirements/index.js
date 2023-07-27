@@ -1,6 +1,5 @@
 import { Button, Accordion } from '@cogoport/components';
 
-import { getAccordianTitle } from '../../../common/utils';
 import { creditRequirementsControls } from '../../../configurations/creditRequirementsControls';
 import useUpdateCreditRequirement from '../../../hooks/useUpdateCreditRequirement';
 
@@ -8,6 +7,7 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
+import { AccordianTitle } from '../../../common/utils';
 
 function CreditRequirements({ getCreditRequestResponse = {}, refetch = () => { } }) {
 	const { customer_credit_requirements = {} } = getCreditRequestResponse || {};
@@ -33,7 +33,7 @@ function CreditRequirements({ getCreditRequestResponse = {}, refetch = () => { }
 		<div className={styles.container}>
 			<form className={styles.form_container}>
 				<Accordion
-					title={getAccordianTitle({
+					title={AccordianTitle({
 						placeholder : 'Credit Requirements',
 						listLength  : Object?.keys(getCreditRequestResponse.customer_credit_requirements || {}).length,
 					})}

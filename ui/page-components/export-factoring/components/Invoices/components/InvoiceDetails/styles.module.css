@@ -1,78 +1,85 @@
 .container {
-	margin-top: 10px;
 	padding: 13px 33px 13px 13px;
-	background: #ffffff;
-	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+	margin-top: 10px;
+	background: #fff;
 	border-radius: 4px;
+	box-shadow: 0 0 4px rgb(0 0 0 / 25%);
 }
 
-.flexBox{
-    display: flex;
+.flexBox {
+	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	height: 50px;
 }
 
-.flexDiv{
+.flexDiv {
 	display: flex;
 	flex-direction: column;
 }
 
-.buyerText{
+.buyerText {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	font-weight: 600;
-	font-size: 16px;
-	color: #221f20;
 	padding-left: 16px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #221f20;
 }
-.labelText{
-	color: #828282;
+
+.labelText {
 	font-size: 14px;
+	color: #828282;
 }
-.horizontalLine{
+
+.horizontalLine {
 	width: 100%;
-	border: 1px solid #e0e0e0;
 	margin-top: 10px;
+	border: 1px solid #e0e0e0;
 }
-.step{
-	padding: 0px 10px;
+
+.step {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
+	padding: 0 10px;
 }
-.stepper{
+
+.stepper {
 	position: relative;
 }
-.circle{
-	background-color: #0D47A1;
-	border: 1px solid #0D47A1;
-	border-radius: 50%;
+
+.circle {
+	display: inline-block;
 	width: 11px;
 	height: 11px;
-	display: inline-block;
+	background-color: #0d47a1;
+	border: 1px solid #0d47a1;
+	border-radius: 50%;
 }
-.line{
-	left: 5px;
-	top: 5px;
-	height: 100%;
+
+.line {
 	position: absolute;
-	border-left: 2px solid #0D47A1;
+	top: 5px;
+	left: 5px;
+	height: 100%;
+	border-left: 2px solid #0d47a1;
 }
-.content{
-	margin-left: 20px;
+
+.content {
 	display: inline-block;
 	width: 100%;
+	margin-left: 20px;
 }
 
-.mainContent{
-	margin: 10px 0px 20px 0px;
+.mainContent {
+	margin: 10px 0 20px;
 }
 
-.headerFlex{
+.headerFlex {
 	display: flex;
 	align-items: center;
-	width: 100%;
 	justify-content: space-between;
+	width: 100%;
 }

@@ -16,7 +16,7 @@ const getStatsMapping = ({ t }) => [
 	{
 		label        : t('airOceanTracking:tracking_stats_label_3'),
 		value        : 'attention_required',
-		dashboardKey : 'attention_required',
+		dashboardKey : 'attention',
 		icon         : <IcMAlert width={20} height={20} fill="#F9AE64" />,
 	},
 ];

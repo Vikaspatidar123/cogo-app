@@ -1,18 +1,33 @@
 import { addDays } from '@cogoport/utils';
 
 import CONTAINER_SIZES from '@/ui/commons/constants/CONTAINER_SIZES';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const fclControls = ({ contractValidity, departureDate, fclArray, attributes }) => {
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+
+const fclControls = ({ contractValidity, departureDate, primaryServicesDetailsArray }) => {
 	const { contractEndDate } = contractValidity || {};
 
-	return [
+	const attributes = primaryServicesDetailsArray.map((item) => ({
+		container_size           : item?.container_size,
+		commodity                : item?.commodity,
+		container_type_commodity : {
+			container_type : item?.container_type,
+			commodity      : item?.commodity,
+		},
+		container_type             : item?.container_type,
+		containers_count           : item?.containers_count,
+		cargo_weight_per_container : item?.cargo_weight_per_container,
+		primary_service_id         : item?.primary_service_id,
+	}));
+
+	const fields = [
 		{
 			inlineLabel : 'Departure',
 			name        : 'departure',
 			type        : 'datepicker',
-			className   : 'primary lg',
 			placeholder : 'Select Departure Date',
-			span        : 6,
+			span        : 4,
 			rules       : { required: 'Required' },
 			minDate     : addDays(new Date(), 1),
 			maxDate     : contractEndDate,
@@ -22,8 +37,7 @@ const fclControls = ({ contractValidity, departureDate, fclArray, attributes }) 
 			inlineLabel : 'Arrival',
 			placeholder : 'Select Arrival Date',
 			type        : 'datepicker',
-			className   : 'primary lg',
-			span        : 6,
+			span        : 4,
 			rules       : { required: 'Required' },
 			disabled    : !departureDate,
 			minDate     : departureDate,
@@ -36,9 +50,16 @@ const fclControls = ({ contractValidity, departureDate, fclArray, attributes }) 
 			caret       : true,
 			inlineLabel : 'Shipping lines',
 			placeholder : 'Select shipping line',
-			span        : 6,
-			className   : 'primary lg',
+			span        : 4,
 			rules       : { required: 'Shipping line required' },
+		},
+		{
+			name        : 'trucks_count',
+			inlineLabel : 'Trucks Count',
+			type        : 'number',
+			placeholder : 'Enter trucks count',
+			span        : 4,
+			rules       : { required: 'Required', min: 0, max: 100 },
 		},
 		{
 			label           : '',
@@ -48,21 +69,23 @@ const fclControls = ({ contractValidity, departureDate, fclArray, attributes }) 
 			style           : { control: { width: '200px' } },
 			rules           : { required: 'Inco-term is required' },
 			activeTradeType : 'import',
-			value           : fclArray[0]?.inco_term,
 			disabled        : true,
+			span            : 4,
+
 		},
 		{
-			name        : 'attributes',
-			inlineLabel : 'Container',
-			type        : 'fieldArray',
-			showButtons : false,
-			value       : attributes,
-			controls    : [
+			name             : 'attributes',
+			inlineLabel      : 'Container',
+			type             : 'fieldArray',
+			showButtons      : false,
+			showDivider      : true,
+			showDeleteAlways : true,
+			controls         : [
 				{
 					label         : 'Container Type',
 					name          : 'container_type_commodity',
 					type          : 'container_type-commodity',
-					span          : 6,
+					span          : 2.8,
 					controlFields : {
 						container_type: {
 							label          : 'Container Type',
@@ -80,7 +103,7 @@ const fclControls = ({ contractValidity, departureDate, fclArray, attributes }) 
 					name        : 'container_size',
 					inlineLabel : 'Container Size',
 					type        : 'chips',
-					span        : 6,
+					span        : 3,
 					options     : CONTAINER_SIZES,
 					rules       : { required: 'Containers size is required' },
 					disabled    : true,
@@ -89,7 +112,7 @@ const fclControls = ({ contractValidity, departureDate, fclArray, attributes }) 
 					inlineLabel : 'Container Count',
 					name        : 'containers_count',
 					type        : 'number',
-					span        : 6,
+					span        : 2,
 					value       : 1,
 					rules       : {
 						min      : 1,
@@ -103,12 +126,26 @@ const fclControls = ({ contractValidity, departureDate, fclArray, attributes }) 
 					name        : 'cargo_weight_per_container',
 					placeholder : 'between 0 to 30 metric tonnes',
 					type        : 'number',
-					span        : 6,
+					span        : 2.9,
 					rules       : { min: 0.1, max: 30, required: 'Cargo Weight is required' },
+				},
+				{
+					name  : 'primary_service_id',
+					type  : 'hidden',
+					style : { display: 'none' },
 				},
 			],
 		},
 	];
+
+	const defaultValues = {
+		inco_term: primaryServicesDetailsArray[ZEROTH_INDEX]?.inco_term,
+		attributes,
+	};
+
+	return {
+		defaultValues, fields,
+	};
 };
 
 export default fclControls;

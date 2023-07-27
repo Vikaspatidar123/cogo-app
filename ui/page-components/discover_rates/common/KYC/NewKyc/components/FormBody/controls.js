@@ -2,20 +2,63 @@ import { Button, Popover } from '@cogoport/components';
 
 import Info from './AddressInfo';
 
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+
+const btnStyle = {
+	width        : '20px',
+	height       : '20px',
+	borderRadius : '20px',
+	marginLeft   : '10px',
+	fontSize     : '15px',
+};
+const labelStyle = {
+	width      : '354px',
+	marginTop  : '6px',
+	fontSize   : '12px',
+	fontWeight : 'normal',
+};
+
+function InfoPopover({ isOpen, addressLabel, setIsOpen, handleClick }) {
+	const label = `Your Company’s ${addressLabel}`;
+	const style = { display: 'flex' };
+
+	return (
+		<div style={style}>
+			{label}
+			<div>
+				<Popover
+					show={isOpen}
+					withArrow={false}
+					usePortal
+					placement="bottom-start"
+					renderBody={() => <Info />}
+					onOuterClick={() => setIsOpen(false)}
+				>
+					<Button
+						onClick={handleClick}
+						className="small"
+						style={btnStyle}
+					>
+						i
+					</Button>
+				</Popover>
+			</div>
+		</div>
+	);
+}
+
 export const controls = (countryCode, isOpen, setIsOpen, rest) => {
-	const btnStyle = {
-		width        : '20px',
-		height       : '20px',
-		borderRadius : '20px',
-		marginLeft   : '10px',
-		fontSize     : '15px',
-	};
-	const labelStyle = {
-		width      : '354px',
-		marginTop  : '6px',
-		fontSize   : '12px',
-		fontWeight : 'normal',
-	};
+	const ADDRESS_LABEL = getCountrySpecificData({
+		country_code : countryCode,
+		accessorType : 'address',
+		accessor     : 'label',
+	});
+	const IDENTIFICAITON_LABEL = getCountrySpecificData({
+		country_code : countryCode,
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
+
 	const handleClick = () => {
 		setIsOpen(true);
 	};
@@ -29,34 +72,7 @@ export const controls = (countryCode, isOpen, setIsOpen, rest) => {
 			</div>
 		</div>
 	);
-	const infoPopover = (country_code) => {
-		const label = country_code === 'IN' ? 'Your Company’s Address Proof' : 'Your Company’s Registration Extract';
-		const style = { display: 'flex' };
 
-		return (
-			<div style={style}>
-				{label}
-				<div>
-					<Popover
-						show={isOpen}
-						withArrow={false}
-						usePortal
-						placement="bottom-start"
-						renderBody={() => <Info />}
-						onOuterClick={() => setIsOpen(false)}
-					>
-						<Button
-							onClick={handleClick}
-							className="small"
-							style={btnStyle}
-						>
-							i
-						</Button>
-					</Popover>
-				</div>
-			</div>
-		);
-	};
 	const mobileSection = rest.showMobile ? [{
 		name        : 'mobile',
 		showLabel   : false,
@@ -80,19 +96,23 @@ export const controls = (countryCode, isOpen, setIsOpen, rest) => {
 		[
 			{
 				name        : 'registration_number',
-				label       : countryCode === 'IN' ? 'Your Company’s PAN Number' : 'Your Company’s Registration Number',
+				label       : `Your Company’s ${IDENTIFICAITON_LABEL}`,
 				type        : 'text',
 				span        : 6,
 				value       : rest?.registration_number,
 				validations : [{
 					type    : 'required',
-					message : countryCode === 'IN'
-						? 'Pan number is Required' : 'Registration Number is Required',
+					message : `${IDENTIFICAITON_LABEL} is Required`,
 				}],
 			},
 			{
-				name            : 'utility_bill_document_url',
-				label           : infoPopover(countryCode),
+				name  : 'utility_bill_document_url',
+				label : <InfoPopover
+					isOpen={isOpen}
+					addressLabel={ADDRESS_LABEL}
+					setIsOpen={setIsOpen}
+					handleClick={handleClick}
+				/>,
 				type            : 'file',
 				span            : 12,
 				drag            : true,
@@ -104,8 +124,7 @@ export const controls = (countryCode, isOpen, setIsOpen, rest) => {
 				value           : rest?.utility_bill_document_url,
 				validations     : [{
 					type    : 'required',
-					message : countryCode === 'IN'
-						? 'Address is Required' : 'Registration Extract is Required',
+					message : `${ADDRESS_LABEL} is Required`,
 				}],
 
 			},

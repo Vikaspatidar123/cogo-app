@@ -50,7 +50,7 @@ const useCompanyDetails = ({
 
 	});
 
-	const { getBusinessApi = {}, onBlurTaxPanGstinControl = () => {} } = useGetBusiness({
+	const { getBusinessLoading: businessApiLoading, onBlurTaxPanGstinControl = () => {} } = useGetBusiness({
 		watchTaxNumber         : watchPan?.toUpperCase(),
 		watchBusinessName,
 		setValues,
@@ -65,45 +65,7 @@ const useCompanyDetails = ({
 		setCurrentStep('billing_address');
 	};
 
-	const businessApiLoading = getBusinessApi.loading;
-
-	const newFields = {};
-	Object.entries(control).forEach(([controlName, field]) => {
-		let newField = { ...field };
-		if (controlName === 'registration_number') {
-			newField = {
-				...newField,
-				onBlur: () => onBlurTaxPanGstinControl(),
-				...(businessApiLoading && {
-					suffix: <Loader themeType="primary" />,
-				}),
-				...(validate_registration_number && { maxLength: 10 }),
-				label : IDENTIFICAITON_LABEL,
-				rules : {
-					...(newField.rules || {}),
-					pattern: {},
-					...(validate_registration_number && {
-						pattern: {
-							value   : patterns.PAN_NUMBER,
-							message : 'PAN is invalid',
-						},
-					}),
-				},
-			};
-		}
-
-		if (['business_name', 'company_type'].includes(controlName)) {
-			newField = {
-				...newField,
-				disabled: businessApiLoading,
-			};
-		}
-
-		newFields[controlName] = newField;
-	});
-
 	const newControlsField = {};
-
 	companyDetailsControls.forEach((config) => {
 		let newField = { ...config };
 		if (config.name === 'registration_number') {

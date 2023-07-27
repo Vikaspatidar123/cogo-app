@@ -87,7 +87,7 @@ function Form({
 					trackAnalytics={trackAnalytics}
 				/>
 			) : (
-				<form style={{ marginLeft: '-8px' }}>
+				<form>
 					<div className={styles.form_wrapper}>
 						{newControls.map((item) => {
 							const { name, type, label, rules } = item;
@@ -95,11 +95,12 @@ function Form({
 							const isMobileNo = type === 'mobile_number';
 
 							return (
-								<div key={name}>
-									<div className={styles.label}>{label}</div>
+								<div key={name} className={styles.form_ele}>
+									<p className={styles.label}>{label}</p>
 									<Element
 										{...item}
 										control={control}
+										type="input"
 										mobileSelectRef={isMobileNo ? register(name, rules).ref : undefined}
 									/>
 									<div className={styles.error}>

@@ -255,9 +255,8 @@ const orgControls = [
 		drag       : true,
 		uploadIcon : () => <IcMFileUploader height={30} width={30} />,
 		span       : 5.8,
-		uploadType : 'aws',
 		height     : 45,
-		rules      : { required: 'Trade Party documen is Required' },
+		rules      : { required: 'Trade Party document is Required' },
 	},
 ];
 

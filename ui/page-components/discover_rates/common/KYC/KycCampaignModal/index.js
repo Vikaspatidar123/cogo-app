@@ -46,9 +46,7 @@ export function KycCampaign({
 	);
 	return (
 		<div className={styles.flex} style={{ padding: '8px' }}>
-			<div className={styles.flex} style={{ marginBottom: '12px' }}>
-				<Modal.Header title={head()} />
-			</div>
+			<Modal.Header title={head()} />
 			<FormBody
 				{...initialValues}
 				agent_id={agent_id}

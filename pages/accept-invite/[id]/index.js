@@ -1,4 +1,3 @@
-import { isEmpty } from '@cogoport/utils';
 import { setCookie } from 'cookies-next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -12,9 +11,9 @@ export async function getServerSideProps(ctx) {
 	try {
 		const res = await acceptPassword({ token: id });
 
-		if (!isEmpty(res)) {
-			const { token } = (res || {}).data || {};
+		const { token } = (res || {}).data || {};
 
+		if (token) {
 			setCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME, token, ctx);
 
 			return {

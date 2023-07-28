@@ -62,7 +62,7 @@ function Cancellation({
 	const tradeType = shipment_data?.all_services
 		?.filter((item) => item?.service_type === primary_service?.service_type)?.[0]?.trade_type;
 
-	const is_end_to_end = shipment_data?.is_end_to_end;
+	const isEndToEnd = shipment_data?.is_end_to_end;
 
 	const showToStakeholders = stakeholder_types?.some((ele) => showCancellationStakeholders?.includes(ele));
 
@@ -96,7 +96,7 @@ function Cancellation({
 	};
 	return (
 		<div>
-			{tradePartyType !== 'shipper' && tradeType !== 'import' && is_end_to_end ? (
+			{tradePartyType !== 'shipper' && tradeType !== 'import' && isEndToEnd ? (
 				<div className={styles.container}>
 					<Popover
 						interactive

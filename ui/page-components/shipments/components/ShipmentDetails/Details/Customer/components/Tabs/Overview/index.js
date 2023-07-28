@@ -27,7 +27,7 @@ function Overview({
 
 	const { renderItem } = helperFuncs(servicesList, primary_service);
 	const tradePartyType = shipment_data?.trade_party_type;
-	const is_end_to_end = shipment_data?.is_end_to_end;
+	const isEndToEnd = shipment_data?.is_end_to_end;
 
 	const serviceObj = {
 		origin              : [],
@@ -47,7 +47,7 @@ function Overview({
 					<div className={styles.service_container}>
 						<div className={styles.card_block}>
 							<div className={styles.heading}>ORIGIN SERVICES</div>
-							{tradePartyType === 'shipper' && is_end_to_end
+							{tradePartyType === 'shipper' && isEndToEnd
 							&& (serviceObj.origin || []).map((service) => (
 								<ServiceDetails
 									cancelUpsellFor={cancelUpsellOriginFor}
@@ -74,7 +74,7 @@ function Overview({
 						<div className={styles.line} />
 						<div className={styles.card_block}>
 							<div className={styles.heading}> DESTINATION SERVICES </div>
-							{tradePartyType === 'consignee' && is_end_to_end
+							{tradePartyType === 'consignee' && isEndToEnd
 							&& (serviceObj.destination || []).map((service) => (
 								<ServiceDetails
 									cancelUpsellFor={cancelUpsellDestinationFor}

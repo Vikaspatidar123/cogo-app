@@ -1,9 +1,11 @@
 import { getByKey } from '@cogoport/utils';
 
-import { AUTO_SIGNUP_PAGE_MAPPINGS, AUTO_LOGIN_PAGE_MAPPINGS } from '@/ui/commons/constants/pageMappings';
+import {
+	PAGE_MAPPINGS,
+} from '@/ui/commons/constants/pageMappings';
 
 const getRedirectionUrlForAutoLoginSignup = ({ response, lead_action_id, actionType = '' }) => {
-	const PAGE_MAPPINGS = actionType === 'autoSignUp' ? AUTO_SIGNUP_PAGE_MAPPINGS : AUTO_LOGIN_PAGE_MAPPINGS;
+	const pageUrl = PAGE_MAPPINGS?.[actionType] || null;
 
 	const {
 		lead_action = {},
@@ -14,7 +16,7 @@ const getRedirectionUrlForAutoLoginSignup = ({ response, lead_action_id, actionT
 
 	const redirect_page = lead_action?.action_config?.redirect_page || '';
 
-	let url = `/${organization_id}/${organization_branch_id}/${PAGE_MAPPINGS?.[redirect_page]}`;
+	let url = `/${organization_id}/${organization_branch_id}/${pageUrl?.[redirect_page]}`;
 	if (redirect_page === 'search_results') {
 		const queryObj = {
 			importer_exporter_id        : organization_id,

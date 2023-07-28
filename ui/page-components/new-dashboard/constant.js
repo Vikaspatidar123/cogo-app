@@ -64,6 +64,16 @@ export const LABELS = [
 	'msds_document',
 ];
 
+export const SHOW_SERVICES = [
+	'fcl_freight',
+	'lcl_freight',
+	'air_freight',
+	'ftl_freight',
+	'ltl_freight',
+	'haulage_freight',
+	'trailer_freight',
+];
+
 export const renderValue = ({ label, data, t }) => {
 	const { packages } = data || {};
 	const valueForInput = Array.isArray(packages) && !isEmpty(packages)

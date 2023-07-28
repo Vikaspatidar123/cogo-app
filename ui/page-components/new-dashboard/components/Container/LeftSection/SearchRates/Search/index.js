@@ -25,7 +25,7 @@ function Search() {
 						<div>
 							{t('dashboard:yourDeals_text_2')}
 						</div>
-						<div>{t('dashboard:yourDeals_text_3')}</div>
+						<div className={styles.title}>{t('dashboard:yourDeals_text_3')}</div>
 					</div>
 				</div>
 

@@ -8,6 +8,7 @@ import styles from './styles.module.css';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+const START_INDEX = GLOBAL_CONSTANTS.first_index;
 const DEFAULT_SERVICE_LENGTH = 2;
 const MINIMUN_SERVICE_LENGTH = 1;
 
@@ -15,7 +16,7 @@ const ViewServices = ({ serviceDetails }) => (serviceDetails || []).map((detail,
 	if (!index) return null;
 
 	return (
-		<div className={styles.tag_container}>
+		<div key={detail?.[ZEROTH_INDEX].valueText} className={styles.tag_container}>
 			{(detail || []).map((data) => (
 				<div className={styles.tooltip_tag} key={data?.valueText}>{data?.valueText}</div>
 			))}
@@ -82,7 +83,7 @@ function Commodities({ itemData }) {
 						placement="right"
 						content={(
 							<div className={styles.add_services}>
-								{(additionalServices.slice(1) || [])
+								{(additionalServices.slice(START_INDEX) || [])
 									.map((service) => (
 										<div key={service} className={styles.service_tag}>{startCase(service)}</div>
 									))}

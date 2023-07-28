@@ -1,6 +1,9 @@
 import { addDays } from '@cogoport/utils';
 
 import CONTAINER_SIZES from '@/ui/commons/constants/CONTAINER_SIZES';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 
 const fclControls = ({ contractValidity, departureDate, primaryServicesDetailsArray }) => {
 	const { contractEndDate } = contractValidity || {};
@@ -136,7 +139,7 @@ const fclControls = ({ contractValidity, departureDate, primaryServicesDetailsAr
 	];
 
 	const defaultValues = {
-		inco_term: primaryServicesDetailsArray[0]?.inco_term,
+		inco_term: primaryServicesDetailsArray[ZEROTH_INDEX]?.inco_term,
 		attributes,
 	};
 

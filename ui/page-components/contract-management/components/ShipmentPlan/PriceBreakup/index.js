@@ -6,6 +6,11 @@ import { UNIT_MAPPING } from '../constants';
 import handleLineItemsBreakup from './handleLineItemsBreakup';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+const FIRST_INDEX = GLOBAL_CONSTANTS.first_index;
+
 function PriceBreakup({ details = {}, source = '' }) {
 	const groupedServices = {};
 
@@ -43,7 +48,7 @@ function PriceBreakup({ details = {}, source = '' }) {
 	};
 
 	const newData = Object.keys(groupedServices).map((service) => ({
-		service: (groupedServices[service] || [])[0]?.service
+		service: (groupedServices[service] || [])[ZEROTH_INDEX]?.service
 			? handleServicesNames(service)
 			: startCase(service),
 
@@ -56,7 +61,7 @@ function PriceBreakup({ details = {}, source = '' }) {
 				const { properties } = data;
 
 				return properties.map((property, itemIndex) => {
-					const { features, price = '' } = property[property.length - 1] || {};
+					const { features, price = '' } = property[property.length - FIRST_INDEX] || {};
 
 					return (
 						<React.Fragment key={property?.[itemIndex]?.features}>
@@ -77,7 +82,7 @@ function PriceBreakup({ details = {}, source = '' }) {
 
 							<div className={styles.info_data}>
 								{property.map((item, index) => {
-									if (index === property.length - 1) return null;
+									if (index === property.length - FIRST_INDEX) return null;
 
 									return (
 										<div className={styles.info} key={item?.features}>

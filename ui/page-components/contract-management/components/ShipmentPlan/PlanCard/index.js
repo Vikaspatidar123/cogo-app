@@ -14,7 +14,6 @@ import CreatePlanBox from './CreatePlanBox';
 import CreatePlanModal from './CreatePlanModal';
 import DetailedBreakUp from './DetailedBreakUp';
 import Freight from './Freight';
-import ManualShipmentCard from './ManualShipmentCard';
 import Route from './Route';
 import ShipmentCard from './ShipmentCard';
 import ShipmentInfo from './ShipmentInfo';
@@ -187,12 +186,11 @@ function PlanCard({
 		loading,
 		shipmentPlanData = {},
 		getShipmentPlans = () => { },
-		requestData = [],
 	} = useGetContractShipmentData({ isExistingManual, serviceLocationId });
 
 	const { shipment_data: shipmentData = [], plan_data = [] } = shipmentPlanData || {};
-	const isPlanAbsent = isEmpty(shipmentData);
-	const planNotAvailable = isEmpty(plan_data);
+
+	const canEditPlan = !isEmpty(plan_data);
 
 	const serviceStateWithQuery = contract_status === 'expired' ? contract_status : RD_STATUS_MAPPING[status];
 
@@ -324,7 +322,7 @@ function PlanCard({
 					planData={plan_data}
 					serviceType={service_type}
 					showPlanBox={showPlanBox}
-					isPlanAbsent={isPlanAbsent}
+					shipmentData={shipmentData}
 					contract_type={contract_type}
 					contractStatus={contractStatus}
 					setShowModal={setShowModal}
@@ -347,33 +345,25 @@ function PlanCard({
 				/>
 			) : null}
 
-			{/* {showPlanBox && isPlanAbsent && source !== 'manual' && ( */}
-			<CreatePlanBox setShowModal={setShowModal} loading={loading} />
-			{/* )} */}
+			{showPlanBox && isEmpty(shipmentData) && (
+				<CreatePlanBox setShowModal={setShowModal} loading={loading} />
+			)}
 
-			{/* {!isPlanAbsent && showPlanBox && source !== 'manual' && ( */}
-			<ShipmentCard
-				shipmentData={shipmentData}
-				loading={loading}
-				itemData={itemData}
-				containerDetails={containerDetails}
-			/>
-			{/* )} */}
-
-			{/* {showPlanBox && source === 'manual' && ( */}
-			<ManualShipmentCard
-				requestData={requestData}
-				loading={loading}
-				itemData={itemData}
-			/>
-			{/* )} */}
+			{!isEmpty(shipmentData) && showPlanBox && (
+				<ShipmentCard
+					shipmentData={shipmentData}
+					loading={loading}
+					itemData={itemData}
+					containerDetails={containerDetails}
+				/>
+			)}
 
 			{showModal && (
 				<CreatePlanModal
 					itemData={itemData}
 					plan_data={plan_data}
 					showModal={showModal}
-					isEditPlan={!planNotAvailable}
+					isEditPlan={canEditPlan}
 					setShowModal={setShowModal}
 					getShipmentPlans={getShipmentPlans}
 					getServiceDetails={getServiceDetails}

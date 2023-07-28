@@ -1,10 +1,9 @@
 import { IcMDelete, IcMPlusInCircle } from '@cogoport/icons-react';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
-import getWidth from '@/ui/page-components/checkout/utils/getWidth';
 
 function Child({
 	controls,
@@ -30,10 +29,6 @@ function Child({
 			key={field.id}
 		>
 			{controls.map((controlItem) => {
-				const show = !(controlItem.name in showElements) || showElements[controlItem.name];
-
-				const { span } = controlItem;
-
 				const extraProps = {};
 				if (controlItem.customProps) {
 					Object.keys(controlItem.customProps).forEach((key) => {

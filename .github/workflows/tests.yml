@@ -14,12 +14,12 @@ jobs:
   lint:
     name: Test
     needs: init
-    uses: ./.github/workflows/comment-test-lint.yml
+    uses: ./.github/workflows/reusable-test-lint.yml
     secrets: inherit
 
   build:
     name: Test
     needs: init
-    uses: ./.github/workflows/comment-test-build.yml
+    uses: ./.github/workflows/reusable-test-build.yml
     secrets: inherit
     

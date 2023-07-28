@@ -26,7 +26,7 @@ export const getSubUnit = (item) => {
 	let label = [];
 
 	label = {
-		fcl_freight : 'Containers',
+		fcl_freight : 'Container',
 		lcl_freight : 'Volume',
 		air_freight : 'Weight',
 	};

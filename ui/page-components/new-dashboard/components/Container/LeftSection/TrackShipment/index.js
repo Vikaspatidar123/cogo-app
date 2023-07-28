@@ -38,8 +38,8 @@ function TrackShipment() {
 							themeType="tertiary"
 							onChange={setTrackingType}
 						>
-							<TabPanel name="ocean" title="Ocean" />
-							<TabPanel name="air" title="Air" />
+							<TabPanel name="ocean" title={t('dashboard:ocean_shipment_text')} />
+							<TabPanel name="air" title={t('dashboard:air_shipment_text')} />
 						</Tabs>
 					</div>
 

@@ -28,7 +28,7 @@ export const MAX_LIMIT = 3;
 
 export const PATH_OPTION = {
 	ocean : { color: '#1867D2', weight: 2 },
-	air   : { color: '#f37166', weight: 2 },
+	air   : { color: '#1867D2', weight: 2 },
 	land  : { color: '#136f29', weight: 2 },
 };
 

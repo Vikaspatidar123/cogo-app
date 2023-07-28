@@ -172,6 +172,8 @@
 	"schedule_title_text_2":"Lập kế hoạch một lô hàng sắp tới bằng cách sử dụng lịch vận chuyển toàn diện.",
 	"schedule_title_text_3":"Lịch trình không khí",
 	"schedule_title_text_4":"Lên kế hoạch cho một hàng hóa sắp tới bằng cách sử dụng lịch trình không khí toàn diện.",
-	"shipment_create_title_text":"Tạo lô hàng mới"
+	"shipment_create_title_text":"Tạo lô hàng mới",
+	"ocean_shipment_text":"Đại dương",
+	"air_shipment_text":"Không khí"
 
 }

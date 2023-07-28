@@ -44,7 +44,7 @@ function CompanyDetails({
 						const Element = getField(item.type);
 
 						return (
-							<div className={styles.field} style={{ width: getWidth(span) }}>
+							<div key={name} className={styles.field} style={{ width: getWidth(span) }}>
 								<div className={styles.lable}>{label}</div>
 								<Element {...item} {...fields[name]} control={control} />
 								{errors?.[name] && (

@@ -8,6 +8,7 @@ import patterns from '@/ui/commons/configurations/patterns';
 import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
 const ORG_INFO = ['business_name', 'company_type'];
+const MAX_LENGTH = 10;
 
 const useCompanyDetails = ({
 	filledDetails = {},
@@ -76,7 +77,7 @@ const useCompanyDetails = ({
 					suffix: <Loader themeType="primary" />,
 				}),
 
-				...(validate_registration_number && { maxLength: 10 }),
+				...(validate_registration_number && { maxLength: MAX_LENGTH }),
 				label: IDENTIFICAITON_LABEL,
 
 				rules: {

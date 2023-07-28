@@ -20,23 +20,21 @@ const labelStyle = {
 
 function InfoPopover({ isOpen, addressLabel, setIsOpen, handleClick }) {
 	const label = `Your Company’s ${addressLabel}`;
-	const style = { display: 'flex' };
 
 	return (
-		<div style={style}>
+		<div style={{ display: 'flex' }}>
 			{label}
 			<div>
 				<Popover
 					show={isOpen}
-					withArrow={false}
-					usePortal
 					placement="bottom-start"
-					renderBody={() => <Info />}
+					content={() => <Info />}
 					onOuterClick={() => setIsOpen(false)}
 				>
 					<Button
+						type="button"
+						themeType="tertiary"
 						onClick={handleClick}
-						className="small"
 						style={btnStyle}
 					>
 						i

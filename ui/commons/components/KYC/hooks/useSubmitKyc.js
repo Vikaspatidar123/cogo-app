@@ -10,6 +10,7 @@ import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDe
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const PAN_REGEX = GLOBAL_CONSTANTS.patterns.PAN_NUMBER;
+const MAX_LENGTH = 10;
 
 const useSubmitKyc = ({ onClose, organizationData = {} }) => {
 	const { country_id, registration_number, preferred_languages } = organizationData || {};
@@ -34,7 +35,7 @@ const useSubmitKyc = ({ onClose, organizationData = {} }) => {
 		if (control.name === 'registration_number' && validate_registration_number) {
 			return {
 				...control,
-				maxLength : 10,
+				maxLength : MAX_LENGTH,
 				rules     : {
 					...control.rules,
 					pattern: {

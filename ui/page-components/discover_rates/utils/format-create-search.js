@@ -7,7 +7,12 @@ import {
 } from '@/ui/commons/constants/commodities';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import { getCountryCode } from '@/ui/commons/utils/getCountryDetails';
 import getFormattedValues from '@/ui/commons/utils/getFormattedValues';
+
+const HAULAGE_SERVICES = ['haulage_freight', 'barge_freight'];
+
+const FCL_CUSTOMS_SUPPORTED_COUNTRY = GLOBAL_CONSTANTS.service_supported_countries.fcl_customs.countries;
 
 const mergeContainerDetails = (containers) => {
 	const mergedValues = {};
@@ -41,6 +46,9 @@ const formatDataForSingleService = ({
 	checked = true,
 }) => {
 	const geo = getGeoConstants();
+	const originCountryCode = getCountryCode({ country_id: rawParams?.origin_country_id });
+	const destinationCountryCode = getCountryCode({ country_id: rawParams?.destination_country_id });
+
 	if (mode === 'fcl_freight') {
 		const newValues = (values.containers || []).map((item) => ({
 			origin_port_id      : values.origin_port_id,
@@ -185,16 +193,19 @@ const formatDataForSingleService = ({
 		let cargo_value_currency = null;
 		let address = null;
 		let ad_code = null;
-		if (values?.trade_type === 'export' || type === 'export') {
-			if (
-				rawParams?.origin_country_id
-                    === GLOBAL_CONSTANTS.country_ids.VN
-                && rawParams?.origin_port?.is_icd === true
+
+		const isOriginCountrySupported = FCL_CUSTOMS_SUPPORTED_COUNTRY.includes(originCountryCode);
+		const isDestinationCountrySupported = FCL_CUSTOMS_SUPPORTED_COUNTRY.includes(destinationCountryCode);
+		const isExport = values?.trade_type === 'export' || type === 'export';
+		const isImport = values?.trade_type === 'import' || type === 'import';
+
+		if (isExport) {
+			if (isOriginCountrySupported && rawParams?.origin_port?.is_icd === true
 			) {
 				value.country_id = rawParams?.origin_port?.country_id;
 			} else {
 				value.port_id = rawParams?.source === 'upsell'
-                    && rawParams?.origin_country_id === GLOBAL_CONSTANTS.country_ids.VN
+                    && isOriginCountrySupported
                     && rawParams?.origin_main_port_id
 					? rawParams?.origin_main_port_id
 					: values?.port_id || values?.origin_port_id;
@@ -213,16 +224,13 @@ const formatDataForSingleService = ({
 			address = mode === 'fcl_cfs' ? values?.export_fcl_cfs_address
 				: values?.export_fcl_customs;
 			ad_code = values?.export_fcl_customs_have_add_code || undefined;
-		} else if (values?.trade_type === 'import' || type === 'import') {
-			if (
-				rawParams?.destination_country_id
-                    === GLOBAL_CONSTANTS.country_ids.VN
-                && rawParams?.destination_port?.is_icd === true
+		} else if (isImport) {
+			if (isDestinationCountrySupported && rawParams?.destination_port?.is_icd === true
 			) {
 				value.country_id = rawParams?.destination_port?.country_id;
 			} else {
 				value.port_id = rawParams?.source === 'upsell'
-                    && rawParams?.destination_country_id === GLOBAL_CONSTANTS.country_ids.VN
+                    && isDestinationCountrySupported
                     && rawParams?.destination_main_port_id ? rawParams?.destination_main_port_id
 					: values?.port_id || values?.destination_port_id;
 			}
@@ -629,7 +637,7 @@ const formatDataForSingleService = ({
 		];
 	}
 
-	if (mode === 'haulage_freight') {
+	if (HAULAGE_SERVICES.includes(mode)) {
 		let service_type = '';
 
 		if (
@@ -666,6 +674,11 @@ const formatDataForSingleService = ({
 			: export_freight_location;
 
 		const allAttributes = [];
+		const transport_mode = {
+			trailer_freight : 'trailer',
+			haulage_freight : 'rail',
+			barge_freight   : 'barge',
+		};
 
 		if (type) {
 			const origin_location_id = type === 'export'
@@ -695,11 +708,10 @@ const formatDataForSingleService = ({
 				containers_count : Number(container?.containers_count),
 				cargo_weight_per_container:
                     Number(container?.cargo_weight_per_container) || undefined,
-				trade_type   : type,
-				service_type : service ? service_type : undefined,
-				transport_mode:
-                    service_type === 'trailer_freight' ? 'trailer' : 'rail',
-				status: 'active',
+				trade_type     : type,
+				service_type   : service ? service_type : undefined,
+				transport_mode : values?.transport_mode || transport_mode[mode],
+				status         : 'active',
 			}));
 			allAttributes.push(...newVals);
 		}
@@ -721,7 +733,7 @@ const formatDataForSingleService = ({
 			cargo_weight_per_container:
                 Number(container?.cargo_weight_per_container) || undefined,
 			trade_type     : 'domestic',
-			transport_mode : values?.transport_mode || 'rail',
+			transport_mode : values?.transport_mode || transport_mode[mode],
 			status         : 'active',
 		}));
 		return mergeContainerDetails(newVals);
@@ -872,7 +884,7 @@ const formatCreateSearch = (
 	let newPayload = {};
 	if (!is_service || is_service === 'hybrid') {
 		newPayload = {
-			search_type                 : mode,
+			search_type                 : mode === 'barge_freight' ? 'haulage_freight' : mode,
 			source                      : source || 'platform',
 			source_id                   : source === 'upsell' ? source_id : undefined,
 			importer_exporter_id        : payload.importer_exporter_id,
@@ -894,11 +906,20 @@ const formatCreateSearch = (
 	}
 
 	if (!is_service && is_service !== 'hybrid') {
-		newPayload[`${mode}_services_attributes`] = formatDataForSingleService({
-			mode,
-			values: payload,
-			checked,
-		});
+		if (mode === 'barge_freight') {
+			newPayload.haulage_freight_services_attributes = formatDataForSingleService({
+				mode,
+				values: payload,
+				checked,
+			});
+		} else {
+			newPayload[`${mode}_services_attributes`] = formatDataForSingleService({
+				mode,
+				values: payload,
+				checked,
+				source,
+			});
+		}
 	}
 
 	Object.keys(services).forEach((service) => {

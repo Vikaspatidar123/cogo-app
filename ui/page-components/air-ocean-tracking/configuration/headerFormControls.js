@@ -14,7 +14,7 @@ const headerFormControls = ({ trackingType = 'ocean',	operatorData = {}, t }) =>
 			name        : 'shipmentNumber',
 			type        : 'text',
 			placeholder : t('airOceanTracking:tracking_header_form_control_label_1'),
-			rules       : { required: t('airOceanTracking:tracking_header_form_control_required_text') },
+			rules       : { required: t('airOceanTracking:tracking_header_form_control_required_text_1') },
 		},
 		{
 			name        : 'shippingLine',
@@ -22,7 +22,7 @@ const headerFormControls = ({ trackingType = 'ocean',	operatorData = {}, t }) =>
 			asyncKey    : 'shippingline_list',
 			initialCall : true,
 			placeholder : t('airOceanTracking:tracking_header_form_control_label_2'),
-			rules       : { required: t('airOceanTracking:tracking_header_form_control_required_text') },
+			rules       : { required: t('airOceanTracking:tracking_header_form_control_required_text_2') },
 		},
 	];
 
@@ -32,7 +32,7 @@ const headerFormControls = ({ trackingType = 'ocean',	operatorData = {}, t }) =>
 			type        : 'text',
 			placeholder : t('airOceanTracking:tracking_header_form_control_label_3'),
 			rules       : {
-				required : t('airOceanTracking:tracking_header_form_control_required_text'),
+				required : t('airOceanTracking:tracking_header_form_control_required_text_3'),
 				pattern  : {
 					value   : patterns.AIRWAY_BILL_NO,
 					message : t('airOceanTracking:tracking_header_form_control_invalid_airline_text'),
@@ -45,7 +45,7 @@ const headerFormControls = ({ trackingType = 'ocean',	operatorData = {}, t }) =>
 			asyncKey    : 'airline_list',
 			initialCall : true,
 			placeholder : t('airOceanTracking:tracking_header_form_control_label_4'),
-			rules       : { required: t('airOceanTracking:tracking_header_form_control_required_text') },
+			rules       : { required: t('airOceanTracking:tracking_header_form_control_required_text_4') },
 
 		},
 	];

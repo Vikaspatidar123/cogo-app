@@ -1,5 +1,6 @@
 import { Toast } from '@cogoport/components';
 import { merge } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
 import getBillingAddressControls from './get-billing-address-controls';
@@ -16,6 +17,7 @@ const MAPPING = {
 	poc_name     : 'name',
 	phone_number : 'mobile_number',
 };
+
 const useEditBillingAddress = ({
 	addressIdxToUpdate,
 	organizationBillingAddressesList,
@@ -23,9 +25,12 @@ const useEditBillingAddress = ({
 	mobalType,
 	getAddress,
 }) => {
+	const { t } = useTranslation(['settings']);
+
 	const endPoint = mobalType
 		? '/update_organization_billing_address'
 		: '/create_organization_billing_address';
+
 	const [{ loading }, trigger] = useRequest(
 		{
 			url    : endPoint,
@@ -42,7 +47,8 @@ const useEditBillingAddress = ({
 			params: { filters: { type: ['pincode'] } },
 		}),
 	);
-	const fields = getBillingAddressControls({ cityPincode }) || [];
+	const fields = getBillingAddressControls({ cityPincode, t }) || [];
+
 	const {
 		handleSubmit = () => {},
 		watch,
@@ -54,13 +60,17 @@ const useEditBillingAddress = ({
 		fields?.map((item) => setValue(
 			item?.name,
 			item?.mode === 'poc'
-				? valuesToPrefill?.organization_pocs?.[0]?.[MAPPING[item.name]]
+				? valuesToPrefill?.organization_pocs?.[0]?.[
+					MAPPING[item.name]
+				]
 				: valuesToPrefill[item.name],
 		));
 		const phone_number = {
-			number: valuesToPrefill?.organization_pocs?.[0]?.mobile_number || '',
+			number:
+                valuesToPrefill?.organization_pocs?.[0]?.mobile_number || '',
 			country_code:
-        valuesToPrefill?.organization_pocs?.[0]?.mobile_country_code || '',
+                valuesToPrefill?.organization_pocs?.[0]?.mobile_country_code
+                || '',
 		};
 		if (mobalType) setValue('phone_number', phone_number);
 		const tax_number_document_url = {
@@ -102,13 +112,16 @@ const useEditBillingAddress = ({
 				data: {
 					...prop,
 					poc_details,
-					tax_number_document_url : tax_number_document_url || undefined,
-					sez_proof               : sez_proof || undefined,
+					tax_number_document_url:
+                        tax_number_document_url || undefined,
+					sez_proof : sez_proof || undefined,
 					is_sez,
-					id                      : mobalType ? valuesToPrefill?.id : undefined,
+					id        : mobalType ? valuesToPrefill?.id : undefined,
 				},
 			});
-			Toast.success('Successfull Update');
+			Toast.success(
+				t('settings:billing_details_successfully_updated_toast'),
+			);
 			getAddress();
 			handleCloseModal(false);
 		} catch (err) {

@@ -2,16 +2,18 @@ import AddProductModal from '../../components/AddProductModal';
 
 import Bookmark from './Bookmark';
 
-const newRenderFunction = {
-	renderSection: (data, config) => (
-		<div>
-			Section
-			{data[config.key]}
-		</div>
-	),
-	renderIcon       : (data, config) => <Bookmark data={data} config={config} />,
-	renderAddProduct : (data, config) => <AddProductModal data={data} config={config} />,
+const renderFunction = ({ t }) => {
+	const newRenderFunction = {
+		renderSection: (data, config) => (
+			<div>
+				{t('hsClassification:hs_code_classification_section_label')}
+				{data[config.key]}
+			</div>
+		),
+		renderIcon       : (data, config) => <Bookmark data={data} config={config} />,
+		renderAddProduct : (data, config) => <AddProductModal data={data} config={config} />,
+	};
+	return { newRenderFunction };
 };
-const renderFunction = () => ({ newRenderFunction });
 
 export default renderFunction;

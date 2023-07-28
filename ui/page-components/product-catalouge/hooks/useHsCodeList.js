@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useHSCodelist = () => {
+	const { t } = useTranslation(['common', 'productCatalogue']);
 	const [hsList, setHsList] = useState([]);
 	const { profile } = useSelector((state) => state);
 	const { organization } = profile || {};
@@ -23,7 +25,7 @@ const useHSCodelist = () => {
 			});
 			setHsList(resp.data);
 		} catch (error) {
-			console.log(error?.message || 'Something Went Wrong');
+			console.error(error?.message || t('productCatalogue:product_catalogue_toast_2'));
 		}
 	};
 	useEffect(() => {

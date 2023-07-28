@@ -1,6 +1,6 @@
 import { Modal, Button } from '@cogoport/components';
 
-import { EDIT_COMPANY_CONTROLS } from '../../../configurations/editCompanyControls';
+import { getEditCompanyControls } from '../../../configurations/editCompanyControls';
 
 import styles from './styles.module.css';
 
@@ -13,6 +13,8 @@ function EditDetails({ setShowEdit = () => { }, showEdit = {}, data = {}, setUpd
 	} = data || {};
 
 	const { show = '', type = '' } = showEdit || {};
+
+	const EDIT_COMPANY_CONTROLS = getEditCompanyControls();
 
 	const saveValues = (values) => {
 		setUpdatedValues({ type, values });

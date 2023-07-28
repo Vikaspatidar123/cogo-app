@@ -12,13 +12,11 @@ import { useRequest } from '@/packages/request';
 
 const API_MAPPING = {
 	ocean: {
-		// operatorApi : '/get_shipping_line_for_search_value',
-		operatorApi : '/get_shipping_line_for_container_no',
+		operatorApi : '/get_shipping_line_for_search_value',
 		createApi   : '/create_saas_container_subscription',
-		// payloadKey  : 'search_value',
-		payloadKey  : 'container_no',
+		payloadKey  : 'search_value',
 		operatorKey : 'shippingLine',
-		threshold   : 10,
+		threshold   : 4,
 	},
 	air: {
 		operatorApi : '/get_airline_from_airway_bill',
@@ -58,9 +56,10 @@ const useCreateTracker = ({ operatorData }) => {
 
 	const controls = headerFormControls({ trackingType, operatorData, t });
 
-	const getOperatorInfo = useCallback(({ shipmentNo }) => {
+	// require async await, hitting this api on every key stroke
+	const getOperatorInfo = useCallback(async ({ shipmentNo }) => {
 		try {
-			trigger({
+			await trigger({
 				params: {
 					[payloadKey]: upperCase(shipmentNo),
 				},
@@ -85,28 +84,6 @@ const useCreateTracker = ({ operatorData }) => {
 		}
 	};
 
-	const prefillOpertorField = useCallback(({ shipmentNo }) => {
-		getOperatorInfo({ shipmentNo });
-	}, [getOperatorInfo]);
-
-	useEffect(() => {
-		reset(defaultValues);
-	}, [reset, trackingType]);
-
-	useEffect(() => {
-		if (shipmentNumber?.length === threshold) {
-			prefillOpertorField({ shipmentNo: shipmentNumber });
-		}
-	}, [prefillOpertorField, shipmentNumber, threshold]);
-
-	useEffect(() => {
-		if (!isEmpty(data)) {
-			const { result = {}, id = '' } = data || {};
-			const opertorValue = result?.shipping_line_id || id;
-			setValue(operatorKey, opertorValue);
-		}
-	}, [data, operatorKey, setValue]);
-
 	const onSubmitHandler = (formData) => {
 		const { airLine = '', shipmentNumber: shipmentNo = '', shippingLine = '' } = formData || {};
 
@@ -124,6 +101,24 @@ const useCreateTracker = ({ operatorData }) => {
 
 		createTracker({ payload });
 	};
+
+	useEffect(() => {
+		reset(defaultValues);
+	}, [reset, trackingType]);
+
+	useEffect(() => {
+		if (shipmentNumber?.length >= threshold) {
+			getOperatorInfo({ shipmentNo: shipmentNumber });
+		}
+	}, [getOperatorInfo, shipmentNumber, threshold]);
+
+	useEffect(() => {
+		if (!isEmpty(data)) {
+			const { shipping_line_id, id } = data || {};
+
+			setValue(operatorKey, shipping_line_id || id);
+		}
+	}, [data, operatorKey, setValue]);
 
 	return {
 		loading, getOperatorInfo, formHook, setTrackingType, trackingType, controls, onSubmitHandler,

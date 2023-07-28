@@ -21,6 +21,7 @@ function ExportFactoring() {
 			</div>
 			<div className={styles.header}>
 				<span className={styles.yellow}>{t('dashboard:export_factoring_text_1')}</span>
+				{' '}
 				{t('dashboard:export_factoring_text_2')}
 				<div>{t('dashboard:export_factoring_text_3')}</div>
 			</div>

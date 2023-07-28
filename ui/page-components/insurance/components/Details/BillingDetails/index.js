@@ -2,6 +2,7 @@ import { isEmpty } from '@cogoport/utils';
 import { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
+import RenderField from '../../../common/RenderField';
 import getControls from '../../../configurations/controls';
 import useSetErrorFunction from '../../../utils/useSetErrorFunction';
 
@@ -12,29 +13,28 @@ import Header from './Header';
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
-import getField from '@/packages/forms/Controlled';
 
 const useBillingDetails = ({
 	formDetails = {},
-	setActiveStepper = () => {},
-	setFormDetails = () => {},
+	setActiveStepper = () => { },
+	setFormDetails = () => { },
 	insuranceType = '',
-	setInsuranceType = () => {},
+	setInsuranceType = () => { },
 	checked = [],
-	setChecked = () => {},
-	setOrganizationAddress = () => {},
+	setChecked = () => { },
+	setOrganizationAddress = () => { },
 	organizationAddress = {},
-	draftResponse = () => {},
+	draftResponse = () => { },
 	draftLoading = false,
 	policyid = '',
 	uploadType = '',
-	setUploadType = () => {},
+	setUploadType = () => { },
 }) => {
 	const [cityState, setCityState] = useState({});
 	const [prosporerAddress, setProsporerAddress] = useState({});
 	const [addAddressModal, setAddAddressModal] = useState(false);
 
-	const { city = '', state:region = '' } = cityState || {};
+	const { city = '', state: region = '' } = cityState || {};
 
 	const { profile } = useSelector((state) => state);
 	const names = profile?.name?.split(' ') || [];
@@ -79,7 +79,7 @@ const useBillingDetails = ({
 		},
 	});
 
-	const { handleNextClick = () => {} } = useSetErrorFunction({
+	const { handleNextClick = () => { } } = useSetErrorFunction({
 		getValues,
 		setError,
 		uploadType,
@@ -115,24 +115,6 @@ const useBillingDetails = ({
 		}
 	}, [city, cityState, region, setValue]);
 
-	const returnField = ({ item }) => {
-		const Element = getField(item.type);
-		const renderingField = fields.find((ele) => ele.name === item.name);
-		return (
-			<div className={styles.field} key={item.name}>
-				<div>{renderingField.placeholder}</div>
-				<Element {...renderingField} control={control} />
-				{(errors[renderingField.name]?.type === 'required'
-				|| errors[renderingField.name]?.type === 'pattern'
-				|| errors[renderingField.name]?.type === 'maxLength') && (
-					<div className={styles.error_message}>
-						{errors[renderingField.name]?.message}
-					</div>
-				)}
-			</div>
-		);
-	};
-
 	const saveDraft = (values) => {
 		setFormDetails((prev) => ({
 			...prev,
@@ -156,7 +138,9 @@ const useBillingDetails = ({
 							<div className={styles.div_as_row}>
 								{fields
 									.filter((items, index) => index < 4)
-									.map((item, index) => returnField({ item, index }))}
+									.map((item) => (
+										<RenderField key={item.name} item={item} errors={errors} control={control} />
+									))}
 							</div>
 
 							<div className={styles.heading_wrapper_billing}>
@@ -180,7 +164,7 @@ const useBillingDetails = ({
 
 							<Component
 								insuranceType={insuranceType}
-								returnField={returnField}
+								errors={errors}
 								prosporerAddress={prosporerAddress}
 								setProsporerAddress={setProsporerAddress}
 								addAddressModal={addAddressModal}
@@ -191,7 +175,8 @@ const useBillingDetails = ({
 								checked={checked}
 								setChecked={setChecked}
 								setValue={setValue}
-								control={fields}
+								control={control}
+								fields={fields}
 								formDetails={formDetails}
 							/>
 

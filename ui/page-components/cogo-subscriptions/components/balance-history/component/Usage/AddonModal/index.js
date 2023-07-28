@@ -2,11 +2,22 @@ import { Button, Modal, Toast } from '@cogoport/components';
 import { IcMPlus } from '@cogoport/icons-react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect, useCallback } from 'react';
 
 import LegendInput from '../../../../../common/LegendInput';
 import Slider from '../../../../../common/Slider';
 import { AddonsTitleMapping } from '../../../../../common/UsageIcon';
+import {
+	DEFAULT_DURATION_VALUE,
+	DEFAULT_VALUE,
+	MAX_API_TRIES,
+	START_COUNT,
+	SET_DURATION,
+	MAX_VALUE,
+	MIN_VALUE,
+	SLIDER_LABEL,
+} from '../../../../../constants/dimensions';
 import useCompleteOrder from '../../../../../hooks/useCompleteOrder';
 import useCreateCheckout from '../../../../../hooks/useCreateCheckout';
 import useGetPlanDetails from '../../../../../hooks/useGetPlanDetails';
@@ -16,10 +27,13 @@ import StripePaymentModal from '../StripePaymentModal';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 const WAIT_TIME = 3 * 1000;
+
 const wait = (time) => new Promise((res) => {
 	setTimeout(() => {
 		res();
@@ -33,18 +47,26 @@ function AddonModal({
 	pendingModal,
 	setPendingModal,
 }) {
-	const [durationValue, setDurationValue] = useState(25);
+	const { t } = useTranslation(['subscriptions']);
+
+	const { profile } = useSelector((s) => s);
+
+	const [durationValue, setDurationValue] = useState(DEFAULT_DURATION_VALUE);
+
 	const [plan, setPlan] = useState({});
-	const [checkoutResponse, setCheckoutResponse] = useState();
-	const [completeOrderResponse, setCompleteOrderResponse] = useState();
-	const [stripeModal, setStripeModal] = useState();
+
+	const [checkoutResponse, setCheckoutResponse] = useState({});
+
+	const [completeOrderResponse, setCompleteOrderResponse] = useState({});
+
+	const [stripeModal, setStripeModal] = useState(false);
+
 	const [apiTries, setApiTries] = useState(0);
 	const [paymentStatus, setPaymentStatus] = useState(null);
 
-	const { profile } = useSelector((s) => s);
 	const {
 		product_name = '',
-		currency = 'INR',
+		currency = GLOBAL_CONSTANTS.currency_code.INR,
 		plan_price = '',
 		plan_pricing_id = '',
 		discount_percent = 0,
@@ -66,7 +88,7 @@ function AddonModal({
 	const { razorLoading, verifyRazor, setRazorLoading } = useVerifyRazor();
 	const { order_id = '', gateway_key = '' } = completeOrderResponse || {};
 	const { items = {}, checkout_id } = checkoutResponse || {};
-	const { plan_name = '', unit_price = '' } = items[0] || [];
+	const { plan_name = '', unit_price = '' } = items[GLOBAL_CONSTANTS.zeroth_index] || [];
 	const stripePromise = loadStripe(gateway_key);
 	const loading = planDataLoading || checkoutLoading || completeOrderLoading;
 
@@ -94,13 +116,13 @@ function AddonModal({
 
 	useEffect(() => {
 		(async () => {
-			if (paymentStatus?.status !== 'active' && apiTries < 10 && pendingModal) {
+			if (paymentStatus?.status !== 'active' && apiTries < MAX_API_TRIES && pendingModal) {
 				const requestData = { saas_checkout_id: checkout_id, gateway: 'stripe' };
 				try {
-					if (apiTries < 1) setRazorLoading(true);
+					if (apiTries < START_COUNT) setRazorLoading(true);
 					const res = await verifyRazor(requestData);
 					await wait(WAIT_TIME);
-					setApiTries(apiTries + 1);
+					setApiTries((prev) => prev + START_COUNT);
 					setPaymentStatus(res);
 				} catch (err) {
 					Toast.error(err?.data);
@@ -110,11 +132,11 @@ function AddonModal({
 	}, [apiTries, checkout_id, paymentStatus?.status, pendingModal, setRazorLoading, verifyRazor]);
 
 	useEffect(() => {
-		if (durationValue < 0) {
-			Toast.error('Enter valid Number');
-			setDurationValue(0);
+		if (durationValue < DEFAULT_VALUE) {
+			Toast.error(t('subscriptions:enter_valid_number_message'));
+			setDurationValue(DEFAULT_VALUE);
 		}
-	}, [durationValue]);
+	}, [durationValue, t]);
 
 	useEffect(() => {
 		if (addModal) getDataHandler();
@@ -125,7 +147,6 @@ function AddonModal({
 			<Modal
 				show={addModal}
 				onClose={() => setAddModal(false)}
-				className="primary"
 				size="md"
 				onOuterClick={() => setAddModal(false)}
 				showCloseIcon
@@ -136,7 +157,7 @@ function AddonModal({
 							<div className={styles.icon_container}>
 								<IcMPlus width={22} height={22} />
 							</div>
-							<div className={styles.title}>Add-On</div>
+							<div className={styles.title}>{t('subscriptions:add_on_text')}</div>
 						</div>
 					)}
 					/>
@@ -146,24 +167,24 @@ function AddonModal({
 							<Slider
 								durationValue={durationValue}
 								setDurationValue={setDurationValue}
-								min={1}
-								max={100}
-								label={['1', '25', '50', '75', '100']}
-								data={0}
+								min={MIN_VALUE}
+								max={MAX_VALUE}
+								label={SLIDER_LABEL}
+								data={DEFAULT_VALUE}
 							/>
 						</div>
 						<div className={styles.row}>
 							<div className={styles.input_container}>
 								<LegendInput
-									label="Total quantity"
+									label={t('subscriptions:total_quantity_text')}
 									type="number"
 									labelClassName="lablePosition"
 									className="inputBox"
-									min={1}
-									max={100}
+									min={START_COUNT}
+									max={SET_DURATION}
 									val={durationValue}
 									setVal={(e) => {
-										if (e > 100) setDurationValue(100);
+										if (e > SET_DURATION) setDurationValue(SET_DURATION);
 										else setDurationValue(e);
 									}}
 									suffix={(
@@ -185,36 +206,43 @@ function AddonModal({
 						</div>
 						<div className={`${styles.row} ${styles.subheading_container}`}>
 							<div className="subheading">
-								{`1 ${product_name} = ${
-									formatAmount({
-										amount  : plan_price,
-										currency,
-										options : {
-											notation : 'standard',
-											style    : 'currency',
-										},
-									})
+								{`1 ${product_name} = ${formatAmount({
+									amount  : plan_price,
+									currency,
+									options : {
+										notation : 'standard',
+										style    : 'currency',
+									},
+								})
 								}`}
 							</div>
 						</div>
 					</div>
 					<div className={styles.footer}>
 						<div className={styles.btn_container}>
-							<Button size="md" themeType="secondary" onClick={() => setAddModal(false)}>
-								Cancel
+							<Button
+								size="md"
+								themeType="secondary"
+								onClick={() => setAddModal(false)}
+								type="button"
+							>
+								{t('subscriptions:cancel_text')}
 							</Button>
 							<Button
 								size="md"
 								themeType="primary"
 								onClick={addonPayHandler}
-								disabled={loading || durationValue < 0}
+								disabled={loading || durationValue < DEFAULT_VALUE}
+								type="button"
 							>
 								{loading ? (
-									<img
-										src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
-										alt="cogo"
+									<Image
+										src={GLOBAL_CONSTANTS.image_url.loading}
+										alt={t('subscriptions:loading_text')}
+										width={20}
+										height={20}
 									/>
-								) : 'Proceed to Pay'}
+								) : t('subscriptions:proced_to_pay_text')}
 							</Button>
 						</div>
 					</div>

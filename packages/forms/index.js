@@ -12,6 +12,7 @@ export { default as useInterval } from './hooks/useInterval';
 export { default as useGetAsyncOptions } from './hooks/useGetAsyncOptions';
 export { default as useDebounceQuery } from './hooks/useDebounceQuery';
 export { default as useGetAsyncOptionsBf } from './hooks/useGetAsyncOptionsBf';
+export { default as useGetAsyncCogoCareOptions } from './hooks/useGetAsyncCogoCareOptions';
 
 export { default as getApiError } from './utils/getApiError';
 export { default as handleError } from './utils/handleError';
@@ -25,5 +26,7 @@ export { default as SliderController } from './Controlled/SliderController';
 export { default as ChipsController } from './Controlled/ChipController';
 export { default as PriceSelectContriller } from './Controlled/PriceSelectContriller';
 export { default as RadioController } from './Controlled/RadioController';
+export { default as TabsController } from './Controlled/TabsController';
+export { default as IncoTermSelectController } from './Controlled/IncoTermSelect';
 
 export * from './utils/getAsyncFields';

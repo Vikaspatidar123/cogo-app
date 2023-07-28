@@ -1,0 +1,22 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.raised_title {
+	padding: 14px 12px 0;
+	font-size: 16px;
+	font-weight: 500;
+	color: #221f20;
+}
+
+.link_all_tickets {
+	align-self: flex-end;
+	padding-right: 14px;
+	margin-bottom: 15px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #034afd;
+	text-decoration: underline;
+	cursor: pointer;
+}

@@ -7,23 +7,25 @@ import { useSelector } from '@/packages/store';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import showErrorsInToast from '@/ui/commons/utils/showErrorsInToast';
 
-const geo = getGeoConstants();
+const getControls = () => {
+	const geo = getGeoConstants();
 
-const getControls = () => [
-	{
-		name        : 'mobileNumber',
-		label       : 'Mobile Number',
-		type        : 'mobile-number-select',
-		inputType   : 'number',
-		placeholder : 'Mobile Number*',
-		span        : 12,
-		rules       : { required: true },
-		value       : {
-			country_code : geo.country.mobile_country_code,
-			number       : '',
+	return [
+		{
+			name        : 'mobileNumber',
+			label       : 'Mobile Number',
+			type        : 'mobile-number-select',
+			inputType   : 'number',
+			placeholder : 'Mobile Number*',
+			span        : 12,
+			rules       : { required: true },
+			value       : {
+				country_code : geo.country.mobile_country_code,
+				number       : '',
+			},
 		},
-	},
-];
+	];
+};
 
 const useMobileNoVerification = () => {
 	const {

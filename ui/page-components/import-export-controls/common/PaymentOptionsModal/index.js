@@ -4,6 +4,7 @@ import {
 	IcACreditAndPayments,
 	IcAAccountRelated,
 } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import styles from './styles.module.css';
@@ -18,9 +19,11 @@ function PaymentOptionsModal({
 	getValues,
 }) {
 	const { query = {} } = useRouter();
-	const { org_id = '', branch_id = '', account_type = '' } = query || {};
+	const { org_id = '', branch_id = '' } = query || {};
 
-	const subscriptionsUrl = `${process.env.APP_URL}app/${org_id}/${branch_id}/${account_type}/saas/cogo-subscriptions`;
+	const { t } = useTranslation(['importExportControls']);
+
+	const subscriptionsUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/saas/cogo-subscriptions`;
 
 	const [paymentMode, setPaymentMode] = useState('');
 	const submitHandler = (method) => {
@@ -46,7 +49,7 @@ function PaymentOptionsModal({
 			closable={paymentMode === ''}
 		>
 			<div className={styles.container}>
-				<div className={styles.heading}>Select mode of Payment</div>
+				<div className={styles.heading}>{t('importExportControls:payment_modal_title')}</div>
 				<div className={styles.card_container}>
 					{!isUserSubscribed ? (
 						<div
@@ -56,7 +59,7 @@ function PaymentOptionsModal({
 						>
 							{paymentMode === 'buy' && <div className={styles.dot} />}
 							<IcAOfferFlexiblePaymentsTerms width={60} height={60} />
-							<div className={styles.text}>Buy Subscription</div>
+							<div className={styles.text}>{t('importExportControls:payment_modal_subscription')}</div>
 						</div>
 					) : (
 						<div
@@ -66,7 +69,7 @@ function PaymentOptionsModal({
 						>
 							{paymentMode === 'buy' && <div className={styles.dot} />}
 							<IcAAccountRelated width={60} height={60} />
-							<div className={styles.text}>Buy Add-Ons</div>
+							<div className={styles.text}>{t('importExportControls:payment_modal_addon')}</div>
 						</div>
 					)}
 					<div
@@ -76,7 +79,7 @@ function PaymentOptionsModal({
 					>
 						{paymentMode === 'directPay' && <div className={styles.dot} />}
 						<IcACreditAndPayments width={60} height={60} />
-						<div className={styles.text}>Direct Payment</div>
+						<div className={styles.text}>{t('importExportControls:payment_modal_direct_pay')}</div>
 					</div>
 				</div>
 			</div>

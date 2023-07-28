@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next';
+
 import styles from './styles.module.css';
 
 function HyperLink({
@@ -6,6 +8,7 @@ function HyperLink({
 	setIsImportHs,
 	name,
 }) {
+	const { t } = useTranslation(['importExportControls']);
 	const catalogueHandler = () => {
 		setShowCatalogue(true);
 		setIsImportHs(name === 'importHsCode');
@@ -28,11 +31,11 @@ function HyperLink({
 					role="presentation"
 					onClick={catalogueHandler}
 				>
-					Add via Product Catalogue
+					{t('importExportControls:hyperlink_product_catalogue')}
 				</div>
 				<div className={styles.divider} />
 				<div className={styles.hyper_link} role="presentation" onClick={hsHandler}>
-					Add via HS Code
+					{t('importExportControls:hyperlink_hscode')}
 				</div>
 			</div>
 		</div>

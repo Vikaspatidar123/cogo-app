@@ -1,12 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Popover, Input } from '@cogoport/components';
+import { Button, Popover, Input, cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import useVerifyHscode from '../../../../../../hooks/useVerifyHsCode';
 import iconUrl from '../../../../../../utils/iconUrl.json';
 import styles from '../styles.module.css';
 
-const sugestionContent = ({
+import { Image } from '@/packages/next';
+
+function SugestionContent({
 	inputValue,
 	setStatus,
 	setValidateInProgress,
@@ -14,7 +17,7 @@ const sugestionContent = ({
 	isImport,
 	setFormInfo,
 	setPrevHs,
-}) => {
+}) {
 	const clickHandler = (data = {}) => {
 		const { hsCode = '', description = '' } = data || {};
 
@@ -46,7 +49,7 @@ const sugestionContent = ({
 			{(inputValue || []).map((ele) => (
 				<div
 					key={ele?.hsCode}
-					className="row"
+					className={styles.rowx}
 					role="presentation"
 					onClick={() => clickHandler(ele)}
 				>
@@ -59,7 +62,7 @@ const sugestionContent = ({
 			))}
 		</div>
 	);
-};
+}
 
 function ValidateRow({
 	item = {},
@@ -68,6 +71,7 @@ function ValidateRow({
 	setIsDisable,
 	setPrevHs,
 }) {
+	const { t } = useTranslation(['importExportControls']);
 	const [status, setStatus] = useState(false);
 	const [validateInProgress, setValidateInProgress] = useState(false);
 
@@ -98,25 +102,32 @@ function ValidateRow({
 	}, []);
 
 	return (
-		<div className={styles.row}>
+		<div className={cl`${styles.row} ${styles.hs_row}`}>
 			<Popover
 				animation="shift-away"
-				content={sugestionContent({
-					inputValue,
-					setStatus,
-					setValidateInProgress,
-					setValue,
-					isImport,
-					setFormInfo,
-					setPrevHs,
-				})}
+				content={(
+					<SugestionContent
+						inputValue={inputValue}
+						setStatus={setStatus}
+						setValidateInProgress={setValidateInProgress}
+						setValue={setValue}
+						isImport={isImport}
+						setFormInfo={setFormInfo}
+						setPrevHs={setPrevHs}
+					/>
+				)}
 				interactive
 				placement="bottom"
 				visible={validateInProgress && inputValue.length > 0}
 			>
 				<div className={styles.inputContainer}>
+					<p className={styles.label}>
+						{isImport
+							? t('importExportControls:import_hscode_label')
+							: t('importExportControls:export_hscode_label')}
+					</p>
 					<Input
-						label="HS Code"
+						size="sm"
 						value={hsCode}
 						className={styles.hs_input}
 						disabled
@@ -131,17 +142,19 @@ function ValidateRow({
 						loading={checkLoading}
 						disabled={validateInProgress}
 						className={styles.btn_color}
+						themeType="accent"
 					>
-						Validate
+						{t('importExportControls:validate_modal_validate')}
 					</Button>
 				) : (
 					<div className={styles.valid}>
-						<img
+						<Image
 							src={iconUrl.validate}
 							alt="validated"
-							className={styles.validate_svg}
+							width={25}
+							height={25}
 						/>
-						<div className={styles.validate}> Validated</div>
+						<div className={styles.validate}>{t('importExportControls:validate_modal_validated')}</div>
 					</div>
 				)}
 			</div>

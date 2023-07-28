@@ -1,5 +1,6 @@
 import { Modal } from '@cogoport/components';
 import { IcAFormsAndCertificates } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import useGetProductClassificationId from '../../hooks/useGetProductClassificationId';
@@ -24,6 +25,7 @@ function AddProductModal({
 	setActiveTab,
 	setIsEdit,
 }) {
+	const { t } = useTranslation(['common', 'productCatalogue']);
 	const [pdId, setProductClassificationId] = useState();
 	const [productDetailsfromAPi, setProductDetailsfromApi] = useState({});
 
@@ -54,12 +56,12 @@ function AddProductModal({
 				</div>
 				<div>
 					{isEdit ? (
-						<div className="title">Edit Product</div>
+						<div className="title">{t('productCatalogue:product_catalogue_add_product_modal_text_1')}</div>
 					) : (
-						<div className="title">Add Product</div>
+						<div className="title">{t('productCatalogue:product_catalogue_add_product_modal_text_2')}</div>
 					)}
 					<div className="headline">
-						You are just a step away from adding your product!
+						{t('productCatalogue:product_catalogue_add_product_modal_text_3')}
 					</div>
 				</div>
 				<Modal.Header />

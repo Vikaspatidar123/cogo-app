@@ -1,4 +1,4 @@
-import { Checkbox, Modal, Tooltip, cl } from '@cogoport/components';
+import { Checkbox, Modal, Tooltip, cl, Button } from '@cogoport/components';
 import { IcMInfo, IcMHome } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React from 'react';
@@ -6,6 +6,7 @@ import React from 'react';
 import styles from './styles.module.css';
 
 import { CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 function InvoicingPartyItem({
 	organization = {},
@@ -29,6 +30,10 @@ function InvoicingPartyItem({
 	} = item;
 
 	const { is_tax_applicable = false } = organization || {};
+
+	const geo = getGeoConstants();
+	const ECO_ZONE_LABEL = geo.others.economic_zone.label;
+
 	const onClickAddAddress = () => {
 		setShowComponent('create_billing_address');
 		setInvoiceToTradePartyDetails((previousDetails) => ({
@@ -95,7 +100,7 @@ function InvoicingPartyItem({
 								<div className={styles.tag_div}>
 									<div className={styles.tag_container}>
 										<div className={cl`${styles.is_sez_verification_status} ${styles.tag}`}>
-											SEZ verification is
+											{`${ECO_ZONE_LABEL} verification is`}
 											{startCase(is_sez_verification_status)}
 										</div>
 									</div>
@@ -137,15 +142,9 @@ function InvoicingPartyItem({
 					);
 				})}
 			</Modal.Body>
-			<Modal.Footer>
-				<div
-					className={styles.add_address}
-					role="presentation"
-					onClick={() => onClickAddAddress()}
-				>
-					+ Add Address
-				</div>
-			</Modal.Footer>
+			<Button themeType="linkUi" type="button" onClick={onClickAddAddress}>
+				+ Add Address
+			</Button>
 		</div>
 	);
 }

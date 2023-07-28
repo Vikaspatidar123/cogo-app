@@ -1,4 +1,5 @@
 import { Button, Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 import useEditOtherAddress from './useEditOtherAddress';
@@ -15,6 +16,8 @@ function EditOtherAddress({
 	getAdd,
 	mobalType,
 }) {
+	const { t } = useTranslation(['settings']);
+
 	const { loading, control, showElements, fields, handleSubmit, onCreate } = useEditOtherAddress({
 		organizationType,
 		address_key,
@@ -25,10 +28,13 @@ function EditOtherAddress({
 		getAdd,
 		mobalType,
 	});
+
 	return (
 		<div>
 			<Modal.Header
-				title={mobalType ? `Edit ${address_key?.label}` : address_key?.label}
+				title={mobalType
+					? `${t('settings:edit_or_add_button_label_2')} ${address_key?.label}`
+					: address_key?.label}
 			/>
 			<Modal.Body>
 				<div className={styles.layout}>
@@ -36,12 +42,12 @@ function EditOtherAddress({
 						const Controller = getField(item.type);
 						const show = showElements[item.name];
 						return (
-							show && (
-								<div className={styles.field}>
+							show ? (
+								<div className={styles.field} key={item.name}>
 									<div className={styles.lable}>{item.label}</div>
 									<Controller {...item} control={control} />
 								</div>
-							)
+							) : null
 						);
 					})}
 				</div>
@@ -49,21 +55,21 @@ function EditOtherAddress({
 			<Modal.Footer>
 				<Button
 					onClick={handleCloseModal}
-					style={{
-						marginRight: 16,
-					}}
+					className={styles.button_1}
 					themeType="secondary"
 					disabled={loading}
+					type="button"
 				>
-					Cancel
+					{t('settings:edit_or_add_button_label_1')}
 				</Button>
 
 				<Button
 					disabled={loading}
 					onClick={handleSubmit(onCreate)}
 					themeType="primary"
+					type="submit"
 				>
-					{mobalType ? 'Update' : 'Add'}
+					{mobalType ? t('settings:billing_details_update_label') : t('settings:billing_details_add_label')}
 				</Button>
 			</Modal.Footer>
 		</div>

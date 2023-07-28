@@ -9,9 +9,10 @@ import SearchForm from '@/ui/page-components/discover_rates/common/SearchForm';
 const CONSTANT_KEYS = {
 	TRAILER_FREIGHT : 'trailer_freight',
 	HAULAGE_FREIGHT : 'haulage_freight',
+	BARGE_FREIGHT   : 'barge_freight',
 };
 
-const { TRAILER_FREIGHT, HAULAGE_FREIGHT } = CONSTANT_KEYS;
+const { TRAILER_FREIGHT, HAULAGE_FREIGHT, BARGE_FREIGHT } = CONSTANT_KEYS;
 
 function Haulage({ extraParams }) {
 	const [serviceType, setServiceType] = useState(TRAILER_FREIGHT);
@@ -25,11 +26,16 @@ function Haulage({ extraParams }) {
 			mode: HAULAGE_FREIGHT,
 			extraParams,
 		},
+		[BARGE_FREIGHT]: {
+			mode: BARGE_FREIGHT,
+			extraParams,
+		},
 	};
 
 	const SERVICE_TYPE_COMPONENT_MAPPING = useMemo(() => ({
 		[TRAILER_FREIGHT] : SearchForm,
 		[HAULAGE_FREIGHT] : SearchForm,
+		[BARGE_FREIGHT]   : SearchForm,
 	}), []);
 
 	const ActiveSearchComponent = SERVICE_TYPE_COMPONENT_MAPPING[serviceType] || null;
@@ -38,10 +44,6 @@ function Haulage({ extraParams }) {
 		<div className={styles.direction}>
 			<div className={styles.column}>
 				<text className={styles.text}>Select Service Type</text>
-
-				{/* <div className={styles.flex}> */}
-
-				{/* </div> */}
 			</div>
 			<Tabs
 				activeTab={serviceType}
@@ -57,6 +59,14 @@ function Haulage({ extraParams }) {
 					)}
 				</TabPanel>
 				<TabPanel name={HAULAGE_FREIGHT} title="Rail">
+					{ActiveSearchComponent && (
+						<ActiveSearchComponent
+							key={serviceType}
+							{...(componentProps[serviceType] || {})}
+						/>
+					)}
+				</TabPanel>
+				<TabPanel name={BARGE_FREIGHT} title="Barge">
 					{ActiveSearchComponent && (
 						<ActiveSearchComponent
 							key={serviceType}

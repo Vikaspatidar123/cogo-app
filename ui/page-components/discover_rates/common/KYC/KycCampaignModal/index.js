@@ -38,7 +38,7 @@ export function KycCampaign({
 	};
 	const head = () => (
 		<div>
-			<div className={styles.head}>Get Additional Sport Searches for free!</div>
+			<div className={styles.head}>Get Additional Spot Searches for free!</div>
 			<text className={styles.text}>
 				We just need some additional details from you
 			</text>

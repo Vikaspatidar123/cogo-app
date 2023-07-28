@@ -34,8 +34,8 @@
 
 .symbol {
 	position: relative;
-	padding: 1.4rem;
-	margin-right: 1.5rem;
+	padding: 20px;
+	margin-right: 20px;
 	background: #ef9b9b;
 	border-radius: 50%;
 }
@@ -66,8 +66,8 @@
 
 .container_img {
 	position: relative;
-	padding: 1.4rem;
-	margin-right: 1.5rem;
+	padding: 20px;
+	margin-right: 20px;
 	background: #81c0af;
 	border-radius: 50%;
 }

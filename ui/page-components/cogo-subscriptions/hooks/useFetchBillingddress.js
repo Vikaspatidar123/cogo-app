@@ -12,15 +12,15 @@ const useFetchBillingAddress = ({ profile, setAddressWithoutGst }) => {
 		method : 'get',
 	}, { manual: true });
 
-	const [{ loading :load }, addresApiTrigger] = useRequest({
+	const [{ loading: load }, addresApiTrigger] = useRequest({
 		url    : '/list_organization_addresses',
 		method : 'get',
 	}, { manual: true });
 
 	const params = useMemo(() => ({
-		organization_id : profile?.organization.id,
-		page_limit      : DEFAULT_PAGE_LIMIT,
-		page            : DEFAULT_PAGE,
+		filters    : { organization_id: profile?.organization?.id, trade_party_type: 'self' },
+		page_limit : DEFAULT_PAGE_LIMIT,
+		page       : DEFAULT_PAGE,
 	}), [profile?.organization.id]);
 
 	const billingAddress = useCallback(async ({ setAddresses }) => {

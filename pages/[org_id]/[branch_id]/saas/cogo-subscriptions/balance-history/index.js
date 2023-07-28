@@ -5,7 +5,7 @@ import BalanceHistory from '@/ui/page-components/cogo-subscriptions/components/b
 export async function getServerSideProps({ locale }) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common'])),
+			...(await serverSideTranslations(locale, ['common', 'subscriptions'])),
 
 		},
 	};

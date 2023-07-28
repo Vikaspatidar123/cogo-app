@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import Header from '../../common/Header';
@@ -13,6 +14,8 @@ import PaymentModal from '@/ui/commons/components/PaymentInitiation/component/Pa
 function Checkout() {
 	const { query } = useRouter();
 	const { trade_engine_id = '' } = query || {};
+
+	const { t } = useTranslation(['importExportControls']);
 
 	const [localStorageData, setLocalStorageData] = useState({});
 	const [address, setAddress] = useState({});
@@ -44,7 +47,7 @@ function Checkout() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.details}>
-				<Header title="Control Details" back />
+				<Header title={t('importExportControls:checkout_main_title')} back />
 				<Info
 					prefillData={prefillData}
 					localStorageData={localStorageData}

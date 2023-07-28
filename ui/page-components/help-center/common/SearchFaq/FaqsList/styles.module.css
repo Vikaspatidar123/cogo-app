@@ -1,0 +1,67 @@
+.container {
+	width: 100%;
+	max-height: 40vh;
+	overflow-y: auto;
+	text-align: center;
+}
+
+.empty_list {
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+}
+
+.list_container {
+	width: 100%;
+	padding: 0 10px;
+
+	& > :last-child {
+		border-bottom: unset;
+	}
+}
+
+.faq_container {
+	display: flex;
+	align-items: center;
+}
+
+.empty_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 10px;
+	cursor: pointer;
+	background: #f2f3fa;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}
+
+.redirect_icon {
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	fill: #034afd;
+}
+
+.ticket_icon {
+	width: 22px;
+	height: 22px;
+	fill: #4f4f4f;
+}
+
+.question {
+	width: calc(100% - 25px);
+	margin-left: 6px;
+	font-size: 14px;
+	color: #828282;
+	word-break: break-word;
+
+	span {
+		margin: 0 4px;
+		color: #034afd;
+		text-decoration: underline;
+	}
+}

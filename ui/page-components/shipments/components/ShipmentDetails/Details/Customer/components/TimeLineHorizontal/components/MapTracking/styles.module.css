@@ -4,6 +4,12 @@
 
 .container {
 	position: relative;
+
+	:global {
+		.leaflet-top {
+			z-index: 950;
+		}
+	}
 }
 
 .mobile_view {
@@ -52,4 +58,8 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
+}
+
+.modal_body {
+	padding: 20px;
 }

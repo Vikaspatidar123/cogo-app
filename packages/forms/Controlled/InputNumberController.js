@@ -1,4 +1,4 @@
-import { InputNumber } from '@cogoport/components';
+import { Input } from '@cogoport/components';
 import React from 'react';
 import { Controller } from 'react-hook-form';
 
@@ -15,10 +15,15 @@ function InputNumberController(props) {
 			rules={rules}
 			defaultValue={value}
 			render={({ field: { onChange, onBlur, value:newValue } }) => (
-				<InputNumber
+				<Input
 					{...rest}
 					key={rest.id}
-					onChange={onChange}
+					onChange={(val, obj) => {
+						onChange(val, obj);
+						if (rest.handleChange) {
+							rest.handleChange(val, obj);
+						}
+					}}
 					value={newValue}
 					onBlur={onBlur}
 				/>

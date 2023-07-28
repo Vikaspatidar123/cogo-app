@@ -10,7 +10,7 @@ const MAPPING = {
 	PAID    : <IcCGreenCircle style={{ paddingRight: '2px' }} width={15} heigjht={15} />,
 	PENDING : <IcCYelloCircle style={{ paddingRight: '2px' }} width={15} heigjht={15} />,
 };
-const itemFunctions = ({ functions }) => {
+const itemFunctions = () => {
 	const getStatus = (value) => (
 		<div className={styles.circle_icon}>
 			{MAPPING[value]}
@@ -29,7 +29,6 @@ const itemFunctions = ({ functions }) => {
 		renderStatus  : (data, config) => getStatus(data[config.key]),
 		renderService : (data) => <Download data={data} />,
 		renderFormat  : (data, config) => data[config.key]?.replaceAll('_', ' '),
-		...(functions || {}),
 	};
 
 	return {

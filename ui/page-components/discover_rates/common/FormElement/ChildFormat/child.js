@@ -6,6 +6,10 @@ import Item from '../Item';
 
 import styles from './styles.module.css';
 
+function DeleteIcon({ remove, index }) {
+	return <IcMDelete onClick={() => remove(index, 1)} className={styles.delete_icon} />;
+}
+
 function Child({
 	controls,
 	control,
@@ -25,25 +29,14 @@ function Child({
 	noDeleteButtonTill = 1,
 }) {
 	const formValueIndex = formValues?.[index] || {};
-	const renderDelete = () => (
-		<IcMDelete
-			onClick={() => remove(index, 1)}
-			style={{
-				display    : 'flex',
-				marginLeft : 'auto',
-				marginTop  : '5px',
-				width      : '1.5em',
-				height     : '1.5em',
-				cursor     : 'pointer',
-			}}
-		/>
-	);
+
 	return (
 		<div className={`form-fieldArray-${name}-${index}`} key={field.id}>
 			<div className={styles.row}>
-				{(deletePosition === 'front' && renderDelete()) || null}
+				{(deletePosition === 'front' && <DeleteIcon remove={remove} index={index} />) || null}
+
 				{controls.map((controlItem) => {
-					const { span = 6, watch = true, inlineLabel } = controlItem;
+					const { span = 6, watch = true, inlineLabel, type } = controlItem;
 
 					const show = !(controlItem.name in showElements)
 						|| showElements[controlItem.name];
@@ -61,6 +54,8 @@ function Child({
 						const newControlItem = controlItem;
 						newControlItem.disabled = controlItem.itemsDisabled[index];
 					}
+
+					if (type === 'hidden') return null;
 
 					if (watch) {
 						return show ? (
@@ -109,7 +104,7 @@ function Child({
 					) : null;
 				})}
 				{showDeleteAlways || (index >= noDeleteButtonTill && index !== 0 && deletePosition !== 'front')
-					? renderDelete()
+					? <DeleteIcon remove={remove} index={index} />
 					: null}
 			</div>
 

@@ -49,6 +49,10 @@
 	overflow: hidden;
 	background: #f2f4f7;
 	border-radius: 8px;
+
+	&.progress_bg {
+		background: #ee3425;
+	}
 }
 
 .low_progress {

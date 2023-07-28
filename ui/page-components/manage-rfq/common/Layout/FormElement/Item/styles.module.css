@@ -28,6 +28,16 @@
 		border: 1px solid #cb6464;
 		border-radius: 4px;
 	}
+
+	:global {
+		.ui_chips_container {
+			flex-wrap: wrap;
+		}
+
+		.ui_chip_container.ui_ps_size_md {
+			max-width: max-content;
+		}
+	}
 }
 
 .label {

@@ -332,6 +332,7 @@ function PlanCard({
 					setShowBreakup={setShowBreakup}
 					utilisationCountExceed={utilisationCountExceed}
 					primaryServicesDetails={primaryServicesDetails}
+					setShowDetailedBreakUpdate={setShowDetailedBreakUpdate}
 				/>
 			</div>
 

@@ -19,8 +19,9 @@ function Actions({
 	setShowModal = () => {},
 	setShowBookingModal = () => {},
 	getShipmentPlans = () => {},
-	setShowBreakup = () => {},
+	setShowDetailedBreakUpdate = () => {},
 	shipmentData = [],
+
 }) {
 	const { query } = useRouter();
 	const { through = '', contract_status = '' } = query || {};
@@ -41,7 +42,7 @@ function Actions({
 	const showCreateEditPlanBtn =		!isEmpty(shipmentData) && showPlanBox && contract_status !== 'expired';
 
 	const viewShipmentPlan = () => {
-		setShowBreakup(false);
+		setShowDetailedBreakUpdate(false);
 		setShowPlanBox(!showPlanBox);
 		if (!showPlanBox) {
 			getShipmentPlans(serviceId, serviceType);

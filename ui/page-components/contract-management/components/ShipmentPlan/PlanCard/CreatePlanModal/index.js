@@ -2,7 +2,6 @@ import { Modal } from '@cogoport/components';
 import { addDays, compareAsc, differenceInDays, isEmpty, toDate } from '@cogoport/utils';
 import React, { useEffect, useState } from 'react';
 
-import { getUnit } from '../../../../utils/getUnit';
 import Route from '../Route';
 
 import Footer from './Footer';
@@ -239,13 +238,6 @@ function CreatePlanModal({
 							})}
 						</div>
 
-						<div className={styles.tag}>
-							{Math.abs(useCount)}
-							{' '}
-							{getUnit(serviceType)}
-							{' '}
-							{useCount <= -1 ? 'Over Utilized' : 'Left'}
-						</div>
 					</div>
 
 					{days < 1 && !isEditPlan ? (

@@ -8,8 +8,8 @@ import { useSelector } from '@/packages/store';
 const SHORT_URL_PATHS = ['/url/[token]'];
 
 function EmptyPage() {
+	const { query = {} } = useRouter();
 	const { pathname } = useSelector(({ general }) => general);
-	const { query } = useRouter();
 
 	const [, trigger] = useRequest(
 		{
@@ -24,7 +24,7 @@ function EmptyPage() {
 			if (SHORT_URL_PATHS.includes(pathname)) {
 				try {
 					const response = await trigger({
-						params: { in_url: query.token },
+						params: { in_url: query?.token },
 					});
 					const { out_url } = response?.data || {};
 					if (out_url) window.location.href = out_url;

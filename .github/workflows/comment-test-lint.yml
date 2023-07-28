@@ -20,7 +20,7 @@ jobs:
         with:
           sha: ${{ steps.comment-branch.outputs.head_sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          status: in_progress
+          status: pending
 
       - name: Checkout
         uses: actions/checkout@v3

@@ -48,7 +48,7 @@ function Service({
 								[service]: !(expandServices?.[service] || false),
 							});
 						} else {
-							Toast.warn('enable the service to show form');
+							Toast.warn('Enable the service to show form');
 						}
 					}}
 					expanded={expandServices?.[service]}

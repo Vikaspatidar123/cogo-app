@@ -24,6 +24,9 @@ function FormElement({
 			<div className={styles.row}>
 				{controls.map((item) => {
 					const show = !(item.name in showElements) || showElements[item.name];
+
+					if (item.type === 'hidden') return null;
+
 					if (item.type === 'cbm_calculator') {
 						return (
 							<CBMCalculator
@@ -65,6 +68,7 @@ function FormElement({
 					if (item?.name === 'truck_type') {
 						return show ? (
 							<div
+								key={item.name}
 								className={styles.col}
 								style={{ width: item?.span ? getWidth(item?.span) : '100%' }}
 							>
@@ -80,6 +84,7 @@ function FormElement({
 					}
 					return show ? (
 						<div
+							key={item.name}
 							className={styles.col}
 							style={{ width: item?.span ? getWidth(item?.span) : '100%' }}
 						>

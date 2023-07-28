@@ -19,7 +19,7 @@
 }
 
 .container:hover {
-	background: #fcdc001a;
+	box-shadow: 0 1px 6px rgb(169 188 218 / 65%);
 }
 
 .container_flex {

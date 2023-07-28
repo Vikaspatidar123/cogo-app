@@ -66,7 +66,6 @@ function SelectQuotation() {
 					<Header isPortPairEmpty={isEmpty(portPairList)} />
 
 					<Details
-						formData={formData}
 						setFormData={setFormData}
 						spot_searches={portPairList}
 						portPairloading={portPairloading}
@@ -76,6 +75,7 @@ function SelectQuotation() {
 						setListFilter={setListFilter}
 						stats={stats}
 						setShowContractCreation={setShowContractCreation}
+						spotSearch={portPairList?.[activePortPair] || {}}
 					/>
 
 					<Modal

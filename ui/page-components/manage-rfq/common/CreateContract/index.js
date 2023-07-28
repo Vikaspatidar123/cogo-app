@@ -2,7 +2,7 @@ import { cl, Button } from '@cogoport/components';
 import { IcMTick, IcMPlus, IcMArrowBack } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 
-import CreateContractsControls from '../../configurations/create-contract-details';
+import createContractsControls from '../../configurations/create-contract-details';
 import getNameSuggestions from '../../helpers/getNameSuggestions';
 import useCreateContractRfq from '../../hooks/useCreateContractRfq';
 import addDays from '../../utils/addDays';
@@ -12,34 +12,27 @@ import PortPairs from './portpairs';
 import styles from './styles.module.css';
 
 import { InputController, DatepickerController, useForm } from '@/packages/forms';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 
 function CreateContract({
 	formData,
 	setShowContractCreation = () => {},
 	setShowModal = () => {},
 }) {
-	const RfqId = formData?.[0]?.rfq_id || '';
+	const rfqId = formData?.[ZEROTH_INDEX]?.rfq_id || '';
+
 	const { nameSuggestions } = getNameSuggestions({
 		formData,
 	});
 	const { loading, onContractRequest } = useCreateContractRfq({
-		RfqId,
+		rfqId,
 		setShowModal,
 		setShowContractCreation,
 	});
 
-	const fieldValues = formData.map((itemData) => ({
-		max_weight:
-			itemData.service_type === 'air_freight' ? itemData.reqCount : undefined,
-		max_volume:
-			itemData.service_type === 'lcl_freight' ? itemData.reqCount : undefined,
-		max_containers_count:
-			itemData.service_type === 'fcl_freight' ? itemData.reqCount : undefined,
-		selected_rate_card_id : itemData.card,
-		spot_search_id        : itemData.search_id,
-	}));
-
-	const fields = CreateContractsControls();
+	const { defaultValues, fields } = createContractsControls({ formData });
 	const {
 		control,
 		watch,
@@ -47,19 +40,13 @@ function CreateContract({
 		handleSubmit,
 		setError,
 		formState: { errors },
-	} = useForm({
-		defaultValues: {
-			contract_name            : '',
-			terms_and_conditions     : '',
-			search_rate_card_details : fieldValues,
-		},
-	});
+	} = useForm({ defaultValues });
 
 	const watchName = watch('contract_name');
 	const ValidityStart = watch('validity_start') || new Date();
 
-	const submitForm = (val) => {
-		onContractRequest(val);
+	const submitForm = (values) => {
+		onContractRequest({ values });
 	};
 
 	return (

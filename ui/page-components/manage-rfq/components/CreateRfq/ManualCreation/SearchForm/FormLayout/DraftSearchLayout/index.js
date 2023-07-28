@@ -1,14 +1,19 @@
 import { cl, Toast } from '@cogoport/components';
 import { IcMEdit, IcMDuplicate, IcMDelete } from '@cogoport/icons-react';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import ContainerInfo from './ContainerInfo';
 import Route from './Route';
 import ShippingLineInfo from './ShippingLineInfo';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getConfiguration from '@/ui/page-components/manage-rfq/configurations/SearchFormControls/getConfiguration';
 import useGetOperatorsById from '@/ui/page-components/manage-rfq/hooks/useGetOperatorsById';
+
+const MANDATORY_TYPE = 'mandatory_shipping_lines';
+const SERVICES_ARR = ['fcl_freight', 'air_freight', 'lcl_freight'];
+const ZERO_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 
 function DraftSearchLayout({
 	item,
@@ -19,6 +24,8 @@ function DraftSearchLayout({
 	draftLength,
 	serviceType,
 	originDetails,
+	hscodeDetails,
+	setHscodeDetails,
 	destinationDetails,
 	shippingLinesDetails,
 	importerExporterDetails,
@@ -42,7 +49,11 @@ function DraftSearchLayout({
 		payment_type = '',
 		calculate_by = '',
 		dimensions = [],
-	} = item?.search_rates?.[0] || {};
+		container_remarks = '',
+		shipping_frequency = 0,
+		custom_shipping_frequency,
+		is_transit_shipment = false,
+	} = item?.search_rates?.[GLOBAL_CONSTANTS.zeroth_index] || {};
 
 	const {
 		price,
@@ -53,10 +64,17 @@ function DraftSearchLayout({
 	} = remarks[0] || {};
 
 	const detentionDemurrage = [
-		{ label: 'Destination Demurrage', value: min_destination_demurrage },
-		{ label: 'Destination Detention', value: min_destination_detention },
-		{ label: 'Origin Demurrage', value: min_origin_demurrage },
-		{ label: 'Origin Detention', value: min_origin_detention },
+		{ label: 'Destination Demurrage Days : ', value: min_destination_demurrage },
+		{ label: 'Destination Detention Days : ', value: min_destination_detention },
+		{ label: 'Origin Demurrage Days : ', value: min_origin_demurrage },
+		{ label: 'Origin Detention Days : ', value: min_origin_detention },
+		{
+			label : 'Shipment Frequency : ',
+			value : shipping_frequency === 'other' ? custom_shipping_frequency : shipping_frequency,
+		},
+		{
+			label: '', value: is_transit_shipment[0] === 'true' ? 'Transit Shipment' : 'Direct Shipment',
+		},
 	].filter((itm) => itm.value);
 
 	const detentionDemurrageCount = detentionDemurrage.reduce((acc, obj) => {
@@ -68,8 +86,12 @@ function DraftSearchLayout({
 	}, 0);
 
 	const isAdditionalRemarks =	detentionDemurrageCount !== 0 || price?.price !== '';
-	const shippingRemarks = useCallback(() => remarks[0] || {}, [remarks]);
-	const hasKey = 'calculate_by' in (item?.search_rates?.[0] || {});
+	const commodityRemarks = serviceType === 'fcl_freight'
+		? containers?.[ZERO_INDEX]?.container_remarks : container_remarks;
+
+	const shippingRemarks = remarks[ZERO_INDEX] || {};
+	const hasKey = 'calculate_by' in (item?.search_rates?.[ZERO_INDEX] || {});
+
 	const serviceDetails = getConfiguration('service-details', serviceType);
 
 	const prefferedType = serviceType !== 'air_freight'
@@ -124,7 +146,6 @@ function DraftSearchLayout({
 			destinationData : destinationDetails[serviceType][index],
 		});
 	};
-
 	const handleDuplicate = () => {
 		if (editForm || showForm) {
 			Toast.error(
@@ -148,6 +169,13 @@ function DraftSearchLayout({
 				[draftLength]: destinationDetails?.[serviceType]?.[index],
 			},
 		});
+		setHscodeDetails({
+			...hscodeDetails,
+			[serviceType]: {
+				...hscodeDetails?.[serviceType],
+				[draftLength]: hscodeDetails?.[serviceType]?.[index],
+			},
+		});
 		setShippingLinesDetails({
 			...shippingLinesDetails,
 			[serviceType]: {
@@ -165,34 +193,33 @@ function DraftSearchLayout({
 		Toast.success('Successfully created a duplicate scroll down to edit it.');
 	};
 
-	const callbackFunction = useCallback(async () => {
-		if (
-			!shippingLinesDetails?.[serviceType]?.[index]?.[prefferedType]
-			&& (shippingRemarks[prefferedType] || []).length > 0
-		) {
-			await getOperators(
-				shippingRemarks[prefferedType],
-				index,
-				prefferedType,
-				serviceType,
-			);
-		}
-		if (
-			!shippingLinesDetails?.[serviceType]?.[index]?.[excludedType]
-			&& (shippingRemarks[excludedType] || []).length > 0
-		) {
-			await getOperators(
-				shippingRemarks[excludedType],
-				index,
-				excludedType,
-				serviceType,
-			);
-		}
-	}, [excludedType, getOperators, index, prefferedType, serviceType, shippingLinesDetails, shippingRemarks]);
-
 	useEffect(() => {
-		callbackFunction();
-	}, [callbackFunction]);
+		(async () => {
+			await Promise.all([
+				await getOperators(
+					shippingRemarks[excludedType],
+					index,
+					excludedType,
+					serviceType,
+				),
+
+				await getOperators(
+					shippingRemarks[prefferedType],
+					index,
+					prefferedType,
+					serviceType,
+				),
+
+				await getOperators(
+					shippingRemarks[MANDATORY_TYPE],
+					index,
+					MANDATORY_TYPE,
+					serviceType,
+				),
+			]);
+		})();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [remarks]);
 
 	return (
 		<div className={styles.container}>
@@ -208,6 +235,7 @@ function DraftSearchLayout({
 					containers={containers}
 					commodity={commodity}
 					incoTerm={inco_term}
+					hscodeDetails={hscodeDetails?.[serviceType]?.[index]}
 					commoditySubtype={commodity_subtype}
 					commodityType={commodity_type}
 					paymentType={payment_type}
@@ -262,16 +290,27 @@ function DraftSearchLayout({
 									Indicative Price
 								</div>
 							)}
-							{serviceType === 'fcl_freight' && (
-								<>
-									{(detentionDemurrage || []).map(({ label, value }) => (
-										<div className={styles.tag_div}>{`${value} ${label} Days`}</div>
-									))}
-								</>
+							{SERVICES_ARR.includes(serviceType) && (
+								(detentionDemurrage || []).map(({ label, value }) => (
+									<div
+										key={`${label}_${value}`}
+										className={styles.tag_div}
+									>
+										{` ${label} ${value}`}
+									</div>
+								))
 							)}
 						</>
 					) : (
 						<div className={styles.empty}>No additional remarks added</div>
+					)}
+				</div>
+				<div className={styles.commodity_remark}>
+					<div className={styles.label}>Remarks: </div>
+					{commodityRemarks ? (
+						<div className={styles.remark}>{commodityRemarks}</div>
+					) : (
+						<div className={styles.empty}>No remarks added</div>
 					)}
 				</div>
 			</div>

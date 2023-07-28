@@ -157,7 +157,7 @@ const GLOBAL_CONSTANTS = {
 	},
 
 	zeroth_index : 0,
-	one_index    : 1,
+	first_index  : 1,
 
 	service_supported_countries: {
 		ftl_freight: {

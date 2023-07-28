@@ -3,6 +3,8 @@ import { poc_options } from './options';
 import patterns from '@/ui/commons/configurations/patterns';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
+const PARTIES = ['collection_party', 'paying_party'];
+
 const company_controls = (roleCheck) => {
 	const geo = getGeoConstants();
 	const IDENTIFICAITON_LABEL = geo.others.identification_number.label;
@@ -22,14 +24,14 @@ const company_controls = (roleCheck) => {
 		},
 		{
 			name  : 'registration_number',
-			label : ['collection_party', 'paying_party'].includes(roleCheck)
+			label : PARTIES.includes(roleCheck)
 				? IDENTIFICAITON_LABEL : `${IDENTIFICAITON_LABEL} (optional)`,
 			type        : 'text',
 			span        : 5.8,
 			placeholder : `Enter ${IDENTIFICAITON_LABEL}`,
 			rules       : {
 				required: {
-					value   : ['collection_party', 'paying_party'].includes(roleCheck),
+					value   : PARTIES.includes(roleCheck),
 					message : `${IDENTIFICAITON_LABEL} is required`,
 				},
 			},
@@ -52,7 +54,6 @@ const company_controls = (roleCheck) => {
 			type        : 'text',
 			span        : 12,
 			placeholder : 'Enter Company Name',
-			className   : 'primary md',
 			rules       : {
 				required: { value: true, message: 'Company Name is required' },
 			},
@@ -70,7 +71,6 @@ const company_controls = (roleCheck) => {
 			name        : 'name',
 			label       : 'POC Name',
 			type        : 'creatable-select',
-			className   : 'primary md',
 			span        : 5.8,
 			placeholder : 'Enter your POC Name',
 		},
@@ -110,18 +110,16 @@ const company_controls = (roleCheck) => {
 			name        : 'alternate_mobile_number',
 			label       : 'Alternate Mobile Number (optional)',
 			type        : 'mobile_number',
-			className   : 'primary md',
 			span        : 5.8,
 			placeholder : 'Enter your Alternate POC mobile',
 			select2     : 'new small',
 		},
 		{
-			name      : 'not_reg_under_gst',
-			label     : ' ',
-			type      : 'checkbox',
-			span      : 12,
-			className : 'primary md',
-			options   : [
+			name    : 'not_reg_under_gst',
+			label   : ' ',
+			type    : 'checkbox',
+			span    : 12,
+			options : [
 				{
 					label : `Not registered under ${REGISTRATION_LABEL}`,
 					value : 'true',
@@ -136,13 +134,8 @@ const company_controls = (roleCheck) => {
 			showLabel   : false,
 			span        : 5.8,
 			height      : 40,
-			className   : 'primary md',
 			disabled    : false,
 			rules       : {
-				// pattern: {
-				// 	value: patterns.GST_NUMBER,
-				// 	message: 'GST Number is invalid',
-				// },
 				required: {
 					value   : true,
 					message : `${REGISTRATION_LABEL} Number is required`,
@@ -155,16 +148,13 @@ const company_controls = (roleCheck) => {
 			type            : 'file',
 			drag            : true,
 			onlyURLOnChange : true,
-			uploadIcon      : 'ic-upload',
 			span            : 5.8,
 			height          : 50,
-			className       : 'primary md',
 			accept:
 				'image/*,.pdf,.doc,.docx,application/msword,'
 				+ 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-			uploadType : 'aws',
-			disabled   : false,
-			rules      : {
+			disabled : false,
+			rules    : {
 				required: {
 					value   : true,
 					message : `${REGISTRATION_LABEL} Proof is required`,

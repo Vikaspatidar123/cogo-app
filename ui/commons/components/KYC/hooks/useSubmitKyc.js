@@ -15,7 +15,7 @@ const MAX_LENGTH = 10;
 const useSubmitKyc = ({ onClose, organizationData = {} }) => {
 	const { country_id, registration_number, preferred_languages } = organizationData || {};
 
-	const [{ loading }, submitKycAPI] = useRequest({
+	const [{ loading }, submitKycTrigger] = useRequest({
 		method : 'post',
 		url    : '/submit_organization_kyc',
 	}, { manual: true });
@@ -50,7 +50,7 @@ const useSubmitKyc = ({ onClose, organizationData = {} }) => {
 
 	const submitKyc = async ({ payload }) => {
 		try {
-			const res = await submitKycAPI({ data: payload });
+			const res = await submitKycTrigger({ data: payload });
 
 			if (!res.hasError) {
 				Toast.success('Kyc submitted successfully!');

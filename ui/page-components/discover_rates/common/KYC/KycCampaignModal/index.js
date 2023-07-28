@@ -6,6 +6,17 @@ import styles from './styles.module.css';
 
 import { useSelector } from '@/packages/store';
 
+function Header() {
+	return (
+		<div>
+			<div className={styles.head}>Get Additional Spot Searches for free!</div>
+			<text className={styles.text}>
+				We just need some additional details from you
+			</text>
+		</div>
+	);
+}
+
 export function KycCampaign({
 	onFinalSubmit = () => { },
 	trackAnalytics = false,
@@ -36,17 +47,10 @@ export function KycCampaign({
 			|| partner?.country_id,
 		country_code: country?.country_code,
 	};
-	const head = () => (
-		<div>
-			<div className={styles.head}>Get Additional Spot Searches for free!</div>
-			<text className={styles.text}>
-				We just need some additional details from you
-			</text>
-		</div>
-	);
+
 	return (
 		<div className={styles.flex} style={{ padding: '8px' }}>
-			<Modal.Header title={head()} />
+			<Modal.Header title={<Header />} />
 			<FormBody
 				{...initialValues}
 				agent_id={agent_id}

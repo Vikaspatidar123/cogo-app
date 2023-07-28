@@ -37,7 +37,8 @@ function CheckKyc() {
 					</div>
 
 					<div className={styles.des}>
-						{kyc_rejection_reason || t('dashboard:kyc_text_2')}
+						{kyc_status === 'verified' ? t('dashboard:verified_text')
+							: kyc_rejection_reason || t('dashboard:kyc_text_2')}
 					</div>
 
 					<div className={styles.button}>

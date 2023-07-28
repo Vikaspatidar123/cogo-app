@@ -11,7 +11,7 @@ export default {
 			symbol : '¥',
 		},
 		mobile_country_code : '+86',
-		mobile_length       : 10,
+		mobile_length       : 11,
 	},
 	formats: {
 		amount: {
@@ -245,7 +245,7 @@ export default {
 			'a9433b9b-3f3a-4799-a605-27cae90d540c',
 			'26385f72-3836-41fd-85e4-b0afc6f31ab4',
 		],
-		hs_code_country_id: '254f97da-e398-48ad-98a9-e3e02b2039b8',
+		hs_code_country_id: '254f97da-e398-48ad-98a9-e3e02b2039b8la',
 	},
 	options: {
 		registration_types: [

@@ -11,7 +11,7 @@ export default {
 			symbol : '$',
 		},
 		mobile_country_code : '+65',
-		mobile_length       : 10,
+		mobile_length       : 8,
 	},
 	formats: {
 		amount: {
@@ -31,7 +31,7 @@ export default {
 		},
 	},
 	regex: {
-		TAX           : /^[0-3]{1}[0-9]{9}$|^[0-3]{1}[0-9]{9}-?[0-9]{3}$/,
+		TAX           : /^[A-Z]{1}[0-9]{7}[A-Z]{1}$/,
 		MOBILE_NUMBER : /^[+][0-9]{1,3}[0-9]{10}$/,
 		EMAIL         : /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/,
 		password_pattern:

@@ -370,11 +370,11 @@ export default {
 	others: {
 		registration_number: {
 			label      : 'TIN',
-			pattern    : /^[0-9]{1}[0-9]{9}$|^[0-3]{1}[0-9]{9}-?[0-9]{3}$/,
-			max_length : 15,
+			pattern    : /^\d{13}$/,
+			max_length : 13,
 		},
 		identification_number: {
-			label: 'Registration Number',
+			label: 'TIN Number',
 		},
 		address: {
 			label: 'Registration Extract',

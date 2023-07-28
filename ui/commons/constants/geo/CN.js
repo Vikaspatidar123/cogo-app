@@ -31,8 +31,8 @@ export default {
 		},
 	},
 	regex: {
-		TAX           : /^[0-3]{1}[0-9]{9}$|^[0-3]{1}[0-9]{9}-?[0-9]{3}$/,
-		MOBILE_NUMBER : /^[+][0-9]{1,3}[0-9]{10}$/,
+		TAX           : /^\d{15,18}$/,
+		MOBILE_NUMBER : /^[+][0-9]{1,3}[0-9]{11}$/,
 		EMAIL         : /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/,
 		password_pattern:
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/gm,
@@ -369,12 +369,12 @@ export default {
 
 	others: {
 		registration_number: {
-			label      : 'VAT',
-			pattern    : /^[0-9]{1}[0-9]{9}$|^[0-3]{1}[0-9]{9}-?[0-9]{3}$/,
-			max_length : 15,
+			label      : 'USSC',
+			pattern    : /^\d{15,18}$/,
+			max_length : 18,
 		},
 		identification_number: {
-			label: 'Registration Number',
+			label: 'USSC Number',
 		},
 		address: {
 			label: 'Registration Extract',

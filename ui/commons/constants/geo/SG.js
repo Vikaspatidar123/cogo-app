@@ -32,7 +32,7 @@ export default {
 	},
 	regex: {
 		TAX           : /^[A-Z]{1}[0-9]{7}[A-Z]{1}$/,
-		MOBILE_NUMBER : /^[+][0-9]{1,3}[0-9]{10}$/,
+		MOBILE_NUMBER : /^[+][0-9]{1,3}[0-9]{8}$/,
 		EMAIL         : /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/,
 		password_pattern:
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/gm,
@@ -370,12 +370,12 @@ export default {
 	others: {
 		registration_number: {
 			label      : 'UEN',
-			pattern    : /^[0-9]{1}[0-9]{9}$|^[0-3]{1}[0-9]{9}-?[0-9]{3}$/,
-			max_length : 15,
+			pattern    : /((S|T)([\d]{2})([A-Z]{2})([\d]{4})([A-Z])|(\d{9})([A-Z]))/g,
+			max_length : 10,
 		},
 
 		identification_number: {
-			label: 'Registration Number',
+			label: 'UEN Number',
 		},
 
 		address: {

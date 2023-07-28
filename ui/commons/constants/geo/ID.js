@@ -368,12 +368,12 @@ export default {
 
 	others: {
 		registration_number: {
-			label      : 'NIB',
-			pattern    : /^[0-9]{1}[0-9]{9}$|^[0-3]{1}[0-9]{9}-?[0-9]{3}$/,
-			max_length : 15,
+			label      : 'NPWP',
+			pattern    : /^\d{15,16}$/,
+			max_length : 16,
 		},
 		identification_number: {
-			label: 'Registration Number',
+			label: 'NPWP Number',
 		},
 		address: {
 			label: 'Registration Extract',

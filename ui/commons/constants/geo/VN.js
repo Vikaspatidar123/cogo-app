@@ -374,7 +374,7 @@ export default {
 			max_length : 15,
 		},
 		identification_number: {
-			label: 'Registration Number',
+			label: 'VAT Number',
 		},
 		address: {
 			label: 'Registration Extract',

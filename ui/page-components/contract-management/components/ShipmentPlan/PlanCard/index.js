@@ -356,6 +356,7 @@ function PlanCard({
 				shipmentData={shipmentData}
 				loading={loading}
 				itemData={itemData}
+				containerDetails={containerDetails}
 			/>
 			{/* )} */}
 

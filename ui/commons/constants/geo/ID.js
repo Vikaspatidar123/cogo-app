@@ -245,6 +245,7 @@ export default {
 			'a9433b9b-3f3a-4799-a605-27cae90d540c',
 			'26385f72-3836-41fd-85e4-b0afc6f31ab4',
 		],
+		hs_code_country_id: '9df8dd81-b330-4e70-9ff2-ae850b2af2a4',
 	},
 	options: {
 		registration_types: [

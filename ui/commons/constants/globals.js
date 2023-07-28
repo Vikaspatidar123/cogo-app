@@ -8,7 +8,7 @@ const GLOBAL_CONSTANTS = {
 		SG : '04bd1037-c110-4aad-8ecc-fc43e9d4069d',
 		TH : '6d92cf58-3392-44c3-8e1b-09192f98f8be',
 		ID : 'ef9a7145-b1b6-46ff-8de7-a348de635574',
-		CN : '6d92cf58-3392-44c3-8e1b-09192f98f8ad',
+		CN : 'd39c9a59-93e3-4823-b85f-c72139cf138f',
 	},
 
 	hs_code_country_ids: {

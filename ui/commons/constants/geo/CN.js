@@ -1,5 +1,5 @@
 export default {
-	parent_entity_id : '6d92cf58-3392-44c3-8e1b-09192f98f8ad',
+	parent_entity_id : 'd39c9a59-93e3-4823-b85f-c72139cf138f',
 	country          : {
 		id   : '1b94734e-7d51-4e94-9dd2-ef96aee64a8f',
 		name : 'China',
@@ -245,6 +245,7 @@ export default {
 			'a9433b9b-3f3a-4799-a605-27cae90d540c',
 			'26385f72-3836-41fd-85e4-b0afc6f31ab4',
 		],
+		hs_code_country_id: '254f97da-e398-48ad-98a9-e3e02b2039b8',
 	},
 	options: {
 		registration_types: [

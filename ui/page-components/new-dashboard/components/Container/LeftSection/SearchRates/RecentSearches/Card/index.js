@@ -5,12 +5,15 @@ import ContainerInfo from './ContainerInfo';
 import PortDetails from './PortDetails';
 import styles from './styles.module.css';
 
+import { SHOW_SERVICES } from '@/ui/page-components/new-dashboard/constant';
 import searchTypeMapping from '@/ui/page-components/new-dashboard/utils/searchTypeMapping';
 
 function Card({ item }) {
 	const { search_type = 'air_freight' } = item || {};
 	const mapped = searchTypeMapping[search_type] || {};
-
+	if (!SHOW_SERVICES.includes(search_type)) {
+		return null;
+	}
 	return (
 		<div>
 			<div>

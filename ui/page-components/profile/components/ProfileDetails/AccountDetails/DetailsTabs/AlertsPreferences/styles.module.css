@@ -1,7 +1,9 @@
 .main_container {
-	padding: 8px;
-	background: #fff;
-	box-shadow: 0 1px 6px rgb(190 209 237 / 65%);
+	/* padding: 8px; */
+
+	/* background: #fff; */
+
+	/* box-shadow: 0 1px 6px rgb(190 209 237 / 65%); */
 
 	@media (max-width: 768px) {
 		all: unset;
@@ -11,11 +13,12 @@
 }
 
 .header_container {
-	padding-block: 12px;
 	font-size: 16px;
-	font-weight: 500;
-	color: #2c3e50;
-	border-bottom: 1px solid #cddbff;
+	font-weight: 600;
+
+	/* padding-block: 12px; */
+
+	/* border-bottom: 1px solid #cddbff; */
 
 	@media (max-width: 768px) {
 		display: none;

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import MobileHeader from '../../../../MobileHeader';
 
 import Categories from './Categories';
@@ -21,7 +20,7 @@ function AlertsPreferences() {
 			/>
 
 			<div className={styles.main_container}>
-				<div className={styles.header_container}>Alerts and Preferences</div>
+				<div className={styles.header_container}>Alerts and preferences</div>
 
 				<Categories />
 			</div>

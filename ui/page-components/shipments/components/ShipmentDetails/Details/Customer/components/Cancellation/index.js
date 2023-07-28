@@ -58,7 +58,10 @@ function Cancellation({
 	const { state, stakeholder_types, shipment_type } = shipment_data || {};
 
 	const tradePartyType = shipment_data?.trade_party_type;
-	const tradeType = shipment_data?.all_services[0]?.trade_type;
+
+	const tradeType = shipment_data?.all_services
+		?.filter((item) => item?.service_type === primary_service?.service_type)?.[0]?.trade_type;
+
 	const is_end_to_end = shipment_data?.is_end_to_end;
 
 	const showToStakeholders = stakeholder_types?.some((ele) => showCancellationStakeholders?.includes(ele));

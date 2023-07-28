@@ -1,13 +1,15 @@
 import { poc_options } from '../options';
 
 import patterns from '@/ui/commons/configurations/patterns';
-import getGeoConstants from '@/ui/commons/constants/geo';
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 
 const PARTIES = ['collection_party', 'paying_party'];
 
 const existing_company_controls = (roleCheck, compType) => {
-	const geo = getGeoConstants();
-	const IDENTIFICAITON_LABEL = geo.others.identification_number.label;
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
 
 	return [
 		{

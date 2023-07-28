@@ -253,15 +253,29 @@ export default {
 			pattern    : /^[0-9]{1}[0-9]{9}$|^[0-3]{1}[0-9]{9}-?[0-9]{3}$/,
 			max_length : 15,
 		},
-		identification_number: {
-			label: 'Registration Number',
+
+		identification: {
+			label: 'VAT',
 		},
+
+		identification_number: {
+			label: {
+				en : 'VAT Number',
+				vi : 'Mã Số Thuế',
+			},
+		},
+
 		address: {
 			label: 'Registration Extract',
 		},
+
 		economic_zone: {
-			label: 'Non-Tariff Zone',
+			label: {
+				en : 'Non-Tariff Zone',
+				vi : 'Khu Phi Thuế Quan',
+			},
 		},
+
 		pan_number: {
 			label   : 'PAN',
 			pattern : '',

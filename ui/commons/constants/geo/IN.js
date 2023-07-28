@@ -288,14 +288,27 @@ export default {
 				/\d{2}[A-Za-z]{5}\d{4}[A-Za-z]{1}[A-Za-z\d]{1}[Zz]{1}[A-Za-z\d]{1}/g,
 			max_length: 15,
 		},
-		identification_number: {
-			label: 'PAN Number',
+
+		identification: {
+			label: 'PAN',
 		},
+
+		identification_number: {
+			label: {
+				en : 'PAN Number',
+				vi : 'Mã Số Doanh Nghiệp',
+			},
+		},
+
 		address: {
 			label: 'Address Proof',
 		},
+
 		economic_zone: {
-			label: 'SEZ',
+			label: {
+				en : 'SEZ',
+				vi : 'Khu Phi Thuế Quan',
+			},
 		},
 
 		pan_number: {

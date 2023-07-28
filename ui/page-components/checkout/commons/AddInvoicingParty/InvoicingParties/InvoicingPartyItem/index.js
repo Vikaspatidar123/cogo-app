@@ -5,8 +5,7 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-import { CountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
-import getGeoConstants from '@/ui/commons/constants/geo';
+import { CountrySpecificData, getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 
 function InvoicingPartyItem({
 	organization = {},
@@ -31,8 +30,10 @@ function InvoicingPartyItem({
 
 	const { is_tax_applicable = false } = organization || {};
 
-	const geo = getGeoConstants();
-	const ECO_ZONE_LABEL = geo.others.economic_zone.label;
+	const ECO_ZONE_LABEL = getLocaleSpecificLabels({
+		accessorType : 'economic_zone',
+		accessor     : 'label',
+	});
 
 	const onClickAddAddress = () => {
 		setShowComponent('create_billing_address');

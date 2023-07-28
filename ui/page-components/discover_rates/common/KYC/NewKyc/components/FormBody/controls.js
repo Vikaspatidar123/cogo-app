@@ -2,7 +2,7 @@ import { Button, Popover } from '@cogoport/components';
 
 import Info from './AddressInfo';
 
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import { getCountrySpecificData, getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 
 const btnStyle = {
 	width        : '20px',
@@ -51,8 +51,7 @@ export const controls = (countryCode, isOpen, setIsOpen, rest) => {
 		accessorType : 'address',
 		accessor     : 'label',
 	});
-	const IDENTIFICAITON_LABEL = getCountrySpecificData({
-		country_code : countryCode,
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
 		accessorType : 'identification_number',
 		accessor     : 'label',
 	});

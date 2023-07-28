@@ -1,11 +1,11 @@
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import { getCountrySpecificData, getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 
 export const controls = ({ country_code, rest }) => {
-	const IDENTIFICAITON_LABEL = getCountrySpecificData({
-		country_code,
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
 		accessorType : 'identification_number',
 		accessor     : 'label',
 	});
+
 	const ADDRESS_LABEL = getCountrySpecificData({
 		country_code,
 		accessorType : 'address',

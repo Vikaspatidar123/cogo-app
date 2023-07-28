@@ -5,7 +5,7 @@ import { getOrgControls, getAdditionalOrgControls } from '../../utils/controls';
 
 import { useForm } from '@/packages/forms';
 import patterns from '@/ui/commons/configurations/patterns';
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import { getCountrySpecificData, getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 
 const ORG_INFO = ['business_name', 'company_type'];
 const MAX_LENGTH = 10;
@@ -44,11 +44,9 @@ const useCompanyDetails = ({
 		accessor     : 'common',
 	});
 
-	const IDENTIFICAITON_LABEL = getCountrySpecificData({
-		country_id   : watchCountryId,
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
 		accessorType : 'identification_number',
 		accessor     : 'label',
-
 	});
 
 	const { getBusinessLoading: businessApiLoading, onBlurTaxPanGstinControl = () => {} } = useGetBusiness({

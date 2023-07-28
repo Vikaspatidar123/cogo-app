@@ -56,7 +56,16 @@ export const getCompanyControls = ({
 }) => {
 	const geo = getGeoConstants();
 	const REGISTRATION_LABEL = geo.others.registration_number.label;
+	const suffix = (
+		<div
+			onClick={() => setShow(true)}
+			role="presentation"
+			style={{ margin: '0 8px', cursor: 'pointer' }}
+		>
+			Upload
 
+		</div>
+	);
 	return COMPANY_DETAILS_CONTROLS.map((control) => {
 		if (control.name === 'tax_number') {
 			return ({
@@ -74,16 +83,9 @@ export const getCompanyControls = ({
 		if (control.name === 'gst_proof') {
 			return {
 				...control,
-				label  : `Upload ${REGISTRATION_LABEL} Proof`,
-				suffix : <div
-					onClick={() => setShow(true)}
-					role="presentation"
-					style={{ margin: '0 8px', cursor: 'pointer' }}
-				>
-					Upload
-
-             </div>,
-				disabled: hasRequestedForCredit,
+				label    : `Upload ${REGISTRATION_LABEL} Proof`,
+				suffix,
+				disabled : hasRequestedForCredit,
 			};
 		}
 		return control;

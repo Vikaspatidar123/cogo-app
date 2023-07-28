@@ -1,4 +1,6 @@
 import { Toast } from '@cogoport/components';
+import { getByKey } from '@cogoport/utils';
+import { setCookie } from 'cookies-next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import getRedirectionUrlForAutoLoginSignup from '@/ui/helpers/getRedirectionUrlForAutoLoginSignup';
@@ -21,7 +23,22 @@ export async function getServerSideProps(ctx) {
 			lead_organization_id,
 			lead_action_id,
 		});
-		getRedirectionUrlForAutoLoginSignup({ response, lead_action_id, ctx, actionType: 'autoLogin' });
+		const {
+			token,
+		} = getByKey(response, 'data') || {};
+
+		const url = getRedirectionUrlForAutoLoginSignup({ response, lead_action_id, actionType: 'autoLogin' });
+
+		if (token) {
+			setCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME, token, ctx);
+			return {
+				props    : {},
+				redirect : {
+					destination : url,
+					permanent   : false,
+				},
+			};
+		}
 	} catch (e) {
 		Toast.error('Something went wrong, we are working on it!');
 	}

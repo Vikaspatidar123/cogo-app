@@ -173,6 +173,8 @@
 	"schedule_title_text_2":"Plan an upcoming shipment using comprehensive shipping schedules.",
 	"schedule_title_text_3":"Air Schedules",
 	"schedule_title_text_4":"Plan an upcoming cargo using comprehensive air schedules.",
-	"shipment_create_title_text":"Create New Shipment"
+	"shipment_create_title_text":"Create New Shipment",
+	"ocean_shipment_text":"Ocean",
+	"air_shipment_text":"Air"
 
 }

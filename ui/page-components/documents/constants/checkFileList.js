@@ -115,7 +115,7 @@ function checkFileList(t, serviceType) {
 		},
 	];
 
-	if (['fcl_customs', 'lcl_customs']?.includes(serviceType)) {
+	if (['fcl_customs_service', 'lcl_customs_service']?.includes(serviceType)) {
 		list = ocean;
 	}
 

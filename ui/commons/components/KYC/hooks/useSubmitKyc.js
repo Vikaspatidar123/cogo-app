@@ -1,7 +1,7 @@
 import { Toast } from '@cogoport/components';
 import { useEffect } from 'react';
 
-import controls from '../components/PendingFromUser/IEKycSection/controls';
+import getControls from '../components/PendingFromUser/IEKycSection/controls';
 
 import { useForm } from '@/packages/forms';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
@@ -14,6 +14,8 @@ const MAX_LENGTH = 10;
 
 const useSubmitKyc = ({ onClose, organizationData = {} }) => {
 	const { country_id, registration_number, preferred_languages } = organizationData || {};
+
+	const controls = getControls();
 
 	const [{ loading }, submitKycTrigger] = useRequest({
 		method : 'post',

@@ -40,6 +40,7 @@ function ChildFormat(
 			{fields.map((field, index) => (
 				<Child
 					{...rest}
+					key={field.id}
 					index={index}
 					control={control}
 					controls={controls}

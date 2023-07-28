@@ -13,15 +13,8 @@
 .actions {
 	display: flex;
 	align-items: center;
+}
 
-	button:first-child {
-		padding: 8px 16px;
-		margin-right: 10px;
-		border-radius: 4px;
-	}
-
-	.core-ui-button-root {
-		background: black;
-		border: none;
-	}
+.cancel_btn {
+	margin-right: 10px;
 }

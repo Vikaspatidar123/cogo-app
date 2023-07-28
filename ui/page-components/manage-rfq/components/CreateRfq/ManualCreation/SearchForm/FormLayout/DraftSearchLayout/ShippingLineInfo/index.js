@@ -3,16 +3,17 @@ import { startCase, isEmpty } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
+const AIR_MAPLINE = ['preferred_air_lines', 'excluded_air_lines', 'mandatory_shipping_lines'];
+const REST_MAPLINE = ['preferred_shipping_lines', 'excluded_shipping_lines', 'mandatory_shipping_lines'];
+
 function ShippingLineInfo({
 	shippingLinesDetails,
 	operatorsLoading,
 	serviceType,
 }) {
-	let mapLines = [];
+	let mapLines = REST_MAPLINE;
 	if (serviceType === 'air_freight') {
-		mapLines = ['preferred_air_lines', 'excluded_air_lines'];
-	} else {
-		mapLines = ['preferred_shipping_lines', 'excluded_shipping_lines'];
+		mapLines = AIR_MAPLINE;
 	}
 
 	function Tags({ tags = [] }) {
@@ -22,14 +23,17 @@ function ShippingLineInfo({
 			</div>
 		);
 	}
-	const renderData = (type) => (!isEmpty(shippingLinesDetails?.[type]) ? (
-		<Tags tags={shippingLinesDetails?.[type] || []} />
-	) : (
-		<div className={styles.empty}>
-			No
-			{startCase(type)}
-		</div>
-	));
+	function RenderData(type) {
+		return !isEmpty(shippingLinesDetails?.[type]) ? (
+			<Tags tags={shippingLinesDetails?.[type] || []} />
+		) : (
+			<div className={styles.empty}>
+				No
+				{' '}
+				{startCase(type)}
+			</div>
+		);
+	}
 	return (
 		<div className={styles.section}>
 			{(mapLines || []).map((type) => (
@@ -41,7 +45,7 @@ function ShippingLineInfo({
 					{operatorsLoading ? (
 						<Placeholder width="100px" height="18px" />
 					) : (
-						renderData(type)
+						RenderData(type)
 					)}
 				</div>
 			))}

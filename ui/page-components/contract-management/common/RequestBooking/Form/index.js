@@ -45,66 +45,68 @@ function Form({
 		dateTimePickerValue,
 	});
 
-	const cargoDetailsFormProps = useForm(cargoDetailControls);
-	const { formState: cargodetailsFormState } = cargoDetailsFormProps;
+	const { formState:{ errors } } = useForm();
 
 	return (
-		<div className={styles.container}>
-			<div className={styles.box}>
-				<div className={styles.row}>
-					<div className={styles.col}>
-						<PortHeader
-							originPort={originPort}
-							destinationPort={destinationPort}
-							service_type={service_type}
-							destinationPortCode={destinationPortCode}
-							originPortCode={originPortCode}
-							originFullName={originFullName}
-							destinationFullName={destinationFullName}
-						/>
-					</div>
-
-					<div className={styles.col}>
-						<div style={{ display: 'flex', flexDirection: 'column' }}>
-							<text className={styles.text}>
-								Departure Date
-							</text>
-
-							<Datepicker
-								width={200}
-								withTimePicker
-								onChange={setDateTimePickerValue}
-								value={dateTimePickerValue}
-								isPreviousDaysAllowed={false}
-								showTimeSelect
+		<>
+			<div className={styles.container}>
+				<div className={styles.box}>
+					<div className={styles.row}>
+						<div className={styles.port_col}>
+							<PortHeader
+								originPort={originPort}
+								destinationPort={destinationPort}
+								service_type={service_type}
+								destinationPortCode={destinationPortCode}
+								originPortCode={originPortCode}
+								originFullName={originFullName}
+								destinationFullName={destinationFullName}
 							/>
 						</div>
-					</div>
 
-					<div className={styles.col}>
-						<div className={styles.container_details}>
-							<SearchForm
-								mode={service_type}
-								extraParams={{}}
-								search_type="contract"
-								ref={(r) => {
-									bookShipmentRef.current = r;
-								}}
-							/>
+						<div className={styles.date_picker}>
+							<div>
+								<text className={styles.text}>
+									Departure Date
+								</text>
+
+								<Datepicker
+									width={200}
+									withTimePicker
+									onChange={setDateTimePickerValue}
+									value={dateTimePickerValue}
+									isPreviousDaysAllowed={false}
+									showTimeSelect
+								/>
+							</div>
+						</div>
+
+						<div className={styles.col}>
+							<div className={styles.container_details}>
+								<SearchForm
+									mode={service_type}
+									extraParams={{}}
+									search_type="contract"
+									ref={(r) => {
+										bookShipmentRef.current = r;
+									}}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<div style={{ display: 'flex', flexDirection: 'column', width: '500px' }}>
+				<div style={{ display: 'flex', flexDirection: 'column', width: '500px' }}>
 
-				<FormElement
-					controls={cargoDetailControls}
-					errors={cargodetailsFormState.errors}
-					control={control}
-				/>
+					<FormElement
+						controls={cargoDetailControls}
+						errors={errors}
+						control={control}
+					/>
+				</div>
+
 			</div>
-			<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+			<div className={styles.footer}>
 				<Button
 					type="button"
 					style={{ marginRight: 8 }}
@@ -125,7 +127,7 @@ function Form({
 
 				</Button>
 			</div>
-		</div>
+		</>
 	);
 }
 export default Form;

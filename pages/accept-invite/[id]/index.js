@@ -1,6 +1,7 @@
+import { isEmpty } from '@cogoport/utils';
+import { setCookie } from 'cookies-next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import setCookieAndRedirect from '@/ui/commons/utils/setCookieAndRedirect';
 import AcceptUser from '@/ui/page-components/accept-user';
 import acceptPassword from '@/ui/page-components/accept-user/useAcceptPassword';
 
@@ -10,14 +11,21 @@ export async function getServerSideProps(ctx) {
 	let errorMessage = false;
 	try {
 		const res = await acceptPassword({ token: id });
-		const { hasError } = res || {};
 
-		if (!hasError) {
+		if (!isEmpty(res)) {
 			const { token } = (res || {}).data || {};
-			setCookieAndRedirect(token, ctx, '/onboarding?from_signup=true');
-		} else {
-			errorMessage = true;
+
+			setCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME, token, ctx);
+
+			return {
+				props    : {},
+				redirect : {
+					destination : '/onboarding?from_signup=true',
+					permanent   : false,
+				},
+			};
 		}
+		errorMessage = true;
 	} catch (e) {
 		errorMessage = true;
 	}

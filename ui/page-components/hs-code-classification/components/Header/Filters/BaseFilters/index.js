@@ -31,8 +31,6 @@ function BaseFilters({
 
 	const watchCountry = watch('country');
 
-	console.log('sdusdjijsdij', watch());
-
 	const onSubmit = (data) => {
 		refetchSearch(data);
 		resetDrillDownHandler();

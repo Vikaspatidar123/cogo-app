@@ -28,7 +28,7 @@ export const MAX_LIMIT = 3;
 
 export const PATH_OPTION = {
 	ocean : { color: '#1867D2', weight: 2 },
-	air   : { color: '#f37166', weight: 2 },
+	air   : { color: '#1867D2', weight: 2 },
 	land  : { color: '#136f29', weight: 2 },
 };
 
@@ -62,6 +62,16 @@ export const LABELS = [
 	'transport_mode',
 	'cargo_stacking_type',
 	'msds_document',
+];
+
+export const SHOW_SERVICES = [
+	'fcl_freight',
+	'lcl_freight',
+	'air_freight',
+	'ftl_freight',
+	'ltl_freight',
+	'haulage_freight',
+	'trailer_freight',
 ];
 
 export const renderValue = ({ label, data, t }) => {

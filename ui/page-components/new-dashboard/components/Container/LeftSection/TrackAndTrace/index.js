@@ -37,7 +37,7 @@ function TrackAndTrace() {
 					</div>
 
 					<div className={styles.card}>
-						<Card loading={loading} count={all_cargo} />
+						<Card loading={loading} count={all_cargo} track={false} />
 						<Card loading={loading} count={on_track_air_cargos} />
 					</div>
 					<div className={styles.img_container}>
@@ -62,7 +62,7 @@ function TrackAndTrace() {
 					</div>
 
 					<div className={styles.card}>
-						<Card loading={loading} count={container_tracked} />
+						<Card loading={loading} count={container_tracked} track={false} />
 						<Card loading={loading} count={on_track_shipments} />
 					</div>
 				</div>

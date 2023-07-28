@@ -30,3 +30,7 @@
 .icon_box {
 	display: flex;
 }
+
+.title {
+	color: #828282;
+}

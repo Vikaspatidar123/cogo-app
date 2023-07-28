@@ -47,8 +47,8 @@ function ServiceWiseHeading({
 					type="select"
 					placeholder="Service Name"
 					options={[
-						{ label: 'FCL Customs', value: 'fcl_customs' },
-						{ label: 'LCL Customs', value: 'lcl_customs' },
+						{ label: 'FCL Customs', value: 'fcl_customs_service' },
+						{ label: 'LCL Customs', value: 'lcl_customs_service' },
 					]}
 					value={serviceType}
 					onChange={(e) => handleSelect(e)}

@@ -6,8 +6,12 @@
 	border: 1px solid #e0e0e0;
 	border-radius: 8px;
 
-	.section_three {
+	.section-three {
 		margin-bottom: 0;
+	}
+
+	&.add_padding {
+		padding: 24px;
 	}
 }
 
@@ -58,4 +62,20 @@
 .port_pairs {
 	display: flex;
 	flex: 3;
+}
+
+.text {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #000;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.flex_box {
+	display: flex;
+	justify-content: space-between;
 }

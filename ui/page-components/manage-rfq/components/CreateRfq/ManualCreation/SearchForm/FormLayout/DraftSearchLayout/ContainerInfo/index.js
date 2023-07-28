@@ -1,13 +1,14 @@
 import styles from './styles.module.css';
 import Tags from './Tags';
 
-import getValues from '@/ui/page-components/manage-rfq/helpers/calculator';
+import calculator from '@/ui/page-components/manage-rfq/helpers/calculator';
 
 function ContainerInfo({
 	containers = [],
 	commodity = '',
 	incoTerm = '',
 	commoditySubtype = '',
+	hscodeDetails = '',
 	commodityType = '',
 	paymentType = '',
 	calculateBy = '',
@@ -23,7 +24,7 @@ function ContainerInfo({
 				totalVolume: volume,
 				stackability: handling_type,
 				packageType: package_type,
-			} = getValues(dimensions, serviceType);
+			} = calculator(dimensions, serviceType);
 
 			return [
 				{
@@ -49,6 +50,7 @@ function ContainerInfo({
 						commodity={commodity}
 						serviceType={serviceType}
 						incoTerm={incoTerm}
+						hscodeDetails={hscodeDetails}
 						commoditySubtype={commoditySubtype}
 						commodityType={commodityType}
 						paymentType={paymentType}

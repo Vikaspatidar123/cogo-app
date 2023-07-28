@@ -1,7 +1,6 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	padding: 6px;
 	overflow: visible;
 
 	& .form-item-label {
@@ -21,6 +20,7 @@
 .flex {
 	display: flex;
 	align-items: center;
+	padding: 16px;
 	margin-bottom: 5px;
 }
 
@@ -30,10 +30,8 @@
 }
 
 .text {
-	margin-bottom: 16px;
 	font-size: 20px;
 	font-weight: 500;
-	color: #333;
 }
 
 .text1 {
@@ -41,4 +39,11 @@
 	font-size: 16px;
 	font-weight: 500;
 	color: #333;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	padding: 16px;
+	box-shadow: 0 0 8px rgb(44 62 80 / 20%);
 }

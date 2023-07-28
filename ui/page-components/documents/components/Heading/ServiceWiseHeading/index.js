@@ -46,7 +46,10 @@ function ServiceWiseHeading({
 				<Select
 					type="select"
 					placeholder="Service Name"
-					options={[{ label: 'FCL Customs', value: 'fcl_customs' }]}
+					options={[
+						{ label: 'FCL Customs', value: 'fcl_customs_service' },
+						{ label: 'LCL Customs', value: 'lcl_customs_service' },
+					]}
 					value={serviceType}
 					onChange={(e) => handleSelect(e)}
 					isClearable

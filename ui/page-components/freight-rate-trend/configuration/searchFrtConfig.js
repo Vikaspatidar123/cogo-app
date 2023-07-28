@@ -6,7 +6,7 @@ const getFrtConfig = ({ t }) => [
 		initialCall : true,
 		placeholder : t('frt:form_origin_placeholder'),
 		params      : { filters: { type: ['seaport'] } },
-		rules       : { required: 'Please enter value' },
+		rules       : { required: t('frt:origin_rule_text') },
 	},
 	{ type: 'anchor' },
 	{
@@ -16,7 +16,7 @@ const getFrtConfig = ({ t }) => [
 		initialCall : true,
 		placeholder : t('frt:form_destination_placeholder'),
 		params      : { filters: { type: ['seaport'] } },
-		rules       : { required: 'Please enter value' },
+		rules       : { required: t('frt:destination_rule_text') },
 	},
 ];
 

@@ -58,7 +58,9 @@ function SearchCard() {
 					return (
 						<div key={name} className={styles.styled_form_item}>
 							<Element {...controlItem} control={control} />
-							{errors?.[name]?.message || errors?.[name]?.type}
+							<div className={styles.error_message}>
+								{errors?.[name]?.message || errors?.[name]?.type}
+							</div>
 						</div>
 					);
 				})}

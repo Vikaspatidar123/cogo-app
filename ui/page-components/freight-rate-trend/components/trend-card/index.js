@@ -9,18 +9,21 @@ import Stepper from '../Stepper';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function TrendCard({ trend = {}, fetchLocations = () => { } }) {
 	const { origin_port = {}, destination_port = {} } = trend || {};
-	const { t } = useTranslation(['frt']);
+
 	const { push } = useRouter();
 
+	const { t } = useTranslation(['frt']);
+
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
-	const [trendId, setTrendId] = useState();
+	const [trendId, setTrendId] = useState('');
 
 	const routeList = {
-		origin: origin_port?.name?.split(' - ')[0] || 'Origin',
-		destination: destination_port?.name?.split(' - ')[0] || 'Destination',
+		origin      : origin_port?.name?.split(' - ')[GLOBAL_CONSTANTS.zeroth_index] || 'Origin',
+		destination : destination_port?.name?.split(' - ')[GLOBAL_CONSTANTS.zeroth_index] || 'Destination',
 	};
 
 	const { loading, deleteTrend } = useDeleteTrendSubscription({ fetchLocations });

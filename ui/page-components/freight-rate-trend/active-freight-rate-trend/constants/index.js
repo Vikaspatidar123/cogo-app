@@ -1,4 +1,6 @@
 export const CURRRENT_MONTH = new Date().getMonth();
+export const PLUS_ONE_MONTH = 1;
+export const PLUS_SIX_MONTH = 6;
 
 export const DEFAULT_FILTERS = ({ country }) => ({
 
@@ -7,8 +9,8 @@ export const DEFAULT_FILTERS = ({ country }) => ({
 	containerType    : 'standard',
 	shippingLine     : '',
 	filteredCurrency : country?.currency_code,
-	validity_end     : new Date(new Date().setMonth(CURRRENT_MONTH + 1)),
-	validity_start   : new Date(new Date().setMonth(CURRRENT_MONTH - 6)),
+	validity_end     : new Date(new Date().setMonth(CURRRENT_MONTH + PLUS_ONE_MONTH)),
+	validity_start   : new Date(new Date().setMonth(CURRRENT_MONTH - PLUS_SIX_MONTH)),
 	commodities      : 'general',
 
 });

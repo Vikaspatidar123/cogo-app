@@ -100,7 +100,7 @@ function ActiveFreightRateTrend() {
 
 			</div>
 			<div className={styles.filter_mobile_view}>
-				<Button variant="secondary" size="sm" onClick={handleFilterModal}>
+				<Button variant="secondary" type="button" size="sm" onClick={handleFilterModal}>
 					{t('frt:filter')}
 				</Button>
 			</div>

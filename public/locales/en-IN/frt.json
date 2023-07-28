@@ -70,5 +70,7 @@
     "commodity_option_open_side_general":"General",
     "tab_text_1":"Daily",
     "tab_text_2":"Weekly",
-    "tab_text_3":"Monthly"
+    "tab_text_3":"Monthly",
+    "origin_rule_text":"Please select origin port",
+    "destination_rule_text":"Please select destination port"
 }

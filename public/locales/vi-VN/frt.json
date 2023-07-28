@@ -70,6 +70,8 @@
     "commodity_option_open_side_general":"Tổng quan",
     "tab_text_1":"Hằng ngày",
     "tab_text_2":"Hàng tuần",
-    "tab_text_3":"Hàng tháng"
+    "tab_text_3":"Hàng tháng",
+    "origin_rule_text":"Vui lòng chọn cổng gốc",
+    "destination_rule_text":"Vui lòng chọn cổng đích"
 
 }

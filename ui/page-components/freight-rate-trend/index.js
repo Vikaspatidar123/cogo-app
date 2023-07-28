@@ -9,6 +9,8 @@ import TrendCard, { EmptyTrendCard } from './components/trend-card';
 import useFetchTrends from './hooks/useFetchTrends';
 import styles from './styles.module.css';
 
+const DEFAULT_PAGE_SIZE = 10;
+
 function FreightRateTrend() {
 	const { t } = useTranslation(['frt']);
 	const {
@@ -32,11 +34,11 @@ function FreightRateTrend() {
 
 			<SearchCard />
 
-			{loading && (
+			{loading ? (
 				<div className={styles.flex_container}>
 					<Loading />
 				</div>
-			)}
+			) : null}
 
 			{!loading && !isEmpty(list) ? (
 				<>
@@ -52,7 +54,7 @@ function FreightRateTrend() {
 							type="number"
 							currentPage={page}
 							totalItems={total_count}
-							pageSize={10}
+							pageSize={DEFAULT_PAGE_SIZE}
 							onPageChange={setPagination}
 						/>
 					</div>

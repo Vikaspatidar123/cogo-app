@@ -21,6 +21,7 @@ function TrendChart({ labels, datasets = [], trendDetails, loading, currency }) 
 	if (loading) {
 		return <RenderSkeleton />;
 	}
+
 	return (
 		<div>
 			{!isEmpty(data) && trendDetails?.comparison_chart_data

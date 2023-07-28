@@ -74,9 +74,16 @@ export const getCompanyControls = ({
 		if (control.name === 'gst_proof') {
 			return {
 				...control,
-				label    : `Upload ${REGISTRATION_LABEL} Proof`,
-				suffix   : <div onClick={() => setShow(true)} role="presentation"> Upload </div>,
-				disabled : hasRequestedForCredit,
+				label  : `Upload ${REGISTRATION_LABEL} Proof`,
+				suffix : <div
+					onClick={() => setShow(true)}
+					role="presentation"
+					style={{ margin: '0 8px', cursor: 'pointer' }}
+				>
+					Upload
+
+             </div>,
+				disabled: hasRequestedForCredit,
 			};
 		}
 		return control;

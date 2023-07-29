@@ -1,0 +1,49 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 16px 12px;
+	border-bottom: 1px solid var(--40, #f8f2e7);
+}
+
+.empty {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 16px 12px;
+	border-bottom: 1px solid var(--40, #f8f2e7);
+}
+
+.list {
+	display: flex;
+	align-items: center;
+	width: 91%;
+	max-width: 91%;
+	overflow: scroll;
+}
+
+.text {
+	width: 15%;
+	padding: 0 8px;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+
+.icon_check {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	width: 7%;
+
+	:global {
+		.ui_checkbox_container {
+			padding: 8px 2px 8px 23px;
+		}
+	}
+}
+
+.icon {
+	width: 1%;
+}

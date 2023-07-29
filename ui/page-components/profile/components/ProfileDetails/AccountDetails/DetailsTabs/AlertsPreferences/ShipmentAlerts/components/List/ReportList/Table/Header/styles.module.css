@@ -1,0 +1,40 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 6px 12px;
+	background: var(--20, #fdfbf6);
+	border-bottom: 1px solid var(--40, #f8f2e7);
+}
+
+.list {
+	display: flex;
+	align-items: center;
+	width: 91%;
+}
+
+.text {
+	width: 15%;
+	padding: 0 8px;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.icon_check {
+	display: flex;
+	align-items: center;
+	width: 7%;
+
+	:global {
+		.ui_checkbox_container {
+			padding: 8px 2px 8px 25px;
+		}
+	}
+}
+
+.icon {
+	width: 1%;
+	cursor: pointer;
+}

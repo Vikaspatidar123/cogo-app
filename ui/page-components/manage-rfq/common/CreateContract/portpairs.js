@@ -8,12 +8,91 @@ import PortPair from './PortPair';
 import styles from './styles.module.css';
 
 const mapping = { fcl_freight: 'FCL', lcl_freight: 'LCL', air_freight: 'AIR' };
+const MAX_COUNT = 50;
 
-const errorMapping = {
-	fcl_freight : 'Less than 50 container count',
-	lcl_freight : 'Less than 50 cbm',
-	air_freight : 'Less than 50 kgs',
+const getErrorData = ({ totalCount = 0, errorKey = '' }) => {
+	const errorMapping = {
+		fcl_freight: `Your current total containers count is ${totalCount}. Total containers count should 
+			 be greater than 50 .`,
+		fcl_freight_min_count : 'Container count less than 1',
+		lcl_freight           : 'Less than 50 cbm',
+		air_freight           : 'Less than 50 kgs',
+	};
+
+	return errorMapping[errorKey];
 };
+
+const getEligibilityData = ({ watch = () => {} }) => {
+	let totalCount = 0;
+
+	(watch('search_rate_card_details') || []).forEach((item) => {
+		if (item?.max_containers_count) { totalCount += Number(item?.max_containers_count); }
+	});
+
+	return { hasEligibleCount: totalCount >= MAX_COUNT, totalCount };
+};
+
+const getErrorsNumber = ({ errorArray = [], formData = [] }) => {
+	let number = 0;
+	formData.forEach(({ idx }) => {
+		if (errorArray[idx]) number += 1;
+	});
+
+	return number;
+};
+
+function ErrorComponent({
+	errors = [],
+	formData = [],
+	serviceType = '',
+	watch = () => {},
+}) {
+	const errorsCount = getErrorsNumber({
+		errorArray: errors?.search_rate_card_details || [],
+		formData,
+	});
+
+	if (!errorsCount && serviceType !== 'fcl_freight') {
+		return null;
+	}
+
+	if (serviceType === 'fcl_freight') {
+		const { hasEligibleCount, totalCount } = getEligibilityData({
+			errorArray: errors?.search_rate_card_details,
+			watch,
+		});
+
+		const errorKey = hasEligibleCount && errorsCount ? 'fcl_freight_min_count' : serviceType;
+
+		if (hasEligibleCount && !errorsCount) {
+			return null;
+		}
+
+		return (
+			<div className={cl`${styles.error} ${styles.port_pair_errors}`}>
+				Not eligible
+				<div className={styles.error_details}>
+					(
+					{getErrorData({ errorKey, totalCount })}
+					)
+				</div>
+			</div>
+		);
+	}
+
+	return (
+		<div className={cl`${styles.error} ${styles.port_pair_errors}`}>
+			{errorsCount}
+			{' '}
+			Not eligible
+			<div className={styles.error_details}>
+				(
+				{getErrorData({ errorKey: serviceType })}
+				)
+			</div>
+		</div>
+	);
+}
 
 function FreightMap({
 	formData,
@@ -24,21 +103,14 @@ function FreightMap({
 	serviceType = 'fcl_freight',
 	portType = 'port',
 }) {
-	const getErrorsNumber = (array) => {
-		let number = 0;
-		formData.forEach(({ idx }) => {
-			if (array[idx]) number += 1;
-		});
-
-		return number;
-	};
-
 	return (
 		<>
 			<div className={styles.row}>
 				<div className={styles.col} style={{ width: getwidth(8) }}>
+
 					<div className={cl`${styles.subtitle} ${styles.port_pairs}`}>
 						<div>{IconMapping[serviceType]}</div>
+
 						<div className={styles.port_title}>
 							<div>
 								{mapping[serviceType]}
@@ -47,20 +119,17 @@ function FreightMap({
 								{formData.length}
 								)
 							</div>
-							{getErrorsNumber(errors?.search_rate_card_details || []) ? (
-								<div className={cl`${styles.error} ${styles.port_pair_errors}`}>
-									{getErrorsNumber(errors?.search_rate_card_details || [])}
-									{' '}
-									Not eligible
-									<div className={styles.error_details}>
-										(
-										{errorMapping[serviceType]}
-										)
-									</div>
-								</div>
-							) : null}
+
+							<ErrorComponent
+								errors={errors}
+								formData={formData}
+								serviceType={serviceType}
+								watch={watch}
+							/>
+
 						</div>
 					</div>
+
 				</div>
 			</div>
 			<PortPair

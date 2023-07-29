@@ -5,7 +5,7 @@ import HsClassification from '@/ui/page-components/hs-code-classification';
 export async function getServerSideProps({ locale }) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common'])),
+			...(await serverSideTranslations(locale, ['common', 'hsClassification'])),
 
 		},
 	};

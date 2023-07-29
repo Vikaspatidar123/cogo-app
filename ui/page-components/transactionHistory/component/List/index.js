@@ -1,39 +1,38 @@
 import { Pagination } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
+
+import getListConfig from '../../configurations/listconfig';
 
 import CardHeader from './CardHeader';
 import EmptyState from './EmptyState';
 import Item from './Item';
 import styles from './styles.module.css';
 
+const LOADER_ARR = [...Array(5).keys()];
+
 function List({
 	data,
-	config,
-	heading,
 	loading,
 	filters,
-	handleClick,
-	functions = {},
 	setGlobalFilters = () => {},
-	showPagination = true,
-	getTableHeaderCheckbox,
-	drillDown,
 	sort,
 	setSort,
 }) {
-	const { list, totalRecords = 0 } = data || {};
+	const { list = [], totalRecords = 0 } = data || {};
 	const { pageNo } = filters;
-	const { fields, tableView = false, singleList = false } = config ?? {};
-	const listNew = loading ? [1, 2, 3, 4, 5] : list;
-	const { length = 0 } = listNew || {};
+
+	const { t } = useTranslation(['transactionHistory']);
+
+	const fields = getListConfig({ t });
+
+	const listNew = loading ? LOADER_ARR : (list || []);
 
 	return (
 		<div>
-			{listNew?.length > 0 && (
+			{!isEmpty(listNew) && (
 				<CardHeader
-					getTableHeaderCheckbox={getTableHeaderCheckbox}
-					singleList={singleList}
 					fields={fields}
 					sort={sort}
 					setSort={setSort}
@@ -42,21 +41,16 @@ function List({
 			{(listNew || []).map((item, index) => (
 				<Item
 					key={item.id}
-					tableView={tableView}
-					singleList={singleList}
 					item={item}
 					fields={fields}
 					loading={loading}
-					handleClick={handleClick}
-					functions={functions}
-					length={length}
 					index={index}
 					sort={sort}
 				/>
 			))}
 
-			{showPagination && listNew?.length > 0 && (
-				<div className={`${styles.pagination_div} ${drillDown && 'drillDown'}`}>
+			{!isEmpty(listNew) && (
+				<div className={styles.pagination_div}>
 					<Pagination
 						type="table"
 						currentPage={pageNo}
@@ -68,7 +62,7 @@ function List({
 					/>
 				</div>
 			)}
-			{!loading && isEmpty(listNew) && <EmptyState heading={heading} />}
+			{!loading && isEmpty(listNew) && <EmptyState />}
 		</div>
 	);
 }

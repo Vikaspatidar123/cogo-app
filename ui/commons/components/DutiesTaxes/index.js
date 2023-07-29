@@ -64,7 +64,7 @@ function DutiesTaxes({ tradeEngineResponse }) {
 	const { t } = useTranslation(['dtResult']);
 
 	return (
-		<>
+		<div className={styles.container}>
 			<div className={styles.div}>
 				<div className={styles.styled_tag}>
 					<div className={styles.incoterm}>
@@ -95,7 +95,7 @@ function DutiesTaxes({ tradeEngineResponse }) {
 
 									<div className={styles.dashed_line} />
 
-									<div className={`${styles.Row} ${styles.totoal}`}>
+									<div className={`${styles.row} ${styles.total}`}>
 										<div>{t('dtResult:dt_total')}</div>
 										<div>
 											{getFormatedAmt({
@@ -134,7 +134,7 @@ function DutiesTaxes({ tradeEngineResponse }) {
 					<div>{getFormatedAmt({ amount: totalLandedCost, currency: resultCurrency })}</div>
 				</div>
 			</Modal.Body>
-		</>
+		</div>
 	);
 }
 export default DutiesTaxes;

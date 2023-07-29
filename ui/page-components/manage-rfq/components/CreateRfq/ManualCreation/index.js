@@ -36,6 +36,7 @@ function ManualCreation({ currentStep, setCurrentStep, rfqId, ...rest }) {
 	const [showForm, setShowForm] = useState('fcl_freight');
 	const [originDetails, setOriginDetails] = useState({});
 	const [destinationDetails, setDestinationDetails] = useState({});
+	const [hscodeDetails, setHscodeDetails] = useState({});
 	const [shippingLinesDetails, setShippingLinesDetails] = useState({});
 	const [draftFormData, setDraftFormData] = useState({ rfq_id: rfqId || '', serviceType: ['fcl_freight'] });
 	const [services, setServices] = useState({});
@@ -126,6 +127,8 @@ function ManualCreation({ currentStep, setCurrentStep, rfqId, ...rest }) {
 									setOriginDetails={setOriginDetails}
 									destinationDetails={destinationDetails}
 									setDestinationDetails={setDestinationDetails}
+									hscodeDetails={hscodeDetails}
+									setHscodeDetails={setHscodeDetails}
 									shippingLinesDetails={shippingLinesDetails}
 									setShippingLinesDetails={setShippingLinesDetails}
 									loading={searchLoading || createLoading}

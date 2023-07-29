@@ -35,7 +35,7 @@ function EmptyCard({ activeTab = '', type = '', input = '', shipmentId = '', ref
 			<div className={styles.info_container}>
 				<h3 className={styles.title}>{t('airOceanTracking:air_ocean_tracking_empty_card_text')}</h3>
 				<p>
-					{`${t('airOceanTracking:air_ocean_tracking_fetching_data_text')} ${EMPTY_STATE_INFO}
+					{`${t('airOceanTracking:air_ocean_tracking_fetching_data_text_1')} ${EMPTY_STATE_INFO}
 					 ${t('airOceanTracking:air_ocean_tracking_fetching_data_text_2')}`}
 				</p>
 			</div>

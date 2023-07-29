@@ -100,8 +100,23 @@ function FileUploader(props) {
 				const promises = values.map((value, index) => uploadFile(index)(value));
 
 				const allUrls = await Promise.all(promises);
-				setUrlStore(allUrls);
-				setFileName(values);
+				if (multiple) {
+					setUrlStore((prev) => {
+						if (prev === null) { return allUrls; }
+						return [...prev, ...allUrls];
+					});
+					setFileName((prev) => {
+						if (prev === null) return values;
+						let prevValue = [];
+
+						if (typeof prev !== 'object' || !Array.isArray(prev)) { prevValue = prev?.target?.value || []; }
+
+						return [...prevValue, ...values];
+					});
+				} else {
+					setUrlStore(allUrls);
+					setFileName(values);
+				}
 			}
 		} catch (error) {
 			Toast.error('File Upload failed.......');
@@ -110,12 +125,20 @@ function FileUploader(props) {
 		}
 	};
 
+	const handleDelete = (values) => {
+		setFileName(values);
+		const files = Array.isArray(values) ? values?.map((item) => item.name) : [];
+		const newUrls = urlStore.filter((item) => files.includes(item.fileName));
+		setUrlStore(newUrls);
+	};
+
 	return (
 		<>
 			<Upload
 				{...rest}
 				value={fileName}
 				multiple={multiple}
+				onClick={handleDelete}
 				onChange={handleChange}
 				loading={loading}
 				multipleUploadDesc="Upload files"
@@ -124,28 +147,31 @@ function FileUploader(props) {
 				accept={accept}
 			/>
 
-			{loading
-        && !isEmpty(progress)
-        && Object.keys(progress).map((key) => (
-	<div key={key} className={cl`${styles.progress_container} ${source ? styles.progress_container_footer : null}`}>
-		<IcMDocument
-			style={{ height: '30', width: '30', color: '#2C3E50' }}
-		/>
-		{showProgress && (
-			<div className={styles.file_upload_progress}>
-				<div className={styles.file_name}>
-					{`File uploading (${progress[key]}%)...`}
-				</div>
-				<div className={styles.progress_bar}>
-					<div
-						className={styles.progress}
-						style={{ width: `${progress[key]}%` }}
+			{loading && !isEmpty(progress) && Object.keys(progress).map((key) => (
+				<div
+					key={key}
+					className={cl`${styles.progress_container}
+				${source ? styles.progress_container_footer : null}`}
+				>
+					<IcMDocument
+						style={{ height: '30', width: '30', color: '#2C3E50' }}
 					/>
+					{showProgress && (
+						<div className={styles.file_upload_progress}>
+							<div className={styles.file_name}>
+								{`File uploading (${progress[key]}%)...`}
+							</div>
+							<div className={styles.progress_bar}>
+								<div
+									className={styles.progress}
+									style={{ width: `${progress[key]}%` }}
+								/>
+							</div>
+						</div>
+					)}
 				</div>
-			</div>
-		)}
-	</div>
-        ))}
+			))}
+
 		</>
 	);
 }

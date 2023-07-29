@@ -31,6 +31,11 @@ function TitleRender({ redirectDiscover }) {
 	);
 }
 
+const redirectDiscover = ({ org_id, branch_id }) => {
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/book`;
+	window.open(callBackUrl, '_blank');
+};
+
 function FreightModal({
 	showFreightModal,
 	setShowFreightModal,
@@ -86,10 +91,6 @@ function FreightModal({
 		}
 		setShowFreightModal(false);
 	};
-	const redirectDiscover = () => {
-		const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}/book`;
-		window.open(callBackUrl, '_blank');
-	};
 
 	useEffect(() => {
 		spotSearchHandler();
@@ -102,7 +103,7 @@ function FreightModal({
 			onClose={() => setShowFreightModal(false)}
 			size="md"
 		>
-			<Modal.Header title={<TitleRender redirectDiscover={redirectDiscover} />} />
+			<Modal.Header title={<TitleRender redirectDiscover={() => redirectDiscover({ org_id, branch_id })} />} />
 			<Modal.Body>
 				<Info transportMode={transportMode} portDetails={portDetails} />
 				{spotSearchLoading && (

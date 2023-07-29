@@ -1,6 +1,7 @@
 .container {
 	display: flex;
 	flex-direction: column;
+	padding: 0 16px;
 
 	& .ui-single-date-picker-input-container {
 		border-radius: 4px;
@@ -9,7 +10,7 @@
 
 .box {
 	width: 100%;
-	padding: 8px;
+	padding: 5px 18px;
 	margin-bottom: 5px;
 	background: #fff;
 	border-radius: 4px;
@@ -57,10 +58,34 @@
 
 .row {
 	display: flex;
+	align-items: center;
+
+	.port_col {
+		width: 50%;
+	}
+
+	.date_picker {
+		width: 25%;
+
+		:global {
+			.ui_datepicker_container {
+				>div {
+					width: 100%;
+				}
+			}
+		}
+	}
 }
 
 .text {
 	margin-bottom: 2px;
 	color: #333;
 	size: 12px;
+}
+
+.footer {
+	display: flex;
+	justify-content: flex-end;
+	padding: 16px;
+	box-shadow: 0 0 8px rgb(44 62 80 / 20%);
 }

@@ -11,6 +11,7 @@ const getPayloadToUpdateRoom = ({
 	user_email,
 	userDetails,
 	business_name,
+	agent_type,
 }) => {
 	if (user_id) {
 		return {
@@ -25,6 +26,7 @@ const getPayloadToUpdateRoom = ({
 			sender                 : getCookie('cogo_bot_token') || '',
 			user_details           : !isUnKnownUser ? userDetails : {},
 			session_type           : session_type === 'archived' ? 'bot' : session_type,
+			agent_type,
 			...userNameHash,
 		};
 	}
@@ -32,6 +34,7 @@ const getPayloadToUpdateRoom = ({
 		session_type           : session_type === 'archived' ? 'bot' : session_type,
 		updated_at             : Date.now(),
 		new_user_message_count : 0,
+		agent_type,
 	};
 };
 

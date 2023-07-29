@@ -50,6 +50,7 @@ function Item(props) {
 		rules,
 		error,
 		showOptional = true,
+		showLabel = true,
 		errorName = '',
 		id_prefix = null,
 		themeType = '',
@@ -68,8 +69,7 @@ function Item(props) {
 	const newProps = {};
 
 	if (id_prefix) {
-		// eslint-disable-next-line react/destructuring-assignment
-		newProps.id = `${id_prefix}_${props.name}`;
+		newProps.id = `${id_prefix}_${name}`;
 	}
 
 	const errorOriginal = getErrorMessage({
@@ -88,7 +88,7 @@ function Item(props) {
 
 	return (
 		<div className={styles.container}>
-			{(showLabelOnce && index === 0 && label) || (!showLabelOnce && label) ? (
+			{showLabel && ((showLabelOnce && index === 0 && label) || (!showLabelOnce && label)) ? (
 				<div className={styles.label}>
 					{label || lowerlabel}
 					<p className={styles.message}>{optional}</p>

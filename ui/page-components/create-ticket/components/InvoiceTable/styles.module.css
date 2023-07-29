@@ -1,0 +1,28 @@
+.container {
+	width: 100%;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 12px 0;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+	}
+}
+
+.label {
+	display: flex;
+	padding-left: 16px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #2f3941;
+
+	@media (max-width: 768px) {
+		padding: 0;
+	}
+}

@@ -96,15 +96,41 @@
 	}
 
 	.date {
-		margin: 3px;
-		font-size: 12px;
+		margin: 5px 3px 3px;
+		font-size: 13px;
 		font-weight: 700;
 		color: #ee3425;
 	}
 
 	.days {
 		position: absolute;
-		left: 2px;
+		left: 104px;
+		margin-bottom: 3px;
+		font-size: 12px;
+		font-weight: 700;
+		color: #ee3425;
+	}
+
+	.days_1 {
+		position: absolute;
+		left: 106px;
+		margin-bottom: 3px;
+		font-size: 12px;
+		font-weight: 700;
+		color: #ee3425;
+	}
+
+	.activate_later_days {
+		position: absolute;
+		left: 10px;
+		font-size: 12px;
+		font-weight: 700;
+		color: #ee3425;
+	}
+
+	.activate_later_days_2 {
+		position: absolute;
+		left: 7px;
 		font-size: 12px;
 		font-weight: 700;
 		color: #ee3425;
@@ -163,6 +189,11 @@
 		color: #fff;
 	}
 
+	.button {
+		color: #fff !important;
+		background-color: #db4634 !important;
+	}
+
 	.head_text {
 		color: #fff;
 	}
@@ -200,11 +231,6 @@
 		margin-left: 15%;
 		background-repeat: no-repeat;
 		background-size: cover;
-	}
-
-	.button {
-		color: #fff !important;
-		background-color: red !important;
 	}
 }
 
@@ -306,4 +332,8 @@
 	@media (max-width: 767px) {
 		width: 70%;
 	}
+}
+
+.calender_image {
+	margin-bottom: 3px;
 }

@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 import GLOBAL_CONSTANTS from '../constants/globals';
 
-import { request } from '@/packages/request';
+const axios = require('axios');
 
 const EMOJIS_URL = GLOBAL_CONSTANTS.fetch_emoji_list;
 
@@ -12,12 +12,8 @@ const useGetEmojiList = () => {
 
 	const emojiListFetch = useCallback(async () => {
 		try {
-			const resp = await request(
-				{
-					url: EMOJIS_URL,
-				},
-			);
-			setEmojiList(resp?.data);
+			const response = await axios.get(EMOJIS_URL);
+			setEmojiList(response?.data);
 		} catch (error) {
 			console.error(error);
 		}

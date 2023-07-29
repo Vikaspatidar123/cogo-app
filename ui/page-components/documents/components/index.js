@@ -1,31 +1,30 @@
-import { Table, Pagination } from '@cogoport/components';
 import { useState } from 'react';
 
-import columns from '../config';
 import useAddDocuments from '../hooks/useAddDocuments';
 import useGetDocumentsList from '../hooks/useGetDocumentsList';
 
-import Filters from './Filters';
+import AllFiles from './AllFiles';
 import Heading from './Heading';
-import styles from './styles.module.css';
+import ServiceUploadDocument from './ServiceUploadDocument';
 import Uploader from './Uploader';
 
 function Documents() {
 	const [filters, setFilters] = useState({});
 	const [show, setShow] = useState(false);
-	const [documentDetails, setDocumentDetails] = useState({});
 
-	const { page = 1 } = filters || {};
+	const [documentDetails, setDocumentDetails] = useState({});
+	const [serviceType, setServiceType] = useState('');
+	const [showServiceList, setShowServiceList] = useState('');
 
 	const { data = {}, loading = false, refetch = () => {} } = useGetDocumentsList({ filters });
-
-	const { total_count = 0, list = [] } = data || {};
 
 	const { addDocument, loading:addDocumentLoading } = useAddDocuments({
 		documentDetails,
 		refetch,
 		setDocumentDetails,
+		serviceType,
 	});
+
 	return (
 		<div>
 			<Heading
@@ -34,38 +33,39 @@ function Documents() {
 				addDocument={addDocument}
 				loading={addDocumentLoading}
 				setDocumentDetails={setDocumentDetails}
+				setServiceType={setServiceType}
+				serviceType={serviceType}
+				refetch={refetch}
+				setShowServiceList={setShowServiceList}
+				filters={filters}
 			/>
-			<Filters setFilters={setFilters} filters={filters} />
-			<Table
-				columns={columns || []}
-				data={list || []}
-				loading={loading}
-				loadingRowsCount={6}
-				className={styles.table}
-			/>
-			<div className={styles.pagination_wrapper}>
-				<Pagination
-					type="table"
-					currentPage={page}
-					totalItems={total_count}
-					pageSize={10}
-					onPageChange={(e) => {
-						setFilters((prev) => ({
-							...prev,
-							page: e,
-						}));
-					}}
-				/>
-			</div>
 
-			{show && (
+			{!showServiceList ? (
+				<AllFiles
+					filter={filters}
+					setFilters={setFilters}
+					data={data}
+					loading={loading}
+				/>
+			) : (
+				<ServiceUploadDocument
+					serviceType={serviceType}
+					data={data?.list}
+					loading={loading}
+					addDocument={addDocument}
+					addDocumentLoading={addDocumentLoading}
+					refetch={refetch}
+				/>
+			)}
+
+			{show ? (
 				<Uploader
 					documentDetails={documentDetails}
 					setDocumentDetails={setDocumentDetails}
 					show={show}
 					setShow={setShow}
 				/>
-			)}
+			) : null}
 		</div>
 	);
 }

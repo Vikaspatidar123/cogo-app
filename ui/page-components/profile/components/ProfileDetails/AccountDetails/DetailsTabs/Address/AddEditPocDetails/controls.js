@@ -1,31 +1,31 @@
-const getControls = () => [
+const getControls = ({ t }) => [
 	{
 		name        : 'name',
-		label       : 'Name',
+		label       : t('settings:address_add_control_label_1'),
 		type        : 'text',
 		style       : { width: '360px' },
-		placeholder : 'Enter name',
-		rules       : { required: true },
+		placeholder : t('settings:address_add_control_placeholder_1'),
+		rules       : { required: t('settings:settings_field_required_text') },
 	},
 	{
 		name        : 'email',
-		label       : 'Email',
+		label       : t('settings:address_add_control_label_2'),
 		type        : 'text',
 		style       : { width: '360px' },
-		placeholder : 'Enter email',
-		rules       : { required: true },
+		placeholder : t('settings:address_add_control_placeholder_2'),
+		rules       : { required: t('settings:settings_field_required_text') },
 
 	},
 	{
 		name        : 'phone_number',
-		label       : 'Mobile Number		',
+		label       : t('settings:address_add_control_label_3'),
 		type        : 'mobile_number',
 		inputType   : 'number',
 		select2     : 'new',
 		style       : { width: '230px' },
-		placeholder : 'Enter mobile number',
+		placeholder : t('settings:address_add_control_placeholder_3'),
 		rules       : {
-			required : true,
+			required : t('settings:settings_field_required_text'),
 			validate : (value) => (value?.country_code && value?.number
 				? undefined
 				: 'accountDetail'
@@ -34,12 +34,12 @@ const getControls = () => [
 	},
 	{
 		name        : 'alternate_phone_number',
-		label       : 'Alternate Mobile Number',
+		label       : t('settings:address_add_control_label_4'),
 		type        : 'mobile_number',
 		inputType   : 'number',
 		select2     : 'new',
 		style       : { width: '230px' },
-		placeholder : 'Enter alternate mobile number',
+		placeholder : t('settings:address_add_control_placeholder_4'),
 	},
 ];
 

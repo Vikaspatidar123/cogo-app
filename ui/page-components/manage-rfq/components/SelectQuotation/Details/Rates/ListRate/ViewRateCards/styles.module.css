@@ -43,3 +43,13 @@
 .icon_container {
 	margin-left: 4px;
 }
+
+.is_selected {
+	&::after {
+		width: 10px;
+		height: 10px;
+		content: "";
+		background-color: #000;
+		border-radius: 50%;
+	}
+}

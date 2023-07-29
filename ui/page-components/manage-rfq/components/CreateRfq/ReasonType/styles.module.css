@@ -13,6 +13,7 @@
 }
 
 .content {
+	position: relative;
 	width: 100%;
 
 	:global {
@@ -59,4 +60,11 @@
 	margin-bottom: 8px;
 	font-size: 16px;
 	font-weight: 500;
+}
+
+.date_container {
+	position: absolute;
+	bottom: 13px;
+	left: 560px;
+	width: 300px;
 }

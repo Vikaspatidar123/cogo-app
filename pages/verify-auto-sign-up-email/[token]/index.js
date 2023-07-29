@@ -1,3 +1,5 @@
+import { getByKey } from '@cogoport/utils';
+import { setCookie } from 'cookies-next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import getRedirectionUrlForAutoLoginSignup from '@/ui/helpers/getRedirectionUrlForAutoLoginSignup';
@@ -12,7 +14,6 @@ export async function getServerSideProps(ctx) {
 		lead_organization_id,
 		lead_action_id,
 	} = query;
-
 	try {
 		const response = await getVerifyAutoSignUpEmail({
 			email_token,
@@ -21,15 +22,30 @@ export async function getServerSideProps(ctx) {
 			lead_action_id,
 		});
 
-		getRedirectionUrlForAutoLoginSignup({ response, lead_action_id, ctx, actionType: 'autoSignUp' });
+		const {
+			token,
+		} = getByKey(response, 'data') || {};
+
+		const url = getRedirectionUrlForAutoLoginSignup({ response, lead_action_id, actionType: 'autoSignUp' });
+
+		if (token) {
+			setCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME, token, ctx);
+
+			return {
+				props    : {},
+				redirect : {
+					destination : url,
+					permanent   : false,
+				},
+			};
+		}
 	} catch (e) {
 		console.error(e.toString());
 	}
 
-	return 	{
+	return {
 		props: {
 			...(await serverSideTranslations(locale, ['common', 'verifyAutoLogin'])),
-
 		},
 	};
 }

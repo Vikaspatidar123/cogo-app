@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 
 import flattenErrorToString from '../helpers/getApiErrorString';
 
@@ -12,19 +13,24 @@ const useGetOperatorsById = ({ setShippingLinesDetails }) => {
 
 	const getOperators = async (ids, index, type, mode) => {
 		try {
-			const res = await trigger({
-				params: {
-					filters    : { id: ids },
-					page_limit : 100,
-				},
-			});
+			let list = [];
+			if (!isEmpty(ids)) {
+				const res = await trigger({
+					params: {
+						filters    : { id: ids },
+						page_limit : 100,
+					},
+				});
+				list = res?.data?.list;
+			}
+
 			setShippingLinesDetails((prev) => ({
 				...prev,
 				[mode]: {
 					...prev?.[mode],
 					[index]: {
 						...(prev?.[mode]?.[index] || {}),
-						[type]: res.data.list,
+						[type]: list,
 					},
 				},
 			}));

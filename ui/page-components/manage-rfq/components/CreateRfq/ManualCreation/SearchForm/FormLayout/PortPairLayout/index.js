@@ -93,6 +93,7 @@ function PortPairLayout(props) {
 							<Button
 								themeType="secondary"
 								disabled={loading}
+								className={styles.cancel_btn}
 								onClick={() => {
 									setShowForm('');
 									if (
@@ -128,6 +129,7 @@ function PortPairLayout(props) {
 					<div className={styles.btn_group}>
 						<Button
 							themeType="secondary"
+							className={styles.cancel_btn}
 							disabled={loading}
 							onClick={() => {
 								if (editForm === editFormData.id) {

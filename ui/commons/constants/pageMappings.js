@@ -12,3 +12,8 @@ export const AUTO_SIGNUP_PAGE_MAPPINGS = {
 	search_results     : 'book-deep-link',
 	app_dashboard      : 'dashboard',
 };
+
+export const PAGE_MAPPINGS = {
+	autoSignUp : AUTO_SIGNUP_PAGE_MAPPINGS,
+	autoLogin  : AUTO_LOGIN_PAGE_MAPPINGS,
+};

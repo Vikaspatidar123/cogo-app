@@ -46,8 +46,9 @@ function AdditionalServices(props) {
 		formState: { errors },
 		control,
 	} = formProps;
+	const watchVal = watch();
 
-	const formValues = useMemo(() => ({ ...mainValues, ...watch() }), [mainValues, watch]);
+	const formValues = useMemo(() => ({ ...mainValues, ...watchVal }), [mainValues, watchVal]);
 
 	const showElements = useMemo(
 		() => showElementsFunc({
@@ -147,8 +148,7 @@ function AdditionalServices(props) {
 	return (
 		<div className={styles.container}>
 			<Popover
-				placement="bottom"
-				render="left"
+				placement="left"
 				interactive
 				content={renderMainControls()}
 				visible={showServices}

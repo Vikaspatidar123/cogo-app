@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { DEFAULT_LAT_INDEX, DEFAULT_LNG_INDEX } from '../constant/mapConstant';
 import calAirRoute from '../utils/calAirRoute';
 
-import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 
 const getUniqueArrElements = (arr) => arr.reduce((accumulator, current) => {
@@ -17,28 +16,13 @@ const getUniqueArrElements = (arr) => arr.reduce((accumulator, current) => {
 	return accumulator;
 }, []);
 
-const getLiveLocPayload = ({ trackingId }) => ({
-	container_subscription_id: trackingId,
-});
-
 const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
-	const { query } = useRouter();
-	const { trackingId } = query;
-
 	const [allRoute, setAllRoute] = useState([]);
 
 	const [{ loading }, trigger] = useRequest({
 		method : 'get',
 		url    : '/get_multiple_sea_routes',
 	}, { manual: true, autoCancel: false });
-
-	const [{ loading: liveLocLoading, data:liveLocData }] = useRequest({
-		method : 'get',
-		url    : '/get_vessel_live_location',
-		params : getLiveLocPayload({ trackingId }),
-	}, { manual: false });
-
-	console.log(liveLocData, 'liveLocData');
 
 	const getSeaRoute = useCallback(async ({ coordinates = [] }) => {
 		try {

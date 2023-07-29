@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import getMappingObject from '../../../../../constant/card';
 
+import Stepper from './Stepper';
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
@@ -26,7 +27,10 @@ const getIconUrl = ({ mapping, type, transportMode }) => {
 
 const INVALID_VESSEL_NAME = ['N/A'];
 
-function Card({ combineList = [], trackingType = 'ocean' }) {
+function Card({
+	combineList = [], trackingType = 'ocean', isCurrentMilestone = false,
+	milestoneSubIndex,
+}) {
 	const { location = '', station = '', transport_mode = 'VESSEL' } = combineList?.[0] || {};
 	const combineListLength = combineList.length;
 
@@ -39,7 +43,7 @@ function Card({ combineList = [], trackingType = 'ocean' }) {
 	const url = getIconUrl({ mapping: MILESTONE_ICON, type: trackingType, transportMode: transport_mode });
 
 	return (
-		<div className={styles.container}>
+		<div className={cl`${styles.container} ${isCurrentMilestone ? styles.current_milestone_box : ''}`}>
 			<div className={cl`${styles.flex_box} ${styles.heading_container}`}>
 				<h3 className={styles.title}>{location || station}</h3>
 				<Image
@@ -49,30 +53,58 @@ function Card({ combineList = [], trackingType = 'ocean' }) {
 					alt="logo"
 				/>
 			</div>
+
 			<div className={styles.info}>
 				{combineList.map((item, index) => {
 					const { id = '', milestone, event_date = '', actual_date = '', vessel_name = '' } = item || {};
+					const isLastRow = index === combineListLength - 1;
 					const date = formatDate({
 						date       : event_date || actual_date,
 						dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-						formatDate : 'date',
+						formatType : 'date',
 					});
+
+					const day = formatDate({
+						date       : event_date || actual_date,
+						dateFormat : GLOBAL_CONSTANTS.formats.date.eee,
+						formatType : 'date',
+					});
+
 					const time = formatDate({
 						date       : event_date || actual_date,
 						timeFormat : GLOBAL_CONSTANTS.formats.time['hh:mm aaa'],
-						formatDate : 'time',
+						formatType : 'time',
 					});
+
 					return (
 						<div
 							key={id}
 							className={cl`${styles.flex_box} ${styles.row}
-						${index !== combineListLength - 1 ? styles.not_last_row : ''}`}
+							${!isLastRow ? styles.not_last_row : ''}
+							${isCurrentMilestone ? styles.current_milestone : ''}`}
 						>
-							<div className={styles.date}>{date}</div>
+							<div className={styles.date}>
+								<div>{date}</div>
+								<div className={styles.day}>
+									(
+									{day}
+									)
+								</div>
+							</div>
+
+							{isCurrentMilestone ? (
+								<Stepper
+									index={index}
+									isLastRow={isLastRow}
+									milestoneSubIndex={milestoneSubIndex}
+								/>
+							) : null}
+
 							<div className={styles.milestone}>
 								<span>
 									{milestone}
 								</span>
+
 								{vessel_name && !INVALID_VESSEL_NAME.includes(vessel_name) ? (
 									<Tooltip
 										content={vessel_name}
@@ -82,6 +114,7 @@ function Card({ combineList = [], trackingType = 'ocean' }) {
 									</Tooltip>
 								) : null}
 							</div>
+
 							<div className={styles.time}>{time}</div>
 						</div>
 					);

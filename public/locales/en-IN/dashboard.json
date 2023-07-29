@@ -175,6 +175,7 @@
 	"schedule_title_text_4":"Plan an upcoming cargo using comprehensive air schedules.",
 	"shipment_create_title_text":"Create New Shipment",
 	"ocean_shipment_text":"Ocean",
-	"air_shipment_text":"Air"
+	"air_shipment_text":"Air",
+	"verified_text":"Your verified KYC ensures a seamless shipping experience for your valued packages."
 
 }

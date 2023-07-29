@@ -11,7 +11,9 @@ const TWO_INDEX = 2;
 
 function ToolTipComponent({ point, data, currency }) {
 	const { t } = useTranslation(['frt']);
+
 	const date = format(point?.data?.x, 'yyyy-MM-dd');
+
 	const newData = (data || []).map((item) => ({
 		[item.id]: item.data.filter((y) => y?.x === date)?.[GLOBAL_CONSTANTS.zeroth_index]?.y.toFixed(TWO_INDEX),
 	}));

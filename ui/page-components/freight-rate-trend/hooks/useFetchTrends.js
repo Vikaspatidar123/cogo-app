@@ -25,7 +25,6 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 				},
 			});
 		} catch (err) {
-			console.log(err, 'errrr');
 			Toast.error('Unable to fetch trend. Please try again.');
 		}
 	};
@@ -47,13 +46,13 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 
 			let { data } = res;
 			data = (data?.list || []).map((item) => ({
-				label : item.display_name,
-				value : item.id,
+				label : item?.display_name,
+				value : item?.id,
 			}));
 
 			callback(data);
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 	useEffect(() => {

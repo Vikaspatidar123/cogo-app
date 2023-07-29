@@ -1,0 +1,20 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+	background: rgb(255 255 255);
+	border: 1px solid #fff1d5;
+	border-radius: 10px;
+	box-shadow: 0 0 8px rgb(98 127 172 / 20%);
+}
+
+.container:hover {
+	box-shadow: 0 2px 25px rgb(0 0 0 / 10%);
+
+	:global {
+		.ui_button_container {
+			background: red;
+		}
+	}
+}

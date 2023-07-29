@@ -1,7 +1,7 @@
 .container {
 	position: absolute;
 	top: 7%;
-	left: 410px;
+	left: 390px;
 	z-index: -1;
 	width: 300px;
 	padding: 12px;
@@ -31,7 +31,7 @@
 	.mobile_view {
 		top: -66%;
 		right: 345px;
-		left: -30px;
+		left: -20px;
 		z-index: 10;
 		width: 275px;
 		border-radius: 0 20px 20px 0;

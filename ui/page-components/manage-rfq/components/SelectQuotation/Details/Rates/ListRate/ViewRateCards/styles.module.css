@@ -1,0 +1,45 @@
+.container {
+	margin-top: 20px;
+}
+
+.title {
+	margin-bottom: 8px;
+	margin-left: 24px;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.card_tile {
+	display: flex;
+}
+
+.radio_circle_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 50px;
+	height: auto;
+}
+
+.radio_circle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 16px;
+	height: 16px;
+	color: #000;
+	cursor: pointer;
+	border: 1px solid #000;
+	border-radius: 50%;
+}
+
+.button_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2px;
+}
+
+.icon_container {
+	margin-left: 4px;
+}

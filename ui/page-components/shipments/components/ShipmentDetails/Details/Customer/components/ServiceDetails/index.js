@@ -13,7 +13,7 @@ import styles from './styles.module.css';
 
 import CargoDetails from '@/ui/page-components/shipments/components/CargoDetails';
 
-function ServicDetails({ servicesForMap = false, loading = false }) {
+function ServicDetails({ servicesForMap = false }) {
 	const [open, setOpen] = useState(false);
 
 	const [{ shipment_data, primary_service, isGettingShipment, refetch }] = useContext(ShipmentDetailContext);
@@ -45,7 +45,6 @@ function ServicDetails({ servicesForMap = false, loading = false }) {
 					<PortDetails
 						shipment_data={shipment_data}
 						primary_service={primary_service}
-						loading={loading}
 					/>
 
 					<div className={styles.service_detail}>

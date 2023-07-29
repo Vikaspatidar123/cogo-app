@@ -114,9 +114,9 @@ const useCreateTracker = ({ operatorData }) => {
 
 	useEffect(() => {
 		if (!isEmpty(data)) {
-			const { shipping_line_id } = data || {};
+			const { shipping_line_id, id } = data || {};
 
-			setValue(operatorKey, shipping_line_id);
+			setValue(operatorKey, shipping_line_id || id);
 		}
 	}, [data, operatorKey, setValue]);
 

@@ -10,9 +10,7 @@ function TooltipContent({
 }) {
 	return (
 		<Tooltip
-			theme="light-border"
 			interactive
-			animation="scale"
 			placement="top"
 			content={<div className={styles.tool_tip_name}>{portDisplayName}</div>}
 		>

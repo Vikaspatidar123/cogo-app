@@ -1,0 +1,13 @@
+.container {
+	display: flex;
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+
+		:global {
+			.ui_placeholder_skeleton_loader {
+				width: 300px !important;
+			}
+		}
+	}
+}

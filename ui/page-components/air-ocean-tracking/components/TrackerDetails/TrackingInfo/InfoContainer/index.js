@@ -39,8 +39,19 @@ function InfoContainer({
 
 	const { traderInfo, ...restInfo } = useMemo(() => {
 		const { commodity = '', hs_code = '', weight = '', piece = '' } = shipmentInfo || {};
-		const shipperDetails =	poc_details.filter((item) => item?.user_type === 'SHIPPER')[0] ?? {};
-		const consigneeDetails = poc_details.filter((item) => item?.user_type === 'CONSIGNEE')[0] ?? {};
+		const shipperArr = [];
+		const consigneeArr = [];
+
+		poc_details.forEach((detail) => {
+			if (detail?.user_type === 'SHIPPER') {
+				shipperArr.push(detail);
+			} else if (detail?.user_type === 'CONSIGNEE') {
+				consigneeArr.push(detail);
+			}
+		});
+
+		const shipperDetails =	shipperArr[0] ?? {};
+		const consigneeDetails = consigneeArr[0] ?? {};
 		const incoterm = shipmentInfo?.incoterm;
 
 		return {
@@ -85,7 +96,9 @@ function InfoContainer({
 							onChange={setCurrContainerDetails}
 							options={getOptions({ containerDetails })}
 						/>
-					) : <p className={styles.info_text}>{`${container_no || airwayBillNo}`}</p>}
+					) : (
+						<Pill className={styles.pill_text} color="#fff">{`${container_no || airwayBillNo}`}</Pill>
+					)}
 			</div>
 
 			<div className={styles.data_container}>

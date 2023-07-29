@@ -1,4 +1,4 @@
-import { cl, Tooltip } from '@cogoport/components';
+import { cl, Tooltip, Pill } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 import { useTranslation } from 'react-i18next';
 
@@ -26,6 +26,22 @@ const getIconUrl = ({ mapping, type, transportMode }) => {
 };
 
 const INVALID_VESSEL_NAME = ['N/A'];
+
+function MilestoneName({ milestone, vessel_name }) {
+	return 	(
+		<>
+			{milestone}
+			{vessel_name && !INVALID_VESSEL_NAME.includes(vessel_name) ? (
+				<Tooltip
+					content={vessel_name}
+					placement="right"
+				>
+					<IcMInfo className={styles.info_icon} />
+				</Tooltip>
+			) : null}
+		</>
+	);
+}
 
 function Card({
 	combineList = [], trackingType = 'ocean', isCurrentMilestone = false,
@@ -58,6 +74,8 @@ function Card({
 				{combineList.map((item, index) => {
 					const { id = '', milestone, event_date = '', actual_date = '', vessel_name = '' } = item || {};
 					const isLastRow = index === combineListLength - 1;
+					const currSubMilestone = isCurrentMilestone && milestoneSubIndex === index;
+
 					const date = formatDate({
 						date       : event_date || actual_date,
 						dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
@@ -100,19 +118,14 @@ function Card({
 								/>
 							) : null}
 
-							<div className={styles.milestone}>
-								<span>
-									{milestone}
-								</span>
-
-								{vessel_name && !INVALID_VESSEL_NAME.includes(vessel_name) ? (
-									<Tooltip
-										content={vessel_name}
-										placement="right"
-									>
-										<IcMInfo className={styles.info_icon} />
-									</Tooltip>
-								) : null}
+							<div className={cl`${styles.milestone} ${currSubMilestone ? styles.curr_info : ''}`}>
+								{currSubMilestone ? (
+									<Pill color="orange">
+										<MilestoneName milestone={milestone} vessel_name={vessel_name} />
+									</Pill>
+								) : (
+									<MilestoneName milestone={milestone} vessel_name={vessel_name} />
+								)}
 							</div>
 
 							<div className={styles.time}>{time}</div>

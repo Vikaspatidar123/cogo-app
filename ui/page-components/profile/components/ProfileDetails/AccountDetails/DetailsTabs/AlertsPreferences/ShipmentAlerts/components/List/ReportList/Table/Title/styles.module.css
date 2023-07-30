@@ -6,3 +6,7 @@
 	font-weight: 400;
 	color: var(--black-60, #828282);
 }
+
+.edit {
+	margin-right: 5px;
+}

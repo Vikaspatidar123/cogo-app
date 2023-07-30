@@ -1,11 +1,10 @@
 import ReportList from './ReportList';
 import styles from './styles.module.css';
 
-function List() {
+function List({ props }) {
 	return (
 		<div className={styles.container}>
-			<ReportList />
-
+			<ReportList props={props} />
 		</div>
 	);
 }

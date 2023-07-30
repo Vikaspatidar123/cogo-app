@@ -2,7 +2,8 @@ import { Button } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
-function Header() {
+function Header({ props }) {
+	const { setEdit, isEdit = false } = props;
 	return (
 		<div className={styles.container}>
 			<div className={styles.text_box}>
@@ -18,7 +19,7 @@ function Header() {
 					to modify it.
 				</div>
 			</div>
-			<Button>Edit</Button>
+			{!isEdit ? <Button type="button" onClick={() => { setEdit(true); }}>Edit</Button> : null}
 		</div>
 	);
 }

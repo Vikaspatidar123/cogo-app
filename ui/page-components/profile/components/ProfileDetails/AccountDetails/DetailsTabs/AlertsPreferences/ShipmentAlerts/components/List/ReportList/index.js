@@ -1,12 +1,14 @@
+import { useState } from 'react';
+
 import Head from './Head';
 import styles from './styles.module.css';
 import Table from './Table';
 
-function ReportList() {
+function ReportList({ props }) {
 	return (
 		<div className={styles.container}>
-			<Head />
-			<Table />
+			<Head props={props} />
+			<Table props={props} />
 		</div>
 	);
 }

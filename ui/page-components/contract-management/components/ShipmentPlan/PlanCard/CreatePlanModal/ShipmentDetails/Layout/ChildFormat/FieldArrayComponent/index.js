@@ -50,7 +50,7 @@ function FieldArrayComponent(
 	return (
 		<div style={{ display: 'flex', flexDirection: 'column' }}>
 			{fields.map((field, index) => (
-				<div style={{ display: 'flex' }}>
+				<div key={field.id} style={{ display: 'flex' }}>
 					<Child
 						{...rest}
 						key={field.id}

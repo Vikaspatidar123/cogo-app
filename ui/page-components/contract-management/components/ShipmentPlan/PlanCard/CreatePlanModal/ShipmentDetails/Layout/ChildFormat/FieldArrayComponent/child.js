@@ -53,7 +53,7 @@ function Child({
 
 					<div
 						className={styles.col}
-
+						key={`${name}.${index}.${controlItem.name}`}
 					>
 						{controlItem.label ? <div>{controlItem.label}</div> : null}
 

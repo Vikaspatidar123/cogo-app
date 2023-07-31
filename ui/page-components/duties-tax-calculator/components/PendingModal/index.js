@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { Image, useRouter } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
@@ -23,16 +23,20 @@ function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 		<Modal show={showPendingModal} showCloseIcon={false}>
 			{!stop && (
 				<div className={styles.container}>
-					<img
+					<Image
 						src={GLOBAL_CONSTANTS.image_url.loading_banner}
 						alt={t('dutiesTaxesCalculator:alt_loader')}
-						className={styles.loading_banner}
+						width={300}
+						height={200}
 					/>
+
 					<div className={styles.title}>{t('dutiesTaxesCalculator:pending_modal_checking')}</div>
-					<img
+
+					<Image
 						src={GLOBAL_CONSTANTS.image_url.loading}
 						alt={t('dutiesTaxesCalculator:alt_loader')}
-						className={styles.loading}
+						width={30}
+						height={30}
 					/>
 				</div>
 			)}

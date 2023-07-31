@@ -9,6 +9,8 @@ import { Image, useRouter } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
+const ZERO_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+
 const CHARGE_MAPPING = {
 	freightCharges      : 'Freight Charges',
 	consignmentValue    : 'Consignment Value',
@@ -98,7 +100,7 @@ function SuccessModal({ tradeEngineResp }) {
 							</div>
 							<div className={styles.line} />
 						</div>
-						{(landedCost?.[0]?.taxSet || []).map(
+						{(landedCost?.[ZERO_INDEX]?.taxSet || []).map(
 							({ groupName = '', taxSetResponse = [] }) => (
 								<div key={groupName} className={styles.charges}>
 									<div className={styles.heading_div}>{groupName}</div>

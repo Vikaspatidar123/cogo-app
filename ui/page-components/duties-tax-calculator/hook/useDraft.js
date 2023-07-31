@@ -15,7 +15,7 @@ const useDraft = () => {
 	const { profile = {} } = useSelector((s) => s);
 	const { organization = {} } = profile || {};
 
-	const [draftResp, setDraftResp] = useState();
+	const [draftResp, setDraftResp] = useState('');
 
 	const [{ loading:draftLoading }, triggerDraft] = useRequestBf({
 		url     : 'saas/trade-engine/duties/draft',

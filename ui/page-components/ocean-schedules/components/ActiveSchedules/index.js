@@ -140,7 +140,7 @@ function ActiveSchedules() {
 							<Loading />
 						</div>
 					)}
-					{!filterFetchLoading && !isEmpty(schedules?.list?.length)
+					{!filterFetchLoading && !isEmpty(schedules?.list)
 						? schedules?.list.map((item) => (
 							<ActiveScheduleCard
 								key={item.shipping_line_id}
@@ -151,7 +151,7 @@ function ActiveSchedules() {
 
 				</div>
 			</div>
-			{!isEmpty(schedules?.list?.length) && (
+			{!isEmpty(schedules?.list) && (
 				<div className={styles.pagination_container}>
 					<Pagination
 						type="number"

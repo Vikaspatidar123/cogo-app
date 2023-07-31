@@ -4,12 +4,20 @@
 	border-radius: 4px;
 }
 
-.panding {
+.rejected {
 	background: linear-gradient(180deg, #faefef 0%, #ffdad5 100%);
 }
 
 .verified {
 	background: linear-gradient(180deg, #8ade99 0%, #ddebc0 100%);
+}
+
+.pending_verification {
+	background: linear-gradient(#fef199, #fffce6);
+}
+
+.pending_from_user {
+	background: linear-gradient(#fbd1a6, #fef3e9);
 }
 
 .box {

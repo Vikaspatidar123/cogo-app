@@ -50,7 +50,8 @@ const getEventType = (type) => {
 
 function TableList({ list = [], loading = false }) {
 	const { t } = useTranslation(['subscriptions']);
-	if (loading && isEmpty(list)) {
+
+	if (!loading && isEmpty(list)) {
 		return <div className={styles.empty}>{t('subscriptions:no_data_text')}</div>;
 	}
 	return (

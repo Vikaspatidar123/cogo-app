@@ -7,13 +7,18 @@ import useCreateBillingAddress from '../../hooks/useCreateBillingAddress';
 import styles from './styles.module.css';
 
 import { InputController, useForm, UploadController } from '@/packages/forms';
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 function BillingAddress({ orgId, setInviteTeam }) {
 	const { t } = useTranslation(['common', 'getStarted']);
 	const geo = getGeoConstants();
 	const REGISTRATION_LABEL = geo.others.registration_number.label;
-	const ECO_ZONE_LABEL = geo.others.economic_zone.label;
+
+	const ECO_ZONE_LABEL = getLocaleSpecificLabels({
+		accessorType : 'economic_zone',
+		accessor     : 'label',
+	});
 
 	const {
 		handleSubmit, control, formState: { errors }, watch,

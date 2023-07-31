@@ -18,7 +18,6 @@ function ServiceDetails({
 	} = serviceData;
 
 	const state = cancellation_reason ? 'cancelled' : serviceData?.state;
-
 	return state ? (
 		<div className={cl`${styles.state} ${styles.container}`}>
 			<Header

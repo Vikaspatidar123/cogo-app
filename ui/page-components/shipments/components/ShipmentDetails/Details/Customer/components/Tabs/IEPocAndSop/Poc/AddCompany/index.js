@@ -118,7 +118,6 @@ function AddCompany({
 	const onSubmit = () => {
 		handleAddCompany();
 	};
-	console.log(newFields, 'newFields');
 
 	const renderAddCompany = () => {
 		const props = {

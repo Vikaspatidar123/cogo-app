@@ -174,6 +174,7 @@ function ShipmentCard({
 
 										<Button
 											size="md"
+											type="button"
 											themeType="secondary"
 											onClick={() => push('/shipments/[id]', `/shipments/${shipment_id}`)}
 										>

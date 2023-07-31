@@ -12,7 +12,6 @@ function Child({
 	index,
 	name,
 	remove,
-	showElements = {},
 	showDeleteButton = true,
 	noDeleteButtonTill = 1,
 	disabled = false,

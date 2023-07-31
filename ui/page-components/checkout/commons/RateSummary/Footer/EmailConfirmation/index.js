@@ -1,4 +1,5 @@
 import { Modal, Checkbox, Button } from '@cogoport/components';
+import { getCookie } from '@cogoport/utils';
 import React, { useState, useContext } from 'react';
 
 import CheckoutContext from '../../../../context';
@@ -8,8 +9,11 @@ import ConfirmationInfo from './ConfirmationInfo';
 import DefaultQuotationInfo from './DefaultQuotationInfo';
 import styles from './styles.module.css';
 
+const PUBLIC_PAGE_URL = 'https://www.cogoport.com';
+
 const onClickInsurance = () => {
-	window.open('https://www.cogoport.com/en-IN/terms-and-conditions/insurance', '_blank');
+	const locale = getCookie('locale');
+	window.open(`${PUBLIC_PAGE_URL}/${locale}/terms-and-conditions/insurance`, '_blank');
 };
 
 function EmailConfirmation({

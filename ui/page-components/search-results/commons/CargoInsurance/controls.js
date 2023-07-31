@@ -30,15 +30,15 @@ const controls = [
 		rules              : { required: true },
 		style              : { width: '270px' },
 		placeholder        : 'Select Commodity',
-		getModifiedOptions : (options) => (options || []).map((x) => ({
-			...x,
-			value : x.id,
+		getModifiedOptions : (options) => (options || []).map((item) => ({
+			...item,
+			value : item.id,
 			label : (
-				<div style={{ fontSize: '13px' }}>
-					<div>{x.commodity}</div>
+				<div key={item.id} style={{ fontSize: '13px' }}>
+					<div>{item.commodity}</div>
 					<div>
 						(
-						{x.subCommodity}
+						{item.subCommodity}
 						)
 					</div>
 				</div>

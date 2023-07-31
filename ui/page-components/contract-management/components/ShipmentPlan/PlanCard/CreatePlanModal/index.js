@@ -101,7 +101,6 @@ function CreatePlanModal({
 		getValues,
 		setValue,
 		control,
-		watch,
 	} = useForm({
 		defaultValues: [{
 			date_range: {
@@ -109,14 +108,6 @@ function CreatePlanModal({
 			sub_create_plan: [{}],
 		}],
 	});
-
-	// useEffect(() => {
-	// 	console.log('ff');
-	// 	setValue('create_plan', [{
-	// 		max_count  : '',
-	// 		date_range : { startDate: '', endDate: '' },
-	// 	}]);
-	// }, [setValue]);
 
 	const handleFormSubmit = async (data) => {
 		await createBulkContractUtilisation({

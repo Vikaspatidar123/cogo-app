@@ -90,22 +90,15 @@ const useCreateBulkContractUtilisation = ({
 			];
 		});
 
-		// if (freqCount === '' && frequency === '') {
-		// 	Toast.error('Please select shipment frequency');
-		// 	return;
-		// }
-		// if (schedule === '') {
-		// 	Toast.error('Please select frequency distribution');
-		// 	return;
-		// }
-		// if (!validity) {
-		// 	Toast.error('Please select date');
-		// 	return;
-		// }
-		// if (totalContainers > requestedContainerCount) {
-		// 	Toast.error('You cannot exceed total container limit');
-		// 	return;
-		// }
+		if (freqCount === '' && frequency === '') {
+			Toast.error('Please select shipment frequency');
+			return;
+		}
+
+		if (schedule === '') {
+			Toast.error('Please select frequency distribution');
+			return;
+		}
 
 		try {
 			const payload = {

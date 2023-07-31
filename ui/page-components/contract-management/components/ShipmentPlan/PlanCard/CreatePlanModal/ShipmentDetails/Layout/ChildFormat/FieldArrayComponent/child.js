@@ -23,8 +23,7 @@ function Child({
 }) {
 	return (
 		<div
-			style={{ display: 'flex', alignItems: 'center', width: '100%', marginBottom: '10px' }}
-			className={`form-fieldArray-content form-fieldArray-${name}-${index}`}
+			className={`form-fieldArray-content form-fieldArray-${name}-${index} ${styles.container}`}
 			key={field.id}
 		>
 			{controls.map((controlItem) => {

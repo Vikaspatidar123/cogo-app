@@ -26,8 +26,8 @@
 	padding: 0 8px;
 	margin: 13px 0;
 
-	@media (max-width: 768px) {
-		width: 100%;
+	@media screen and (max-width: 767px) {
+		width: 100% !important;
 	}
 }
 
@@ -63,4 +63,11 @@
 		width: 100%;
 		margin-bottom: 8px;
 	}
+}
+
+.input_freq {
+	position: relative;
+	bottom: 73px;
+	left: 400px;
+	width: 100%;
 }

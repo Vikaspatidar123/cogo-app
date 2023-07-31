@@ -24,34 +24,6 @@ export const ContractInfo = [
 	},
 ];
 
-export const RATE_COLOR_MAPPING = {
-	cheapest: {
-		colorType : '#55A762',
-		bgColor   : '#EFFFEF',
-		textType  : 'Cheapest',
-	},
-	max_detention: {
-		colorType : '#356EFD',
-		bgColor   : '#EEF0FF',
-		textType  : 'Most Free Days',
-	},
-	min_transit: {
-		colorType : '#C26D1A',
-		bgColor   : '#FEF1DF',
-		textType  : 'Fastest',
-	},
-	negotiated: {
-		colorType : '#42347C',
-		bgColor   : '#DED7FC',
-		textType  : 'Negotiated Rate',
-	},
-	new_rate: {
-		colorType : '#FFFFFF;',
-		bgColor   : '#F68B21;',
-		textType  : 'New Rate',
-	},
-};
-
 export const UNIT_MAPPING = {
 	per_container : '/CTR',
 	per_shipment  : '/SPMT',

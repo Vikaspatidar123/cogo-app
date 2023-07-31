@@ -1,0 +1,25 @@
+.container {
+	display: flex;
+	width: 100%;
+
+	@media (max-width: 767px) {
+		flex-direction: column;
+	}
+}
+
+.seation_1 {
+	width: 75%;
+	margin-right: 10px;
+
+	@media (max-width: 767px) {
+		width: 100%;
+	}
+}
+
+.seation_2 {
+	width: 25%;
+
+	@media (max-width: 767px) {
+		width: 100%;
+	}
+}

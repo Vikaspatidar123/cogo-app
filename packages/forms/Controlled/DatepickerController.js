@@ -17,6 +17,7 @@ function DatepickerController(props) {
 			render={({ field: { onChange, onBlur, value:newValue } }) => (
 				<Datepicker
 					{...rest}
+					minDate={minDate}
 					key={rest.id}
 					onChange={onChange}
 					value={newValue}

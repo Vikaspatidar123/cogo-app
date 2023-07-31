@@ -13,7 +13,6 @@ import getField from '@/packages/forms/Controlled';
 
 function Item({ formValue, ...rest }) {
 	const value = formValue;
-	// const { keywords } = usei18n();
 
 	const {
 		className = '',
@@ -26,8 +25,10 @@ function Item({ formValue, ...rest }) {
 		type,
 		...restProps
 	} = rest;
+
 	const props = { placeholder };
 	const Element = getField(type);
+
 	if (
 		(restProps.type === 'select' || restProps.type === 'creatable-select')
     && !restProps.style
@@ -49,7 +50,7 @@ function Item({ formValue, ...rest }) {
 
 	const errorClass = restProps.error ? 'error' : null;
 	return (
-		<div>
+		<>
 			{errorClass && (
 				<div
 					className={cl`${styles.search_form_item_error_msg_top}${styles.text}`}
@@ -65,7 +66,7 @@ function Item({ formValue, ...rest }) {
 				{restProps.type === 'container_type-commodity' ? (
 					<Element
 						width="100%"
-						{...restProps}
+						{...rest}
 						{...props}
 						className={className}
 						id={`search_form_${rest.name}`}
@@ -92,7 +93,7 @@ function Item({ formValue, ...rest }) {
 						{((!restProps?.collapse || !value) && (
 							<Element
 								width="100%"
-								{...restProps}
+								{...rest}
 								{...props}
 								size="sm"
 								className={className}
@@ -113,7 +114,7 @@ function Item({ formValue, ...rest }) {
 					</div>
 				)}
 			</div>
-		</div>
+		</>
 	);
 }
 

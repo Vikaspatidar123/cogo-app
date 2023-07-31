@@ -10,7 +10,7 @@ import {
 const useRecommendedSearches = () => {
 	const { list } = useSelector(
 		({ search }) => ({
-			list: search.past_searches || [],
+			list: search?.past_searches || [],
 		}),
 	);
 	const dispatch = useDispatch();

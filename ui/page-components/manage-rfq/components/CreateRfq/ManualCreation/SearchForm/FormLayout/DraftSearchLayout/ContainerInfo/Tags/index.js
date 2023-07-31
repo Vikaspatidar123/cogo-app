@@ -10,19 +10,29 @@ function Tags({
 	commodity = '',
 	serviceType,
 	incoTerm = '',
+	hscodeDetails = '',
 	commoditySubtype = '',
 	commodityType = '',
 	paymentType = '',
 }) {
+	const { hs_code, container_remarks, ...rest } = tags || {};
+
 	return (
 		<div className={styles.container}>
-			{Object.keys(tags).map((item) => (
-				<div className={styles.styled_tag}>
+			{Object.keys(rest).map((item) => (
+				<div key={item} className={styles.styled_tag}>
 					{tags[item]}
 					{' '}
 					{CONTAINER_STATUS[item]}
 				</div>
 			))}
+
+			{(hscodeDetails || []).map((item) => (
+				<Tooltip key={item?.name} theme="light" placement="top" content={item?.name}>
+					<div className={styles.styled_tag}>{item?.name}</div>
+				</Tooltip>
+			))}
+
 			{serviceType === 'air_freight' ? (
 				<Tooltip
 					content={(

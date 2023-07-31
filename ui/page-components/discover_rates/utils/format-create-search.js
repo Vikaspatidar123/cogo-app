@@ -10,6 +10,8 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import { getCountryCode } from '@/ui/commons/utils/getCountryDetails';
 import getFormattedValues from '@/ui/commons/utils/getFormattedValues';
 
+const HAULAGE_SERVICES = ['haulage_freight', 'barge_freight'];
+
 const FCL_CUSTOMS_SUPPORTED_COUNTRY = GLOBAL_CONSTANTS.service_supported_countries.fcl_customs.countries;
 
 const mergeContainerDetails = (containers) => {
@@ -635,7 +637,7 @@ const formatDataForSingleService = ({
 		];
 	}
 
-	if (mode === 'haulage_freight') {
+	if (HAULAGE_SERVICES.includes(mode)) {
 		let service_type = '';
 
 		if (
@@ -672,6 +674,11 @@ const formatDataForSingleService = ({
 			: export_freight_location;
 
 		const allAttributes = [];
+		const transport_mode = {
+			trailer_freight : 'trailer',
+			haulage_freight : 'rail',
+			barge_freight   : 'barge',
+		};
 
 		if (type) {
 			const origin_location_id = type === 'export'
@@ -701,11 +708,10 @@ const formatDataForSingleService = ({
 				containers_count : Number(container?.containers_count),
 				cargo_weight_per_container:
                     Number(container?.cargo_weight_per_container) || undefined,
-				trade_type   : type,
-				service_type : service ? service_type : undefined,
-				transport_mode:
-                    service_type === 'trailer_freight' ? 'trailer' : 'rail',
-				status: 'active',
+				trade_type     : type,
+				service_type   : service ? service_type : undefined,
+				transport_mode : values?.transport_mode || transport_mode[mode],
+				status         : 'active',
 			}));
 			allAttributes.push(...newVals);
 		}
@@ -727,7 +733,7 @@ const formatDataForSingleService = ({
 			cargo_weight_per_container:
                 Number(container?.cargo_weight_per_container) || undefined,
 			trade_type     : 'domestic',
-			transport_mode : values?.transport_mode || 'rail',
+			transport_mode : values?.transport_mode || transport_mode[mode],
 			status         : 'active',
 		}));
 		return mergeContainerDetails(newVals);
@@ -878,7 +884,7 @@ const formatCreateSearch = (
 	let newPayload = {};
 	if (!is_service || is_service === 'hybrid') {
 		newPayload = {
-			search_type                 : mode,
+			search_type                 : mode === 'barge_freight' ? 'haulage_freight' : mode,
 			source                      : source || 'platform',
 			source_id                   : source === 'upsell' ? source_id : undefined,
 			importer_exporter_id        : payload.importer_exporter_id,
@@ -900,11 +906,20 @@ const formatCreateSearch = (
 	}
 
 	if (!is_service && is_service !== 'hybrid') {
-		newPayload[`${mode}_services_attributes`] = formatDataForSingleService({
-			mode,
-			values: payload,
-			checked,
-		});
+		if (mode === 'barge_freight') {
+			newPayload.haulage_freight_services_attributes = formatDataForSingleService({
+				mode,
+				values: payload,
+				checked,
+			});
+		} else {
+			newPayload[`${mode}_services_attributes`] = formatDataForSingleService({
+				mode,
+				values: payload,
+				checked,
+				source,
+			});
+		}
 	}
 
 	Object.keys(services).forEach((service) => {

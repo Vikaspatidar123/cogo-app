@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import IMAGE_URLS from './imageUrl';
 
 const GLOBAL_CONSTANTS = {
@@ -10,12 +11,14 @@ const GLOBAL_CONSTANTS = {
 	hs_code_country_ids: {
 		IN: '5f1f94fa-25da-40de-968d-0254abd24ba6',
 	},
+
 	currency_code: {
 		INR : 'INR',
 		USD : 'USD',
 		EUR : 'EUR',
 		GBP : 'GBP',
 		AED : 'AED',
+		VND : 'VND',
 	},
 	currency_locale: {
 		INR : 'en-IN',
@@ -143,7 +146,8 @@ const GLOBAL_CONSTANTS = {
 		ajeet: 'ajeet@cogoport.com',
 	},
 
-	zeroth_index: 0,
+	zeroth_index : 0,
+	first_index  : 1,
 
 	service_supported_countries: {
 		ftl_freight: {

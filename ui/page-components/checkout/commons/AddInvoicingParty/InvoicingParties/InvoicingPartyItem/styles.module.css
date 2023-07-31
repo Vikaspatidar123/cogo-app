@@ -87,13 +87,6 @@
 	flex-direction: row;
 }
 
-.add_address {
-	font-size: 12px;
-	color: #034afd;
-	text-decoration: underline;
-	cursor: pointer;
-}
-
 .label {
 	display: flex;
 	align-items: center;

@@ -66,5 +66,7 @@
     "hs_code_classification_hs_code_control_label_2":"HS Code",
     "hs_code_classification_add_bookmark_toast_1":"Successfully Added In Favourites List",
     "hs_code_classification_remove_bookmark_toast_1":"Successfully Removed From Favourites List",
-    "alt_text_for_empty_image":"Empty"
+    "alt_text_for_empty_image":"Empty",
+    "basic_filter_opt_1":"HS Code",
+    "basic_filter_opt_2":"Product"
 }

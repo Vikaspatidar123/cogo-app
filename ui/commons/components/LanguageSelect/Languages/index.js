@@ -6,17 +6,8 @@ import React from 'react';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import LANGUAGE_MAPPING from '@/ui/commons/constants/languageMapping';
-
-const LANGUAGE_FILTER_CONFIG = {
-	IN      : (loc) => loc.key !== 'en-SG',
-	VN      : (loc) => loc.key !== 'en-SG',
-	SG      : (loc) => loc.key !== 'en-IN',
-	ID      : (loc) => loc.key !== 'en-SG',
-	TH      : (loc) => loc.key !== 'en-SG',
-	CN      : (loc) => loc.key !== 'en-SG',
-	default : (loc) => loc.key !== 'en-SG',
-};
 
 function Languages() {
 	const router = useRouter();
@@ -28,9 +19,15 @@ function Languages() {
 		countryCode = getCookie('location');
 	}
 
-	const filteredLocaleList = LANGUAGE_FILTER_CONFIG[countryCode] || LANGUAGE_FILTER_CONFIG.default;
+	let localesToHide = GLOBAL_CONSTANTS.default_hidden_locales;
 
-	const filteredList = Object.values(LANGUAGE_MAPPING).filter(filteredLocaleList);
+	if (countryCode in GLOBAL_CONSTANTS.country_specific_data) {
+		localesToHide =	GLOBAL_CONSTANTS.country_specific_data[countryCode]?.hidden_locales;
+	}
+
+	const filteredList = Object.values(LANGUAGE_MAPPING).filter(
+		(lang) => !(localesToHide || []).includes(lang.key),
+	);
 
 	return (
 		<div className={`${styles.main}`}>

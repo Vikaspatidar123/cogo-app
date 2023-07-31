@@ -227,6 +227,29 @@ const GLOBAL_CONSTANTS = {
 
 	},
 	PROFILE_NAVIGATIONS: ['saas_cogo_subscription', 'saas_finance'],
+
+	country_specific_data: {
+		IN: {
+			hidden_locales: ['en-SG'],
+		},
+		VN: {
+			hidden_locales: ['en-SG'],
+		},
+		SG: {
+			hidden_locales: ['en-IN'],
+		},
+		TH: {
+			hidden_locales: ['en-SG'],
+		},
+		ID: {
+			hidden_locales: ['en-SG'],
+		},
+		CN: {
+			hidden_locales: ['en-SG'],
+		},
+	},
+
+	default_hidden_locales: ['en-SG'],
 };
 
 export default GLOBAL_CONSTANTS;

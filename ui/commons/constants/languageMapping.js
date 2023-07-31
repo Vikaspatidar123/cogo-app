@@ -5,16 +5,16 @@ module.exports = {
 		language : 'English',
 
 	},
+	'en-SG': {
+		key      : 'en-SG',
+		label    : 'EN',
+		language : 'English',
+	},
 	'vi-VN': {
 		key      : 'vi-VN',
 		label    : 'VI',
 		language : 'Vietnamese',
 
-	},
-	'en-SG': {
-		key      : 'en-SG',
-		label    : 'EN',
-		language : 'English',
 	},
 	'th-TH': {
 		key      : 'th-TH',

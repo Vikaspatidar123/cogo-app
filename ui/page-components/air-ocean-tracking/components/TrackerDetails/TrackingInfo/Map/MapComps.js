@@ -1,10 +1,10 @@
 import { CogoMaps, L } from '@cogoport/maps';
 import { useState, useEffect } from 'react';
 
-import { CENTER, LAYER, MAP_ATTRIBUTE } from '../../../../constant/mapConstant';
-
 import Pointer from './Pointer';
 import Route from './Route';
+
+import { CENTER, LAYER, MAP_ATTRIBUTE } from '@/ui/commons/constants/mapConstant';
 
 const corner1 = L.latLng(-90, -250);
 const corner2 = L.latLng(90, 250);

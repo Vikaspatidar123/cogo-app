@@ -19,5 +19,13 @@ export const PATH_OPTION = {
 	land  : { color: '#136f29', weight: 2 },
 };
 
+export const COLOR_MAPING = {
+	ocean   : '#1867D2',
+	land    : '#136f29',
+	air     : '#f37166',
+	road    : '#136f29',
+	haulage : '#8B0000',
+};
+
 export const DEFAULT_LAT_INDEX = 0;
 export const DEFAULT_LNG_INDEX = 1;

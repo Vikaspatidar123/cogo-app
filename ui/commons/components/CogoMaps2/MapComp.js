@@ -5,16 +5,11 @@ import { useState, useEffect } from 'react';
 import Pointer from './Pointer';
 import Route from './Route';
 
+import { LAYER, CENTER, MAP_ATTRIBUTE } from '@/ui/commons/constants/mapConstant';
+
 const corner1 = L.latLng(-90, -350);
 const corner2 = L.latLng(90, 350);
 const bounds = L.latLngBounds(corner1, corner2);
-const center = { lat: '28.679079', lng: '77.069710' };
-
-const LAYER = [{
-	name        : 'Cogo Maps',
-	url         : `${process.env.NEXT_PUBLIC_MAPS_BASE_URL}/cogo-tiles/{z}/{x}/{y}.png`,
-	attribution : '',
-}];
 
 function MapComp({
 	height = '600px',
@@ -29,10 +24,7 @@ function MapComp({
 	useEffect(() => {
 		if (map) {
 			map.setMaxBounds(bounds);
-			map?.attributionControl?.setPrefix(
-				// eslint-disable-next-line max-len
-				'<a href="https://www.cogoport.com/en/terms-and-conditions/" target="_blank">&copy; Cogoport T&C</a> | <a href="https://www.cogoport.com/en/privacy-policy/" target="_blank">Privacy & data protection</a> | <a href="https://leafletjs.com/" target="_blank" >Leaflet</a>',
-			);
+			map?.attributionControl?.setPrefix(MAP_ATTRIBUTE);
 		}
 	}, [map]);
 
@@ -50,7 +42,7 @@ function MapComp({
 			style={{ height, width: '100%', ...style }}
 			baseLayer={LAYER}
 			zoom={zoom}
-			center={center}
+			center={CENTER}
 			setMap={setMap}
 			zoomControl={false}
 			maxBoundsViscosity={1}

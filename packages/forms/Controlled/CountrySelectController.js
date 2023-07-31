@@ -7,6 +7,7 @@ import { Controller } from 'react-hook-form';
 import countryCode from '@/.data-store/constants/countries.json';
 
 function CountrySelectController({ name, itemKey, value, control, ...rest }) {
+	
 	const formattedList = countryCode.map((code) => ({
 		id    : code.id,
 		value : code.id,

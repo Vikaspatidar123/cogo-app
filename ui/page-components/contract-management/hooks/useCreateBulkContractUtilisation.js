@@ -5,6 +5,8 @@ import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
+const SERVICE_ID_INDEX = 1;
+
 const mergeAndTransformData = (data) => data.create_plan.reduce((acc, curr) => {
 	const { date_range, sub_create_plan } = curr;
 
@@ -16,7 +18,7 @@ const mergeAndTransformData = (data) => data.create_plan.reduce((acc, curr) => {
 			const { id, vessel_select, max_count } = item;
 
 			return {
-				contract_service_id : vessel_select.split('_')[1],
+				contract_service_id : vessel_select.split('_')[SERVICE_ID_INDEX],
 				max_count,
 				validity_end        : new Date(endDate).toISOString(),
 				validity_start      : new Date(startDate).toISOString(),

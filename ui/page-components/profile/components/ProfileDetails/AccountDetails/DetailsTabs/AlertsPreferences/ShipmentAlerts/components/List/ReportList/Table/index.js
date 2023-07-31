@@ -20,20 +20,18 @@ function Table({ props }) {
 		scrollRef.current.scrollLeft += SCROLL_VALUE;
 	};
 
-	console.log(scrollRef, 'scrollRef');
-
 	return (
 		<div>
 			{services.map((item) => {
 				const info = service_wise_data?.[item];
-				const header = info?.header;
-				const values = info?.value;
+				const { header, value, options } = info || {};
+
 				return (
 					<div>
-						<Title serviceName={item} values={values} props={props} />
+						<Title serviceName={item} options={options} props={props} />
 						<Header
 							header={header}
-							values={values}
+							values={value}
 							scrollHandler={scrollHandler}
 							// ref={scrollRef}
 							ref={(r) => {
@@ -41,7 +39,7 @@ function Table({ props }) {
 							}}
 						/>
 						<Body
-							values={values}
+							values={value}
 							header={header}
 							ref={scrollRef}
 							// ref={(r) => {

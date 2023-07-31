@@ -3,7 +3,7 @@ import { upperCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
-function Title({ serviceName, props, scrollHandler }) {
+function Title({ serviceName, options, props }) {
 	const { isEdit } = props || {};
 	return (
 		<div className={styles.container}>
@@ -23,6 +23,7 @@ function Title({ serviceName, props, scrollHandler }) {
 						<Select
 							size="sm"
 							style={{ width: '250px' }}
+							options={options}
 						/>
 					</div>
 				)}

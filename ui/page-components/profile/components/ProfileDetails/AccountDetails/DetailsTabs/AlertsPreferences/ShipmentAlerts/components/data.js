@@ -12,16 +12,23 @@ const data = {
 				TRADE_TYPE      : 'TRADE_TYPE',
 			},
 			{ shipment_id: '123', invoicing_party: 'cogo' }],
+			options: [
+				{ label: 'Shipment Id', value: 'shipment_id' },
+				{ value: 'booking_party', label: 'Booking Party' },
+				{ value: 'invoicing_party', label: 'Invoicing Party' },
+			],
 		},
 
 		lcl: {
 			header : ['shipment_id', 'invoicing_party'],
 			value  : [{ shipment_id: '123', invoicing_party: 'ok' },
 				{ shipment_id: '12123', invoicing_party: 'cog22o' }],
+			options: ['Shipment Id', 'Booking Party', 'Invoicing Party'],
 		},
 		air: {
-			header : ['shipment_id', 'invoicing_party'],
-			value  : [],
+			header  : ['shipment_id', 'invoicing_party'],
+			value   : [],
+			options : ['Shipment Id', 'Booking Party', 'Invoicing Party'],
 		},
 	},
 };

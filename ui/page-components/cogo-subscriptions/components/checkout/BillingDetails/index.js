@@ -128,6 +128,7 @@ function BillingDetails({
 				<AddModal
 					addAddressModal={addAddressModal}
 					setAddAddressModal={setAddAddressModal}
+					refetch={addressApi}
 				/>
 			)}
 		</div>

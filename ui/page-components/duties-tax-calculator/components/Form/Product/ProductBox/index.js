@@ -1,25 +1,48 @@
 import { Tooltip, cl } from '@cogoport/components';
-
-import { ProductCube, ProductBoxIcon } from '../../../../configuration/icon-configuration';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const renderProductName = (name) => {
-	if (name.length < 45) return name;
+const MAX_NAME_LENGTH = 45;
+const MAX_NUMBER_LENGTH = 10;
+const ZERO_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+const SECOND_INDEX = 2;
+
+function RenderProductName({ name }) {
+	if (name.length < MAX_NAME_LENGTH) return name;
 
 	return (
 		<Tooltip content={name}>
 			<span>
-				{name.substring(0, 45)}
+				{name.substring(ZERO_INDEX, MAX_NAME_LENGTH)}
 				...
 			</span>
 		</Tooltip>
 	);
-};
+}
+
+function RenderNumber({ number = '' }) {
+	const stringifyNumber = number.toString();
+
+	if (stringifyNumber.length <= MAX_NUMBER_LENGTH) return number;
+
+	return (
+		<Tooltip content={number} interactive>
+			<div>
+				{stringifyNumber?.substring(ZERO_INDEX, MAX_NUMBER_LENGTH)}
+				...
+				{stringifyNumber?.substring(stringifyNumber.length - SECOND_INDEX, stringifyNumber.length)}
+			</div>
+		</Tooltip>
+	);
+}
 
 function ProductBox({ watch }) {
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
 	const {
 		hsCode = '',
 		consignmentValue = 0,
@@ -28,55 +51,50 @@ function ProductBox({ watch }) {
 		productName = '',
 	} = watch();
 
-	const renderName = (name) => {
-		if (name.length > 10) {
-			return (
-				<Tooltip content={name} theme="light-border" interactive>
-					<div>
-						{name.substring(0, 10)}
-						...
-						{name.substring(name.length - 2, name.length)}
-					</div>
-				</Tooltip>
-			);
-		}
-		return name;
-	};
+	const formattedConsignmentValue = formatAmount({
+		amount  : consignmentValue || 0,
+		currency,
+		options : {
+			notation : 'standard',
+			style    : 'currency',
+		},
+	});
 
 	return (
-		<div className={cl`${styles.mobile_view} ${styles.web_view} ${styles.container}`}>
+		<div className={cl`${styles.container} ${styles.mobile_view} ${styles.web_view}`}>
 			<div className={styles.row}>
 				<div className={styles.flex}>
 					<div className={styles.value}>{hsCode}</div>
-					<div className={styles.title}>{renderProductName(productName)}</div>
+					<div className={styles.title}><RenderProductName name={productName} /></div>
 				</div>
 				<div className={styles.icon}>
-					<img src={ProductCube} alt="" width="50px" height="50px" />
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.product_cube}
+						alt={t('dutiesTaxesCalculator:alt_product')}
+						width={50}
+						height={50}
+					/>
 				</div>
 			</div>
 
 			<div className={cl`${styles.box} ${styles.row}`}>
-				<img src={ProductBoxIcon} alt="" width="130px" height="130px" />
+				<Image
+					src={GLOBAL_CONSTANTS.image_url.product_box_icon}
+					alt={t('dutiesTaxesCalculator:alt_product')}
+					width={130}
+					height={130}
+				/>
 			</div>
 
 			<div className={cl`${styles.last_row} ${styles.row}`}>
 				<div>
-					<div className={styles.title}>Quantity</div>
-					<div className={styles.value}>{renderName(quantity)}</div>
+					<div className={styles.title}>{t('dutiesTaxesCalculator:product_box_quantity')}</div>
+					<div className={styles.value}><RenderNumber number={quantity} /></div>
 				</div>
 				<div className={styles.total}>
-					<div className={styles.title}>Consignment Value</div>
+					<div className={styles.title}>{t('dutiesTaxesCalculator:product_box_value')}</div>
 					<div className={styles.value}>
-						{renderName(
-							formatAmount({
-								amount  : consignmentValue || 0,
-								currency,
-								options : {
-									notation : 'standard',
-									style    : 'currency',
-								},
-							}),
-						)}
+						<RenderNumber number={formattedConsignmentValue} />
 					</div>
 				</div>
 			</div>

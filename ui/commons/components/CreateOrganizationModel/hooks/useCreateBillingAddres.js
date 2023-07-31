@@ -5,7 +5,7 @@ import useGetAddresses from './useGetAddresses';
 
 import { useRequest } from '@/packages/request';
 
-const useCreateBillingAddres = ({ checked, addressType, refetch:fetetchAddres }) => {
+const useCreateBillingAddres = ({ checked, addressType, refetch:fetetchAddres = () => {} }) => {
 	const { refetch = () => {} } = useGetAddresses();
 	const [response, setResp] = useState();
 

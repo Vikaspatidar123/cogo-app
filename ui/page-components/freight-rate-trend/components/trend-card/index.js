@@ -1,36 +1,43 @@
-import { Placeholder } from '@cogoport/components';
 import { IcMCrossInCircle, IcMArrowNext } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import DeleteModal from '../../common/DeleteModal';
 import useDeleteTrendSubscription from '../../hooks/useDeleteTrends';
+import Stepper from '../Stepper';
 
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-function TrendCard({ trend = {}, fetchLocations = () => {} }) {
+function TrendCard({ trend = {}, fetchLocations = () => { } }) {
+	const { origin_port = {}, destination_port = {} } = trend || {};
+
 	const { push } = useRouter();
 
-	const { loading, deleteTrend } = useDeleteTrendSubscription({ fetchLocations });
+	const { t } = useTranslation(['frt']);
+
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
-	const [trendId, setTrendId] = useState();
+	const [trendId, setTrendId] = useState('');
 
 	const routeList = {
-		origin      : trend?.origin_port?.name || 'Origin',
-		destination : trend?.destination_port?.name || 'Destination',
+		origin      : origin_port?.name?.split(' - ')[GLOBAL_CONSTANTS.zeroth_index] || 'Origin',
+		destination : destination_port?.name?.split(' - ')[GLOBAL_CONSTANTS.zeroth_index] || 'Destination',
 	};
+
+	const { loading, deleteTrend } = useDeleteTrendSubscription({ fetchLocations });
+
 	return (
 		<>
 			<div className={styles.card}>
 				<div className={styles.flex}>
 					<div className={styles.flex_content}>
-						<div className={styles.text}>
-							{routeList.origin.split(' - ')[0]}
-						</div>
-						<div className={styles.text}>
-							{routeList.destination.split(' - ')[0]}
-						</div>
+						{Object.keys(routeList).map((route) => (
+							<div className={styles.text} key={route}>
+								{routeList?.[route]}
+							</div>
+						))}
 						<div
 							className={styles.cross_div}
 							role="presentation"
@@ -42,17 +49,8 @@ function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 							<IcMCrossInCircle />
 						</div>
 					</div>
-					<div className={styles.dot_circle}>
-						<div className={styles.circle1} />
-						<div className={styles.line} />
-						<div className={styles.circle2} />
-					</div>
-					<div className={styles.port_code}>
-						{trend?.origin_port?.port_code || 'Origin'}
-						<div>
-							{trend?.destination_port?.port_code || 'Destination' }
-						</div>
-					</div>
+
+					<Stepper originPort={origin_port} destinationPort={destination_port} />
 					<div
 						role="presentation"
 						className={styles.footer}
@@ -62,7 +60,7 @@ function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 						)}
 					>
 						<div className={styles.text} size="12px" color="#4f4f4f">
-							View details
+							{t('frt:search_card_view_detail')}
 						</div>
 						<IcMArrowNext style={{ height: 14, width: 14, marginLeft: 8 }} />
 					</div>
@@ -83,56 +81,29 @@ function TrendCard({ trend = {}, fetchLocations = () => {} }) {
 	);
 }
 
-function TrendCardSkeleton() {
-	return (
-		[...Array(3).keys()].map(() => (
-			<div className={styles.holder}>
-				<div className={styles.card}>
-
-					<div style={{ padding: 16 }}>
-						<Placeholder count={5} />
-					</div>
-					<div className={styles.footer}>
-						<Placeholder count={5} />
-					</div>
-					<div className={styles.footer}>
-						<Placeholder count={1} style={{ width: '300px' }} />
-					</div>
-				</div>
-
-			</div>
-		))
-
-	);
-}
-
 function EmptyTrendCard() {
+	const { t } = useTranslation(['frt']);
 	return (
 		<div className={styles.container}>
 			<div>
-				<div className={styles.title} title>Welcome to Freight Rate Trends</div>
-				<h4>What is it?</h4>
-				<p>
-					Freight Rate Trends feature helps you visualise the historical trends of basic
-					freight.
-				</p>
-				<h4>What is it important?</h4>
-				<p>
-					Freight Rate Trends gives you the historical trends of basic freight for your
-					requested port pair. You can also add in your rates to see what could be the
-					savings if you would have booked the containers on Cogoport.
-				</p>
-				<h4>How do you search for Freight Rate Trends?</h4>
+				<div className={styles.title}>{t('frt:empty_state_main_title')}</div>
+				<h4>{t('frt:empty_state_label_1')}</h4>
+				<p>{t('frt:empty_state_value_1')}</p>
+
+				<h4>{t('frt:empty_state_label_2')}</h4>
+				<p>{t('frt:empty_state_value_2')}</p>
+
+				<h4>{t('frt:empty_state_label_3')}</h4>
 				<ul>
-					<li>Enter the Port of Origin and Port of Destination</li>
-					<li>Click on Search New Freight Trend</li>
+					<li>{t('frt:empty_state_value_3')}</li>
+					<li>{t('frt:empty_state_value_4')}</li>
 				</ul>
-				<p>You are done, and the historical data will be with you in seconds</p>
+				<p>{t('frt:empty_state_value_5')}</p>
 			</div>
 		</div>
 	);
 }
 
-export { EmptyTrendCard, TrendCardSkeleton };
+export { EmptyTrendCard };
 
 export default TrendCard;

@@ -26,7 +26,6 @@ const getPayload = ({
 		subscription_customer_id : saas_subscription_customer_id,
 		[addressKey]             : checked?.[GLOBAL_CONSTANTS.zeroth_index],
 		organization_branch_id   : branch?.id,
-		payment_mode             : 'CARDS',
 		start_date               : datePickerValue?.toString(),
 		is_promo_applied         : !isEmpty(couponCode),
 		organization_id          : organization?.id,

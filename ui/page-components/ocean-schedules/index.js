@@ -72,7 +72,7 @@ function OceanSchedules() {
 			<div className={styles.sub_heading_container}>{t('oceanSchedule:my_schedules_text')}</div>
 			<div className={styles.schedules_container}>
 				{loading && <Loading home />}
-				{!loading && !isEmpty(list?.length)
+				{!loading && !isEmpty(list)
 					? ((list || []).map((item) => (
 						<ScheduleCard
 							key={item.id}
@@ -86,7 +86,7 @@ function OceanSchedules() {
 					)}
 			</div>
 
-			{!isEmpty(list?.length) && (
+			{!isEmpty(list) && (
 				<div className={styles.pagination_container}>
 					<Pagination
 						type="number"

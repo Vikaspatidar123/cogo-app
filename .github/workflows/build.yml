@@ -5,25 +5,27 @@ on:
     types: [created]
 
 jobs:
-  if: github.event.issue.pull_request && (contains(github.event.comment.body, '/build') || contains(github.event.comment.body, '/checks'))
+  build: 
+    name: Test Build
+    if: github.event.issue.pull_request && (contains(github.event.comment.body, '/build') || contains(github.event.comment.body, '/checks'))
+    runs-on: ubuntu-latest
 
-  init:
-    name: Init
-    if: ${{ github.triggering_actor != 'dependabot[bot]' }}
-    uses: ./.github/workflows/reusable-run-setup.yml
-    secrets: inherit
+    steps:
+      name: Init
+      if: ${{ github.triggering_actor != 'dependabot[bot]' }}
+      uses: ./.github/workflows/reusable-run-setup.yml
+      secrets: inherit
 
-  build:
-    name: Test
-    needs: init
-    uses: ./.github/workflows/comment-test-build.yml
-    secrets: inherit
+      name: Build
+      needs: init
+      uses: ./.github/workflows/comment-test-build.yml
+      secrets: inherit
     
 
   needs:
     - init # required to wait when the main job is done
     - build # required to wait when the main job is done
-
+  
   runs-on: ubuntu-latest
 
   if: ${{ always() }} # required to stop the runner even if the error happened in the previous jobs

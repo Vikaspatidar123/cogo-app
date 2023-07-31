@@ -3,7 +3,7 @@ import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import { checkFileList } from '../../constants/checkFileList';
+import checkFileList from '../../constants/checkFileList';
 
 import InnerForm from './InnerForm';
 import styles from './styles.module.css';
@@ -25,7 +25,7 @@ function ServiceUploadDocument({
 
 	const [activeCollapse, setActiveCollapse] = useState('');
 
-	const options = checkFileList(t)?.map((value, index) => ({
+	const options = checkFileList(t, serviceType)?.map((value, index) => ({
 		key   : index.toString(),
 		title : <Title
 			doc_data={value}

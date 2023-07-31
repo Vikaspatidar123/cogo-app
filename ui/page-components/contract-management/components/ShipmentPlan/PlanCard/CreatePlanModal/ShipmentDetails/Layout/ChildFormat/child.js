@@ -49,6 +49,8 @@ function Child({
 						const Element = getField(controlItem.type);
 						if (!Element) return null;
 
+						const isReadonly = controlItem.name === 'date_range' && schedule !== 'randomly';
+
 						return (
 							<>
 								{label ? <div className={styles.label}>{label}</div> : null}
@@ -59,6 +61,7 @@ function Child({
 									key={`${name}.${index}.${controlItem.name}`}
 									id={`${name}.${index}.${controlItem.name}`}
 									name={`${name}.${index}.${controlItem.name}`}
+									disable={isReadonly}
 								/>
 							</>
 						);

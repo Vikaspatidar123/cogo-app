@@ -185,7 +185,7 @@ function ProductsList({
 							</div>
 							<div className={styles.border_bottom} />
 							<div>
-								{!isEmpty(checkLength) ? (
+								{checkLength > 0 ? (
 									<AllProducts
 										setShowProduct={setShowProduct}
 										countryInfo={countryInfo}

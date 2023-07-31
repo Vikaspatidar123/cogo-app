@@ -8,16 +8,23 @@ import ConfirmationInfo from './ConfirmationInfo';
 import DefaultQuotationInfo from './DefaultQuotationInfo';
 import styles from './styles.module.css';
 
+const onClickInsurance = () => {
+	window.open('https://www.cogoport.com/en-IN/terms-and-conditions/insurance', '_blank');
+};
+
 function EmailConfirmation({
 	info = {},
 	isApp = true,
 	handleSendEmail = () => {},
 	confirmation,
 	setConfirmation,
+	rate = { },
 }) {
 	const [isChecked, setIsChecked] = useState(false);
-	const [{ primaryService, services, rate, detail }] = useContext(CheckoutContext);
+	const [isInsurance, setIsInsurance] = useState(false);
+	const [{ primaryService, services, detail }] = useContext(CheckoutContext);
 	const { detail: appDetail, services: appServices, primaryServiceData } = info;
+	const insurance = Object.values(appServices || {}).find((x) => ['cargo_insurance'].includes(x.service_type));
 
 	const handleSubmit = () => {
 		setConfirmation(false);
@@ -41,9 +48,10 @@ function EmailConfirmation({
 			trade_type       : appDetail?.trade_type,
 			detail           : appDetail,
 			confirmation:
-				'By placing this booking, you are agreeing to the above Terms and Conditions',
+				'By accepting this, you are agreeing to the above Terms and Conditions',
 		};
 	}
+	const check = insurance ? isInsurance && isChecked : isChecked;
 
 	return (
 		<Modal
@@ -59,12 +67,39 @@ function EmailConfirmation({
 			</div>
 
 			<div className={styles.check_box_container}>
-				<Checkbox checked={isChecked} onChange={setIsChecked} />
+				<Checkbox
+					checked={isChecked}
+					onChange={(e) => {
+						setIsChecked(e?.target?.checked);
+					}}
+				/>
 				<div className={styles.checkbox}>{confirmInfo.confirmation}</div>
 			</div>
 
+			{insurance ? (
+				<div className={styles.check_box_container}>
+					<Checkbox
+						checked={isInsurance}
+						onChange={(e) => {
+							setIsInsurance(e?.target?.checked);
+						}}
+					/>
+					<div className={styles.checkbox}>
+						By accepting this,
+						you are agreeing to the
+						<span
+							role="presentation"
+							onClick={() => onClickInsurance()}
+							className={styles.insurance}
+						>
+							Insurance Terms and Conditions
+						</span>
+					</div>
+				</div>
+			) : null}
+
 			<div className={styles.button_container}>
-				<Button type="button" onClick={handleSubmit} disabled={!isChecked}>
+				<Button type="button" onClick={handleSubmit} disabled={!check}>
 					Confirm
 				</Button>
 			</div>

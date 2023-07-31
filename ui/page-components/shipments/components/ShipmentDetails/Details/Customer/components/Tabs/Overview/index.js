@@ -33,7 +33,6 @@ function Overview({
 		destination         : [],
 		mainService         : [],
 	};
-
 	possibleFullRoute?.map((routeService) => renderItem(routeService, serviceObj));
 
 	const { cancelUpsellOriginFor, cancelUpsellDestinationFor } = upsellTransportation(serviceObj, primary_service);

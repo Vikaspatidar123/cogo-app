@@ -1,6 +1,9 @@
+import { useState } from 'react';
+
 import { useRequestBf } from '@/packages/request';
 
 const useGetCargoInsuranceRate = (props) => {
+	const [error, setError] = useState(null);
 	const [{ loading, data: premiumData }, trigger] = useRequestBf(
 		{
 			url     : '/saas/insurance/rate',
@@ -17,15 +20,19 @@ const useGetCargoInsuranceRate = (props) => {
 				params: { ...values },
 			});
 			props.setRateData(res?.data);
+			setError(null);
 		} catch (err) {
-			console.log(err);
+			props.setRateData({});
+			if (err?.response?.data?.errorCode === 'ERR_5005') {
+				setError(err.response.data.message);
+			}
 		}
 	};
-
 	return {
 		getCargoInsruanceRate,
 		premiumData,
 		loading,
+		error,
 	};
 };
 

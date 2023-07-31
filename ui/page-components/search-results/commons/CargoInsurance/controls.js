@@ -22,14 +22,28 @@ function ConsignmentValueInfo() {
 }
 const controls = [
 	{
-		label       : 'Commodity',
-		name        : 'cargo_insurance_commodity',
-		type        : 'async_select',
-		asyncKey    : 'insurance_commodities',
-		initialCall : true,
-		rules       : { required: true },
-		style       : { width: '270px' },
-		placeholder : 'Select Commodity',
+		label              : 'Commodity',
+		name               : 'cargo_insurance_commodity',
+		type               : 'async_select',
+		asyncKey           : 'commodities_list_insurance',
+		initialCall        : true,
+		rules              : { required: true },
+		style              : { width: '270px' },
+		placeholder        : 'Select Commodity',
+		getModifiedOptions : (options) => (options || []).map((x) => ({
+			...x,
+			value : x.id,
+			label : (
+				<div style={{ fontSize: '13px' }}>
+					<div>{x.commodity}</div>
+					<div>
+						(
+						{x.subCommodity}
+						)
+					</div>
+				</div>
+			),
+		})),
 	},
 	{
 		name        : 'cargo_insurance_commodity_description',
@@ -54,7 +68,7 @@ const controls = [
 	{
 		name  : 'cargo_value',
 		label : (
-			<div style={{ display: 'flex' }}>
+			<div style={{ display: 'flex', alignItems: 'center' }}>
 				<div>Consignment Value </div>
 				<ConsignmentValueInfo />
 			</div>

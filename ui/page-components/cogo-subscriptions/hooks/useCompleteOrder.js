@@ -1,12 +1,39 @@
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import { loadScript } from '../utils/loadScript';
 import redirectUrl from '../utils/redirectUrl';
 
 import { useRequest } from '@/packages/request';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const CHARGEBEE_JS_URL = 'https://js.chargebee.com/v2/chargebee.js';
+
+const getPayload = ({
+	checkout_id,
+	saas_subscription_customer_id,
+	datePickerValue,
+	checked,
+	profile,
+	addressKey,
+	callback_url,
+	couponCode,
+}) => {
+	const { branch = {}, organization = {}, id = '' } = profile || {};
+	return {
+		checkout_id,
+		subscription_customer_id : saas_subscription_customer_id,
+		[addressKey]             : checked?.[GLOBAL_CONSTANTS.zeroth_index],
+		organization_branch_id   : branch?.id,
+		start_date               : datePickerValue?.toString(),
+		is_promo_applied         : !isEmpty(couponCode),
+		organization_id          : organization?.id,
+		performed_by_id          : id,
+		platform                 : 'app',
+		callback_url,
+	};
+};
 
 const useCompleteOrder = ({
 	checked,
@@ -38,23 +65,19 @@ const useCompleteOrder = ({
 		: 'organization_address_id';
 
 	const completeOrder = async ({ couponCode = {}, id }) => {
-		const length = Object.keys(couponCode)?.length;
-
+		const payload = getPayload({
+			checkout_id: checkout_id || id,
+			saas_subscription_customer_id,
+			checked,
+			profile,
+			datePickerValue,
+			addressKey,
+			callback_url,
+			couponCode,
+		});
 		try {
 			const completeOrderResponse = await trigger({
-				params: {
-					checkout_id              : checkout_id || id,
-					subscription_customer_id : saas_subscription_customer_id,
-					[addressKey]             : checked?.[0],
-					organization_branch_id   : profile?.branch?.id,
-					payment_mode             : 'CARDS',
-					start_date               : datePickerValue.toString(),
-					is_promo_applied         : length > 0,
-					organization_id          : profile?.organization?.id,
-					performed_by_id          : profile?.id,
-					platform                 : 'app',
-					callback_url,
-				},
+				params: payload,
 			});
 
 			if (completeOrderResponse?.data) {
@@ -78,7 +101,7 @@ const useCompleteOrder = ({
 						}
 						break;
 					case 'stripe':
-						setStripeModal(true);
+						window.open(completeOrderResponse?.data?.link, '_self');
 						break;
 					case 'checkout':
 						await loadScript('https://cdn.checkout.com/js/framesv2.min.js');

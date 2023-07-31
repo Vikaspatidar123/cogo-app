@@ -4,11 +4,13 @@ import styles from './styles.module.css';
 
 const TEXT_MAPPING = {
 	blocked_country:
-		'We are sorry , We do not offer insurance for this port pair yet.',
-	non_indian_search:
-		'We are sorry , We offer insurance only for shipments that operates from/to India only',
-	not_valid_search:
-		'We are sorry, we offer insurance only for shipments that operates from INDIA or to INDIA',
+	'We are sorry , We do not offer insurance for this port pair yet.',
+	CARGO_INSURANCE_NOT_AVIALABLE_IN_YOUR_COUNTRY:
+	'We are sorry , We do not offer insurance for this country',
+	OWN_COUNTRY_LOCATION_NOT_SELECTED_IN_ORIGIN_AND_DESTINATION:
+	'We are sorry, We do not offer insurance for these location pairs',
+	OWN_COUNTRY_LOCATION_NOT_SELECTED_IN_ORIGIN_OR_DESTINATION:
+	'We are sorry, We do not offer insurance for these port pairs',
 };
 
 function EmptyState({ reason }) {

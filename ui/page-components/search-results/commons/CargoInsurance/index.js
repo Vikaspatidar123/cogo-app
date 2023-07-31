@@ -45,7 +45,6 @@ const isCargoInsuranceApplicable = ({
 	};
 
 	let is_applicable = false;
-
 	if (importer_exporter_country_code in GLOBAL_CONSTANTS.cargo_insurance) {
 		is_applicable = !isEmpty(
 			GLOBAL_CONSTANTS.cargo_insurance[importer_exporter_country_code],
@@ -147,7 +146,7 @@ function CargoInsurance({
 			optionselected?.cargoDescription,
 		);
 	}, [cargoInsuranceCommodity]);
-	const { getCargoInsruanceRate, loading = '' } = useGetCargoInsuranceRate({
+	const { getCargoInsruanceRate, loading = '', error } = useGetCargoInsuranceRate({
 		checkout_id,
 		setRateData,
 	});
@@ -240,7 +239,6 @@ function CargoInsurance({
 
 	return (
 		<div className={styles.container}>
-			<Modal.Header title="Add Cargo Insurance" />
 			<Modal.Body>
 				<div className={styles.header_container}>
 					{finalControls.map((item) => {
@@ -261,23 +259,12 @@ function CargoInsurance({
 				</div>
 				{loading && <Loading />}
 
-				{!isEmpty(rateData) && !loading ? (
-					<PremiumRate rateData={rateData} />
+				{!loading ? (
+					<PremiumRate rateData={rateData} error={error} />
 				) : null}
 			</Modal.Body>
 			<Modal.Footer>
 				<div className={styles.btn_wrap}>
-					<div className={styles.cancel_btn_wrap}>
-						<Button
-							type="button"
-							size="md"
-							themeType="tertiary"
-							disabled={loading || cargoLoading}
-							onClick={() => setAddCargoInsurance(false)}
-						>
-							Cancel
-						</Button>
-					</div>
 
 					<Button
 						type="button"

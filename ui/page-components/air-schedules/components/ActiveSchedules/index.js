@@ -18,6 +18,7 @@ import Navigation from './Navigation';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
 
 const PAGE_LIMIT = 6;
 
@@ -91,6 +92,7 @@ function ActiveSchedules() {
 					{scheduleDetails?.destination_airport?.name || 'Destination'}
 				</div>
 			</div>
+			<CustomerSatisfaction position="flex-end" details={{ id }} serviceName="air_schedules" />
 			<div className={styles.map_container}>
 				<Map
 					mapPoints={mapPoints}

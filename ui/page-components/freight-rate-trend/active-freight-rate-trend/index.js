@@ -11,6 +11,7 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 import { useSelector } from '@/packages/store';
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
 import countriesHash from '@/ui/commons/utils/getCountryDetails';
 
 function ActiveFreightRateTrend() {
@@ -102,6 +103,7 @@ function ActiveFreightRateTrend() {
 
 	return (
 		<>
+
 			<div className={styles.flex1}>
 				<Popover placement="top" trigger="mouseenter" render="Go Back">
 					<IcMArrowBack
@@ -122,6 +124,7 @@ function ActiveFreightRateTrend() {
 					<p className="origin">{destination_port?.name || 'Destination'}</p>
 				</div>
 			</div>
+			<CustomerSatisfaction serviceName="freight_rate_trends" position="flex-end" details={{ id }} />
 			{!isMobile && (
 				<FilterForm
 					id={id}

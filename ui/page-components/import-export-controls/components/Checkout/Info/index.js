@@ -52,7 +52,7 @@ function Info(props) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.map_container}>
-				<MapContainer formInfo={localStorageData} height="300px" />
+				<MapContainer formInfo={localStorageData} height="300px" mapZoom={3} />
 			</div>
 			<div className={styles.data_container}>
 				<div className={styles.row}>

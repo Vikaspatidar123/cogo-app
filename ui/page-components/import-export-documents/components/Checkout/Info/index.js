@@ -47,10 +47,8 @@ function Info({ prefillData, localStorageData }) {
 			<div className={styles.map_container}>
 				<MapContainer
 					formInfo={localStorageData}
-					mapZoom={3.7}
-					// transportMode={transportMode}
-					// exportCountry={exportCountry}
-					// importCountry={importCountry}
+					mapZoom={4}
+
 				/>
 			</div>
 			<div className={styles.data_container}>

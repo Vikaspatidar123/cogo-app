@@ -1,11 +1,11 @@
 import { useTranslation } from 'next-i18next';
 
-import MapContainer from '../../../common/MapContainer';
 import { getLabelMapping } from '../../../constant/lableMapping';
 
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
+import MapContainer from '@/ui/commons/components/CogoMaps2';
 
 const getMapping = ({ t }) => {
 	const COUNTRY_ARR = [t('importExportControls:checkout_country_arr_1'),

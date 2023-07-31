@@ -1,19 +1,14 @@
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import MapContainer from '../../../common/MapContainer';
-
 import InfoContainer from './InfoContainer';
 import styles from './styles.module.css';
+
+import MapContainer from '@/ui/commons/components/CogoMaps2';
 
 function Details({ isUserSubscribed, isQuotaLeft }) {
 	const { t } = useTranslation(['importExportDoc']);
 	const [transportDetails, setTransportDetails] = useState({});
-	const {
-		transportMode = '',
-		exportCountry = {},
-		importCountry = {},
-	} = transportDetails || {};
 
 	return (
 		<div className={styles.container}>
@@ -28,11 +23,7 @@ function Details({ isUserSubscribed, isQuotaLeft }) {
 					/>
 				</div>
 				<div className={styles.map}>
-					<MapContainer
-						transportMode={transportMode}
-						exportCountry={exportCountry}
-						importCountry={importCountry}
-					/>
+					<MapContainer formInfo={transportDetails} mapZoom={2.7} height="400px" />
 				</div>
 			</div>
 		</div>

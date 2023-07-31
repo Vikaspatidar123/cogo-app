@@ -7,6 +7,7 @@ const getInfo = (info) => ({
 	display_name : info?.display_name,
 	type         : info?.type,
 	is_icd       : info?.is_icd,
+	region_id    : info?.region_id || '',
 });
 
 const getPayload = ({ originInfo = {}, destinationInfo = {} }) => {
@@ -22,16 +23,18 @@ const useGetMapRoute = () => {
 		url    : '/get_multimodal_shortest_path',
 	}, { manual: true });
 
-	const getAirOceanRoute = ({ originInfo, destinationInfo }) => {
+	const getAirOceanRoute = async ({ originInfo, destinationInfo }) => {
 		const payload = getPayload({ originInfo, destinationInfo });
 		try {
-			trigger({
+			const resp = await trigger({
 				params: {
 					points: payload,
 				},
 			});
+			return resp.data;
 		} catch (err) {
-			console.err(err, 'err');
+			console.error(err, 'err');
+			return null;
 		}
 	};
 

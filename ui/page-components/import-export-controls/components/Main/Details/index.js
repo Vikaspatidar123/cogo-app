@@ -1,10 +1,10 @@
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import MapContainer from '../../../common/MapContainer';
-
 import InfoContainer from './InfoContainer';
 import styles from './styles.module.css';
+
+import MapContainer from '@/ui/commons/components/CogoMaps2';
 
 function Details() {
 	const { t } = useTranslation(['importExportControls']);

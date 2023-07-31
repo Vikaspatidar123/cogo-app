@@ -87,7 +87,8 @@ const useGetListTracker = () => {
 		if (query !== null) {
 			setGlobalFilter((prev) => ({
 				...prev,
-				q: query,
+				q    : query,
+				page : 1,
 			}));
 		}
 	}, [query]);

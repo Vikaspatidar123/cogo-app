@@ -70,6 +70,9 @@ request.interceptors.request.use((oldConfig) => {
 	if (serviceName === 'location') {
 		newConfig.baseURL = 'https://api.cogoport.com';
 	}
+	if (apiPath === 'get_multimodal_shortest_path') {
+		newConfig.baseURL = 'http://10.10.11.244:8000';
+	}
 
 	return {
 		...newConfig,

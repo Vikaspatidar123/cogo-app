@@ -2,12 +2,12 @@ lockfileVersion: 5.4
 
 specifiers:
   '@cogoport/charts': ^1.0.1
-  '@cogoport/components': ^1.0.432
+  '@cogoport/components': ^1.0.437
   '@cogoport/eslint-config': ^1.1.0
-  '@cogoport/icons-react': ^1.0.82
+  '@cogoport/icons-react': ^1.0.90
   '@cogoport/maps': ^1.0.3
   '@cogoport/stylelint-config': ^1.0.3
-  '@cogoport/utils': ^1.2.6
+  '@cogoport/utils': ^1.2.10
   '@sentry/nextjs': ^7.30.0
   '@sentry/tracing': ^7.30.0
   '@stripe/react-stripe-js': ^1.6.0
@@ -51,9 +51,9 @@ specifiers:
 
 dependencies:
   '@cogoport/charts': 1.0.3_biqbaboplfbrettd7655fr4n2y
-  '@cogoport/components': 1.0.435_sg6axkq4h5rig4uwgtw3jtgw2u
-  '@cogoport/icons-react': 1.0.88_biqbaboplfbrettd7655fr4n2y
-  '@cogoport/maps': 1.0.3_snudzbydr2kdn4adohszdcotem
+  '@cogoport/components': 1.0.437_nq2dsfvf3xiy6kraqrhauunjoq
+  '@cogoport/icons-react': 1.0.90_biqbaboplfbrettd7655fr4n2y
+  '@cogoport/maps': 1.0.3_jbkdfmwn4pruupygfcv3deyn7u
   '@cogoport/utils': 1.2.10
   '@stripe/react-stripe-js': 1.16.5_l52agfnny5gsgnugli43vfmq5m
   '@stripe/stripe-js': 1.54.1
@@ -1431,13 +1431,13 @@ packages:
       - react-dom
     dev: false
 
-  /@cogoport/components/1.0.435_sg6axkq4h5rig4uwgtw3jtgw2u:
-    resolution: {integrity: sha512-CzHxhVSbY+f9r6YuP+ufxdp/0N8QI4p5e+O3tC7qLr6e1RAiEDORByPbbm+thXpRCQXdef0C7nNzPuidEbanXA==}
+  /@cogoport/components/1.0.437_nq2dsfvf3xiy6kraqrhauunjoq:
+    resolution: {integrity: sha512-0qxiPbtbdkcVtBzZXP0ekSGbGBjoJx5wFUKvE7ufT/7a4ksyxFUVPeDnbtmSFF7lT8Uv0gI35e2Cqf2UKAOnOg==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react-dom: ^18.2.0
     dependencies:
-      '@cogoport/icons-react': 1.0.88_biqbaboplfbrettd7655fr4n2y
+      '@cogoport/icons-react': 1.0.90_biqbaboplfbrettd7655fr4n2y
       '@tippyjs/react': 4.2.6_biqbaboplfbrettd7655fr4n2y
       '@types/quill': 2.0.10
       '@types/react-rte': 0.16.5
@@ -1491,29 +1491,29 @@ packages:
       - supports-color
     dev: true
 
-  /@cogoport/icons-react/1.0.88_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-+VTJGnuEdEKFq6Gh7zYcrDuWLPXJ8NTJGJSeU2BYPtvXWbd1TPP+uS1M9i6EPMaBXclSHhZFctaB7tTSOHJ8zA==}
+  /@cogoport/icons-react/1.0.90_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-Mbz4G6XgYH/G91TtjS0OaPAfdisPseMuW0LBfcANWCJV3TsGdIkU2IM80WsEUvzwanP6CCqrf++Vbd4cqxS5Fg==}
     peerDependencies:
       react: 18.2.0
       react-dom: 18.2.0
     dependencies:
-      '@cogoport/icons': 1.0.88
+      '@cogoport/icons': 1.0.90
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@cogoport/icons/1.0.88:
-    resolution: {integrity: sha512-usAObsmNm1EPqQa5EAU5UICNmUs2qsU81azkAugUv6u+p3cnKUvLJCyUPATw8IvgYfZ2mMCCbg+8ZImPep9J7A==}
+  /@cogoport/icons/1.0.90:
+    resolution: {integrity: sha512-YqzWKAjq5NAOgIcVSkMhPz+wKk90euViwbQ/4qNk4lAbm3wbvwn01BrGOamivE7M1OLeR4Rii7Gb1YDU57L7Jw==}
     dev: false
 
-  /@cogoport/maps/1.0.3_snudzbydr2kdn4adohszdcotem:
+  /@cogoport/maps/1.0.3_jbkdfmwn4pruupygfcv3deyn7u:
     resolution: {integrity: sha512-nWNhGesbEQNqBGy1KO9O85eU04zcVaIVvuHXcq7CKa+pij74yU3BKB4PTBvoSrbLHAgIctxe8KOQVzBVgTLl/w==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@cogoport/icons-react': 1.0.88_biqbaboplfbrettd7655fr4n2y
+      '@cogoport/icons-react': 1.0.90_biqbaboplfbrettd7655fr4n2y
       leaflet: 1.9.4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0

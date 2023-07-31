@@ -1,0 +1,31 @@
+.rating_container {
+	display: flex;
+	width: 100%;
+}
+
+.rating {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 40px;
+	padding: 8px;
+	margin: 4px;
+	cursor: pointer;
+	border: 1px solid #f8f2e7;
+	border-radius: 8px;
+}
+
+.selected_rating {
+	background-color: #fcdc00;
+}
+
+.text {
+	font-weight: 700;
+}
+
+.line {
+	height: 4px;
+	margin-top: 20px;
+	background-color: #abcd62;
+}

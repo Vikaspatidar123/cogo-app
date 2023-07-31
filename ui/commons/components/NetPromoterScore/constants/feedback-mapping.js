@@ -1,0 +1,58 @@
+export const FEEDBACK_MAPPING = {
+	1: ['Poor service quality',
+		'Late or missed deliveries',
+		'Rude or unhelpful customer support',
+		'Damaged or lost items'],
+	2: [
+		'Significant room for improvement',
+		'Frequent errors in order processing',
+		'Difficulty in tracking shipments',
+		'Unmet expectations',
+	],
+	3: ['Mediocre experience',
+		'Inconsistent service',
+		'Average delivery times',
+		'Needs improvement in several areas'],
+	4: [
+		'Slightly below expectations',
+		'Some aspects of service were good',
+		'Room for enhancement in certain areas',
+		'Neutral experience',
+	],
+	5: [
+		'Neutral opinion',
+		'Neither satisfied nor dissatisfied',
+		'Adequate service quality',
+		'Nothing particularly impressive or disappointing',
+	],
+	6: [
+		'Slightly above average service',
+		'Some positive experiences',
+		'A few areas need improvement',
+		'Generally satisfied but not wowed',
+	],
+	7: [
+		'Above-average experience',
+		'Generally satisfied with the service',
+		'Some standout positive aspects',
+		'A couple of minor issues',
+	],
+	8: [
+		'Very satisfied overall',
+		'Reliable service quality',
+		'Few improvements needed',
+		'Would recommend with minor reservations',
+	],
+	9: [
+		'Extremely satisfied with the service',
+		'Excellent customer support',
+		'Consistently exceeds expectations',
+		'Highly likely to recommend',
+	],
+	10: [
+		'Outstanding service',
+		'Delighted with the experience',
+		'Would recommend without hesitation',
+		'Perfect, no room for improvement',
+	],
+};

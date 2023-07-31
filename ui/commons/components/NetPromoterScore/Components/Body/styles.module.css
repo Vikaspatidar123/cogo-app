@@ -1,0 +1,13 @@
+.dissatisfied_text {
+	color: #bf291e;
+}
+
+.satisfied_text {
+	color: #849e4c;
+}
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	margin: 8px 2px;
+}

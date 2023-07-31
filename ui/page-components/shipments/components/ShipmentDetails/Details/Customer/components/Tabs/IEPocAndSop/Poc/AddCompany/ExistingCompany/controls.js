@@ -1,7 +1,7 @@
 import { poc_options } from '../options';
 
-import patterns from '@/ui/commons/configurations/patterns';
 import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const PARTIES = ['collection_party', 'paying_party'];
 
@@ -94,7 +94,7 @@ const existing_company_controls = (roleCheck, compType) => {
 			placeholder : 'Enter Email Address',
 			rules       : {
 				pattern: {
-					value   : patterns.EMAIL,
+					value   : GLOBAL_CONSTANTS.patterns.EMAIL,
 					message : 'Enter valid email',
 				},
 			},

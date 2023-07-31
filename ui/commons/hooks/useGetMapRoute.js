@@ -19,14 +19,16 @@ const getPayload = ({ originInfo = {}, destinationInfo = {} }) => {
 const useGetMapRoute = () => {
 	const [{ loading, data }, trigger] = useRequest({
 		method : 'get',
-		url    : 'get_multimodal_shortest_path',
+		url    : '/get_multimodal_shortest_path',
 	}, { manual: true });
 
 	const getAirOceanRoute = ({ originInfo, destinationInfo }) => {
 		const payload = getPayload({ originInfo, destinationInfo });
 		try {
 			trigger({
-				params: payload,
+				params: {
+					points: payload,
+				},
 			});
 		} catch (err) {
 			console.err(err, 'err');

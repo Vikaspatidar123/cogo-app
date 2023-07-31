@@ -1,10 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { isEmpty } from '@cogoport/utils';
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 
 import useOceanRoute from '../../hooks/useOceanRoute';
 
 import styles from './styles.module.css';
+
+import useGetMapRoute from '@/ui/commons/hooks/useGetMapRoute';
 
 const CogoMaps = dynamic(
 	() => import('@/ui/commons/components/CogoMaps'),
@@ -54,6 +57,9 @@ function MapContainer({ formInfo = {}, mapZoom = 2.7, height = '480px' }) {
 	const originId = importCountry?.id;
 	const destinationId = exportCountry?.id;
 	const { getOceanRoute, mapPoints, setMapPoints } = useOceanRoute();
+	const { getAirOceanRoute, data } = useGetMapRoute();
+	console.log(data, 'data');
+
 	useEffect(() => {
 		if (originId && destinationId) {
 			if (transportMode === 'ocean') {
@@ -70,6 +76,12 @@ function MapContainer({ formInfo = {}, mapZoom = 2.7, height = '480px' }) {
 			}
 		}
 	}, [originId, destinationId, transportMode]);
+
+	useEffect(() => {
+		if (!isEmpty(exportCountry) && !isEmpty(importCountry)) {
+			getAirOceanRoute({ originInfo: exportCountry, destinationInfo: importCountry });
+		}
+	}, [exportCountry, importCountry]);
 
 	useEffect(() => {
 		if (mapPoints.length > 0) {

@@ -7,7 +7,7 @@ on:
 jobs:
   lint:
     name: Test
-    if: github.event.issue.pull_request && (contains(github.event.comment.body, '/build') || contains(github.event.comment.body, '/checks'))
+    if: github.event.issue.pull_request && (contains(github.event.comment.body, '/lint') || contains(github.event.comment.body, '/checks'))
     runs-on: ubuntu-latest
 
   steps:

@@ -24,7 +24,7 @@ function NetPromoterScore() {
 	};
 
 	return (
-		<Modal show={show} showCloseIcon={false} size="md" className={styles.modal}>
+		<Modal show={!show} showCloseIcon={false} size="md" className={styles.modal}>
 			<Modal.Header title={<Title />} />
 			<Modal.Body>
 				<Body score={score} feedback={feedback} setFeedback={setFeedback} setScore={setScore} />

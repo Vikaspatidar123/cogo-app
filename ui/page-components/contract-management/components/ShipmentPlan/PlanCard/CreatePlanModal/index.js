@@ -13,7 +13,7 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
-import ShipmentPlanControls from '@/ui/page-components/contract-management/configurations/contract-form-controls';
+import getShipmentPlanControls from '@/ui/page-components/contract-management/configurations/contract-form-controls';
 import useCreateBulkContractUtilisation from
 	'@/ui/page-components/contract-management/hooks/useCreateBulkContractUtilisation';
 
@@ -93,7 +93,7 @@ function CreatePlanModal({
 		planData                : plan_data,
 	});
 
-	const newControls = ShipmentPlanControls({ validity_start_date, validity_end_date, containerDetailsOptions });
+	const newControls = getShipmentPlanControls({ validity_start_date, validity_end_date, containerDetailsOptions });
 
 	const {
 		handleSubmit,

@@ -44,7 +44,7 @@ function ShipmentCard({
 					state = 'upcoming',
 					net_total = 0,
 					shipment_id = '',
-					net_total_price_currency = 'INR',
+					net_total_price_currency = GLOBAL_CONSTANTS.currency_code.INR,
 					shipment_date = '',
 					containers_count = '',
 					volume = '',
@@ -164,8 +164,9 @@ function ShipmentCard({
 										<div className={styles.freight_price}>
 											{formatAmount({
 												amount   : net_total || 0,
-												currency : net_total_price_currency || 'INR',
-												options  : {
+												currency : net_total_price_currency
+													|| GLOBAL_CONSTANTS.currency_code.INR,
+												options: {
 													notation : 'standard',
 													style    : 'currency',
 												},

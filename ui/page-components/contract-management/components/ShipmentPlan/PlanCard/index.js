@@ -70,6 +70,46 @@ const formatPlanData = ({ plan_data: data, containerDetailsMapping }) => {
 	return modifiedGroupedData;
 };
 
+const getContainerDetails = ({ freightDetails }) => freightDetails.reduce(
+	(acc, item) => {
+		const {
+			container_size,
+			container_type,
+			commodity,
+			id: dataServiceId,
+			service_type: serviceType = '',
+		} = item;
+
+		const labelMapping = {
+			fcl_freight: `${container_size} ft (${startCase(
+				container_type,
+			)}) (${getCommodityName(commodity)})`,
+			lcl_freight : `${getCommodityName(commodity)}`,
+			air_freight : `${getCommodityName(commodity)}`,
+		};
+
+		return {
+			...acc,
+			containerDetailsOptions: [
+				...acc.containerDetailsOptions,
+				{
+					label : labelMapping[serviceType],
+					value : `${container_size}_${dataServiceId}`,
+				},
+			],
+			containerDetails: {
+				...acc.containerDetails,
+				[dataServiceId]: {
+					container_size : `${container_size} ft`,
+					container_type : startCase(container_type),
+					commodity      : getCommodityName(commodity),
+				},
+			},
+		};
+	},
+	{ containerDetailsOptions: [], containerDetails: {} },
+);
+
 const getKeysMapping = ({ itemData = {} }) => {
 	const {
 		max_containers_count = 0,
@@ -197,45 +237,7 @@ function PlanCard({
 	const utilisationCountExceed = Number(KEYS_MAPPING[service_type]?.booked)
 		> Number(KEYS_MAPPING[service_type]?.req);
 
-	const { containerDetailsOptions, containerDetails } = freightDetails.reduce(
-		(acc, item) => {
-			const {
-				container_size,
-				container_type,
-				commodity,
-				id: dataServiceId,
-				service_type: serviceType = '',
-			} = item;
-
-			const labelMapping = {
-				fcl_freight: `${container_size} ft (${startCase(
-					container_type,
-				)}) (${getCommodityName(commodity)})`,
-				lcl_freight : `${getCommodityName(commodity)}`,
-				air_freight : `${getCommodityName(commodity)}`,
-			};
-
-			return {
-				...acc,
-				containerDetailsOptions: [
-					...acc.containerDetailsOptions,
-					{
-						label : labelMapping[serviceType],
-						value : `${container_size}_${dataServiceId}`,
-					},
-				],
-				containerDetails: {
-					...acc.containerDetails,
-					[dataServiceId]: {
-						container_size : `${container_size} ft`,
-						container_type : startCase(container_type),
-						commodity      : getCommodityName(commodity),
-					},
-				},
-			};
-		},
-		{ containerDetailsOptions: [], containerDetails: {} },
-	);
+	const { containerDetailsOptions, containerDetails } = getContainerDetails({ freightDetails });
 
 	const containerDetailsMapping = containerDetailsOptions.reduce(
 		(acc, item) => {

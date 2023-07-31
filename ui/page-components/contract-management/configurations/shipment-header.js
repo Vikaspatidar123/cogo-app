@@ -4,7 +4,7 @@ const UNIT_MAPPING = {
 	air_freight : 'Weight (KGS)',
 };
 
-const ShipmentHeader = ({ serviceType }) => [
+const getShipmentHeaderControls = ({ serviceType }) => [
 	{
 		name : 'Date',
 		span : 4.3,
@@ -19,4 +19,4 @@ const ShipmentHeader = ({ serviceType }) => [
 	},
 ];
 
-export default ShipmentHeader;
+export default getShipmentHeaderControls;

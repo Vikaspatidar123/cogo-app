@@ -1,4 +1,4 @@
-const ShipmentPlanControls = ({
+const getShipmentPlanControls = ({
 	validity_start,
 	validity_end,
 	containerDetailsOptions = [],
@@ -78,4 +78,4 @@ const ShipmentPlanControls = ({
 	},
 ];
 
-export default ShipmentPlanControls;
+export default getShipmentPlanControls;

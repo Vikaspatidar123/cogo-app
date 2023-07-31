@@ -118,7 +118,7 @@ function Form({
 							</text>
 						</div>
 						<Button disabled={loading} size="md" type="button" onClick={handleSubmit(onSubmit)}>
-							Avail your free Searches
+							Complete your KYC
 						</Button>
 					</div>
 				</form>

@@ -23,15 +23,16 @@ function EmailConfirmation({
 	rate = { },
 }) {
 	const [isChecked, setIsChecked] = useState(false);
+
 	const [isInsurance, setIsInsurance] = useState(false);
+
 	const [{ primaryService, services, detail }] = useContext(CheckoutContext);
+
 	const { detail: appDetail, services: appServices, primaryServiceData } = info;
+
 	const insurance = Object.values(appServices || {}).find((x) => ['cargo_insurance'].includes(x.service_type));
 
-	const handleSubmit = () => {
-		setConfirmation(false);
-		handleSendEmail();
-	};
+	const check = insurance ? isInsurance && isChecked : isChecked;
 
 	let confirmInfo = {
 		services         : rate?.services,
@@ -53,7 +54,11 @@ function EmailConfirmation({
 				'By accepting this, you are agreeing to the above Terms and Conditions',
 		};
 	}
-	const check = insurance ? isInsurance && isChecked : isChecked;
+
+	const handleSubmit = () => {
+		setConfirmation(false);
+		handleSendEmail();
+	};
 
 	return (
 		<Modal

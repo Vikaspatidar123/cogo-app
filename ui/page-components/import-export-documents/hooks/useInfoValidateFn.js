@@ -90,6 +90,7 @@ const useInfoValidateFn = ({
 			setValues(obj);
 
 			setTransportDetails(localStorageFormData);
+			localStorage.removeItem('transportDetails');
 		}
 	}, [setTransportDetails, setValues]);
 
@@ -168,8 +169,6 @@ const useInfoValidateFn = ({
 		const { header, lineItem } = getPayloadData(data);
 
 		const resp = await refetchDraft({ header, lineItem, hsCode: data?.hsCode });
-
-		localStorage.removeItem('transportDetails');
 
 		if (resp) {
 			if (!billId) {

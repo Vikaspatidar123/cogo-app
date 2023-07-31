@@ -6,7 +6,7 @@ on:
 
 jobs:
   build: 
-    name: Test 
+    name: Test Build
     if: github.event.issue.pull_request && (contains(github.event.comment.body, '/build') || contains(github.event.comment.body, '/checks'))
     runs-on: ubuntu-latest
 

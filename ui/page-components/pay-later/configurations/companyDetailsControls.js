@@ -56,7 +56,16 @@ export const getCompanyControls = ({
 }) => {
 	const geo = getGeoConstants();
 	const REGISTRATION_LABEL = geo.others.registration_number.label;
+	const suffix = (
+		<div
+			onClick={() => setShow(true)}
+			role="presentation"
+			style={{ margin: '0 8px', cursor: 'pointer' }}
+		>
+			Upload
 
+		</div>
+	);
 	return COMPANY_DETAILS_CONTROLS.map((control) => {
 		if (control.name === 'tax_number') {
 			return ({
@@ -75,7 +84,7 @@ export const getCompanyControls = ({
 			return {
 				...control,
 				label    : `Upload ${REGISTRATION_LABEL} Proof`,
-				suffix   : <div onClick={() => setShow(true)} role="presentation"> Upload </div>,
+				suffix,
 				disabled : hasRequestedForCredit,
 			};
 		}

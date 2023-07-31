@@ -1,6 +1,7 @@
 .container {
 	float: right;
 	margin-top: 10px;
+	cursor: pointer;
 
 	:global {
 		.tippy-box {
@@ -18,11 +19,11 @@
 	border-radius: 10px;
 }
 
-.filter_button_Ctn {
+.filter_button_ctn {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-	height: 40px;
+	height: 30px;
 	padding: 15px;
 	cursor: pointer;
 	border: 1px solid #e0e0e0;
@@ -38,7 +39,6 @@
 
 .filter_icon {
 	padding: 8px 0 0;
-	color: black;
 }
 
 .direction_icon {

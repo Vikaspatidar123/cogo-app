@@ -8,7 +8,6 @@ import {
 	IcMArrowBack,
 	IcMPlus,
 } from '@cogoport/icons-react';
-import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
@@ -185,7 +184,7 @@ function ProductsList({
 							</div>
 							<div className={styles.border_bottom} />
 							<div>
-								{!isEmpty(checkLength) ? (
+								{checkLength > 0 ? (
 									<AllProducts
 										setShowProduct={setShowProduct}
 										countryInfo={countryInfo}

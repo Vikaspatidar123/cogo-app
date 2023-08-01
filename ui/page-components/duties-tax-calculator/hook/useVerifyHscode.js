@@ -1,4 +1,6 @@
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { useRouter } from '@/packages/next';
@@ -7,10 +9,15 @@ import { useSelector } from '@/packages/store';
 
 const useVerifyHscode = () => {
 	const { query = {} } = useRouter();
-	const [inputValue, setInputValue] = useState([]);
+	const { billId = '' } = query || {};
+
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
+
 	const { profile } = useSelector((s) => s);
 	const { organization, id } = profile || {};
-	const { billId = '' } = query || {};
+
+	const [inputValue, setInputValue] = useState([]);
+
 	const [{ loading }, trigger] = useRequestBf({
 		url     : 'saas/trade-engine/hs-engine',
 		authKey : 'post_saas_trade_engine_hs_engine',
@@ -35,7 +42,7 @@ const useVerifyHscode = () => {
 			}
 			return resp?.data;
 		} catch (err) {
-			Toast.error('Something went wrong! Please try again ');
+			Toast.error(t('dutiesTaxesCalculator:api_err_msg'));
 			return false;
 		}
 	};
@@ -57,18 +64,18 @@ const useVerifyHscode = () => {
 				},
 			});
 
-			if (!resp?.data?.status && resp?.data?.recommendations.length === 0) {
-				Toast.info('This hs code is not supported by us.');
+			if (!resp?.data?.status && isEmpty(resp?.data?.recommendations)) {
+				Toast.info(t('dutiesTaxesCalculator:api_hscode_err_msg'));
 				setValidateInProgress(true);
 			}
-			if (!resp?.data?.status && resp?.data?.recommendations.length > 0) {
+			if (!resp?.data?.status && !isEmpty(resp?.data?.recommendations)) {
 				setValidateInProgress(true);
 			}
 
 			setStatus(resp?.data?.status);
 			setInputValue(resp?.data?.recommendations);
 		} catch (error) {
-			Toast.error('Something went wrong! Please try again ');
+			Toast.error(t('dutiesTaxesCalculator:api_err_msg'));
 		}
 	};
 

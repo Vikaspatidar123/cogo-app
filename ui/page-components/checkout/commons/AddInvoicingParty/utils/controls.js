@@ -7,6 +7,7 @@ import styles from '../styles.module.css';
 import { getPanHolderStatusOptions } from './getPanHolderStatus';
 
 import patterns from '@/ui/commons/configurations/patterns';
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const OPTION = [
@@ -37,7 +38,12 @@ const getBillingControls = () => {
 	const geo = getGeoConstants();
 	const REGISTRATION_LABEL = geo.others.registration_number.label;
 	const REGISTRATION_PATTERN = geo.others.registration_number.pattern;
-	const ECO_ZONE_LABEl = geo.others.economic_zone.label;
+
+	const ECO_ZONE_LABEL = getLocaleSpecificLabels({
+		accessorType : 'economic_zone',
+		accessor     : 'label',
+	});
+
 	return [
 		{
 			name  : 'billing_party_name',
@@ -114,12 +120,12 @@ const getBillingControls = () => {
 			name     : 'is_sez',
 			type     : 'checkbox',
 			span     : 12,
-			options  : [{ value: 'addressIsSez', label: `Is ${ECO_ZONE_LABEl}` }],
+			options  : [{ value: 'addressIsSez', label: `Is ${ECO_ZONE_LABEL}` }],
 			multiple : true,
 		},
 		{
 			name       : 'sez_proof',
-			label      : `${ECO_ZONE_LABEl} Proof`,
+			label      : `${ECO_ZONE_LABEL} Proof`,
 			type       : 'file',
 			drag       : true,
 			span       : 12,
@@ -255,9 +261,8 @@ const orgControls = [
 		drag       : true,
 		uploadIcon : () => <IcMFileUploader height={30} width={30} />,
 		span       : 5.8,
-		uploadType : 'aws',
 		height     : 45,
-		rules      : { required: 'Trade Party documen is Required' },
+		rules      : { required: 'Trade Party document is Required' },
 	},
 ];
 

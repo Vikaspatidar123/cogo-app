@@ -10,6 +10,14 @@ import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import { KycCampaign as KYC } from '@/ui/page-components/discover_rates/common/KYC';
 
+const getKycStatus = ({ t }) => ({
+	verified             : t('dashboard:kyc_status_verified'),
+	rejected             : t('dashboard:kyc_status_rejected'),
+	pending_from_user    : t('dashboard:kyc_status_pending_from_user'),
+	pending_verification : t('dashboard:kyc_status_pending_verification'),
+
+});
+
 function CheckKyc() {
 	const { t } = useTranslation(['dashboard']);
 
@@ -18,8 +26,10 @@ function CheckKyc() {
 
 	const [open, setOpen] = useState(false);
 
+	const KYC_STATUS_MAPPING = getKycStatus({ t });
+
 	return (
-		<div className={`${styles.container} ${kyc_status === 'verified' ? styles.verified : styles.panding}`}>
+		<div className={`${styles.container} ${styles[kyc_status]}`}>
 			<div className={styles.box}>
 				<Image
 					src={GLOBAL_CONSTANTS.image_url.kyc_image}
@@ -30,10 +40,7 @@ function CheckKyc() {
 
 				<div>
 					<div className={styles.heading}>
-						{t('dashboard:kyc_text_1')}
-						{' '}
-						{kyc_status}
-						!
+						{KYC_STATUS_MAPPING[kyc_status]}
 					</div>
 
 					<div className={styles.des}>

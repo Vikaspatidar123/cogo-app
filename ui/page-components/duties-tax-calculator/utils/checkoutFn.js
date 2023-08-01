@@ -7,6 +7,7 @@ const TRANSPORT = {
 };
 
 const checkoutFn = ({
+	t,
 	formData,
 	origin,
 	destination,
@@ -91,7 +92,7 @@ const checkoutFn = ({
 		if (isQuotaLeft) {
 			checkoutHandler();
 		} else if (isEmpty(address)) {
-			Toast.error('Please add billing address');
+			Toast.error(t('dutiesTaxesCalculator:address_toast_err_msg'));
 		} else {
 			setShowPayMethodModal(true);
 			// eslint-disable-next-line no-undef

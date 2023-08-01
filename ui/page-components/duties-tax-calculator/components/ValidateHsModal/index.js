@@ -3,14 +3,17 @@ import {
 	Popover, Modal, Input, Button,
 } from '@cogoport/components';
 import { IcAReports } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
-import { ValidateIcon } from '../../configuration/icon-configuration';
 import useVerifyHscode from '../../hook/useVerifyHscode';
 import validateFn from '../../utils/validateFn';
 
 import styles from './styles.module.css';
 import TitleContainer from './TitleContainer';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const sugestionContent = ({
 	inputValue,
@@ -40,10 +43,11 @@ const sugestionContent = ({
 );
 
 function RenderTitle() {
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
 	return (
 		<div className={styles.title_div}>
 			<IcAReports width={25} height={25} />
-			<div className={styles.title}>Get Accurate Data</div>
+			<div className={styles.title}>{t('dutiesTaxesCalculator:validate_hscode_modal_title')}</div>
 		</div>
 	);
 }
@@ -65,6 +69,8 @@ function ValidateHsModal({
 	prevHs = '',
 	setPrevHs = () => {},
 }) {
+	const { t } = useTranslation(['common', 'dutiesTaxesCalculator']);
+
 	const [status, setStatus] = useState(false);
 	const [isValidated, setIsValidated] = useState(false);
 	const [validateInProgress, setValidateInProgress] = useState(false);
@@ -129,9 +135,8 @@ function ValidateHsModal({
 						visible={validateInProgress && inputValue.length > 0}
 					>
 						<div className={styles.input_container}>
-							<div className={styles.label}>HS Code</div>
+							<div className={styles.label}>{t('dutiesTaxesCalculator:validate_hscode_modal_label')}</div>
 							<Input
-								label="HS Code"
 								value={hsCode || hs}
 								className={styles.hs_input}
 								disabled
@@ -146,12 +151,14 @@ function ValidateHsModal({
 								loading={checkLoading}
 								disabled={validateInProgress}
 							>
-								Validate
+								{t('dutiesTaxesCalculator:validate_hscode_modal_validate')}
 							</Button>
 						) : (
 							<div className={styles.valid}>
-								<img src={ValidateIcon} alt="" height={25} width={25} />
-								<div className={styles.validate}> Validated</div>
+								<Image src={GLOBAL_CONSTANTS.image_url.validate} alt="" height={25} width={25} />
+								<div className={styles.validate}>
+									{t('dutiesTaxesCalculator:validate_hscode_modal_validated')}
+								</div>
 							</div>
 						)}
 					</div>
@@ -166,7 +173,7 @@ function ValidateHsModal({
 						onClick={handleSubmit(validateSubmitHandler)}
 						loading={draftLoading}
 					>
-						Continue
+						{t('common:continue')}
 					</Button>
 				) : (
 					<Button
@@ -175,7 +182,7 @@ function ValidateHsModal({
 						onClick={submitHandler}
 						loading={draftLoading}
 					>
-						Continue
+						{t('common:continue')}
 					</Button>
 				)}
 			</Modal.Footer>

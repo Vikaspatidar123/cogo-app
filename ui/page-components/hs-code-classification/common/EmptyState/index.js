@@ -11,10 +11,10 @@ function EmptyState({ drillDwn }) {
 	return (
 		<div className={drillDwn ? `${styles.drill_dwn}` : `${styles.container}`}>
 			<Image
-				src={GLOBAL_CONSTANTS.image_url.empty_icon}
+				src={GLOBAL_CONSTANTS.image_url.empty_state}
 				alt={t('hsClassification:alt_text_for_empty_image')}
-				width={180}
-				height={180}
+				width={300}
+				height={200}
 			/>
 			<div className={`${styles.h1}`}>{t('hsClassification:hs_code_classification_empty_state_text_1')}</div>
 			<div className={`${styles.h2}`}>{t('hsClassification:hs_code_classification_empty_state_text_2')}</div>

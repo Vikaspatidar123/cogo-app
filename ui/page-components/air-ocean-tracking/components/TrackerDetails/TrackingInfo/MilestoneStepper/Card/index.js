@@ -11,6 +11,9 @@ import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
 
+const INVALID_VESSEL_NAME = ['N/A'];
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+
 const widthProp = {
 	VESSEL : 35,
 	TRUCK  : 55,
@@ -24,8 +27,6 @@ const getIconUrl = ({ mapping, type, transportMode }) => {
 	};
 	return obj[type];
 };
-
-const INVALID_VESSEL_NAME = ['N/A'];
 
 function MilestoneName({ milestone, vessel_name }) {
 	return 	(
@@ -47,7 +48,7 @@ function Card({
 	combineList = [], trackingType = 'ocean', isCurrentMilestone = false,
 	milestoneSubIndex,
 }) {
-	const { location = '', station = '', transport_mode = 'VESSEL' } = combineList?.[0] || {};
+	const { location = '', station = '', transport_mode = 'VESSEL' } = combineList?.[ZEROTH_INDEX] || {};
 	const combineListLength = combineList.length;
 
 	const { t } = useTranslation(['common', 'airOceanTracking']);

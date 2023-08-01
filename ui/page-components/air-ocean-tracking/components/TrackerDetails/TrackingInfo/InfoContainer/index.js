@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getMappingObject from '@/ui/page-components/air-ocean-tracking/constant/card';
 
 const getOptions = ({ containerDetails = [] }) => containerDetails.map((item) => ({
@@ -19,6 +20,7 @@ const COLOR = {
 };
 
 const SINGLE_DETAIL_INDEX = 1;
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 
 function InfoContainer({
 	containerDetails = [], currContainerDetails = {}, setCurrContainerDetails,
@@ -50,8 +52,8 @@ function InfoContainer({
 			}
 		});
 
-		const shipperDetails =	shipperArr[0] ?? {};
-		const consigneeDetails = consigneeArr[0] ?? {};
+		const shipperDetails =	shipperArr[ZEROTH_INDEX] ?? {};
+		const consigneeDetails = consigneeArr[ZEROTH_INDEX] ?? {};
 		const incoterm = shipmentInfo?.incoterm;
 
 		return {

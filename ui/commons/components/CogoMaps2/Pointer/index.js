@@ -38,7 +38,7 @@ function Pointer({ position = [], src = 'origin', isDivIcon = false, className, 
 				? <Marker position={position || []} icon={icon} />
 				: (
 					waypoints.map((waypt) => (
-						<Marker position={waypt?.coordinates} icon={icon} />
+						<Marker key={waypt?.location_id} position={waypt?.coordinates} icon={icon} />
 					))
 				)}
 		</FeatureGroup>

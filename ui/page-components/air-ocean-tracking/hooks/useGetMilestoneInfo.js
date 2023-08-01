@@ -13,7 +13,7 @@ const useGetMilestoneInfo = ({ combineMileStoneList = [] }) => {
 
 	combineMileStoneList.forEach((combineList, index) => {
 		if (combineList.length === SINGLE_MILESTONE_INDEX) {
-			const isMilestoneCurrent = isCurrentDate(combineList[0]?.event_date);
+			const isMilestoneCurrent = isCurrentDate(combineList[ZEROTH_INDEX]?.event_date);
 
 			if (isMilestoneCurrent) {
 				currentMilestoneIndex = index;

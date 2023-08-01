@@ -7,6 +7,11 @@ import { isCurrentDate, isFutureDate } from '../../../../utils/dateCompare';
 import Card from './Card';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+const LAST_INDEX = -1;
+
 function MilestoneStepper({ combineMileStoneList = [], trackingType = 'ocean' }) {
 	const scrollRef = useRef({});
 
@@ -24,7 +29,7 @@ function MilestoneStepper({ combineMileStoneList = [], trackingType = 'ocean' })
 	return (
 		<div className={styles.container}>
 			{combineMileStoneList.map((combineList, index) => {
-				const currentMilestone = (combineList || []).slice(-1)[0];
+				const currentMilestone = (combineList || []).slice(LAST_INDEX)[ZEROTH_INDEX];
 
 				const isCurrentMilestonePastOrPresent = !isFutureDate(currentMilestone?.event_date);
 				const isCurrentMilestonePresent = isCurrentDate(currentMilestone?.event_date);

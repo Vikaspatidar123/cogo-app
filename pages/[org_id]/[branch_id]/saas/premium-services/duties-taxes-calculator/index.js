@@ -5,7 +5,7 @@ import DutiesTaxCalulator from '@/ui/page-components/duties-tax-calculator/compo
 export async function getServerSideProps({ locale }) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common', 'traderEligibilityCheck'])),
+			...(await serverSideTranslations(locale, ['common', 'dutiesTaxesCalculator', 'traderEligibilityCheck'])),
 
 		},
 	};

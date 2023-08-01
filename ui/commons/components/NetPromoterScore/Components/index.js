@@ -39,7 +39,7 @@ function NetPromoterScore() {
 		const submitNpsLater = sessionStorage.getItem('npsTimeDecision') === 'later';
 		setTimeout(() => {
 			setShow(data && !submitNpsLater);
-		}, 100);
+		}, 12000);
 	}, [data]);
 
 	return (

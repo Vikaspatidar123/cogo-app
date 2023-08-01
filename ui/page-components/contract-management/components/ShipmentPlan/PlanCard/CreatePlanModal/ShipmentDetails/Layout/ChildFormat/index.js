@@ -1,3 +1,4 @@
+import { isEmpty } from '@cogoport/utils';
 import React, { useImperativeHandle, forwardRef } from 'react';
 
 import Child from './child';
@@ -20,6 +21,7 @@ function ChildFormat(
 		serviceType,
 		freqCount,
 		isEditPlan,
+		vesselOptionsLength,
 		...rest
 	},
 	ref,
@@ -32,7 +34,9 @@ function ChildFormat(
 	const handleAppendChild = () => {
 		append();
 	};
-
+	if (isEmpty(fields)) {
+		handleAppendChild();
+	}
 	useImperativeHandle(ref, () => ({ handleAppendChild, remove }));
 
 	return (
@@ -44,6 +48,7 @@ function ChildFormat(
 					index={index}
 					control={control}
 					controls={controls}
+					listLength={fields.length}
 					name={name}
 					schedule={schedule}
 					remove={remove}
@@ -58,6 +63,7 @@ function ChildFormat(
 					serviceType={serviceType}
 					freqCount={freqCount}
 					isEditPlan={isEditPlan}
+					vesselOptionsLength={vesselOptionsLength}
 				/>
 			))}
 		</div>

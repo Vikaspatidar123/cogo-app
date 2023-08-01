@@ -10,7 +10,7 @@ import formatDate from '@/ui/commons/utils/formatDate';
 
 const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 
-const cargoHandlerMapping = {
+const CARGO_HANDLER_MAPPING = {
 	import : 'delivery_from_dock',
 	export : 'stuffing_at_factory',
 };
@@ -42,7 +42,7 @@ const freightChargesPayload = ({ id, branch, allData, activeTab, cargo_value }) 
 	const tradeType = getTradeType(incoterm);
 
 	const container_type = containerTypeMaping[containerType];
-	const cargoHandlingType = cargoHandlerMapping[tradeType];
+	const cargoHandlingType = CARGO_HANDLER_MAPPING[tradeType];
 
 	const cargoClearanceDate = formatDate({
 		date       : expiryDate,

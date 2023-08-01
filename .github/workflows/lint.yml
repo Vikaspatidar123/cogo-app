@@ -1,32 +1,16 @@
-name: Lint
+name: Tests
 
-on:
-  pull_request:
-  # issue_comment:
-  #   types: [created]
+on: [pull_request]
 
 jobs:
-  lint:
-    name: Test
-    # if: github.event.issue.pull_request && (contains(github.event.comment.body, '/build') || contains(github.event.comment.body, '/checks'))
-    runs-on: ubuntu-latest
-
-  steps:
-  - name: Init
+  init:
+    name: Init
     if: ${{ github.triggering_actor != 'dependabot[bot]' }}
     uses: ./.github/workflows/reusable-run-setup.yml
     secrets: inherit
-
-  - name: Lint
+  
+  lint:
+    name: Test
     needs: init
-    uses: ./.github/workflows/comment-test-lint.yml
+    uses: ./.github/workflows/reusable-test-lint.yml
     secrets: inherit
-
-
-  needs:
-    - init # required to wait when the main job is done
-    - lint # required to wait when the main job is done
-
-  runs-on: ubuntu-latest
-
-  if: ${{ always() }} # required to stop the runner even if the error happened in the previous jobs

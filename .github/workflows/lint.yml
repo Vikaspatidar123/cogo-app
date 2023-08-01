@@ -7,7 +7,7 @@ jobs:
   lint:
     name: Test Lint
     if: github.event.issue.pull_request && (contains(github.event.comment.body,
-      '/lint') || contains(github.event.comment.body, '/checks'))
+      '/lint') || contains(github.event.comment.body, '/checks')) && ${{ always() }}
     runs-on: ubuntu-latest
     steps:
       - name: Init
@@ -21,4 +21,3 @@ jobs:
     needs:
       - init
       - lint
-  if: ${{ always() }}

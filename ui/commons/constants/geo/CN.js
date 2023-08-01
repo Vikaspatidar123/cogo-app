@@ -125,7 +125,7 @@ export default {
 		cogoverse_executive_id : 'f23810d3-c6c0-4937-bf2e-2ad301dd708d',
 		cogoverse_kam_id       : 'f041b303-3239-42c5-a386-03e787900bcd',
 		cogoverse_admin_id     : '84dcd923-89cb-4bc6-baf7-7f23d93d6951',
-		hs_code_country_id     : 'ba3222c0-98f7-4ecd-a378-edf148530f70',
+		hs_code_country_id     : '254f97da-e398-48ad-98a9-e3e02b2039b8la',
 	},
 	options: {
 		registration_types: [

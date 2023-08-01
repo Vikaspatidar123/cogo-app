@@ -7,7 +7,6 @@ import { useRouter } from '@/packages/next';
 
 function Actions({
 	showPlanBox,
-	isPlanAbsent = false,
 	planData = [],
 	serviceId = '',
 	serviceType = '',
@@ -15,63 +14,55 @@ function Actions({
 	contractStatus = '',
 	source = '',
 	contract_type = '',
-	setOpen = () => { },
-	setShowPlanBox = () => { },
-	setShowModal = () => { },
-	setShowBookingModal = () => { },
-	getShipmentPlans = () => { },
-	setShowBreakup = () => { },
-	utilisationCountExceed,
+	setOpen = () => {},
+	setShowPlanBox = () => {},
+	setShowModal = () => {},
+	setShowBookingModal = () => {},
+	getShipmentPlans = () => {},
+	setShowDetailedBreakUpdate = () => {},
+	shipmentData = [],
+
 }) {
 	const { query } = useRouter();
 	const { through = '', contract_status = '' } = query || {};
-	const disabledBooking = status !== 'locked'
+
+	const disableInitiateBooking =		status !== 'locked'
 		|| contractStatus !== 'active'
 		|| through === 'techops'
 		|| contract_status === 'expired';
 
-	const isExistingManual = (source === 'manual'
+	const isExistingCarrierManual =		source === 'manual'
 		&& contract_type === 'with_carrier'
-		&& serviceType === 'fcl_freight')
-		|| (source === 'manual' && contract_type === 'with_cogoport');
+		&& serviceType === 'fcl_freight';
+
+	const isManualCarrierContract =		source === 'manual'
+		&& contract_type === 'with_carrier'
+		&& contract_status !== 'expired';
+
+	const showCreateEditPlanBtn =		!isEmpty(shipmentData) && showPlanBox && contract_status !== 'expired';
 
 	const viewShipmentPlan = () => {
-		setShowBreakup(false);
+		setShowDetailedBreakUpdate(false);
 		setShowPlanBox(!showPlanBox);
 		if (!showPlanBox) {
 			getShipmentPlans(serviceId, serviceType);
 		}
 	};
-	const showCreateUpdateBtn = !isPlanAbsent && showPlanBox && contract_status !== 'expired';
 
-	const withShippingLineContract = source === 'manual'
-		&& contract_type === 'with_carrier'
-		&& contract_status !== 'expired';
 	return (
 		<div className={styles.container}>
-			{!isExistingManual && (
+			{!isExistingCarrierManual && (
 				<>
-					{showCreateUpdateBtn && !isEmpty(planData) && (
+					{showCreateEditPlanBtn && (
 						<div
 							role="presentation"
 							className={styles.edit_btn}
 							onClick={() => setShowModal(true)}
 						>
-							Edit Plan
+							{isEmpty(planData) ? 'Create Plan' : 'Edit Plan'}
 						</div>
 					)}
 
-					{showCreateUpdateBtn
-						&& isEmpty(planData)
-						&& !utilisationCountExceed && (
-							<div
-								role="presentation"
-								className={styles.edit_btn}
-								onClick={() => setShowModal(true)}
-							>
-								Create Plan
-							</div>
-					)}
 					{status !== 'rejected' && (
 						<Button themeType="secondary" type="button" onClick={viewShipmentPlan}>
 							{showPlanBox ? 'Hide' : 'Shipment'}
@@ -82,7 +73,7 @@ function Actions({
 				</>
 			)}
 
-			{withShippingLineContract && (
+			{isManualCarrierContract ? (
 				<>
 					<Button
 						themeType="secondary"
@@ -97,7 +88,7 @@ function Actions({
 						onClick={() => {
 							setOpen(true);
 						}}
-						disabled={disabledBooking}
+						disabled={disableInitiateBooking}
 						size="md"
 						themeType="accent"
 						type="button"
@@ -105,19 +96,18 @@ function Actions({
 						Request Booking
 					</Button>
 				</>
-			)}
-
-			{!withShippingLineContract && (
-				<Button
-					onClick={() => setShowBookingModal(true)}
-					disabled={disabledBooking}
-					style={{ marginLeft: '10px' }}
-					themeType="accent"
-					type="button"
-				>
-					Initiate Booking
-				</Button>
-			)}
+			)
+				: (
+					<Button
+						onClick={() => setShowBookingModal(true)}
+						disabled={disableInitiateBooking}
+						style={{ marginLeft: '10px' }}
+						themeType="accent"
+						type="button"
+					>
+						Initiate Booking
+					</Button>
+				)}
 		</div>
 	);
 }

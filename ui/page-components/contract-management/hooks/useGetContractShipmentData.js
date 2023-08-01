@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useRequest } from '@/packages/request';
 
-const useGetContractShipmentData = ({ isExistingManual = false }) => {
+const useGetContractShipmentData = ({ isExistingManual = false, serviceLocationId }) => {
 	const [pagination, setPagination] = useState(1);
 
 	const api = isExistingManual
@@ -17,10 +17,11 @@ const useGetContractShipmentData = ({ isExistingManual = false }) => {
 		try {
 			trigger({
 				params: {
-					id           : !isExistingManual ? id : undefined,
-					service_type : !isExistingManual ? type : undefined,
-					page         : pagination,
-					filters      : isExistingManual
+					id                  : !isExistingManual ? id : undefined,
+					service_type        : !isExistingManual ? type : undefined,
+					page                : pagination,
+					service_location_id : serviceLocationId,
+					filters             : isExistingManual
 						? { booking_type: 'contract', source_id: id }
 						: undefined,
 				},

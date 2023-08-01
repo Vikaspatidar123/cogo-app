@@ -4,7 +4,7 @@ on:
 
 jobs:
   build:
-  if: ${{ always() }}
+    if: ${{ always() }}
     init:
       name: Init
       if: ${{ github.triggering_actor != 'dependabot[bot]' }}

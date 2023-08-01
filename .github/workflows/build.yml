@@ -6,6 +6,7 @@ on:
 jobs:
   build: 
     name: Test Build
+    if: ${{ always() }}
     # if: github.event.issue.pull_request && (contains(github.event.comment.body, '/build') || contains(github.event.comment.body, '/checks'))
     runs-on: ubuntu-latest
 
@@ -27,4 +28,4 @@ jobs:
   
   # runs-on: ubuntu-latest
 
-  if: ${{ always() }} # required to stop the runner even if the error happened in the previous jobs
+   # required to stop the runner even if the error happened in the previous jobs

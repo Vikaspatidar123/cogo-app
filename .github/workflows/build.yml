@@ -18,8 +18,7 @@ jobs:
         needs: init
         uses: ./.github/workflows/comment-test-build.yml
         secrets: inherit
-  needs:
-    - init
-    - build
-  runs-on: ubuntu-latest
+    needs:
+      - init
+      - build
   if: ${{ always() }}

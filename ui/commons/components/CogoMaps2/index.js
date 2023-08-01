@@ -10,11 +10,7 @@ import useGetMapRoute from '@/ui/commons/hooks/useGetMapRoute';
 
 const CogoMaps = dynamic(() => import('./MapComp'), { ssr: false });
 
-const style = {
-	borderRadius: '18px',
-};
-
-function MapContainer({ formInfo = {}, mapZoom = 2.7, height = '480px' }) {
+function MapContainer({ formInfo = {}, mapZoom = 2.7, height = '480px', style = {} }) {
 	const [curvePoints, setCurvePoints] = useState([]);
 	const { transportMode, exportCountry = {}, importCountry = {} } = formInfo || {};
 

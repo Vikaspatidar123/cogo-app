@@ -6,6 +6,11 @@ import styles from './styles.module.css';
 import { Image, useRouter } from '@/packages/next';
 import MapContainer from '@/ui/commons/components/CogoMaps2';
 
+const MAP_ZOOM = 4;
+const style = {
+	borderRadius: '18px',
+};
+
 const getMapping = ({ t }) => ({
 	exportCountry        : t('importExportDoc:document_control_export_label'),
 	importCountry        : t('importExportDoc:document_control_import_label'),
@@ -47,8 +52,8 @@ function Info({ prefillData, localStorageData }) {
 			<div className={styles.map_container}>
 				<MapContainer
 					formInfo={localStorageData}
-					mapZoom={4}
-
+					mapZoom={MAP_ZOOM}
+					style={style}
 				/>
 			</div>
 			<div className={styles.data_container}>

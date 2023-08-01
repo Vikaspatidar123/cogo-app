@@ -4,10 +4,14 @@ import { useState, useEffect } from 'react';
 import Pointer from './Pointer';
 import Route from './Route';
 
-import { CENTER, LAYER, MAP_ATTRIBUTE } from '@/ui/commons/constants/mapConstant';
+import {
+	CENTER, LAYER, MAP_ATTRIBUTE,
+	BOTTOM_LEFT_LAT, BOTTOM_LEFT_LNG, TOP_RIGHT_LAT, TOP_RIGHT_LNG,
+} from '@/ui/commons/constants/mapConstant';
 
-const corner1 = L.latLng(-90, -250);
-const corner2 = L.latLng(90, 250);
+const corner1 = L.latLng(BOTTOM_LEFT_LAT, BOTTOM_LEFT_LNG);
+const corner2 = L.latLng(TOP_RIGHT_LAT, TOP_RIGHT_LNG);
+
 const bounds = L.latLngBounds(corner1, corner2);
 
 function MapComps({ height = '500px', pointsArr = [], type = 'ocean' }) {

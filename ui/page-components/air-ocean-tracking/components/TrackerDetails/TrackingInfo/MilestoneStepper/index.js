@@ -2,11 +2,10 @@ import { cl } from '@cogoport/components';
 import { useEffect, useRef } from 'react';
 
 import useGetMilestoneInfo from '../../../../hooks/useGetMilestoneInfo';
+import { isCurrentDate, isFutureDate } from '../../../../utils/dateCompare';
 
 import Card from './Card';
 import styles from './styles.module.css';
-
-import { isCurrentDate, isFutureDate } from '@/ui/page-components/air-ocean-tracking/utils/dateCompare';
 
 function MilestoneStepper({ combineMileStoneList = [], trackingType = 'ocean' }) {
 	const scrollRef = useRef({});

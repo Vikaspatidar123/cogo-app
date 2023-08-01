@@ -1,15 +1,22 @@
 import { CogoMaps, L } from '@cogoport/maps';
 import { isEmpty } from '@cogoport/utils';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Pointer from './Pointer';
 import Route from './Route';
 
-import { LAYER, CENTER, MAP_ATTRIBUTE } from '@/ui/commons/constants/mapConstant';
+import {
+	LAYER, CENTER, MAP_ATTRIBUTE, BOTTOM_LEFT_LAT, BOTTOM_LEFT_LNG,
+	TOP_RIGHT_LAT, TOP_RIGHT_LNG,
+} from '@/ui/commons/constants/mapConstant';
 
-const corner1 = L.latLng(-90, -350);
-const corner2 = L.latLng(90, 350);
+const corner1 = L.latLng(BOTTOM_LEFT_LAT, BOTTOM_LEFT_LNG);
+const corner2 = L.latLng(TOP_RIGHT_LAT, TOP_RIGHT_LNG);
+
 const bounds = L.latLngBounds(corner1, corner2);
+
+const MAX_BOUNDS_VISCOSITY = 1;
+const MAX_ZOOM = 12;
 
 function MapComp({
 	height = '600px',
@@ -45,21 +52,22 @@ function MapComp({
 			center={CENTER}
 			setMap={setMap}
 			zoomControl={false}
-			maxBoundsViscosity={1}
-			maxZoom={12}
+			maxBoundsViscosity={MAX_BOUNDS_VISCOSITY}
+			maxZoom={MAX_ZOOM}
 		>
 			{(routes || []).map((routeInfo) => {
 				const { lineString = [] } = routeInfo || {};
 
 				return lineString.map((route) => (
-					<>
+					<React.Fragment key={route?.id}>
 						<Pointer waypoints={route?.waypoints} className={route?.type} isDivIcon />
 						<Route path={route?.path} transportMode={route?.type} map={map} />
-					</>
-
+					</React.Fragment>
 				));
 			})}
+
 			{!isEmpty(startPt) ? <Pointer position={startPt} src="origin" /> : null}
+
 			{!isEmpty(endPt) ?	<Pointer position={endPt} src="destination" /> : null}
 		</CogoMaps>
 	);

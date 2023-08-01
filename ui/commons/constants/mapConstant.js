@@ -1,7 +1,7 @@
 export const LAYER = [
 	{
 		name        : 'Cogo Maps',
-		url         : 'https://api.cogoport.com/cogo-tiles/{z}/{x}/{y}.png',
+		url         : `${process.env.NEXT_PUBLIC_MAPS_BASE_URL}/cogo-tiles/{z}/{x}/{y}.png`,
 		attribution : '',
 	},
 ];
@@ -29,3 +29,8 @@ export const COLOR_MAPING = {
 
 export const DEFAULT_LAT_INDEX = 0;
 export const DEFAULT_LNG_INDEX = 1;
+
+export const BOTTOM_LEFT_LAT = -90;
+export const BOTTOM_LEFT_LNG = -350;
+export const TOP_RIGHT_LAT = 90;
+export const TOP_RIGHT_LNG = 350;

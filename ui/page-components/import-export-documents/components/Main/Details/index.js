@@ -6,6 +6,12 @@ import styles from './styles.module.css';
 
 import MapContainer from '@/ui/commons/components/CogoMaps2';
 
+const MAP_ZOOM = 2.7;
+
+const style = {
+	borderRadius: '18px',
+};
+
 function Details({ isUserSubscribed, isQuotaLeft }) {
 	const { t } = useTranslation(['importExportDoc']);
 	const [transportDetails, setTransportDetails] = useState({});
@@ -23,7 +29,7 @@ function Details({ isUserSubscribed, isQuotaLeft }) {
 					/>
 				</div>
 				<div className={styles.map}>
-					<MapContainer formInfo={transportDetails} mapZoom={2.7} height="400px" />
+					<MapContainer formInfo={transportDetails} mapZoom={MAP_ZOOM} height="400px" style={style} />
 				</div>
 			</div>
 		</div>

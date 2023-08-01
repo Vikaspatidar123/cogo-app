@@ -22,7 +22,7 @@ function Map({
 }) {
 	const [curvePoints, setCurvePoints] = useState([]);
 	const { origin = {}, destination = {} } = portDetails || {};
-	console.log(origin, 'origin', destination);
+
 	const originLength = Object.keys(origin).length;
 	const destinationlength = Object.keys(destination).length;
 

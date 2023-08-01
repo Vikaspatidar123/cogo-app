@@ -75,6 +75,7 @@ function Header({ data, loading }) {
 						{source ? (
 							<div className={styles.status}>
 								Created from
+								{' '}
 								{startCase(source)}
 							</div>
 						) : null}

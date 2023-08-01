@@ -15,7 +15,7 @@ const useGetNPS = () => {
 			await trigger();
 			setShow(data);
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 		}
 	}, [data, trigger]);
 

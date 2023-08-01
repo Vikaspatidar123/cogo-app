@@ -21,10 +21,10 @@ jobs:
         secrets: inherit
     
 
-  needs:
-    - init # required to wait when the main job is done
-    - build # required to wait when the main job is done
+  # needs:
+  #   - init # required to wait when the main job is done
+  #   - build # required to wait when the main job is done
   
-  runs-on: ubuntu-latest
+  # runs-on: ubuntu-latest
 
   if: ${{ always() }} # required to stop the runner even if the error happened in the previous jobs

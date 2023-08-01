@@ -1,21 +1,25 @@
 import { Modal, Button } from '@cogoport/components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import useGetNPS from '../hooks/useGetNPS';
 import useSubmitNPS from '../hooks/useSubmitNPS';
 
 import Body from './Body';
+import MenuTitle from './MenuTitle';
 import styles from './styles.module.css';
 import Title from './Title';
 
+const DEFAULT_NPS = 10;
+
 function NetPromoterScore() {
-	const [score, setScore] = useState(10);
+	const [show, setShow] = useState(false);
+	const [score, setScore] = useState(DEFAULT_NPS);
 	const [feedback, setFeedback] = useState({
 		selectedOptions : [],
 		reason          : '',
 	});
 
-	const { show = false, setShow = () => {} } = useGetNPS();
+	const { data } = useGetNPS();
 	const { loading, submitNPS } = useSubmitNPS({ score, feedback });
 
 	const handleSubmit = () => {
@@ -23,27 +27,45 @@ function NetPromoterScore() {
 		submitNPS();
 	};
 
+	const handleDoItLater = () => {
+		setShow(false);
+		sessionStorage.setItem('npsTimeDecision', 'later');
+	};
+
+	useEffect(() => {
+		const submitNpsLater = sessionStorage.getItem('npsTimeDecision') === 'later';
+		setTimeout(() => {
+			setShow(data && !submitNpsLater);
+		}, 100);
+	}, [data]);
+
 	return (
-		<Modal show={show} showCloseIcon={false} size="md" className={styles.modal}>
-			<Modal.Header title={<Title />} />
-			<Modal.Body>
-				<Body score={score} feedback={feedback} setFeedback={setFeedback} setScore={setScore} />
-			</Modal.Body>
-			<Modal.Footer>
-				<Button
-					themeType="secondary"
-					type="button"
-					className={styles.button_2}
-					disabled={loading}
-					onClick={() => setShow(false)}
-				>
-					Do it later
-				</Button>
-				<Button type="button" onClick={handleSubmit} loading={loading} disabled={loading}>
-					Submit
-				</Button>
-			</Modal.Footer>
-		</Modal>
+		<>
+			{data && <MenuTitle setShow={setShow} />}
+			{show ?	(
+				<Modal show={show} showCloseIcon={false} size="md" className={styles.modal}>
+					<Modal.Header title={<Title />} />
+					<Modal.Body>
+						<Body score={score} feedback={feedback} setFeedback={setFeedback} setScore={setScore} />
+					</Modal.Body>
+					<Modal.Footer>
+						<Button
+							themeType="secondary"
+							type="button"
+							className={styles.button_2}
+							disabled={loading}
+							onClick={handleDoItLater}
+						>
+							Do it later
+						</Button>
+						<Button type="button" onClick={handleSubmit} loading={loading} disabled={loading}>
+							Submit
+						</Button>
+					</Modal.Footer>
+				</Modal>
+			) : null}
+
+		</>
 	);
 }
 

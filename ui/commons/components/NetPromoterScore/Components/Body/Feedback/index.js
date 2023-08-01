@@ -24,15 +24,15 @@ function Feedback({ score = 10, feedback = {}, setFeedback = () => {} }) {
 							selectedOptions: e,
 						}));
 					}}
-					size="lg"
+					size="xl"
 					enableMultiSelect
 				/>
 			</div>
-			<div>
+			<div className={styles.text_area}>
 				<Textarea
 					size="lg"
 					rows={4}
-					placeholder="Want to share anything else? type here..."
+					placeholder="Want to share anything else? Type here..."
 					value={reason}
 					onChange={(e) => {
 						setFeedback((prev) => ({

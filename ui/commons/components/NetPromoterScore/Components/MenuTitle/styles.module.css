@@ -1,0 +1,29 @@
+.a_container {
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin: 16px 0;
+	font-size: 14px;
+	line-height: 16px;
+	color: black;
+	text-align: left;
+	text-decoration: none;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
+	box-shadow: none;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.icon {
+	width: 20px;
+	height: 20px;
+	margin-right: 12px;
+}

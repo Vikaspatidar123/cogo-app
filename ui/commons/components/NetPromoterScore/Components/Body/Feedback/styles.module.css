@@ -21,3 +21,13 @@
 		}
 	}
 }
+
+.text_area {
+	:global {
+		.ui_text_area_control {
+			padding: 4px;
+			font-size: 16px;
+			color: #bdbdbd;
+		}
+	}
+}

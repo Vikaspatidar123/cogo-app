@@ -9,5 +9,5 @@
 .container {
 	display: flex;
 	justify-content: space-between;
-	margin: 8px 2px;
+	margin: 8px 6px 8px 2px;
 }

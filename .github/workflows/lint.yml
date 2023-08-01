@@ -12,7 +12,6 @@ jobs:
     secrets: inherit
   
   build:
-    name: Test
     if: github.event.issue.pull_request && (contains(github.event.comment.body, '/lint') || contains(github.event.comment.body, '/checks'))
     needs: init
     uses: ./.github/workflows/comment-test-lint.yml

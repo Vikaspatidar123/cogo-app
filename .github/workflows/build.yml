@@ -1,13 +1,14 @@
 name: Build
 on:
-  issue_comment:
-    types:
-      - created
-jobs:
-  lint:
+  pull_request:
+#   issue_comment:
+#     types:
+#       - created
+# jobs:
+  build:
     name: Test Build
-    if: github.event.issue.pull_request && (contains(github.event.comment.body,
-      '/build') || contains(github.event.comment.body, '/checks')) && ${{ always() }}
+    # if: github.event.issue.pull_request && (contains(github.event.comment.body,
+    #   '/build') || contains(github.event.comment.body, '/checks')) && ${{ always() }}
     runs-on: ubuntu-latest
     steps:
       - name: Init
@@ -21,3 +22,4 @@ jobs:
     needs:
       - init
       - build
+    if: ${{ always() }}

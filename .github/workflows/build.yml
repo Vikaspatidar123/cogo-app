@@ -4,7 +4,7 @@ on:
 #   issue_comment:
 #     types:
 #       - created
-# jobs:
+jobs:
   build:
     name: Test Build
     # if: github.event.issue.pull_request && (contains(github.event.comment.body,

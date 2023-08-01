@@ -14,12 +14,10 @@ jobs:
       - name: Init
         if: ${{ github.triggering_actor != 'dependabot[bot]' }}
         uses: ./.github/workflows/reusable-run-setup.yml
-        secrets: inherit
 
       - name: Build
         needs: init
         uses: ./.github/workflows/comment-test-build.yml
-        secrets: inherit
     
 
   # needs:

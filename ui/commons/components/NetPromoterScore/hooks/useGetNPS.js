@@ -8,9 +8,9 @@ const useGetNPS = () => {
 		url    : '/get_nps_status',
 	}, { autoCancel: false, manual: true });
 
-	const getScore = useCallback(async () => {
+	const getScore = useCallback(() => {
 		try {
-			await trigger();
+			trigger();
 		} catch (e) {
 			console.error(e);
 		}

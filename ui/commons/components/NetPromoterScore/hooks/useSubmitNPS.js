@@ -1,6 +1,8 @@
 import { useRequest } from '@/packages/request';
 
-const useSubmitNPS = ({ score = 10, feedback = {} }) => {
+const DEFAULT_NPS = 10;
+
+const useSubmitNPS = ({ score = DEFAULT_NPS, feedback = {} }) => {
 	const { selectedOptions = [], reason = '' } = feedback || {};
 
 	const [{ loading }, trigger] = useRequest({

@@ -4,6 +4,8 @@ import Feedback from './Feedback';
 import Rating from './Rating';
 import styles from './styles.module.css';
 
+const DEFAULT_NPS = 10;
+
 function RatingText() {
 	const { t } = useTranslation(['common']);
 
@@ -19,9 +21,9 @@ function RatingText() {
 	);
 }
 
-function Body({ score = 10, setScore = () => {}, feedback = {}, setFeedback = () => {} }) {
+function Body({ score = DEFAULT_NPS, setScore = () => {}, feedback = {}, setFeedback = () => {} }) {
 	return (
-		<div style={{ width: '100%' }}>
+		<div className={styles.body}>
 			<Rating score={score} setScore={setScore} />
 			<RatingText />
 			<Feedback score={score} feedback={feedback} setFeedback={setFeedback} />

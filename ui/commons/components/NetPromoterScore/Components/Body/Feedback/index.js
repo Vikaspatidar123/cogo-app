@@ -6,7 +6,9 @@ import { getFeedbackTitleMapping } from '../../../constants/feedback-title-mappi
 
 import styles from './styles.module.css';
 
-function Feedback({ score = 10, feedback = {}, setFeedback = () => {} }) {
+const DEFAULT_NPS = 10;
+
+function Feedback({ score = DEFAULT_NPS, feedback = {}, setFeedback = () => {} }) {
 	const { selectedOptions = [], reason = '' } = feedback || {};
 
 	const { t } = useTranslation(['common']);

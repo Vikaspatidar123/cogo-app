@@ -4,13 +4,17 @@ import { RATING_GRADIENT_MAPPING } from '../../../constants/color-mapping';
 
 import styles from './styles.module.css';
 
-const RATING_ARRAY = [...Array(10).fill().keys()];
+const MAX_NPS = 10;
 
-function Rating({ score = 10, setScore = () => {} }) {
+const DEFAULT_NPS = 10;
+
+const RATING_ARRAY = [...Array(MAX_NPS).fill().keys()];
+
+function Rating({ score = DEFAULT_NPS, setScore = () => {} }) {
 	return (
 		<div className={styles.rating_container}>
 			{RATING_ARRAY.map((rating) => (
-				<div>
+				<div key={rating + 1}>
 					<div
 						className={rating !== score - 1
 							? styles.rating : cl`${styles.rating} ${styles.selected_rating}`}

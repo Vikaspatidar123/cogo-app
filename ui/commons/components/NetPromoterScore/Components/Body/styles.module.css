@@ -11,3 +11,7 @@
 	justify-content: space-between;
 	margin: 8px 6px 8px 2px;
 }
+
+.body {
+	width: 100%;
+}

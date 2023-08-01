@@ -16,6 +16,20 @@
 	border-radius: 8px;
 }
 
+.rating:hover {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 40px;
+	padding: 8px;
+	margin: 4px;
+	cursor: pointer;
+	background-color: #fffce6;
+	border: 1px solid #f8f2e7;
+	border-radius: 8px;
+}
+
 .selected_rating {
 	background-color: #fcdc00;
 }

@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Button } from '@cogoport/components';
 import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
 import HsCode from '../../../../hs-code-modal/component';
 import ProductCatalogue from '../../../../product-catalogue-modal';
-import { productControls as fields } from '../../../configuration/controls';
-import { ProductCartIcon } from '../../../configuration/icon-configuration';
+import { productControls } from '../../../configuration/controls';
 import useCurrencyConversion from '../../../hook/useCurrencyConversion';
 import useVerifyHscode from '../../../hook/useVerifyHscode';
 import productFn from '../../../utils/productFn';
@@ -17,6 +17,9 @@ import style from '../styles.module.css';
 import HyperLink from './HyperLine';
 import ProductBox from './ProductBox';
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const NumberSelector = getField('number');
 const CurrencySelector = getField('select');
@@ -34,11 +37,13 @@ function Product({
 	prevHs,
 	setPrevHs,
 }) {
+	const { t } = useTranslation(['common', 'dutiesTaxesCalculator']);
 	const [showCatalogue, setShowCatalogue] = useState(false);
 	const [showHsCodeModal, setShowHsCodeModal] = useState(false);
 	const [showValidate, setShowValidate] = useState(false);
 	const [selectedData, setSelectedData] = useState();
 
+	const fields = productControls({ t });
 	const { control, handleSubmit, watch, setValue, formState: { errors } } = formHook;
 
 	const { exchangeApi } = useCurrencyConversion();
@@ -54,6 +59,7 @@ function Product({
 	const {
 		submitHandler, errorHandler, convertCurrency, validateSubmitHandler,
 	} = productFn({
+		t,
 		setFormData,
 		setFormStepper,
 		setStepper,
@@ -90,9 +96,15 @@ function Product({
 		<div className={styles.container}>
 			<div className={styles.title_container}>
 				<div className={style.title}>
-					<img src={ProductCartIcon} alt="" />
-					<div>Product Details</div>
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.product_cart_icon}
+						alt={t('dutiesTaxesCalculator:alt_product_cart_icon')}
+						width={20}
+						height={20}
+					/>
+					<div>{t('dutiesTaxesCalculator:form_product_title')}</div>
 				</div>
+
 				<div className={`${style.col} ${styles.currency}`}>
 					<div className={style.label}>{fields[4]?.label}</div>
 					<CurrencySelector {...fields[4]} control={control} />
@@ -138,7 +150,7 @@ function Product({
 						onClick={handleSubmit(submitHandler, errorHandler)}
 						loading={verifySixDigitLoading}
 					>
-						Continue
+						{t('common:continue')}
 						<IcMArrowNext />
 					</Button>
 				</div>

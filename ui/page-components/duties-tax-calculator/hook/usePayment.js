@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import useServiceCode from './useServiceCode';
@@ -9,12 +10,16 @@ import { useSelector } from '@/packages/store';
 import paymentInitiation from '@/ui/commons/components/PaymentInitiation';
 
 const usePayment = () => {
-	const { profile } = useSelector((s) => s);
 	const { query } = useRouter();
+	const { org_id = '', branch_id = '', account_type = '' } = query || {};
+
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
+
+	const { profile } = useSelector((s) => s);
 	const {
 		id, name, email, mobile_number, mobile_country_code,
 	} = profile || {};
-	const { org_id = '', branch_id = '', account_type = '' } = query || {};
+
 	const [buttonLoading, setButtonLoading] = useState(false);
 	const [modal, setModal] = useState({});
 
@@ -26,7 +31,7 @@ const usePayment = () => {
 		method  : 'post',
 	}, { manual: true });
 
-	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}/${org_id}/${branch_id}/${account_type}saas/`
+	const callBackUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/${account_type}saas/`
 	+ 'premium-services/duties-taxes-calculator';
 
 	const getServiceDataHandler = async () => {
@@ -90,7 +95,7 @@ const usePayment = () => {
 				paymentInitiation({ data: resp?.data, setModal, setButtonLoading });
 			}
 		} catch (err) {
-			Toast.error('Something went wrong! Please try after sometime');
+			Toast.error(t('dutiesTaxesCalculator:api_err_msg'));
 		}
 	};
 	return { data, refectPayment, paymentLoading: loading || serviceCodeLoading || buttonLoading, modal, setModal };

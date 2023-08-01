@@ -5,7 +5,7 @@ import useGetAddresses from './useGetAddresses';
 
 import { useRequest } from '@/packages/request';
 
-const useCreateBillingAddres = ({ checked, addressType }) => {
+const useCreateBillingAddres = ({ checked, addressType, refetch:refetchAddres = () => {} }) => {
 	const { refetch = () => {} } = useGetAddresses();
 	const [response, setResp] = useState();
 
@@ -44,6 +44,7 @@ const useCreateBillingAddres = ({ checked, addressType }) => {
 			if (resp) {
 				refetch();
 				handleCloseModal();
+				refetchAddres();
 			}
 			Toast.success('Successfully Added Address');
 			return resp;

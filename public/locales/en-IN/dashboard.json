@@ -149,7 +149,6 @@
 	"tracking_header_form_control_invalid_airline_text":"Invalid AirLine Number",
     "tracking_header_form_control_label_4":"Select Airway Line",
 	"tracking_header_form_control_label_2":"Select Shipping Line",
-	"kyc_text_1":"KYC Verification is",
 	"kyc_text_2":"Kindly upload the required documents to proceed further.",
 	"kyc_complete_button_text":"Complete KYC",
 	"setPassword_heading": "Set Password",
@@ -176,6 +175,10 @@
 	"shipment_create_title_text":"Create New Shipment",
 	"ocean_shipment_text":"Ocean",
 	"air_shipment_text":"Air",
-	"verified_text":"Your verified KYC ensures a seamless shipping experience for your valued packages."
+	"verified_text":"Your verified KYC ensures a seamless shipping experience for your valued packages.",
+	"kyc_status_verified":"Your KYC is verified",
+	"kyc_status_rejected":"Your KYC is rejected",
+	"kyc_status_pending_from_user":"Please, complete your KYC",
+	"kyc_status_pending_verification":"Your KYC verification is in the process"
 
 }

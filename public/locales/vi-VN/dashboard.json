@@ -148,7 +148,6 @@
 	"tracking_header_form_control_invalid_airline_text":"Số hãng hàng không không hợp lệ",
     "tracking_header_form_control_label_4":"Chọn đường hàng không",
 	"tracking_header_form_control_label_2":"Chọn hàng vận chuyển",
-	"kyc_text_1":"Xác minh KYC là",
 	"kyc_text_2":"Vui lòng tải lên các tài liệu cần thiết để tiến hành thêm.",
 	"kyc_complete_button_text":"Hoàn thành KYC",
 	"setPassword_heading": "Đặt mật khẩu",
@@ -175,7 +174,11 @@
 	"shipment_create_title_text":"Tạo lô hàng mới",
 	"ocean_shipment_text":"Đại dương",
 	"air_shipment_text":"Không khí",
-	"verified_text":"KYC được xác minh của bạn đảm bảo trải nghiệm vận chuyển liền mạch cho các gói có giá trị của bạn."
+	"verified_text":"KYC được xác minh của bạn đảm bảo trải nghiệm vận chuyển liền mạch cho các gói có giá trị của bạn.",
+	"kyc_status_verified":"Your KYC is verified",
+	"kyc_status_rejected":"Your KYC is rejected",
+	"kyc_status_pending_from_user":"Please, complete your KYC",
+	"kyc_status_pending_verification":"Your KYC verification is in the process"
 
 
 }

@@ -1,21 +1,19 @@
 name: Build
 
 on:
-  pull_request:
-  # issue_comment:
-  #   types: [created]
+  issue_comment:
+    types: [created]
 
 jobs:
   init:
     name: Init
-    if: ${{ github.triggering_actor != 'dependabot[bot]' }} 
-    # && github.event.issue.pull_request && (contains(github.event.comment.body, '/build') || contains(github.event.comment.body, '/checks'))
+    if: ${{ github.triggering_actor != 'dependabot[bot]' }} && github.event.issue.pull_request && (contains(github.event.comment.body, '/build') || contains(github.event.comment.body, '/checks'))
     uses: ./.github/workflows/reusable-run-setup.yml
     secrets: inherit
   
   build:
     name: Test
-    # if: github.event.issue.pull_request && (contains(github.event.comment.body, '/build') || contains(github.event.comment.body, '/checks'))
+    if: github.event.issue.pull_request && (contains(github.event.comment.body, '/build') || contains(github.event.comment.body, '/checks'))
     needs: init
     uses: ./.github/workflows/comment-test-build.yml
     secrets: inherit

@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
   steps:
-    name: Init
+  - name: Init
     if: ${{ github.triggering_actor != 'dependabot[bot]' }}
     uses: ./.github/workflows/reusable-run-setup.yml
     secrets: inherit
 
-    name: Lint
+  - name: Lint
     needs: init
     uses: ./.github/workflows/comment-test-lint.yml
     secrets: inherit

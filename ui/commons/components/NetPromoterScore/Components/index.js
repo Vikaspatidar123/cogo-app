@@ -1,4 +1,5 @@
 import { Modal, Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import useGetNPS from '../hooks/useGetNPS';
@@ -12,6 +13,8 @@ import Title from './Title';
 const DEFAULT_NPS = 10;
 
 function NetPromoterScore() {
+	const { t } = useTranslation(['common']);
+
 	const [show, setShow] = useState(false);
 	const [score, setScore] = useState(DEFAULT_NPS);
 	const [feedback, setFeedback] = useState({
@@ -56,10 +59,10 @@ function NetPromoterScore() {
 							disabled={loading}
 							onClick={handleDoItLater}
 						>
-							Do it later
+							{t('common:do_it_later_button_label')}
 						</Button>
 						<Button type="button" onClick={handleSubmit} loading={loading} disabled={loading}>
-							Submit
+							{t('common:submit_button_label')}
 						</Button>
 					</Modal.Footer>
 				</Modal>

@@ -1,15 +1,19 @@
+import { useTranslation } from 'next-i18next';
+
 import Feedback from './Feedback';
 import Rating from './Rating';
 import styles from './styles.module.css';
 
 function RatingText() {
+	const { t } = useTranslation(['common']);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.dissatisfied_text}>
-				Extremely Dissatisfied
+				{t('common:net_promoter_score_text_5')}
 			</div>
 			<div className={styles.satisfied_text}>
-				Extremely Satisfied
+				{t('common:net_promoter_score_text_6')}
 			</div>
 		</div>
 	);

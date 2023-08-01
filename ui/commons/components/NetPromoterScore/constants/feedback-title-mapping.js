@@ -1,12 +1,12 @@
-export const FEEDBACK_TITLE_MAPPING = {
-	1  : 'We\'re Sorry to Hear That! How Can We Improve?',
-	2  : 'We Appreciate Your Feedback! Tell Us More.',
-	3  : 'Your Feedback Matters! Help Us Get Better.',
-	4  : 'Thank You for Your Feedback! Share Your Thoughts.',
-	5  : 'Your Opinion Counts! Tell Us About Your Experience.',
-	6  : 'We Value Your Input! Share Your Thoughts.',
-	7  : 'Thank You for Your Feedback! Help Us Improve.',
-	8  : 'We\'re Glad You\'re Satisfied! Tell Us More.',
-	9  : 'Thank You for Your Support! Share Your Thoughts.',
-	10 : ' We\'re Thrilled to Hear That! What Do You Love About Us?',
-};
+export const getFeedbackTitleMapping = ({ t }) => ({
+	1  : t('common:nps_feedback_title_1'),
+	2  : t('common:nps_feedback_title_2'),
+	3  : t('common:nps_feedback_title_3'),
+	4  : t('common:nps_feedback_title_4'),
+	5  : t('common:nps_feedback_title_5'),
+	6  : t('common:nps_feedback_title_6'),
+	7  : t('common:nps_feedback_title_7'),
+	8  : t('common:nps_feedback_title_8'),
+	9  : t('common:nps_feedback_title_9'),
+	10 : t('common:nps_feedback_title_10'),
+});

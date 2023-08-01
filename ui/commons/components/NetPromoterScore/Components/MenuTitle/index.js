@@ -1,8 +1,11 @@
 import { IcCStar } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
 function MenuTitle({ setShow = () => {} }) {
+	const { t } = useTranslation(['common']);
+
 	return (
 		<div className={styles.container}>
 			<IcCStar className={styles.icon} />
@@ -11,7 +14,7 @@ function MenuTitle({ setShow = () => {} }) {
 				onClick={() => setShow(true)}
 				role="presentation"
 			>
-				Rate Us
+				{t('common:rate_us_button_label')}
 			</div>
 		</div>
 	);

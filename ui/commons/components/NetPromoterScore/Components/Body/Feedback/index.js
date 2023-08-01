@@ -1,12 +1,19 @@
 import { Chips, Textarea } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
-import { FEEDBACK_MAPPING } from '../../../constants/feedback-mapping';
-import { FEEDBACK_TITLE_MAPPING } from '../../../constants/feedback-title-mapping';
+import { getFeedbackMapping } from '../../../constants/feedback-mapping';
+import { getFeedbackTitleMapping } from '../../../constants/feedback-title-mapping';
 
 import styles from './styles.module.css';
 
 function Feedback({ score = 10, feedback = {}, setFeedback = () => {} }) {
 	const { selectedOptions = [], reason = '' } = feedback || {};
+
+	const { t } = useTranslation(['common']);
+
+	const FEEDBACK_MAPPING = getFeedbackMapping({ t });
+	const FEEDBACK_TITLE_MAPPING = getFeedbackTitleMapping({ t });
+
 	const options = FEEDBACK_MAPPING[score];
 
 	return (
@@ -32,7 +39,7 @@ function Feedback({ score = 10, feedback = {}, setFeedback = () => {} }) {
 				<Textarea
 					size="lg"
 					rows={4}
-					placeholder="Want to share anything else? Type here..."
+					placeholder={t('common:nps_feedback_placeholder')}
 					value={reason}
 					onChange={(e) => {
 						setFeedback((prev) => ({

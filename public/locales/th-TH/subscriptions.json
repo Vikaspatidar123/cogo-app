@@ -45,7 +45,7 @@
     "addresses_description_text":"There are no existing addresses.Try adding an address.",
     "adderss_select_error_message":"Error! Please Select an Address",
     "summary_text":"Summary",
-    "gst_included_text":"Gst Included",
+    "gst_included_text":"Tax Included",
     "discount_text":"Discount",
     "coupon_code_text":"Have a coupon code?",
     "code_text":"Code",

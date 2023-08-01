@@ -1,6 +1,6 @@
 import organizationServices from '../configurations/common/organization-services.json';
 
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const reallocateControl = (isReallocates) => (isReallocates
 	? [
@@ -155,14 +155,14 @@ const controls = (
 	isAllocatable = true,
 	isReallocates = false,
 ) => {
+	const geo = getGeoConstants();
+
 	const statuses = service_charges.map(
 		(charge) => charge?.margin_approval_status,
 	);
-	const isDisabled =		shipment_data?.state === 'init' && statuses.includes('approved');
-	const exculdeIds = [
-		GLOBAL_CONSTANTS.COGO_FREIGHT_SUPPLIER,
-		GLOBAL_CONSTANTS.COGO_FREIGHT_PVT_LTD_PR_SUPPLIER,
-	];
+
+	const isDisabled =	shipment_data?.state === 'init' && statuses.includes('approved');
+	const exculdeIds = [geo.uuid.cogo_freight_supplier, geo.uuid.cogo_freight_pvt_ltd_pr_supplier];
 
 	let service_provider_id = shipment_data?.booking_params?.service_provider_id;
 	if (!service_provider_id) {

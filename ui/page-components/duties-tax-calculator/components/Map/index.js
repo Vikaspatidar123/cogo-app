@@ -13,7 +13,7 @@ function Map({
 	portDetails = {},
 	transportMode,
 	billId = '',
-	tradeEngineRespLength,
+	isTradeEngineRespEmpty,
 	getOceanRoute,
 	routeDataLength = false,
 	setMapPoints,
@@ -132,7 +132,7 @@ function Map({
 		<div className={`${styles.without_mobile} ${styles.with_mobile}`}>
 			<CogoMaps
 				plotPoints={curvePoints}
-				lengthDependency={tradeEngineRespLength}
+				lengthDependency={isTradeEngineRespEmpty}
 				origin={origin}
 				destination={destination}
 				transportMode={transportMode.toLowerCase()}

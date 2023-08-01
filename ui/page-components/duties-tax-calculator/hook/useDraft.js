@@ -1,4 +1,5 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { useRouter } from '@/packages/next';
@@ -6,11 +7,15 @@ import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useDraft = () => {
-	const [draftResp, setDraftResp] = useState();
-	const { profile = {} } = useSelector((s) => s);
-	const { organization = {} } = profile || {};
 	const { query } = useRouter();
 	const { billId = '' } = query || {};
+
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
+
+	const { profile = {} } = useSelector((s) => s);
+	const { organization = {} } = profile || {};
+
+	const [draftResp, setDraftResp] = useState('');
 
 	const [{ loading:draftLoading }, triggerDraft] = useRequestBf({
 		url     : 'saas/trade-engine/duties/draft',
@@ -46,7 +51,7 @@ const useDraft = () => {
 			if (!isQuotaLeft && billId === '') localStorage.setItem('draftId', resp?.data?.id);
 			return resp?.data?.id;
 		} catch (err) {
-			Toast.error('Something went wrong! Please try after sometime');
+			Toast.error(t('dutiesTaxesCalculator:api_err_msg'));
 			return null;
 		}
 	};

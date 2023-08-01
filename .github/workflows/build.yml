@@ -1,8 +1,8 @@
 name: Build
-
 on: [pull_request]
 
 jobs:
+if: github.event.issue.pull_request && (contains(github.event.comment.body,'/build') || contains(github.event.comment.body, '/checks')) && ${{ always() }}
   init:
     name: Init
     if: ${{ github.triggering_actor != 'dependabot[bot]' }}

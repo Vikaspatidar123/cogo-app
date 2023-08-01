@@ -8,7 +8,6 @@ import styles from './styles.module.css';
 import PublicPageNav from '@/ui/commons/components/PublicPageNav';
 
 function AcceptUser({ errorMessage }) {
-	
 	const { t } = useTranslation(['common']);
 
 	if (!errorMessage) {

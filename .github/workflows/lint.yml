@@ -2,16 +2,17 @@ name: Lint
 on: [pull_request]
 
 jobs:
-  if: ${{ always() }}
-  init:
-    name: Init
-    if: ${{ github.triggering_actor != 'dependabot[bot]' }}
-    uses: ./.github/workflows/reusable-run-setup.yml
-    secrets: inherit
-  
   lint:
-    name: Test
-    needs: init
-    uses: ./.github/workflows/comment-test-lint.yml
-    secrets: inherit
+  if: ${{ always() }}
+    init:
+      name: Init
+      if: ${{ github.triggering_actor != 'dependabot[bot]' }}
+      uses: ./.github/workflows/reusable-run-setup.yml
+      secrets: inherit
+    
+    lint:
+      name: Test
+      needs: init
+      uses: ./.github/workflows/comment-test-lint.yml
+      secrets: inherit
     

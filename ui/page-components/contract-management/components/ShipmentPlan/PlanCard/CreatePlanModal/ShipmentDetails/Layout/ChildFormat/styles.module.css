@@ -1,9 +1,8 @@
 .styled_row {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-	margin: 0 15px 14px;
+	margin: 10px 14px 0;
+	margin-left: 18px !important;
 }
 
 .styled_col {
@@ -15,20 +14,29 @@
 .remove_icon {
 	display: flex;
 	align-items: center;
-	margin-left: 5px;
-	cursor: pointer;
-}
-
-.addIcon {
-	display: flex;
-	align-items: center;
+	padding: 4px;
+	margin-top: 4px;
 	margin-left: 10px;
 	cursor: pointer;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
 }
 
-.shipment_no {
+.add_icon {
 	display: flex;
 	align-items: center;
-	font-size: 14px;
-	text-decoration-line: underline;
+	padding: 4px;
+	margin-top: 4px;
+	margin-left: 10px;
+	cursor: pointer;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+}
+
+.container {
+	border-bottom: 1px dashed #a5a5a5;
+}
+
+.container:last-child {
+	border-bottom: unset;
 }

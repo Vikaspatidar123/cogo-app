@@ -4,10 +4,10 @@ on:
     types:
       - created
 jobs:
-  lint:
+  build:
     name: Test Build
     if: github.event.issue.pull_request && (contains(github.event.comment.body,
-      '/build') || contains(github.event.comment.body, '/checks'))
+      '/build') || contains(github.event.comment.body, '/checks')) && ${{ always() }}
     runs-on: ubuntu-latest
     steps:
       - name: Init
@@ -18,8 +18,6 @@ jobs:
         needs: init
         uses: ./.github/workflows/comment-test-build.yml
         secrets: inherit
-  needs:
-    - init
-    - build
-  runs-on: ubuntu-latest
-  if: ${{ always() }}
+    needs:
+      - init
+      - build

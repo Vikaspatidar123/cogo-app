@@ -10,6 +10,7 @@
 
 .chips {
 	padding: 10px 0;
+	margin-bottom: 10px;
 
 	:global {
 		.ui_chips_container {

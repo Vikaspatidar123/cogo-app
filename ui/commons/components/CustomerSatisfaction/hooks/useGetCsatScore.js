@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { useRequest } from '@/packages/request';
 
+const NULL_ITEM = [-1, null];
+
 const useGetCsatScore = ({ serviceName = '' }) => {
 	const [showRateUs, setShowRateUs] = useState(false);
 
@@ -12,16 +14,16 @@ const useGetCsatScore = ({ serviceName = '' }) => {
 
 	const getCsatScore = useCallback(async () => {
 		try {
-			await trigger({
+			const resp = await trigger({
 				params: {
 					service_name: serviceName,
 				},
 			});
-			setShowRateUs([-1, null].includes(data?.achieved_rating));
+			setShowRateUs(NULL_ITEM.includes(resp?.data?.achieved_rating));
 		} catch (e) {
 			console.error(e);
 		}
-	}, [data?.achieved_rating, serviceName, trigger]);
+	}, [serviceName, trigger]);
 
 	useEffect(() => {
 		getCsatScore();

@@ -1,23 +1,26 @@
 import { Chips, Textarea } from '@cogoport/components';
 
-import { FEEDBACK_MAPPING } from '../../../constants/feedback-options';
-import { FEEDBACK_TITLE_MAPPING } from '../../../constants/feedback-title-mapping';
+import { FEEDBACK_MAPPING } from '../../constants/feedback-options';
+import { FEEDBACK_TITLE_MAPPING } from '../../constants/feedback-title-mapping';
 
 import styles from './styles.module.css';
 
-function RatingText({ score = 5, setFeedback = () => {}, feedback = {} }) {
-	const { selectedOptions = [], reason = '' } = feedback || {};
+function RatingText({ setFeedback, feedback }) {
+	const { rating, selectedOptions = [], reason = '' } = feedback || {};
 
-	const options = FEEDBACK_MAPPING[score];
+	const options = FEEDBACK_MAPPING[rating];
 	return (
 		<div className={styles.container}>
+
 			<div className={styles.title}>
-				{FEEDBACK_TITLE_MAPPING[score]}
+				{FEEDBACK_TITLE_MAPPING[rating]}
 			</div>
+
 			<div className={styles.chips}>
 				<Chips
 					items={options}
 					selectedItems={selectedOptions}
+					enableMultiSelect
 					onItemChange={(e) => {
 						setFeedback((prev) => ({
 							...prev,
@@ -26,6 +29,7 @@ function RatingText({ score = 5, setFeedback = () => {}, feedback = {} }) {
 					}}
 				/>
 			</div>
+
 			<div>
 				<Textarea
 					rows={4}

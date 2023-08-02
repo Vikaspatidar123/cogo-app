@@ -3,7 +3,8 @@ import { useState } from 'react';
 
 import useSubmitCsat from '../hooks/useSubmitCsat';
 
-import Body from './Body';
+import Rating from './Rating';
+import RatingText from './RatingText';
 import styles from './styles.module.css';
 import Title from './Title';
 
@@ -15,31 +16,29 @@ function CustomerSatisfactionModal({
 	setShowRateUs = () => {},
 	details = {},
 }) {
-	const [rating, setRating] = useState(5);
 	const [feedback, setFeedback] = useState({
+		rating          : 5,
 		selectedOptions : [],
 		reason          : '',
 	});
 
-	const { submitCsat } = useSubmitCsat({ rating, feedback, csatInfo, serviceName, details });
+	const { submitCsat } = useSubmitCsat({ feedback, csatInfo, serviceName, details });
 
 	const handleSubmit = () => {
-		setShowRateUs(false);
-		setShow(false);
 		submitCsat();
+		setShow(false);
+		setShowRateUs(false);
 	};
 
 	return (
 		<Modal show={show} size="sm" className={styles.modal} showCloseIcon={false}>
 			<Modal.Header title={<Title serviceName={serviceName} />} />
+
 			<Modal.Body>
-				<Body
-					rating={rating}
-					setRating={setRating}
-					feedback={feedback}
-					setFeedback={setFeedback}
-				/>
+				<Rating feedback={feedback} setFeedback={setFeedback} />
+				<RatingText feedback={feedback} setFeedback={setFeedback} />
 			</Modal.Body>
+
 			<Modal.Footer>
 				<Button
 					themeType="secondary"
@@ -49,6 +48,7 @@ function CustomerSatisfactionModal({
 				>
 					Do it later
 				</Button>
+
 				<Button type="button" onClick={handleSubmit}>
 					Submit
 				</Button>

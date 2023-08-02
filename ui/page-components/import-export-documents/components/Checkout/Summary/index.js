@@ -40,7 +40,7 @@ function Summary({
 	return (
 		<div className={styles.container}>
 			{!isQuotaLeft && (
-				<div className={`${styles.text_div} ${styles.billing}`}>
+				<div className={`${styles.text_div}`}>
 					<div className={styles.text_head}>{t('importExportDoc:checkout_summary_address_title')}</div>
 					<SelectAddressComponent address={address} setAddress={setAddress} />
 				</div>

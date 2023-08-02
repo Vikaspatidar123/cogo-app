@@ -48,7 +48,7 @@ const useCompleteOrder = ({
 					[addressKey]             : checked?.[0],
 					organization_branch_id   : profile?.branch?.id,
 					payment_mode             : 'CARDS',
-					start_date               : datePickerValue.toString(),
+					start_date               : datePickerValue?.toString(),
 					is_promo_applied         : length > 0,
 					organization_id          : profile?.organization?.id,
 					performed_by_id          : profile?.id,
@@ -109,6 +109,7 @@ const useCompleteOrder = ({
 				}
 			}
 		} catch (error) {
+			console.log(error, 'error');
 			Toast.error(error?.message);
 		}
 	};

@@ -34,6 +34,7 @@ import {
 	IcMAppPayment,
 	IcATransactionHistory,
 	IcMUsersManageAccounts,
+	IcATradeFinance
 } from '@cogoport/icons-react';
 
 // eslint-disable-next-line import/no-unresolved, import/extensions

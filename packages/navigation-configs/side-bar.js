@@ -22,7 +22,7 @@ const COE_SUPPORTED_USER = [
 ];
 const getCheckSupportedCountry = ({ opt, country }) => {
 	if (opt?.supportedCountry) {
-		return opt.supportedCountry?.includes(country.country_code);
+		return opt?.supportedCountry?.includes(country?.country_code);
 	}
 
 	return true;

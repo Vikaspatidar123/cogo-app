@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 import getOptions from './utils/options-mapping';
 
@@ -14,7 +14,7 @@ const useAccountDetails = () => {
 	const { query = {} } = useSelector((state) => state.general);
 
 	const OPTIONS_MAPPING = getOptions({ t });
-
+	console.log(query, 'query');
 	const [activeTab, setActiveTab] = useState(
 		query.activeTab || Object.keys(OPTIONS_MAPPING)[0],
 	);
@@ -44,6 +44,7 @@ const useAccountDetails = () => {
 		setActiveTab(obj);
 		if (obj !== activeTab) push(`/settings?activeTab=${obj}`);
 	};
+	useEffect(() => { setActiveTab(query.activeTab); }, [query.activeTab]);
 
 	return {
 		activeTab,

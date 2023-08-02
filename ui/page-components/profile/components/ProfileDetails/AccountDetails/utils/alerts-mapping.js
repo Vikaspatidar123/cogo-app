@@ -5,18 +5,13 @@ const getOptions = ({ t = () => { } }) => (
 	{
 		shipment_alerts: {
 			key                : 'shipment_alerts',
-			title              : 'Shipment Status Report Preferences',
+			title              : t('settings:shipment_alerts_text'),
 			containerComponent : ShipmentAlerts,
 
 		},
-		tracking_alerts: {
-			key                : 'tracking_alerts',
-			title              : 'Tracking Alerts',
-			containerComponent : Categories,
-		},
 		promotional_alerts: {
 			key                : 'promotional_alerts',
-			title              : 'Promotional Alerts',
+			title              : t('settings:promotional_alerts_text'),
 			containerComponent : Categories,
 
 		},

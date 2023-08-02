@@ -5,14 +5,14 @@ const DATES = [
 	23, 24, 25, 26, 27, 28,
 ];
 
-const DAYS = [
-	{ label: 'Monday', value: 0 },
-	{ label: 'Tuesday', value: 1 },
-	{ label: 'Wednesday', value: 2 },
-	{ label: 'Thursday', value: 3 },
-	{ label: 'Friday', value: 4 },
-	{ label: 'Saturday', value: 5 },
-	{ label: 'Sunday', value: 6 },
+const DAYS = ({ t = () => {} }) => [
+	{ label: t('settings:schedule_days_option_0'), value: 0 },
+	{ label: t('settings:schedule_days_option_1'), value: 1 },
+	{ label: t('settings:schedule_days_option_2'), value: 2 },
+	{ label: t('settings:schedule_days_option_3'), value: 3 },
+	{ label: t('settings:schedule_days_option_4'), value: 4 },
+	{ label: t('settings:schedule_days_option_5'), value: 5 },
+	{ label: t('settings:schedule_days_option_6'), value: 6 },
 ];
 
 const STATUS_MAPPING = {
@@ -23,9 +23,9 @@ const STATUS_MAPPING = {
 
 };
 
-export const controls = [
+export const controls = ({ t = () => {} }) => [
 	{
-		label   : 'Select Date',
+		label   : t('settings:schedule_label_1'),
 		name    : 'date',
 		type    : 'select',
 		options : DATES.map((item) => ({
@@ -35,29 +35,29 @@ export const controls = [
 		style: { width: '200px' },
 	},
 	{
-		label    : 'Select Days',
+		label    : t('settings:schedule_label_2'),
 		name     : 'days',
 		type     : 'select',
-		options  : DAYS,
+		options  : DAYS({ t }),
 		style    : { width: '200px' },
 		multiple : true,
 	},
 	{
-		label   : 'Select Time Zone',
+		label   : t('settings:schedule_label_3'),
 		name    : 'time_zone',
 		type    : 'select',
 		options : TIME_ZONE,
 		style   : { width: '200px' },
 	},
 	{
-		label : 'Select Time (12 Hr Format)',
+		label : t('settings:schedule_label_4'),
 		name  : 'time',
 		type  : 'time_picker',
 		style : { width: '200px' },
 	},
 ];
 
-export const getControls = ({ value }) => {
-	const control = controls.filter((item) => STATUS_MAPPING[value]?.includes(item.name));
+export const getControls = ({ value, t = () => {} }) => {
+	const control = controls({ t }).filter((item) => STATUS_MAPPING[value]?.includes(item.name));
 	return control;
 };

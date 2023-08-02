@@ -1,7 +1,7 @@
-import { Select, Popover } from '@cogoport/components';
+import { Popover } from '@cogoport/components';
 import { IcMArrowRotateDown } from '@cogoport/icons-react';
-import { isEmpty, upperCase } from '@cogoport/utils';
-import { useState } from 'react';
+import { upperCase } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import useEditColsPopOver from '../../../../../hooks/useEditColsPopOver';
 
@@ -10,6 +10,8 @@ import styles from './styles.module.css';
 
 function Title({ serviceName, options, props }) {
 	const { isEdit } = props || {};
+	const { t } = useTranslation(['settings']);
+
 	const {
 		show = false,
 		setShow = () => {},
@@ -38,7 +40,7 @@ function Title({ serviceName, options, props }) {
 			)
 				: (
 					<div className={styles.container}>
-						<div className={styles.edit}>Edit Columns</div>
+						<div className={styles.edit}>{t('settings:shipment_alerts_text_12')}</div>
 						<Popover
 							visible={show}
 							placement="bottom-end"
@@ -60,22 +62,17 @@ function Title({ serviceName, options, props }) {
 								className={`${styles.select}`}
 								onClick={() => setShow(!show)}
 							>
-								{!selectedShipmentColumns > 0 ? <div>Selected Columns</div>
+								{!selectedShipmentColumns > 0 ? <div>{t('settings:shipment_alerts_text_13')}</div>
 									: (
 										<div className={styles.selected}>
 											{selectedShipmentColumns}
 											{' '}
-											Selected
+											{t('settings:shipment_alerts_text_14')}
 										</div>
 									)}
 								<IcMArrowRotateDown />
 							</div>
 						</Popover>
-						{/* <Select
-							size="sm"
-							style={{ width: '250px' }}
-							options={options}
-						/> */}
 					</div>
 				)}
 		</div>

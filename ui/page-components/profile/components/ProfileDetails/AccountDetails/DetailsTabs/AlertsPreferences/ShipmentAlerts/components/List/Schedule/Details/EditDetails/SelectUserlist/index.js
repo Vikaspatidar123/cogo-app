@@ -1,19 +1,23 @@
 import { Input } from '@cogoport/components';
 import { IcMSearchlight } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 import UserTable from './UserTable';
 
 function SelectUserlist({ data, hookSetter, isLoading }) {
 	const { setPageNumber, setQuery, query } = hookSetter || {};
+
+	const { t } = useTranslation(['settings']);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<div>Decide on Recipients who will receive the Status Report. All reports will be sent by Email. </div>
+				<div>{t('settings:schedule_alerts_text_6')}</div>
 				<Input
 					name="search"
 					style={{ width: '300px' }}
-					placeholder="Search by User Name or Email"
+					placeholder={t('settings:schedule_alerts_text_7')}
 					size="sm"
 					suffix={<IcMSearchlight style={{ marginRight: '10px' }} />}
 					onChange={setQuery}

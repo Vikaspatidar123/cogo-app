@@ -24,3 +24,8 @@
 .loading {
 	border-radius: 10px;
 }
+
+.flex {
+	display: flex;
+	justify-content: space-between;
+}

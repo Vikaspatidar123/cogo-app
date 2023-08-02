@@ -1,4 +1,5 @@
 import { Tabs, TabPanel } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import MobileHeader from '../../../../MobileHeader';
 
@@ -9,6 +10,7 @@ import { useRouter } from '@/packages/next';
 
 function AlertsPreferences() {
 	const { push } = useRouter();
+	const { t } = useTranslation(['settings']);
 	const { activeTab, setActiveTab, OPTIONS_MAPPING, controlValues } = useAccountDetails();
 	const onClickBackButton = () => {
 		push('/settings');
@@ -24,7 +26,7 @@ function AlertsPreferences() {
 			/>
 
 			<div className={styles.main_container}>
-				<div className={styles.header_container}>Alerts and preferences</div>
+				<div className={styles.header_container}>{t('settings:settings_page_tab_4')}</div>
 
 				<Tabs
 					key={activeTab}

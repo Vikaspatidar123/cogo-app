@@ -13,8 +13,8 @@
 	align-items: center;
 	width: 900px;
 	max-width: 1000px;
+	overflow: hidden;
 	scroll-behavior: smooth;
-	overflow-x: scroll;
 
 	&::-webkit-scrollbar {
 		display: none;
@@ -34,6 +34,7 @@
 	display: flex;
 	align-items: center;
 	width: 7%;
+	cursor: pointer;
 
 	:global {
 		.ui_checkbox_container {

@@ -3,6 +3,8 @@ import { setCookie, getCookie } from '@cogoport/utils';
 import { appWithTranslation } from 'next-i18next';
 import pageProgessBar from 'nprogress';
 import { useEffect } from 'react';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import withStore from './store';
 
@@ -15,6 +17,8 @@ import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
 import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
+
+const queryClient = new QueryClient();
 
 const KEY_MAPPING = {
 	COUNTRY: {
@@ -80,15 +84,18 @@ function MyApp({ Component, pageProps, store, generalData }) {
 	}, [generalData, store, partner_id]);
 
 	return (
-		<Provider store={store}>
-			<GlobalLayout
-				layout={pageProps.layout || 'authenticated'}
-				head={pageProps.head || ''}
-			>
-				<Component {...pageProps} />
-				{isBotVisible && <DynamicChatBot />}
-			</GlobalLayout>
-		</Provider>
+		<QueryClientProvider client={queryClient}>
+			<Provider store={store}>
+				<GlobalLayout
+					layout={pageProps.layout || 'authenticated'}
+					head={pageProps.head || ''}
+				>
+					<Component {...pageProps} />
+					{isBotVisible && <DynamicChatBot />}
+				</GlobalLayout>
+			</Provider>
+			<ReactQueryDevtools initialIsOpen={false} />
+		</QueryClientProvider>
 	);
 }
 

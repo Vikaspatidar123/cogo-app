@@ -21,7 +21,8 @@
 	align-items: center;
 	width: 900px;
 	max-width: 1000px;
-	overflow: scroll;
+	overflow: hidden;
+	scroll-behavior: smooth;
 
 	&::-webkit-scrollbar {
 		display: none;

@@ -1,0 +1,12 @@
+.container {
+	display: flex;
+	margin: 20px 0 0 15px;
+}
+
+.box {
+	padding-right: 20px;
+}
+
+.lable {
+	font-weight: 500;
+}

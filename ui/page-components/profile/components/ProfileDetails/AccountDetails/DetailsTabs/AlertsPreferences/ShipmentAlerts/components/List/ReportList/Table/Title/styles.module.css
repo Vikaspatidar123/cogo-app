@@ -5,8 +5,65 @@
 	margin: 15px 0 5px;
 	font-weight: 400;
 	color: var(--black-60, #828282);
+
+	:global {
+		.tippy-box {
+			padding: 0;
+		}
+
+		.tippy-content {
+			padding: 0;
+		}
+	}
 }
 
 .edit {
 	margin-right: 5px;
+}
+
+.select {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 250px;
+	height: 32px;
+	padding: 8px 8px 6px;
+	color: #e0e0e0;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+}
+
+.popover {
+	width: 300px;
+}
+
+.flex_row {
+	display: flex;
+	align-items: center;
+	padding: 15px 10px 10px;
+	margin-left: 10px;
+	cursor: pointer;
+	border-bottom: 1px solid var(--40, #f8f2e7);
+}
+
+.text {
+	font-weight: 400;
+}
+
+.clear {
+	margin-left: 20px;
+	font-weight: 400;
+}
+
+.box {
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+	border-bottom: 1px solid var(--40, #f8f2e7);
+}
+
+.selected {
+	font-weight: 500;
+	color: var(--black-80, #4f4f4f);
 }

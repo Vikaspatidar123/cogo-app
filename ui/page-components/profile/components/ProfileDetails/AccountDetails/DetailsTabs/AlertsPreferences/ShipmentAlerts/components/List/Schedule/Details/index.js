@@ -28,7 +28,7 @@ function Details({ props }) {
 				<div className={styles.values}>
 					<div>All Users linked with Profile`</div>
 					{(data?.list || []).map((item) => (
-						<div className={styles.item}>
+						<div className={styles.item} key={item?.id}>
 							{item.name}
 							;
 							<span className={styles.text}>

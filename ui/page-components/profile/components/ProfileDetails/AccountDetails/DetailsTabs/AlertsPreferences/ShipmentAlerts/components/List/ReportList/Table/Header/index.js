@@ -5,10 +5,11 @@ import { forwardRef } from 'react';
 
 import styles from './styles.module.css';
 
-function Header({ header, props, values, scrollHandler, scrollHandlerRight, serviceName }, ref) {
+function Header({ header, props, values = [], scrollHandler, scrollHandlerRight, serviceName }, ref) {
 	const { isEdit, setColumns } = props || {};
-	console.log(values.map((item) => item.shipment_id), 'values');
-	const shipmentIds = values.map((item) => item.shipment_id);
+
+	const shipmentIds = values.map((item) => item?.shipment_id);
+
 	const onCheck = (value) => {
 		const checkedValue = value ? shipmentIds : [];
 		setColumns((prev) => ({ ...prev, [`${serviceName}_shipment`]: checkedValue }));

@@ -26,7 +26,7 @@ function Body({ values, props, header, index }, ref) {
 						current.body[index][i] = r;
 					}}
 				>
-					{header.map((value) => (
+					{(header || []).map((value) => (
 						<div className={styles.text}>
 							{item[value]}
 						</div>

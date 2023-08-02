@@ -240,6 +240,14 @@
 	"components_header_tickets_keymapping_open":"Mở",	
 	"components_header_tickets_keymapping_solved":"Đã giải quyết",
 	"components_header_tickets_keymapping_rejected":"Vật bị loại bỏ",
-    "layouts_app_header_navigation_finance_options_paymentDashboard_label":"Bảng điều khiển thanh toán"
-
+    "layouts_app_header_navigation_finance_options_paymentDashboard_label":"Bảng điều khiển thanh toán",
+    "dunning_user_added_response_message": "Cảm ơn bạn vì thời gian quý giá của bạn!",
+    "dunning_user_added_successfully": "Người dùng đã thêm thành công.",
+    "go_to_login_page": "Chuyển đến trang đăng nhập",
+    "add_user_dunning_heading": "Thêm người dùng để nhận lời nhắc xuất sắc",
+    "add_user": "Thêm người dùng",
+    "work_scope_label": "Phạm vi làm việc",
+    "required": "Yêu cầu",
+    "invalid_email":"Địa chỉ email không hợp lệ",
+    "Success":"Thành công"
 }

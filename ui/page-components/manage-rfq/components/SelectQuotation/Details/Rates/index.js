@@ -12,6 +12,9 @@ function Rates({
 	portPairRateloading,
 	selectedData,
 	setSelectedData,
+	setRadioSelected,
+	radioSelected,
+	spotSearch,
 }) {
 	return (
 		<div className={styles.container}>
@@ -26,6 +29,9 @@ function Rates({
 				selectedData={selectedData}
 				setSelectedData={setSelectedData}
 				setCardIds={setCardIds}
+				setRadioSelected={setRadioSelected}
+				radioSelected={radioSelected}
+				spotSearch={spotSearch}
 			/>
 		</div>
 	);

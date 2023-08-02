@@ -1,3 +1,4 @@
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const OPTIONS = [
@@ -19,7 +20,11 @@ const getAddressMappingControls = () => {
 	const geo = getGeoConstants();
 
 	const REGISTRATION_LABEL = geo.others.registration_number.label;
-	const ECO_ZONE_LABEl = geo.others.economic_zone.label;
+
+	const ECO_ZONE_LABEL = getLocaleSpecificLabels({
+		accessorType : 'economic_zone',
+		accessor     : 'label',
+	});
 
 	return [
 		{
@@ -146,11 +151,11 @@ const getAddressMappingControls = () => {
 		{
 			type    : 'checkbox',
 			name    : 'is_sez',
-			label   : `Is ${ECO_ZONE_LABEl}`,
+			label   : `Is ${ECO_ZONE_LABEL}`,
 			options : [
 				{
 					value : true,
-					label : `Is ${ECO_ZONE_LABEl}`,
+					label : `Is ${ECO_ZONE_LABEL}`,
 				},
 			],
 			multiple : true,
@@ -160,12 +165,12 @@ const getAddressMappingControls = () => {
 		{
 			type       : 'file',
 			name       : 'sez_proof',
-			label      : `${ECO_ZONE_LABEl} Proof`,
+			label      : `${ECO_ZONE_LABEL} Proof`,
 			uploadType : 'aws',
 			drag       : true,
 			height     : 45,
 			rules      : {
-				required: `${ECO_ZONE_LABEl} proof is required`,
+				required: `${ECO_ZONE_LABEL} proof is required`,
 			},
 			span   : 5.8,
 			showIn : ['billingAddress'],

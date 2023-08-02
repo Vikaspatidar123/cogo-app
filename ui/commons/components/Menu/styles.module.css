@@ -157,3 +157,16 @@
 
 	margin-right: 12px;
 }
+
+.sub_nav {
+	display: flex;
+	padding: 10px 5px;
+	text-align: left;
+	cursor: pointer;
+	background: transparent;
+	border-radius: 5px;
+}
+
+.sub_nav:hover {
+	background-color: #fef199;
+}

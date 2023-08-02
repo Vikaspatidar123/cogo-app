@@ -1,21 +1,22 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@cogoport/charts': ^1.0.3
-  '@cogoport/components': ^1.0.432
-  '@cogoport/eslint-config': ^1.1.1
-  '@cogoport/icons-react': ^1.0.86
+  '@cogoport/charts': ^1.0.1
+  '@cogoport/components': ^1.0.437
+  '@cogoport/eslint-config': ^1.1.0
+  '@cogoport/icons-react': ^1.0.90
   '@cogoport/maps': ^1.0.3
   '@cogoport/stylelint-config': ^1.0.3
   '@cogoport/utils': ^1.2.10
-  '@sentry/nextjs': ^7.60.0
-  '@sentry/tracing': ^7.60.0
-  '@stripe/react-stripe-js': ^1.16.5
-  '@stripe/stripe-js': ^1.54.1
+  '@sentry/nextjs': ^7.30.0
+  '@sentry/tracing': ^7.30.0
+  '@stripe/react-stripe-js': ^1.6.0
+  '@stripe/stripe-js': ^1.21.2
   '@svgr/webpack': ^6.5.1
   accept-language: ^3.0.18
   axios: ^1.4.0
   axios-hooks: ^4.0.0
+  cookies-next: ^2.1.2
   eslint: 8.35.0
   file-saver: ^2.0.5
   firebase: ^9.23.0
@@ -44,20 +45,22 @@ specifiers:
   redux: ^4.2.1
   redux-thunk: ^2.4.2
   slick-carousel: ^1.8.1
-  stylelint: ^15.10.2
+  stylelint: ^15.2.0
+  use-count-up: ^3.0.1
   uuid: ^9.0.0
 
 dependencies:
   '@cogoport/charts': 1.0.3_biqbaboplfbrettd7655fr4n2y
-  '@cogoport/components': 1.0.432_33anfcebeh5c4mwpkkbioyhs2q
-  '@cogoport/icons-react': 1.0.86_biqbaboplfbrettd7655fr4n2y
-  '@cogoport/maps': 1.0.3_cmckfm7yuriasd6lqsbyc4adfq
+  '@cogoport/components': 1.0.437_nq2dsfvf3xiy6kraqrhauunjoq
+  '@cogoport/icons-react': 1.0.90_biqbaboplfbrettd7655fr4n2y
+  '@cogoport/maps': 1.0.3_jbkdfmwn4pruupygfcv3deyn7u
   '@cogoport/utils': 1.2.10
   '@stripe/react-stripe-js': 1.16.5_l52agfnny5gsgnugli43vfmq5m
   '@stripe/stripe-js': 1.54.1
   accept-language: 3.0.18
   axios: 1.4.0
   axios-hooks: 4.0.0_axios@1.4.0+react@18.2.0
+  cookies-next: 2.1.2
   file-saver: 2.0.5
   firebase: 9.23.0
   firebase-admin: 11.10.1
@@ -80,6 +83,7 @@ dependencies:
   redux: 4.2.1
   redux-thunk: 2.4.2_redux@4.2.1
   slick-carousel: 1.8.1
+  use-count-up: 3.0.1_react@18.2.0
   uuid: 9.0.0
 
 devDependencies:
@@ -1427,13 +1431,13 @@ packages:
       - react-dom
     dev: false
 
-  /@cogoport/components/1.0.432_33anfcebeh5c4mwpkkbioyhs2q:
-    resolution: {integrity: sha512-2/nQtJpuEwMkQ0cwY+tU5lypeHAKv1OKggNUFYsDTZrylb15OxajpgTU80LbyYvD02OvrENHkLEPYPbi8kgXjg==}
+  /@cogoport/components/1.0.437_nq2dsfvf3xiy6kraqrhauunjoq:
+    resolution: {integrity: sha512-0qxiPbtbdkcVtBzZXP0ekSGbGBjoJx5wFUKvE7ufT/7a4ksyxFUVPeDnbtmSFF7lT8Uv0gI35e2Cqf2UKAOnOg==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react-dom: ^18.2.0
     dependencies:
-      '@cogoport/icons-react': 1.0.86_biqbaboplfbrettd7655fr4n2y
+      '@cogoport/icons-react': 1.0.90_biqbaboplfbrettd7655fr4n2y
       '@tippyjs/react': 4.2.6_biqbaboplfbrettd7655fr4n2y
       '@types/quill': 2.0.10
       '@types/react-rte': 0.16.5
@@ -1487,29 +1491,29 @@ packages:
       - supports-color
     dev: true
 
-  /@cogoport/icons-react/1.0.86_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-R9abNIhd8pezNekgyM+1tp+kcpDcurvrUHlEzarNL+cPzS93trPavjm1NuWa6/TP9Ry90H/FFKOxafGvOa2vcQ==}
+  /@cogoport/icons-react/1.0.90_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-Mbz4G6XgYH/G91TtjS0OaPAfdisPseMuW0LBfcANWCJV3TsGdIkU2IM80WsEUvzwanP6CCqrf++Vbd4cqxS5Fg==}
     peerDependencies:
       react: 18.2.0
       react-dom: 18.2.0
     dependencies:
-      '@cogoport/icons': 1.0.86
+      '@cogoport/icons': 1.0.90
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@cogoport/icons/1.0.86:
-    resolution: {integrity: sha512-FRPjFYghq+wAtdx5g6vRuai+bScXD7yKSSr8a5eYT3QzP+F573zWBhMaim28p2r6W/aJzz2tjQDMMrtCROJJeg==}
+  /@cogoport/icons/1.0.90:
+    resolution: {integrity: sha512-YqzWKAjq5NAOgIcVSkMhPz+wKk90euViwbQ/4qNk4lAbm3wbvwn01BrGOamivE7M1OLeR4Rii7Gb1YDU57L7Jw==}
     dev: false
 
-  /@cogoport/maps/1.0.3_cmckfm7yuriasd6lqsbyc4adfq:
+  /@cogoport/maps/1.0.3_jbkdfmwn4pruupygfcv3deyn7u:
     resolution: {integrity: sha512-nWNhGesbEQNqBGy1KO9O85eU04zcVaIVvuHXcq7CKa+pij74yU3BKB4PTBvoSrbLHAgIctxe8KOQVzBVgTLl/w==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@cogoport/icons-react': 1.0.86_biqbaboplfbrettd7655fr4n2y
+      '@cogoport/icons-react': 1.0.90_biqbaboplfbrettd7655fr4n2y
       leaflet: 1.9.4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -3768,6 +3772,10 @@ packages:
       '@types/node': 20.4.5
     dev: false
 
+  /@types/cookie/0.4.1:
+    resolution: {integrity: sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==}
+    dev: false
+
   /@types/draft-js/0.11.12:
     resolution: {integrity: sha512-J/e4QYz8wCXvPpiCaiKcJrtLo65px4nnfFVZ/0EKHoKnQ4nWdzXwGHOQLIePAJM+Ho4V9/mb4Nhw4v/08y98jQ==}
     dependencies:
@@ -3869,8 +3877,12 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node/20.4.5:
-    resolution: {integrity: sha512-rt40Nk13II9JwQBdeYqmbn2Q6IVTA5uPhvSO+JVqdXw/6/4glI6oR9ezty/A9Hg5u7JH4OmYmuQ+XvjKm0Datg==}
+  /@types/node/16.18.39:
+    resolution: {integrity: sha512-8q9ZexmdYYyc5/cfujaXb4YOucpQxAV4RMG0himLyDUOEr8Mr79VrqsFI+cQ2M2h89YIuy95lbxuYjxT4Hk4kQ==}
+    dev: false
+
+  /@types/node/20.4.2:
+    resolution: {integrity: sha512-Dd0BYtWgnWJKwO1jkmTrzofjK2QXXcai0dmtzvIBhcA+RsG5h8R3xlyta0kGOZRNfL9GuRtb1knmPEhQrePCEw==}
     dev: false
 
   /@types/normalize-package-data/2.4.1:
@@ -4681,7 +4693,14 @@ packages:
   /cookie/0.4.2:
     resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
     engines: {node: '>= 0.6'}
-    dev: true
+
+  /cookies-next/2.1.2:
+    resolution: {integrity: sha512-czxcfqVaQlo0Q/3xMgp/2jpspsuLJrIm6D37wlmibP3DAcYT315c8UxQmDMohhAT/GRWpaHzpDEFANBjzTFQGg==}
+    dependencies:
+      '@types/cookie': 0.4.1
+      '@types/node': 16.18.39
+      cookie: 0.4.2
+    dev: false
 
   /core-js-compat/3.31.1:
     resolution: {integrity: sha512-wIDWd2s5/5aJSdpOJHfSibxNODxoGoWOBHt8JSPB41NOE94M7kuTPZCYLOlTtuoXTsBPKobpJ6T+y0SSy5L9SA==}
@@ -9474,6 +9493,23 @@ packages:
     dependencies:
       punycode: 2.3.0
     dev: true
+
+  /use-count-up/3.0.1_react@18.2.0:
+    resolution: {integrity: sha512-jlVsXJYje6jh+xwQaCEYrwHoB+nRyillNEmr21bhe9kw7tpRzyrSq9jQs9UOlo+8hCFkuOmjUihL3IjEK/piVg==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+      use-elapsed-time: 3.0.2_react@18.2.0
+    dev: false
+
+  /use-elapsed-time/3.0.2_react@18.2.0:
+    resolution: {integrity: sha512-2EY9lJ5DWbAvT8wWiEp6Ztnl46DjXz2j78uhWbXaz/bg3OfpbgVucCAlcN8Bih6hTJfFTdVYX9L6ySMn5py/wQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /use-sync-external-store/1.2.0_react@18.2.0:
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}

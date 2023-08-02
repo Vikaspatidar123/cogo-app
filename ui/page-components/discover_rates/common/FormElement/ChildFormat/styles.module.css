@@ -1,5 +1,4 @@
 .container {
-	/* padding: 0px 8px; */
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -20,7 +19,7 @@
 .divider {
 	height: 1px;
 	margin-bottom: 8px;
-	background-color: _grey.divider;
+	background-color: grey;
 }
 
 .button_div {
@@ -88,4 +87,11 @@
 	justify-content: flex-start;
 
 	/* margin-bottom: 24px; */
+}
+
+.delete_icon {
+	width: 24px;
+	height: 24px;
+	margin: 5px 0 0 auto;
+	cursor: pointer;
 }

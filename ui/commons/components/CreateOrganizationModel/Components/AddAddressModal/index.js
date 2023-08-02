@@ -18,7 +18,7 @@ import { useSelector } from '@/packages/store';
 
 const errorType = ['required', 'pattern', 'maxLength', 'length'];
 
-function AddModal({ addAddressModal = false, setAddAddressModal = () => {} }) {
+function AddModal({ addAddressModal = false, setAddAddressModal = () => {}, refetch = () => {} }) {
 	const { general = {} } = useSelector((state) => state);
 	const { isMobile } = general || {};
 	const { t } = useTranslation(['common']);
@@ -43,6 +43,7 @@ function AddModal({ addAddressModal = false, setAddAddressModal = () => {} }) {
 	const { createSellerAddres, createAddressLoading } = useCreateBillingAddres({
 		checked,
 		addressType,
+		refetch,
 	});
 
 	const returnFieldFunction = ({ item }) => {

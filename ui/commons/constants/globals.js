@@ -147,7 +147,7 @@ const GLOBAL_CONSTANTS = {
 	},
 
 	zeroth_index : 0,
-	one_index    : 1,
+	first_index  : 1,
 
 	service_supported_countries: {
 		ftl_freight: {
@@ -219,7 +219,8 @@ const GLOBAL_CONSTANTS = {
 		image_extension: /\.(jpg|jpeg|png|gif|svg)$/i,
 
 	},
-	PROFILE_NAVIGATIONS: ['saas_cogo_subscription', 'saas_finance'],
+	PROFILE_NAVIGATIONS : ['saas_cogo_subscription', 'saas_finance'],
+	PUBLIC_PAGE_URL     : 'https://www.cogoport.com',
 };
 
 export default GLOBAL_CONSTANTS;

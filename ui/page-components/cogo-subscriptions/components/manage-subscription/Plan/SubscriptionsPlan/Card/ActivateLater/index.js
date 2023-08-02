@@ -20,7 +20,11 @@ function ActivateLater({ activatesIn }) {
 				width={25}
 				height={25}
 			/>
-			<span className={styles.days}>{activatesIn}</span>
+			<span className={activatesIn.length === 1
+				? styles.activate_later_days : styles.activate_later_days_2}
+			>
+				{activatesIn}
+			</span>
 			<span className={styles.date}>
 				{activatesIn === START_COUNT
 					? t('subscriptions:day_text')

@@ -17,8 +17,8 @@ const MIN_POC_VERIFIED = 1;
 
 const getAccordianTitle = ({ placeholder, pocLength }) => (
 	<div className={styles.pill_container}>
-		<div>
-			{`${placeholder} ${pocLength}`}
+		<div style={{fontSize: '16px', color:'#4f4f4f',fontWeight:'500'}}>
+			{`${placeholder} (${pocLength})`}
 
 		</div>
 		<Pill color={pocLength >= MIN_POC_VERIFIED ? 'green' : 'yellow'} size="sm">

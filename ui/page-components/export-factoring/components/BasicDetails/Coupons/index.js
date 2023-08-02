@@ -24,7 +24,7 @@ function Coupons({ getCreditRequestResponse = {} }) {
 		<div className={styles.coupons}>
 			{(list || []).map((coupon) => (
 				<div className={styles.coupon} key={coupon.name}>
-					<Image src={coupon.thumbnail_image} width="auto" height="auto" alt="coupon" />
+					<img src={coupon.thumbnail_image} width="30px" height="30px" alt="coupon" />
 					<div className={styles.name}>{coupon.name}</div>
 					{action !== 'applied'
 						? (

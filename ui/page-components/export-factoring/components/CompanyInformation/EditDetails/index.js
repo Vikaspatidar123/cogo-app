@@ -33,7 +33,7 @@ function EditDetails({
 			org_iec_number,
 			gst_number,
 			company_address       : updatedValues.address || address,
-			date_of_incorporation : new Date(date_of_incorporation),
+			date_of_incorporation : date_of_incorporation ? new Date(date_of_incorporation): '',
 			city,
 			state,
 			constitution_of_business,

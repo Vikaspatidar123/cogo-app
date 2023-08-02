@@ -64,7 +64,7 @@ function EditDetails({
 								<Element
 									control={control}
 									{...item}
-									disabled={!!control.defaultValues[item?.name]}
+									disabled={!!control._defaultValues[item?.name]}
 								/>
 								<div className={styles.error_text}>
 									{errors?.[item?.name]?.message || errors?.[item?.name]?.type }

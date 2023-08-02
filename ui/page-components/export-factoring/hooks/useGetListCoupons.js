@@ -21,7 +21,7 @@ const useGetListCoupons = ({ getCreditRequestResponse = {} }) => {
 					organization_id : organization?.id,
 					total_amount    : application_fee,
 					currency        : application_fee_currency,
-					category        : 'pay_later',
+					category        : 'export_factoring',
 				},
 			});
 		} catch (e) {

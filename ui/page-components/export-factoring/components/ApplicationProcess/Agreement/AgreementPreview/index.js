@@ -126,7 +126,7 @@ function AgreementPreview({
 						readonly
 						className={styles.download}
 					/>
-					{!signed_offer_letter.active ? (
+					{!signed_offer_letter?.active ? (
 						<>
 							<div className={styles.field}>
 								<div className={styles.field_name}>

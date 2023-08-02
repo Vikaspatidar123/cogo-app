@@ -71,7 +71,7 @@ export const tradeControls = (setSelectedCountry) => [
 					value : x.id,
 					label : (
 						<div style={{ display: 'flex' }}>
-							<Image src={x.flag_icon_url} alt="" />
+							<img src={x.flag_icon_url} alt="" />
 							<div style={{ marginLeft: '5px' }}>{x.name}</div>
 						</div>
 					),

@@ -29,3 +29,9 @@
 .checkboxContainer {
 	padding: 10px 0;
 }
+
+.pill_container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

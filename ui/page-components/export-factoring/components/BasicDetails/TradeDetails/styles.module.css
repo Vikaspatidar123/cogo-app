@@ -10,3 +10,9 @@
 	justify-content: flex-end;
 	padding: 20px 0;
 }
+
+.pill_container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

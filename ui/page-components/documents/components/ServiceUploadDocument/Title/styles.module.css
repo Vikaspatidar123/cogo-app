@@ -1,0 +1,95 @@
+.title_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+
+	:global {
+		.ui_pill_container {
+			width: 10px;
+			height: 10px;
+			padding: 0;
+		}
+	}
+}
+
+.listTitle {
+	display: flex;
+	width: 90%;
+}
+
+.doc_name {
+	display: flex;
+	max-width: 400px;
+	overflow: hidden;
+	font-size: 14px;
+	font-weight: 500;
+	color: #231f20;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.tool_tip {
+	font-size: 10px;
+}
+
+.sampleLink {
+	display: flex;
+	margin: 0 80px 0 0;
+	color: #034afd;
+	text-decoration: underline;
+}
+
+.tag {
+	width: 10px;
+	margin: 0 18px 0 0;
+	border-radius: 2px;
+}
+
+.success_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.icon {
+	width: 20px;
+	height: 20px;
+	margin: 0 10px;
+	cursor: pointer;
+}
+
+.success_info {
+	flex-basis: 25%;
+	color: #828282;
+}
+
+.success_info_doc {
+	flex-basis: 35%;
+	overflow: hidden;
+	color: #828282;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.info {
+	color: #231;
+}
+
+.init_title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.label {
+	display: flex;
+	align-items: center;
+	width: 50%;
+}
+
+.loading {
+	cursor: not-allowed;
+	opacity: 0.4;
+}

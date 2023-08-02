@@ -4,7 +4,6 @@ export const getDirectorControls = (constitutionMapping = '') => [
 		name  : 'registration_number',
 		label : 'PAN',
 		type  : 'text',
-
 		rules: {
 			required: true,
 		},

@@ -29,7 +29,7 @@ function GSTproof({
 	return (
 		<>
 			<div>
-				{hasRequestedForCredit && <div>GST Proof</div>}
+				{hasRequestedForCredit && <div style={{fontSize: '16px', color:'#4f4f4f',fontWeight:'500'}}>GST Proof</div>}
 			</div>
 			<div className={styles.file_container}>
 				<div className={styles.file}>

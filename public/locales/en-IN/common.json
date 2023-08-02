@@ -239,5 +239,6 @@
 	"components_header_tickets_keymapping_all":"All",	
 	"components_header_tickets_keymapping_open":"Open",	
 	"components_header_tickets_keymapping_solved":"Solved",
-	"components_header_tickets_keymapping_rejected":"Rejected"
+	"components_header_tickets_keymapping_rejected":"Rejected",
+    "layouts_app_header_navigation_finance_options_paymentDashboard_label":"Payment Dashboard"
 }

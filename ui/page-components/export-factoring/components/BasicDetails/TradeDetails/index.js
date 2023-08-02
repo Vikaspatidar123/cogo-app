@@ -15,7 +15,7 @@ const MIN_TRADE_DETAILS_VERIFIED = 1;
 
 const getAccordianTitle = ({ placeholder, listLength = 0 }) => (
 	<div className={styles.pill_container}>
-		<div>{`${placeholder} ${listLength}`}</div>
+		<div style={{fontSize: '16px', color:'#4f4f4f',fontWeight:'500'}}>{`${placeholder} (${listLength})`}</div>
 		<Pill color={listLength >= MIN_TRADE_DETAILS_VERIFIED ? 'green' : 'yellow'} size="sm">
 			{listLength >= MIN_TRADE_DETAILS_VERIFIED ? 'Completed' : 'Pending'}
 		</Pill>

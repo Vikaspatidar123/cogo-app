@@ -18,7 +18,8 @@ function OfferLetterWaiting({ getCreditRequestResponse = {} }) {
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.ef_offer_letter_waiting}
 						alt="document-offer-letter-waiting"
-						width="150px"
+						width="150"
+						height="100"
 					/>
 				</div>
 				<div className={styles.wrapper_div}>

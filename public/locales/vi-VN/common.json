@@ -239,5 +239,7 @@
 	"components_header_tickets_keymapping_all":"Tất cả",	
 	"components_header_tickets_keymapping_open":"Mở",	
 	"components_header_tickets_keymapping_solved":"Đã giải quyết",
-	"components_header_tickets_keymapping_rejected":"Vật bị loại bỏ"
+	"components_header_tickets_keymapping_rejected":"Vật bị loại bỏ",
+    "layouts_app_header_navigation_finance_options_paymentDashboard_label":"Bảng điều khiển thanh toán"
+
 }

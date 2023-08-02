@@ -33,11 +33,11 @@ function BasicDetails({ active = {}, getCreditRequestResponse = {}, refetch = ()
 			description : 'Provide the exporting countries and payment terms',
 			Component   : TradeDetails,
 		},
-		{
-			title       : 'Credit Requirements',
-			description : 'Demand team recommendation',
-			Component   : CreditRequirements,
-		},
+		// {
+		// 	title       : 'Credit Requirements',
+		// 	description : 'Demand team recommendation',
+		// 	Component   : CreditRequirements,
+		// },
 		{
 			title       : 'Apply Coupons',
 			description : 'Demand team recommendation',
@@ -55,7 +55,7 @@ function BasicDetails({ active = {}, getCreditRequestResponse = {}, refetch = ()
 				refetch={refetch}
 				loading={loading}
 			/>
-			<div className={styles.terms_condition_div}>
+			{/* <div className={styles.terms_condition_div}>
 				<Checkbox />
 				<div className={styles.terms}>
 					I accept the Cogoport
@@ -78,14 +78,16 @@ function BasicDetails({ active = {}, getCreditRequestResponse = {}, refetch = ()
 						Privacy Policy
 					</a>
 				</div>
-			</div>
+			</div> */}
 			<div className={styles.button_wrapper}>
 				<Button
+					size="lg"
+					themeType="primary"
 					onClick={proceedToPay}
 					loading={paymentLoding}
 					type="button"
 				>
-					Proceed to pay
+					Proceed
 				</Button>
 			</div>
 		</div>

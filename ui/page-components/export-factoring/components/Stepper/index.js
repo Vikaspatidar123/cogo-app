@@ -4,8 +4,9 @@ import { STEPPER_OPTIONS } from '../../constants/steppers';
 
 import styles from './styles.module.css';
 
-const CHECK = ['awaiting_user_inputs', 'payment_success'];
+const CHECK = ['awaiting_user_inputs', 'awaiting_offer_letter', 'offer_letter_complete', 'payment_success'];
 function Stepper({ setActive = () => { }, active = '' }) {
+
 	const activeStep = CHECK.includes(active) ? active : 'locked';
 
 	return (

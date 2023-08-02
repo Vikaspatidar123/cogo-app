@@ -15,7 +15,7 @@ const MIN_TRADE_DETAILS_VERIFIED = 1;
 
 const getAccordianTitle = ({ placeholder, listLength = 0 }) => (
 	<div className={styles.pill_container}>
-		<div style={{fontSize: '16px', color:'#4f4f4f',fontWeight:'500'}}>{`${placeholder} (${listLength})`}</div>
+		<div style={{ fontSize: '16px', color: '#4f4f4f', fontWeight: '500' }}>{`${placeholder} (${listLength})`}</div>
 		<Pill color={listLength >= MIN_TRADE_DETAILS_VERIFIED ? 'green' : 'yellow'} size="sm">
 			{listLength >= MIN_TRADE_DETAILS_VERIFIED ? 'Completed' : 'Pending'}
 		</Pill>
@@ -47,7 +47,7 @@ function TradeDetails({ getCreditRequestResponse = {}, refetch = () => {} }) {
 				id   : x.country,
 				name : selectedCountry[x.country].name || '',
 			},
-			products: [x.products_exported],
+			products: x.products_exported,
 		}));
 		const req = {
 			...values,
@@ -108,12 +108,12 @@ function TradeDetails({ getCreditRequestResponse = {}, refetch = () => {} }) {
 						loading={loading}
 						disabled={loading}
 						onClick={handleSubmit(onSubmit)}
-						themeType="secondary"
+						themeType="primary"
 					>
 						Save
 					</Button>
 				</div>
-				<TradeList list={tradeDetails} />
+				{tradeDetails.length > 0 && <TradeList list={tradeDetails} />}
 			</Accordion>
 		</form>
 	);

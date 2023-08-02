@@ -32,30 +32,30 @@ function BasicDetails({ active = {}, getCreditRequestResponse = {}, refetch = ()
 			title       : 'Trade Details',
 			description : 'Provide the exporting countries and payment terms',
 			Component   : TradeDetails,
+
 		},
-		// {
-		// 	title       : 'Credit Requirements',
-		// 	description : 'Demand team recommendation',
-		// 	Component   : CreditRequirements,
-		// },
-		{
+	];
+	if (Object.keys(getCreditRequestResponse?.default_application_fees_details || {}).length !== 0) {
+		mappingComponent.push({
 			title       : 'Apply Coupons',
 			description : 'Demand team recommendation',
 			Component   : Coupons,
-		},
-	];
+		});
+	}
 
 	return (
-		<div className={styles.container}>
-			<div className={styles.header}>Basic information</div>
-			<FormCard
-				componentMapping={mappingComponent}
-				active={active}
-				getCreditRequestResponse={getCreditRequestResponse}
-				refetch={refetch}
-				loading={loading}
-			/>
-			{/* <div className={styles.terms_condition_div}>
+		<>
+			<div className={styles.container}>
+				<div className={styles.header}>Basic information</div>
+
+				<FormCard
+					componentMapping={mappingComponent}
+					active={active}
+					getCreditRequestResponse={getCreditRequestResponse}
+					refetch={refetch}
+					loading={loading}
+				/>
+				{/* <div className={styles.terms_condition_div}>
 				<Checkbox />
 				<div className={styles.terms}>
 					I accept the Cogoport
@@ -79,6 +79,8 @@ function BasicDetails({ active = {}, getCreditRequestResponse = {}, refetch = ()
 					</a>
 				</div>
 			</div> */}
+
+			</div>
 			<div className={styles.button_wrapper}>
 				<Button
 					size="lg"
@@ -86,11 +88,12 @@ function BasicDetails({ active = {}, getCreditRequestResponse = {}, refetch = ()
 					onClick={proceedToPay}
 					loading={paymentLoding}
 					type="button"
+					className={styles.proceed_button}
 				>
 					Proceed
 				</Button>
 			</div>
-		</div>
+		</>
 	);
 }
 

@@ -80,12 +80,10 @@ export const tradeControls = (setSelectedCountry) => [
 			{
 				name        : 'products_exported',
 				label       : 'Products Exported',
-				type        : 'creatable-select',
+				type        : 'creatable_multi_select',
 				placeholder : 'Enter Products...',
-				// optionsListKey: 'list-countries-exported',
 				multiple    : true,
-
-				rules: {
+				rules       : {
 					required: true,
 				},
 			},

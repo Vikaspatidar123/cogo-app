@@ -11,7 +11,7 @@ import { Image } from '@/packages/next';
 function Coupons({ getCreditRequestResponse = {} }) {
 	const { data, loading } = useGetListCoupons({ getCreditRequestResponse });
 
-	const [action, setAction] = useState('');
+	const [action, setAction] = useState({});
 
 	const { list = [] } = data || {};
 
@@ -19,33 +19,48 @@ function Coupons({ getCreditRequestResponse = {} }) {
 		setAction,
 		getCreditRequestResponse,
 	});
+	const handleUpdateAction = ({ type, coupon }) => {
+		const req = { type, coupon };
+		const resp = updateCreditPromotion(req);
+		if (resp) {
+			setAction({ type, id: type === 'removed' ? '' : coupon.id });
+		}
+	};
 
 	return (
 		<div className={styles.coupons}>
 			{(list || []).map((coupon) => (
-				<div className={styles.coupon} key={coupon.name}>
-					<img src={coupon.thumbnail_image} width="30px" height="30px" alt="coupon" />
-					<div className={styles.name}>{coupon.name}</div>
-					{action !== 'applied'
-						? (
+				<div className={styles.coupon_box}>
+					<Image
+						src={coupon?.thumbnail_image}
+						width={50}
+						height={80}
+						className={styles.coupon_image}
+					/>
+					<div className={styles.coupon_text}>
+						{coupon?.name}
+					</div>
+					{action.type !== 'applied' && action.id !== coupon.id
+						&& (
 							<Button
 								type="button"
-								onClick={() => updateCreditPromotion({ type: 'applied', coupon })}
+								onClick={() => handleUpdateAction({ type: 'applied', coupon })}
 								loading={loading}
 							>
 								Apply Coupon
 							</Button>
-						)
-						: (
-							<Button
-								type="button"
-								onClick={() => updateCreditPromotion({ type: 'removed', coupon })}
-								loading={loading}
-								themeType="secondary"
-							>
-								Remove Coupon
-							</Button>
 						)}
+					{action.type === 'applied' && action.id === coupon.id && (
+						<Button
+							type="button"
+							onClick={() => handleUpdateAction({ type: 'removed', coupon })}
+							loading={loading}
+							themeType="secondary"
+						>
+							Remove Coupon
+						</Button>
+					)}
+
 				</div>
 			))}
 		</div>

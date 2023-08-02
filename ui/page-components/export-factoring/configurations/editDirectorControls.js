@@ -4,7 +4,7 @@ export const getDirectorControls = (constitutionMapping = '') => [
 		name  : 'registration_number',
 		label : 'PAN',
 		type  : 'text',
-		rules: {
+		rules : {
 			required: true,
 		},
 	},
@@ -63,12 +63,19 @@ export const getDirectorControls = (constitutionMapping = '') => [
 		},
 	},
 	{
-		name  : 'country',
-		label : 'Country',
-		type  : 'text',
-		rules : {
-			required: true,
+		label          : 'Country',
+		name           : 'country',
+		type           : 'async_select',
+		placeholder    : 'Enter Site/Entity',
+		asyncKey       : 'locations',
+		defaultOptions : true,
+		params         : {
+			filters: {
+				type: ['country'],
+			},
 		},
+		theme     : 'admin',
+		className : 'primary md',
 	},
 	{
 		name  : 'pincode',

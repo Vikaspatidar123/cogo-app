@@ -26,6 +26,7 @@ function OfferLetterDetails({ getCreditRequestResponse = {}, refetch = () => {} 
 		advance_rate,
 		processing_fee,
 		factoring_fee,
+		interest,
 		overdue_charges,
 	} = approved_credit_details || {};
 	const { offer_letter = {} } = documents;
@@ -92,7 +93,7 @@ function OfferLetterDetails({ getCreditRequestResponse = {}, refetch = () => {} 
 								Finance Fees
 							</span>
 							<span>
-								{factoring_fee}
+								{interest}
 								% per month (calculated on pro
 								rated basis on the advance amount)
 							</span>
@@ -204,6 +205,7 @@ function OfferLetterDetails({ getCreditRequestResponse = {}, refetch = () => {} 
 						}
 					type="button"
 					onClick={handleSubmitOfferLetter}
+					className={styles.proceed_btn}
 				>
 					{offer_letter_status === 'signed' ? 'Proceed' : 'Lock Offer Letter'}
 				</Button>

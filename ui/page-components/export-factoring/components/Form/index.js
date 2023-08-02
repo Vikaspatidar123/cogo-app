@@ -52,8 +52,7 @@ const tabsPanelMapping = (status) => {
 function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, loading }) {
 	const [activeTab, setActiveTab] = useState('application');
 	const { flags = {} } = getCreditRequestResponse;
-	const Component = flags?.offer_letter === 'complete' && active === 'awaiting_offer_letter'
-		? RENDERING_FORM.offer_letter_complete : RENDERING_FORM[active];
+	const Component = RENDERING_FORM[active];
 
 	const { status = '' } = getCreditRequestResponse || {};
 
@@ -67,7 +66,7 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 				>
 					{tabsPanelMapping(status).map(({ title = '', SubComponent, name = '' }) => {
 						const MappedComponet = flags?.offer_letter === 'complete'
-						&& (active === 'awaiting_offer_letter') && activeTab === 'application'
+						&& (active === 'offer_letter_complete') && activeTab === 'application'
 							? RENDERING_FORM.offer_letter_complete : SubComponent;
 
 						return (

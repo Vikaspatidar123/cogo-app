@@ -6,6 +6,7 @@ import CheckboxGroupController from './CheckboxGroupController';
 import ChipsController from './ChipController';
 import ControlledCommodityCon from './ControlledCommodityCon';
 import CountrySelectController from './CountrySelectController';
+import CreatableMultiSelectController from './CreatableMultiSelectController';
 import CreatableSelectController from './CreatableSelectController';
 import DatepickerController from './DatepickerController';
 import DateRangepickerController from './DateRangepickerController';
@@ -55,6 +56,7 @@ const MAPPING = {
 	hidden                     : Hidden,
 	time_picker                : TimepickerController,
 	daterangepicker            : DateRangepickerController,
+	creatable_multi_select     : CreatableMultiSelectController,
 };
 
 const getField = (type = 'text') => {

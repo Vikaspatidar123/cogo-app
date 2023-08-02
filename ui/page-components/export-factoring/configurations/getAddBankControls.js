@@ -114,7 +114,7 @@ const BANK_CONTROLS = [
 ];
 
 export const getAddBankControls = ({ accountType }) => BANK_CONTROLS.map((control) => {
-	console.log(accountType, 'accountType');
+
 	if (accountType === 'current_account' && control.name !== 'currency') {
 		return {
 			...control,

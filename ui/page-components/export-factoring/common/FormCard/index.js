@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './styles.module.css';
 
 function FormCard(props) {
@@ -10,7 +11,7 @@ function FormCard(props) {
 	} = props;
 	return (
 		<div className={styles.container}>
-			{(componentMapping.map(({ title, description, Component, leftChildern }) => (
+			{(componentMapping.map(({ title, description, Component, leftChildern, hidden }) => (
 				<div className={styles.flex_div} key={title}>
 					<div>
 						<div className={styles.title}>
@@ -28,6 +29,7 @@ function FormCard(props) {
 							active={active}
 							getCreditRequestResponse={getCreditRequestResponse}
 							refetch={refetch}
+							hidden={hidden}
 							{...props}
 						/>
 					</div>

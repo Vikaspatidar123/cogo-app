@@ -43,10 +43,12 @@ function SubscriptionDetails({ plans = {}, query }) {
 							<div className={styles.heading}>{plan?.description}</div>
 						</div>
 						<div className={styles.row2}>
-							<div className={styles.offer_tag}>
-								{Math.round(percentage)}
-								{t('subscriptions:off_text')}
-							</div>
+							{percentage ? (
+								<div className={styles.offer_tag}>
+									{Math.round(percentage)}
+									{t('subscriptions:off_text')}
+								</div>
+							) : null}
 						</div>
 					</div>
 				</div>

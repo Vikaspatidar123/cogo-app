@@ -4,6 +4,7 @@ import {
 	IcACreditAndPayments,
 	IcAAccountRelated,
 } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
@@ -18,6 +19,8 @@ function PayMethodModal({
 	checkoutHandler = () => {},
 }) {
 	const { query = {} } = useRouter();
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
+
 	const { org_id, branch_id } = query || {};
 	const subscriptionsUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}/saas/cogo-subscriptions`;
 
@@ -43,7 +46,7 @@ function PayMethodModal({
 			size="md"
 		>
 			<div>
-				<div className={styles.heading}>Select mode of Payment</div>
+				<div className={styles.heading}>{t('dutiesTaxesCalculator:form_pay_method_modal_title')}</div>
 				<div className={styles.card_container}>
 					{!isUserSubscribed && (
 						<div
@@ -53,7 +56,9 @@ function PayMethodModal({
 						>
 							{paymentMode === 'buy' && <div className={styles.dot} />}
 							<IcAOfferFlexiblePaymentsTerms width={60} height={60} />
-							<div className={cl`${styles.txt} ${styles.text}`}>Buy Subscription</div>
+							<div className={cl`${styles.txt} ${styles.text}`}>
+								{t('dutiesTaxesCalculator:form_pay_method_modal_subscription')}
+							</div>
 						</div>
 					)}
 					{isUserSubscribed && (
@@ -64,7 +69,9 @@ function PayMethodModal({
 						>
 							{paymentMode === 'buy' && <div className={styles.dot} />}
 							<IcAAccountRelated width={60} height={60} />
-							<div className={cl`${styles.txt} ${styles.text}`}>Buy Add-Ons</div>
+							<div className={cl`${styles.txt} ${styles.text}`}>
+								{t('dutiesTaxesCalculator:form_pay_method_modal_addon')}
+							</div>
 						</div>
 					)}
 					<div
@@ -74,7 +81,9 @@ function PayMethodModal({
 					>
 						{paymentMode === 'directPay' && <div className={styles.dot} />}
 						<IcACreditAndPayments width={60} height={60} />
-						<div className={cl`${styles.txt} ${styles.text}`}>Direct Payment</div>
+						<div className={cl`${styles.txt} ${styles.text}`}>
+							{t('dutiesTaxesCalculator:form_pay_method_modal_payment')}
+						</div>
 					</div>
 				</div>
 			</div>

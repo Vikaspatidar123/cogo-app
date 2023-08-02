@@ -14,6 +14,7 @@ function Layout({
 	serviceType,
 	freqCount,
 	isEditPlan,
+	vesselOptionsLength,
 }) {
 	return (
 		<div>
@@ -30,6 +31,7 @@ function Layout({
 					serviceType={serviceType}
 					freqCount={freqCount}
 					isEditPlan={isEditPlan}
+					vesselOptionsLength={vesselOptionsLength}
 				/>
 			))}
 		</div>

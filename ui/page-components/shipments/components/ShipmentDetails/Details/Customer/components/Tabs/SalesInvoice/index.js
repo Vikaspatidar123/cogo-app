@@ -34,7 +34,7 @@ function SalesInvoice() {
 		);
 	}
 
-	if (!invoiceLoading && invoiceData?.length === 0) {
+	if (!invoiceLoading && isEmpty(invoiceData)) {
 		return (
 			<section className={styles.empty_container}>
 				No Data!

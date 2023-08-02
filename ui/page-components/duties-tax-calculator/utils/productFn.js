@@ -1,6 +1,7 @@
 import { Toast } from '@cogoport/components';
 
 const productFn = ({
+	t,
 	setFormData,
 	setFormStepper,
 	setStepper,
@@ -46,7 +47,7 @@ const productFn = ({
 	};
 
 	const errorHandler = () => {
-		Toast.error('Fill all mandatory details');
+		Toast.error(t('dutiesTaxesCalculator:form_toast_err_msg'));
 	};
 
 	const convertCurrency = async (fromCurr, toCurr) => {

@@ -88,3 +88,21 @@
 		}
 	}
 }
+
+.form_flex_box {
+	display: flex;
+	flex-direction: column;
+	min-height: 48vh;
+	margin-bottom: 8px;
+}
+
+.flex_box {
+	display: flex;
+	flex-direction: column;
+}
+
+.text {
+	margin: 16px 0 0;
+	font-weight: 500;
+	color: #393f70;
+}

@@ -23,11 +23,12 @@
 }
 
 .text_area {
+	margin-top: 10px;
+
 	:global {
 		.ui_text_area_control {
 			padding: 4px;
 			font-size: 16px;
-			color: #bdbdbd;
 		}
 	}
 }

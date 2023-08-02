@@ -18,13 +18,18 @@ function Title() {
 				</div>
 				<div className={styles.text_1}>{t('common:net_promoter_score_text_2')}</div>
 				<div className={styles.text_2}>
-					{t('common:net_promoter_score_text_2')}
+					{t('common:net_promoter_score_text_3')}
 					{' '}
 					<span className={styles.text_3}>{t('common:net_promoter_score_text_4')}</span>
 				</div>
 			</div>
 			<div>
-				<Image src={GLOBAL_CONSTANTS.image_url.cogoport_water_mark} width="100" height="130" alt="cogoport" />
+				<Image
+					src={GLOBAL_CONSTANTS.image_url.cogoport_water_mark}
+					width={100}
+					height={130}
+					alt={t('common:logo')}
+				/>
 			</div>
 		</div>
 	);

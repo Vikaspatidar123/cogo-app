@@ -1,15 +1,13 @@
 import { Chips, Textarea } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
 
-import { getFeedbackMapping } from '../../../constants/feedback-mapping';
-import { getFeedbackTitleMapping } from '../../../constants/feedback-title-mapping';
+import { getFeedbackMapping } from '../../constants/feedback-mapping';
+import { getFeedbackTitleMapping } from '../../constants/feedback-title-mapping';
 
 import styles from './styles.module.css';
 
-const DEFAULT_NPS = 10;
-
-function Feedback({ score = DEFAULT_NPS, feedback = {}, setFeedback = () => {} }) {
-	const { selectedOptions = [], reason = '' } = feedback || {};
+function Feedback({ feedback, setFeedback }) {
+	const { score, selectedOptions = [], reason = '' } = feedback || {};
 
 	const { t } = useTranslation(['common']);
 
@@ -23,6 +21,7 @@ function Feedback({ score = DEFAULT_NPS, feedback = {}, setFeedback = () => {} }
 			<div className={styles.text_1}>
 				{FEEDBACK_TITLE_MAPPING[score]}
 			</div>
+
 			<div className={styles.chips}>
 				<Chips
 					items={options}
@@ -33,10 +32,11 @@ function Feedback({ score = DEFAULT_NPS, feedback = {}, setFeedback = () => {} }
 							selectedOptions: e,
 						}));
 					}}
-					size="xl"
+					size="lg"
 					enableMultiSelect
 				/>
 			</div>
+
 			<div className={styles.text_area}>
 				<Textarea
 					size="lg"

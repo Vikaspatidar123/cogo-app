@@ -20,6 +20,7 @@ function Rating({ feedback, setFeedback }) {
 			<div className={styles.rating_container}>
 				{RATING_ARRAY.map((rating) => (
 					<div key={rating}>
+
 						<div
 							key={rating + 1}
 							className={cl`${styles.rating} ${rating === score - 1 ? styles.selected_rating : ''}`}
@@ -33,7 +34,6 @@ function Rating({ feedback, setFeedback }) {
 							role="presentation"
 						>
 							<div className={rating === score - 1 ? styles.text : ''}>{rating + 1}</div>
-
 						</div>
 
 						<div

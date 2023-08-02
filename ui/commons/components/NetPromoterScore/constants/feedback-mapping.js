@@ -2,181 +2,181 @@ export const getFeedbackMapping = ({ t }) => ({
 	1: [
 		{
 			children : t('common:nps_feedback_options_1'),
-			key      : 'Poor service quality',
+			key      : 'poor_service_quality',
 		},
 		{
 			children : t('common:nps_feedback_options_2'),
-			key      : 'Late or missed deliveries',
+			key      : 'late_or_missed_deliveries',
 		},
 		{
 			children : t('common:nps_feedback_options_3'),
-			key      : 'Rude or unhelpful customer support',
+			key      : 'rude_or_unhelpful_customer_support',
 		},
 		{
 			children : t('common:nps_feedback_options_4'),
-			key      : 'Damaged or lost items',
+			key      : 'damaged_or_lost_items',
 		},
 	],
 	2: [
 		{
 			children : t('common:nps_feedback_options_5'),
-			key      : 'Significant room for improvement',
+			key      : 'significant_room_for_improvement',
 		},
 		{
 			children : t('common:nps_feedback_options_6'),
-			key      : 'Frequent errors in order processing',
+			key      : 'frequent_errors_in_order_processing',
 		},
 		{
 			children : t('common:nps_feedback_options_7'),
-			key      : 'Difficulty in tracking shipments',
+			key      : 'difficulty_in_tracking_shipments',
 		},
 		{
 			children : t('common:nps_feedback_options_8'),
-			key      : 'Unmet expectations',
+			key      : 'unmet_expectations',
 		},
 	],
 	3: [
 		{
 			children : t('common:nps_feedback_options_9'),
-			key      : 'Mediocre experience',
+			key      : 'mediocre_experience',
 		},
 		{
 			children : t('common:nps_feedback_options_10'),
-			key      : 'Inconsistent service',
+			key      : 'inconsistent_service',
 		},
 		{
 			children : t('common:nps_feedback_options_11'),
-			key      : 'Average delivery times',
+			key      : 'average_delivery_times',
 		},
 		{
 			children : t('common:nps_feedback_options_12'),
-			key      : 'Needs improvement in several areas',
+			key      : 'needs_improvement_in_several_areas',
 		},
 	],
 	4: [
 		{
 			children : t('common:nps_feedback_options_13'),
-			key      : 'Slightly below expectations',
+			key      : 'slightly_below_expectations',
 		},
 		{
 			children : t('common:nps_feedback_options_14'),
-			key      : 'Some aspects of service were good',
+			key      : 'some_aspects_of_service_were_good',
 		},
 		{
 			children : t('common:nps_feedback_options_15'),
-			key      : 'Room for enhancement in certain areas',
+			key      : 'room_for_enhancement_in_certain_areas',
 		},
 		{
 			children : t('common:nps_feedback_options_16'),
-			key      : 'Neutral experience',
+			key      : 'neutral_experience',
 		},
 	],
 	5: [
 		{
 			children : t('common:nps_feedback_options_17'),
-			key      : 'Neutral opinion',
+			key      : 'neutral_opinion',
 		},
 		{
 			children : t('common:nps_feedback_options_18'),
-			key      : 'Neither satisfied nor dissatisfied',
+			key      : 'neither_satisfied_nor_dissatisfied',
 		},
 		{
 			children : t('common:nps_feedback_options_19'),
-			key      : 'Adequate service quality',
+			key      : 'adequate_service_quality',
 		},
 		{
 			children : t('common:nps_feedback_options_20'),
-			key      : 'Nothing particularly impressive or disappointing',
+			key      : 'nothing_particularly_impressive_or_disappointing',
 		},
 	],
 	6: [
 		{
 			children : t('common:nps_feedback_options_21'),
-			key      : 'Slightly above average service',
+			key      : 'slightly_above_average_service',
 		},
 		{
 			children : t('common:nps_feedback_options_22'),
-			key      : 'Some positive experiences',
+			key      : 'some_positive_experiences',
 		},
 		{
 			children : t('common:nps_feedback_options_23'),
-			key      : 'A few areas need improvement',
+			key      : 'few_areas_need_improvement',
 		},
 		{
 			children : t('common:nps_feedback_options_24'),
-			key      : 'Generally satisfied but not wowed',
+			key      : 'generally_satisfied_but_not_wowed',
 		},
 	],
 	7: [
 		{
 			children : t('common:nps_feedback_options_25'),
-			key      : 'Above-average experience',
+			key      : 'above_average_experience',
 		},
 		{
 			children : t('common:nps_feedback_options_26'),
-			key      : 'Generally satisfied with the service',
+			key      : 'generally_satisfied_with_the_service',
 		},
 		{
 			children : t('common:nps_feedback_options_27'),
-			key      : 'Some standout positive aspects',
+			key      : 'some_standout_positive_aspects',
 		},
 		{
 			children : t('common:nps_feedback_options_28'),
-			key      : 'A couple of minor issues',
+			key      : 'a_couple_of_minor_issues',
 		},
 	],
 	8: [
 		{
 			children : t('common:nps_feedback_options_29'),
-			key      : 'Very satisfied overall',
+			key      : 'very_satisfied_overall',
 		},
 		{
 			children : t('common:nps_feedback_options_30'),
-			key      : 'Reliable service quality',
+			key      : 'reliable_service_quality',
 		},
 		{
 			children : t('common:nps_feedback_options_31'),
-			key      : 'Few improvements needed',
+			key      : 'few_improvements_needed',
 		},
 		{
 			children : t('common:nps_feedback_options_32'),
-			key      : 'Would recommend with minor reservations',
+			key      : 'would_recommend_with_minor_reservations',
 		},
 	],
 	9: [
 		{
 			children : t('common:nps_feedback_options_33'),
-			key      : 'Extremely satisfied with the service',
+			key      : 'extremely_satisfied_with_the_service',
 		},
 		{
 			children : t('common:nps_feedback_options_34'),
-			key      : 'Excellent customer support',
+			key      : 'excellent_customer_support',
 		},
 		{
 			children : t('common:nps_feedback_options_35'),
-			key      : 'Consistently exceeds expectations',
+			key      : 'consistently_exceeds_expectations',
 		},
 		{
 			children : t('common:nps_feedback_options_36'),
-			key      : 'Highly likely to recommend',
+			key      : 'highly_likely_to_recommend',
 		},
 	],
 	10: [
 		{
 			children : t('common:nps_feedback_options_37'),
-			key      : 'Outstanding service',
+			key      : 'outstanding_service',
 		},
 		{
 			children : t('common:nps_feedback_options_38'),
-			key      : 'Delighted with the experience',
+			key      : 'delighted_with_the_experience',
 		},
 		{
 			children : t('common:nps_feedback_options_39'),
-			key      : 'Would recommend without hesitation',
+			key      : 'would_recommend_without_hesitation',
 		},
 		{
 			children : t('common:nps_feedback_options_40'),
-			key      : 'Perfect, no room for improvement',
+			key      : 'perfect_no_room_for_improvement',
 		},
 	],
 });

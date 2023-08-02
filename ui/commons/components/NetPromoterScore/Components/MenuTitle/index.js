@@ -10,7 +10,7 @@ function MenuTitle({ setShow = () => {} }) {
 		<div className={styles.container}>
 			<IcCStar className={styles.icon} />
 			<div
-				className={styles.a_container}
+				className={styles.text_container}
 				onClick={() => setShow(true)}
 				role="presentation"
 			>

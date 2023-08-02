@@ -127,6 +127,7 @@ function FilterForm({
 			>
 				<Button
 					themeType="secondary"
+					type="button"
 					onClick={() => {
 						setDropDown((prev) => !prev);
 					}}

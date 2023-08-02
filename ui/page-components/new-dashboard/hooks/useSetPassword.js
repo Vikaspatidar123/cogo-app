@@ -8,9 +8,9 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useSetPassword = ({ password = '', confirm_password = '', setShowModal = () => { } }) => {
-	const { t } = useTranslation(['dashboard']);
-
 	const router = useRouter();
+
+	const { t } = useTranslation(['dashboard']);
 
 	const {
 		profile: { id: userId = '' },

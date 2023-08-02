@@ -3,12 +3,12 @@ import { IcCTick } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import styles from './styles.module.css';
 
 import { InputController, useForm } from '@/packages/forms';
 import { Image } from '@/packages/next';
+import { useSelector } from '@/packages/store';
 import PasswordValidator from '@/ui/commons/components/PasswordValidator';
 import patterns from '@/ui/commons/configurations/patterns';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';

@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import { Tooltip, cl, Button } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
@@ -6,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 import styles from './styles.module.css';
 
 import { Image, useRouter } from '@/packages/next';
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
@@ -61,6 +61,7 @@ function SuccessModal({ tradeEngineResp }) {
 		resultCurrency = 'INR',
 		totalDutiesAndTaxes = 0,
 		totalLandedCost = 0,
+		trade_engine_id,
 	} = tradeEngineResp || {};
 
 	const { query } = useRouter();
@@ -100,6 +101,7 @@ function SuccessModal({ tradeEngineResp }) {
 							</div>
 							<div className={styles.line} />
 						</div>
+
 						{(landedCost?.[ZERO_INDEX]?.taxSet || []).map(
 							({ groupName = '', taxSetResponse = [] }) => (
 								<div key={groupName} className={styles.charges}>
@@ -181,11 +183,17 @@ function SuccessModal({ tradeEngineResp }) {
 					</div>
 				</div>
 			</div>
+			<CustomerSatisfaction
+				serviceName="duties_and_taxes"
+				position="center"
+				details={{ id: trade_engine_id }}
+			/>
 			<div className={styles.btn_container}>
 				<Button size="md" onClick={() => redirect()}>
 					{t('dutiesTaxesCalculator:success_modal_btn_text')}
 				</Button>
 			</div>
+
 		</div>
 	);
 }

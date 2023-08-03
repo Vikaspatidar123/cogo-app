@@ -26,7 +26,7 @@ function UndatedCheques({ refetch = () => {}, udcCheque, getCreditRequestRespons
 	const { updateCreditApplication, loading } = useUpdateCreditApplication();
 	const Element = getField(fields?.type);
 
-	const submitCheque = (values) => {
+	const submitCheque = async (values) => {
 		if (Object?.keys(udcCheque.signed_udc || {}).length === 0) {
 			Toast.error('Please Sign the Udc and uplaod');
 		}
@@ -49,10 +49,7 @@ function UndatedCheques({ refetch = () => {}, udcCheque, getCreditRequestRespons
 				},
 			},
 		};
-		const resp = updateCreditApplication(payload);
-		if (resp) {
-			refetch();
-		}
+		await updateCreditApplication(payload);
 	};
 
 	if (!isEmpty(undated_cheque)) {

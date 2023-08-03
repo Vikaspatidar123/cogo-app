@@ -35,7 +35,7 @@ const tabsPanelMapping = (maximum_org_annual_income) => {
 		},
 	];
 
-	if (maximum_org_annual_income <= 100) {
+	if (maximum_org_annual_income >= 100) {
 		baseTabs.splice(3, 1);
 	}
 

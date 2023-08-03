@@ -35,6 +35,7 @@ function SignupForm({
 	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:signupField';
 	const [captchaResponse, setCaptchaResponse] = useState('');
+	const [isBlur, setIsBlur] = useState(true);
 
 	const [customError, setCustomError] = useState('');
 	const onReCaptca = (value) => {
@@ -94,7 +95,7 @@ function SignupForm({
 					placeholder={t(`${translationKey}_name_placeholder`)}
 					rules={{ required: t(`${translationKey}_name_error`) }}
 					mode="onBlur"
-					handleBlur={() => generateSignUpLeadUser({ source: 'name' })}
+					handleBlur={() => isBlur && generateSignUpLeadUser({ source: 'name' })}
 				/>
 				<span className={styles.errors}>
 					{errors?.name?.message || ' '}
@@ -116,7 +117,7 @@ function SignupForm({
 						},
 					}}
 					mode="onBlur"
-					handleBlur={() => generateSignUpLeadUser({ source: 'email' })}
+					handleBlur={() => isBlur && generateSignUpLeadUser({ source: 'email' })}
 				/>
 				<span className={styles.errors}>
 					{errors?.email?.message || ' '}
@@ -134,7 +135,7 @@ function SignupForm({
 						required: t(`${translationKey}_mobile_error`),
 					}}
 					mode="onBlur"
-					handleBlur={() => validateMobileNumber({
+					handleBlur={() => isBlur && validateMobileNumber({
 						payload: getFormattedPayload({ formValues, leadUserId }),
 						setCustomError,
 						fetchLeadUserTrigger,
@@ -148,7 +149,11 @@ function SignupForm({
 			</div>
 
 			<div className={styles.field}>
-				<div className={styles.checkbox_container}>
+				<div
+					className={styles.checkbox_container}
+					onMouseEnter={() => setIsBlur(false)}
+					onMouseLeave={() => setIsBlur(true)}
+				>
 					<CheckboxController
 						control={control}
 						name="is_whatsapp_number"
@@ -156,6 +161,7 @@ function SignupForm({
 						handleChange={(e) => {
 							onWhatsappChange({ value: e.target.checked });
 						}}
+
 					/>
 					{t(`${translationKey}_whatsapp_text`)}
 					<IcCWhatsapp height={20} width={20} />

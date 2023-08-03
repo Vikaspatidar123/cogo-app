@@ -1,8 +1,11 @@
+import { Toast } from '@cogoport/components';
+
 import getFormattedPayload from '../utils/getFormattedPayload';
 
+import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
-const useLeadUserDetails = ({ setLeadUserId = () => {} }) => {
+const useLeadUserDetails = ({ setLeadUserId = () => {}, recaptchaRef, t = () => {} }) => {
 	const [{ loading }, trigger] = useRequest(
 		{
 			url    : '/create_saas_sign_up_lead_user',
@@ -13,18 +16,16 @@ const useLeadUserDetails = ({ setLeadUserId = () => {} }) => {
 
 	const onLeadUserDetails = async (props) => {
 		try {
-			const payload = getFormattedPayload(props);
+			const payload = await getFormattedPayload({ ...props, recaptchaRef });
 
 			const response = await trigger({
-				data: payload,
+				data: { ...payload },
 			});
 
 			const res = response.data || {};
-
 			setLeadUserId(res?.id);
 		} catch (err) {
-			console.error(err);
-
+			Toast.error(getApiErrorString(err?.response?.data) || t('authentication:signup_error_message'));
 			setLeadUserId('');
 		}
 	};

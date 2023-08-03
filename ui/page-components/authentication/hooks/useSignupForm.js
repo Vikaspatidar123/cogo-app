@@ -14,6 +14,7 @@ const useSignupForm = ({
 	setUserDetails = () => {},
 	onSignupAuthentication = () => {},
 	t = () => {},
+	recaptchaRef,
 }) => {
 	const { name, email, mobile_number } = formValues;
 
@@ -37,12 +38,12 @@ const useSignupForm = ({
 		}
 
 		if (name && email && hasMobileValues) {
-			onLeadUserDetails({ leadUserId, formValues });
+			onLeadUserDetails({ leadUserId, formValues, recaptchaRef });
 		}
 	};
 
 	const onWhatsappChange = ({ value = false }) => {
-		onLeadUserDetails({ leadUserId, formValues, is_whatsapp_number: value });
+		onLeadUserDetails({ leadUserId, formValues, is_whatsapp_number: value, recaptchaRef });
 	};
 
 	const onSignupApiCall = (values, e) => {

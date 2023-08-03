@@ -6,8 +6,9 @@ import useVerifyGoogleRecaptcha from './useVerifyGoogleRecaptcha';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
-const getFormattedPayload = ({ val, leadUserId }) => {
+const getFormattedPayload = async ({ val, leadUserId, recaptchaRef }) => {
 	const { name, email, business_name, country_id, mobile_number, is_whatsapp_number } = val || {};
+	const google_recaptcha_response = await recaptchaRef?.current?.executeAsync();
 
 	return {
 		lead_user_id        : leadUserId || undefined,
@@ -18,19 +19,19 @@ const getFormattedPayload = ({ val, leadUserId }) => {
 		is_whatsapp_number,
 		business_name,
 		country_id,
+		google_recaptcha_response,
 	};
 };
 
 const useSignupAuthentication = ({
-	setMode, setUserDetails, leadUserId,
+	setMode, setUserDetails, leadUserId, recaptchaRef,
 }) => {
 	const { t } = useTranslation(['authentication']);
 
 	const {
-		recaptchaRef,
 		captchaLoading,
 		onVerifyingCaptcha,
-	} = useVerifyGoogleRecaptcha();
+	} = useVerifyGoogleRecaptcha({ recaptchaRef });
 
 	const [{ loading }, trigger] = useRequest({
 		url    : '/create_lead_organization_on_sign_up',
@@ -41,26 +42,23 @@ const useSignupAuthentication = ({
 		e.preventDefault();
 
 		try {
-			const captchaRes = await onVerifyingCaptcha();
+			// const captchaRes = await onVerifyingCaptcha();
 
-			if (captchaRes?.data) {
-				const payload = getFormattedPayload({ val, leadUserId });
+			// if (captchaRes?.data) {
+			const payload = await getFormattedPayload({ val, leadUserId, recaptchaRef });
 
-				const res = await trigger({
-					data: payload,
-				});
+			const res = await trigger({
+				data: payload,
+			});
 
-				const { data } = res || {};
+			const { data } = res || {};
 
-				setMode('otp_form');
+			setMode('otp_form');
 
-				setUserDetails((prev) => ({
-					...prev,
-					...data,
-				}));
-			} else {
-				Toast.error(t('authentication:forgotPassword_error_message'));
-			}
+			setUserDetails((prev) => ({
+				...prev,
+				...data,
+			}));
 		} catch (err) {
 			Toast.error(getApiErrorString(err?.response?.data) || t('authentication:signup_error_message'));
 		} finally {

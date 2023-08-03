@@ -1,7 +1,7 @@
 import { Button } from '@cogoport/components';
 import { IcCWhatsapp, IcMArrowRight } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import useLeadUserDetails from '../../../hooks/useLeadUserDetails';
@@ -32,7 +32,7 @@ function SignupForm({
 	setLeadUserId = () => {},
 }) {
 	const { locale } = useRouter();
-
+	const recaptchaRef = useRef({});
 	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:signupField';
 
@@ -41,10 +41,9 @@ function SignupForm({
 	const {
 		loading,
 		onSignupAuthentication,
-		recaptchaRef,
-	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId });
+	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId, recaptchaRef });
 
-	const { onLeadUserDetails, fetchLeadUserTrigger } = useLeadUserDetails({ setLeadUserId });
+	const { onLeadUserDetails, fetchLeadUserTrigger } = useLeadUserDetails({ setLeadUserId, recaptchaRef, t });
 
 	const {
 		handleSubmit,
@@ -62,6 +61,8 @@ function SignupForm({
 
 	const formValues = watch();
 
+	console.log(formValues, 'formValues');
+
 	const { onSignupApiCall, generateSignUpLeadUser, onWhatsappChange } = useSignupForm({
 		setCustomError,
 		trigger,
@@ -72,6 +73,7 @@ function SignupForm({
 		setUserDetails,
 		onSignupAuthentication,
 		t,
+		recaptchaRef,
 	});
 
 	return (
@@ -126,19 +128,19 @@ function SignupForm({
 					name="mobile_number"
 					placeholder={t(`${translationKey}_mobile_placeholder`)}
 					rules={{
-						required : t(`${translationKey}_mobile_error`),
-						validate : () => validateMobileNumber({
-							payload: getFormattedPayload({ formValues, leadUserId }),
-							setCustomError,
-							fetchLeadUserTrigger,
-							t,
-						}),
+						required: t(`${translationKey}_mobile_error`),
 					}}
 					mode="onBlur"
+					handleBlur={async () => validateMobileNumber({
+						payload: await getFormattedPayload({ formValues, leadUserId, recaptchaRef }),
+						setCustomError,
+						fetchLeadUserTrigger,
+						t,
+					})}
 				/>
 
 				<span className={styles.errors}>
-					{customError || ''}
+					{errors?.mobile_number?.message || ' '}
 				</span>
 			</div>
 

@@ -21,7 +21,7 @@ const INVOICE_TYPE = {
 	INVOICE       : '#CDF7D4',
 };
 
-const getColumns = ({ setOrderBy, orderBy, geo }) => [
+const getColumns = ({ setOrderBy, orderBy, geo, setPagination }) => [
 	{
 
 		Header   : <div className={styles.head}>INVOICE ID</div>,
@@ -103,10 +103,13 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 			<div
 				className={styles.head}
 				role="presentation"
-				onClick={() => setOrderBy((prev) => ({
-					key   : 'invoiceAmount',
-					order : prev.order === 'asc' ? 'desc' : 'asc',
-				}))}
+				onClick={() => {
+					setOrderBy((prev) => ({
+						key   : 'grandTotal',
+						order : prev.order === 'asc' ? 'desc' : 'asc',
+					}));
+					setPagination(1);
+				}}
 			>
 				<div
 					className={styles.flex}
@@ -114,7 +117,7 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 					style={{
 						flexDirection: 'column',
 						transform:
-							orderBy.key === 'invoiceAmount'
+							orderBy.key === 'grandTotal'
 							&& orderBy.order === 'asc'
 							&& 'rotate(180deg)',
 					}}
@@ -155,10 +158,13 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 			<div
 				className={styles.head}
 				role="presentation"
-				onClick={() => setOrderBy((prev) => ({
-					key   : 'balanceAmount',
-					order : prev.order === 'asc' ? 'desc' : 'asc',
-				}))}
+				onClick={() => {
+					setOrderBy((prev) => ({
+						key   : 'balanceAmount',
+						order : prev.order === 'asc' ? 'desc' : 'asc',
+					}));
+					setPagination(1);
+				}}
 			>
 				<div
 					className={styles.flex}
@@ -206,10 +212,13 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 			<div
 				className={styles.head}
 				role="presentation"
-				onClick={() => setOrderBy((prev) => ({
-					key   : 'invoiceDate',
-					order : prev.order === 'asc' ? 'desc' : 'asc',
-				}))}
+				onClick={() => {
+					setOrderBy((prev) => ({
+						key   : 'invoiceDate',
+						order : prev.order === 'asc' ? 'desc' : 'asc',
+					}));
+					setPagination(1);
+				}}
 			>
 				<div
 					className={styles.flex}
@@ -259,6 +268,7 @@ const getColumns = ({ setOrderBy, orderBy, geo }) => [
 						key   : 'dueDate',
 						order : prev.order === 'asc' ? 'desc' : 'asc',
 					}));
+					setPagination(1);
 				}}
 			>
 				<div

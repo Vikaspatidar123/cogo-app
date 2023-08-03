@@ -35,6 +35,7 @@ function SignupForm({
 	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:signupField';
 	const [captchaResponse, setCaptchaResponse] = useState('');
+	const [isBlur, setIsBlur] = useState(true);
 
 	const [customError, setCustomError] = useState('');
 	const onReCaptca = (value) => {
@@ -63,8 +64,9 @@ function SignupForm({
 		},
 		mode: 'onBlur',
 	});
-
 	const formValues = watch();
+
+	const mobileCheck = formValues?.mobile_number?.number;
 
 	const { onSignupApiCall, generateSignUpLeadUser, onWhatsappChange } = useSignupForm({
 		setCustomError,
@@ -94,7 +96,7 @@ function SignupForm({
 					placeholder={t(`${translationKey}_name_placeholder`)}
 					rules={{ required: t(`${translationKey}_name_error`) }}
 					mode="onBlur"
-					handleBlur={() => generateSignUpLeadUser({ source: 'name' })}
+					handleBlur={() => isBlur && generateSignUpLeadUser({ source: 'name' })}
 				/>
 				<span className={styles.errors}>
 					{errors?.name?.message || ' '}
@@ -116,7 +118,7 @@ function SignupForm({
 						},
 					}}
 					mode="onBlur"
-					handleBlur={() => generateSignUpLeadUser({ source: 'email' })}
+					handleBlur={() => isBlur && generateSignUpLeadUser({ source: 'email' })}
 				/>
 				<span className={styles.errors}>
 					{errors?.email?.message || ' '}
@@ -134,12 +136,12 @@ function SignupForm({
 						required: t(`${translationKey}_mobile_error`),
 					}}
 					mode="onBlur"
-					handleBlur={() => validateMobileNumber({
+					handleBlur={() => (isBlur && mobileCheck ? validateMobileNumber({
 						payload: getFormattedPayload({ formValues, leadUserId }),
 						setCustomError,
 						fetchLeadUserTrigger,
 						t,
-					})}
+					}) : null)}
 				/>
 
 				<span className={styles.errors}>
@@ -148,7 +150,11 @@ function SignupForm({
 			</div>
 
 			<div className={styles.field}>
-				<div className={styles.checkbox_container}>
+				<div
+					className={styles.checkbox_container}
+					onMouseEnter={() => setIsBlur(false)}
+					onMouseLeave={() => setIsBlur(true)}
+				>
 					<CheckboxController
 						control={control}
 						name="is_whatsapp_number"
@@ -156,6 +162,7 @@ function SignupForm({
 						handleChange={(e) => {
 							onWhatsappChange({ value: e.target.checked });
 						}}
+
 					/>
 					{t(`${translationKey}_whatsapp_text`)}
 					<IcCWhatsapp height={20} width={20} />

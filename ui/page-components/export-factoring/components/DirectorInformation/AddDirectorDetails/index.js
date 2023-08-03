@@ -13,11 +13,11 @@ function AddDirectorDetails({
 	showAddDirectors,
 	setUpdatedValues = () => {},
 	setShowEdit = () => {},
+	constitutionMapping = {},
 }) {
 	const { control, handleSubmit, formState: { errors } } = useForm({});
 	const submit = (values) => {
 		setUpdatedValues((prev) => ({ ...prev, director: [...prev.director, values] }));
-
 		setShowEdit((prev) => ({ ...prev, show: !prev.show }));
 	};
 
@@ -25,7 +25,7 @@ function AddDirectorDetails({
 		<Modal show={showAddDirectors} onClose={() => setShowAddDirectors({ show: false })} closable>
 			<Modal.Body>
 				<form className={styles.form}>
-					{getDirectorControls().map((item) => {
+					{getDirectorControls(constitutionMapping).map((item) => {
 						const Element = getField(item.type);
 						return (
 							<div className={styles.field} key={item.name}>

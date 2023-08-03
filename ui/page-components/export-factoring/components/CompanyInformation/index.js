@@ -47,6 +47,7 @@ function CompanyInformation({
 				status  : 'awaiting_offer_letter',
 				address : {
 					...updatedValues,
+					pincode: updatedValues.zipcode,
 
 				},
 				entity_id        : updatedValues.cin,
@@ -63,6 +64,7 @@ function CompanyInformation({
 				registration_type : updatedValues.constitution_of_business,
 			},
 		};
+
 		const resp = await updateCredit(request);
 		if (resp) {
 			refetch();
@@ -78,18 +80,31 @@ function CompanyInformation({
 	}
 
 	return (
-		<div>
-			<CompanyDetails
-				data={data}
-				updatedValues={updatedValues}
-				getCreditRequestResponse={getCreditRequestResponse}
-				setShowEdit={setShowEdit}
-			/>
-			{data.turn_over_slab.max_amount === 0 && (
-				<div className={styles.turn_over_container}>
-					<TurnoverDetails setUpdatedValues={setUpdatedValues} />
-				</div>
-			)}
+		<>
+			<div>
+				<CompanyDetails
+					data={data}
+					updatedValues={updatedValues}
+					getCreditRequestResponse={getCreditRequestResponse}
+					setShowEdit={setShowEdit}
+				/>
+				{data.turn_over_slab.max_amount === 0 && (
+					<div className={styles.turn_over_container}>
+						<TurnoverDetails setUpdatedValues={setUpdatedValues} />
+					</div>
+				)}
+
+				{showEdit && (
+					<EditDetails
+						getCreditRequestResponse={getCreditRequestResponse}
+						setShowEdit={setShowEdit}
+						showEdit={showEdit}
+						data={data}
+						setUpdatedValues={setUpdatedValues}
+						updatedValues={updatedValues}
+					/>
+				)}
+			</div>
 			<div className={styles.btn_container}>
 				<Button
 					type="button"
@@ -98,23 +113,13 @@ function CompanyInformation({
 					onClick={handleGetOfferLetter}
 					loading={updateCreditLoading}
 					disabled={updateCreditLoading}
+					className={styles.proceed_button}
 				>
 					Get Offer Letter
 
 				</Button>
 			</div>
-
-			{showEdit && (
-				<EditDetails
-					getCreditRequestResponse={getCreditRequestResponse}
-					setShowEdit={setShowEdit}
-					showEdit={showEdit}
-					data={data}
-					setUpdatedValues={setUpdatedValues}
-					updatedValues={updatedValues}
-				/>
-			)}
-		</div>
+		</>
 	);
 }
 

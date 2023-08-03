@@ -115,6 +115,7 @@ function DirectorInformation({
 		return true;
 	};
 
+
 	return (
 		<div className={styles.director_details}>
 			<div className={styles.heading}>
@@ -169,6 +170,7 @@ function DirectorInformation({
 					data={data}
 					setUpdatedValues={setUpdatedValues}
 					setShowEdit={setShowEdit}
+					constitutionMapping={constitutionMapping}
 				/>
 			)}
 			<div className={styles.btn_container}>

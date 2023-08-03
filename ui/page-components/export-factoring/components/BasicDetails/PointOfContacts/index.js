@@ -17,7 +17,7 @@ const MIN_POC_VERIFIED = 1;
 
 const getAccordianTitle = ({ placeholder, pocLength }) => (
 	<div className={styles.pill_container}>
-		<div style={{fontSize: '16px', color:'#4f4f4f',fontWeight:'500'}}>
+		<div style={{ fontSize: '16px', color: '#4f4f4f', fontWeight: '500' }}>
 			{`${placeholder} (${pocLength})`}
 
 		</div>
@@ -54,7 +54,7 @@ function PointOfContacts({ getCreditRequestResponse = {}, refetch = () => { } })
 			<Accordion
 				title={getAccordianTitle({
 					placeholder : 'Point of Contact',
-					pocLength   : getCreditRequestResponse?.poc_details?.length,
+					pocLength   : getCreditRequestResponse?.poc_details?.length || 0,
 				})}
 				type="form"
 			>
@@ -78,7 +78,6 @@ function PointOfContacts({ getCreditRequestResponse = {}, refetch = () => { } })
 											</Button>
 											<Button
 												type="button"
-												themeType="accent"
 												className={styles.save_button}
 												onClick={() => (
 													getCreditRequestResponse.id

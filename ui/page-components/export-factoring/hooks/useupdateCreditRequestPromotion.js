@@ -3,7 +3,6 @@ import { useCallback } from 'react';
 import { useRequest } from '@/packages/request';
 
 const useUpdateCreditRequestPromotion = ({
-	setAction = () => {},
 	getCreditRequestResponse = {},
 }) => {
 	const [{ loading, data }, trigger] = useRequest({
@@ -22,12 +21,12 @@ const useUpdateCreditRequestPromotion = ({
 					status       : type === 'applied' ? 'active' : 'inactive',
 				},
 			});
-			setAction(type);
+			return true;
 		} catch (e) {
-			setAction('removed');
 			console.error(e);
+			return false;
 		}
-	}, [getCreditRequestResponse?.credit_id, setAction, trigger]);
+	}, [getCreditRequestResponse?.credit_id, trigger]);
 
 	return { updateCreditPromotion, loading, data };
 };

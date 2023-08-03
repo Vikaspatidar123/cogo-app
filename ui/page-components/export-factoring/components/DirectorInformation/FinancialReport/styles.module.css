@@ -3,6 +3,13 @@
 	font-weight: 500;
 }
 
+.container {
+	padding: 12px  24px;
+	margin-top: 20px;
+	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+}
+
 .sub_heading {
 	display: flex;
 	flex-direction: row;
@@ -23,10 +30,24 @@
 }
 
 .finance_container {
+	display: flex;
+	flex-wrap: wrap;
 	padding: 12px 10px 24px;
 	margin-top: 20px;
 	border: 1px solid #e0e0e0;
 	border-radius: 6px;
+
+	:global {
+		.form_content {
+			display: flex;
+			flex-wrap: wrap;
+			width: 100%;
+
+			.form_item {
+				width: 32%;
+			}
+		}
+	}
 }
 
 .field {
@@ -34,6 +55,7 @@
 }
 
 .field_name {
+	width: 25%;
 	margin: 0 0 4px;
 	font-size: 16px;
 	font-weight: 500;
@@ -58,12 +80,14 @@
 .file_wrapper {
 	display: flex;
 	flex-direction: row;
-	gap: 10px;
+	gap: 20px;
 	width: 100%;
+	margin-top: 10px;
 
 	:global {
 		.container {
 			width: 100%;
+			margin-right: 10px;
 		}
 	}
 }

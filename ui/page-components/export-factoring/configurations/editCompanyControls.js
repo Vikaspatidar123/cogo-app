@@ -1,4 +1,4 @@
-export const getCompanyControls = (gst_list, setUpdatedValues) => [
+export const getControls = (gst_list, setUpdatedValues) => [
 	{
 		name     : 'name',
 		label    : 'Name',
@@ -69,36 +69,65 @@ export const getCompanyControls = (gst_list, setUpdatedValues) => [
 		},
 	},
 	{
-		name  : 'city',
-		label : 'City',
-		type  : 'text',
-		rules : {
-			required: true,
+		label       : 'Pincode / Zip Code',
+		name        : 'zipcode',
+		type        : 'async_select',
+		placeholder : 'Enter Pincode',
+		rules       : { required: 'required *' },
+		span        : 6,
+		isClearable : true,
+		params      : {
+			filters: {
+				type     : ['pincode'],
+				includes : { country: true, region: true },
+			},
 		},
+		asyncKey : 'locations',
+		valueKey : 'postal_code',
+		labelKey : 'display_name',
 	},
 	{
-		name  : 'state',
-		label : 'State',
-		type  : 'text',
-		rules : {
-			required: true,
-		},
+		name        : 'city',
+		label       : 'City',
+		type        : 'text',
+		span        : 6,
+		placeholder : 'City',
+		rules       : { required: 'City is Required' },
 	},
 	{
-		name  : 'country',
-		label : 'Country',
-		type  : 'text',
-		rules : {
-			required: true,
-		},
+		name        : 'state',
+		label       : 'State',
+		type        : 'text',
+		span        : 6,
+		placeholder : 'State',
 	},
 	{
-		name  : 'pincode',
-		label : 'Pincode',
-		type  : 'text',
-		rules : {
-			required: true,
+		label          : 'Country',
+		name           : 'country',
+		type           : 'async_select',
+		placeholder    : 'Enter Site/Entity',
+		asyncKey       : 'locations',
+		defaultOptions : true,
+		params         : {
+			filters: {
+				type: ['country'],
+			},
 		},
+		theme     : 'admin',
+		className : 'primary md',
 	},
 
 ];
+
+export const getCompanyControls = ({
+	gst_list, setUpdatedValues,
+	setAddressDetail,
+}) => getControls(gst_list, setUpdatedValues).map((control) => {
+	if (control.name === 'zipcode') {
+		return ({
+			...control,
+			handleChange: (e) => setAddressDetail(e),
+		});
+	}
+	return control;
+});

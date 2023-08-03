@@ -29,7 +29,12 @@ const useGetOrganizationCreditRequest = () => {
 					category        : 'export_factoring',
 				},
 			});
-			setActive(data?.status);
+			const { flags = {} } = data;
+			const status = (flags?.offer_letter === 'complete' && data?.status === 'awaiting_offer_letter')
+				? 'offer_letter_complete'
+				: data?.status;
+
+			setActive(status);
 		} catch (e) {
 			setActive('awaiting_user_inputs');
 		}

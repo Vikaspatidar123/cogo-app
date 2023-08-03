@@ -1,5 +1,6 @@
 .coupons {
 	display: flex;
+	border: 1x solid;
 }
 
 .coupon {
@@ -13,4 +14,31 @@
 
 .name {
 	margin: 5px  0;
+}
+
+.coupon_box {
+	display: flex;
+	flex-direction: column;
+	width: 10vw;
+	margin: 10px;
+}
+
+.coupon_image {
+	align-self: center;
+}
+
+.coupon_text {
+	width: 9vw;
+	padding: 10px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-all;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.coupon_text:hover {
+	height: auto;
+	overflow: visible;
+	white-space: normal;
 }

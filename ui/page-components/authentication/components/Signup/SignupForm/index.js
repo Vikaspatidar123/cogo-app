@@ -30,7 +30,6 @@ function SignupForm({
 	setMode = () => {},
 	setUserDetails = () => {},
 	setLeadUserId = () => {},
-	ipAddress,
 }) {
 	const { locale } = useRouter();
 	const { t } = useTranslation(['authentication']);
@@ -44,11 +43,10 @@ function SignupForm({
 	const {
 		loading,
 		onSignupAuthentication,
-	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId, captchaResponse, ipAddress });
+	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId, captchaResponse });
 
 	const { onLeadUserDetails, fetchLeadUserTrigger } = useLeadUserDetails({
 		setLeadUserId,
-		ipAddress,
 		t,
 	});
 
@@ -140,7 +138,6 @@ function SignupForm({
 						payload: getFormattedPayload({ formValues, leadUserId }),
 						setCustomError,
 						fetchLeadUserTrigger,
-						ipAddress,
 						t,
 					})}
 				/>

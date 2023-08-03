@@ -5,7 +5,7 @@ import getFormattedPayload from '../utils/getFormattedPayload';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
-const useLeadUserDetails = ({ setLeadUserId = () => {}, t = () => {}, ipAddress }) => {
+const useLeadUserDetails = ({ setLeadUserId = () => {}, t = () => {} }) => {
 	const [{ loading }, trigger] = useRequest(
 		{
 			url    : '/create_saas_sign_up_lead_user',
@@ -19,8 +19,7 @@ const useLeadUserDetails = ({ setLeadUserId = () => {}, t = () => {}, ipAddress 
 			const payload = await getFormattedPayload(props);
 
 			const response = await trigger({
-				params : { request_ip: ipAddress },
-				data   : payload,
+				data: payload,
 
 			});
 

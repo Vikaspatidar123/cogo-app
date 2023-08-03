@@ -21,7 +21,7 @@ const getFormattedPayload = ({ val, leadUserId, captchaResponse }) => {
 };
 
 const useSignupAuthentication = ({
-	setMode, setUserDetails, leadUserId, captchaResponse, ipAddress,
+	setMode, setUserDetails, leadUserId, captchaResponse,
 }) => {
 	const { t } = useTranslation(['authentication']);
 
@@ -36,8 +36,7 @@ const useSignupAuthentication = ({
 		try {
 			const payload = await getFormattedPayload({ val, leadUserId, captchaResponse });
 			const res = await trigger({
-				data   : payload,
-				params : { request_ip: ipAddress },
+				data: payload,
 			});
 
 			const { data } = res || {};

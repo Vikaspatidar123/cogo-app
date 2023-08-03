@@ -3,12 +3,11 @@ import { Toast } from '@cogoport/components';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 
 async function validateMobileNumber(props) {
-	const { setCustomError, fetchLeadUserTrigger, payload, ipAddress, t } = props;
+	const { setCustomError, fetchLeadUserTrigger, payload, t } = props;
 
 	try {
 		await fetchLeadUserTrigger({
-			params : { request_ip: ipAddress },
-			data   : payload,
+			data: payload,
 		});
 
 		setCustomError('');

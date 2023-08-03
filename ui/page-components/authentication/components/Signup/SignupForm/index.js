@@ -62,10 +62,11 @@ function SignupForm({
 		defaultValues: {
 			...userDetails,
 		},
-		mode: 'onBlur',
+		// mode: 'onBlur',
 	});
-
 	const formValues = watch();
+
+	const mobileCheck = formValues?.mobile_number?.number;
 
 	const { onSignupApiCall, generateSignUpLeadUser, onWhatsappChange } = useSignupForm({
 		setCustomError,
@@ -135,7 +136,7 @@ function SignupForm({
 						required: t(`${translationKey}_mobile_error`),
 					}}
 					mode="onBlur"
-					handleBlur={() => isBlur && validateMobileNumber({
+					handleBlur={() => isBlur && mobileCheck && validateMobileNumber({
 						payload: getFormattedPayload({ formValues, leadUserId }),
 						setCustomError,
 						fetchLeadUserTrigger,

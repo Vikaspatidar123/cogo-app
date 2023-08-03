@@ -1,7 +1,7 @@
 import { Button } from '@cogoport/components';
 import { IcCWhatsapp, IcMArrowRight } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import useLeadUserDetails from '../../../hooks/useLeadUserDetails';
@@ -33,7 +33,6 @@ function SignupForm({
 	ipAddress,
 }) {
 	const { locale } = useRouter();
-	const recaptchaRef = useRef({});
 	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:signupField';
 	const [captchaResponse, setCaptchaResponse] = useState('');
@@ -49,7 +48,6 @@ function SignupForm({
 
 	const { onLeadUserDetails, fetchLeadUserTrigger } = useLeadUserDetails({
 		setLeadUserId,
-		recaptchaRef,
 		ipAddress,
 		t,
 	});
@@ -81,7 +79,6 @@ function SignupForm({
 		setUserDetails,
 		onSignupAuthentication,
 		t,
-		recaptchaRef,
 	});
 
 	return (
@@ -200,7 +197,6 @@ function SignupForm({
 			<div className={styles.field}>
 				<div className={styles.recaptcha}>
 					<ReCAPTCHA
-						ref={recaptchaRef}
 						sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
 						onChange={onReCaptca}
 					/>

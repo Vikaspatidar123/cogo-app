@@ -136,12 +136,12 @@ function SignupForm({
 						required: t(`${translationKey}_mobile_error`),
 					}}
 					mode="onBlur"
-					handleBlur={() => isBlur && mobileCheck && validateMobileNumber({
+					handleBlur={() => (isBlur && mobileCheck ? validateMobileNumber({
 						payload: getFormattedPayload({ formValues, leadUserId }),
 						setCustomError,
 						fetchLeadUserTrigger,
 						t,
-					})}
+					}) : null)}
 				/>
 
 				<span className={styles.errors}>

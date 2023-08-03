@@ -62,7 +62,7 @@ function SignupForm({
 		defaultValues: {
 			...userDetails,
 		},
-		// mode: 'onBlur',
+		mode: 'onBlur',
 	});
 	const formValues = watch();
 

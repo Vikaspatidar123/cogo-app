@@ -73,7 +73,7 @@ const useInsurance = ({
 						convenienceFee,
 						sumInsured,
 						totalApplicableCharges,
-						policyForSelf  : insuranceType[ZEROTH_INDEX] === 'SELF',
+						policyForSelf  : insuranceType[GLOBAL_CONSTANTS.zeroth_index] === 'SELF',
 						performedBy    : id,
 					},
 				});

@@ -22,7 +22,7 @@ const useGetRatesModal = ({ current, setCalculateCharge }) => {
 		const product = current.product.handleSubmit();
 		const promiseValues = await Promise.all([promises, details, product]);
 
-		promiseValues.forEach((value) => {
+		(promiseValues || []).forEach((value) => {
 			if (value?.check && value?.err) {
 				errors.push(Object.keys(value?.err));
 			}

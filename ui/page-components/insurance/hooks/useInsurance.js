@@ -2,6 +2,9 @@ import { useState, useCallback } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 
 const useInsurance = ({
 	payment = () => { },
@@ -70,7 +73,8 @@ const useInsurance = ({
 						convenienceFee,
 						sumInsured,
 						totalApplicableCharges,
-						policyForSelf  : insuranceType[0] === 'SELF',
+						policyForSelf  : insuranceType[ZEROTH_INDEX] === 'SELF',
+						performedBy    : id,
 					},
 				});
 				if (res?.data) {

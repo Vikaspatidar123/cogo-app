@@ -43,22 +43,17 @@ function DutiesTaxCalulator() {
 	});
 
 	const { formPayDetails } = formStepper;
-	const {
-		getDraftFn, getDraftData, getDraftloading, refetchDraft, draftLoading,
-	} =		useDraft();
+
+	const { getDraftFn, getDraftData = {}, getDraftloading, refetchDraft, draftLoading } = useDraft();
+	const { postTradeEngine, tradeEngineLoading, tradeEngineResp = {}, isTradeEngineRespEmpty } = useTradeEngine();
+	const { getOceanRoute, routeDataLength = false, setMapPoints, mapPoints } = useOceanRoute();
+
 	const {
 		isUserSubscribed = false,
 		isQuotaLeft = false,
 		prioritySequence = 0,
 		quotaValue = 10,
 	} = useGetQuota();
-	const {
-		postTradeEngine, tradeEngineLoading, tradeEngineResp, tradeEngineRespLength,
-	} =		useTradeEngine();
-
-	const {
-		getOceanRoute, routeDataLength = false, setMapPoints, mapPoints,
-	} = useOceanRoute();
 
 	const { stop } = useCheckPaymentStatus({
 		postTradeEngine,
@@ -81,14 +76,14 @@ function DutiesTaxCalulator() {
 			<Header
 				stepper={stepper}
 				setStepper={setStepper}
-				tradeEngineRespLength={tradeEngineRespLength}
+				isTradeEngineRespEmpty={isTradeEngineRespEmpty}
 				billId={billId}
 			/>
 
 			<div className={`${styles.with_mobile_view} ${styles.without_mobile_view}`}>
 				<div
 					className={cl`${formPayDetails && styles.form_pay_details} ${
-						(tradeEngineRespLength > 0 || billId) && styles.calculate_done_form
+						(!isTradeEngineRespEmpty || billId) && styles.calculate_done_form
 					} ${styles.child1}`}
 				>
 					<Form
@@ -110,7 +105,7 @@ function DutiesTaxCalulator() {
 				</div>
 				<div
 					className={cl`${formPayDetails && styles.map_form} ${
-						(tradeEngineRespLength > 0 || billId) && styles.calculate_done_map
+						(!isTradeEngineRespEmpty || billId) && styles.calculate_done_map
 					} ${styles.child2}`}
 				>
 					<Map
@@ -120,6 +115,7 @@ function DutiesTaxCalulator() {
 						getOceanRoute={getOceanRoute}
 						routeDataLength={routeDataLength}
 						setMapPoints={setMapPoints}
+						isTradeEngineRespEmpty={isTradeEngineRespEmpty}
 						mapPoints={mapPoints}
 					/>
 				</div>
@@ -132,7 +128,7 @@ function DutiesTaxCalulator() {
 				/>
 			)}
 			{(tradeEngineLoading || getDraftloading) && <Loader />}
-			{tradeEngineRespLength > 0 && (
+			{!isTradeEngineRespEmpty && (
 				<SuccessModal tradeEngineResp={tradeEngineResp} />
 			)}
 			{validateModal && (

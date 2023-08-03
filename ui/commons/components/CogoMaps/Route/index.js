@@ -2,13 +2,13 @@ import { Polyline, L } from '@cogoport/maps';
 import { isEmpty } from '@cogoport/utils';
 import { useEffect, useRef } from 'react';
 
-const COLOR_MAPING = {
-	air   : '#ee3225b5',
-	ocean : '#00008B',
-};
-function Route({ positions, map, transportMode }) {
-	const pathOptions = { color: COLOR_MAPING[transportMode] };
+export const PATH_OPTION = {
+	ocean : { color: '#1867D2', weight: 2 },
+	air   : { color: '#f37166', weight: 2 },
 
+};
+
+function Route({ positions, map, transportMode }) {
 	const ref = useRef(null);
 
 	useEffect(() => {
@@ -25,7 +25,7 @@ function Route({ positions, map, transportMode }) {
 		<Polyline
 			ref={ref}
 			positions={positions}
-			pathOptions={pathOptions}
+			pathOptions={PATH_OPTION[transportMode]}
 		/>
 	);
 }

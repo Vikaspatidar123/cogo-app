@@ -1,10 +1,15 @@
 import patterns from '@/ui/commons/configurations/patterns';
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const createSellerControl = () => {
 	const geo = getGeoConstants();
 	const { label:REGISTRATION_LABEL, pattern:REGISTRATION_PATTERN } = geo.others.registration_number;
-	const ECO_ZONE_LABEL = geo.others.economic_zone.label;
+
+	const ECO_ZONE_LABEL = getLocaleSpecificLabels({
+		accessorType : 'economic_zone',
+		accessor     : 'label',
+	});
 
 	const billingDetailControl = [
 		{

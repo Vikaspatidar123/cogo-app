@@ -39,7 +39,7 @@ function Frequency({
 								type="number"
 								value={freqCount}
 								disabled={disableOptions}
-								onChange={(e) => setFreqCount(e.target.value)}
+								onChange={(e) => setFreqCount(e?.target?.value)}
 							/>
 						</div>
 					)}

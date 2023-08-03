@@ -2,12 +2,15 @@ import { TabPanel, Tabs } from '@cogoport/components';
 import React, { useState } from 'react';
 
 import BankDetails from '../BankDetails';
+import styles from './styles.module.css';
 
 import Agreement from './Agreement';
 import CompanyDocuments from './CompanyDocuments';
 import OptUdcAndPdc from './OptUdcPdcDocuments';
+import { upperCase } from '@cogoport/utils';
 
-const tabsPanelMapping = (maximum_org_annual_income) => {
+const tabsPanelMapping = (maximum_org_annual_income, flags) => {
+	const { bank_details = ''} = flags || {};
 	const baseTabs = [
 		{
 			name      : 'agreement',
@@ -19,7 +22,7 @@ const tabsPanelMapping = (maximum_org_annual_income) => {
 			name      : 'bankDetails',
 			title     : 'Bank Details',
 			Component : BankDetails,
-			status    : 'PENDING',
+			status    : upperCase(bank_details) || 'PENDING',
 		},
 		{
 			name      : 'companyDocuments',
@@ -43,17 +46,27 @@ const tabsPanelMapping = (maximum_org_annual_income) => {
 };
 
 function ApplicationProcess({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, loading = false }) {
-	const { maximum_org_annual_income = 0 } = getCreditRequestResponse;
+	const { maximum_org_annual_income = 0, flags = {}, status = '' } = getCreditRequestResponse;
 	const [activeTab, setActiveTab] = useState('agreement');
 	return (
 
 		<div style={{ margin: 20 }}>
+			{status === 'approved' && (
+				<div>
+					<div className={styles.congrats_div}>
+					<span>Congratulations 🎉</span>
+					<span>
+					You have successfully been registered with us!
+					</span>
+				</div>
+				</div>
+			)}
 			<Tabs
 				activeTab={activeTab}
 				themeType="primary"
 				onChange={setActiveTab}
 			>
-				{tabsPanelMapping(maximum_org_annual_income).map(({
+				{tabsPanelMapping(maximum_org_annual_income, flags).map(({
 					title = '',
 					Component, status = '', name = '',
 				}) => (

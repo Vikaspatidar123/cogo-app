@@ -43,9 +43,9 @@ function FieldArray({
 		append(childEmptyValues);
 	};
 
-	// if (isEmpty(fields)) {
-	// 	fields.push(childEmptyValues);
-	// }
+	if (isEmpty(fields)) {
+		fields.push(childEmptyValues);
+	}
 	return (
 		<div className={`${styles.container} field_array_container`}>
 			{fields.map((field, index) => (

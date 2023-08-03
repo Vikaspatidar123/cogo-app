@@ -1,5 +1,5 @@
 import { RadioGroup, Button, Tooltip } from '@cogoport/components';
-import { IcMInfo, IcMPdf } from '@cogoport/icons-react';
+import { IcMInfo, IcMPdf, IcMClock, IcCFtick } from '@cogoport/icons-react';
 import { isEmpty, startCase } from '@cogoport/utils';
 import { useState, useEffect, useMemo } from 'react';
 
@@ -11,9 +11,34 @@ import styles from './styles.module.css';
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import PdfViewer from '@/ui/page-components/export-factoring/common/PdfViewer';
-import Login from '@/pages/login';
 
 const excludedKeys = ['documents', 'rejection_reason', 'exporter_bank_account_id', 'account_type'];
+
+const STATUS_FILTER = ['VERIFIED', 'REJECTED', 'VERIFICATION_PENDING'];
+
+const STATUS_MAPPING = {
+	REJECTED :{
+		title: 'Details Rejected',
+		subtitle: 'Your bank details are rejected. Please enter accurate data',
+		icon: IcMInfo,
+		color: '#BF291E',
+		iconColor: '#BF291E',
+	},
+	VERIFICATION_PENDING :{
+		title: 'Awaiting Final Review',
+		subtitle: 'We are checking the documents to make sure everything is in place This may take upto 10 Hours',
+		icon: IcMClock,
+		color: '#221F20',
+		iconColor: '#FCDC00',
+	},
+	VERIFIED:{
+		title: 'Verification Successful',
+		subtitle: 'Your bank details are successfully verified',
+		icon: IcCFtick,
+		color: '#221F20',
+		iconColor: '#849E4C',
+	}
+}
 
 function CommentBox({ comment = '' }) {
 	return (
@@ -85,31 +110,34 @@ function BankVerification({ refetch, getCreditRequestResponse = {} }) {
 		getCreditRequestResponse,
 	});
 
+	const ContentComponent = STATUS_MAPPING[approval_status];
+
 	return (
 		<div>
 			<div className={styles.header}>
 				Bank Details
 			</div>
-			{approval_status === 'REJECTED' && (
+			{STATUS_FILTER.includes(approval_status)&& (
 				<div className={styles.flexDiv}>
 					<div>
-						<div className={styles.title} style={{ color: '#BF291E' }}>
+						<div className={styles.title} style={{ color: ContentComponent?.color }}>
+							{approval_status === 'REJECTED' ? (
 							<Tooltip
 								content={<CommentBox comment={rejection_reason?.[0]} />}
 								placement="top"
 								theme="light"
 								interactive
 							>
-								<IcMInfo width="16px" height="16px" style={{ margin: '6px 3px 0px 0px' }} />
+								<IcMInfo width="16px" height="16px" style={{ margin: '6px 3px 0px 0px' }} fill={ContentComponent?.iconColor} />
 							</Tooltip>
-							Details Rejected
+							):(
+								<ContentComponent.icon width="20px" height="20px" style={{ marginRight: '3px' }} fill={ContentComponent?.iconColor}  />
+							)}
+							{ContentComponent?.title}
 						</div>
 
 						<div className={styles.description}>
-							{rejection_reason?.[0]}
-							{' '}
-							Your bank details are rejected
-							Please enter accurate data
+							{ContentComponent?.subtitle}
 						</div>
 					</div>
 				</div>
@@ -137,8 +165,8 @@ function BankVerification({ refetch, getCreditRequestResponse = {} }) {
 								<div className={styles.description}>
 									Account Type
 								</div>
-								<div className={styles.title}>
-									Current Account
+								<div className={styles.subtitle}>
+									{startCase(account_type)}
 								</div>
 							</>
 						)}
@@ -183,7 +211,7 @@ function BankVerification({ refetch, getCreditRequestResponse = {} }) {
 												return (
 													<div key={key} className={styles.field}>
 														<div className={styles.description}>{startCase(key)}</div>
-														<div className={styles.title}>
+														<div className={styles.subtitle}>
 															{startCase(banksDetails?.[key])}
 														</div>
 													</div>
@@ -198,7 +226,7 @@ function BankVerification({ refetch, getCreditRequestResponse = {} }) {
 													<div className={styles.description}>
 														{startCase(item?.document_type)}
 													</div>
-													<div className={styles.title}>
+													<div className={styles.subtitle}>
 														<Tooltip
 															content={<PdfViewer url={item.document_url} width="100%" />}
 															placement="top"

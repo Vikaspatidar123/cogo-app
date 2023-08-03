@@ -16,7 +16,7 @@ const SIGNUP_FLOW_MAPPING = {
 	loading_prompts : LoadingPrompts,
 };
 
-function Signup() {
+function Signup(props) {
 	const [mode, setMode] = useState('signup_form');
 	const [leadUserId, setLeadUserId] = useState('');
 
@@ -36,6 +36,7 @@ function Signup() {
 			setMode,
 			setUserDetails,
 			setLeadUserId,
+			ipAddress: props?.IP_CLIENT,
 		},
 		otp_form: {
 			userDetails,

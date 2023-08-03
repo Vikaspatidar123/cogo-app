@@ -30,6 +30,7 @@ function SignupForm({
 	setMode = () => {},
 	setUserDetails = () => {},
 	setLeadUserId = () => {},
+	ipAddress,
 }) {
 	const { locale } = useRouter();
 	const recaptchaRef = useRef({});
@@ -44,9 +45,14 @@ function SignupForm({
 	const {
 		loading,
 		onSignupAuthentication,
-	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId, captchaResponse });
+	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId, captchaResponse, ipAddress });
 
-	const { onLeadUserDetails, fetchLeadUserTrigger } = useLeadUserDetails({ setLeadUserId, recaptchaRef, t });
+	const { onLeadUserDetails, fetchLeadUserTrigger } = useLeadUserDetails({
+		setLeadUserId,
+		recaptchaRef,
+		ipAddress,
+		t,
+	});
 
 	const {
 		handleSubmit,
@@ -137,6 +143,7 @@ function SignupForm({
 						payload: getFormattedPayload({ formValues, leadUserId }),
 						setCustomError,
 						fetchLeadUserTrigger,
+						ipAddress,
 						t,
 					})}
 				/>

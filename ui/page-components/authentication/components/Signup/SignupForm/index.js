@@ -32,19 +32,23 @@ function SignupForm({
 	setLeadUserId = () => {},
 }) {
 	const { locale } = useRouter();
-
 	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:signupField';
+	const [captchaResponse, setCaptchaResponse] = useState('');
 
 	const [customError, setCustomError] = useState('');
-
+	const onReCaptca = (value) => {
+		setCaptchaResponse(value);
+	};
 	const {
 		loading,
 		onSignupAuthentication,
-		recaptchaRef,
-	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId });
+	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId, captchaResponse });
 
-	const { onLeadUserDetails, fetchLeadUserTrigger } = useLeadUserDetails({ setLeadUserId });
+	const { onLeadUserDetails, fetchLeadUserTrigger } = useLeadUserDetails({
+		setLeadUserId,
+		t,
+	});
 
 	const {
 		handleSubmit,
@@ -64,6 +68,7 @@ function SignupForm({
 
 	const { onSignupApiCall, generateSignUpLeadUser, onWhatsappChange } = useSignupForm({
 		setCustomError,
+		customError,
 		trigger,
 		setValue,
 		formValues,
@@ -126,19 +131,19 @@ function SignupForm({
 					name="mobile_number"
 					placeholder={t(`${translationKey}_mobile_placeholder`)}
 					rules={{
-						required : t(`${translationKey}_mobile_error`),
-						validate : () => validateMobileNumber({
-							payload: getFormattedPayload({ formValues, leadUserId }),
-							setCustomError,
-							fetchLeadUserTrigger,
-							t,
-						}),
+						required: t(`${translationKey}_mobile_error`),
 					}}
 					mode="onBlur"
+					handleBlur={() => validateMobileNumber({
+						payload: getFormattedPayload({ formValues, leadUserId }),
+						setCustomError,
+						fetchLeadUserTrigger,
+						t,
+					})}
 				/>
 
 				<span className={styles.errors}>
-					{customError || ''}
+					{errors?.mobile_number?.message || ' '}
 				</span>
 			</div>
 
@@ -186,12 +191,11 @@ function SignupForm({
 				</span>
 			</div>
 
-			<div className={styles.field_captcha}>
+			<div className={styles.field}>
 				<div className={styles.recaptcha}>
 					<ReCAPTCHA
-						ref={recaptchaRef}
 						sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
-						size="invisible"
+						onChange={onReCaptca}
 					/>
 				</div>
 			</div>

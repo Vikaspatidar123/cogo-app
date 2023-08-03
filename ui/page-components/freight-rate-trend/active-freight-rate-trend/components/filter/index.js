@@ -1,5 +1,5 @@
-import { Select, DateRangepicker, Popover } from '@cogoport/components';
-import { IcCFcrossInCircle, IcMArrowDown, IcMArrowUp, IcMFilter } from '@cogoport/icons-react';
+import { Select, DateRangepicker, Popover, Button, cl } from '@cogoport/components';
+import { IcCFcrossInCircle, IcMArrowUp, IcMFilter } from '@cogoport/icons-react';
 import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
@@ -116,43 +116,31 @@ function FilterForm({
 
 	);
 	return (
-		<div
-			role="presentation"
-			className={styles.container}
-			onClick={() => {
-				setDropDown(!dropDown);
-			}}
+		<div className={styles.container}>
 
-		>
 			<Popover
 				caret={false}
-				placement="bottom-start"
-				animation="shift-away"
 				content={content}
 				interactive
 				visible={dropDown}
 				onClickOutside={() => setDropDown(false)}
 			>
-				<div
-					className={styles.filter_button_ctn}
-
+				<Button
+					themeType="secondary"
+					type="button"
+					onClick={() => {
+						setDropDown((prev) => !prev);
+					}}
 				>
-					<div
-						role="presentation"
-						style={{ display: 'flex' }}
-						onClick={() => {
-							setDropDown(!dropDown);
-						}}
-					>
-						<div className={styles.filter_icon}>
-							<IcMFilter />
-						</div>
-						<div className={styles.filter_text}>{t('frt:filter')}</div>
+					<IcMFilter className={styles.filter_icon} />
+					{t('frt:filter')}
+					<div className={cl`${styles.icon} ${dropDown ? styles.rotate : ''}`}>
+						<IcMArrowUp />
 					</div>
-					<div className={styles.direction_icon}>{dropDown ? <IcMArrowUp /> : <IcMArrowDown />}</div>
-				</div>
+				</Button>
 			</Popover>
 		</div>
+
 	);
 }
 export default FilterForm;

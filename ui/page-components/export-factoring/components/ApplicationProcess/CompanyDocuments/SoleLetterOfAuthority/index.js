@@ -11,7 +11,7 @@ import useUpdateCreditApplication from '@/ui/page-components/export-factoring/ho
 
 const fields = {
 	name        : 'sole_letter_of_authority',
-	placeholder : 'Upload Signed & Stamped Partnership Deed',
+	placeholder : 'Upload Signed & Stamped Sole Letter',
 	type        : 'file',
 };
 

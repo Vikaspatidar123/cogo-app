@@ -11,7 +11,7 @@ import useUpdateCreditApplication from '@/ui/page-components/export-factoring/ho
 
 const fields = {
 	name        : 'board_resolution',
-	placeholder : 'Upload Signed & Stamped Partnership Deed',
+	placeholder : 'Upload Signed & Stamped Board Resolution',
 	type        : 'file',
 };
 

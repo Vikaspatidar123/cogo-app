@@ -29,7 +29,7 @@ const useGetOrganizationOutstandings = () => {
 				},
 			});
 		}
-	}, [isVerified, serial_id, entity_code]);
+	}, [isVerified, serial_id, entity_code, trigger]);
 
 	const dataStatsList = data?.list?.[GLOBAL_CONSTANTS.zeroth_index] || {};
 

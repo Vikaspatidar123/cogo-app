@@ -3,10 +3,13 @@ import React from 'react';
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
+import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function TotalOutstanding({ statsList = {} }) {
+	const geo = getGeoConstants();
+
 	const {
 		totalOutstanding,
 	} = statsList || {};
@@ -31,7 +34,7 @@ function TotalOutstanding({ statsList = {} }) {
 					<div className={styles.card_text}>
 						{formatAmount({
 							amount   : ledgerAmount || 0,
-							currency : ledgerCurrency,
+							currency : ledgerCurrency || geo.country.currency.code,
 							options  : {
 								style           : 'currency',
 								currencyDisplay : 'code',

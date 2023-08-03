@@ -1,5 +1,5 @@
 import { Popover, Modal } from '@cogoport/components';
-import { IcMFship, IcMLcl, IcMAir, IcCRedCircle, LclCircle, IcMDocument } from '@cogoport/icons-react';
+import { IcMFship, IcMLcl, IcMAir, IcCRedCircle, IcMDocument } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
 import { Service } from '../../../constants/service-mapping';
@@ -20,16 +20,16 @@ function InvoiceCard({ loading, invoiceDetails }) {
 		}
 		if (item.service_type === 'lcl_freight') {
 			return (
-				<LclCircle>
+				<div>
 					<IcMLcl fill="white" size={16.8} />
-				</LclCircle>
+				</div>
 			);
 		}
 		if (item.service_type === 'air_freight') {
 			return (
-				<LclCircle className={styles.air_circle}>
+				<div className={styles.air_circle}>
 					<IcMAir size={14} fill="white" />
-				</LclCircle>
+				</div>
 			);
 		}
 		return <IcMFship fill="#356EFD" />;

@@ -17,6 +17,7 @@
 		"type": "mobile_number",
 		"name": "mobile_number",
 		"label": "POC Mobile Number",
+		"isInputGroup":"true",
 		"codeKey": "mobile_country_code",
 		"numberKey": "mobile_number",
 		"rules": { "required": true },

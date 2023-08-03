@@ -5,7 +5,6 @@
 .check_box_container {
 	display: flex;
 	align-items: center;
-	margin: 20px 0;
 
 	.checkbox {
 		margin-left: 8px;
@@ -17,4 +16,11 @@
 	display: flex;
 	justify-content: flex-end;
 	padding: 10px;
+}
+
+.insurance {
+	margin-left: 2px;
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
 }

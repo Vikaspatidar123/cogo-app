@@ -11,6 +11,8 @@ function SearchForm(props) {
 		draftFormData,
 		setDestinationDetails = () => {},
 		setOriginDetails = () => {},
+		setHscodeDetails = () => {},
+		hscodeDetails,
 		formProps,
 		fieldProps,
 		controls,
@@ -42,6 +44,10 @@ function SearchForm(props) {
 			});
 			setDestinationDetails({
 				...destinationDetails,
+				[val]: undefined,
+			});
+			setHscodeDetails({
+				...hscodeDetails,
 				[val]: undefined,
 			});
 			setServices({ ...services, [val]: undefined });

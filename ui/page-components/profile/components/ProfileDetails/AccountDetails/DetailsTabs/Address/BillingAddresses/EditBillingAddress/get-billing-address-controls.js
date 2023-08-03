@@ -1,5 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import data from '@/.data-store/constants/countries.json';
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const country_code = data?.map((x) => ({
@@ -11,7 +12,11 @@ const getBillingAddressControls = ({ cityPincode = {}, t }) => {
 	const geo = getGeoConstants();
 
 	const REGISTRATION_LABEL = geo.others.registration_number.label;
-	const ECO_ZONE_LABEL = geo.others.economic_zone.label;
+
+	const ECO_ZONE_LABEL = getLocaleSpecificLabels({
+		accessorType : 'economic_zone',
+		accessor     : 'label',
+	});
 
 	const fields = [
 		{

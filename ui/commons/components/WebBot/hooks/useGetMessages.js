@@ -19,6 +19,17 @@ const PLATFORM_CHAT_PATH = GLOBAL_CONSTANTS.firebase_paths.platform_chat;
 
 const DECREMENT_VALUE = 1;
 
+const ACCESIBLE_MESSAGE_TYPE_MAPPING = [
+	'text',
+	'template',
+	'interactive',
+	'image',
+	'audio',
+	'video',
+	'contact',
+	'document',
+];
+
 const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 	const [messagesState, setMessagesState] = useState({
 		messagesHash          : {},
@@ -36,7 +47,7 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 
 		const chatCollectionQuery = query(
 			messagesCollection,
-			where('conversation_type', 'in', ['sent', 'received']),
+			where('message_type', 'in', ACCESIBLE_MESSAGE_TYPE_MAPPING),
 			orderBy('created_at', 'desc'),
 			limit(PAGE_LIMIT),
 		);
@@ -80,7 +91,7 @@ const useGetMessages = ({ firestore, roomId, scrollToBottom }) => {
 
 		const chatCollectionQuery = query(
 			messagesCollection,
-			where('conversation_type', 'in', ['sent', 'received']),
+			where('message_type', 'in', ACCESIBLE_MESSAGE_TYPE_MAPPING),
 			where('created_at', '<', prevTimeStamp),
 			orderBy('created_at', 'desc'),
 			limit(PAGE_LIMIT),

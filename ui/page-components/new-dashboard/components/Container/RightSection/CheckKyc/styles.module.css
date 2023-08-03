@@ -1,0 +1,45 @@
+.container {
+	padding: 20px;
+	margin-top: 20px;
+	border-radius: 4px;
+}
+
+.rejected {
+	background: linear-gradient(180deg, #faefef 0%, #ffdad5 100%);
+}
+
+.verified {
+	background: linear-gradient(180deg, #8ade99 0%, #ddebc0 100%);
+}
+
+.pending_verification {
+	background: linear-gradient(#fef199, #fffce6);
+}
+
+.pending_from_user {
+	background: linear-gradient(#fbd1a6, #fef3e9);
+}
+
+.box {
+	display: flex;
+	justify-content: space-around;
+}
+
+.heading {
+	font-weight: 600;
+}
+
+.des {
+	margin-bottom: 10px;
+	font-size: 10px;
+	font-weight: 300;
+	color: var(--black-80, #4f4f4f);
+}
+
+.button {
+	:global {
+		.ui_button_container {
+			padding: 0;
+		}
+	}
+}

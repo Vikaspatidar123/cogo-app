@@ -1,6 +1,6 @@
 import { Tooltip, cl } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
-import { startCase } from '@cogoport/utils';
+import { isEmpty, startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
@@ -26,10 +26,21 @@ function TooltipContent() {
 }
 
 function PremiumRate(props) {
-	const { rateData = {} } = props;
+	const { rateData = {}, error } = props;
 
 	const { totalCharges = 0, serviceChargeList = [] } = rateData || {};
-
+	if (error) {
+		return (
+			<div className={styles.red}>
+				*
+				{' '}
+				{error}
+			</div>
+		);
+	}
+	if (isEmpty(rateData)) {
+		return null;
+	}
 	return (
 		<div>
 			{serviceChargeList.map((service) => {

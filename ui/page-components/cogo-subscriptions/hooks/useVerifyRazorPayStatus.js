@@ -35,7 +35,7 @@ const useVerifyRazor = () => {
 			});
 			return data;
 		} catch (err) {
-			Toast.error(err?.errors || "Couldn't verify payment. Please try again.");
+			console.error(err);
 			return null;
 		}
 	};

@@ -4,8 +4,6 @@ import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
-
 const useInsurance = ({
 	payment = () => { },
 	type = '',

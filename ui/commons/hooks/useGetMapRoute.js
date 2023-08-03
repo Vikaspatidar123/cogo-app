@@ -1,14 +1,22 @@
 import { useRequest } from '@/packages/request';
 
-const getInfo = (info) => ({
-	coordinates  : [info?.latitude, info?.longitude],
-	location_id  : info?.id,
-	continent_id : info?.continent_id,
-	display_name : info?.display_name,
-	type         : info?.type,
-	is_icd       : info?.is_icd,
-	region_id    : info?.region_id || '',
-});
+const getInfo = (info) => {
+	const {
+		latitude = '', longitude = '', id = '', continent_id = '', display_name = '', type = '', is_icd = '',
+		region_id = '',
+	} = info || {};
+
+	return ({
+		coordinates : [latitude, longitude],
+		location_id : id,
+		continent_id,
+		display_name,
+		type,
+		is_icd,
+		region_id   : region_id || '',
+	}
+	);
+};
 
 const getPayload = ({ originInfo = {}, destinationInfo = {} }) => {
 	const originPayload = getInfo(originInfo);

@@ -48,8 +48,8 @@ function ContainerInfo({
 
 	const incrementHandler = (value) => {
 		setActiveContainerIndex((prev) => {
-			if (prev + STEP_SIZE <= containerDetailsLength && value) return prev + STEP_SIZE;
-			if (prev - STEP_SIZE >= MIN_CONTAINER && !value) return prev - STEP_SIZE;
+			if (((prev + STEP_SIZE) <= containerDetailsLength) && value) return prev + STEP_SIZE;
+			if (((prev - STEP_SIZE) >= MIN_CONTAINER) && !value) return prev - STEP_SIZE;
 			return prev;
 		});
 	};

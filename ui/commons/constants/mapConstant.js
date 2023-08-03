@@ -19,7 +19,7 @@ export const PATH_OPTION = {
 	land  : { color: '#136f29', weight: 2 },
 };
 
-export const COLOR_MAPING = {
+export const COLOR_MAPPING = {
 	ocean   : '#1867D2',
 	land    : '#136f29',
 	air     : '#f37166',

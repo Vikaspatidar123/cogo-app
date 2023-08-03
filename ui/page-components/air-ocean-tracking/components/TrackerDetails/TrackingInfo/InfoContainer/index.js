@@ -20,7 +20,6 @@ const COLOR = {
 };
 
 const SINGLE_DETAIL_INDEX = 1;
-const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 
 function InfoContainer({
 	containerDetails = [], currContainerDetails = {}, setCurrContainerDetails,
@@ -48,8 +47,8 @@ function InfoContainer({
 			}
 		});
 
-		const shipperDetails =	shipperArr[ZEROTH_INDEX] || {};
-		const consigneeDetails = consigneeArr[ZEROTH_INDEX] || {};
+		const shipperDetails =	shipperArr[GLOBAL_CONSTANTS.zeroth_index] || {};
+		const consigneeDetails = consigneeArr[GLOBAL_CONSTANTS.zeroth_index] || {};
 		const incoterm = shipmentInfo?.incoterm;
 
 		return {

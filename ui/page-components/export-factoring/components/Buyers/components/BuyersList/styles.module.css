@@ -1,8 +1,9 @@
 .headerDiv {
 	display: flex;
 	justify-content: space-between;
-	min-width: 1000px;
+	width: 95%;
 	margin: 10px 0;
+	padding-right: 2%;
 }
 
 .header {

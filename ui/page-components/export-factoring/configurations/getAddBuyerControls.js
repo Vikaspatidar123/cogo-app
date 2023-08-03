@@ -132,7 +132,8 @@ const controls = [
 		type        : 'fieldArray',
 		showButtons : true,
 		buttonText  : 'Add Poc',
-		value       : [{}],
+		noDeleteButtonTill : 0,
+		// value       : [{}],
 		controls    : [
 			{
 				name        : 'name',
@@ -155,7 +156,7 @@ const controls = [
 				label       : 'Email',
 				placeholder : 'Email',
 				type        : 'email',
-				span        : 6,
+				span        : 12,
 				rules       : {
 					required : true,
 					pattern  : {
@@ -169,9 +170,10 @@ const controls = [
 				label       : 'Mobile Number',
 				placeholder : 'Enter Mobile Number',
 				type        : 'mobile_number',
+				isInputGroup    : true,
+				showCountryName : false,
 				inputType   : 'number',
 				select2     : 'new',
-				style       : { width: '210px' },
 				options     : country_code,
 				rules       : {
 					required : true,

@@ -5,9 +5,9 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
-import FieldArray from '@/ui/page-components/export-factoring/common/FieldArray';
 import { getAddBuyerControls } from '@/ui/page-components/export-factoring/configurations/getAddBuyerControls';
 import useSubmitBuyerDetails from '@/ui/page-components/export-factoring/hooks/useSubmitBuyerDetails';
+import FieldArray from '@/ui/page-components/export-factoring/common/FieldArray';
 
 function AddBuyerModal({ refetch, openAddBuyer, setOpenAddBuyer, getCreditRequestResponse }) {
 	const [addressDetail, setAddressDetail] = useState();
@@ -20,7 +20,16 @@ function AddBuyerModal({ refetch, openAddBuyer, setOpenAddBuyer, getCreditReques
 
 	const {
 		control, handleSubmit, setValue, formState: { errors },
-	} = useForm();
+	} = useForm({
+		defaultValue:{
+			poc_details :[
+				{name: ''},
+				{designation:''},
+				{email_id:''},
+				{mobile_number:''},
+			]
+		}
+	});
 
 	const { onSubmit, loading } = useSubmitBuyerDetails({
 		getCreditRequestResponse,

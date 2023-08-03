@@ -46,7 +46,7 @@ function BuyersList({
 			<Accordion
 				type="text"
 				title={titleInfo({ company_name, buyer_approval_status })}
-				style={{ width: '100%', margin: '10px 0px' }}
+				style={{ width: '90%', margin: '10px 0px' }}
 			>
 				<div className={styles.flexDiv}>
 					{buyer_approval_status === 'COMPLETED' && (

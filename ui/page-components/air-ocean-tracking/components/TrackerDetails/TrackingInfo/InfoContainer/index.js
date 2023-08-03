@@ -35,10 +35,6 @@ function InfoContainer({
 	const MAPPING = GET_MAPPING[trackingType];
 	const { CARD_TITLE, SHIPMENT_TITLE, SHIPMENT_INFO } = MAPPING;
 
-	const INFO_MAPPING = {
-		...SHIPMENT_INFO,
-	};
-
 	const { traderInfo, ...restInfo } = useMemo(() => {
 		const { commodity = '', hs_code = '', weight = '', piece = '' } = shipmentInfo || {};
 		const shipperArr = [];
@@ -52,8 +48,8 @@ function InfoContainer({
 			}
 		});
 
-		const shipperDetails =	shipperArr[ZEROTH_INDEX] ?? {};
-		const consigneeDetails = consigneeArr[ZEROTH_INDEX] ?? {};
+		const shipperDetails =	shipperArr[ZEROTH_INDEX] || {};
+		const consigneeDetails = consigneeArr[ZEROTH_INDEX] || {};
 		const incoterm = shipmentInfo?.incoterm;
 
 		return {
@@ -119,12 +115,12 @@ function InfoContainer({
 					</div>
 				)}
 
-				{Object.keys(INFO_MAPPING).map((item) => {
+				{Object.keys(SHIPMENT_INFO).map((item) => {
 					const data = restInfo?.[item] || '--';
 					if (item === 'container_no') return <React.Fragment key={item} />;
 					return (
 						<div key={item} className={styles.row}>
-							<span className={styles.data_title}>{INFO_MAPPING[item]}</span>
+							<span className={styles.data_title}>{SHIPMENT_INFO[item]}</span>
 							<span className={styles.data_seperator}>:</span>
 							<span>{data}</span>
 						</div>

@@ -10,6 +10,10 @@ const CURRENCY_OPTIONS = [
 	GLOBAL_CONSTANTS.currency_code.USD,
 	GLOBAL_CONSTANTS.currency_code.INR,
 	GLOBAL_CONSTANTS.currency_code.VND,
+	GLOBAL_CONSTANTS.currency_code.SGD,
+	GLOBAL_CONSTANTS.currency_code.THB,
+	GLOBAL_CONSTANTS.currency_code.IDR,
+	GLOBAL_CONSTANTS.currency_code.CNY,
 ].map((currencyCode) => ({
 	label : currencyCode,
 	value : currencyCode,

@@ -5,7 +5,7 @@ import getFormattedPayload from '../utils/getFormattedPayload';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
 
-const useLeadUserDetails = ({ setLeadUserId = () => {}, recaptchaRef, t = () => {} }) => {
+const useLeadUserDetails = ({ setLeadUserId = () => {}, t = () => {} }) => {
 	const [{ loading }, trigger] = useRequest(
 		{
 			url    : '/create_saas_sign_up_lead_user',
@@ -16,7 +16,7 @@ const useLeadUserDetails = ({ setLeadUserId = () => {}, recaptchaRef, t = () => 
 
 	const onLeadUserDetails = async (props) => {
 		try {
-			const payload = await getFormattedPayload({ ...props, recaptchaRef });
+			const payload = await getFormattedPayload(props);
 
 			const response = await trigger({
 				data: { ...payload },

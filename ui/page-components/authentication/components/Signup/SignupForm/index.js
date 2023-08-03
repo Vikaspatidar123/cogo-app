@@ -35,13 +35,16 @@ function SignupForm({
 	const recaptchaRef = useRef({});
 	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:signupField';
+	const [captchaResponse, setCaptchaResponse] = useState('');
 
 	const [customError, setCustomError] = useState('');
-
+	const onReCaptca = (value) => {
+		setCaptchaResponse(value);
+	};
 	const {
 		loading,
 		onSignupAuthentication,
-	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId, recaptchaRef });
+	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId, captchaResponse });
 
 	const { onLeadUserDetails, fetchLeadUserTrigger } = useLeadUserDetails({ setLeadUserId, recaptchaRef, t });
 
@@ -61,10 +64,9 @@ function SignupForm({
 
 	const formValues = watch();
 
-	console.log(formValues, 'formValues');
-
 	const { onSignupApiCall, generateSignUpLeadUser, onWhatsappChange } = useSignupForm({
 		setCustomError,
+		customError,
 		trigger,
 		setValue,
 		formValues,
@@ -131,8 +133,8 @@ function SignupForm({
 						required: t(`${translationKey}_mobile_error`),
 					}}
 					mode="onBlur"
-					handleBlur={async () => validateMobileNumber({
-						payload: await getFormattedPayload({ formValues, leadUserId, recaptchaRef }),
+					handleBlur={() => validateMobileNumber({
+						payload: getFormattedPayload({ formValues, leadUserId }),
 						setCustomError,
 						fetchLeadUserTrigger,
 						t,
@@ -188,12 +190,12 @@ function SignupForm({
 				</span>
 			</div>
 
-			<div className={styles.field_captcha}>
+			<div className={styles.field}>
 				<div className={styles.recaptcha}>
 					<ReCAPTCHA
 						ref={recaptchaRef}
 						sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
-						size="invisible"
+						onChange={onReCaptca}
 					/>
 				</div>
 			</div>

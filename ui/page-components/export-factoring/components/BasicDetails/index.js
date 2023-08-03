@@ -42,6 +42,11 @@ function BasicDetails({ active = {}, getCreditRequestResponse = {}, refetch = ()
 			Component   : Coupons,
 		});
 	}
+	const validateProcess = () => {
+		const { poc_details = [], trade_details = [] } = getCreditRequestResponse;
+		if (trade_details?.length > 0 && poc_details?.length > 0) { return false; }
+		return true;
+	};
 
 	return (
 		<>
@@ -84,6 +89,7 @@ function BasicDetails({ active = {}, getCreditRequestResponse = {}, refetch = ()
 			<div className={styles.button_wrapper}>
 				<Button
 					size="lg"
+					disabled={validateProcess() || paymentLoding}
 					themeType="primary"
 					onClick={proceedToPay}
 					loading={paymentLoding}

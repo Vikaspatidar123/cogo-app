@@ -1,7 +1,5 @@
 .field {
-	width: 48%;
 	margin: 0 0 15px;
-	margin-right: 10px;
 }
 
 .field_name {
@@ -11,13 +9,10 @@
 	color: #4f4f4f;
 }
 
-.form {
+.btn_container {
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: flex-end;
 	width: 100%;
-	padding: 20px;
-}
-
-.error_text {
-	color: red;
+	padding: 10px;
 }

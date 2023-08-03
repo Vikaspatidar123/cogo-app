@@ -35,7 +35,7 @@ function SignatoryMethod({ method, setMethod = () => {} }) {
 			>
 				<div>
 					<Image
-						src={GLOBAL_CONSTANTS.image_url.signatory_image_2}
+						src={GLOBAL_CONSTANTS.image_url.signatory_image}
 						alt="physical"
 						width={19}
 						height={18}

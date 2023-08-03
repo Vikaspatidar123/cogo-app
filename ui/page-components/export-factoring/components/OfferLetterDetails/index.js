@@ -49,8 +49,8 @@ function OfferLetterDetails({ getCreditRequestResponse = {}, refetch = () => {} 
 				<Image
 					src={GLOBAL_CONSTANTS.image_url.ef_offer_letter_email_image}
 					alt="email-offer-Letter"
-					width={150}
-					height={150}
+					width={100}
+					height={90}
 				/>
 				<div className={styles.congrats_div}>
 					<span>Congratulations 🎉</span>

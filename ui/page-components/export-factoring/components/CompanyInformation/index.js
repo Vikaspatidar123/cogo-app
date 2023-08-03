@@ -36,6 +36,14 @@ function CompanyInformation({
 			max_amount_unit : maxAmountUnit,
 		};
 	};
+	const validateProcess = () => {
+		const allValuesExist = ['address', 'type', 'pan', 'name',
+			'org_iec_number', 'gst_number',
+			'company_address', 'date_of_incorporation',
+			'city', 'state', 'constitution_of_business', 'zipcode', 'country']
+			.every((key) => key in updatedValues && updatedValues[key]);
+		return !allValuesExist;
+	};
 
 	const handleGetOfferLetter = async () => {
 		const request = {
@@ -112,7 +120,7 @@ function CompanyInformation({
 					themeType="primary"
 					onClick={handleGetOfferLetter}
 					loading={updateCreditLoading}
-					disabled={updateCreditLoading}
+					disabled={validateProcess()}
 					className={styles.proceed_button}
 				>
 					Get Offer Letter

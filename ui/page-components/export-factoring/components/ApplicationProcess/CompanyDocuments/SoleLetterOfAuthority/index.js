@@ -10,16 +10,16 @@ import useSubmitAgreement from '@/ui/page-components/export-factoring/hooks/useS
 import useUpdateCreditApplication from '@/ui/page-components/export-factoring/hooks/useUpdateCreditApplication';
 
 const fields = {
-	name        : 'partnership_deed',
+	name        : 'sole_letter_of_authority',
 	placeholder : 'Upload Signed & Stamped Partnership Deed',
 	type        : 'file',
 };
 
-function PartnershipDocuments({
+function SoleLetterOfAuthority({
 	getCreditRequestResponse = {},
 	refetch = () => {},
 }) {
-	const { documents: { partnership_deed = {} }, flags:{ documentation } } = getCreditRequestResponse;
+	const { documents: { sole_letter_of_authority = {} }, flags:{ documentation } } = getCreditRequestResponse;
 	const { updateCreditApplication = () => {} } = useUpdateCreditApplication();
 	const { submit, loading } = useSubmitAgreement();
 
@@ -35,7 +35,7 @@ function PartnershipDocuments({
 				documents         : [
 					{
 						document_extension : 'pdf',
-						document_type      : 'partnership_deed',
+						document_type      : 'sole_letter_of_authority',
 						document_url       : value,
 					},
 				],
@@ -52,14 +52,14 @@ function PartnershipDocuments({
 
 	return (
 		<form>
-			{!partnership_deed.active && (
+			{!sole_letter_of_authority.active && (
 				<div className={styles.field}>
 					<div className={styles.field_name}>{fields?.placeholder}</div>
 					<Element control={control} {...fields} handleChange={(e) => uploadpartnerDocument(e)} />
 				</div>
 			)}
-			{partnership_deed.active
-				&& <FilePreview name="partnership_deed" url={partnership_deed.active.document_url} />}
+			{sole_letter_of_authority.active
+				&& <FilePreview name="sole_letter_of_authority" url={sole_letter_of_authority.active.document_url} />}
 			<div className={styles.btn_container}>
 				<Button
 					onClick={handleSubmit}
@@ -75,4 +75,4 @@ function PartnershipDocuments({
 	);
 }
 
-export default PartnershipDocuments;
+export default SoleLetterOfAuthority;

@@ -115,6 +115,11 @@ function DirectorInformation({
 		return true;
 	};
 
+	const validateProcess = () => {
+		const allValuesExist = ['director', 'financial_data']
+			.every((key) => key in updatedValues && updatedValues[key]);
+		return !allValuesExist;
+	};
 
 	return (
 		<div className={styles.director_details}>
@@ -178,7 +183,7 @@ function DirectorInformation({
 					type="button"
 					onClick={saveDirectorAndReport}
 					loading={updateCreditLoading}
-					disabled={updateCreditLoading}
+					disabled={validateProcess()}
 				>
 					Save & Continue
 				</Button>

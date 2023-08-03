@@ -1,6 +1,5 @@
 import { Button } from '@cogoport/components';
-import { IcMActivePlans, IcMArrowUp, IcMEdit } from '@cogoport/icons-react';
-import { useState } from 'react';
+import { IcMActivePlans, IcMEdit } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
@@ -10,7 +9,6 @@ function Details({ director = {}, setShowEdit = () => {}, showEdit, constitution
 		gender = '', din = '', date_of_birth = '', address = '',
 	} = director || {};
 	const updatedDirectors = updatedValues.director.find((x) => x.registration_number === director.registration_number);
-
 
 	return (
 		<div className={styles.container}>

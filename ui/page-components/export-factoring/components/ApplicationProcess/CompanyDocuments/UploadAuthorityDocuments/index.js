@@ -17,7 +17,7 @@ function UploadAuthorityDocuments() {
 	const Element = getField(fields?.type);
 	return (
 		<div className={styles.container}>
-			<FilePreview name="Letter of Authority" />
+			{/* <FilePreview name="Letter of Authority" /> */}
 			<div className={styles.form_div}>
 				<form>
 					<div className={styles.field}>

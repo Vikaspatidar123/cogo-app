@@ -10,16 +10,16 @@ import useSubmitAgreement from '@/ui/page-components/export-factoring/hooks/useS
 import useUpdateCreditApplication from '@/ui/page-components/export-factoring/hooks/useUpdateCreditApplication';
 
 const fields = {
-	name        : 'partnership_deed',
+	name        : 'board_resolution',
 	placeholder : 'Upload Signed & Stamped Partnership Deed',
 	type        : 'file',
 };
 
-function PartnershipDocuments({
+function BoardResolutionDocuments({
 	getCreditRequestResponse = {},
 	refetch = () => {},
 }) {
-	const { documents: { partnership_deed = {} }, flags:{ documentation } } = getCreditRequestResponse;
+	const { documents: { board_resolution = {} }, flags:{ documentation } } = getCreditRequestResponse;
 	const { updateCreditApplication = () => {} } = useUpdateCreditApplication();
 	const { submit, loading } = useSubmitAgreement();
 
@@ -35,7 +35,7 @@ function PartnershipDocuments({
 				documents         : [
 					{
 						document_extension : 'pdf',
-						document_type      : 'partnership_deed',
+						document_type      : 'board_resolution',
 						document_url       : value,
 					},
 				],
@@ -52,14 +52,14 @@ function PartnershipDocuments({
 
 	return (
 		<form>
-			{!partnership_deed.active && (
+			{!board_resolution.active && (
 				<div className={styles.field}>
 					<div className={styles.field_name}>{fields?.placeholder}</div>
 					<Element control={control} {...fields} handleChange={(e) => uploadpartnerDocument(e)} />
 				</div>
 			)}
-			{partnership_deed.active
-				&& <FilePreview name="partnership_deed" url={partnership_deed.active.document_url} />}
+			{board_resolution.active
+				&& <FilePreview name="board_resolution" url={board_resolution.active.document_url} />}
 			<div className={styles.btn_container}>
 				<Button
 					onClick={handleSubmit}
@@ -75,4 +75,4 @@ function PartnershipDocuments({
 	);
 }
 
-export default PartnershipDocuments;
+export default BoardResolutionDocuments;

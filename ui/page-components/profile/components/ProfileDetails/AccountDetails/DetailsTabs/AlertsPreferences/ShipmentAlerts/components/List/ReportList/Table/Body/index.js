@@ -19,9 +19,7 @@ function Body({ values, props, header, index }, ref) {
 	return (
 		(values || []).map((item, i) => (
 			<div className={styles.container}>
-				<div className={styles.icon_check}>
-					<Checkbox disabled={!isEdit} />
-				</div>
+				<div className={styles.icon_check} />
 				<div
 					className={styles.list}
 					ref={(r) => {

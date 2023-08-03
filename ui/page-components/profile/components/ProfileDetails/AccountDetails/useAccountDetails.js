@@ -14,7 +14,7 @@ const useAccountDetails = () => {
 	const { query = {} } = useSelector((state) => state.general);
 
 	const OPTIONS_MAPPING = getOptions({ t });
-	console.log(query, 'query');
+
 	const [activeTab, setActiveTab] = useState(
 		query.activeTab || Object.keys(OPTIONS_MAPPING)[0],
 	);

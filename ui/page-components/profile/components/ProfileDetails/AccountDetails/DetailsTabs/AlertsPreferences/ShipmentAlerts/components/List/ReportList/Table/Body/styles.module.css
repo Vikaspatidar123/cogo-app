@@ -19,7 +19,7 @@
 .list {
 	display: flex;
 	align-items: center;
-	width: 900px;
+	width: 950px;
 	max-width: 1000px;
 	overflow: hidden;
 	scroll-behavior: smooth;
@@ -45,7 +45,7 @@
 
 	:global {
 		.ui_checkbox_container {
-			padding: 8px 2px 8px 23px;
+			padding: 0;
 		}
 	}
 }

@@ -11,7 +11,7 @@
 .list {
 	display: flex;
 	align-items: center;
-	width: 900px;
+	width: 950px;
 	max-width: 1000px;
 	overflow: hidden;
 	scroll-behavior: smooth;
@@ -33,12 +33,11 @@
 .icon_check {
 	display: flex;
 	align-items: center;
-	width: 7%;
 	cursor: pointer;
 
 	:global {
 		.ui_checkbox_container {
-			padding: 8px 2px 8px 25px;
+			padding: 8px 2px 8px 10px;
 		}
 	}
 }

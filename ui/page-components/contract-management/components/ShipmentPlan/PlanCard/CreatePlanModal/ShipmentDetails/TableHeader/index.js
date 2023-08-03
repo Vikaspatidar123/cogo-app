@@ -2,11 +2,11 @@ import React from 'react';
 
 import styles from './styles.module.css';
 
-import ShipmentHeader from '@/ui/page-components/contract-management/configurations/shipment-header';
+import getShipmentHeaderControls from '@/ui/page-components/contract-management/configurations/shipment-header';
 import getwidth from '@/ui/page-components/contract-management/utils/getWidth';
 
 function TableHeader({ serviceType = '' }) {
-	const headers = ShipmentHeader({ serviceType });
+	const headers = getShipmentHeaderControls({ serviceType });
 	return (
 		<div className={styles.container}>
 			{(headers || []).map((item) => (

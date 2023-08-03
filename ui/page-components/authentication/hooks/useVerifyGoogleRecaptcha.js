@@ -1,6 +1,10 @@
+import { useRef } from 'react';
+
 import { useRequest } from '@/packages/request';
 
-function useVerifyGoogleRecaptcha({ recaptchaRef }) {
+function useVerifyGoogleRecaptcha() {
+	const recaptchaRef = useRef({});
+
 	const [{ loading: captchaLoading }, trigger] = useRequest({
 		url    : '/verify_google_recaptcha',
 		method : 'get',
@@ -8,7 +12,7 @@ function useVerifyGoogleRecaptcha({ recaptchaRef }) {
 
 	const onVerifyingCaptcha = async () => {
 		const captchaResponse = await recaptchaRef.current.executeAsync();
-		console.log(captchaResponse, 'captchaResponse12');
+
 		return trigger({ params: { google_recaptcha_response: captchaResponse, platform: 'app' } });
 	};
 

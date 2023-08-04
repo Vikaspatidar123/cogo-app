@@ -6,6 +6,8 @@ import redirectUrl from '../redirectUrl';
 
 import styles from './styles.module.css';
 
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
+
 function SuccessModal({
 	showSuccessModal,
 	setModal,
@@ -18,6 +20,7 @@ function SuccessModal({
 		// eslint-disable-next-line no-undef
 		window.open(postInsuranceResponse?.policyPdfFile);
 	};
+	console.log(policyIdDownload, 'policyIdDownload');
 	return (
 		<Modal
 			show={showSuccessModal}
@@ -63,6 +66,15 @@ function SuccessModal({
 								Go to Home Screen
 							</Button>
 						</div>
+
+						<div className={styles.csat}>
+							<CustomerSatisfaction
+								serviceName="insurance"
+								position="center"
+								details={{ id: policyIdDownload }}
+							/>
+						</div>
+
 					</>
 				)}
 				{!createInsuranceLoading && !policyIdDownload && (

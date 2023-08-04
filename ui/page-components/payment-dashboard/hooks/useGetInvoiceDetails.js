@@ -18,10 +18,9 @@ const useGetInvoiceDetails = () => {
 	const [loading, setLoading] = useState(false);
 	const [invoiceStatus, setInvoiceStatus] = useState(['unpaid']);
 
-	const { organizationId, kyc_status, entity_code } = useSelector(({ profile }) => ({
+	const { organizationId, kyc_status } = useSelector(({ profile }) => ({
 		organizationId : profile?.organization?.id,
 		kyc_status     : profile?.organization?.kyc_status,
-		entity_code    : profile?.organization?.entity_code,
 	}));
 
 	const triggerApi = kyc_status === 'verified' && organizationId !== null;
@@ -46,7 +45,6 @@ const useGetInvoiceDetails = () => {
 		sortType          : orderBy.order || undefined,
 		sortBy            : orderBy.key || undefined,
 		page              : pagination,
-		cogoEntity        : entity_code,
 	};
 
 	const getInvoiceDetails = async () => {

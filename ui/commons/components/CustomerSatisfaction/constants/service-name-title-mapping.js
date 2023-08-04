@@ -8,4 +8,5 @@ export const SERVICE_NAME_TITLE_MAPPING = {
 	duties_and_taxes         : 'Duties and Taxes',
 	trader_eligibility_check : 'Trader Eligibility Check',
 	hscode_finder            : 'Hs Code Finder',
+	quotations               : 'Premium Quotation',
 };

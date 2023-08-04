@@ -1,17 +1,25 @@
-import { format } from '@cogoport/utils';
-
 import {
 	incotermMaping,
 	containerTypeMaping,
 	containerSizeMaping,
 } from '../common/Maping';
 
-const cargoHandler = (type) => {
-	if (type === 'import') {
-		return 'delivery_from_dock';
-	}
-	return 'stuffing_at_factory';
+import { commoditiesMapping } from '@/ui/commons/constants/commoditiesMapping';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
+
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
+
+const CARGO_HANDLER_MAPPING = {
+	import : 'delivery_from_dock',
+	export : 'stuffing_at_factory',
 };
+
+const getTradeType = (incoterm) => {
+	const isImport = ['FOB', 'EXW', 'FCA', 'FAS'].includes(incoterm);
+	return isImport ? 'import' : 'export';
+};
+
 const freightChargesPayload = ({ id, branch, allData, activeTab, cargo_value }) => {
 	const formData = allData || {};
 	const {
@@ -31,13 +39,21 @@ const freightChargesPayload = ({ id, branch, allData, activeTab, cargo_value }) 
 		currency,
 	} = formData;
 
-	const tradeType = () => {
-		const isImport = ['FOB', 'EXW', 'FCA', 'FAS'].includes(incoterm);
-		return isImport ? 'import' : 'export';
-	};
+	const tradeType = getTradeType(incoterm);
+
+	const container_type = containerTypeMaping[containerType];
+	const cargoHandlingType = CARGO_HANDLER_MAPPING[tradeType];
+
+	const cargoClearanceDate = formatDate({
+		date       : expiryDate,
+		formatDate : GLOBAL_CONSTANTS.formats.date['yyyy-MM-dd'],
+		formatType : 'date',
+	});
+
 	const createPayload = () => {
 		if (activeTab === 'OCEAN') {
 			if (serviceType === 'FCL_FREIGHT') {
+				const commodity = commoditiesMapping.fcl_freight[container_type][ZEROTH_INDEX];
 				const payload = {
 					search_type                     : serviceType.toLowerCase(),
 					source                          : 'platform',
@@ -48,8 +64,8 @@ const freightChargesPayload = ({ id, branch, allData, activeTab, cargo_value }) 
 							origin_port_id             : originId,
 							destination_port_id        : destinationId,
 							container_size             : containerSizeMaping[containerSize],
-							container_type             : containerTypeMaping[containerType],
-							commodity                  : 'general',
+							container_type,
+							commodity,
 							containers_count           : containerCount,
 							bls_count                  : 1,
 							inco_term                  : incotermMaping[incoterm],
@@ -61,14 +77,13 @@ const freightChargesPayload = ({ id, branch, allData, activeTab, cargo_value }) 
 						{
 							port_id              : originId,
 							container_size       : containerSizeMaping[containerSize],
-							container_type       : containerTypeMaping[containerType],
+							container_type,
 							commodity            : null,
 							containers_count     : containerCount,
 							bls_count            : 1,
 							status               : 'active',
-							trade_type           : tradeType(),
-							// cargo_handling_type: 'stuffing_at_factory',
-							cargo_handling_type  : cargoHandler(tradeType()),
+							trade_type           : tradeType,
+							cargo_handling_type  : cargoHandlingType,
 							cargo_value,
 							cargo_value_currency : currency,
 						},
@@ -77,14 +92,13 @@ const freightChargesPayload = ({ id, branch, allData, activeTab, cargo_value }) 
 						{
 							port_id             : originId,
 							container_size      : containerSizeMaping[containerSize],
-							container_type      : containerTypeMaping[containerType],
+							container_type,
 							commodity           : null,
 							containers_count    : containerCount,
 							bls_count           : 1,
 							status              : 'active',
-							trade_type          : tradeType(),
-							// cargo_handling_type: 'stuffing_at_dock',
-							cargo_handling_type : cargoHandler(tradeType()),
+							trade_type          : tradeType,
+							cargo_handling_type : cargoHandlingType,
 						},
 					],
 				};
@@ -101,7 +115,7 @@ const freightChargesPayload = ({ id, branch, allData, activeTab, cargo_value }) 
 						{
 							origin_port_id      : originId,
 							destination_port_id : destinationId,
-							commodity           : 'general',
+							commodity           : commoditiesMapping.lcl_freight[ZEROTH_INDEX],
 							inco_term           : incotermMaping[incoterm],
 							bls_count           : 1,
 							packages_count      : quantity,
@@ -114,11 +128,11 @@ const freightChargesPayload = ({ id, branch, allData, activeTab, cargo_value }) 
 					lcl_customs_services_attributes: [
 						{
 							bls_count      : 1,
-							commodity      : 'general',
+							commodity      : commoditiesMapping.lcl_freight[ZEROTH_INDEX],
 							location_id    : originId,
 							packages_count : 1,
 							status         : 'active',
-							trade_type     : tradeType(incoterm),
+							trade_type     : tradeType,
 							volume,
 							weight,
 						},
@@ -138,8 +152,8 @@ const freightChargesPayload = ({ id, branch, allData, activeTab, cargo_value }) 
 					{
 						origin_airport_id      : originId,
 						destination_airport_id : destinationId,
-						cargo_clearance_date   : format(expiryDate, 'yyyy-MM-dd'),
-						commodity              : 'general',
+						cargo_clearance_date   : cargoClearanceDate,
+						commodity              : commoditiesMapping.air_freight[ZEROTH_INDEX],
 						commodity_details      : [
 							{
 								commodity_type: 'all',
@@ -173,7 +187,7 @@ const freightChargesPayload = ({ id, branch, allData, activeTab, cargo_value }) 
 						commodity      : 'all_commodities',
 						packages_count : Number.parseInt(quantity, 10) || 1,
 						status         : 'active',
-						trade_type     : tradeType(incoterm),
+						trade_type     : tradeType,
 						volume         : volume || 1,
 						weight         : +weight || 1,
 					},

@@ -34,7 +34,7 @@ function TableList({
 	const geo = getGeoConstants();
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	const columns = useMemo(() => getColumns({ setOrderBy, orderBy, geo }), [orderBy, setOrderBy]);
+	const columns = useMemo(() => getColumns({ setOrderBy, orderBy, geo, setPagination }), [orderBy, setOrderBy]);
 
 	const renderTable = () => {
 		if (!invoiceDetails?.length) {

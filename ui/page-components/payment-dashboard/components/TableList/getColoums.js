@@ -27,12 +27,12 @@ const getColumns = ({ setOrderBy, orderBy, geo, setPagination }) => {
 		});
 	};
 
-	const formatPrice = (original) => {
-		if (!original.invoiceAmount) return 'NA';
+	const formatPrice = (value, currency) => {
+		if (!value) return 'NA';
 		return formatAmount({
-			amount   : original?.invoiceAmount || 0,
-			currency : original?.invoiceCurrency,
-			options  : {
+			amount  : value || 0,
+			currency,
+			options : {
 				style                 : 'currency',
 				currencyDisplay       : 'code',
 				maximumFractionDigits : 0,
@@ -132,7 +132,7 @@ const getColumns = ({ setOrderBy, orderBy, geo, setPagination }) => {
 			width    : 1,
 			Cell     : ({ row: { original } }) => (
 				<div className={styles.head} style={{ fontWeight: 'bold' }}>
-					{formatPrice(original)}
+					{formatPrice(original?.invoiceAmount, original?.invoiceCurrency)}
 				</div>
 			),
 		},
@@ -151,7 +151,7 @@ const getColumns = ({ setOrderBy, orderBy, geo, setPagination }) => {
 			width    : 1,
 			Cell     : ({ row: { original } }) => (
 				<div className={styles.head} style={{ fontWeight: 'bold' }}>
-					{formatPrice(original)}
+					{formatPrice(original?.balanceAmount, original?.invoiceCurrency)}
 				</div>
 			),
 		},

@@ -1,3 +1,4 @@
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import PromocodeDetails from './PromocodeDetails';
@@ -6,7 +7,7 @@ import styles from './styles.module.css';
 function PromoCode({ promotion = {} }) {
 	const [showDetails, setShowDetails] = useState(false);
 
-	if (promotion.codes === undefined) {
+	if (isEmpty(promotion.codes)) {
 		return null;
 	}
 

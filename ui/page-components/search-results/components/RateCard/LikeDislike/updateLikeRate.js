@@ -26,9 +26,9 @@ const useUpdateLikeRate = ({ details, updateRate, rate }) => {
 			const params = {
 				id                  : search_id,
 				is_liked            : true,
-				selected_card       : rate.card,
-				performed_by_org_id : details.importer_exporter.id,
-				cogo_entity_id      : profile.organization?.partner_id,
+				selected_card       : rate?.card,
+				performed_by_org_id : details?.importer_exporter?.id,
+				cogo_entity_id      : profile?.organization?.partner_id,
 
 			};
 

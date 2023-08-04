@@ -17,6 +17,19 @@ const INVOICE_TYPE = {
 	INVOICE       : '#CDF7D4',
 };
 
+const formatPrice = (value, currency) => {
+	if (!value) return 'NA';
+	return formatAmount({
+		amount  : value || 0,
+		currency,
+		options : {
+			style                 : 'currency',
+			currencyDisplay       : 'code',
+			maximumFractionDigits : 0,
+		},
+	});
+};
+
 const getColumns = ({ setOrderBy, orderBy, geo, setPagination }) => {
 	const handleFormatDate = (value) => {
 		if (!value) return 'NA';
@@ -24,19 +37,6 @@ const getColumns = ({ setOrderBy, orderBy, geo, setPagination }) => {
 			date       : value,
 			dateFormat : geo.formats.date.default,
 			formatType : 'date',
-		});
-	};
-
-	const formatPrice = (value, currency) => {
-		if (!value) return 'NA';
-		return formatAmount({
-			amount  : value || 0,
-			currency,
-			options : {
-				style                 : 'currency',
-				currencyDisplay       : 'code',
-				maximumFractionDigits : 0,
-			},
 		});
 	};
 

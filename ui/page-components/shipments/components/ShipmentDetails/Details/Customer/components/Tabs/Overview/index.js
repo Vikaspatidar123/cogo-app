@@ -20,15 +20,15 @@ function Overview({
 	servicesList = [],
 }) {
 	const [context] = useContext(ShipmentDetailContext);
-	const { shipment_data, primary_service } = context || {};
+	const {
+		shipment_data, primary_service,
+		trade_party_type : tradePartyType, is_end_to_end : isEndToEnd,
+	} = context || {};
 
 	const mainServiceName = primary_service?.service_type || '';
 	const possibleFullRoute = possibleFullRouteConfigs?.[mainServiceName];
 
 	const { renderItem } = helperFuncs(servicesList, primary_service);
-	const tradePartyType = shipment_data?.trade_party_type;
-	const isEndToEnd = shipment_data?.is_end_to_end;
-
 	const serviceObj = {
 		origin              : [],
 		multipleMainService : [],
@@ -40,6 +40,10 @@ function Overview({
 
 	const { cancelUpsellOriginFor, cancelUpsellDestinationFor } = upsellTransportation(serviceObj, primary_service);
 
+	const showOrigin = isEndToEnd ? tradePartyType === 'shipper' : true;
+
+	const showDestination = isEndToEnd ? tradePartyType === 'consignee' : true;
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.services}>
@@ -47,7 +51,7 @@ function Overview({
 					<div className={styles.service_container}>
 						<div className={styles.card_block}>
 							<div className={styles.heading}>ORIGIN SERVICES</div>
-							{tradePartyType === 'shipper' && isEndToEnd
+							{showOrigin
 							&& (serviceObj.origin || []).map((service) => (
 								<ServiceDetails
 									cancelUpsellFor={cancelUpsellOriginFor}
@@ -74,15 +78,15 @@ function Overview({
 						<div className={styles.line} />
 						<div className={styles.card_block}>
 							<div className={styles.heading}> DESTINATION SERVICES </div>
-							{tradePartyType === 'consignee' && isEndToEnd
-							&& (serviceObj.destination || []).map((service) => (
-								<ServiceDetails
-									cancelUpsellFor={cancelUpsellDestinationFor}
-									serviceData={service}
-									serviceList={servicesList}
-									shipmentData={shipment_data}
-								/>
-							))}
+							{showDestination
+								? (serviceObj.destination || []).map((service) => (
+									<ServiceDetails
+										cancelUpsellFor={cancelUpsellDestinationFor}
+										serviceData={service}
+										serviceList={servicesList}
+										shipmentData={shipment_data}
+									/>
+								)) : null}
 						</div>
 					</div>
 				) : (

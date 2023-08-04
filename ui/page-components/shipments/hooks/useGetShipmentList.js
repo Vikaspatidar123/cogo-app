@@ -9,9 +9,8 @@ import { useSelector } from '@/packages/store';
 
 const useGetShipmentList = (allParams = { isBookingDesk: false }) => {
 	const { isBookingDesk, ...params } = allParams || {};
-	const { importer_exporter_id } = useSelector(({ general, profile }) => ({
-		scope                : general?.scope,
-		importer_exporter_id : profile?.id,
+	const { importer_exporter_id } = useSelector(({ profile }) => ({
+		importer_exporter_id: profile?.id,
 	}));
 
 	const [currentTab, setCurrentTab] = useState('ongoing');

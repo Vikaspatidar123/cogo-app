@@ -55,14 +55,13 @@ function Cancellation({
 	const [contextValues] = useContext(ShipmentDetailContext);
 	const { shipment_data, primary_service } = contextValues || {};
 
-	const { state, stakeholder_types, shipment_type } = shipment_data || {};
+	const {
+		state, stakeholder_types,
+		shipment_type, trade_party_type :tradePartyType, all_services, is_end_to_end: isEndToEnd,
+	} = shipment_data || {};
 
-	const tradePartyType = shipment_data?.trade_party_type;
-
-	const tradeType = shipment_data?.all_services
+	const tradeType = all_services
 		?.filter((item) => item?.service_type === primary_service?.service_type)?.[0]?.trade_type;
-
-	const isEndToEnd = shipment_data?.is_end_to_end;
 
 	const showToStakeholders = stakeholder_types?.some((ele) => showCancellationStakeholders?.includes(ele));
 

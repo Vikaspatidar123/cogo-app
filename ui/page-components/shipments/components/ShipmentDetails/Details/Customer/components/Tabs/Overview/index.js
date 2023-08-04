@@ -1,4 +1,5 @@
 import { Placeholder } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useContext } from 'react';
 
 import possibleFullRouteConfigs from '../../../../../../../constants/possible-full-route.json';
@@ -6,6 +7,7 @@ import { ShipmentDetailContext } from '../../../../../common/Context';
 
 import AdditionalServicesList from './AdditionalServices';
 import Assured from './Assured';
+import NoServiceFound from './NoServiceFound';
 import ServiceDetails from './ServiceDetails';
 import styles from './styles.module.css';
 import TermsAndConditions from './TermsandConditions';
@@ -52,27 +54,30 @@ function Overview({
 						<div className={styles.card_block}>
 							<div className={styles.heading}>ORIGIN SERVICES</div>
 							{showOrigin
-							&& (serviceObj.origin || []).map((service) => (
-								<ServiceDetails
-									cancelUpsellFor={cancelUpsellOriginFor}
-									serviceData={service}
-									serviceList={servicesList}
-									shipmentData={shipment_data}
-								/>
-							))}
+								? (serviceObj.origin || []).map((service) => (
+									<ServiceDetails
+										cancelUpsellFor={cancelUpsellOriginFor}
+										serviceData={service}
+										serviceList={servicesList}
+										shipmentData={shipment_data}
+									/>
+								)) : <NoServiceFound serviceName="Origin" />}
 						</div>
 
 						<div className={styles.line} />
 						<div className={styles.card_block}>
-							<div className={styles.heading}>MAIN SERVICES</div>
-							{(serviceObj.multipleMainService || []).map((service) => (
-								<ServiceDetails
-									serviceData={service?.services[0]}
-									serviceList={servicesList}
-									shipmentData={shipment_data}
-									similarServices={service}
-								/>
-							))}
+							<span className={styles.heading}>MAIN SERVICES</span>
+							{ !isEmpty(serviceObj.multipleMainService)
+								? (serviceObj.multipleMainService || []).map((service) => (
+									<ServiceDetails
+										serviceData={service?.services[0]}
+										serviceList={servicesList}
+										shipmentData={shipment_data}
+										similarServices={service}
+									/>
+								)) : (
+									<NoServiceFound serviceName="Main" />
+								)}
 						</div>
 
 						<div className={styles.line} />
@@ -86,7 +91,7 @@ function Overview({
 										serviceList={servicesList}
 										shipmentData={shipment_data}
 									/>
-								)) : null}
+								)) : <NoServiceFound serviceName="Destination" />}
 						</div>
 					</div>
 				) : (

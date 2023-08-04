@@ -24,9 +24,9 @@ const useServiceList = (
 			await trigger({
 				params: {
 					filters: {
-						shipment_id              : isChild ? shipment_id : query?.id,
-						status                   : ['active', 'pending', 'inactive'],
-						importer_exporter_poc_id : id,
+						shipment_id : isChild ? shipment_id : query?.id,
+						status      : ['active', 'pending', 'inactive'],
+						ie_poc_id   : id,
 					},
 					service_stakeholder_required: true,
 					additional_data_required:

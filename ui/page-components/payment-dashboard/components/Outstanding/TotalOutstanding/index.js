@@ -10,11 +10,7 @@ import formatAmount from '@/ui/commons/utils/formatAmount';
 function TotalOutstanding({ statsList = {} }) {
 	const geo = getGeoConstants();
 
-	const {
-		totalOutstanding,
-	} = statsList || {};
-
-	const { ledgerAmount, ledgerCurrency } = totalOutstanding || {};
+	const { total_outstanding_amount = 0, currency } = statsList;
 
 	return (
 		<div className={styles.container}>
@@ -33,8 +29,8 @@ function TotalOutstanding({ statsList = {} }) {
 				<div className={styles.card_box}>
 					<div className={styles.card_text}>
 						{formatAmount({
-							amount   : ledgerAmount || 0,
-							currency : ledgerCurrency || geo.country.currency.code,
+							amount   : total_outstanding_amount || 0,
+							currency : currency || geo.country.currency.code,
 							options  : {
 								style           : 'currency',
 								currencyDisplay : 'code',

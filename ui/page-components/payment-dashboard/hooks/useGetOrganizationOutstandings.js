@@ -1,35 +1,25 @@
-import { useEffect } from 'react';
-
-import { useRequestBf } from '@/packages/request';
+import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const useGetOrganizationOutstandings = () => {
-	const { serial_id, kyc_status, entity_code } = useSelector(({ profile }) => ({
-		serial_id   : profile?.organization?.serial_id,
-		kyc_status  : profile?.organization?.kyc_status,
-		entity_code : profile?.organization?.entity_code,
-
+	const { registration_number, kyc_status } = useSelector(({ profile }) => ({
+		registration_number : profile?.organization?.registration_number,
+		kyc_status          : profile?.organization?.kyc_status,
 	}));
 
-	const isVerified = kyc_status === 'verified' && serial_id !== null;
+	const isAutoCall = kyc_status === 'verified' && registration_number !== null;
+	const params = {
+		filters: {
+			registration_number: registration_number || undefined,
+		},
+	};
 
-	const [{ loading, data }, trigger] = useRequestBf({
-		url     : '/payments/outstanding/by-customer',
-		method  : 'get',
-		authKey : 'get_payments_outstanding_by_customer',
-	});
-
-	useEffect(() => {
-		if (isVerified) {
-			trigger({
-				params: {
-					organizationSerialId : serial_id || undefined,
-					entityCode           : entity_code,
-				},
-			});
-		}
-	}, [isVerified, serial_id, entity_code, trigger]);
+	const [{ loading, data }] = useRequest({
+		url    : '/list_sage_ar_outstandings',
+		method : 'get',
+		params,
+	}, { manual: isAutoCall, autoCancel: true });
 
 	const dataStatsList = data?.list?.[GLOBAL_CONSTANTS.zeroth_index] || {};
 

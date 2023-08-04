@@ -10,11 +10,7 @@ import formatAmount from '@/ui/commons/utils/formatAmount';
 function PaidOnAccount({ statsList }) {
 	const geo = getGeoConstants();
 
-	const {
-		onAccount,
-	} = statsList || {};
-
-	const { ledgerAmount, ledgerCurrency } = onAccount || {};
+	const { on_account_amount = 0, currency } = statsList;
 
 	return (
 		<div className={styles.container}>
@@ -34,8 +30,8 @@ function PaidOnAccount({ statsList }) {
 					<div className={styles.paid_card}>
 						<div className={styles.paid_card_text}>
 							{formatAmount({
-								amount   : ledgerAmount || 0,
-								currency : ledgerCurrency || geo.country.currency.code,
+								amount   : on_account_amount || 0,
+								currency : currency || geo.country.currency.code,
 								options  : {
 									style                 : 'currency',
 									currencyDisplay       : 'code',

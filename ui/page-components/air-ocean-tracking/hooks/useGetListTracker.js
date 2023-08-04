@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useDebounceQuery } from '@/packages/forms';
 import { useRouter } from '@/packages/next';
@@ -40,8 +40,6 @@ const useGetListTracker = () => {
 		url    : TRACKING_LIST_URL[globalFilter.activeTab],
 	}, { manual: true });
 
-	const stats = useMemo(() => data?.stats, [data]);
-
 	const refetchTrackerList = useCallback(async () => {
 		try {
 			await trigger({
@@ -60,6 +58,25 @@ const useGetListTracker = () => {
 		}
 	}, [globalFilter, branch_id, trigger, isArchived]);
 
+	const selectValueChangeHandler = (value) => {
+		const stats = data?.stats;
+
+		const trackingId = stats?.[STATS_KEY_MAPPING[value]] || [];
+
+		setFilter((prev) => ({ ...prev, selectValue: value }));
+		setGlobalFilter((prev) => ({
+			...prev,
+			id: trackingId || '',
+		}));
+	};
+
+	const filterChangeHandler = (name, value) => {
+		setGlobalFilter((prev) => ({
+			...prev,
+			[name]: value,
+		}));
+	};
+
 	useEffect(() => {
 		if (inputValue !== null && inputValue !== undefined) {
 			debounceQuery(inputValue);
@@ -70,31 +87,15 @@ const useGetListTracker = () => {
 		if (query !== null) {
 			setGlobalFilter((prev) => ({
 				...prev,
-				q: query,
+				q    : query,
+				page : 1,
 			}));
 		}
 	}, [query]);
 
-	const filterChangeHandler = (name, value) => {
-		setGlobalFilter((prev) => ({
-			...prev,
-			[name]: value,
-		}));
-	};
-
 	useEffect(() => {
 		refetchTrackerList();
 	}, [globalFilter, refetchTrackerList]);
-
-	const selectValueChangeHandler = useCallback((value) => {
-		const trackingId = stats?.[STATS_KEY_MAPPING[value]] || [];
-
-		setFilter((prev) => ({ ...prev, selectValue: value }));
-		setGlobalFilter((prev) => ({
-			...prev,
-			id: trackingId || '',
-		}));
-	}, [stats]);
 
 	return {
 		data,

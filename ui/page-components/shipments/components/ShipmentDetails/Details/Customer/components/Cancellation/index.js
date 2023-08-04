@@ -79,6 +79,10 @@ function Cancellation({
 		return null;
 	}
 
+	const isShowCancellation = isEndToEnd ? (tradePartyType === 'shipper' && tradeType === 'export')
+	|| (tradePartyType === 'consignee' && tradeType === 'import')
+		: true;
+
 	const renderContent = () => {
 		if (isIE && !isRequested) {
 			return (
@@ -95,7 +99,7 @@ function Cancellation({
 	};
 	return (
 		<div>
-			{tradePartyType !== 'shipper' && tradeType !== 'import' && isEndToEnd ? (
+			{isShowCancellation ? (
 				<div className={styles.container}>
 					<Popover
 						interactive

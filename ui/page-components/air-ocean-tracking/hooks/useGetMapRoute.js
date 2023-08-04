@@ -4,7 +4,10 @@ import { useCallback, useEffect, useState } from 'react';
 import calAirRoute from '../utils/calAirRoute';
 
 import { useRequest } from '@/packages/request';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import { DEFAULT_LAT_INDEX, DEFAULT_LNG_INDEX } from '@/ui/commons/constants/mapConstant';
+
+const LAST_INDEX = -1;
 
 const getUniqueArrElements = (arr) => arr.reduce((accumulator, current) => {
 	const found = accumulator.some(
@@ -57,7 +60,9 @@ const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
 
 			if (isEmpty(uniqueLatLngArr)) return undefined;
 			if (uniqueLatLngArr.length === 1) return uniqueLatLngArr;
-			const value = await getSeaRoute({ coordinates: uniqueLatLngArr });
+			const value = await getSeaRoute(
+				{ coordinates: [uniqueLatLngArr[GLOBAL_CONSTANTS.zeroth_index], ...uniqueLatLngArr.slice(LAST_INDEX)] },
+			);
 			return value;
 		});
 

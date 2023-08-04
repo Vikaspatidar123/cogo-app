@@ -5,8 +5,6 @@ import { mergeAirMilestone, mergeOceanMilestone } from '../utils/mergeMilestone'
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
-
 const useGetCurrentInfo = ({ data = {}, trackingType }) => {
 	const { data: trackingInfo = [] } = data || {};
 
@@ -26,7 +24,7 @@ const useGetCurrentInfo = ({ data = {}, trackingType }) => {
 
 		const currentTracking = trackingInfo.filter(
 			(item) => item?.container_no === currContainerDetails?.container_no,
-		)?.[ZEROTH_INDEX];
+		)?.[GLOBAL_CONSTANTS.zeroth_index];
 
 		if (trackingType === 'ocean') {
 			const { tracking_data = [] } = currentTracking || {};

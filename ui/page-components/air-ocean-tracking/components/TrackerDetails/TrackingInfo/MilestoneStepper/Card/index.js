@@ -12,7 +12,6 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatDate from '@/ui/commons/utils/formatDate';
 
 const INVALID_VESSEL_NAME = ['N/A'];
-const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 
 const widthProp = {
 	VESSEL : 35,
@@ -48,7 +47,11 @@ function Card({
 	combineList = [], trackingType = 'ocean', isCurrentMilestone = false,
 	milestoneSubIndex,
 }) {
-	const { location = '', station = '', transport_mode = 'VESSEL' } = combineList?.[ZEROTH_INDEX] || {};
+	const {
+		location = '', station = '',
+		transport_mode = 'VESSEL',
+	} =	combineList?.[GLOBAL_CONSTANTS.zeroth_index] || {};
+
 	const combineListLength = combineList.length;
 
 	const { t } = useTranslation(['common', 'airOceanTracking']);

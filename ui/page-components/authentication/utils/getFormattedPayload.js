@@ -1,7 +1,6 @@
 const getFormattedPayload = (props) => {
 	const { formValues = {}, leadUserId = '', is_whatsapp_number = false } = props;
 	const { name, email, mobile_number } = formValues;
-
 	return {
 		lead_user_id        : leadUserId || undefined,
 		name                : name || undefined,

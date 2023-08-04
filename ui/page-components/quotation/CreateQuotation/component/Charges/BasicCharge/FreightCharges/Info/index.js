@@ -4,35 +4,35 @@ import { startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
+const NAME_MAX_LENGTH = 14;
+const START_INDEX = 0;
+
+function RenderName({ name = '' }) {
+	if (name?.length < NAME_MAX_LENGTH) return <span>{name}</span>;
+
+	return (
+		<Tooltip content={name}>
+			<div className={styles.tooltip_name}>
+				{' '}
+				{name?.slice(START_INDEX, NAME_MAX_LENGTH)}
+				...
+			</div>
+		</Tooltip>
+	);
+}
+
 function Info({ transportMode, portDetails }) {
 	const {
 		origin_port = {},
 		origin_airport = {},
-		origin_country = {},
 		destination_port = {},
 		destination_airport = {},
-		destination_country = {},
 		container_size = 0,
 		containers_count = 0,
 		packages_count = 0,
 		packages = {},
 	} = portDetails || {};
 
-	const renderName = (name) => {
-		if (name?.length > 10) {
-			return (
-				<Tooltip content={name}>
-					<div className={styles.tooltip_name}>
-						{' '}
-						{name.slice(0, 10)}
-						...
-					</div>
-				</Tooltip>
-			);
-		}
-
-		return name;
-	};
 	return (
 		<div className={styles.row}>
 			<div className={`${styles.col} ${styles.transport_details}`}>
@@ -45,19 +45,19 @@ function Info({ transportMode, portDetails }) {
 				</div>
 				<div className={styles.transport}>{transportMode}</div>
 			</div>
+
 			<div className={`${styles.row} ${styles.section}`}>
+
 				<div className={`${styles.col} ${styles.port_detail}`}>
 					<div className={styles.port_name}>
-						{renderName(origin_port?.name || origin_airport?.name)}
-						{renderName(origin_country?.name)}
-
+						<RenderName name={origin_port?.display_name || origin_airport?.display_name} />
 					</div>
 					<IcMPortArrow width={15} height={15} />
 					<div className={styles.port_name}>
-						{renderName(destination_port?.name || destination_airport?.name)}
-						{renderName(destination_country?.name)}
+						<RenderName name={destination_port?.display_name || destination_airport?.display_name} />
 					</div>
 				</div>
+
 				{transportMode === 'OCEAN' ? (
 					<div className={styles.col}>
 						<div className={styles.tag}>

@@ -38,7 +38,7 @@
 .layout {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: flex-end;
+	align-items: flex-start;
 
 	:global {
 		.ui_upload_droparea_container {

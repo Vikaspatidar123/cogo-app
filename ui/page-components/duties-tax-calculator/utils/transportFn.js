@@ -1,13 +1,13 @@
 import { Toast } from '@cogoport/components';
 
 const transportFn = ({
+	t,
 	setRotate,
 	setPortDetails,
 	setFormData,
 	setStepper,
 	setFormStepper,
 	setValue,
-	errors,
 	transportMode,
 	portDetails = {},
 	origin = '',
@@ -43,14 +43,14 @@ const transportFn = ({
 
 	const checkPort = () => {
 		if (origin === destination) {
-			Toast.error('Same Port selected !');
+			Toast.error(t('dutiesTaxesCalculator:transport_err_msg_4'));
 			return true;
 		}
 		if (
 			portDetails?.origin?.countryId === portDetails?.destination?.countryId
       && transportMode === 'OCEAN'
 		) {
-			Toast.error('Ports of same Country selected!');
+			Toast.error(t('dutiesTaxesCalculator:transport_err_msg_5'));
 			return true;
 		}
 		return false;
@@ -75,13 +75,13 @@ const transportFn = ({
 		}
 	};
 
-	const errorHandler = () => {
+	const errorHandler = (errors) => {
 		if (errors?.originPort && errors?.destinationPort) {
-			Toast.error('Please enter Origin and Destination Country');
+			Toast.error(t('dutiesTaxesCalculator:transport_err_msg_1'));
 		} else if (errors?.originPort) {
-			Toast.error('Please enter Origin Country');
+			Toast.error(t('dutiesTaxesCalculator:transport_err_msg_2'));
 		} else if (errors?.destinationPort) {
-			Toast.error('Please enter Destination Country');
+			Toast.error(t('dutiesTaxesCalculator:transport_err_msg_3'));
 		}
 	};
 

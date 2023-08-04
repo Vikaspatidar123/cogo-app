@@ -1,58 +1,61 @@
-import { Select, DateRangepicker, Popover } from '@cogoport/components';
-import { IcCFcrossInCircle, IcMArrowDown, IcMArrowUp, IcMFilter } from '@cogoport/icons-react';
+import { Select, DateRangepicker, Popover, Button, cl } from '@cogoport/components';
+import { IcCFcrossInCircle, IcMArrowUp, IcMFilter } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
-import { COMMODITY_OPTIONS_MAPPING } from '../../common/commodity-mappings';
+import { getCommodityOptionMapping } from '../../common/commodity-mappings';
+import { DEFAULT_FILTERS } from '../../constants';
 
 import filterControls from './filter-controls';
 import styles from './styles.module.css';
 
+import { useSelector } from '@/packages/store';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function FilterForm({
-	commodity,
-	setCommodity,
-	dateRangePickerValue,
-	setDateRangePickerValue,
-	filteredCurrency,
-	setFilteredCurrency,
-	containerSize,
-	setContainerSize,
-	containerType,
-	setContainerType,
-	setShippingLine,
+	setFilters,
+	filters,
 }) {
+	const { t } = useTranslation(['frt']);
+	const { profile } = useSelector((state) => state);
+
+	const { organization } = profile || {};
+
+	const { country } = organization || {};
 	const [dropDown, setDropDown] = useState(false);
 	const now = new Date();
-	const handleClear = () => {
-		setCommodity('');
-		setDateRangePickerValue({
-			startDate : new Date(now.setMonth(now.getMonth() - 6)),
-			endDate   : new Date(new Date().setMonth(new Date().getMonth() + 1)),
-		});
-		setFilteredCurrency();
-		setContainerSize('');
-		setContainerType('');
-		setShippingLine('');
-	};
 
+	const COMMODITY_OPTIONS_MAPPING = getCommodityOptionMapping({ t });
+
+	const handleClear = () => {
+		setFilters(DEFAULT_FILTERS({ country }));
+	};
+	const setValue = ({ key, value }) => {
+		setFilters((prev) => ({ ...prev, [key]: value }));
+	};
 	const content = (
 		<div className={styles.filter_item}>
 			<div className={styles.container1}>
 				<div className={styles.select_div}>
-					<div className={styles.input_title_text}>Container Size</div>
+					<div className={styles.input_title_text}>{t('frt:filter_container_size')}</div>
 					<Select
 						placeholder="Size"
-						value={containerSize}
-						onChange={setContainerSize}
+						value={filters.containerSize}
+						onChange={(value) => setValue({ value, key: 'containerSize' })}
 						options={filterControls.find((x) => x.name === 'container-size').options}
 						style={{ width: '150px' }}
 					/>
 				</div>
 				<div className={styles.select_div}>
-					<div className={styles.input_title_text}>Container type</div>
+					<div className={styles.input_title_text}>{t('frt:filter_container_type')}</div>
 					<Select
 						placeholder="type"
-						value={containerType}
-						onChange={setContainerType}
+						value={filters.containerType}
+						onChange={(value) => setFilters((prev) => ({
+							...prev,
+							containerType : value,
+							commodities   : COMMODITY_OPTIONS_MAPPING[value]?.[GLOBAL_CONSTANTS.zeroth_index]?.value,
+						}))}
 						options={filterControls.find((x) => x.name === 'container_type').options}
 						style={{ width: '150px' }}
 					/>
@@ -61,21 +64,20 @@ function FilterForm({
 			<div className={styles.container1}>
 				<div className={styles.select_div}>
 					<div className={styles.input_title_text} />
-					Commodity
+					{t('frt:filter_commodity')}
 					<Select
 						placeholder="commodity"
-						value={commodity}
-						onChange={setCommodity}
-						options={COMMODITY_OPTIONS_MAPPING[containerType]}
+						value={filters.commodities}
+						onChange={(value) => setValue({ value, key: 'commodities' })}
+						options={COMMODITY_OPTIONS_MAPPING[filters.containerType]}
 						style={{ width: '150px' }}
 					/>
 				</div>
 				<div className={styles.select_div}>
-					<div className={styles.input_title_text}>Currency</div>
+					<div className={styles.input_title_text}>{t('frt:filter_currency')}</div>
 					<Select
-						placeholder="USD"
-						value={filteredCurrency}
-						onChange={setFilteredCurrency}
+						value={filters.filteredCurrency}
+						onChange={(value) => setValue({ value, key: 'filteredCurrency' })}
 						options={filterControls.find((x) => x.name === 'currency').options}
 						style={{ width: '150px' }}
 					/>
@@ -83,11 +85,18 @@ function FilterForm({
 			</div>
 			<div className={styles.container1}>
 				<div className={styles.select_date}>
-					<div className={styles.input_title_text}>Date Range</div>
+					<div className={styles.input_title_text}>{t('frt:filter_data_range')}</div>
 					<DateRangepicker
 						style={{ marginRight: '10px' }}
-						value={dateRangePickerValue || new Date(now.setMonth(now.getMonth() - 6))}
-						onChange={setDateRangePickerValue}
+						value={{
+							startDate : filters.validity_start,
+							endDate   : filters.validity_end,
+						} || new Date(now.setMonth(now.getMonth() - 6))}
+						onChange={(value) => setFilters((prev) => ({
+							...prev,
+							validity_start : value.startDate,
+							validity_end   : value.endDate,
+						}))}
 						isPreviousDaysAllowed
 					/>
 				</div>
@@ -99,40 +108,39 @@ function FilterForm({
 					size={2}
 					fill="#f75620"
 				/>
-				<div role="presentation" className={styles.Clear_button_text} onClick={handleClear}>CLEAR ALL</div>
+				<div role="presentation" className={styles.Clear_button_text} onClick={handleClear}>
+					{t('frt:filter_clear_all')}
+				</div>
 			</div>
 		</div>
 
 	);
 	return (
 		<div className={styles.container}>
+
 			<Popover
-				theme="light"
 				caret={false}
-				placement="bottom-start"
-				animation="shift-away"
 				content={content}
 				interactive
 				visible={dropDown}
 				onClickOutside={() => setDropDown(false)}
 			>
-				<div
-					role="presentation"
-					className={styles.filter_button_Ctn}
+				<Button
+					themeType="secondary"
+					type="button"
 					onClick={() => {
-						setDropDown(!dropDown);
+						setDropDown((prev) => !prev);
 					}}
 				>
-					<div style={{ display: 'flex' }}>
-						<div className={styles.filter_icon}>
-							<IcMFilter />
-						</div>
-						<div className={styles.filter_text}>Filter</div>
+					<IcMFilter className={styles.filter_icon} />
+					{t('frt:filter')}
+					<div className={cl`${styles.icon} ${dropDown ? styles.rotate : ''}`}>
+						<IcMArrowUp />
 					</div>
-					<div className={styles.direction_icon}>{dropDown ? <IcMArrowUp /> : <IcMArrowDown />}</div>
-				</div>
+				</Button>
 			</Popover>
 		</div>
+
 	);
 }
 export default FilterForm;

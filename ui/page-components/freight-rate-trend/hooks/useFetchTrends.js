@@ -2,19 +2,11 @@ import { Toast } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
-const prepareFilters = () => {
-	const finalFilters = {};
-
-	return finalFilters;
-};
 const useFetchTrends = ({ pageLimit = 10 }) => {
-	const [filters, setFilters] = useState({});
 	const [pagination, setPagination] = useState(1);
-	const { freightTrends, setFreightTrends } = useSelector((state) => state);
 
-	const [{ loading:load, data: tredList = [] }, trendTrigger] = useRequest({
+	const [{ loading:load, data: trendList }, trendTrigger] = useRequest({
 		url    : '/list_freight_trend_subscriptions',
 		method : 'get',
 	}, { manual: true });
@@ -24,24 +16,16 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 		method : 'get',
 	}, { manual: true });
 
-	const fetchTrends = async () => {
+	const fetchTrends = () => {
 		try {
-			const res = await trendTrigger({
+			trendTrigger({
 				params: {
-					filters    : { ...prepareFilters(filters, freightTrends?.filter_data ?? {}) },
 					page       : pagination,
 					page_limit : pageLimit,
 				},
 			});
-			const { hasError } = res || {};
-			if (hasError) throw new Error();
-
-			const { data } = res;
-			if (data) {
-				setFreightTrends(data);
-			}
 		} catch (err) {
-			if (Object.keys(err).length > 1) { Toast.error('Unable to fetch trend. Please try again.'); }
+			Toast.error('Unable to fetch trend. Please try again.');
 		}
 	};
 	const fetchLocations = async (inputValue, callback = () => {}) => {
@@ -59,33 +43,27 @@ const useFetchTrends = ({ pageLimit = 10 }) => {
 					includes   : { country: null, main_ports: null },
 				},
 			});
-			const { hasError } = res || {};
-			if (hasError) throw new Error();
 
 			let { data } = res;
 			data = (data?.list || []).map((item) => ({
-				label : item.display_name,
-				value : item.id,
+				label : item?.display_name,
+				value : item?.id,
 			}));
 
 			callback(data);
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 	useEffect(() => {
 		fetchTrends();
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [filters, pagination]);
-	const refectTrends = () => fetchTrends(false);
+	}, [pagination]);
+
 	return {
-		filters,
-		setFilters,
-		refectTrends,
 		setPagination,
 		fetchLocations,
-		tredList,
-		freightTrends,
+		trendList,
 		listloading,
 		loading: load,
 	};

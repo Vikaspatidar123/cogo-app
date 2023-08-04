@@ -1,15 +1,17 @@
 import { Button, Modal, cl } from '@cogoport/components';
 import { IcMInformation } from '@cogoport/icons-react';
-
-import { Loading, LoadingBanner } from '../../configuration/icon-configuration';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { Image, useRouter } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 	const { query } = useRouter();
 	const { org_id = '', branch_id = '' } = query || {};
+
+	const { t } = useTranslation(['common', 'dutiesTaxesCalculator']);
 
 	const closeModalHandler = () => {
 		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}${org_id}/${branch_id}`
@@ -21,16 +23,20 @@ function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 		<Modal show={showPendingModal} showCloseIcon={false}>
 			{!stop && (
 				<div className={styles.container}>
-					<img
-						src={LoadingBanner}
-						alt=""
-						className={styles.loading_banner}
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.loading_banner}
+						alt={t('dutiesTaxesCalculator:alt_loader')}
+						width={300}
+						height={200}
 					/>
-					<div className={styles.title}>Hang on! Checking payment status...</div>
-					<img
-						src={Loading}
-						alt=""
-						className={styles.loading}
+
+					<div className={styles.title}>{t('dutiesTaxesCalculator:pending_modal_checking')}</div>
+
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.loading}
+						alt={t('dutiesTaxesCalculator:alt_loader')}
+						width={30}
+						height={30}
 					/>
 				</div>
 			)}
@@ -39,11 +45,10 @@ function PendingModal({ showPendingModal, setShowPendingModal, stop }) {
 				<div className={styles.container}>
 					<IcMInformation fill="#FBDC00" width={52} height={52} />
 					<div className={cl`${styles.txt} ${styles.error}`}>
-						Sorry, It took longer than usual. We will notify you once payment is
-						successful
+						{t('dutiesTaxesCalculator:pending_modal_failed')}
 					</div>
-					<Button themeType="linkUi" onClick={closeModalHandler}>
-						Close
+					<Button themeType="linkUi" type="button" onClick={closeModalHandler}>
+						{t('common:close')}
 					</Button>
 				</div>
 			)}

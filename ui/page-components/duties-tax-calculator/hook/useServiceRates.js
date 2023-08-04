@@ -1,9 +1,12 @@
 import { Toast } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const useServiceRates = ({ prioritySequence = 0 }) => {
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
+
 	const { profile } = useSelector((s) => s);
 	const { organization } = profile || {};
 
@@ -23,7 +26,7 @@ const useServiceRates = ({ prioritySequence = 0 }) => {
 			});
 			return resp;
 		} catch (error) {
-			Toast.error(error?.message || 'Something went wrong. Please try after sometime');
+			Toast.error(error?.message || t('dutiesTaxesCalculator:api_err_msg'));
 			return false;
 		}
 	};

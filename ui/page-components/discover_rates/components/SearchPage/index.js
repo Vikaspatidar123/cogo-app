@@ -22,7 +22,7 @@ function SearchPage() {
 
 	const { kyc_status, query } = useSelector(
 		({ search, general, profile }) => ({
-			list       : search.past_searches || [],
+			list       : search?.past_searches || [],
 			kyc_status : profile?.organization?.kyc_status,
 			query      : general?.query,
 		}),

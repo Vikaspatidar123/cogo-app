@@ -14,6 +14,8 @@ import TechopsHeader from './TechopsHeader';
 
 import { useRouter } from '@/packages/next';
 
+const MAX_COUNT = 10;
+
 function ShipmentPlan() {
 	const { query } = useRouter();
 	const { contract_id = '', techOpsServiceId = '', through = '' } = query || {};
@@ -56,7 +58,7 @@ function ShipmentPlan() {
 			)}
 
 			{(serviceLoading || loading)
-				? [...Array(isTechops ? 1 : 3)].map(() => <CardLoader />)
+				? [...Array(isTechops ? 1 : 3).keys()].map((ele) => <CardLoader key={ele} />)
 				: (
 					<div className={styles.card_container}>
 						{(list || []).map((item) => (
@@ -69,16 +71,17 @@ function ShipmentPlan() {
 						))}
 					</div>
 				)}
-
-			<div className={styles.pagination_wrapper}>
-				<Pagination
-					type="table"
-					currentPage={page}
-					pageSize={5}
-					totalItems={total_count}
-					onPageChange={(e) => setPagination(e)}
-				/>
-			</div>
+			{total_count > MAX_COUNT ? (
+				<div className={styles.pagination_wrapper}>
+					<Pagination
+						type="table"
+						currentPage={page}
+						pageSize={MAX_COUNT}
+						totalItems={total_count}
+						onPageChange={(e) => setPagination(e)}
+					/>
+				</div>
+			) : null}
 		</>
 	);
 }

@@ -33,7 +33,7 @@ function TraderEligibilty() {
 				<div className={styles.heading}>
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.heading_icon}
-						alt=""
+						alt="heading_icon"
 						className={styles.svg_style}
 						width={40}
 						height={40}

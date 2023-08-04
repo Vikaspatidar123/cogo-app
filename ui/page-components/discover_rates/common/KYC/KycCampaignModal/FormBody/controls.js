@@ -1,15 +1,27 @@
-export const controls = ({ country_code, rest }) => (
-	[
+import { getCountrySpecificData, getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
+
+export const controls = ({ country_code, rest }) => {
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
+
+	const ADDRESS_LABEL = getCountrySpecificData({
+		country_code,
+		accessorType : 'address',
+		accessor     : 'label',
+	});
+	return [
 		{
 			name  : 'registration_number',
-			label : 'Registration No. (PAN for India)',
+			label : IDENTIFICAITON_LABEL,
 			type  : 'text',
 			span 	: 12,
 			value : rest?.registration_number,
 			rules : {
-				required: country_code === 'IN' ? 'Pan number is Required' : 'Registration Number is Required',
+				required: `${IDENTIFICAITON_LABEL} is required`,
 			},
-			placeholder: 'PAN',
+			placeholder: IDENTIFICAITON_LABEL,
 		},
 		{
 			name     : 'utility_bill_document_url',
@@ -19,7 +31,7 @@ export const controls = ({ country_code, rest }) => (
 			multiple : false,
 			value    : rest?.utility_bill_document_url,
 			rules    : {
-				required: country_code === 'IN' ? 'Address is Required' : 'Registration Extract is Required',
+				required: `${ADDRESS_LABEL} is Required`,
 			},
 
 		},
@@ -38,5 +50,5 @@ export const controls = ({ country_code, rest }) => (
 			},
 
 		},
-	]
-);
+	];
+};

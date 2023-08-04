@@ -18,7 +18,7 @@ function BillingDetails({
 	checked = false,
 	setChecked = () => { },
 	addressWithoutGst = [],
-	setisBillingAddress = () => { },
+	setisBillingAddress = () => {},
 }) {
 	const geo = getGeoConstants();
 	const REGISTRATION_LABEL = geo.others.registration_number.label;
@@ -85,7 +85,10 @@ function BillingDetails({
 									</div>
 									<div
 										className={styles.border}
-										onClick={() => setChecked([id])}
+										onClick={() => {
+											setChecked([id]);
+											setisBillingAddress(!!tax_number);
+										}}
 										role="presentation"
 									>
 										<div className={`${styles.row} ${styles.name}`}>
@@ -128,6 +131,7 @@ function BillingDetails({
 				<AddModal
 					addAddressModal={addAddressModal}
 					setAddAddressModal={setAddAddressModal}
+					refetch={addressApi}
 				/>
 			)}
 		</div>

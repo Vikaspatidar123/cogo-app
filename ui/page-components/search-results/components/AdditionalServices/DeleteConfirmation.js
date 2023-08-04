@@ -152,33 +152,40 @@ function DeleteConfirmation({
 
 	return (
 		<>
-			<h2 style={{ marginTop: '0px' }}>
+			<h3 style={{ marginTop: '0px' }}>
 				{`Are you sure you want to delete - ${handleServiceName(
 					deleteService,
 				)}?`}
-			</h2>
+			</h3>
 
 			<div className={styles.button_wrap}>
-				<Button
-					id="search_results_additional_service_delete_cancel_btn"
-					themeType="accent"
-					onClick={() => {
-						setShow(false);
-						setDeleteService('');
-					}}
-					disabled={loading || apiLoading}
-				>
-					Cancel
-				</Button>
+				<div className={styles.button_wrap}>
+					<Button
+						id="search_results_additional_service_delete_cancel_btn"
+						themeType="accent"
+						onClick={() => {
+							setShow(false);
+							setDeleteService('');
+						}}
+						disabled={loading || apiLoading}
+						size="sm"
+						type="button"
+					>
+						Cancel
+					</Button>
 
-				<Button
-					themeType="secondary"
-					onClick={() => handleDeleteService()}
-					disabled={loading || apiLoading}
-					id="search_results_additional_service_delete_save_btn"
-				>
-					Delete
-				</Button>
+					<Button
+						themeType="secondary"
+						onClick={() => handleDeleteService()}
+						disabled={loading || apiLoading}
+						id="search_results_additional_service_delete_save_btn"
+						size="sm"
+						type="button"
+						className={styles.button}
+					>
+						Delete
+					</Button>
+				</div>
 			</div>
 		</>
 	);

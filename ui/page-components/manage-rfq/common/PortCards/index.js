@@ -22,7 +22,7 @@ function Ports({
 	source,
 	stats,
 }) {
-	const { search_type, rateFilter, location } = listFilters;
+	const { search_type, rateFilter, location } = listFilters || {};
 
 	const renderComponent = () => {
 		if (portPairloading) {

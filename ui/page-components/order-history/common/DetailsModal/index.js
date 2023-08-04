@@ -14,6 +14,17 @@ import DutiesTaxesModal from '@/ui/commons/components/DutiesTaxes';
 import TraderEligibilityModal from '@/ui/commons/components/TraderEligibility';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+function Title({ requestType, TITLE_MAPPING }) {
+	return (
+		<div className={styles.container}>
+			<div>{TITLE_MAPPING?.[requestType]}</div>
+			<div className={styles.line_wrapper}>
+				<div className={styles.line} />
+			</div>
+		</div>
+	);
+}
+
 const COMPONENT_MAPPING = {
 	DUTIES    : DutiesTaxesModal,
 	SCREENING : TraderEligibilityModal,
@@ -46,31 +57,36 @@ function DetailsModal({
 			onClose={() => setModal(false)}
 			size="xl"
 		>
-			{!tradeEngineResponseLoading && (
-				<div className={styles.container}>
-					<div>
-						<Modal.Header className={styles.heading} title={TITLE_MAPPING?.[requestType]} />
-						<div className={styles.line_wrapper}>
-							<div className={styles.line} />
-						</div>
-					</div>
+			<Modal.Header
+				className={styles.heading}
+				title={(
+					<Title
+						requestType={requestType}
+						TITLE_MAPPING={TITLE_MAPPING}
+					/>
+				)}
+			/>
+
+			<Modal.Body>
+				{tradeEngineResponseLoading ? (
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.loading}
+						alt={t('orderHistory:loading')}
+						width={100}
+						height={100}
+						className={styles.loading_image}
+					/>
+				) : (
 					<div>
 
 						<Component
 							tradeEngineResponse={tradeEngineResponse}
 						/>
 					</div>
-				</div>
-			)}
-			{tradeEngineResponseLoading && (
-				<Image
-					src={GLOBAL_CONSTANTS.image_url.loading}
-					alt={t('orderHistory:loading')}
-					width={100}
-					height={100}
-					className={styles.loading_image}
-				/>
-			)}
+				)}
+			</Modal.Body>
+			<Modal.Footer />
+
 		</Modal>
 	);
 }

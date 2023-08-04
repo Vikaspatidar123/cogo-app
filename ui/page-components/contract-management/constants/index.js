@@ -126,3 +126,21 @@ export const STATUS_MAPPING = {
 	pending_approval : 'pending_approval',
 	expired          : 'active',
 };
+
+export const SERVICE_VISE_KEYS_MAPPING = {
+	fcl_freight: {
+		utilization: 'Ctr Utilization',
+	},
+	lcl_freight: {
+		utilization: 'Vol Utilization',
+	},
+	air_freight: {
+		utilization: 'Weight Utilization',
+	},
+};
+
+export const SERVICE_UNIT_MAPPING = {
+	fcl_freight : '/Ctr',
+	lcl_freight : '/Wm',
+	air_freight : '/Kg',
+};

@@ -6,6 +6,7 @@ import { useSelector } from '@/packages/store';
 const useDislikeFeedback = ({ reset, details, rate, updateRate, onClose }) => {
 	const {
 		general: { query = {} },
+		profile,
 	} = useSelector((state) => state);
 
 	const { search_id = '' } = query;
@@ -68,6 +69,7 @@ const useDislikeFeedback = ({ reset, details, rate, updateRate, onClose }) => {
 						values.preferred_detention_free_days || undefined,
 					selected_card       : rate.card,
 					performed_by_org_id : details.importer_exporter.id,
+					cogo_entity_id      : profile.organization?.partner_id,
 				};
 
 				await trigger({

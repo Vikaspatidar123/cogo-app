@@ -4,6 +4,7 @@ import { useSelector } from '@/packages/store';
 const useUpdateLikeRate = ({ details, updateRate, rate }) => {
 	const {
 		general: { query = {} },
+		profile,
 	} = useSelector((state) => state);
 
 	const { search_id = '' } = query;
@@ -27,6 +28,8 @@ const useUpdateLikeRate = ({ details, updateRate, rate }) => {
 				is_liked            : true,
 				selected_card       : rate.card,
 				performed_by_org_id : details.importer_exporter.id,
+				cogo_entity_id      : profile.organization?.partner_id,
+
 			};
 
 			await trigger({

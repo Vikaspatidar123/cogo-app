@@ -1,11 +1,12 @@
 import { cl, Modal } from '@cogoport/components';
 import { IcMArrowDown, IcMArrowUp } from '@cogoport/icons-react';
-import { isEmpty } from '@cogoport/utils';
+import { isEmpty, startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
 import InitiateBooking from '../../../common/InitiateBooking';
 import RequestBooking from '../../../common/RequestBooking';
 import useGetContractShipmentData from '../../../hooks/useGetContractShipmentData';
+import getCommodityName from '../../../utils/getCommodityName';
 import { RD_STATUS_MAPPING } from '../constants';
 
 import Actions from './Actions';
@@ -13,7 +14,6 @@ import CreatePlanBox from './CreatePlanBox';
 import CreatePlanModal from './CreatePlanModal';
 import DetailedBreakUp from './DetailedBreakUp';
 import Freight from './Freight';
-import ManualShipmentCard from './ManualShipmentCard';
 import Route from './Route';
 import ShipmentCard from './ShipmentCard';
 import ShipmentInfo from './ShipmentInfo';
@@ -23,6 +23,92 @@ import Validity from './Validity';
 import { useRouter } from '@/packages/next';
 
 const serviceState = 'APPROVAL PENDING';
+
+const formatPlanData = ({ plan_data: data, containerDetailsMapping }) => {
+	const groupedData = data.reduce((accumulator, entry) => {
+		const { validity_start, validity_end } = entry;
+		const key = `${validity_start}_${validity_end}`;
+
+		return {
+			...accumulator,
+			[key]: [...(accumulator[key] || []), entry],
+		};
+	}, {});
+
+	const modifiedGroupedData = Object.entries(groupedData).reduce(
+		(accumulator, [key, entry]) => {
+			const [validity_start, validity_end] = key.split('_');
+
+			return {
+				...accumulator,
+				create_plan: [
+					...accumulator.create_plan,
+					{
+						date_range: {
+							startDate : new Date(validity_start),
+							endDate   : new Date(validity_end),
+						},
+						sub_create_plan: entry.reduce((acc, curr) => {
+							const { contract_service_id, max_count, id } = curr;
+
+							return [
+								...acc,
+								{
+									max_count,
+									vessel_select : containerDetailsMapping[contract_service_id],
+									id            : id || undefined,
+								},
+							];
+						}, []),
+					},
+				],
+			};
+		},
+		{ create_plan: [] },
+	);
+
+	return modifiedGroupedData;
+};
+
+const getContainerDetails = ({ freightDetails }) => freightDetails.reduce(
+	(acc, item) => {
+		const {
+			container_size,
+			container_type,
+			commodity,
+			id: dataServiceId,
+			service_type: serviceType = '',
+		} = item;
+
+		const labelMapping = {
+			fcl_freight: `${container_size} ft (${startCase(
+				container_type,
+			)}) (${getCommodityName(commodity)})`,
+			lcl_freight : `${getCommodityName(commodity)}`,
+			air_freight : `${getCommodityName(commodity)}`,
+		};
+
+		return {
+			...acc,
+			containerDetailsOptions: [
+				...acc.containerDetailsOptions,
+				{
+					label : labelMapping[serviceType],
+					value : `${container_size}_${dataServiceId}`,
+				},
+			],
+			containerDetails: {
+				...acc.containerDetails,
+				[dataServiceId]: {
+					container_size : `${container_size} ft`,
+					container_type : startCase(container_type),
+					commodity      : getCommodityName(commodity),
+				},
+			},
+		};
+	},
+	{ containerDetailsOptions: [], containerDetails: {} },
+);
 
 const getKeysMapping = ({ itemData = {} }) => {
 	const {
@@ -117,7 +203,12 @@ function PlanCard({
 	const primaryServiceDetail = freightDetails.find(
 		(detail) => detail.is_primary_service,
 	);
-	const { id: serviceId = '', status } = primaryServiceDetail || {};
+
+	const {
+		id: serviceId = '',
+		status,
+		[`contract_${service_type}_location_detail_id`]: serviceLocationId = '',
+	} = primaryServiceDetail;
 
 	const bookingData = {
 		service_type,
@@ -135,17 +226,31 @@ function PlanCard({
 		loading,
 		shipmentPlanData = {},
 		getShipmentPlans = () => { },
-		requestData = [],
-	} = useGetContractShipmentData({ isExistingManual });
+	} = useGetContractShipmentData({ isExistingManual, serviceLocationId });
 
 	const { shipment_data: shipmentData = [], plan_data = [] } = shipmentPlanData || {};
-	const isPlanAbsent = isEmpty(shipmentData);
-	const planNotAvailable = isEmpty(plan_data);
+
+	const canEditPlan = !isEmpty(plan_data);
 
 	const serviceStateWithQuery = contract_status === 'expired' ? contract_status : RD_STATUS_MAPPING[status];
 
 	const utilisationCountExceed = Number(KEYS_MAPPING[service_type]?.booked)
 		> Number(KEYS_MAPPING[service_type]?.req);
+
+	const { containerDetailsOptions, containerDetails } = getContainerDetails({ freightDetails });
+
+	const containerDetailsMapping = containerDetailsOptions.reduce(
+		(acc, item) => {
+			const { value } = item;
+			return { ...acc, [value.split('_')[1]]: value };
+		},
+		{},
+	);
+
+	const modifiedGroupedData = formatPlanData({
+		plan_data,
+		containerDetailsMapping,
+	});
 
 	return (
 		<div className={cl`${styles.container} ${status === '' ? styles.add_padding : ''}`}>
@@ -219,7 +324,7 @@ function PlanCard({
 					planData={plan_data}
 					serviceType={service_type}
 					showPlanBox={showPlanBox}
-					isPlanAbsent={isPlanAbsent}
+					shipmentData={shipmentData}
 					contract_type={contract_type}
 					contractStatus={contractStatus}
 					setShowModal={setShowModal}
@@ -229,6 +334,7 @@ function PlanCard({
 					setShowBreakup={setShowBreakup}
 					utilisationCountExceed={utilisationCountExceed}
 					primaryServicesDetails={primaryServicesDetails}
+					setShowDetailedBreakUpdate={setShowDetailedBreakUpdate}
 				/>
 			</div>
 
@@ -242,23 +348,16 @@ function PlanCard({
 				/>
 			) : null}
 
-			{showPlanBox && isPlanAbsent && source !== 'manual' && (
+			{showPlanBox && isEmpty(shipmentData) && (
 				<CreatePlanBox setShowModal={setShowModal} loading={loading} />
 			)}
 
-			{!isPlanAbsent && showPlanBox && source !== 'manual' && (
+			{!isEmpty(shipmentData) && showPlanBox && (
 				<ShipmentCard
 					shipmentData={shipmentData}
 					loading={loading}
 					itemData={itemData}
-				/>
-			)}
-
-			{showPlanBox && source === 'manual' && (
-				<ManualShipmentCard
-					requestData={requestData}
-					loading={loading}
-					itemData={itemData}
+					containerDetails={containerDetails}
 				/>
 			)}
 
@@ -267,10 +366,12 @@ function PlanCard({
 					itemData={itemData}
 					plan_data={plan_data}
 					showModal={showModal}
-					isEditPlan={!planNotAvailable}
+					isEditPlan={canEditPlan}
 					setShowModal={setShowModal}
 					getShipmentPlans={getShipmentPlans}
 					getServiceDetails={getServiceDetails}
+					modifiedGroupedData={modifiedGroupedData}
+					containerDetailsOptions={containerDetailsOptions}
 				/>
 			)}
 

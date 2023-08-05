@@ -9,9 +9,11 @@ const useServiceList = (
 	isChild,
 	shipment_id,
 ) => {
-	const { query } = useSelector(({ general }) => ({
-		query: general?.query,
+	const { query, id } = useSelector(({ general, profile }) => ({
+		query : general?.query,
+		id    : profile?.id,
 	}));
+
 	const [{ loading: apiLoading, data }, trigger] = useRequest({
 		url    : 'list_shipment_services',
 		method : 'get',
@@ -24,6 +26,7 @@ const useServiceList = (
 					filters: {
 						shipment_id : isChild ? shipment_id : query?.id,
 						status      : ['active', 'pending', 'inactive'],
+						ie_poc_id   : id,
 					},
 					service_stakeholder_required: true,
 					additional_data_required:

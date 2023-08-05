@@ -37,6 +37,7 @@ const GLOBAL_CONSTANTS = {
 			'yyyy-MM-dd'  : 'yyyy-MM-dd',
 			MMM           : 'MMM',
 			'dd MMM'      : 'dd MMM',
+			eee           : 'eee',
 		},
 		time: {
 			'hh:mm aaa' : 'hh:mm aaa',
@@ -215,7 +216,8 @@ const GLOBAL_CONSTANTS = {
 		image_extension: /\.(jpg|jpeg|png|gif|svg)$/i,
 
 	},
-	PROFILE_NAVIGATIONS: ['saas_cogo_subscription', 'saas_finance'],
+	PROFILE_NAVIGATIONS : ['saas_cogo_subscription', 'saas_finance'],
+	PUBLIC_PAGE_URL     : 'https://www.cogoport.com',
 };
 
 export default GLOBAL_CONSTANTS;

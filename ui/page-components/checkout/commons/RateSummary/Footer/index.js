@@ -86,6 +86,7 @@ function RateSummaryFooter({
 					handleSendEmail={onSubmit}
 					confirmation={confirmation}
 					setConfirmation={setConfirmation}
+					rate={rate}
 				/>
 			) : null}
 			<Modal

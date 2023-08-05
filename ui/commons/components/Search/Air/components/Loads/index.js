@@ -89,6 +89,7 @@ function Loads(props, ref) {
 			<Popover
 				placement="bottom"
 				className={styles.popover}
+				caret={false}
 				render={(
 					<LoadsDetails
 						showPopover={showPopover}

@@ -10,15 +10,16 @@ const constFilter = {
 	PRODUCT : 'CONTAINS',
 };
 const useHSCode = () => {
-	const [apiData, setApiData] = useState([]);
-	const [headingObj, setheadingObj] = useState({});
-	const [hsCodeObj, setHsCodeObj] = useState({});
-	const [pageObj, setPageObj] = useState({});
-	const { profile } = useSelector((s) => s);
+	const { profile } = useSelector((state) => state);
 
 	const searchRef = useRef({});
 
 	const { id } = profile || {};
+
+	const [apiData, setApiData] = useState([]);
+	const [headingObj, setheadingObj] = useState({});
+	const [hsCodeObj, setHsCodeObj] = useState({});
+	const [pageObj, setPageObj] = useState({});
 
 	const [{ loading: getLoading }, trigger] = useRequestBf(
 		{
@@ -63,8 +64,9 @@ const useHSCode = () => {
 				searchRef.current.searchTerm = undefined;
 				searchRef.current.searchType = undefined;
 				searchRef.current.customFilter = undefined;
+				searchRef.current.country = countryId;
 			} catch (err) {
-				console.log(err);
+				console.error(err);
 			}
 		},
 		[trigger],

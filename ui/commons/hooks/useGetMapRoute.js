@@ -1,4 +1,5 @@
 import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 
 const getInfo = (info) => {
 	const {
@@ -18,26 +19,29 @@ const getInfo = (info) => {
 	);
 };
 
-const getPayload = ({ originInfo = {}, destinationInfo = {} }) => {
+const getPayload = ({ originInfo = {}, destinationInfo = {}, id }) => {
 	const originPayload = getInfo(originInfo);
 	const destinationPayload = getInfo(destinationInfo);
 
-	return [originPayload, destinationPayload];
+	return {
+		points  : [originPayload, destinationPayload],
+		user_id : id,
+	};
 };
 
 const useGetMapRoute = () => {
+	const { id } = useSelector((state) => state.profile);
 	const [{ loading, data }, trigger] = useRequest({
 		method : 'get',
 		url    : '/get_multimodal_shortest_path',
 	}, { manual: true });
 
 	const getAirOceanRoute = async ({ originInfo, destinationInfo }) => {
-		const payload = getPayload({ originInfo, destinationInfo });
+		const payload = getPayload({ originInfo, destinationInfo, id });
 		try {
 			const resp = await trigger({
-				params: {
-					points: payload,
-				},
+				params: payload,
+
 			});
 			return resp.data;
 		} catch (err) {

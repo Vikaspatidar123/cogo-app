@@ -38,6 +38,7 @@ function NetPromoterScore() {
 					</Modal.Body>
 
 					<Modal.Footer>
+
 						<Button
 							themeType="secondary"
 							type="button"
@@ -47,9 +48,11 @@ function NetPromoterScore() {
 						>
 							{t('common:do_it_later_button_label')}
 						</Button>
+
 						<Button type="button" onClick={handleSubmitNps} loading={loading} disabled={loading}>
 							{t('common:submit_button_label')}
 						</Button>
+
 					</Modal.Footer>
 				</Modal>
 			) : null}

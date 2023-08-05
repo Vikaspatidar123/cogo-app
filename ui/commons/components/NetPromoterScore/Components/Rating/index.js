@@ -5,9 +5,9 @@ import { RATING_GRADIENT_MAPPING } from '../../constants/color-mapping';
 
 import styles from './styles.module.css';
 
-const MAX_NPS = 10;
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const RATING_ARRAY = [...Array(MAX_NPS).keys()];
+const MAX_NPS = 10;
 
 function Rating({ feedback, setFeedback }) {
 	const { score } = feedback;
@@ -18,7 +18,7 @@ function Rating({ feedback, setFeedback }) {
 		<div className={styles.container}>
 
 			<div className={styles.rating_container}>
-				{RATING_ARRAY.map((rating) => (
+				{[...Array(MAX_NPS).keys()].map((rating) => (
 					<div key={rating}>
 
 						<div
@@ -28,12 +28,17 @@ function Rating({ feedback, setFeedback }) {
 								setFeedback({
 									reason          : '',
 									selectedOptions : [],
-									score           : rating + 1,
+									score           : rating + GLOBAL_CONSTANTS.first_index,
 								});
 							}}
 							role="presentation"
 						>
-							<div className={rating === score - 1 ? styles.text : ''}>{rating + 1}</div>
+							<div className={rating === score - GLOBAL_CONSTANTS.first_index
+								? styles.text : ''}
+							>
+								{rating + GLOBAL_CONSTANTS.first_index}
+
+							</div>
 						</div>
 
 						<div

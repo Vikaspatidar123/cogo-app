@@ -1,6 +1,5 @@
 import { Modal } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
-import { useEffect } from 'react';
 
 import getTitle from '../../configurations/titleMapping';
 import useGetTradeEngine from '../../hooks/useGetTradeEngine';
@@ -33,28 +32,28 @@ const COMPONENT_MAPPING = {
 };
 
 function DetailsModal({
-	itm = {},
-	modal = false,
-	setModal = () => { },
+	detailsModal,
+	setDetailsModal,
 }) {
 	const { t } = useTranslation(['orderHistory']);
+	const { show, requestType, tradeEngineInputId } = detailsModal || {};
 
 	const TITLE_MAPPING = getTitle({ t });
-
-	const { tradeEngineResponse, tradeEngineResponseLoading, tradeEngineResponseFunc } = useGetTradeEngine({ itm });
-
-	useEffect(() => {
-		tradeEngineResponseFunc();
-	}, [tradeEngineResponseFunc]);
-
-	const { requestType = '' } = itm || {};
-
 	const Component = COMPONENT_MAPPING?.[requestType];
+
+	const { tradeEngineResponse, loading } =	useGetTradeEngine({ tradeEngineInputId });
+
+	const closeModalHandler = () => {
+		setDetailsModal({
+			show: false,
+		});
+	};
+
 	return (
 		<Modal
-			show={modal}
+			show={show}
 			showCloseIcon
-			onClose={() => setModal(false)}
+			onClose={closeModalHandler}
 			size="xl"
 		>
 			<Modal.Header
@@ -67,8 +66,8 @@ function DetailsModal({
 				)}
 			/>
 
-			<Modal.Body>
-				{tradeEngineResponseLoading ? (
+			<Modal.Body className={styles.modal_body}>
+				{loading ? (
 					<Image
 						src={GLOBAL_CONSTANTS.image_url.loading}
 						alt={t('orderHistory:loading')}
@@ -78,10 +77,7 @@ function DetailsModal({
 					/>
 				) : (
 					<div>
-
-						<Component
-							tradeEngineResponse={tradeEngineResponse}
-						/>
+						<Component tradeEngineResponse={tradeEngineResponse} />
 					</div>
 				)}
 			</Modal.Body>

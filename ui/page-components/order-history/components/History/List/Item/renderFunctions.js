@@ -4,16 +4,24 @@ import Amount from './Amount';
 import Date from './Date';
 import RenderComponent from './RenderComponent';
 import styles from './styles.module.css';
-import RenderTooltip from './TooltipText';
 
-const itemFunctions = ({ functions = {} }) => {
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
+
+const SERVICE_NAME_MAPPING = {
+	QUOTATION : 'quotations',
+	DUTIES    : 'duties_and_taxes',
+	DOCUMENTS : 'import_export_documents',
+	SCREENING : 'trader_eligibility_check',
+	CONTROLS  : 'import_export_controls',
+};
+
+const itemFunctions = () => {
 	const newFunctions = {
 		renderAmount: (itemData, field) => (
 			<Amount currency={itemData.currency} field={itemData[field.key]} />
 		),
-		renderDate    : (itemData, field) => <Date itemData={itemData} field={field} />,
-		renderTooltip : (itemData, field) => <RenderTooltip value={itemData[field.key]} />,
-		renderStatus  : (itemData) => (
+		renderDate   : (itemData, field) => <Date itemData={itemData} field={field} />,
+		renderStatus : (itemData) => (
 			<div className={`${styles.flex_div} ${styles.status}`}>
 				{itemData?.status === 'DATA_GENERATED' && (
 					<IcCGreenCircle width={9} height={9} />
@@ -29,7 +37,21 @@ const itemFunctions = ({ functions = {} }) => {
 				</div>
 			)
 		),
-		...(functions || {}),
+		renderHyperLink: (itemData, field) => (
+			(
+				<div className={`${itemData?.status === 'DATA_GENERATED' ? styles.hyper_link : ''}`}>
+					{itemData[field.key]}
+				</div>
+			)
+		),
+		renderCsat: (itemData) => (
+			itemData?.status === 'DATA_GENERATED' && (
+				<CustomerSatisfaction
+					serviceName={SERVICE_NAME_MAPPING[itemData.requestType]}
+					details={{ id: itemData?.tradeEngineInputId }}
+				/>
+			)
+		),
 	};
 
 	return {

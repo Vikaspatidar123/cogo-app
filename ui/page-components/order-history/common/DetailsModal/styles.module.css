@@ -35,7 +35,7 @@
 }
 
 .heading {
-	padding: 10px 0;
+	padding: 10px;
 	font-size: 18px;
 	font-weight: 600;
 	color: rgb(0 0 0);
@@ -43,4 +43,8 @@
 
 .line_wrapper {
 	margin: 10px 0;
+}
+
+.modal_body {
+	max-height: 70vh !important;
 }

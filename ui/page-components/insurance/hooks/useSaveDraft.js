@@ -54,6 +54,7 @@ const useSaveDraft = ({
 					panNumber      : panNumber === '' ? undefined : panNumber,
 					policyForSelf  : insuranceType[0] === 'SELF',
 					[addressKey]   : organizationAddressId,
+					performedBy    : id,
 				},
 			});
 

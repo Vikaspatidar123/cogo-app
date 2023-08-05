@@ -1,4 +1,4 @@
-import { Input, Select } from '@cogoport/components';
+import { Input, MultiSelect } from '@cogoport/components';
 import { IcMSearchdark, IcMCross } from '@cogoport/icons-react';
 
 import statusOptions from '../../constants/status-options';
@@ -40,7 +40,7 @@ function Filters({
 					type="text"
 					size="sm"
 				/>
-				<Select
+				<MultiSelect
 					className={styles.status_select}
 					placeholder="Select Status"
 					options={statusOptions}

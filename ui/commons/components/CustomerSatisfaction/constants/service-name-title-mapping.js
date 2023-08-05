@@ -1,13 +1,13 @@
-export const SERVICE_NAME_TITLE_MAPPING = {
-	freight_rate_trends      : 'Freight Rate Trend',
-	insurance                : 'Insurance',
-	ocean_schedules          : 'Ocean Schedules',
-	air_schedules            : 'Air Schedules',
-	import_export_controls   : 'Import Export Controls',
-	import_export_documents  : 'Import Export Documents',
-	duties_and_taxes         : 'Duties and Taxes',
-	trader_eligibility_check : 'Trader Eligibility Check',
-	hscode_finder            : 'Hs Code Finder',
-	quotations               : 'Premium Quotation',
-	track_and_trace          : 'Track and Trace',
-};
+export const getServiceNameTitleMapping = ({ t }) => ({
+	freight_rate_trends      : t('common:csat_frt'),
+	insurance                : t('common:csat_insurance'),
+	ocean_schedules          : t('common:csat_ocean_schedule'),
+	air_schedules            : t('common:csat_air_schedule'),
+	import_export_controls   : t('common:csat_iec'),
+	import_export_documents  : t('common:csat_ied'),
+	duties_and_taxes         : t('common:csat_dt'),
+	trader_eligibility_check : t('common:csat_tec'),
+	hscode_finder            : t('common:csat_hscode'),
+	quotations               : t('common:csat_quotation'),
+	track_and_trace          : t('common:csat_track_trace'),
+});

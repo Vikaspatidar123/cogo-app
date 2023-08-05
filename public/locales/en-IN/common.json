@@ -247,5 +247,28 @@
     "work_scope_label": "Work Scopes",
     "required": "Required",
     "invalid_email":"Invalid Email Address",
-    "Success":"Success"
+    "Success":"Success",
+    "csat_rate_us":"Rate us",
+    "csat_submit":"Submit",
+    "csat_do_it_later":"Do it later",
+    "csat_text_area_placeholder":"Want to share anything else? type here...",
+    "csat_title":"Share Your Experience with",
+    "csat_frt":"Freight Rate Trend",
+    "csat_insurance":"Insurance",
+    "csat_ocean_schedule":"Ocean Schedule",
+    "csat_air_schedule":"Air Schedule",
+    "csat_iec":"Import Export Controls",
+    "csat_ied":"Import Export Documents",
+    "csat_dt":"Duties and Taxes",
+    "csat_tec":"Trade Eligibility Check",
+    "csat_hscode":"Hs Code Finder",
+    "csat_quotation":"Premium Quotation",
+    "csat_track_trace":"Track and Trace",
+    "csat_feedback_title_1":"We apologise for your unsatisfactory experience. Please share the details, and we'll work diligently to improve.",
+    "csat_feedback_title_2": "Thank you for your feedback. We're committed to making things better. Let us know how we can enhance your experience.",
+    "csat_feedback_title_3": "Your feedback is valuable to us. Tell us what we can do to earn a higher rating next time.",
+    "csat_feedback_title_4": "We appreciate your positive feedback. Let us know what impressed you and how we can maintain this level of service.",
+    "csat_feedback_title_5": "Thank you for your glowing review! Please share any specific areas where we exceeded your expectations."
+
+
 }

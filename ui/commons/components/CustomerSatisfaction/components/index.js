@@ -1,4 +1,5 @@
 import { Modal, Button } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import useSubmitCsat from '../hooks/useSubmitCsat';
@@ -8,6 +9,8 @@ import RatingText from './RatingText';
 import styles from './styles.module.css';
 import Title from './Title';
 
+const DEFAULT_RATING = 3;
+
 function CustomerSatisfactionModal({
 	show = false,
 	setShow = () => {},
@@ -16,8 +19,10 @@ function CustomerSatisfactionModal({
 	setShowRateUs = () => {},
 	details = {},
 }) {
+	const { t } = useTranslation(['common']);
+
 	const [feedback, setFeedback] = useState({
-		rating          : 5,
+		rating          : DEFAULT_RATING,
 		selectedOptions : [],
 		reason          : '',
 	});
@@ -46,11 +51,11 @@ function CustomerSatisfactionModal({
 					className={styles.button}
 					onClick={() => setShow(false)}
 				>
-					Do it later
+					{t('common:csat_do_it_later')}
 				</Button>
 
 				<Button type="button" onClick={handleSubmit}>
-					Submit
+					{t('common:csat_submit')}
 				</Button>
 			</Modal.Footer>
 		</Modal>

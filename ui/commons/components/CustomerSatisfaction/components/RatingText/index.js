@@ -1,12 +1,17 @@
 import { Chips, Textarea } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import { FEEDBACK_MAPPING } from '../../constants/feedback-options';
-import { FEEDBACK_TITLE_MAPPING } from '../../constants/feedback-title-mapping';
+import { getFeedbackTitleMapping } from '../../constants/feedback-title-mapping';
 
 import styles from './styles.module.css';
 
 function RatingText({ setFeedback, feedback }) {
 	const { rating, selectedOptions = [], reason = '' } = feedback || {};
+
+	const { t } = useTranslation(['common']);
+
+	const FEEDBACK_TITLE_MAPPING = getFeedbackTitleMapping({ t });
 
 	const options = FEEDBACK_MAPPING[rating];
 	return (
@@ -34,7 +39,7 @@ function RatingText({ setFeedback, feedback }) {
 				<Textarea
 					rows={4}
 					value={reason}
-					placeholder="Want to share anything else? type here..."
+					placeholder={t('common:csat_text_area_placeholder')}
 					onChange={(e) => setFeedback((prev) => ({
 						...prev,
 						reason: e,

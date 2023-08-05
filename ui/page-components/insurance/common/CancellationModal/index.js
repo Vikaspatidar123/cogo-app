@@ -35,7 +35,7 @@ function CancellationAndConfirmModal({
 	const { requestCancellation = () => {}, cancellationLoading = false } = useGetCancellation(
 		{ setCancelModal, click, refetch },
 	);
-	console.log(click, 'click');
+
 	const handleCancellation = () => {
 		requestCancellation({ policyId, cancellationReason });
 	};

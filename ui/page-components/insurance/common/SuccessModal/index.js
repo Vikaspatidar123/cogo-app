@@ -20,7 +20,6 @@ function SuccessModal({
 		// eslint-disable-next-line no-undef
 		window.open(postInsuranceResponse?.policyPdfFile);
 	};
-	console.log(policyIdDownload, 'policyIdDownload');
 	return (
 		<Modal
 			show={showSuccessModal}

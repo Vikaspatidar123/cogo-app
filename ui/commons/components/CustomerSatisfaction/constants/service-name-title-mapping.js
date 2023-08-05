@@ -9,4 +9,5 @@ export const SERVICE_NAME_TITLE_MAPPING = {
 	trader_eligibility_check : 'Trader Eligibility Check',
 	hscode_finder            : 'Hs Code Finder',
 	quotations               : 'Premium Quotation',
+	track_and_trace          : 'Track and Trace',
 };

@@ -14,14 +14,13 @@ const useEditColsPopOver = ({ colsList = [], props, serviceName }) => {
 			setInsideList(newList);
 		}
 
-		const checked = newList.filter((x) => x.isChecked).map((item) => item.label);
+		const checked = newList.filter((x) => x.isChecked).map((item) => item.value);
 
 		setColumns((prev) => ({ ...prev, [serviceName]: checked }));
 	};
-
 	useEffect(() => {
 		setInsideList([...colsList]);
-	}, [colsList]);
+	}, []);
 
 	return {
 		show,
@@ -29,7 +28,6 @@ const useEditColsPopOver = ({ colsList = [], props, serviceName }) => {
 		insideList,
 		setInsideList,
 		onSelect,
-		setInsideList,
 	};
 };
 

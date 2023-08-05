@@ -27,7 +27,7 @@ function MobileMenu({
 		window.location.href = '/login';
 	};
 
-	const { title, containerComponent: ActiveContainerComponent = null } = OPTIONS_MAPPING[activeTab];
+	const { title, containerComponent: ActiveContainerComponent = null } = OPTIONS_MAPPING[activeTab] || {};
 
 	if (!query.activeTab) {
 		return (

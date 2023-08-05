@@ -7,12 +7,10 @@ import styles from './styles.module.css';
 function ShipmentAlerts() {
 	const [isEdit, setEdit] = useState(false);
 
-	const props = { isEdit, setEdit };
-
 	return (
 		<div className={styles.container}>
-			<Header props={props} />
-			<List props={props} />
+			<Header isEdit={isEdit} setEdit={setEdit} />
+			<List isEdit={isEdit} setEdit={setEdit} />
 		</div>
 	);
 }

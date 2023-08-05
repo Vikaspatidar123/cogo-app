@@ -1,35 +1,37 @@
 import { Checkbox, Pagination } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
-import { useState } from 'react';
 
 import Header from './Header';
 import styles from './styles.module.css';
 
-function UserTable({ data, setPageNumber, isLoading }) {
+function UserTable({
+	data, setPageNumber, isLoading,
+	setUserIds,
+	userIds,
+}) {
 	const {
 		list = [], page = 1, total_count,
 		page_limit,
 	} = data || {};
-	const [value, setValue] = useState([]);
 
 	const onCheck = ({ item }) => {
-		if (!value.includes(item.id)) {
-			setValue((prev) => [...prev, item.id]);
+		if (!userIds.includes(item.user_id)) {
+			setUserIds((prev) => [...prev, item.user_id]);
 		} else {
-			setValue((prev) => prev.filter((info) => info !== item.id));
+			setUserIds((prev) => prev.filter((info) => info !== item.user_id));
 		}
 	};
 
 	return (
 		<div className={styles.container}>
-			<Header setValue={setValue} list={list} />
+			<Header setUserIds={setUserIds} list={list} />
 			<div>
 				{(list || []).map((item) => (
-					<div className={styles.line_item} key={item?.id}>
+					<div className={styles.line_item} key={item?.user_id}>
 						<div className={styles.checkbox}>
 							<Checkbox
 								onChange={() => onCheck({ item })}
-								checked={value.includes(item.id)}
+								checked={userIds.includes(item.user_id)}
 								loading={isLoading}
 							/>
 						</div>

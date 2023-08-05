@@ -1,24 +1,26 @@
 import { Checkbox } from '@cogoport/components';
 import { IcMArrowDoubleLeft, IcMArrowDoubleRight } from '@cogoport/icons-react';
-import { isEmpty } from '@cogoport/utils';
 import { forwardRef } from 'react';
 
 import styles from './styles.module.css';
 
-function Header({ header, props, values = [], scrollHandler, scrollHandlerRight, serviceName }, ref) {
+function Header({ header, props, scrollHandler, scrollHandlerRight, serviceName }, ref) {
 	const { isEdit, setColumns } = props || {};
 
-	const shipmentIds = values.map((item) => item?.shipment_id);
+	// const shipmentIds = values.map((item) => item?.shipment_id);
 
 	const onCheck = (value) => {
-		const checkedValue = value ? shipmentIds : [];
-		setColumns((prev) => ({ ...prev, [`${serviceName}_shipment`]: checkedValue }));
+		setColumns((prev) => ({ ...prev, [`${serviceName}_shipment`]: value }));
 	};
 	return (
 		<div className={styles.container}>
 			<div className={styles.icon_check}>
 				<IcMArrowDoubleLeft width={18} height={18} onClick={scrollHandlerRight} />
-				{!isEmpty(values) ? <Checkbox disabled={!isEdit} onChange={(e) => onCheck(e.target.checked)} /> : null}
+
+				<Checkbox
+					disabled={!isEdit}
+					onChange={(e) => onCheck(e.target.checked)}
+				/>
 			</div>
 			<div className={styles.list} ref={ref}>
 				{

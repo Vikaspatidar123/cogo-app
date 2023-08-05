@@ -1,3 +1,4 @@
+export { bfRequest } from './helpers/bf-request';
 export { request } from './helpers/request';
 export { useRequest } from './hooks/useRequest';
 export { publicRequest } from './helpers/public-request';

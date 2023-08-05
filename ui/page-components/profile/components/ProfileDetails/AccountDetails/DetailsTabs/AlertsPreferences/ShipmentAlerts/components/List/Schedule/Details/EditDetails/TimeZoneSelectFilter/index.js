@@ -5,10 +5,10 @@ import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
 
-function TimeZoneSelectFilter({ control, value }) {
+function TimeZoneSelectFilter({ control, value, reportData }) {
 	const { t } = useTranslation(['settings']);
 
-	const controls = getControls({ value, t });
+	const controls = getControls({ value, t, reportData });
 	return (
 		<div className={styles.container}>
 			{(controls || []).map((item) => {

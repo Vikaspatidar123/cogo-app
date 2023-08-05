@@ -19,7 +19,7 @@ function RenderPopOver({
 
 	const selectAll = async (value) => {
 		const updateValue = insideList.map((x) => ({ ...x, isChecked: value }));
-		const check = updateValue.filter((x) => x.isChecked).map((item) => item.label);
+		const check = updateValue.filter((x) => x.isChecked).map((item) => item.value);
 		await setChecked(value);
 		await setInsideList(updateValue);
 		setColumns((prev) => ({ ...prev, [serviceName]: check }));
@@ -54,15 +54,17 @@ function RenderPopOver({
 					)
 				</div>
 			</div>
-			{(insideList || []).map((item, idx) => (
-				<div className={styles.box} key={item?.label}>
-					<Checkbox
-						checked={item?.isChecked}
-						onChange={() => onSelect(idx)}
-					/>
-					<div className={styles.text}>{item?.label}</div>
-				</div>
-			))}
+			<div className={styles.card}>
+				{(insideList || []).map((item, idx) => (
+					<div className={styles.box} key={item?.label}>
+						<Checkbox
+							checked={item?.isChecked}
+							onChange={() => onSelect(idx)}
+						/>
+						<div className={styles.text}>{item?.label}</div>
+					</div>
+				))}
+			</div>
 
 		</div>
 	);

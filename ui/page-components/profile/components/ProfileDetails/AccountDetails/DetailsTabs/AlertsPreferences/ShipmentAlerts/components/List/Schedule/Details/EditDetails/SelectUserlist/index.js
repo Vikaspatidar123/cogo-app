@@ -5,7 +5,11 @@ import { useTranslation } from 'next-i18next';
 import styles from './styles.module.css';
 import UserTable from './UserTable';
 
-function SelectUserlist({ data, hookSetter, isLoading }) {
+function SelectUserlist({
+	data, hookSetter, isLoading,
+	setUserIds,
+	userIds,
+}) {
 	const { setPageNumber, setQuery, query } = hookSetter || {};
 
 	const { t } = useTranslation(['settings']);
@@ -24,7 +28,13 @@ function SelectUserlist({ data, hookSetter, isLoading }) {
 					value={query}
 				/>
 			</div>
-			<UserTable data={data} setPageNumber={setPageNumber} isLoading={isLoading} />
+			<UserTable
+				data={data}
+				setPageNumber={setPageNumber}
+				isLoading={isLoading}
+				setUserIds={setUserIds}
+				userIds={userIds}
+			/>
 		</div>
 	);
 }

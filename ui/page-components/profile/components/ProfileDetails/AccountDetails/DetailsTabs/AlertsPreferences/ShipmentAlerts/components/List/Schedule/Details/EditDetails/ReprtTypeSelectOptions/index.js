@@ -14,7 +14,7 @@ const REPORT_TYPE_OPTIONS = ({ t = () => {} }) => [{
 	name: 'monthly', value: 'monthly', label: t('settings:schedule_status_option_3'),
 },
 {
-	name: 'never', value: 'naver', label: t('settings:schedule_status_option_4'),
+	name: 'never', value: 'never', label: t('settings:schedule_status_option_4'),
 }];
 function ReprtTypeSelectOptions({ control, onChange, value }) {
 	const { t } = useTranslation(['settings']);

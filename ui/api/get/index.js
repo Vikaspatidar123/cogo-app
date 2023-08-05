@@ -6,3 +6,10 @@ export const getListOrganisation = (paylaod) => request.get(
 		params: paylaod,
 	},
 );
+
+export const getShipmentReport = (paylaod) => request.get(
+	'/get_shipment_report_schedule',
+	{
+		params: paylaod,
+	},
+);

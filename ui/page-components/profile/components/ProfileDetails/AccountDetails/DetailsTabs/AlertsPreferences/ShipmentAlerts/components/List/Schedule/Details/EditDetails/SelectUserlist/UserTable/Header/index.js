@@ -4,12 +4,12 @@ import styles from './styles.module.css';
 
 const HEADER = ['name', 'designation', 'Email Id', 'mobile no.'];
 
-function Header({ setValue, list }) {
+function Header({ setUserIds, list }) {
 	const onCheck = (value) => {
 		if (value?.target.checked) {
-			setValue(list.map((item) => item.id));
+			setUserIds(list.map((item) => item.user_id));
 		} else {
-			setValue([]);
+			setUserIds([]);
 		}
 	};
 	return (

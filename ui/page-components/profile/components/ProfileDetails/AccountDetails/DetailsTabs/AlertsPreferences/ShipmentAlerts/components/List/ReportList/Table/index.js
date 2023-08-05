@@ -8,12 +8,13 @@ import Title from './Title';
 
 export const SCROLL_VALUE = 220;
 
-function Table({ props }) {
+function Table(props) {
 	const scrollRef = useRef({ header: {}, body: {} });
-
+	const { reportData } = props || {};
 	const { service_wise_data } = data || {};
 
-	const services = Object.keys(service_wise_data);
+	const { data_points = [], service_wise_columns } = reportData || {};
+	const services = Object.keys(data_points || {});
 
 	const scrollHandlerLeft = (index) => () => {
 		if (scrollRef.current.header[index]) {
@@ -33,19 +34,30 @@ function Table({ props }) {
 			});
 		}
 	};
-
 	return (
 		<div>
 			{(services || []).map((item, index) => {
-				const info = service_wise_data?.[item];
-				const { header, value, options } = info || {};
-
+				const info = data_points?.[item] || {};
+				const header = Object.values(info || {});
+				const options = Object.keys(info).map((key) => ({
+					label     : info[key],
+					value     : key,
+					isChecked : service_wise_columns?.[item]?.includes(key),
+				}));
+				const checkPoint = service_wise_columns?.[item].length;
+				const totalPoint = header.length;
 				return (
 					<div key={`${index + 1}`}>
-						<Title serviceName={item} options={options} props={props} />
+						<Title
+							totalPoint={totalPoint}
+							checkPoint={checkPoint}
+							serviceName={item}
+							options={options}
+							props={props}
+						/>
 						<Header
 							header={header}
-							values={value}
+							// values={value}
 							serviceName={item}
 							scrollHandler={scrollHandlerLeft(index)}
 							scrollHandlerRight={scrollHandlerRight(index)}
@@ -54,13 +66,13 @@ function Table({ props }) {
 								scrollRef.current.header[index] = r;
 							}}
 						/>
-						<Body
+						{/* <Body
 							values={value}
 							header={header}
 							index={index}
 							ref={scrollRef}
 							props={props}
-						/>
+						/> */}
 					</div>
 				);
 			})}

@@ -8,7 +8,7 @@ import useEditColsPopOver from '../../../../../hooks/useEditColsPopOver';
 import RenderPopOver from './RenderPopOver';
 import styles from './styles.module.css';
 
-function Title({ serviceName, options, props }) {
+function Title({ serviceName, options, checkPoint, totalPoint, props }) {
 	const { isEdit } = props || {};
 	const { t } = useTranslation(['settings']);
 
@@ -35,7 +35,13 @@ function Title({ serviceName, options, props }) {
 			</div>
 			{!isEdit ? (
 				<div>
-					20 of 20 Data Points Visible
+					{checkPoint}
+					{' '}
+					of
+					{' '}
+					{totalPoint}
+					{' '}
+					Data Points Visible
 				</div>
 			)
 				: (

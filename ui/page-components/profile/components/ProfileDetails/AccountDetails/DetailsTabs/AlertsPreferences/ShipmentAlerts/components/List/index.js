@@ -1,6 +1,7 @@
 import { Button } from '@cogoport/components';
 import { useTranslation } from 'next-i18next';
 
+import useStatusReport from '../../hooks/useStatusReport';
 import useUpdate from '../../hooks/useUpdate';
 
 import ReportList from './ReportList';
@@ -9,22 +10,33 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-function List({ props }) {
-	const { isEdit = false } = props || {};
+function List(props) {
+	const { isEdit = false, setEdit } = props || {};
 	const { query } = useRouter();
 	const { t } = useTranslation(['settings']);
+	const { reportData, refetch, isLoading } = useStatusReport();
+	const {
+		onSubmit = () => {},
+		setColumns = () => {},
+		columns = {},
+		formHooks = {},
+		setUserIds = [],
+		userIds,
+	} = useUpdate({ reportData, refetch, setEdit, isLoading, isEdit });
+	const updateProps = {
+		...props, setColumns, columns, formHooks, reportData, setUserIds, userIds, refetch,
+	};
 
-	const { onSubmit, setColumns, columns, control, handleSubmit } = useUpdate();
-	const updateProps = { ...props, setColumns, columns, control };
+	const { handleSubmit } = formHooks || {};
 	const onCancel = () => {
-		props.setEdit(false);
+		setEdit(false);
 	};
 	return (
 		<div className={styles.container}>
 
-			<ReportList props={updateProps} />
+			<ReportList {...updateProps} />
 
-			{query.type !== 'shipment' ? <Schedule props={updateProps} /> : null}
+			{query.type !== 'shipment' ? <Schedule {...updateProps} /> : null}
 
 			{isEdit && query.type !== 'shipment' ? (
 				<div className={styles.button}>

@@ -1,607 +1,608 @@
 const TIME_ZONE = [
 	{
 		label : 'International Date Line West',
-		value : 'International Date Line West-Etc/GMT+12',
+		value : 'International Date Line West',
 	},
 	{
 		label : 'Midway Island',
-		value : 'Midway Island-Pacific/Midway',
+		value : 'Midway Island',
 	},
 	{
 		label : 'American Samoa',
-		value : 'American Samoa-Pacific/Pago_Pago',
+		value : 'American Samoa',
 	},
 	{
 		label : 'Hawaii',
-		value : 'Hawaii-Pacific/Honolulu',
+		value : 'Hawaii',
 	},
 	{
 		label : 'Alaska',
-		value : 'Alaska-America/Juneau',
+		value : 'Alaska',
 	},
 	{
 		label : 'Pacific Time (US & Canada)',
-		value : 'Pacific Time (US & Canada)-America/Los_Angeles',
+		value : 'Pacific Time (US & Canada)',
 	},
 	{
 		label : 'Tijuana',
-		value : 'Tijuana-America/Tijuana',
+		value : 'Tijuana',
 	},
 	{
 		label : 'Mountain Time (US & Canada)',
-		value : 'Mountain Time (US & Canada)-America/Denver',
+		value : 'Mountain Time (US & Canada)',
 	},
 	{
 		label : 'Arizona',
-		value : 'Arizona-America/Phoenix',
+		value : 'Arizona',
 	},
 	{
 		label : 'Chihuahua',
-		value : 'Chihuahua-America/Chihuahua',
+		value : 'Chihuahua',
 	},
 	{
 		label : 'Mazatlan',
-		value : 'Mazatlan-America/Mazatlan',
+		value : 'Mazatlan',
 	},
 	{
 		label : 'Central Time (US & Canada)',
-		value : 'Central Time (US & Canada)-America/Chicago',
+		value : 'Central Time (US & Canada)',
 	},
 	{
 		label : 'Saskatchewan',
-		value : 'Saskatchewan-America/Regina',
+		value : 'Saskatchewan',
 	},
 	{
 		label : 'Guadalajara',
-		value : 'Guadalajara-America/Mexico_City',
+		value : 'Guadalajara',
 	},
 	{
 		label : 'Mexico City',
-		value : 'Mexico City-America/Mexico_City',
+		value : 'Mexico City',
 	},
 	{
 		label : 'Monterrey',
-		value : 'Monterrey-America/Monterrey',
+		value : 'Monterrey',
 	},
 	{
 		label : 'Central America',
-		value : 'Central America-America/Guatemala',
+		value : 'Central America',
 	},
 	{
 		label : 'Eastern Time (US & Canada)',
-		value : 'Eastern Time (US & Canada)-America/New_York',
+		value : 'Eastern Time (US & Canada)',
 	},
 	{
 		label : 'Indiana (East)',
-		value : 'Indiana (East)-America/Indiana/Indianapolis',
+		value : 'Indiana (East)',
 	},
 	{
 		label : 'Bogota',
-		value : 'Bogota-America/Bogota',
+		value : 'Bogota',
 	},
 	{
 		label : 'Lima',
-		value : 'Lima-America/Lima',
+		value : 'Lima',
 	},
 	{
 		label : 'Quito',
-		value : 'Quito-America/Lima',
+		value : 'Quito',
 	},
 	{
 		label : 'Atlantic Time (Canada)',
-		value : 'Atlantic Time (Canada)-America/Halifax',
+		value : 'Atlantic Time (Canada)',
 	},
 	{
 		label : 'Caracas',
-		value : 'Caracas-America/Caracas',
+		value : 'Caracas',
 	},
 	{
 		label : 'La Paz',
-		value : 'La Paz-America/La_Paz',
+		value : 'La Paz',
 	},
 	{
 		label : 'Santiago',
-		value : 'Santiago-America/Santiago',
+		value : 'Santiago',
 	},
 	{
 		label : 'Newfoundland',
-		value : 'Newfoundland-America/St_Johns',
+		value : 'Newfoundland',
 	},
 	{
 		label : 'Brasilia',
-		value : 'Brasilia-America/Sao_Paulo',
+		value : 'Brasilia',
 	},
 	{
 		label : 'Buenos Aires',
-		value : 'Buenos Aires-America/Argentina/Buenos_Aires',
+		value : 'Buenos Aires',
 	},
 	{
 		label : 'Montevideo',
-		value : 'Montevideo-America/Montevideo',
+		value : 'Montevideo',
 	},
 	{
 		label : 'Georgetown',
-		value : 'Georgetown-America/Guyana',
+		value : 'Georgetown',
 	},
 	{
 		label : 'Puerto Rico',
-		value : 'Puerto Rico-America/Puerto_Rico',
+		value : 'Puerto Rico',
 	},
 	{
 		label : 'Greenland',
-		value : 'Greenland-America/Godthab',
+		value : 'Greenland',
 	},
 	{
 		label : 'Mid-Atlantic',
-		value : 'Mid-Atlantic-Atlantic/South_Georgia',
+		value : 'Mid-Atlantic',
 	},
 	{
 		label : 'Azores',
-		value : 'Azores-Atlantic/Azores',
+		value : 'Azores',
 	},
 	{
 		label : 'Cape Verde Is.',
-		value : 'Cape Verde Is.-Atlantic/Cape_Verde',
+		value : 'Cape Verde Is.',
 	},
 	{
 		label : 'Dublin',
-		value : 'Dublin-Europe/Dublin',
+		value : 'Dublin',
 	},
 	{
 		label : 'Edinburgh',
-		value : 'Edinburgh-Europe/London',
+		value : 'Edinburgh',
 	},
 	{
 		label : 'Lisbon',
-		value : 'Lisbon-Europe/Lisbon',
+		value : 'Lisbon',
 	},
 	{
 		label : 'London',
-		value : 'London-Europe/London',
+		value : 'London',
 	},
 	{
 		label : 'Casablanca',
-		value : 'Casablanca-Africa/Casablanca',
+		value : 'Casablanca',
 	},
 	{
 		label : 'Monrovia',
-		value : 'Monrovia-Africa/Monrovia',
+		value : 'Monrovia',
 	},
 	{
 		label : 'UTC',
-		value : 'UTC-Etc/UTC',
+		value : 'UTC',
 	},
 	{
 		label : 'Belgrade',
-		value : 'Belgrade-Europe/Belgrade',
+		value : 'Belgrade',
 	},
 	{
 		label : 'Bratislava',
-		value : 'Bratislava-Europe/Bratislava',
+		value : 'Bratislava',
 	},
 	{
 		label : 'Budapest',
-		value : 'Budapest-Europe/Budapest',
+		value : 'Budapest',
 	},
 	{
 		label : 'Ljubljana',
-		value : 'Ljubljana-Europe/Ljubljana',
+		value : 'Ljubljana',
 	},
 	{
 		label : 'Prague',
-		value : 'Prague-Europe/Prague',
+		value : 'Prague',
 	},
 	{
 		label : 'Sarajevo',
-		value : 'Sarajevo-Europe/Sarajevo',
+		value : 'Sarajevo',
 	},
 	{
 		label : 'Skopje',
-		value : 'Skopje-Europe/Skopje',
+		value : 'Skopje',
 	},
 	{
 		label : 'Warsaw',
-		value : 'Warsaw-Europe/Warsaw',
+		value : 'Warsaw',
 	},
 	{
 		label : 'Zagreb',
-		value : 'Zagreb-Europe/Zagreb',
+		value : 'Zagreb',
 	},
 	{
 		label : 'Brussels',
-		value : 'Brussels-Europe/Brussels',
+		value : 'Brussels',
 	},
 	{
 		label : 'Copenhagen',
-		value : 'Copenhagen-Europe/Copenhagen',
+		value : 'Copenhagen',
 	},
 	{
 		label : 'Madrid',
-		value : 'Madrid-Europe/Madrid',
+		value : 'Madrid',
 	},
 	{
 		label : 'Paris',
-		value : 'Paris-Europe/Paris',
+		value : 'Paris',
 	},
 	{
 		label : 'Amsterdam',
-		value : 'Amsterdam-Europe/Amsterdam',
+		value : 'Amsterdam',
 	},
 	{
 		label : 'Berlin',
-		value : 'Berlin-Europe/Berlin',
+		value : 'Berlin',
 	},
 	{
 		label : 'Bern',
-		value : 'Bern-Europe/Zurich',
+		value : 'Bern',
 	},
 	{
 		label : 'Zurich',
-		value : 'Zurich-Europe/Zurich',
+		value : 'Zurich',
 	},
 	{
 		label : 'Rome',
-		value : 'Rome-Europe/Rome',
+		value : 'Rome',
 	},
 	{
 		label : 'Stockholm',
-		value : 'Stockholm-Europe/Stockholm',
+		value : 'Stockholm',
 	},
 	{
 		label : 'Vienna',
-		value : 'Vienna-Europe/Vienna',
+		value : 'Vienna',
 	},
 	{
 		label : 'West Central Africa',
-		value : 'West Central Africa-Africa/Algiers',
+		value : 'West Central Africa',
 	},
 	{
 		label : 'Bucharest',
-		value : 'Bucharest-Europe/Bucharest',
+		value : 'Bucharest',
 	},
 	{
 		label : 'Cairo',
-		value : 'Cairo-Africa/Cairo',
+		value : 'Cairo',
 	},
 	{
 		label : 'Helsinki',
-		value : 'Helsinki-Europe/Helsinki',
+		value : 'Helsinki',
 	},
 	{
 		label : 'Kyiv',
-		value : 'Kyiv-Europe/Kiev',
+		value : 'Kyiv',
 	},
 	{
 		label : 'Riga',
-		value : 'Riga-Europe/Riga',
+		value : 'Riga',
 	},
 	{
 		label : 'Sofia',
-		value : 'Sofia-Europe/Sofia',
+		value : 'Sofia',
 	},
 	{
 		label : 'Tallinn',
-		value : 'Tallinn-Europe/Tallinn',
+		value : 'Tallinn',
 	},
 	{
 		label : 'Vilnius',
-		value : 'Vilnius-Europe/Vilnius',
+		value : 'Vilnius',
 	},
 	{
 		label : 'Athens',
-		value : 'Athens-Europe/Athens',
+		value : 'Athens',
 	},
 	{
 		label : 'Istanbul',
-		value : 'Istanbul-Europe/Istanbul',
+		value : 'Istanbul',
 	},
 	{
 		label : 'Minsk',
-		value : 'Minsk-Europe/Minsk',
+		value : 'Minsk',
 	},
 	{
 		label : 'Jerusalem',
-		value : 'Jerusalem-Asia/Jerusalem',
+		value : 'Jerusalem',
 	},
 	{
 		label : 'Harare',
-		value : 'Harare-Africa/Harare',
+		value : 'Harare',
 	},
 	{
 		label : 'Pretoria',
-		value : 'Pretoria-Africa/Johannesburg',
+		value : 'Pretoria',
 	},
 	{
 		label : 'Kaliningrad',
-		value : 'Kaliningrad-Europe/Kaliningrad',
+		value : 'Kaliningrad',
 	},
 	{
 		label : 'Moscow',
-		value : 'Moscow-Europe/Moscow',
+		value : 'Moscow',
 	},
 	{
 		label : 'St. Petersburg',
-		value : 'St. Petersburg-Europe/Moscow',
+		value : 'St. Petersburg',
 	},
 	{
 		label : 'Volgograd',
-		value : 'Volgograd-Europe/Volgograd',
+		value : 'Volgograd',
 	},
 	{
 		label : 'Samara',
-		value : 'Samara-Europe/Samara',
+		value : 'Samara',
 	},
 	{
 		label : 'Kuwait',
-		value : 'Kuwait-Asia/Kuwait',
+		value : 'Kuwait',
 	},
 	{
 		label : 'Riyadh',
-		value : 'Riyadh-Asia/Riyadh',
+		value : 'Riyadh',
 	},
 	{
 		label : 'Nairobi',
-		value : 'Nairobi-Africa/Nairobi',
+		value : 'Nairobi',
 	},
 	{
 		label : 'Baghdad',
-		value : 'Baghdad-Asia/Baghdad',
+		value : 'Baghdad',
 	},
 	{
 		label : 'Tehran',
-		value : 'Tehran-Asia/Tehran',
+		value : 'Tehran',
 	},
 	{
 		label : 'Abu Dhabi',
-		value : 'Abu Dhabi-Asia/Muscat',
+		value : 'Abu Dhabi',
 	},
 	{
 		label : 'Muscat',
-		value : 'Muscat-Asia/Muscat',
+		value : 'Muscat',
 	},
 	{
 		label : 'Baku',
-		value : 'Baku-Asia/Baku',
+		value : 'Baku',
 	},
 	{
 		label : 'Tbilisi',
-		value : 'Tbilisi-Asia/Tbilisi',
+		value : 'Tbilisi',
 	},
 	{
 		label : 'Yerevan',
-		value : 'Yerevan-Asia/Yerevan',
+		value : 'Yerevan',
 	},
 	{
 		label : 'Kabul',
-		value : 'Kabul-Asia/Kabul',
+		value : 'Kabul',
 	},
 	{
 		label : 'Ekaterinburg',
-		value : 'Ekaterinburg-Asia/Yekaterinburg',
+		value : 'Ekaterinburg',
 	},
 	{
 		label : 'Islamabad',
-		value : 'Islamabad-Asia/Karachi',
+		value : 'Islamabad',
 	},
 	{
 		label : 'Karachi',
-		value : 'Karachi-Asia/Karachi',
+		value : 'Karachi',
 	},
 	{
 		label : 'Tashkent',
-		value : 'Tashkent-Asia/Tashkent',
+		value : 'Tashkent',
 	},
 	{
 		label : 'Chennai',
-		value : 'Chennai-Asia/Kolkata',
+		value : 'Chennai',
 	},
 	{
 		label : 'Kolkata',
-		value : 'Kolkata-Asia/Kolkata',
+		value : 'Kolkata',
 	},
 	{
 		label : 'Mumbai',
-		value : 'Mumbai-Asia/Kolkata',
+		value : 'Mumbai',
 	},
 	{
 		label : 'New Delhi',
-		value : 'New Delhi-Asia/Kolkata',
+		value : 'New Delhi',
 	},
 	{
 		label : 'Kathmandu',
-		value : 'Kathmandu-Asia/Kathmandu',
+		value : 'Kathmandu',
 	},
 	{
 		label : 'Astana',
-		value : 'Astana-Asia/Dhaka',
+		value : 'Astana',
 	},
 	{
 		label : 'Dhaka',
-		value : 'Dhaka-Asia/Dhaka',
+		value : 'Dhaka',
 	},
 	{
 		label : 'Sri Jayawardenepura',
-		value : 'Sri Jayawardenepura-Asia/Colombo',
+		value : 'Sri Jayawardenepura',
 	},
 	{
 		label : 'Almaty',
-		value : 'Almaty-Asia/Almaty',
+		value : 'Almaty',
 	},
 	{
 		label : 'Novosibirsk',
-		value : 'Novosibirsk-Asia/Novosibirsk',
+		value : 'Novosibirsk',
 	},
 	{
 		label : 'Rangoon',
-		value : 'Rangoon-Asia/Rangoon',
+		value : 'Rangoon',
 	},
 	{
 		label : 'Bangkok',
-		value : 'Bangkok-Asia/Bangkok',
+		value : 'Bangkok',
 	},
 	{
 		label : 'Hanoi',
-		value : 'Hanoi-Asia/Bangkok',
+		value : 'Hanoi',
 	},
 	{
 		label : 'Jakarta',
-		value : 'Jakarta-Asia/Jakarta',
+		value : 'Jakarta',
 	},
 	{
 		label : 'Krasnoyarsk',
-		value : 'Krasnoyarsk-Asia/Krasnoyarsk',
+		value : 'Krasnoyarsk',
 	},
 	{
 		label : 'Beijing',
-		value : 'Beijing-Asia/Shanghai',
+		value : 'Beijing',
 	},
 	{
 		label : 'Chongqing',
-		value : 'Chongqing-Asia/Chongqing',
+		value : 'Chongqing',
 	},
 	{
 		label : 'Hong Kong',
-		value : 'Hong Kong-Asia/Hong_Kong',
+		value : 'Hong Kong',
 	},
 	{
 		label : 'Urumqi',
-		value : 'Urumqi-Asia/Urumqi',
+		value : 'Urumqi',
 	},
 	{
 		label : 'Kuala Lumpur',
-		value : 'Kuala Lumpur-Asia/Kuala_Lumpur',
+		value : 'Kuala Lumpur',
 	},
 	{
 		label : 'Singapore',
-		value : 'Singapore-Asia/Singapore',
+		value : 'Singapore',
 	},
 	{
 		label : 'Taipei',
-		value : 'Taipei-Asia/Taipei',
+		value : 'Taipei',
 	},
 	{
 		label : 'Perth',
-		value : 'Perth-Australia/Perth',
+		value : 'Perth',
 	},
 	{
 		label : 'Irkutsk',
-		value : 'Irkutsk-Asia/Irkutsk',
+		value : 'Irkutsk',
 	},
 	{
 		label : 'Ulaanbaatar',
-		value : 'Ulaanbaatar-Asia/Ulaanbaatar',
+		value : 'Ulaanbaatar',
 	},
 	{
 		label : 'Seoul',
-		value : 'Seoul-Asia/Seoul',
+		value : 'Seoul',
 	},
 	{
 		label : 'Osaka',
-		value : 'Osaka-Asia/Tokyo',
+		value : 'Osaka',
 	},
 	{
 		label : 'Sapporo',
-		value : 'Sapporo-Asia/Tokyo',
+		value : 'Sapporo',
 	},
 	{
 		label : 'Tokyo',
-		value : 'Tokyo-Asia/Tokyo',
+		value : 'Tokyo',
 	},
 	{
 		label : 'Yakutsk',
-		value : 'Yakutsk-Asia/Yakutsk',
+		value : 'Yakutsk',
 	},
 	{
 		label : 'Darwin',
-		value : 'Darwin-Australia/Darwin',
+		value : 'Darwin',
 	},
 	{
 		label : 'Adelaide',
-		value : 'Adelaide-Australia/Adelaide',
+		value : 'Adelaide',
 	},
 	{
 		label : 'Canberra',
-		value : 'Canberra-Australia/Melbourne',
+		value : 'Canberra',
 	},
 	{
 		label : 'Melbourne',
-		value : 'Melbourne-Australia/Melbourne',
+		value : 'Melbourne',
 	},
 	{
 		label : 'Sydney',
-		value : 'Sydney-Australia/Sydney',
+		value : 'Sydney',
 	},
 	{
 		label : 'Brisbane',
-		value : 'Brisbane-Australia/Brisbane',
+		value : 'Brisbane',
 	},
 	{
 		label : 'Hobart',
-		value : 'Hobart-Australia/Hobart',
+		value : 'Hobart',
 	},
 	{
 		label : 'Vladivostok',
-		value : 'Vladivostok-Asia/Vladivostok',
+		value : 'Vladivostok',
 	},
 	{
 		label : 'Guam',
-		value : 'Guam-Pacific/Guam',
+		value : 'Guam',
 	},
 	{
 		label : 'Port Moresby',
-		value : 'Port Moresby-Pacific/Port_Moresby',
+		value : 'Port Moresby',
 	},
 	{
 		label : 'Magadan',
-		value : 'Magadan-Asia/Magadan',
+		value : 'Magadan',
 	},
 	{
 		label : 'Srednekolymsk',
-		value : 'Srednekolymsk-Asia/Srednekolymsk',
+		value : 'Srednekolymsk',
 	},
 	{
 		label : 'Solomon Is.',
-		value : 'Solomon Is.-Pacific/Guadalcanal',
+		value : 'Solomon Is.',
 	},
 	{
 		label : 'New Caledonia',
-		value : 'New Caledonia-Pacific/Noumea',
+		value : 'New Caledonia',
 	},
 	{
 		label : 'Fiji',
-		value : 'Fiji-Pacific/Fiji',
+		value : 'Fiji',
 	},
 	{
 		label : 'Kamchatka',
-		value : 'Kamchatka-Asia/Kamchatka',
+		value : 'Kamchatka',
 	},
 	{
 		label : 'Marshall Is.',
-		value : 'Marshall Is.-Pacific/Majuro',
+		value : 'Marshall Is.',
 	},
 	{
 		label : 'Auckland',
-		value : 'Auckland-Pacific/Auckland',
+		value : 'Auckland',
 	},
 	{
 		label : 'Wellington',
-		value : 'Wellington-Pacific/Auckland',
+		value : 'Wellington',
 	},
 	{
 		label : "Nuku'alofa",
-		value : "Nuku'alofa-Pacific/Tongatapu",
+		value : "Nuku'alofa",
 	},
 	{
 		label : 'Tokelau Is.',
-		value : 'Tokelau Is.-Pacific/Fakaofo',
+		value : 'Tokelau Is.',
 	},
 	{
 		label : 'Chatham Is.',
-		value : 'Chatham Is.-Pacific/Chatham',
+		value : 'Chatham Is.',
 	},
 	{
 		label : 'Samoa',
-		value : 'Samoa-Pacific/Apia',
+		value : 'Samoa',
 	},
 ];
+
 export default TIME_ZONE;

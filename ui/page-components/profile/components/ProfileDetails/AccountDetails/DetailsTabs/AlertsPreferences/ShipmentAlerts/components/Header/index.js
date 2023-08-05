@@ -36,7 +36,7 @@ const DESCRIPTION_MAPPING = ({ t = () => {} }) => ({
 	true  : editText({ t }),
 });
 
-function Header({ props }) {
+function Header(props) {
 	const { setEdit, isEdit = false } = props;
 
 	const { query, push } = useRouter();

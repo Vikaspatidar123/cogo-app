@@ -16,7 +16,7 @@ function AccountDetails() {
 	const {
 		title: activeTitle,
 		containerComponent: ActiveContainerComponent = null,
-	} = OPTIONS_MAPPING[activeTab];
+	} = OPTIONS_MAPPING[activeTab] || {};
 
 	return (
 		<div>

@@ -67,3 +67,8 @@
 	font-weight: 500;
 	color: var(--black-80, #4f4f4f);
 }
+
+.card {
+	height: 300px;
+	overflow: scroll;
+}

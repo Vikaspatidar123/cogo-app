@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useRequest } from '@/packages/request';
 
 const DEFAULT_NPS = 10;
+const NPS_SHOW_TIME = 12000;
 
 const getSubmitNpsPayload = ({ feedback }) => {
 	const { score, selectedOptions = [], reason = '' } = feedback || {};
@@ -51,7 +52,7 @@ const useNps = ({ setShow, ...rest }) => {
 
 		const timeout = setTimeout(() => {
 			setShow(data && !submitNpsLater);
-		}, 12000);
+		}, NPS_SHOW_TIME);
 
 		return () => clearTimeout(timeout);
 	}, [data, setShow]);

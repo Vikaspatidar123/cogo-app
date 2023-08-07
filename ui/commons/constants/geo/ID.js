@@ -254,7 +254,7 @@ export default {
 		},
 
 		identification: {
-			label: 'VAT',
+			label: 'NPWP',
 		},
 
 		identification_number: {

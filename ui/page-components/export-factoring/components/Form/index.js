@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import ApplicationProcess from '../ApplicationProcess';
 import BasicDetails from '../BasicDetails';
-// import Buyers from '../Buyers';
 import Buyers from '../Buyers';
 import CompanyInformation from '../CompanyInformation';
 import DirectorInformation from '../DirectorInformation';
@@ -12,6 +11,7 @@ import OfferLetterDetails from '../OfferLetterDetails';
 import { OfferLetterWaiting } from '../WaitingScreens';
 
 import styles from './styles.module.css';
+import Stepper from '../Stepper';
 
 const RENDERING_FORM = {
 	awaiting_user_inputs  : BasicDetails,
@@ -49,10 +49,11 @@ const tabsPanelMapping = (status) => {
 	return tabsConfig;
 };
 
-function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, loading }) {
+function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, loading, setActive }) {
 	const [activeTab, setActiveTab] = useState('application');
 	const { flags = {} } = getCreditRequestResponse;
 	const Component = RENDERING_FORM[active];
+	
 
 	const { status = '' } = getCreditRequestResponse || {};
 
@@ -71,6 +72,7 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 
 						return (
 							<TabPanel name={name} title={title} key={name}>
+								{activeTab === 'application' && active !=='approved' && <Stepper active={active} setActive={setActive} />}
 								{(active === 'locked' && activeTab === 'application')
 									? (
 										<OfferLetterWaiting
@@ -78,6 +80,7 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 											getCreditRequestResponse={getCreditRequestResponse}
 											refetch={refetch}
 											loading={loading}
+											
 										/>
 									) : (
 										<MappedComponet
@@ -92,12 +95,14 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 					})}
 				</Tabs>
 			) : (
-				<Component
-					active={active}
-					getCreditRequestResponse={getCreditRequestResponse}
-					refetch={refetch}
-					loading={loading}
-				/>
+					<>
+					<Stepper active={active} setActive={setActive} />
+					<Component
+						active={active}
+						getCreditRequestResponse={getCreditRequestResponse}
+						refetch={refetch}
+						loading={loading} />
+					</>
 			)}
 		</div>
 	);

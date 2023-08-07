@@ -2,18 +2,10 @@ import { CogoMaps } from '@cogoport/maps';
 import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
-import { PATH_OPTION } from '../../constant/mapConstant';
-
 import Pointer from './Pointer';
 import Route from './Route';
 
-const LAYER = [
-	{
-		name        : 'Cogo Maps',
-		url         : 'https://api.cogoport.com/cogo-tiles/{z}/{x}/{y}.png',
-		attribution : '',
-	},
-];
+import { PATH_OPTION, LAYER, CENTER } from '@/ui/commons/constants/mapConstant';
 
 const getLatLng = ({ route = [] }) => {
 	const routeLength = route?.length;
@@ -28,7 +20,6 @@ const getLatLng = ({ route = [] }) => {
 	return { origin, destination };
 };
 
-const center = { lat: '28.679079', lng: '77.069710' };
 function MapComp({ height = '60vh', allPoints = [], type = 'ocean' }) {
 	const [map, setMap] = useState();
 
@@ -38,7 +29,7 @@ function MapComp({ height = '60vh', allPoints = [], type = 'ocean' }) {
 			baseLayer={LAYER}
 			zoom={3}
 			minZoom={2}
-			center={center}
+			center={CENTER}
 			setMap={setMap}
 			maxBoundsViscosity={1}
 			maxZoom={12}

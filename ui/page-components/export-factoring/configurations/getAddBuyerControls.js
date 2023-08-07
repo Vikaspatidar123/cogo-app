@@ -66,7 +66,7 @@ const controls = [
 	},
 	{
 		name        : 'address_line_one',
-		label       : 'Company Address',
+		label       : 'Company Address Line-1',
 		type        : 'text',
 		span        : 6,
 		placeholder : 'Address Line 1',
@@ -74,7 +74,7 @@ const controls = [
 	},
 	{
 		name        : 'address_line_two',
-		label       : 'Company Address',
+		label       : 'Company Address Line-2',
 		type        : 'text',
 		span        : 6,
 		placeholder : 'Address Line 2',

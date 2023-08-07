@@ -25,7 +25,6 @@ function ExportFactoring() {
 	return (
 		active && (
 			<div className={styles.wrapper} key={active}>
-				<Stepper active={active} setActive={setActive} />
 				<Form
 					active={active}
 					getCreditRequestResponse={getCreditRequestResponse}

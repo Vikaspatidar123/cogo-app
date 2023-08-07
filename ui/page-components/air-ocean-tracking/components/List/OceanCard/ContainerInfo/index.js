@@ -8,9 +8,11 @@ import getMappingObject from '../../../../constant/card';
 import styles from './styles.module.css';
 
 const INFO_MAX_LENGTH = 40;
+const MIN_CONTAINER = 1;
+const STEP_SIZE = 1;
 
-const renderValue = (value = '') => {
-	if (typeof value === 'object' || value.length < INFO_MAX_LENGTH) return value;
+function RenderValue({ value = '' }) {
+	if (typeof value === 'object' || value.length < INFO_MAX_LENGTH) return <span>{value}</span>;
 
 	return (
 		<Tooltip content={value} placement="bottom">
@@ -20,7 +22,7 @@ const renderValue = (value = '') => {
 			</div>
 		</Tooltip>
 	);
-};
+}
 
 function ContainerInfo({
 	currentContainer = {}, shipmentInfo = {}, activeContainerIndex,
@@ -45,7 +47,11 @@ function ContainerInfo({
 	}, [currentContainer, shipmentInfo]);
 
 	const incrementHandler = (value) => {
-		setActiveContainerIndex((prev) => (value ? prev + 1 : prev - 1));
+		setActiveContainerIndex((prev) => {
+			if (((prev + STEP_SIZE) <= containerDetailsLength) && value) return prev + STEP_SIZE;
+			if (((prev - STEP_SIZE) >= MIN_CONTAINER) && !value) return prev - STEP_SIZE;
+			return prev;
+		});
 	};
 
 	if (loading) {
@@ -97,7 +103,7 @@ function ContainerInfo({
 							</div>
 
 							<div className={cl`${styles.value} ${styles.col}`}>
-								{renderValue(tableData?.[item])}
+								<RenderValue value={tableData?.[item]} />
 							</div>
 
 						</div>

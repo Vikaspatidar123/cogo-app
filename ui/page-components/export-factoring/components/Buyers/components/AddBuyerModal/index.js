@@ -7,7 +7,7 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { getAddBuyerControls } from '@/ui/page-components/export-factoring/configurations/getAddBuyerControls';
 import useSubmitBuyerDetails from '@/ui/page-components/export-factoring/hooks/useSubmitBuyerDetails';
-import FieldArray from '@/ui/page-components/export-factoring/common/FieldArray';
+import FieldArray from '../FieldArray';
 
 function AddBuyerModal({ refetch, openAddBuyer, setOpenAddBuyer, getCreditRequestResponse }) {
 	const [addressDetail, setAddressDetail] = useState();
@@ -86,6 +86,7 @@ function AddBuyerModal({ refetch, openAddBuyer, setOpenAddBuyer, getCreditReques
 			</Modal.Body>
 			<Modal.Footer>
 				<Button
+					size="lg"
 					themeType="primary"
 					onClick={handleSubmit(onSubmit)}
 					loading={loading}

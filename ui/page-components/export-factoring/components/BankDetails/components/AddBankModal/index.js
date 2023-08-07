@@ -44,10 +44,8 @@ function AddBankModal({
 		<Modal
 			show={addBankModal}
 			onClose={() => setAddBankModal((pv) => !pv)}
-			placement="top"
 			showCloseIcon
 			size="lg"
-			scroll
 			style={{ maxHeight: '700px' }}
 		>
 			<Modal.Header title="Add Bank Details" />

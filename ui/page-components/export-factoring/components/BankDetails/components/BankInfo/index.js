@@ -29,7 +29,7 @@ function BankInfo({
 			<Accordion
 				type="text"
 				title={titleInfo({ index, approval_status })}
-				style={{ width: '100%', margin: '20px 0px' }}
+				style={{ width: '90%', margin: '20px 0px' }}
 			>
 				<div className={styles.flexDiv}>
 					{Object.keys(bank)?.map((key) => {

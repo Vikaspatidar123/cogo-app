@@ -42,7 +42,7 @@ function BuyersList({
 	const utilizePercent = ((utilized_amount / total_limit) * 100)?.toFixed(2);
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<Accordion
 				type="text"
 				title={titleInfo({ company_name, buyer_approval_status })}

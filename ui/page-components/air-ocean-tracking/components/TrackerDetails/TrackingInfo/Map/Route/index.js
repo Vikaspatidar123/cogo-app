@@ -2,10 +2,10 @@ import { Polyline, L } from '@cogoport/maps';
 import { isEmpty } from '@cogoport/utils';
 import { useEffect, useRef } from 'react';
 
-import { PATH_OPTION } from '../../../../../constant/mapConstant';
+import { COLOR_MAPPING } from '@/ui/commons/constants/mapConstant';
 
 function Route({ positions, map, transportMode }) {
-	const pathOptions = PATH_OPTION[transportMode];
+	const pathOptions = { color: COLOR_MAPPING[transportMode], weight: 2 };
 
 	const ref = useRef(null);
 

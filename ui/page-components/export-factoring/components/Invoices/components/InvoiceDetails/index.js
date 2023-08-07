@@ -84,7 +84,7 @@ function InvoiceDetails({
 
 	return (
 		<div>
-			<div style={{ display: 'flex', alignItems: 'center' }}>
+			<div style={{ display: 'flex', alignItems: 'center', marginTop: '20px' }}>
 				<Breadcrumb>
 					<Breadcrumb.Item
 						label={`SID: ${showCiDetails.sid}`}

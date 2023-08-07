@@ -275,7 +275,7 @@ const useSaveAddressForm = (props) => {
 	const watchIsAddressRegisteredUnderGst = watch('isAddressRegisteredUnderGst');
 
 	const { getBusinessLoading } = useGetBusiness({
-		watchTaxNumber         : watchGstList.toUpperCase(),
+		watchTaxNumber         : watchGstList?.toUpperCase(),
 		setValue,
 		registrationNumberType : 'tax',
 		addressData,

@@ -1,10 +1,9 @@
 import { cl } from '@cogoport/components';
-import Link from 'next/link';
 import React from 'react';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { useRouter, Link } from '@/packages/next';
 import LANGUAGE_MAPPING from '@/ui/commons/constants/languageMapping';
 
 function Languages() {

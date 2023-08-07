@@ -12,7 +12,7 @@ const useListOrganisation = ({ isEdit, reportData }) => {
 	const { query:q, debounceQuery } = useSearchQuery();
 
 	const hookSetter = { setPageNumber, setQuery, query };
-	const payload = isEdit ? { filters: { status: 'active' }, page: pageNumber, page_limit: 5, filters: { q } }
+	const payload = isEdit ? { filters: { status: 'active', q }, page: pageNumber, page_limit: 5 }
 		: { filters: { status: 'active' }, page_limit: 100 };
 
 	const {

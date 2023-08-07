@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import ReprtTypeSelectOptions from './ReprtTypeSelectOptions';
@@ -6,17 +7,21 @@ import styles from './styles.module.css';
 import TimeZoneSelectFilter from './TimeZoneSelectFilter';
 
 function EditDetails(props) {
-	const { data, hookSetter, isLoading, reportData, formHooks, setUserIds, userIds } = props || {};
+	const {
+		data, hookSetter, isLoading, reportData, formHooks, setUserIds,
+		type, userIds, setType,
+	} = props || {};
+
 	const { control } = formHooks || {};
-	const { schedule_type } = reportData || {};
-	const [value, setValue] = useState(schedule_type || 'never');
+
+	const { t } = useTranslation(['settings']);
 
 	return (
 		<div className={styles.conatiner}>
-			<ReprtTypeSelectOptions control={control} onChange={setValue} value={value} />
-			{value !== 'never' ? (
+			<ReprtTypeSelectOptions control={control} onChange={setType} value={type} />
+			{type !== 'never' ? (
 				<div>
-					<TimeZoneSelectFilter control={control} value={value} reportData={reportData} />
+					<TimeZoneSelectFilter control={control} value={type} reportData={reportData} />
 					<SelectUserlist
 						data={data}
 						hookSetter={hookSetter}
@@ -25,7 +30,9 @@ function EditDetails(props) {
 						userIds={userIds}
 					/>
 				</div>
-			) : null}
+			) : (
+				<div className={styles.text}>{t('settings:never_text')}</div>
+			)}
 		</div>
 	);
 }

@@ -23,7 +23,7 @@ function ReprtTypeSelectOptions({ control, onChange, value }) {
 		<div>
 			<div className={styles.text}>{t('settings:schedule_alerts_text_5')}</div>
 			<RadioController
-				name="type"
+				name="schedule_type"
 				options={REPORT_TYPE_OPTIONS({ t })}
 				handleChange={onChange}
 				value={value}

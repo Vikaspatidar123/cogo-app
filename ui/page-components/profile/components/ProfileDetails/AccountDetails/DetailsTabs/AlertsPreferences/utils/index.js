@@ -1,7 +1,7 @@
 export const formatTime = (time) => {
 	if (!time) return null;
 	const currentDate = new Date();
-	const timeParts = time.split(':');
+	const timeParts = time?.split(':');
 	const hours = +(timeParts[0]);
 	const minutes = +(timeParts[1]);
 	currentDate.setHours(hours);

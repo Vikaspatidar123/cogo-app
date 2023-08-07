@@ -1,3 +1,5 @@
+import { Placeholder } from '@cogoport/components';
+import { IcMSchedules } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
@@ -8,11 +10,20 @@ import EditDetails from './EditDetails';
 import styles from './styles.module.css';
 
 function Details(props) {
-	const { isEdit, reportData } = props || {};
-	const { schedule_time_zone, schedule_type, schedule_time } = reportData || {};
+	const { isEdit, reportData = {}, loading = false } = props || {};
+	const { schedule_time_zone = '', schedule_type = '', schedule_time = '' } = reportData || {};
 	const { t } = useTranslation(['settings']);
 
 	const { data, isLoading, hookSetter } = useListOrganisation({ isEdit, reportData });
+	if (isLoading || loading) {
+		return (
+			<div>
+				<Placeholder height="100px" margin="10px 0px 20px 0px">
+					<IcMSchedules width={40} height={40} />
+				</Placeholder>
+			</div>
+		);
+	}
 	if (isEdit) {
 		return (
 			<EditDetails

@@ -1,6 +1,8 @@
 import { Checkbox, Pagination } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
+import DESIGNATION from './configurations';
 import Header from './Header';
 import styles from './styles.module.css';
 
@@ -13,7 +15,7 @@ function UserTable({
 		list = [], page = 1, total_count,
 		page_limit,
 	} = data || {};
-
+	const { t } = useTranslation(['settings']);
 	const onCheck = ({ item }) => {
 		if (!userIds.includes(item.user_id)) {
 			setUserIds((prev) => [...prev, item.user_id]);
@@ -21,6 +23,7 @@ function UserTable({
 			setUserIds((prev) => prev.filter((info) => info !== item.user_id));
 		}
 	};
+	const DESIGNATION_MAPPING = DESIGNATION({ t });
 
 	return (
 		<div className={styles.container}>
@@ -38,9 +41,13 @@ function UserTable({
 						<div className={styles.box}>
 							{item.name}
 						</div>
-						<div className={styles.box}>
-							ok
-						</div>
+						{!isEmpty(item?.work_scopes) ? (
+							<div className={styles.box}>
+								{DESIGNATION_MAPPING[item?.work_scopes]}
+							</div>
+						) : (
+							<div className={styles.box}>-----</div>
+						)}
 						<div className={styles.box}>
 							{item.email}
 						</div>

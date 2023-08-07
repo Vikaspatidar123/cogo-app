@@ -11,6 +11,6 @@ const useStatusReport = () => {
 		queryFn  : getShipmentReport,
 	});
 
-	return { reportData: data, refetch, isLoading };
+	return { reportData: data, refetch, loading: isLoading };
 };
 export default useStatusReport;

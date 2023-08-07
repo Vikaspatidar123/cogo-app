@@ -1,7 +1,5 @@
 import { useRef, forwardRef } from 'react';
 
-import data from '../../../data';
-
 import Body from './Body';
 import Header from './Header';
 import Title from './Title';
@@ -11,7 +9,6 @@ export const SCROLL_VALUE = 220;
 function Table(props) {
 	const scrollRef = useRef({ header: {}, body: {} });
 	const { reportData } = props || {};
-	const { service_wise_data } = data || {};
 
 	const { data_points = [], service_wise_columns } = reportData || {};
 	const services = Object.keys(data_points || {});
@@ -20,7 +17,7 @@ function Table(props) {
 		if (scrollRef.current.header[index]) {
 			scrollRef.current.header[index].scrollLeft += SCROLL_VALUE;
 
-			Object.keys(scrollRef.current.body[index]).forEach((ele) => {
+			Object.keys(scrollRef.current.body[index] || {}).forEach((ele) => {
 				scrollRef.current.body[index][ele].scrollLeft += SCROLL_VALUE;
 			});
 		}
@@ -29,7 +26,7 @@ function Table(props) {
 		if (scrollRef.current.header[index]) {
 			scrollRef.current.header[index].scrollLeft -= SCROLL_VALUE;
 
-			Object.keys(scrollRef.current.body[index]).forEach((ele) => {
+			Object.keys(scrollRef.current.body[index] || {}).forEach((ele) => {
 				scrollRef.current.body[index][ele].scrollLeft -= SCROLL_VALUE;
 			});
 		}

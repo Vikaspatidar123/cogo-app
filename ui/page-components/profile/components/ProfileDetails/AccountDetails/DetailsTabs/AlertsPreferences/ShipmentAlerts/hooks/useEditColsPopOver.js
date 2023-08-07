@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const useEditColsPopOver = ({ colsList = [], props, serviceName }) => {
-	const { setColumns } = props || {};
+	const { setColumns, reset } = props || {};
 	const [show, setShow] = useState(false);
 	const [insideList, setInsideList] = useState([...colsList]);
 	const onSelect = (idx) => {
@@ -20,7 +20,7 @@ const useEditColsPopOver = ({ colsList = [], props, serviceName }) => {
 	};
 	useEffect(() => {
 		setInsideList([...colsList]);
-	}, []);
+	}, [reset]);
 
 	return {
 		show,

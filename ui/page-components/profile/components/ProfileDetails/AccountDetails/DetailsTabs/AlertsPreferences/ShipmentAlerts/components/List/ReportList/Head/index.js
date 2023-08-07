@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
-function Head({ props }) {
+function Head(props) {
 	const { isEdit } = props || {};
 	const { t } = useTranslation(['settings']);
 

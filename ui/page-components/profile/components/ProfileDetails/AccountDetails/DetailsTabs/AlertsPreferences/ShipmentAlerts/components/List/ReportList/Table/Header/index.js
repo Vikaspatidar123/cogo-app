@@ -7,8 +7,6 @@ import styles from './styles.module.css';
 function Header({ header, props, scrollHandler, scrollHandlerRight, serviceName }, ref) {
 	const { isEdit, setColumns } = props || {};
 
-	// const shipmentIds = values.map((item) => item?.shipment_id);
-
 	const onCheck = (value) => {
 		setColumns((prev) => ({ ...prev, [`${serviceName}_shipment`]: value }));
 	};

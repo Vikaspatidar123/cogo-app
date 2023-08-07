@@ -14,7 +14,7 @@ function List(props) {
 	const { isEdit = false, setEdit } = props || {};
 	const { query } = useRouter();
 	const { t } = useTranslation(['settings']);
-	const { reportData, refetch, isLoading } = useStatusReport();
+	const { reportData, refetch, loading } = useStatusReport();
 	const {
 		onSubmit = () => {},
 		setColumns = () => {},
@@ -22,9 +22,25 @@ function List(props) {
 		formHooks = {},
 		setUserIds = [],
 		userIds,
-	} = useUpdate({ reportData, refetch, setEdit, isLoading, isEdit });
+		setReset,
+		reset,
+		type,
+		setType,
+		isLoading,
+	} = useUpdate({ reportData, refetch, setEdit, isEdit });
 	const updateProps = {
-		...props, setColumns, columns, formHooks, reportData, setUserIds, userIds, refetch,
+		...props,
+		setColumns,
+		columns,
+		formHooks,
+		reportData,
+		setUserIds,
+		userIds,
+		refetch,
+		loading,
+		reset,
+		type,
+		setType,
 	};
 
 	const { handleSubmit } = formHooks || {};
@@ -40,13 +56,28 @@ function List(props) {
 
 			{isEdit && query.type !== 'shipment' ? (
 				<div className={styles.button}>
-					<Button themeType="tertiary" type="button" onClick={() => onCancel()}>
+					<Button
+						themeType="tertiary"
+						type="button"
+						onClick={() => onCancel()}
+						loading={isLoading || loading}
+					>
 						{t('settings:edit_or_add_button_label_1')}
 					</Button>
-					<Button themeType="secondary" type="button" onClick={() => onCancel()}>
+					<Button
+						themeType="secondary"
+						type="button"
+						loading={isLoading || loading}
+						onClick={() => setReset(!reset)}
+					>
 						{t('settings:shipment_button_text')}
 					</Button>
-					<Button themeType="primary" type="button" onClick={handleSubmit(onSubmit)}>
+					<Button
+						themeType="primary"
+						type="button"
+						loading={isLoading || loading}
+						onClick={handleSubmit(onSubmit)}
+					>
 						{t('settings:shipment_button_text_1')}
 					</Button>
 				</div>

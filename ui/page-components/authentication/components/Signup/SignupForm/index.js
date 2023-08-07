@@ -32,19 +32,24 @@ function SignupForm({
 	setLeadUserId = () => {},
 }) {
 	const { locale } = useRouter();
-
 	const { t } = useTranslation(['authentication']);
 	const translationKey = 'authentication:signupField';
+	const [captchaResponse, setCaptchaResponse] = useState('');
+	const [isBlur, setIsBlur] = useState(true);
 
 	const [customError, setCustomError] = useState('');
-
+	const onReCaptca = (value) => {
+		setCaptchaResponse(value);
+	};
 	const {
 		loading,
 		onSignupAuthentication,
-		recaptchaRef,
-	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId });
+	} = useSignupAuthentication({ setMode, setUserDetails, leadUserId, captchaResponse });
 
-	const { onLeadUserDetails, fetchLeadUserTrigger } = useLeadUserDetails({ setLeadUserId });
+	const { onLeadUserDetails, fetchLeadUserTrigger } = useLeadUserDetails({
+		setLeadUserId,
+		t,
+	});
 
 	const {
 		handleSubmit,
@@ -59,11 +64,13 @@ function SignupForm({
 		},
 		mode: 'onBlur',
 	});
-
 	const formValues = watch();
+
+	const mobileCheck = formValues?.mobile_number?.number;
 
 	const { onSignupApiCall, generateSignUpLeadUser, onWhatsappChange } = useSignupForm({
 		setCustomError,
+		customError,
 		trigger,
 		setValue,
 		formValues,
@@ -89,7 +96,7 @@ function SignupForm({
 					placeholder={t(`${translationKey}_name_placeholder`)}
 					rules={{ required: t(`${translationKey}_name_error`) }}
 					mode="onBlur"
-					handleBlur={() => generateSignUpLeadUser({ source: 'name' })}
+					handleBlur={() => isBlur && generateSignUpLeadUser({ source: 'name' })}
 				/>
 				<span className={styles.errors}>
 					{errors?.name?.message || ' '}
@@ -111,7 +118,7 @@ function SignupForm({
 						},
 					}}
 					mode="onBlur"
-					handleBlur={() => generateSignUpLeadUser({ source: 'email' })}
+					handleBlur={() => isBlur && generateSignUpLeadUser({ source: 'email' })}
 				/>
 				<span className={styles.errors}>
 					{errors?.email?.message || ' '}
@@ -126,24 +133,28 @@ function SignupForm({
 					name="mobile_number"
 					placeholder={t(`${translationKey}_mobile_placeholder`)}
 					rules={{
-						required : t(`${translationKey}_mobile_error`),
-						validate : () => validateMobileNumber({
-							payload: getFormattedPayload({ formValues, leadUserId }),
-							setCustomError,
-							fetchLeadUserTrigger,
-							t,
-						}),
+						required: t(`${translationKey}_mobile_error`),
 					}}
 					mode="onBlur"
+					handleBlur={() => (isBlur && mobileCheck ? validateMobileNumber({
+						payload: getFormattedPayload({ formValues, leadUserId }),
+						setCustomError,
+						fetchLeadUserTrigger,
+						t,
+					}) : null)}
 				/>
 
 				<span className={styles.errors}>
-					{customError || ''}
+					{errors?.mobile_number?.message || ' '}
 				</span>
 			</div>
 
 			<div className={styles.field}>
-				<div className={styles.checkbox_container}>
+				<div
+					className={styles.checkbox_container}
+					onMouseEnter={() => setIsBlur(false)}
+					onMouseLeave={() => setIsBlur(true)}
+				>
 					<CheckboxController
 						control={control}
 						name="is_whatsapp_number"
@@ -151,6 +162,7 @@ function SignupForm({
 						handleChange={(e) => {
 							onWhatsappChange({ value: e.target.checked });
 						}}
+
 					/>
 					{t(`${translationKey}_whatsapp_text`)}
 					<IcCWhatsapp height={20} width={20} />
@@ -186,12 +198,11 @@ function SignupForm({
 				</span>
 			</div>
 
-			<div className={styles.field_captcha}>
+			<div className={styles.field}>
 				<div className={styles.recaptcha}>
 					<ReCAPTCHA
-						ref={recaptchaRef}
 						sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
-						size="invisible"
+						onChange={onReCaptca}
 					/>
 				</div>
 			</div>

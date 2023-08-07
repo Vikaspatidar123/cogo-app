@@ -8,12 +8,10 @@
 		color: #393f70;
 	}
 
-	.tippy-box .tippy-arrow {
-		display: none !important;
-	}
-
-	.core-ui-popover-root {
-		margin-top: -9px;
+	:global {
+		div[data-tippy-root] {
+			z-index: 8000 !important;
+		}
 	}
 }
 

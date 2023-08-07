@@ -93,28 +93,10 @@ const useInfoValidate = ({
 
 	const buildData = ({ name, id }) => {
 		const {
-			importCountry = {},
-			exportCountry = {},
 			manufacturingCountry = {},
 			...rest
 		} = formInfo;
 
-		const exportCountryObj = {
-			id            : exportCountry?.id || '',
-			name          : exportCountry?.name || '',
-			country_code  : exportCountry?.country_code || '',
-			flag_icon_url : exportCountry?.flag_icon_url || '',
-			latitude      : exportCountry?.latitude || '',
-			longitude     : exportCountry?.longitude || '',
-		};
-		const importCountryObj = {
-			id            : importCountry?.id || '',
-			name          : importCountry?.name || '',
-			country_code  : importCountry?.country_code || '',
-			flag_icon_url : importCountry?.flag_icon_url || '',
-			latitude      : importCountry?.latitude || '',
-			longitude     : importCountry?.longitude || '',
-		};
 		const manufacturing = {
 			id            : manufacturingCountry?.id || '',
 			name          : manufacturingCountry?.name || '',
@@ -122,8 +104,6 @@ const useInfoValidate = ({
 			flag_icon_url : manufacturingCountry?.flag_icon_url || '',
 		};
 		return {
-			exportCountry        : exportCountryObj,
-			importCountry        : importCountryObj,
 			manufacturingCountry : manufacturing,
 			productName          : name,
 			tradeEngineInputId   : id,

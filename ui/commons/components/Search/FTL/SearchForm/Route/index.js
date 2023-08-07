@@ -92,7 +92,7 @@ function Route(
 	useImperativeHandle(ref, imperativeHandle);
 	return (
 		<div className={styles.container} id="search_form_route_container">
-			<div className={`${styles[typeOfJourney]}${styles.section}`}>
+			<div className={cl`${styles[typeOfJourney]} ${styles.section}`}>
 				{handleLabel('origin')}
 
 				<AsyncSelectController
@@ -148,7 +148,7 @@ function Route(
 				/>
 			</div>
 
-			<div className={cl`${styles[typeOfJourney]}${styles.section}`}>
+			<div className={cl`${styles[typeOfJourney]} ${styles.section}`}>
 				{handleLabel('destination')}
 				<AsyncSelectController
 					id={`search_${destination.name}`}

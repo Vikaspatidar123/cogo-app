@@ -8,10 +8,10 @@ import CompanyInformation from '../CompanyInformation';
 import DirectorInformation from '../DirectorInformation';
 import Invoices from '../Invoices';
 import OfferLetterDetails from '../OfferLetterDetails';
+import Stepper from '../Stepper';
 import { OfferLetterWaiting } from '../WaitingScreens';
 
 import styles from './styles.module.css';
-import Stepper from '../Stepper';
 
 const RENDERING_FORM = {
 	awaiting_user_inputs  : BasicDetails,
@@ -53,7 +53,6 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 	const [activeTab, setActiveTab] = useState('application');
 	const { flags = {} } = getCreditRequestResponse;
 	const Component = RENDERING_FORM[active];
-	
 
 	const { status = '' } = getCreditRequestResponse || {};
 
@@ -72,7 +71,8 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 
 						return (
 							<TabPanel name={name} title={title} key={name}>
-								{activeTab === 'application' && active !=='approved' && <Stepper active={active} setActive={setActive} />}
+								{activeTab === 'application' && active !== 'approved'
+								&& <Stepper active={active} setActive={setActive} />}
 								{(active === 'locked' && activeTab === 'application')
 									? (
 										<OfferLetterWaiting
@@ -80,7 +80,7 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 											getCreditRequestResponse={getCreditRequestResponse}
 											refetch={refetch}
 											loading={loading}
-											
+
 										/>
 									) : (
 										<MappedComponet
@@ -95,14 +95,15 @@ function Form({ active = {}, getCreditRequestResponse = {}, refetch = () => {}, 
 					})}
 				</Tabs>
 			) : (
-					<>
+				<>
 					<Stepper active={active} setActive={setActive} />
 					<Component
 						active={active}
 						getCreditRequestResponse={getCreditRequestResponse}
 						refetch={refetch}
-						loading={loading} />
-					</>
+						loading={loading}
+					/>
+				</>
 			)}
 		</div>
 	);

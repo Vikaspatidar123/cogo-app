@@ -72,7 +72,6 @@ function AmmedmentHistory({ showAmmedmentView, setShowAmmedmentView = () => {}, 
 				</div>
 			</Modal.Body>
 			<Modal.Footer>
-
 				<Button
 					style={{ marginRight: '10px' }}
 					themeType="secondary"

@@ -31,7 +31,7 @@ export default {
 		},
 	},
 	regex: {
-		TAX           : /^[0-3]{1}[0-9]{9}$|^[0-3]{1}[0-9]{9}-?[0-9]{3}$/,
+		TAX           : /^\d{13}|\d{15}$/,
 		MOBILE_NUMBER : /^[+][0-9]{1,3}[0-9]{10}$/,
 		EMAIL         : /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/,
 		password_pattern:
@@ -250,7 +250,7 @@ export default {
 	others: {
 		registration_number: {
 			label      : 'TIN',
-			pattern    : /^\d{13}$/,
+			pattern    : /^\d{13}|\d{15}$/,
 			max_length : 13,
 		},
 

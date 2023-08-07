@@ -199,6 +199,8 @@ function OfferLetterDetails({ getCreditRequestResponse = {}, refetch = () => {} 
 			)}
 			<div className={styles.bottom_container}>
 				<Button
+					themeType="primary"
+					size="lg"
 					disabled={
 							!documents?.offer_letter?.active
 							&& !documents?.signed_offer_letter?.active

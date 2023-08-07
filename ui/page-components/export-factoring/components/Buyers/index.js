@@ -23,7 +23,7 @@ function Buyers({
 				</div>
 				<Button
 					type="button"
-					size="md"
+					size="lg"
 					onClick={() => setOpenAddBuyer((pv) => !pv)}
 				>
 					<IcMPlus />

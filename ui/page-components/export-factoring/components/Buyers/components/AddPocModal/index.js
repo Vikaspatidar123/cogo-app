@@ -56,6 +56,7 @@ function AddPocModal({ refetch, openAddPoc, setOpenAddPoc, buyers, getCreditRequ
 					onClick={handleSubmit(onSubmit)}
 					loading={loading}
 					type="button"
+					size="lg"
 				>
 					Submit
 				</Button>

@@ -9,8 +9,10 @@ function ESignTracking({ getCreditRequestResponse = {} }) {
 		credit_application_data: { signing_authority_email = {} },
 		is_sign_mode_digital = false,
 		sample_exportfactoring_agreement = '',
-		documents : { offer_letter : { active } },
+		documents,
 	} = getCreditRequestResponse || {};
+
+	const { offer_letter } = documents || {};
 
 	return (
 		<div className={styles.container}>
@@ -38,7 +40,7 @@ function ESignTracking({ getCreditRequestResponse = {} }) {
 				</div>
 				<div className={styles.preview}>
 					<FilePreview name="Document Preview" url={sample_exportfactoring_agreement} />
-					<FilePreview name="Offer Letter Preview" url={active.document_url} />
+					<FilePreview name="Offer Letter Preview" url={offer_letter?.active?.document_url} />
 				</div>
 			</div>
 		</div>

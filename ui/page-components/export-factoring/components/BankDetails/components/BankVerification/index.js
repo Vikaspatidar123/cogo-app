@@ -12,7 +12,7 @@ import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import PdfViewer from '@/ui/page-components/export-factoring/common/PdfViewer';
 
-const excludedKeys = ['documents', 'rejection_reason', 'exporter_bank_account_id', 'account_type'];
+const excludedKeys = ['documents', 'rejection_reason', 'exporter_bank_account_id', 'account_type', 'approval_status'];
 
 const STATUS_FILTER = ['VERIFIED', 'REJECTED', 'VERIFICATION_PENDING'];
 
@@ -83,6 +83,7 @@ function BankVerification({ refetch, getCreditRequestResponse = {} }) {
 
 	const [accountType, setAccountType] = useState(account_type);
 	const addBankControls = getAddBankControls({ accountType });
+	const [addBankModal, setAddBankModal] = useState(false);
 	const {
 		control, setValue, handleSubmit, formState: { errors },
 	} = useForm();
@@ -108,6 +109,7 @@ function BankVerification({ refetch, getCreditRequestResponse = {} }) {
 		refetch,
 		exporter_bank_account_id,
 		getCreditRequestResponse,
+		setAddBankModal,
 	});
 
 	const ContentComponent = STATUS_MAPPING[approval_status];
@@ -260,6 +262,7 @@ function BankVerification({ refetch, getCreditRequestResponse = {} }) {
 									onClick={handleSubmit(onSubmit)}
 									loading={loading}
 									type="button"
+									size="lg"
 								>
 									Confirm
 								</Button>

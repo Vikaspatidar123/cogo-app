@@ -25,9 +25,14 @@ function DirectorInformation({
 		PROPRIETORSHIP: {
 			label               : 'Proprietorship',
 			identity_number     : 'CIN',
-			share_percent_label : 'Partnership',
+			share_percent_label : 'Proprietorship',
 		},
 		PARTNERSHIP: {
+			label               : 'Partners',
+			identity_number     : 'CIN',
+			share_percent_label : 'Partnership',
+		},
+		'LIMITED LIABILITY PARTNERSHIP': {
 			label               : 'Partners',
 			identity_number     : 'CIN',
 			share_percent_label : 'Partnership',

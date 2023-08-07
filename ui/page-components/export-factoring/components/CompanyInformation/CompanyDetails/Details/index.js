@@ -17,6 +17,10 @@ function Details({ data = {}, setShowEdit = () => {},	updatedValues = {}, getCre
 	const { org_iec_number = '' } = getCreditRequestResponse || {};
 	const { date_of_incorporation: update_date_of_incorporation = '', cin } = updatedValues;
 
+	const DOI = `${new Date(update_date_of_incorporation.toString()).getDate()}
+	-${new Date(update_date_of_incorporation.toString()).getMonth() + 1}
+	-${new Date(update_date_of_incorporation.toString()).getFullYear()}` || 'NA';
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.company_name}>
@@ -69,14 +73,16 @@ function Details({ data = {}, setShowEdit = () => {},	updatedValues = {}, getCre
 						{gst_number}
 					</div>
 				</div>
-				<div className={styles.description}>
-					<div className={styles.title}>
-						Date of Incorporation
+				{(date_of_incorporation || update_date_of_incorporation) &&	(
+					<div className={styles.description}>
+						<div className={styles.title}>
+							Date of Incorporation
+						</div>
+						<div className={styles.value}>
+							{date_of_incorporation || DOI}
+						</div>
 					</div>
-					<div className={styles.value}>
-						{date_of_incorporation || update_date_of_incorporation.toString()}
-					</div>
-				</div>
+				)}
 				<div className={styles.address}>
 					<div className={styles.title}>
 						GST Registered Address

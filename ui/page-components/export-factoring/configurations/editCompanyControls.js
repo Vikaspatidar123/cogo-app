@@ -57,7 +57,7 @@ export const getControls = (gst_list, setUpdatedValues) => [
 		type         : 'select',
 		options      : gst_list.map((x) => ({ label: x.gstin, value: x.gstin })),
 		handleChange : (e) => {
-			setUpdatedValues((prev) => ({ ...prev, address: gst_list.find((x) => x.gstin === e.value).address }));
+			setUpdatedValues((prev) => ({ ...prev, address: gst_list.find((x) => x?.gstin === e?.value)?.address }));
 		},
 	},
 	{

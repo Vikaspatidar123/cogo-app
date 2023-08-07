@@ -13,7 +13,7 @@ import { Image } from '@/packages/next';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function OfferLetterDetails({ getCreditRequestResponse = {}, refetch = () => {} }) {
-	const { onSubmit } = useSubmitOfferLetter();
+	const { onSubmit, loading } = useSubmitOfferLetter();
 	const {
 		offer_letter_status = '', approved_credit_details = {},
 		documents = {}, comments = {},
@@ -204,6 +204,7 @@ function OfferLetterDetails({ getCreditRequestResponse = {}, refetch = () => {} 
 							&& !documents?.signed_offer_letter?.active
 						}
 					type="button"
+					loading={loading}
 					onClick={handleSubmitOfferLetter}
 					className={styles.proceed_btn}
 				>

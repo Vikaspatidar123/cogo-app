@@ -22,8 +22,8 @@ function Rating({ feedback, setFeedback }) {
 					<div key={rating}>
 
 						<div
-							key={rating + 1}
-							className={cl`${styles.rating} ${rating === score - 1 ? styles.selected_rating : ''}`}
+							className={cl`${styles.rating}
+							${rating === score - GLOBAL_CONSTANTS.first_index ? styles.selected_rating : ''}`}
 							onClick={() => {
 								setFeedback({
 									reason          : '',

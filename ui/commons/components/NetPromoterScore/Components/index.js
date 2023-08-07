@@ -27,7 +27,7 @@ function NetPromoterScore() {
 
 	return (
 		<>
-			{data && <MenuTitle setShow={setShow} />}
+			{data ? <MenuTitle setShow={setShow} /> : null}
 			{show ?	(
 				<Modal show={show} showCloseIcon={false} size="md" className={styles.modal}>
 					<Modal.Header title={<Title />} />

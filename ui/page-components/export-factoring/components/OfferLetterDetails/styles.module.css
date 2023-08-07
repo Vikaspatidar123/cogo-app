@@ -164,7 +164,7 @@
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
-	padding: 20px 95px;
+	padding: 20px 16vw 100px 17vw;
 }
 
 .amedement_button_wrapper {
@@ -180,6 +180,7 @@
 	display: inline-flex;
 	align-items: center;
 	padding: 10px;
+	margin-left: "90px";
 	background: var(--20, #f7faef);
 	border: 1px solid var(--80, #abcd62);
 	border-radius: 4px;

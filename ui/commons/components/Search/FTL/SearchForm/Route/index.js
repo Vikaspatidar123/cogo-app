@@ -123,7 +123,7 @@ function Route(
 						organization_id : org_id,
 						service_type    : mode,
 					}}
-					className={`${isEdit && styles.edit}`}
+					className={isEdit && styles.edit}
 				/>
 				{errorMsg?.origin ? (
 					<div className={styles.error_msg}>Origin Port is required</div>
@@ -180,7 +180,7 @@ function Route(
 						organization_id : org_id,
 						service_type    : mode,
 					}}
-					className={`${isEdit && styles.edit}`}
+					className={isEdit && styles.edit}
 
 				/>
 				{errorMsg?.destination ? (

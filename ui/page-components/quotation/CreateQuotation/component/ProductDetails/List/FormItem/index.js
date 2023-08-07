@@ -102,7 +102,7 @@ function FormItem(props) {
 							{...field}
 							control={control}
 							handleChange={(e) => changeHandler(field, e)}
-							className={`${errors?.[field?.name] && styles.error}`}
+							className={errors?.[field?.name] && styles.error}
 						/>
 					</div>
 				);

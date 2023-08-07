@@ -65,7 +65,7 @@ function Layout({
 					}
 					if (type === 'fieldArray' && subType === 'edit_items' && show) {
 						return (
-							<div className={`${sop ? styles.field_col : styles.col}`}>
+							<div className={sop ? styles.field_col : styles.col}>
 								<EditLineItems
 									{...controlItem}
 									control={control}

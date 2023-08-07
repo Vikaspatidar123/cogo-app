@@ -12,7 +12,7 @@ function Languages() {
 	const { locale, pathname, query } = router;
 
 	return (
-		<div className={`${styles.main}`}>
+		<div className={styles.main}>
 			{Object.values(LANGUAGE_MAPPING).map((lang) => {
 				const { language, key } = lang || {};
 				return (

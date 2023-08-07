@@ -53,8 +53,8 @@ function BaseFilters({
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className={`${styles.filter_container}`}>
-				<div className={`${styles.fields_container}`}>
+			<div className={styles.filter_container}>
+				<div className={styles.fields_container}>
 
 					{field.map((config) => {
 						const { name, type, className } = config;
@@ -73,7 +73,7 @@ function BaseFilters({
 
 				</div>
 
-				<div className={`${styles.button_container}`}>
+				<div className={styles.button_container}>
 					<Button
 						themeType="secondary"
 						className="secondary sm"

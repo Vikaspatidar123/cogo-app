@@ -62,7 +62,7 @@ function AmmedmentHistory({ showAmmedmentView, setShowAmmedmentView = () => {}, 
 						) : (
 							<div className={styles.content_div}>
 								<div className={`${styles.comment_box} `}>{x?.body}</div>
-								<div className={`${styles.date_wrap}`}>
+								<div className={styles.date_wrap}>
 									<div className={styles.user_text}>{x?.updated_at.slice(0, 10)}</div>
 									<div className={styles.user_text}>CredFinix</div>
 								</div>

@@ -71,7 +71,7 @@ function ChapterList({
 				<div className={`${styles.desc} ${chapterToggle && styles.selected}`}>
 					{description()}
 				</div>
-				<div className={`${styles.dropdown_symbol2}`}>
+				<div className={styles.dropdown_symbol2}>
 					<IcMArrowDown className={styles.chapterarrow} toggleDropdown={chapterToggle} />
 				</div>
 			</div>

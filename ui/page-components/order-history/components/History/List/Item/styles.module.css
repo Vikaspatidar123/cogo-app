@@ -73,6 +73,7 @@
 
 	&:hover {
 		background-color: #f8f2e7;
+		box-shadow: rgb(0 0 0 / 15%) 0 2px 8px;
 		transition: transform 0.2s ease-in;
 		transform: scale(1.01);
 

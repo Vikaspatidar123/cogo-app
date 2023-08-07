@@ -377,6 +377,7 @@ function asyncFieldsTicketTypes() {
 		qFilterKey  : 'QFilter',
 		listKey     : 'items',
 		scope       : 'cogocare',
+		params      : { Audience: 'importer_exporter' },
 	};
 }
 

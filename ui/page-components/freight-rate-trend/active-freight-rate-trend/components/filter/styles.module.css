@@ -1,5 +1,4 @@
 .container {
-	float: right;
 	margin-top: 10px;
 	cursor: pointer;
 
@@ -17,33 +16,6 @@
 	width: 100%;
 	padding: 13px 0;
 	border-radius: 10px;
-}
-
-.filter_button_ctn {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	height: 30px;
-	padding: 15px;
-	cursor: pointer;
-	border: 1px solid #e0e0e0;
-	border-radius: 6px;
-}
-
-.filter_text {
-	padding: 5px;
-	font-size: 16px;
-	font-weight: 400;
-	color: black;
-}
-
-.filter_icon {
-	padding: 8px 0 0;
-}
-
-.direction_icon {
-	padding: 5px 0 0;
-	color: black;
 }
 
 .container1 {
@@ -86,4 +58,22 @@
 .input_title_text {
 	font-size: 14px;
 	font-weight: 400;
+}
+
+.filter_icon {
+	margin-right: 4px;
+}
+
+.icon {
+	margin-left: 4px;
+	transition: all 0.3s ease-in;
+
+	svg {
+		vertical-align: baseline;
+	}
+
+	&.rotate {
+		transition: all 0.3s ease-in;
+		transform: rotate(180deg);
+	}
 }

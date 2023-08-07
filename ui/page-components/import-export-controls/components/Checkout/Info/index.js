@@ -1,11 +1,17 @@
 import { useTranslation } from 'next-i18next';
 
-import MapContainer from '../../../common/MapContainer';
 import { getLabelMapping } from '../../../constant/lableMapping';
 
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
+import MapContainer from '@/ui/commons/components/CogoMaps2';
+
+const MAP_ZOOM = 3;
+
+const style = {
+	borderRadius: '18px',
+};
 
 const getMapping = ({ t }) => {
 	const COUNTRY_ARR = [t('importExportControls:checkout_country_arr_1'),
@@ -52,7 +58,7 @@ function Info(props) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.map_container}>
-				<MapContainer formInfo={localStorageData} height="300px" />
+				<MapContainer formInfo={localStorageData} height="300px" mapZoom={MAP_ZOOM} style={style} />
 			</div>
 			<div className={styles.data_container}>
 				<div className={styles.row}>

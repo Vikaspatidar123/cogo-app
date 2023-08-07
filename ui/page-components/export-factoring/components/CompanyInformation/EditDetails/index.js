@@ -15,7 +15,7 @@ function EditDetails({
 }) {
 	const [addressDetail, setAddressDetail] = useState();
 	const {
-		address, city, constitution_of_business, gst_number, name, pan, pincode, state, gst_list,
+		city, constitution_of_business, name, pan, pincode, state, gst_list,
 		date_of_incorporation,
 	} = data || {};
 	const { org_iec_number = '' } = getCreditRequestResponse || {};

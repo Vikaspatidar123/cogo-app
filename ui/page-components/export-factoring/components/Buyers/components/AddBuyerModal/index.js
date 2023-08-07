@@ -1,13 +1,14 @@
 import { Modal, Button } from '@cogoport/components';
 import { useState, useEffect } from 'react';
 
+import FieldArray from '../FieldArray';
+
 import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
 import { getAddBuyerControls } from '@/ui/page-components/export-factoring/configurations/getAddBuyerControls';
 import useSubmitBuyerDetails from '@/ui/page-components/export-factoring/hooks/useSubmitBuyerDetails';
-import FieldArray from '../FieldArray';
 
 function AddBuyerModal({ refetch, openAddBuyer, setOpenAddBuyer, getCreditRequestResponse }) {
 	const [addressDetail, setAddressDetail] = useState();
@@ -21,14 +22,14 @@ function AddBuyerModal({ refetch, openAddBuyer, setOpenAddBuyer, getCreditReques
 	const {
 		control, handleSubmit, setValue, formState: { errors },
 	} = useForm({
-		defaultValue:{
-			poc_details :[
-				{name: ''},
-				{designation:''},
-				{email_id:''},
-				{mobile_number:''},
-			]
-		}
+		defaultValue: {
+			poc_details: [
+				{ name: '' },
+				{ designation: '' },
+				{ email_id: '' },
+				{ mobile_number: '' },
+			],
+		},
 	});
 
 	const { onSubmit, loading } = useSubmitBuyerDetails({

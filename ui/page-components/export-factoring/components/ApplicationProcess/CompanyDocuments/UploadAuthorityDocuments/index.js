@@ -4,7 +4,6 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled';
-import FilePreview from '@/ui/page-components/export-factoring/common/FilePreview';
 
 const fields = {
 	name        : 'signature_proof',

@@ -128,13 +128,13 @@ const controls = [
 		className : 'primary md',
 	},
 	{
-		name        : 'poc_details',
-		type        : 'fieldArray',
-		showButtons : true,
-		buttonText  : 'Add Poc',
+		name               : 'poc_details',
+		type               : 'fieldArray',
+		showButtons        : true,
+		buttonText         : 'Add Poc',
 		noDeleteButtonTill : 0,
 		// value       : [{}],
-		controls    : [
+		controls           : [
 			{
 				name        : 'name',
 				type        : 'text',
@@ -166,16 +166,16 @@ const controls = [
 				},
 			},
 			{
-				name        : 'mobile_number',
-				label       : 'Mobile Number',
-				placeholder : 'Enter Mobile Number',
-				type        : 'mobile_number',
+				name            : 'mobile_number',
+				label           : 'Mobile Number',
+				placeholder     : 'Enter Mobile Number',
+				type            : 'mobile_number',
 				isInputGroup    : true,
 				showCountryName : false,
-				inputType   : 'number',
-				select2     : 'new',
-				options     : country_code,
-				rules       : {
+				inputType       : 'number',
+				select2         : 'new',
+				options         : country_code,
+				rules           : {
 					required : true,
 					validate : (value) => (value?.country_code && value?.number ? undefined : 'Phone Number'),
 				},

@@ -1,5 +1,3 @@
-import { Image } from '@/packages/next';
-
 export const tradeControls = (setSelectedCountry) => [
 
 	{

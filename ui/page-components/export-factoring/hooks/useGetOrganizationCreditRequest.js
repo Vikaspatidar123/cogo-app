@@ -38,7 +38,7 @@ const useGetOrganizationCreditRequest = () => {
 		} catch (e) {
 			setActive('awaiting_user_inputs');
 		}
-	}, [data?.status, organization?.id, trigger]);
+	}, [data, organization?.id, trigger]);
 
 	useEffect(() => {
 		getOrganizationCreditRequest();

@@ -1,5 +1,4 @@
 import { Button } from '@cogoport/components';
-import { isEmpty } from '@cogoport/utils';
 import React from 'react';
 
 import Child from './child';
@@ -24,7 +23,7 @@ function FieldArray({
 		control,
 		name,
 	});
-	
+
 	const childEmptyValues = {};
 	controls.forEach((controlItem) => {
 		childEmptyValues[controlItem.name] = controlItem.value || '';

@@ -1,14 +1,14 @@
 const controls = [
 	{
-		name: 'sid',
-		type: 'select',
-		placeholder: 'Select...',
-		defaultOptions: true,
-		label: 'Select SID',
-		span: 6,
-		asyncKey: 'shipment_sid_list',
-		initialCall : true,
-		rules: { required: 'SID is required' },
+		name           : 'sid',
+		type           : 'select',
+		placeholder    : 'Select...',
+		defaultOptions : true,
+		label          : 'Select SID',
+		span           : 6,
+		asyncKey       : 'shipment_sid_list',
+		initialCall    : true,
+		rules          : { required: 'SID is required' },
 	},
 	{
 		name        : 'buyer_name',

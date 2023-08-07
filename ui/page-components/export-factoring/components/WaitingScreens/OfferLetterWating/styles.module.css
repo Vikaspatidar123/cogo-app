@@ -36,7 +36,6 @@
 }
 
 .label {
-	font-family: Poppins;
 	font-size: 24px;
 	font-style: normal;
 	font-weight: 400;
@@ -45,7 +44,6 @@
 }
 
 .sub_label {
-	font-family: Poppins;
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 400;
@@ -70,7 +68,6 @@
 }
 
 .card_label {
-	font-family: Poppins;
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 600;
@@ -80,7 +77,6 @@
 
 .card_sub_label {
 	max-width: 14vw;
-	font-family: Poppins;
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 400;

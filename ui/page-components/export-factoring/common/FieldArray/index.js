@@ -24,12 +24,12 @@ function FieldArray({
 		control,
 		name,
 	});
-	
+
 	const childEmptyValues = {};
 	controls.forEach((controlItem) => {
 		childEmptyValues[controlItem.name] = controlItem.value || '';
 	});
-	console.log(fields,'fields',childEmptyValues)
+	console.log(fields, 'fields', childEmptyValues);
 	const handleAppendChild = () => {
 		if (actionOnAdd && typeof actionOnAdd === 'function') {
 			actionOnAdd({

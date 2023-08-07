@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { Modal, Button } from '@cogoport/components';
 
 import { getDirectorControls } from '../../../configurations/editDirectorControls';

@@ -1,16 +1,16 @@
 import { TabPanel, Tabs } from '@cogoport/components';
+import { upperCase } from '@cogoport/utils';
 import React, { useState } from 'react';
 
 import BankDetails from '../BankDetails';
-import styles from './styles.module.css';
 
 import Agreement from './Agreement';
 import CompanyDocuments from './CompanyDocuments';
 import OptUdcAndPdc from './OptUdcPdcDocuments';
-import { upperCase } from '@cogoport/utils';
+import styles from './styles.module.css';
 
 const tabsPanelMapping = (maximum_org_annual_income, flags) => {
-	const { bank_details = ''} = flags || {};
+	const { bank_details = '' } = flags || {};
 	const baseTabs = [
 		{
 			name      : 'agreement',
@@ -54,11 +54,11 @@ function ApplicationProcess({ active = {}, getCreditRequestResponse = {}, refetc
 			{status === 'approved' && (
 				<div>
 					<div className={styles.congrats_div}>
-					<span>Congratulations 🎉</span>
-					<span>
-					You have successfully been registered with us!
-					</span>
-				</div>
+						<span>Congratulations 🎉</span>
+						<span>
+							You have successfully been registered with us!
+						</span>
+					</div>
 				</div>
 			)}
 			<Tabs
@@ -68,9 +68,9 @@ function ApplicationProcess({ active = {}, getCreditRequestResponse = {}, refetc
 			>
 				{tabsPanelMapping(maximum_org_annual_income, flags).map(({
 					title = '',
-					Component, status = '', name = '',
+					Component, status: statusFlag = '', name = '',
 				}) => (
-					<TabPanel name={name} title={title} badge={status} key={name}>
+					<TabPanel name={name} title={title} badge={statusFlag} key={name}>
 						<Component
 							active={active}
 							getCreditRequestResponse={getCreditRequestResponse}

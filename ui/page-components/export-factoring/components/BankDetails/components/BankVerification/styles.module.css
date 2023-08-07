@@ -24,7 +24,7 @@
 	align-items: center;
 	font-size: 20px;
 	font-weight: 500;
-	color: #221F20;
+	color: #221f20;
 }
 
 .subtitle {
@@ -32,7 +32,7 @@
 	align-items: center;
 	font-size: 18px;
 	font-weight: 500;
-	color: #221F20;
+	color: #221f20;
 }
 
 .description {
@@ -63,8 +63,8 @@
 
 .button_wrapper {
 	position: fixed;
-	bottom: 0;
 	right: 50px;
+	bottom: 0;
 	display: inline-flex;
 	justify-content: flex-end;
 	float: "row";

@@ -1,9 +1,9 @@
 .congrats_div {
 	display: flex;
 	flex-direction: column;
-    justify-content: center;
 	align-items: center;
-	padding: 20px 0px 40px;
+	justify-content: center;
+	padding: 20px 0 40px;
 
 	span:first-child {
 		font-size: 24px;
@@ -13,6 +13,7 @@
 		letter-spacing: 0;
 	}
 
+	/* stylelint-disable-next-line no-descending-specificity */
 	span {
 		font-size: 14px;
 		font-weight: 400;
@@ -23,8 +24,8 @@
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px 0;
 }

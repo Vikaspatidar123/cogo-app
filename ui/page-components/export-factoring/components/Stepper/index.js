@@ -6,7 +6,6 @@ import styles from './styles.module.css';
 
 const CHECK = ['awaiting_user_inputs', 'awaiting_offer_letter', 'offer_letter_complete', 'payment_success'];
 function Stepper({ setActive = () => { }, active = '' }) {
-
 	const activeStep = CHECK.includes(active) ? active : 'locked';
 
 	return (

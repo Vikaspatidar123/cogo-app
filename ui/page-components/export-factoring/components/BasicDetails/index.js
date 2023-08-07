@@ -1,4 +1,4 @@
-import { Button, Checkbox } from '@cogoport/components';
+import { Button } from '@cogoport/components';
 import React from 'react';
 
 import FormCard from '../../common/FormCard';
@@ -6,7 +6,6 @@ import useApplyCreditRequestCouponCode from '../../hooks/useApplyCreditRequestCo
 
 import CompanyInfoForm from './CompanyInfoForm';
 import Coupons from './Coupons';
-import CreditRequirements from './CreditRequirements';
 import PointOfContacts from './PointOfContacts';
 import styles from './styles.module.css';
 import TradeDetails from './TradeDetails';

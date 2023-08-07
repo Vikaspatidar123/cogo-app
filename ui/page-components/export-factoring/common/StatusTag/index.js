@@ -1,7 +1,7 @@
+import { isEmpty } from '@cogoport/utils';
 import React from 'react';
 
 import styles from './styles.module.css';
-import { isEmpty } from '@cogoport/utils';
 
 const backgroundStatus = ({ status }) => {
 	if (['active', 'approval_pending'].includes(status)) return '#f9da7f';

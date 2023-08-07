@@ -17,28 +17,28 @@ const excludedKeys = ['documents', 'rejection_reason', 'exporter_bank_account_id
 const STATUS_FILTER = ['VERIFIED', 'REJECTED', 'VERIFICATION_PENDING'];
 
 const STATUS_MAPPING = {
-	REJECTED :{
-		title: 'Details Rejected',
-		subtitle: 'Your bank details are rejected. Please enter accurate data',
-		icon: IcMInfo,
-		color: '#BF291E',
-		iconColor: '#BF291E',
+	REJECTED: {
+		title     : 'Details Rejected',
+		subtitle  : 'Your bank details are rejected. Please enter accurate data',
+		icon      : IcMInfo,
+		color     : '#BF291E',
+		iconColor : '#BF291E',
 	},
-	VERIFICATION_PENDING :{
-		title: 'Awaiting Final Review',
-		subtitle: 'We are checking the documents to make sure everything is in place This may take upto 10 Hours',
-		icon: IcMClock,
-		color: '#221F20',
-		iconColor: '#FCDC00',
+	VERIFICATION_PENDING: {
+		title     : 'Awaiting Final Review',
+		subtitle  : 'We are checking the documents to make sure everything is in place This may take upto 10 Hours',
+		icon      : IcMClock,
+		color     : '#221F20',
+		iconColor : '#FCDC00',
 	},
-	VERIFIED:{
-		title: 'Verification Successful',
-		subtitle: 'Your bank details are successfully verified',
-		icon: IcCFtick,
-		color: '#221F20',
-		iconColor: '#849E4C',
-	}
-}
+	VERIFIED: {
+		title     : 'Verification Successful',
+		subtitle  : 'Your bank details are successfully verified',
+		icon      : IcCFtick,
+		color     : '#221F20',
+		iconColor : '#849E4C',
+	},
+};
 
 function CommentBox({ comment = '' }) {
 	return (
@@ -83,7 +83,6 @@ function BankVerification({ refetch, getCreditRequestResponse = {} }) {
 
 	const [accountType, setAccountType] = useState(account_type);
 	const addBankControls = getAddBankControls({ accountType });
-	const [addBankModal, setAddBankModal] = useState(false);
 	const {
 		control, setValue, handleSubmit, formState: { errors },
 	} = useForm();
@@ -109,7 +108,7 @@ function BankVerification({ refetch, getCreditRequestResponse = {} }) {
 		refetch,
 		exporter_bank_account_id,
 		getCreditRequestResponse,
-		setAddBankModal,
+
 	});
 
 	const ContentComponent = STATUS_MAPPING[approval_status];
@@ -119,21 +118,32 @@ function BankVerification({ refetch, getCreditRequestResponse = {} }) {
 			<div className={styles.header}>
 				Bank Details
 			</div>
-			{STATUS_FILTER.includes(approval_status)&& (
+			{STATUS_FILTER.includes(approval_status) && (
 				<div className={styles.flexDiv}>
 					<div>
 						<div className={styles.title} style={{ color: ContentComponent?.color }}>
 							{approval_status === 'REJECTED' ? (
-							<Tooltip
-								content={<CommentBox comment={rejection_reason?.[0]} />}
-								placement="top"
-								theme="light"
-								interactive
-							>
-								<IcMInfo width="16px" height="16px" style={{ margin: '6px 3px 0px 0px' }} fill={ContentComponent?.iconColor} />
-							</Tooltip>
-							):(
-								<ContentComponent.icon width="20px" height="20px" style={{ marginRight: '3px' }} fill={ContentComponent?.iconColor}  />
+								<Tooltip
+									content={<CommentBox comment={rejection_reason?.[0]} />}
+									placement="top"
+									theme="light"
+									interactive
+								>
+									<IcMInfo
+										width="16px"
+										height="16px"
+										style={{ margin: '6px 3px 0px 0px' }}
+										fill={ContentComponent?.iconColor}
+									/>
+								</Tooltip>
+							) : (
+								// eslint-disable-next-line react/jsx-pascal-case
+								<ContentComponent.icon
+									width="20px"
+									height="20px"
+									style={{ marginRight: '3px' }}
+									fill={ContentComponent?.iconColor}
+								/>
 							)}
 							{ContentComponent?.title}
 						</div>

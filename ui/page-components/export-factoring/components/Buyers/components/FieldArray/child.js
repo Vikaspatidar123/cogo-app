@@ -19,7 +19,6 @@ function Child({
 	error,
 	noDeleteButtonTill = 0,
 }) {
-	console.log(index, noDeleteButtonTill, length, disabled, 'kpkpk')
 	return (
 		<div className={`${styles.form_container} form_container`} style={{ width: '100%' }}>
 			<div className={`${styles.content} form_content`}>

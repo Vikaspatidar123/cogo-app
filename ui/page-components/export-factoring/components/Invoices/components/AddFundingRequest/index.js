@@ -64,7 +64,7 @@ function AddFundingRequest({
 
 	useEffect(() => {
 		getBuyerDetails();
-	}, []);
+	}, [getBuyerDetails]);
 
 	const { control, handleSubmit, formState: { errors } } = useForm();
 	return (

@@ -18,7 +18,7 @@ const fields = {
 	},
 
 };
-function UndatedCheques({ refetch = () => {}, udcCheque, getCreditRequestResponse }) {
+function UndatedCheques({ udcCheque, getCreditRequestResponse }) {
 	const { documents_list = {} } = getCreditRequestResponse;
 
 	const { undated_cheque = [] } = documents_list;

@@ -114,7 +114,6 @@ const BANK_CONTROLS = [
 ];
 
 export const getAddBankControls = ({ accountType }) => BANK_CONTROLS.map((control) => {
-
 	if (accountType === 'current_account' && control.name !== 'currency') {
 		return {
 			...control,
@@ -123,4 +122,5 @@ export const getAddBankControls = ({ accountType }) => BANK_CONTROLS.map((contro
 	if (accountType === 'eefc_account' && control.name !== 'exporter_cheque') {
 		return { ...control };
 	}
+	return { ...control };
 });

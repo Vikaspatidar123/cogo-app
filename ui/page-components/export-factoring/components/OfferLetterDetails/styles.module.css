@@ -1,3 +1,6 @@
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+/* stylelint-disable custom-property-pattern */
+/* stylelint-disable no-descending-specificity */
 .container {
 	display: flex;
 	flex-direction: column;

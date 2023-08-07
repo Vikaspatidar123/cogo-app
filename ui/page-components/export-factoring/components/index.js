@@ -3,7 +3,6 @@ import { Loader } from '@cogoport/components';
 import useGetOrganizationCreditRequest from '../hooks/useGetOrganizationCreditRequest';
 
 import Form from './Form';
-import Stepper from './Stepper';
 import styles from './styles.module.css';
 
 function ExportFactoring() {

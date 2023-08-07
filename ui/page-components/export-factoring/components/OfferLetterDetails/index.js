@@ -25,7 +25,6 @@ function OfferLetterDetails({ getCreditRequestResponse = {}, refetch = () => {} 
 		grace_period,
 		advance_rate,
 		processing_fee,
-		factoring_fee,
 		interest,
 		overdue_charges,
 	} = approved_credit_details || {};

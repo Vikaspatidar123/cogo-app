@@ -34,7 +34,6 @@
 
 .text_dffer_letter {
 	margin: 12px 0 8px;
-	font-family: Poppins;
 	font-size: 12px;
 	font-style: normal;
 	font-weight: 500;
@@ -76,7 +75,6 @@
 .main_heading {
 	margin-top: 0;
 	margin-bottom: 10px;
-	font-family: Roboto;
 	font-size: 16px;
 	font-weight: 500;
 }
@@ -97,7 +95,6 @@
 
 .user_text {
 	padding: 0 3px;
-	font-family: Poppins;
 	font-size: 12px;
 	font-style: normal;
 	font-weight: 400;

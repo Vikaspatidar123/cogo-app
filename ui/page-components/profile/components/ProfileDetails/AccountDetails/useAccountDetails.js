@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 import getOptions from './utils/options-mapping';
 
@@ -45,8 +45,10 @@ const useAccountDetails = () => {
 		if (obj !== activeTab) push(`/settings?activeTab=${obj}`);
 	};
 
-	useMemo(() => {
-		setActiveTab(query.activeTab);
+	useEffect(() => {
+		if (query.activeTab) {
+			setActiveTab(query.activeTab);
+		}
 	}, [query.activeTab]);
 
 	return {

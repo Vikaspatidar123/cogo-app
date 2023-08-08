@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 
-const useEditColsPopOver = ({ colsList = [], props, serviceName }) => {
-	const { setColumns, reset } = props || {};
+const useEditColsPopOver = ({ colsList = [], serviceName, data }) => {
+	const { setColumns, reset } = data || {};
+
 	const [show, setShow] = useState(false);
+
 	const [insideList, setInsideList] = useState([...colsList]);
+
 	const onSelect = (idx) => {
 		const newList = [...insideList];
 		if (!newList[idx].isChecked) {

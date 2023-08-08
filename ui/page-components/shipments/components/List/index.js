@@ -10,10 +10,13 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
+const viewAs = 'importer_exporter';
+
 function ShipmentList() {
 	const { push } = useRouter();
-	const viewAs = 'importer_exporter';
+
 	const [params, setParams] = useState(null);
+
 	const {
 		loading,
 		page,

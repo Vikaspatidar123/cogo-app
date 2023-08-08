@@ -7,7 +7,7 @@ const DATES = [
 	23, 24, 25, 26, 27, 28,
 ];
 
-const DAYS = ({ t = () => {} }) => [
+const days = ({ t = () => {} }) => [
 	{ label: t('settings:schedule_days_option_6'), value: 0 },
 	{ label: t('settings:schedule_days_option_0'), value: 1 },
 	{ label: t('settings:schedule_days_option_1'), value: 2 },
@@ -46,7 +46,7 @@ export const controls = ({ t = () => {}, reportData }) => [
 		label    : t('settings:schedule_label_2'),
 		name     : 'days',
 		type     : 'select',
-		options  : DAYS({ t }),
+		options  : days({ t }),
 		style    : { width: '200px' },
 		multiple : true,
 		value    : reportData?.days,

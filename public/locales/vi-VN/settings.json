@@ -238,5 +238,6 @@
     "of_text":"của",
     "shipment_text":"Lô hàng",
     "clear_all_text":"Làm sạch tất cả",
-    "select_all_text":"Chọn tất cả"
+    "select_all_text":"Chọn tất cả",
+    "empty_text":"trống"
 }

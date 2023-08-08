@@ -8,8 +8,8 @@ import useEditColsPopOver from '../../../../../hooks/useEditColsPopOver';
 import RenderPopOver from './RenderPopOver';
 import styles from './styles.module.css';
 
-function Title({ serviceName, options, checkPoint, totalPoint, props }) {
-	const { isEdit } = props || {};
+function Title(props) {
+	const { serviceName, options, checkPoint, totalPoint, isEdit } = props || {};
 
 	const { t } = useTranslation(['settings']);
 
@@ -20,9 +20,9 @@ function Title({ serviceName, options, checkPoint, totalPoint, props }) {
 		onSelect = () => {},
 		setInsideList,
 	} = useEditColsPopOver({
-		colsList: options,
-		props,
+		colsList : options,
 		serviceName,
+		data     : props,
 	});
 
 	const selectedShipmentColumns = (insideList || []).filter(
@@ -61,8 +61,8 @@ function Title({ serviceName, options, checkPoint, totalPoint, props }) {
 									onSelect={onSelect}
 									setShow={setShow}
 									setInsideList={setInsideList}
-									props={props}
 									serviceName={serviceName}
+									{...props}
 								/>
 							)}
 						>

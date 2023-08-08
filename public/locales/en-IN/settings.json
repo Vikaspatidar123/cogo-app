@@ -238,6 +238,7 @@
     "of_text":"of",
     "shipment_text":"Shipments",
     "clear_all_text":"Clear all",
-    "select_all_text":"Select all"
+    "select_all_text":"Select all",
+    "empty_text":"empty"
 
 }

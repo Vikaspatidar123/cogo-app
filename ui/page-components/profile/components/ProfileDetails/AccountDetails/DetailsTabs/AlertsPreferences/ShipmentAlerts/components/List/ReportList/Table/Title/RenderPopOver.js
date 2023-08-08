@@ -5,17 +5,18 @@ import { useEffect, useState } from 'react';
 
 import styles from './styles.module.css';
 
-function RenderPopOver({
-	insideList, onSelect,
-	setShow,
-	setInsideList,
-	serviceName, props,
-}) {
+function RenderPopOver(props) {
+	const {
+		insideList, onSelect,
+		setShow,
+		setInsideList,
+		serviceName,
+		setColumns,
+	} = props || {};
+
 	const selectedShipmentColumns = (insideList || []).map(
 		(item) => item?.isChecked,
 	);
-
-	const { setColumns } = props || {};
 
 	const { t } = useTranslation(['settings']);
 

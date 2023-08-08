@@ -21,7 +21,7 @@ const payLoad = ({ value, columns, userIds, reportData }) => ({
 
 });
 
-const useUpdate = ({ reportData, refetch, setEdit }) => {
+const useUpdate = ({ reportData = {}, refetch = () => {}, setEdit = false }) => {
 	const {
 		schedule_time_zone = '', days = '', schedule_time = '',
 		dates, recipient_user_ids = [], schedule_type = 'never',

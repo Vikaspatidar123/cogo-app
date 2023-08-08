@@ -4,9 +4,14 @@ import { forwardRef } from 'react';
 
 import styles from './styles.module.css';
 
-function Header({ header, props, scrollHandler, scrollHandlerRight, serviceName }, ref) {
-	const { isEdit, setColumns } = props || {};
-
+function Header({
+	header,
+	isEdit,
+	setColumns,
+	scrollHandler,
+	scrollHandlerRight,
+	serviceName,
+}, ref) {
 	const onCheck = (value) => {
 		setColumns((prev) => ({ ...prev, [`${serviceName}_shipment`]: value }));
 	};

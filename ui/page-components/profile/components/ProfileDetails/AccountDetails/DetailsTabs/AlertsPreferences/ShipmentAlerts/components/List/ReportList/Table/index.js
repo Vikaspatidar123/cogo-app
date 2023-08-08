@@ -54,14 +54,14 @@ function Table(props) {
 							checkPoint={checkPoint}
 							serviceName={item}
 							options={options}
-							props={props}
+							{...props}
 						/>
 						<Header
 							header={header}
 							serviceName={item}
 							scrollHandler={scrollHandlerLeft(index)}
 							scrollHandlerRight={scrollHandlerRight(index)}
-							props={props}
+							{...props}
 							ref={(r) => {
 								scrollRef.current.header[index] = r;
 							}}

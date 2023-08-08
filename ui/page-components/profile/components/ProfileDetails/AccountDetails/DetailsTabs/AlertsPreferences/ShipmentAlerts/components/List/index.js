@@ -56,7 +56,7 @@ function List(props) {
 			<div className={styles.empty}>
 				<Image
 					src={GLOBAL_CONSTANTS.image_url.ocean_empty_state}
-					alt="empty"
+					alt={t('settings:empty_text')}
 					width={600}
 					height={500}
 				/>

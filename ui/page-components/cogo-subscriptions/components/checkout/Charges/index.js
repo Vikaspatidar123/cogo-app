@@ -19,7 +19,6 @@ import DiscountTooltip from './DiscountTooltip';
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
-import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function Description() {
@@ -50,9 +49,6 @@ function Charges({
 	const [showCoupons, setShowCoupons] = useState(false);
 
 	const loading = checkoutResponse?.errors || completeOrderLoading;
-
-	const geo = getGeoConstants();
-	const { is_tax_included } = geo.others.navigations.subscription;
 
 	const {
 		applyPromoCode, promoCodeData, couponCode, setCouponCode,
@@ -98,18 +94,16 @@ function Charges({
 			</div>
 			<div className={styles.div}>
 				<div className={styles.styled_row}>
-					{is_tax_included ? (
-						<div className={styles.styled_col}>
-							<div>
-								{plan?.description}
-								<div className={styles.gst}>
-									(
-									{t('subscriptions:gst_included_text')}
-									)
-								</div>
+					<div className={styles.styled_col}>
+						<div>
+							{plan?.description}
+							<div className={styles.gst}>
+								(
+								{t('subscriptions:gst_included_text')}
+								)
 							</div>
 						</div>
-					) : null}
+					</div>
 					<div className={styles.styled_col2}>
 						{plan?.metadata?.display_pricing?.[`${query?.period}`]
 							?.prev_value_inr ? (

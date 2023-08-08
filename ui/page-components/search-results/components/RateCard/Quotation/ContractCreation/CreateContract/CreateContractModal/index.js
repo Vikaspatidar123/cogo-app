@@ -70,19 +70,17 @@ function CreateContractModal({
 			<div className={styles.styled_row}>
 				<div className={styles.styled_col}>
 					<div className={styles.label}>{fields.contract_name.label}</div>
-					<div className={styles.inline_label}>Name</div>
 					<InputController {...fields.contract_name} />
 					<div className={styles.error_text}>{errors?.contract_name?.message}</div>
 				</div>
 			</div>
 
-			<div className={styles.styled_row}>
+			<div className={cl`${styles.styled_row} ${styles.date_row}`}>
 				<div className={styles.styled_col}>
 					<div className={styles.label}>
 						Validity
 						<div className={styles.sub_label}>(Max 30 Days)</div>
 					</div>
-					<div className={styles.inline_label}>Start Date</div>
 					<DatepickerController
 						{...fields.validity_start}
 						minDate={new Date()}
@@ -92,11 +90,8 @@ function CreateContractModal({
 				</div>
 
 				<div className={cl`${styles.styled_col} ${styles.end_date}`}>
-
-					<div className={`${styles.inline_label} ${styles.inline_date}`}>End Date</div>
 					<DatepickerController
 						{...fields.validity_end}
-						theme="admin"
 						minDate={startDate}
 						maxDate={addDays(startDate, 29)}
 						disabled={!startDate}
@@ -108,7 +103,6 @@ function CreateContractModal({
 			<div className={styles.styled_row}>
 				<div className={styles.styled_col}>
 					<div className={styles.label}>{label}</div>
-					<div className={styles.inline_label}>{label}</div>
 					<InputController {...input} min={50} />
 					<div className={styles.error_text}>{error && `Min ${getUnit(search_type)}  is 50`}</div>
 				</div>
@@ -126,7 +120,6 @@ function CreateContractModal({
 							{' '}
 							<span className={styles.shipping_line}>(OPTIONAL)</span>
 						</div>
-						<div className={styles.inline_label}>Search</div>
 						<AsyncSelectController
 							{...fields.preferred_shipping_line_ids}
 							onFocus={async () => {
@@ -152,7 +145,6 @@ function CreateContractModal({
 							{' '}
 							<span className={styles.shipping_line}>(OPTIONAL)</span>
 						</div>
-						<div className={styles.inline_label}>Search</div>
 						<AsyncSelectController
 							{...fields.exclude_shipping_line_ids}
 							onFocus={async () => {

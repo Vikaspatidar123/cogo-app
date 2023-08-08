@@ -29,5 +29,5 @@ export const containerTypeMaping = {
 	'OPEN TOP'   : 'open_top',
 	FLAT         : 'flat_rack',
 	ISO          : 'iso_tank',
-	'OPEN SIDE'  : ' open_side',
+	'OPEN SIDE'  : 'open_side',
 };

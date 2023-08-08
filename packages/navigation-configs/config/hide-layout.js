@@ -24,5 +24,6 @@ const HIDE_LAYOUT = [
 	'/accept-invite/[id]',
 	'/unsubscribe-container-update/[id]',
 	'/add-dunning-relevant-user-new/[id]',
+	'/url/[token]',
 ];
 export default HIDE_LAYOUT;

@@ -2,6 +2,7 @@ import { cl, Button } from '@cogoport/components';
 import {
 	IcMArrowBack, IcMShip, IcMAirport, IcMLocation,
 } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import useDraft from '../../../hook/useDraft';
@@ -29,6 +30,8 @@ function Pay({
 	serviceRateData = {},
 	quotaValue,
 }) {
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
+
 	const [showPayMethodModal, setShowPayMethodModal] = useState(false);
 	const [paymentMode, setPaymentMode] = useState('');
 	const [address, setAddress] = useState('');
@@ -42,6 +45,7 @@ function Pay({
 		modal = {},
 		setModal = () => {},
 	} = usePayment();
+
 	const {
 		submitHandler,
 		checkoutHandler,
@@ -50,6 +54,7 @@ function Pay({
 		totalAmount,
 		renderPortName,
 	} = checkoutFn({
+		t,
 		formData,
 		portDetails,
 		origin,
@@ -68,11 +73,11 @@ function Pay({
 			<div className={styles.route_div}>
 				{!isQuotaLeft && (
 					<div className={`${styles.text_div} ${styles.billing}`}>
-						<div className={styles.text_head}>Billing Details</div>
+						<div className={styles.text_head}>{t('dutiesTaxesCalculator:form_pay_address_title')}</div>
 						<SelectAddressComponent address={address} setAddress={setAddress} />
 					</div>
 				)}
-				<div className={styles.text_head}>Transportation Details</div>
+				<div className={styles.text_head}>{t('dutiesTaxesCalculator:form_pay_main_title')}</div>
 
 				<div className={styles.text_div}>
 					<div className={styles.route}>
@@ -134,7 +139,7 @@ function Pay({
 					loading={draftLoading || paymentLoading}
 					onClick={submitHandler}
 				>
-					Procced
+					{t('dutiesTaxesCalculator:form_pay_proceed_btn')}
 				</Button>
 			</div>
 			{showPayMethodModal && (

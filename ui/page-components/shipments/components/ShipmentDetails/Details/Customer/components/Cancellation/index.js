@@ -55,7 +55,13 @@ function Cancellation({
 	const [contextValues] = useContext(ShipmentDetailContext);
 	const { shipment_data, primary_service } = contextValues || {};
 
-	const { state, stakeholder_types, shipment_type } = shipment_data || {};
+	const {
+		state, stakeholder_types,
+		shipment_type, trade_party_type :tradePartyType, all_services, is_end_to_end: isEndToEnd,
+	} = shipment_data || {};
+
+	const tradeType = all_services
+		?.filter((item) => item?.service_type === primary_service?.service_type)?.[0]?.trade_type;
 
 	const showToStakeholders = stakeholder_types?.some((ele) => showCancellationStakeholders?.includes(ele));
 
@@ -73,6 +79,10 @@ function Cancellation({
 		return null;
 	}
 
+	const isShowCancellation = isEndToEnd ? (tradePartyType === 'shipper' && tradeType === 'export')
+	|| (tradePartyType === 'consignee' && tradeType === 'import')
+		: true;
+
 	const renderContent = () => {
 		if (isIE && !isRequested) {
 			return (
@@ -88,26 +98,31 @@ function Cancellation({
 		return null;
 	};
 	return (
-		<div className={styles.container}>
-			<Popover
-				interactive
-				visible={show && !showCancel}
-				show={show}
-				theme="light"
-				arrow={false}
-				onClickOutside={() => setShow(false)}
-				render={renderContent()}
-			>
-				<div
-					role="presentation"
-					className={styles.icon_container}
-					id="bm_show_options_btn"
-					onClick={() => setShow(true)}
-				>
-					<IcMOverflowDot />
+		<div>
+			{isShowCancellation ? (
+				<div className={styles.container}>
+					<Popover
+						interactive
+						visible={show && !showCancel}
+						show={show}
+						theme="light"
+						arrow={false}
+						onClickOutside={() => setShow(false)}
+						render={renderContent()}
+					>
+						<div
+							role="presentation"
+							className={styles.icon_container}
+							id="bm_show_options_btn"
+							onClick={() => setShow(true)}
+						>
+							<IcMOverflowDot />
+						</div>
+					</Popover>
 				</div>
-			</Popover>
+			) : null}
 		</div>
+
 	);
 }
 

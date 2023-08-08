@@ -1093,6 +1093,11 @@ const saas = {
 			access_type  : 'public',
 			service_name : 'location',
 		},
+		{
+			api          : 'get_multimodal_shortest_path',
+			access_type  : 'public',
+			service_name : 'location',
+		},
 	],
 	pay_later: [
 		{

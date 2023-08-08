@@ -5,7 +5,7 @@ import ActiveFreightRateTrend from '@/ui/page-components/freight-rate-trend/acti
 export async function getServerSideProps({ locale }) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common'])),
+			...(await serverSideTranslations(locale, ['common', 'frt'])),
 
 		},
 	};

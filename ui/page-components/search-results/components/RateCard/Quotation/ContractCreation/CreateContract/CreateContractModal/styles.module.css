@@ -38,11 +38,10 @@
 }
 
 .label {
-	margin-bottom: -10px;
-	font-size: 14px;
+	display: flex;
+	align-items: center;
 	font-weight: 500;
 	color: #393f70;
-	text-align: left;
 
 	.lower-label {
 		font-size: 12px;
@@ -51,6 +50,7 @@
 }
 
 .shipping_line {
+	margin-left: 10px;
 	font-size: 12px;
 	font-weight: 400;
 	color: #f68b21;
@@ -61,34 +61,17 @@
 	color: #cb6464;
 }
 
-.inline_label {
-	position: relative;
-	top: 9px;
-	left: 10px;
-	z-index: 1;
-	display: flex;
-	gap: 10px;
-	align-items: center;
-	justify-content: space-between;
-	width: fit-content;
-	padding: 0 1px;
-	margin-top: auto;
-	font-size: 10px;
-	line-height: 16px;
-	color: #333;
-	background: white;
-}
-
-.inline_date {
-	margin-top: auto;
-}
-
 .note {
 	margin-left: 30px;
 	color: #f68b21;
 }
 
 .sub_label {
+	margin-left: 10px;
 	font-size: 12px;
 	color: #436df4;
+}
+
+.date_row {
+	align-items: flex-end;
 }

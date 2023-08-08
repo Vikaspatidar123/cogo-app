@@ -273,8 +273,9 @@ const useSaveAddressForm = (props) => {
 	const watchGstList = watch('gst_list') || '';
 	const watchPincode = watch('pincode');
 	const watchIsAddressRegisteredUnderGst = watch('isAddressRegisteredUnderGst');
-	const { getBusinessApi = {} } = useGetBusiness({
-		watchTaxNumber         : watchGstList.toUpperCase(),
+
+	const { getBusinessLoading } = useGetBusiness({
+		watchTaxNumber         : watchGstList?.toUpperCase(),
 		setValue,
 		registrationNumberType : 'tax',
 		addressData,
@@ -408,7 +409,7 @@ const useSaveAddressForm = (props) => {
 			addressControls,
 			addressType : updatedAddressType,
 		}),
-		getBusinessApi,
+		getBusinessLoading,
 		gstinOptions,
 		getCogoScoreTaxNumApi,
 		watchPincode,

@@ -1,13 +1,8 @@
 import { isEmpty } from '@cogoport/utils';
 
-const UNSHADED_MILESTONES = ['Station Crossed', 'Toll Plaza Crossed'];
+import { isFutureDate } from './dateCompare';
 
-const isFutureDate = (inputDate) => {
-	if (new Date() < new Date(inputDate)) {
-		return true;
-	}
-	return false;
-};
+const UNSHADED_MILESTONES = ['Station Crossed', 'Toll Plaza Crossed'];
 
 const checkForMerging = (curr, next) => {
 	if (
@@ -78,4 +73,4 @@ const mergeAirMilestone = (list = []) => {
 	return result;
 };
 
-export { isFutureDate, mergeOceanMilestone, mergeAirMilestone };
+export { mergeOceanMilestone, mergeAirMilestone };

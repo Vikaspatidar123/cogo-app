@@ -26,8 +26,7 @@ function CompanyDetails({
 		setFilledDetails,
 		setCurrentStep,
 	});
-
-	const { handleSubmit = () => {} } = companyDetailsFormProps;
+	const { handleSubmit = () => {}, fields } = companyDetailsFormProps;
 
 	const showElements = {};
 
@@ -41,15 +40,16 @@ function CompanyDetails({
 
 				<div className={styles.layout}>
 					{orgControls.map((item) => {
+						const { name, span, label } = item;
 						const Element = getField(item.type);
 
 						return (
-							<div className={styles.field} style={{ width: getWidth(item?.span) }}>
-								<div className={styles.lable}>{item.label}</div>
-								<Element {...item} control={control} />
-								{errors?.[item?.name] && (
+							<div key={name} className={styles.field} style={{ width: getWidth(span) }}>
+								<div className={styles.lable}>{label}</div>
+								<Element {...item} {...fields[name]} control={control} />
+								{errors?.[name] && (
 									<div className={styles.errors}>
-										{errors?.[item?.name]?.message || errors?.[item?.name]?.type }
+										{errors?.[name]?.message || errors?.[name]?.type }
 									</div>
 								)}
 							</div>

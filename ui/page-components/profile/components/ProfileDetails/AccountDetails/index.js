@@ -43,12 +43,12 @@ function AccountDetails() {
 						})}
 					</Tabs>
 				</div>
-             {ActiveContainerComponent?
-	<div className={styles.tab_panel_container}>
-					<ActiveContainerComponent title={activeTitle} />
-				</div>
-				:
-				null}
+				{ActiveContainerComponent ? (
+					<div className={styles.tab_panel_container}>
+						<ActiveContainerComponent title={activeTitle} />
+					</div>
+				)
+					: null}
 			</div>
 		</div>
 	);

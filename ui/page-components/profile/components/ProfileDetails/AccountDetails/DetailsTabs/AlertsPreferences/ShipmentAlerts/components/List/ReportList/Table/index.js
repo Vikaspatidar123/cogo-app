@@ -8,9 +8,11 @@ export const SCROLL_VALUE = 220;
 
 function Table(props) {
 	const scrollRef = useRef({ header: {}, body: {} });
+
 	const { reportData } = props || {};
 
 	const { data_points = [], service_wise_columns } = reportData || {};
+
 	const services = Object.keys(data_points || {});
 
 	const scrollHandlerLeft = (index) => () => {
@@ -22,6 +24,7 @@ function Table(props) {
 			});
 		}
 	};
+
 	const scrollHandlerRight = (index) => () => {
 		if (scrollRef.current.header[index]) {
 			scrollRef.current.header[index].scrollLeft -= SCROLL_VALUE;
@@ -31,6 +34,7 @@ function Table(props) {
 			});
 		}
 	};
+
 	return (
 		<div>
 			{(services || []).map((item, index) => {

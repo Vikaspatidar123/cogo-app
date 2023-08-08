@@ -14,16 +14,22 @@ function RenderPopOver({
 	const selectedShipmentColumns = (insideList || []).map(
 		(item) => item?.isChecked,
 	);
+
 	const { setColumns } = props || {};
+
 	const { t } = useTranslation(['profile']);
 
 	const [checked, setChecked] = useState(false);
 
 	const selectAll = async (value) => {
 		const updateValue = insideList.map((x) => ({ ...x, isChecked: value }));
+
 		const check = updateValue.filter((x) => x.isChecked).map((item) => item.value);
+
 		await setChecked(value);
+
 		await setInsideList(updateValue);
+
 		setColumns((prev) => ({ ...prev, [serviceName]: check }));
 	};
 

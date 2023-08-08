@@ -16,8 +16,10 @@ const REPORT_TYPE_OPTIONS = ({ t = () => {} }) => [{
 {
 	name: 'never', value: 'never', label: t('settings:schedule_status_option_4'),
 }];
+
 function ReprtTypeSelectOptions({ control, onChange, value }) {
 	const { t } = useTranslation(['settings']);
+
 	const onClick = (item) => {
 		onChange(item);
 	};

@@ -15,7 +15,9 @@ function UserTable({
 		list = [], page = 1, total_count,
 		page_limit,
 	} = data || {};
+
 	const { t } = useTranslation(['settings']);
+
 	const onCheck = ({ item }) => {
 		if (!userIds.includes(item.user_id)) {
 			setUserIds((prev) => [...prev, item.user_id]);
@@ -23,24 +25,30 @@ function UserTable({
 			setUserIds((prev) => prev.filter((info) => info !== item.user_id));
 		}
 	};
+
 	const DESIGNATION_MAPPING = DESIGNATION({ t });
 
 	return (
 		<div className={styles.container}>
 			<Header setUserIds={setUserIds} list={list} />
+
 			<div>
 				{(list || []).map((item) => (
 					<div className={styles.line_item} key={item?.user_id}>
+
 						<div className={styles.checkbox}>
 							<Checkbox
 								onChange={() => onCheck({ item })}
 								checked={userIds.includes(item.user_id)}
 								loading={isLoading}
 							/>
+
 						</div>
+
 						<div className={styles.box}>
-							{item.name}
+							{item?.name}
 						</div>
+
 						{!isEmpty(item?.work_scopes) ? (
 							<div className={styles.box}>
 								{DESIGNATION_MAPPING[item?.work_scopes]}
@@ -49,13 +57,14 @@ function UserTable({
 							<div className={styles.box}>-----</div>
 						)}
 						<div className={styles.box}>
-							{item.email}
+							{item?.email}
 						</div>
 						<div className={styles.box}>
-							{item.mobile_number}
+							{item?.mobile_number}
 						</div>
 					</div>
 				))}
+
 				{!isEmpty(list) ? (
 					<div className={styles.pagination}>
 						<Pagination

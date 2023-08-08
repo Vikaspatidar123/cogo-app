@@ -63,12 +63,13 @@ function List(props) {
 			</div>
 		);
 	}
+
 	return (
 		<div className={styles.container}>
 
 			<ReportList {...updateProps} />
 
-			{query.type !== 'shipment' ? <Schedule {...updateProps} /> : null}
+			{query?.type !== 'shipment' ? <Schedule {...updateProps} /> : null}
 
 			{isEdit && query.type !== 'shipment' ? (
 				<div className={styles.button}>
@@ -80,6 +81,7 @@ function List(props) {
 					>
 						{t('settings:edit_or_add_button_label_1')}
 					</Button>
+
 					<Button
 						themeType="secondary"
 						type="button"
@@ -88,6 +90,7 @@ function List(props) {
 					>
 						{t('settings:shipment_button_text')}
 					</Button>
+
 					<Button
 						themeType="primary"
 						type="button"

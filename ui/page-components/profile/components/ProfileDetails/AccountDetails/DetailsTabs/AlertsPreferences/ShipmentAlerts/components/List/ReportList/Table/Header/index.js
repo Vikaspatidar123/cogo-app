@@ -10,6 +10,7 @@ function Header({ header, props, scrollHandler, scrollHandlerRight, serviceName 
 	const onCheck = (value) => {
 		setColumns((prev) => ({ ...prev, [`${serviceName}_shipment`]: value }));
 	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.icon_check}>

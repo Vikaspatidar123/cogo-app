@@ -10,6 +10,7 @@ import styles from './styles.module.css';
 
 function Title({ serviceName, options, checkPoint, totalPoint, props }) {
 	const { isEdit } = props || {};
+
 	const { t } = useTranslation(['settings']);
 
 	const {
@@ -23,9 +24,11 @@ function Title({ serviceName, options, checkPoint, totalPoint, props }) {
 		props,
 		serviceName,
 	});
+
 	const selectedShipmentColumns = (insideList || []).filter(
 		(item) => item?.isChecked,
 	).length;
+
 	return (
 		<div className={styles.container}>
 			<div>

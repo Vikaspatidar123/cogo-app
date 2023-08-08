@@ -8,7 +8,9 @@ export const SCROLL_VALUE = 220;
 
 function Body({ values, header, index }, ref) {
 	const { current } = ref;
+
 	current.body[index] = {};
+
 	const { t } = useTranslation(['settings']);
 
 	if (isEmpty(values)) {

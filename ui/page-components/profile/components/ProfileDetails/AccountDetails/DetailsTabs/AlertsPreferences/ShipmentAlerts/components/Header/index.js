@@ -9,32 +9,41 @@ const TEXT_MAPPING = ({ t = () => {} }) => ({
 	true  : t('settings:shipment_alerts_text_2'),
 	false : t('settings:shipment_alerts_text_3'),
 });
-const defaultText = ({ t = () => {} }) => (
-	<div>
-		{t('settings:shipment_alerts_text_4')}
-		<span className={styles.text}>
-			{' '}
-			{t('settings:shipment_alerts_text_5')}
-			{' '}
-		</span>
-		{t('settings:shipment_alerts_text_6')}
-		<span className={styles.text}>
-			{t('settings:shipment_alerts_text_7')}
-			{' '}
-		</span>
-		{t('settings:shipment_alerts_text_8')}
-	</div>
-);
-const editText = ({ t = () => {} }) => (
-	<div>
-		{t('settings:shipment_alerts_text_9')}
-	</div>
-);
 
-const DESCRIPTION_MAPPING = ({ t = () => {} }) => ({
-	false : defaultText({ t }),
-	true  : editText({ t }),
-});
+function DefaultText() {
+	const { t } = useTranslation(['settings']);
+
+	return (
+		<div>
+			{t('settings:shipment_alerts_text_4')}
+			<span className={styles.text}>
+				{' '}
+				{t('settings:shipment_alerts_text_5')}
+				{' '}
+			</span>
+			{t('settings:shipment_alerts_text_6')}
+			<span className={styles.text}>
+				{t('settings:shipment_alerts_text_7')}
+				{' '}
+			</span>
+			{t('settings:shipment_alerts_text_8')}
+		</div>
+	);
+}
+function EditText() {
+	const { t } = useTranslation(['settings']);
+
+	return (
+		<div>
+			{t('settings:shipment_alerts_text_9')}
+		</div>
+	);
+}
+
+const DESCRIPTION_MAPPING = {
+	false : <DefaultText />,
+	true  : <EditText />,
+};
 
 function Header(props) {
 	const { setEdit, isEdit = false } = props;
@@ -43,7 +52,6 @@ function Header(props) {
 
 	const { t } = useTranslation(['settings']);
 	const HEADING = TEXT_MAPPING({ t });
-	const DESCRIPTION = DESCRIPTION_MAPPING({ t });
 	const onEdit = () => {
 		if (query.type !== 'shipment') {
 			setEdit(true);
@@ -60,7 +68,7 @@ function Header(props) {
 					{' '}
 					{HEADING[isEdit]}
 				</div>
-				{DESCRIPTION[isEdit]}
+				{DESCRIPTION_MAPPING[isEdit]}
 			</div>
 			{!isEdit ? (
 				<Button

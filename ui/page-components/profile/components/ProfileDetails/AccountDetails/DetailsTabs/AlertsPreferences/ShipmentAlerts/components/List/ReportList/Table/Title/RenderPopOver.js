@@ -15,7 +15,7 @@ function RenderPopOver({
 		(item) => item?.isChecked,
 	);
 	const { setColumns } = props || {};
-	const { t } = useTranslation(['settings']);
+	const { t } = useTranslation(['profile']);
 
 	const [checked, setChecked] = useState(false);
 
@@ -42,7 +42,7 @@ function RenderPopOver({
 			>
 				<IcMCross />
 				<div className={styles.clear}>
-					{t('settings:clear_all_text')}
+					{t('profile:clear_all_text')}
 				</div>
 			</div>
 			<div className={styles.box}>
@@ -51,7 +51,7 @@ function RenderPopOver({
 					onChange={(value) => selectAll(value.target.checked)}
 				/>
 				<div className={styles.text}>
-					{t('settings:select_all_text')}
+					{t('profile:select_all_text')}
 					(
 					{insideList?.length}
 					)

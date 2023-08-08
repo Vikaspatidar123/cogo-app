@@ -1,6 +1,6 @@
 .container {
 	padding: 10px;
 	margin-top: 15px;
-	background: var(--20, #fdfbf6);
+	background: #fdfbf6;
 	border-radius: 6px;
 }

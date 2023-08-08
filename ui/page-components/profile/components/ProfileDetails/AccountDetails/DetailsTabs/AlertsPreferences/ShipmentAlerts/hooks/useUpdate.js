@@ -52,19 +52,21 @@ const useUpdate = ({ reportData, refetch, setEdit }) => {
 		mutate(payload);
 	};
 	useEffect(() => {
-		refetch();
-		setUserIds([...recipient_user_ids]);
-		setColumns({
-			...reportData?.service_wise_columns,
-		});
-		setValue('dates', dates);
-		setValue('days', days);
-		setValue('schedule_time_zone', schedule_time_zone);
-		setValue('schedule_time', formatTime(schedule_time));
-		setValue('schedule_type', schedule_type);
-		setType(schedule_type);
+		if (reportData) {
+			setType(schedule_type);
+			refetch();
+			setUserIds([...recipient_user_ids]);
+			setColumns({
+				...reportData?.service_wise_columns,
+			});
+			setValue('dates', dates);
+			setValue('days', days);
+			setValue('schedule_time_zone', schedule_time_zone);
+			setValue('schedule_time', formatTime(schedule_time));
+			setValue('schedule_type', schedule_type);
+		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [reset]);
+	}, [reset, schedule_type]);
 
 	return {
 		onSubmit,

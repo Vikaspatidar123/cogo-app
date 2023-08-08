@@ -63,6 +63,7 @@ const useUpdate = ({ reportData, refetch, setEdit }) => {
 		setValue('schedule_time', formatTime(schedule_time));
 		setValue('schedule_type', schedule_type);
 		setType(schedule_type);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [reset]);
 
 	return {

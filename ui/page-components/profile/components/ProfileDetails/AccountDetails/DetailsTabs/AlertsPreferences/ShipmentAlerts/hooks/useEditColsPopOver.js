@@ -14,12 +14,13 @@ const useEditColsPopOver = ({ colsList = [], props, serviceName }) => {
 			setInsideList(newList);
 		}
 
-		const checked = newList.filter((x) => x.isChecked).map((item) => item.value);
+		const checked = newList.filter((x) => x?.isChecked)?.map((item) => item.value);
 
 		setColumns((prev) => ({ ...prev, [serviceName]: checked }));
 	};
 	useEffect(() => {
 		setInsideList([...colsList]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [reset]);
 
 	return {

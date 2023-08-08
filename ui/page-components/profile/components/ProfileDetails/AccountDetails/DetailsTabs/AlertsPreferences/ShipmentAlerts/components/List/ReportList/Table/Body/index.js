@@ -1,4 +1,3 @@
-import { Checkbox } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { forwardRef } from 'react';
@@ -7,10 +6,9 @@ import styles from './styles.module.css';
 
 export const SCROLL_VALUE = 220;
 
-function Body({ values, props, header, index }, ref) {
+function Body({ values, header, index }, ref) {
 	const { current } = ref;
 	current.body[index] = {};
-	const { isEdit } = props || {};
 	const { t } = useTranslation(['settings']);
 
 	if (isEmpty(values)) {
@@ -27,7 +25,7 @@ function Body({ values, props, header, index }, ref) {
 					}}
 				>
 					{(header || []).map((value) => (
-						<div className={styles.text}>
+						<div className={styles.text} key={value}>
 							{item[value]}
 						</div>
 					))}

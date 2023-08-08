@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 
 import getOptions from './utils/options-mapping';
 

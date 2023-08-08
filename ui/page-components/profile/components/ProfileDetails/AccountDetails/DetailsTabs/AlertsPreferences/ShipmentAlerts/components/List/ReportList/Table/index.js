@@ -1,6 +1,6 @@
 import { useRef, forwardRef } from 'react';
 
-import Body from './Body';
+// import Body from './Body';
 import Header from './Header';
 import Title from './Title';
 

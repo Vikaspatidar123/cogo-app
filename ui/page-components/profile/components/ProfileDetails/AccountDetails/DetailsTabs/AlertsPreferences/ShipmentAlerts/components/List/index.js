@@ -51,7 +51,7 @@ function List(props) {
 		setEdit(false);
 	};
 
-	if (isEmpty(reportData)) {
+	if (isEmpty(reportData) && !isLoading && !loading) {
 		return (
 			<div className={styles.empty}>
 				<Image

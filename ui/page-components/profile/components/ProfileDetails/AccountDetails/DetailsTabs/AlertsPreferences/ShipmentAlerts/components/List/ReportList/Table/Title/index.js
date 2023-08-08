@@ -1,6 +1,6 @@
 import { Popover } from '@cogoport/components';
 import { IcMArrowRotateDown } from '@cogoport/icons-react';
-import { upperCase } from '@cogoport/utils';
+import { startCase } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
 import useEditColsPopOver from '../../../../../hooks/useEditColsPopOver';
@@ -29,19 +29,19 @@ function Title({ serviceName, options, checkPoint, totalPoint, props }) {
 	return (
 		<div className={styles.container}>
 			<div>
-				{upperCase(serviceName)}
+				{startCase(serviceName)}
 				{' '}
-				Shipments
+				{t('settings:shipment_text')}
 			</div>
 			{!isEdit ? (
 				<div>
 					{checkPoint}
 					{' '}
-					of
+					{t('settings:of_text')}
 					{' '}
 					{totalPoint}
 					{' '}
-					Data Points Visible
+					{t('settings:data_point_text')}
 				</div>
 			)
 				: (

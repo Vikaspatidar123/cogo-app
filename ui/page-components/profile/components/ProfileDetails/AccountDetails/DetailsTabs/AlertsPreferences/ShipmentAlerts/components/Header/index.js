@@ -48,7 +48,7 @@ function Header(props) {
 		if (query.type !== 'shipment') {
 			setEdit(true);
 		} else {
-			push('/settings?activeTab=alerts_preferences');
+			push('/settings?activeTab=alerts_preferences&isEdit=true');
 		}
 	};
 

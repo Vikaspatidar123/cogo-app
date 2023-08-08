@@ -54,7 +54,6 @@ function Table(props) {
 						/>
 						<Header
 							header={header}
-							// values={value}
 							serviceName={item}
 							scrollHandler={scrollHandlerLeft(index)}
 							scrollHandlerRight={scrollHandlerRight(index)}

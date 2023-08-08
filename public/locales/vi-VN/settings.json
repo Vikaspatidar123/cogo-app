@@ -233,5 +233,8 @@
     "option_error_message_text_1":"Ngày là bắt buộc *",
     "option_error_message_text_2":"Cần có ngày *",
     "option_error_message_text_3":"Yêu cầu múi giờ *",
-    "option_error_message_text_4":"Thời gian là bắt buộc *"
+    "option_error_message_text_4":"Thời gian là bắt buộc *",
+    "data_point_text":"Điểm dữ liệu hiển thị",
+    "of_text":"của",
+    "shipment_text":"Lô hàng""
 }

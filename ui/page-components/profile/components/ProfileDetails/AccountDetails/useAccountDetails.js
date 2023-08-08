@@ -44,7 +44,10 @@ const useAccountDetails = () => {
 		setActiveTab(obj);
 		if (obj !== activeTab) push(`/settings?activeTab=${obj}`);
 	};
-	// useEffect(() => { setActiveTab(query.activeTab); }, [query.activeTab]);
+
+	useMemo(() => {
+		setActiveTab(query.activeTab);
+	}, [query.activeTab]);
 
 	return {
 		activeTab,

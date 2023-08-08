@@ -20,6 +20,7 @@ const payLoad = ({ value, columns, userIds, reportData }) => ({
 	dates                : value?.dates || undefined,
 
 });
+
 const useUpdate = ({ reportData, refetch, setEdit }) => {
 	const {
 		schedule_time_zone = '', days = '', schedule_time = '',

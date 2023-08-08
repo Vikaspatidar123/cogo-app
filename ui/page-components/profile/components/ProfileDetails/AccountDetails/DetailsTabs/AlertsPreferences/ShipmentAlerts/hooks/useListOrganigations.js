@@ -4,6 +4,9 @@ import useSearchQuery from '@/packages/forms/hooks/useDebounceQuery';
 import { useQuery } from '@/packages/request';
 import { getListOrganisation } from '@/ui/api/get';
 
+const DEFAULT_PAGE_LIMIT = 5;
+const DEFAULT_PAGE_LIMIT_ACTIVE = 100;
+
 const useListOrganisation = ({ isEdit, reportData }) => {
 	const { recipient_user_ids = [] } = reportData || {};
 	const [pageNumber, setPageNumber] = useState(1);
@@ -12,8 +15,15 @@ const useListOrganisation = ({ isEdit, reportData }) => {
 	const { query:q, debounceQuery } = useSearchQuery();
 
 	const hookSetter = { setPageNumber, setQuery, query };
-	const payload = isEdit ? { filters: { status: 'active', q }, page: pageNumber, page_limit: 5 }
-		: { filters: { status: 'active' }, page_limit: 100 };
+	const payload = isEdit ? {
+		filters    : { status: 'active', q },
+		page       : pageNumber,
+		page_limit : DEFAULT_PAGE_LIMIT,
+	}
+		: {
+			filters    : { status: 'active' },
+			page_limit : DEFAULT_PAGE_LIMIT_ACTIVE,
+		};
 
 	const {
 		isLoading,
@@ -24,8 +34,10 @@ const useListOrganisation = ({ isEdit, reportData }) => {
 		payload,
 		queryFn      : getListOrganisation,
 	});
+
 	const listData = isEdit ? data
 		: { ...data, list: data?.list?.filter((item) => recipient_user_ids?.includes(item?.user_id)) };
+
 	useEffect(() => { debounceQuery(query); }, [debounceQuery, query]);
 
 	return { data: listData, isLoading, hookSetter };

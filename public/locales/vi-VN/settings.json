@@ -229,5 +229,9 @@
 	"work_scopes_option_text_23":"Tiếp thị và bán hàng",
 	"work_scopes_option_text_24":"Giám đốc phát triển kinh doanh",
 	"work_scopes_option_text_25":"Cộng sự",
-	"work_scopes_option_text_26":"ceo"
+	"work_scopes_option_text_26":"ceo",
+    "option_error_message_text_1":"Ngày là bắt buộc *",
+    "option_error_message_text_2":"Cần có ngày *",
+    "option_error_message_text_3":"Yêu cầu múi giờ *",
+    "option_error_message_text_4":"Thời gian là bắt buộc *"
 }

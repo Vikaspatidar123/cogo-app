@@ -18,6 +18,9 @@ const REPORT_TYPE_OPTIONS = ({ t = () => {} }) => [{
 }];
 function ReprtTypeSelectOptions({ control, onChange, value }) {
 	const { t } = useTranslation(['settings']);
+	const onClick = (item) => {
+		onChange(item);
+	};
 
 	return (
 		<div>
@@ -25,7 +28,7 @@ function ReprtTypeSelectOptions({ control, onChange, value }) {
 			<RadioController
 				name="schedule_type"
 				options={REPORT_TYPE_OPTIONS({ t })}
-				handleChange={onChange}
+				handleChange={onClick}
 				value={value}
 				radioGroup
 				control={control}

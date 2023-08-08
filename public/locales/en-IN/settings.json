@@ -229,6 +229,10 @@
 	"work_scopes_option_text_23":"Marketing And Sales",
 	"work_scopes_option_text_24":"Business Development Manager",
 	"work_scopes_option_text_25":"Partner",
-	"work_scopes_option_text_26":"Ceo"
+	"work_scopes_option_text_26":"Ceo",
+    "option_error_message_text_1":"Date is required *",
+    "option_error_message_text_2":"Days is required *",
+    "option_error_message_text_3":"Time zone required *",
+    "option_error_message_text_4":"Time is required *"
 
 }

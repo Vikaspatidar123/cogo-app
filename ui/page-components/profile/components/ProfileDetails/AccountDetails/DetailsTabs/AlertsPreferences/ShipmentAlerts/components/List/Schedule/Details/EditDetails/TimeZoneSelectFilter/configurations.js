@@ -37,6 +37,9 @@ export const controls = ({ t = () => {}, reportData }) => [
 		style    : { width: '200px' },
 		multiple : true,
 		value    : reportData?.days,
+		rules    : {
+			required: t('settings:option_error_message_text_1'),
+		},
 
 	},
 	{
@@ -47,6 +50,9 @@ export const controls = ({ t = () => {}, reportData }) => [
 		style    : { width: '200px' },
 		multiple : true,
 		value    : reportData?.days,
+		rules    : {
+			required: t('settings:option_error_message_text_2'),
+		},
 	},
 	{
 		label   : t('settings:schedule_label_3'),
@@ -55,6 +61,9 @@ export const controls = ({ t = () => {}, reportData }) => [
 		options : TIME_ZONE,
 		style   : { width: '200px' },
 		value   : reportData?.schedule_time_zone,
+		rules   : {
+			required: t('settings:option_error_message_text_3'),
+		},
 
 	},
 	{
@@ -63,6 +72,9 @@ export const controls = ({ t = () => {}, reportData }) => [
 		type  : 'time_picker',
 		style : { width: '200px' },
 		value : formatTime(reportData?.schedule_time),
+		rules : {
+			required: t('settings:option_error_message_text_4'),
+		},
 	},
 ];
 

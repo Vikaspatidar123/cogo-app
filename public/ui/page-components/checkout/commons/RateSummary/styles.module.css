@@ -1,8 +1,0 @@
-.container {
-	position: sticky;
-	top: 18px;
-	display: flex;
-	flex-direction: column;
-	max-height: calc(100vh - 88px);
-	border: 1px solid #f9f9f9;
-}

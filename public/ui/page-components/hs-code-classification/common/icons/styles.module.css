@@ -1,8 +1,0 @@
-.icon {
-	width: 100px;
-	height: 25px;
-
-	@media screen and (max-width: 767px) {
-		width: 50px;
-	}
-}

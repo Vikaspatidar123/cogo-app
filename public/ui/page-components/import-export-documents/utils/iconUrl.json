@@ -1,8 +1,0 @@
-
-{
-	"logo":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/IEDoc.svg",
-	"validate": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/validate.svg",
-	"loading": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg",
-	"emptyState": "https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg",
-	"loadingBanner":"https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading-ban.svg"
-}

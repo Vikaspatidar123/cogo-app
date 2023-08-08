@@ -1,6 +1,0 @@
-{
-	"export": ["export_transportation", "export_haulage_freight"],
-		"import":
-		["import_haulage_freight",
-		"import_transportation"]
-}

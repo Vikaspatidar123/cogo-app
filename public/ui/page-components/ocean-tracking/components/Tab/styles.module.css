@@ -1,9 +1,0 @@
-.parent_tab {
-	display: flex;
-	width: max-content;
-	overflow-x: scroll;
-}
-
-.scroll {
-	overflow-x: scroll;
-}

@@ -1,8 +1,0 @@
-[
-    {
-        "name": "ltl_freight",
-        "title": "LTL",
-        "service_type": "ltl_freight",
-        "inco_terms": ["cif", "cfr", "cpt", "cip", "dat", "dap", "ddp", "exw", "fca", "fob", "fas"]
-    }
-]

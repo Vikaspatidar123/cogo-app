@@ -24,7 +24,7 @@ export const format = (value) => {
 };
 
 export function convert24To12HourFormat(timeString) {
-	const [hours, minutes] = timeString.split(':').map(Number);
+	const [hours, minutes] = timeString?.split(':')?.map(Number) || [];
 	let period = 'AM';
 	let hour = hours;
 	if (hours === 0) {
@@ -36,6 +36,6 @@ export function convert24To12HourFormat(timeString) {
 		period = 'PM';
 	}
 
-	const formattedTime = `${hour.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${period}`;
+	const formattedTime = `${hour?.toString()?.padStart(2, '0')}:${minutes?.toString()?.padStart(2, '0')} ${period}`;
 	return formattedTime;
 }

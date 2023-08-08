@@ -4,6 +4,17 @@
 		margin: 0 -12px;
 		background: #fff;
 	}
+
+	:global {
+		.ui_tab_list_container {
+			width: 100%;
+			overflow: scroll;
+
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+	}
 }
 
 .header_container {

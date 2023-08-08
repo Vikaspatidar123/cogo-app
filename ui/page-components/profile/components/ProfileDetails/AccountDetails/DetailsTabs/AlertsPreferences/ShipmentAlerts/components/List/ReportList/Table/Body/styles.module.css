@@ -7,6 +7,20 @@
 	border-bottom: 1px solid #f8f2e7;
 }
 
+.main_container {
+	max-height: 400px;
+	overflow-y: scroll;
+}
+
+.placeholder {
+	margin: 10px 40px;
+}
+
+.loading {
+	display: flex;
+	margin-left: 30;
+}
+
 .empty {
 	display: flex;
 	align-items: center;
@@ -34,7 +48,6 @@
 	min-width: 150px;
 	padding: 0 8px;
 	font-size: 12px;
-	text-transform: uppercase;
 }
 
 .icon_check {

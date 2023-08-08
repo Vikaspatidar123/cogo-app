@@ -2,6 +2,7 @@ import { Button } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
+import useGetShipmentList from '../../hooks/useGetShipmentList';
 import useStatusReport from '../../hooks/useStatusReport';
 import useUpdate from '../../hooks/useUpdate';
 
@@ -17,6 +18,7 @@ function List(props) {
 	const { query } = useRouter();
 	const { t } = useTranslation(['settings']);
 	const { reportData, refetch, loading } = useStatusReport();
+	const { data, shipmentLoading } = useGetShipmentList();
 	const {
 		onSubmit = () => {},
 		setColumns = () => {},
@@ -43,8 +45,9 @@ function List(props) {
 		reset,
 		type,
 		setType,
+		data,
+		shipmentLoading,
 	};
-
 	const { handleSubmit } = formHooks || {};
 
 	const onCancel = () => {

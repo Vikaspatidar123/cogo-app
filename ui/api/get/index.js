@@ -13,3 +13,10 @@ export const getShipmentReport = (paylaod) => request.get(
 		params: paylaod,
 	},
 );
+
+export const getShipmentList = (paylaod) => request.get(
+	'/list_shipments_for_report',
+	{
+		params: paylaod,
+	},
+);

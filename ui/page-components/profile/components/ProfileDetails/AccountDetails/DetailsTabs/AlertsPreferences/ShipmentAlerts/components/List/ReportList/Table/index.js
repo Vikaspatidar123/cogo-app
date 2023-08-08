@@ -1,6 +1,6 @@
 import { useRef, forwardRef } from 'react';
 
-// import Body from './Body';
+import Body from './Body';
 import Header from './Header';
 import Title from './Title';
 
@@ -9,9 +9,11 @@ export const SCROLL_VALUE = 220;
 function Table(props) {
 	const scrollRef = useRef({ header: {}, body: {} });
 
-	const { reportData } = props || {};
+	const { reportData = {}, data = {}, shipmentLoading = false } = props || {};
 
-	const { data_points = [], service_wise_columns } = reportData || {};
+	const { service_wise_columns } = reportData || {};
+
+	const { data_points = {} } = data || {};
 
 	const services = Object.keys(data_points || {});
 
@@ -40,6 +42,8 @@ function Table(props) {
 			{(services || []).map((item, index) => {
 				const info = data_points?.[item] || {};
 				const header = Object.values(info || {});
+				const headerKeys = Object.keys(info || {});
+				const values = data[`${item}_shipments`];
 				const options = Object.keys(info).map((key) => ({
 					label     : info[key],
 					value     : key,
@@ -47,6 +51,7 @@ function Table(props) {
 				}));
 				const checkPoint = service_wise_columns?.[item].length;
 				const totalPoint = header.length;
+
 				return (
 					<div key={`${index + 1}`}>
 						<Title
@@ -66,13 +71,14 @@ function Table(props) {
 								scrollRef.current.header[index] = r;
 							}}
 						/>
-						{/* <Body
-							values={value}
-							header={header}
+						<Body
+							values={values}
+							header={headerKeys}
 							index={index}
 							ref={scrollRef}
-							props={props}
-						/> */}
+							shipmentLoading={shipmentLoading}
+							{...props}
+						/>
 					</div>
 				);
 			})}

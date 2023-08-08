@@ -22,7 +22,7 @@ function Header({ header, props, scrollHandler, scrollHandlerRight, serviceName 
 			</div>
 			<div className={styles.list} ref={ref}>
 				{
-                    header.map((item) => <div className={styles.text}>{item}</div>)
+                    (header || []).map((item) => <div className={styles.text} key={item}>{item}</div>)
                 }
 			</div>
 			<div className={styles.icon} onClick={() => scrollHandler()} role="presentation">

@@ -1,5 +1,6 @@
 import { Checkbox } from '@cogoport/components';
 import { IcMCross } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import styles from './styles.module.css';
@@ -14,6 +15,7 @@ function RenderPopOver({
 		(item) => item?.isChecked,
 	);
 	const { setColumns } = props || {};
+	const { t } = useTranslation(['settings']);
 
 	const [checked, setChecked] = useState(false);
 
@@ -40,7 +42,7 @@ function RenderPopOver({
 			>
 				<IcMCross />
 				<div className={styles.clear}>
-					Clear all
+					{t('settings:clear_all_text')}
 				</div>
 			</div>
 			<div className={styles.box}>
@@ -49,7 +51,8 @@ function RenderPopOver({
 					onChange={(value) => selectAll(value.target.checked)}
 				/>
 				<div className={styles.text}>
-					Select all (
+					{t('settings:select_all_text')}
+					(
 					{insideList?.length}
 					)
 				</div>

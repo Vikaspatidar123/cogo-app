@@ -236,6 +236,8 @@
     "option_error_message_text_4":"Time is required *",
     "data_point_text":"Data Points Visible",
     "of_text":"of",
-    "shipment_text":"Shipments"
+    "shipment_text":"Shipments",
+    "clear_all_text":"Clear all",
+    "select_all_text":"Select all"
 
 }

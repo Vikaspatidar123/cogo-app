@@ -16,7 +16,7 @@ function Body({ values, header, index }, ref) {
 	}
 	return (
 		(values || []).map((item, i) => (
-			<div className={styles.container}>
+			<div className={styles.container} key={`${i + 1}`}>
 				<div className={styles.icon_check} />
 				<div
 					className={styles.list}

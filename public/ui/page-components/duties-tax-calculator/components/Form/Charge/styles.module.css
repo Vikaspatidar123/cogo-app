@@ -1,0 +1,33 @@
+.incoterm {
+	width: 30%;
+
+	@media screen and (max-width: 767px) {
+		width: 33%;
+	}
+}
+
+.incoterm_charges {
+	padding-top: 0;
+}
+
+.title_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.get_rates {
+	padding: 0 10px;
+	color: rgb(89 54 240);
+}
+
+.get_rates:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.suffix_container {
+	display: flex;
+	align-items: center;
+	width: 110px;
+}

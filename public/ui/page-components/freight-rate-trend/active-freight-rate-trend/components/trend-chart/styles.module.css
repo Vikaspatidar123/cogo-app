@@ -1,0 +1,114 @@
+.styled_tip {
+	align-items: center;
+	padding: 6px 8px;
+	color: #070101;
+	background-color: #fff;
+	border: 1px solid #fffce6;
+	border-radius: 4px;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 40%);
+	opacity: 0.8;
+	transition: all 0.3s ease 0s;
+}
+
+.line {
+	padding: 10px;
+}
+
+.value {
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.date {
+	color: #bf291e;
+}
+
+.data {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.text {
+	color: #959da5;
+}
+
+.horizontal1 {
+	border: 1px solid #f47560;
+}
+
+.horizontal2 {
+	border: 1px solid red;
+}
+
+.horizontal3 {
+	border: 1px solid #f1e15b;
+}
+
+.chart_container {
+	margin-top: 20px;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 40%);
+
+	@media screen and (max-width: 767px) {
+		max-width: 800px;
+		overflow-x: scroll;
+	}
+}
+
+.legend {
+	display: flex;
+	flex-direction: row;
+	gap: 50px;
+	float: right;
+	padding: 10px;
+}
+
+.circle1 {
+	width: 10px;
+	height: 10px;
+	background-color: #f1e15b;
+	border-radius: 50%;
+}
+
+.circle2 {
+	width: 10px;
+	height: 10px;
+	background-color: red;
+	border-radius: 50%;
+}
+
+.circle3 {
+	width: 10px;
+	height: 10px;
+	background-color: #f47560;
+	border-radius: 50%;
+}
+
+.legend_list {
+	display: flex;
+	flex-direction: row;
+	gap: 4px;
+	align-items: center;
+}
+
+.legend_text {
+	margin-left: 4px;
+}
+
+.chart {
+	width: 100%;
+	height: 450px;
+	padding-top: 20px;
+
+	@media (max-width: 767px) {
+		width: 280px;
+		min-width: 100%;
+		height: 300px;
+	}
+}
+
+.empty_state {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

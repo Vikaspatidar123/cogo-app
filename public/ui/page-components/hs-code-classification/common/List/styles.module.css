@@ -1,0 +1,20 @@
+.pagination_wrapper {
+	display: flex;
+	justify-content: flex-end;
+	padding-block: 6px;
+
+	@media screen and (max-width: 767px) {
+		nav .md div {
+			font-size: 10px;
+		}
+	}
+}
+
+.md {
+	justify-content: flex-end;
+	padding-right: 0;
+}
+
+.empty {
+	text-align: center;
+}

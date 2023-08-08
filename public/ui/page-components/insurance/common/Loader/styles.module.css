@@ -1,0 +1,9 @@
+.skeleton_wrapper {
+	display: flex;
+	justify-content: center;
+	margin: 10px;
+}
+
+.skeleton_div {
+	margin: 10px;
+}

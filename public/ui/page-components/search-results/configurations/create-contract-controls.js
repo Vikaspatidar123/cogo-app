@@ -1,0 +1,77 @@
+const createContracts = () => [
+	{
+		name  : 'contract_name',
+		label : 'Contract Name',
+		type  : 'text',
+		rules : {
+			required: 'Contract name is required',
+		},
+		span: 6,
+	},
+	{
+		name           : 'validity_start',
+		label          : 'Start Date',
+		placeholder    : 'Start Date',
+		type           : 'datepicker',
+		withTimePicker : false,
+		span           : 6,
+		rules          : { required: 'Start date required' },
+	},
+	{
+		name           : 'validity_end',
+		label          : 'End Date',
+		type           : 'datepicker',
+		withTimePicker : false,
+		span           : 6,
+		rules          : { required: 'End date required' },
+		placeholder    : 'End Date',
+	},
+	{
+		name  : 'max_containers_count',
+		label : 'Container Count',
+		type  : 'number',
+		rules : {
+			required : 'Container count is required',
+			min      : 50,
+		},
+		span: 6,
+	},
+	{
+		name  : 'max_volume',
+		label : 'Maximum Volume',
+		type  : 'number',
+		rules : { required: 'Maximum volume is required', min: 50 },
+		span  : 6,
+	},
+	{
+		name  : 'max_weight',
+		label : 'Maximum Weight',
+		type  : 'number',
+		rules : { required: 'Maximum weight is required', min: 50 },
+		span  : 6,
+	},
+	{
+		name           : 'preferred_shipping_line_ids',
+		type           : 'select',
+		labelKey       : 'short_name',
+		defaultOptions : false,
+		isClearable    : true,
+		span           : 6,
+		caret          : false,
+		multiple       : true,
+	},
+	{
+		name           : 'exclude_shipping_line_ids',
+		type           : 'select',
+		className      : 'shipping-line',
+		labelKey       : 'short_name',
+		defaultOptions : false,
+		isClearable    : true,
+		span           : 6,
+		multiple       : true,
+		caret          : false,
+		style          : { height: '40px' },
+	},
+];
+
+export default createContracts;

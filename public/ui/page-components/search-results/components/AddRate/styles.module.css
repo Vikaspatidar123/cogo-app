@@ -1,0 +1,32 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 15px;
+	margin-top: 15px;
+	background: linear-gradient(99.65deg, #d2f8f2 14.21%, #a3d4ec 117.03%);
+	border-radius: 4px;
+}
+
+.detail_con {
+	display: flex;
+
+	.btn {
+		display: flex;
+		justify-content: flex-end;
+	}
+}
+
+.detail_text {
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 19px;
+	color: #393f70;
+
+	.lead_text {
+		font-size: 12px;
+		font-weight: 400;
+		color: #393f70;
+	}
+}

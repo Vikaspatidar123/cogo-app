@@ -1,0 +1,26 @@
+.container {
+	padding: 20px;
+}
+
+.check_box_container {
+	display: flex;
+	align-items: center;
+
+	.checkbox {
+		margin-left: 8px;
+		font-weight: 500;
+	}
+}
+
+.button_container {
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px;
+}
+
+.insurance {
+	margin-left: 2px;
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}

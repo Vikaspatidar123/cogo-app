@@ -1,0 +1,55 @@
+.docs_container {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 70px;
+	padding: 5px;
+	margin-right: 42px;
+
+	@media (max-width: 767px) {
+		margin-right: 0;
+	}
+}
+
+.docs {
+	display: flex;
+	width: 100%;
+}
+
+.docs div:nth-child(2) {
+	display: flex;
+	align-items: center;
+	padding: 1px !important;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+		overflow: scroll;
+	}
+}
+
+.column {
+	display: flex;
+	align-items: center;
+	width: 20%;
+	font-size: 14px;
+	font-weight: 500;
+	text-transform: uppercase;
+
+	@media (max-width: 760px) {
+		width: 28%;
+	}
+}
+
+.error_message {
+	font-size: 14px;
+	color: #cb6464;
+}
+
+.file {
+	width: 80%;
+}
+
+.upload_and_file_name {
+	width: 100%;
+}

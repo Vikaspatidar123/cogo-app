@@ -1,0 +1,46 @@
+.container {
+	padding: 0 16px;
+
+	:global {
+		.ui_modal_header_container {
+			padding: 0;
+		}
+	}
+}
+
+.label {
+	font-size: 20px;
+	font-weight: 600;
+	color: #000;
+}
+
+.lineWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 11%;
+}
+
+.line {
+	flex-grow: 1;
+	width: 10%;
+	height: 3px;
+	background-color: #f68b21;
+	border-width: 0;
+}
+
+.loading_image {
+	display: block;
+	margin: auto;
+}
+
+.heading {
+	padding: 10px 0;
+	font-size: 18px;
+	font-weight: 600;
+	color: rgb(0 0 0);
+}
+
+.line_wrapper {
+	margin: 10px 0;
+}

@@ -1,0 +1,81 @@
+.heading {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	font-size: 20px;
+	font-weight: 700;
+	color: #000;
+}
+
+.center {
+	display: flex;
+	align-items: center;
+	padding: 4px 0;
+}
+
+.text_type {
+	padding-left: 10px;
+}
+
+.segmented_container {
+	display: flex;
+	justify-content: space-between;
+
+	:global {
+		.ui_chip_container {
+			min-width: 120px;
+			height: 35px;
+			border-right: none;
+			border-radius: 0;
+		}
+
+		.ui_chip_container:first-child {
+			border-radius: 10px 0 0 10px;
+		}
+
+		.ui_chip_container:last-child {
+			border-right: 1px solid #e0e0e0;
+			border-radius: 0 10px 10px 0;
+		}
+	}
+}
+
+.segmented_container_mobile {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+}
+
+.segmented {
+	display: flex;
+	padding-left: 38px;
+}
+
+.faq_hidden {
+	display: none;
+	width: 60px;
+	height: 45px;
+	cursor: pointer;
+}
+
+.faq {
+	display: block;
+	width: 60px;
+	height: 45px;
+	cursor: pointer;
+}
+
+.arrow_back {
+	cursor: pointer;
+}
+
+.chips {
+	gap: 0 !important;
+}
+
+.heading_wrapper {
+	@media (max-width: 768px) {
+		display: flex;
+		flex-direction: column;
+	}
+}

@@ -1,0 +1,34 @@
+.flex {
+	display: flex;
+}
+
+.rate {
+	display: flex;
+	justify-content: space-between;
+	padding: 4px 0;
+
+	&.final {
+		border-top: 1px solid rgb(242 226 195);
+		border-bottom: 1px solid rgb(242 226 195);
+	}
+}
+
+.tool_tip_container {
+	max-width: 250px;
+	font-size: 12px;
+	font-weight: 300;
+}
+
+.info_icon {
+	align-items: center;
+	width: 10px;
+	height: 10px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+.red {
+	display: flex;
+	font-weight: 500;
+	color: #f00;
+}

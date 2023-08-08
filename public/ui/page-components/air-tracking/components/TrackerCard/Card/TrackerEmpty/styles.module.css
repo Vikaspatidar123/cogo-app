@@ -1,0 +1,27 @@
+.container {
+	padding: 0 0 20px;
+	text-align: center;
+}
+
+.booking_no {
+	padding: 7px 30px;
+	font-size: 12px;
+	font-weight: 500;
+	border-radius: 8px 0;
+}
+
+.tracking {
+	font-size: 18px;
+	font-weight: 700;
+	color: #ee3425;
+}
+
+.dec {
+	font-size: 12px;
+}
+
+.delete {
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px 20px;
+}

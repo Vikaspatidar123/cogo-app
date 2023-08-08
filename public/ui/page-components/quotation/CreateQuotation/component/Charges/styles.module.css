@@ -1,0 +1,148 @@
+.container {
+	padding: 20px 26px;
+	background: #fff;
+	border-bottom-left-radius: 17px;
+	box-shadow: 0 2.2px 18.6px 0 #476fd30e, 0 17.8px 60px 0 #476fd31c;
+
+	@media screen and (max-width: 767px) {
+		border-radius: 17px;
+	}
+}
+
+.flex_box {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.heading_row {
+	@media screen and (max-width: 767px) {
+		width: 100%;
+		margin-bottom: 18px;
+	}
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	padding: 0 6px 6px 3px;
+	border-bottom: 2px solid #fbd69f;
+
+	.icon_container {
+		width: 22px;
+		height: 22px;
+		padding: 2px;
+		background: #2c3e50;
+		border-radius: 50%;
+	}
+
+	@media screen and (max-width: 767px) {
+		width: 40%;
+		padding: 0;
+		border-bottom: none;
+	}
+}
+
+.title {
+	margin: 0;
+	margin-left: 10px;
+	font-size: 17px;
+
+	@media screen and (max-width: 767px) {
+		font-size: 16px;
+		font-weight: 400;
+	}
+}
+
+.incoterm {
+	display: flex;
+	align-items: center;
+}
+
+.label {
+	margin: 0;
+	font-size: 13px;
+
+	&.incoterm_label {
+		margin-right: 10px;
+	}
+
+	&.incoterm_charge_label {
+		width: 47%;
+	}
+
+	&.comment_label {
+		margin-bottom: 5px;
+	}
+}
+
+.row {
+	margin: 20px 10px;
+}
+
+.input_box {
+	width: 50%;
+
+	:global {
+		.ui_input_suffix {
+			width: 75px;
+		}
+	}
+}
+
+.hr {
+	height: 0;
+	margin: 8px 0;
+	border-top: 2px dashed #e0e0e0;
+}
+
+.delete_icon {
+	padding: 4px;
+	cursor: pointer;
+	background: #fff4f2;
+	border-radius: 5px;
+
+	svg {
+		vertical-align: bottom;
+	}
+}
+
+.extra_charge_name {
+	width: 47%;
+
+	:global {
+		.ui_input_container {
+			width: 75%;
+		}
+	}
+}
+
+.footer_section {
+	padding: 5px 12px;
+	border-top: 1px solid #e0e0e0;
+
+	.comment {
+		width: 100%;
+		margin-top: 20px;
+	}
+}
+
+.total_quotation {
+	margin: 14px 0;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.charge_scroll {
+	max-height: 127px;
+	overflow-y: scroll;
+}
+
+.error {
+	:global {
+		.ui_input_number_container,
+		.ui_select_display_container {
+			border: 1px solid red;
+		}
+	}
+}

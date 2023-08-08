@@ -1,0 +1,141 @@
+.container {
+	padding: 16px;
+}
+
+.loading_styles {
+	display: block;
+	margin: auto;
+}
+
+.empty_state {
+	margin: 20px;
+	font-size: 16px;
+	text-align: center;
+}
+
+.title_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.title {
+	display: flex;
+	align-items: center;
+}
+
+.hyperlink {
+	margin-right: 35px;
+	font-size: 12px;
+	color: #f68b21;
+	text-transform: uppercase;
+	cursor: pointer;
+
+	:hover {
+		text-decoration: underline;
+	}
+}
+
+.title_div {
+	margin-left: 5px;
+	font-size: 20px;
+}
+
+.list {
+	margin: 10px 0;
+}
+
+.card_list {
+	max-height: 300px;
+	overflow-y: scroll;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 6px 12px;
+	margin-bottom: 12px;
+	border: 1px solid #cddbff;
+	border-radius: 6px;
+
+	@media screen and (max-width: 767px) {
+		padding: 12px;
+		border-radius: 12px;
+	}
+}
+
+.cardheader {
+	margin-bottom: 6px;
+	border: none;
+}
+
+.rate_section {
+	display: flex;
+	align-items: center;
+}
+
+.selected_row {
+	background: #fffef9;
+	border: 1px solid #d6483a;
+}
+
+.col {
+	:global {
+		@media screen and (max-width: 767px) {
+			font-size: 10px;
+		}
+	}
+}
+
+.icon {
+	flex: 1;
+	text-align: center;
+
+	@media screen and (max-width: 767px) {
+		text-align: left;
+	}
+}
+
+.name {
+	flex: 3;
+}
+
+.price {
+	flex: 1;
+	text-align: right;
+
+	@media screen and (max-width: 767px) {
+		margin-right: 10px;
+	}
+}
+
+.img_icon {
+	width: 52px;
+	height: 29px;
+	vertical-align: text-top;
+}
+
+.img_alt {
+	font-size: 12px;
+}
+
+.footer {
+	display: flex;
+	justify-content: flex-end;
+	padding: 8px 16px;
+	box-shadow: 0 0 8px 0 #2c3e5033;
+}
+
+@media screen and (max-width: 767px) {
+	.without_mobile {
+		display: block;
+		display: none;
+	}
+}
+@media screen and (min-width: 767px) {
+	.with_mobile {
+		display: block;
+		display: none;
+	}
+}

@@ -1,0 +1,13 @@
+.pagination_div {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.view_header {
+	display: block;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}

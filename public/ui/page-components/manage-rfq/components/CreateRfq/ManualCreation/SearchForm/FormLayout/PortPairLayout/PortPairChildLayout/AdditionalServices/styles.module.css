@@ -1,0 +1,9 @@
+.tooltip_container {
+	width: 400px;
+	max-height: 600px;
+	overflow: scroll;
+}
+
+.text {
+	width: 240px;
+}

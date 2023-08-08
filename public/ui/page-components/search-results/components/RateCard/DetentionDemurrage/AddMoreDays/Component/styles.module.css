@@ -1,0 +1,38 @@
+.substract {
+	display: flex;
+	margin: 6px;
+	cursor: pointer;
+	border: 1px solid black;
+}
+
+.flex {
+	display: flex;
+	flex-direction: column;
+}
+
+.error_message {
+	font-size: 12px;
+	color: red;
+}
+
+.styled_text {
+	width: max-content;
+	padding-bottom: 4px;
+	color: #393f70;
+
+	@media (max-width: 768px) {
+		width: auto;
+	}
+}
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	width: 50%;
+
+	/* padding: ${(props) =>
+		props.type === 'detention' ? '12px 20px 8px 4px' : '12px 4px 8px 20px'}; */
+
+	/* border-right: ${(props) =>
+		props.type === 'detention' ? '1px solid #bdaff9' : null}; */
+}

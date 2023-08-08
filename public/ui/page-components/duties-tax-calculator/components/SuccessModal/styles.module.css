@@ -1,0 +1,174 @@
+.container {
+	position: absolute;
+	left: 28%;
+	z-index: 700;
+	width: 550px;
+	max-height: 100%;
+	overflow: scroll;
+	background: #fff;
+	box-shadow:
+		0 12px 44px 0 #14142b57,
+		0 -2px 4px 0 #14142b1f,
+		0 3px 14px 0 #4a3aff08;
+	animation: fromtop 1s linear 0.1s 1;
+	animation-fill-mode: forwards;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+	@keyframes fromtop {
+		0% {
+			top: -900px;
+		}
+
+		100% {
+			top: 10px;
+		}
+	}
+
+	@media screen and (max-width: 767px) {
+		left: 5%;
+		width: 91%;
+	}
+}
+
+.header_container {
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid #d3d3d3;
+}
+
+.title {
+	margin-bottom: 12px;
+	font-size: 25px;
+	font-weight: 500;
+}
+
+.sub_title {
+	margin: auto;
+	margin-bottom: 12px;
+	font-weight: 300;
+}
+
+.heading {
+	margin-bottom: 15px;
+}
+
+.section_heading {
+	padding: 12px 40px;
+}
+
+.charges {
+	padding: 16px 40px;
+	margin-bottom: 25px;
+	background: #f9f9f9;
+}
+
+.title_div {
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.line {
+	width: 15%;
+	height: 2px;
+	margin-top: 3px;
+	background: #fbd1a6;
+}
+
+.heading_div {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 12px 0;
+}
+
+.final_total {
+	padding: 0 40px;
+	font-size: 20px;
+	font-weight: 500;
+
+	@media screen and (max-width: 767px) {
+		font-size: 19px;
+	}
+}
+
+.duties_total {
+	font-size: 17px;
+}
+
+.quantity {
+	font-weight: 300;
+	color: #7278ad;
+}
+
+.total {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.flex {
+	display: flex;
+	gap: 5px;
+	align-items: flex-end;
+}
+
+.icon_container {
+	margin-bottom: -2px;
+}
+
+.dashed_line {
+	border-top: 2px dashed #a4a4a4;
+}
+
+.dashed_total {
+	margin: 0 30px;
+}
+
+.btn_container {
+	display: flex;
+	justify-content: flex-end;
+	padding: 15px 33px 20px;
+	border-top: 1px solid #d3d3d3;
+	box-shadow: 1px -3px 14px -2px rgb(211 211 211 / 100%);
+}
+
+.tooltip_style {
+	max-width: 400px !important;
+}
+
+.tooltip_container {
+	width: 250px;
+	padding: 12px 8px;
+	font-size: 12px;
+	font-weight: 300;
+}
+
+.tooltip_heading {
+	font-size: 14px;
+	font-weight: 500;
+	border-bottom: 0.5px dashed #333;
+}
+
+.icon_container_div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100px;
+	margin-top: 25px;
+}
+
+.icon_img {
+	width: 130px;
+}
+
+.scroll_container {
+	max-height: 53vh;
+	overflow-y: scroll;
+}

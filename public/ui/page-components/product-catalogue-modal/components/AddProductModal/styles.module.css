@@ -1,0 +1,40 @@
+.styled_div {
+	display: flex;
+	align-items: flex-start;
+	padding: 20px 0 0 20px;
+	margin-bottom: 15px;
+
+	:global {
+		.ui_modal_header_container {
+			position: absolute;
+			top: 5px;
+			right: 0%;
+
+			@media (max-width: 768px) {
+				top: 0;
+			}
+		}
+	}
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+}
+
+.product_icon {
+	margin-right: 8px;
+
+	svg {
+		vertical-align: middle;
+	}
+}
+
+.title {
+	font-size: 17px;
+	font-weight: 600;
+}
+
+.headline {
+	font-weight: 300;
+	color: #6b6d81;
+}

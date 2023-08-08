@@ -1,0 +1,28 @@
+.text {
+	display: flex;
+	align-items: center;
+	padding: 4px;
+	color: #393f70;
+}
+
+.booking_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: 10px;
+	text-align: right;
+	border-left: 1px dashed #aab9d6;
+}
+
+.per_truck {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.button_container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-end;
+	margin-top: 10px;
+}

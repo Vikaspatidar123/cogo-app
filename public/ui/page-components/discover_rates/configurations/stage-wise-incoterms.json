@@ -1,0 +1,13 @@
+{
+	"origin": ["cif", "cfr", "cpt", "cip", "dat", "dap", "ddp", "exw"],
+		"destination":
+		["cpt",
+		"cip",
+		"dat",
+		"dap",
+		"ddp",
+		"fob",
+		"exw",
+		"fca",
+		"fas"]
+}

@@ -1,0 +1,44 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 2px 12px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.left_container {
+	display: flex;
+	align-items: center;
+	margin-block: 6px;
+}
+
+.shipping_line_info {
+	display: flex;
+	align-items: center;
+
+	.image {
+		width: 50px;
+		object-fit: fill;
+		padding: 4px;
+	}
+}
+
+.approve_text {
+	align-self: center;
+	padding: 4px;
+	margin-right: 10px;
+	font-size: 12px;
+	text-align: center;
+	border-radius: 6px;
+}
+
+.right_container {
+	display: flex;
+	margin-block: 6px;
+}
+
+.validity {
+	padding: 2px 4px;
+	margin-right: 8px;
+	font-size: 12px;
+}

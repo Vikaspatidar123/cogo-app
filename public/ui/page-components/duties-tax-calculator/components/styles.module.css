@@ -1,0 +1,67 @@
+.container {
+	position: relative;
+	width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+	.with_mobile_view {
+		display: flex;
+		flex-direction: column-reverse;
+
+		.child1 {
+			position: unset;
+			width: 100%;
+			height: 50%;
+		}
+
+		.child2 {
+			width: 100%;
+			margin-left: 0;
+		}
+
+		.form_pay_details {
+			width: 100%;
+		}
+
+		.map_form {
+			width: 100%;
+		}
+	}
+}
+@media screen and (min-width: 767px) {
+	.without_mobile_view {
+		display: flex;
+	}
+}
+
+.child1 {
+	position: absolute;
+	z-index: 800;
+	width: 30%;
+	height: 76vh;
+	background: #fff;
+	box-shadow: 20px 0 20px -10px #292f3f26;
+}
+
+.child2 {
+	width: 70%;
+	margin-left: 30%;
+}
+
+.map_form {
+	width: 64%;
+	margin-left: 36%;
+}
+
+.form_pay_details {
+	width: 36%;
+}
+
+.calculate_done_form {
+	display: none;
+}
+
+.calculate_done_map {
+	width: 100%;
+	margin-left: 0;
+}

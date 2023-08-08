@@ -1,0 +1,556 @@
+{
+	"shipment": {
+		"My cargo is delayed": {
+			"subreasons": [],
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "When will your cargo be ready (Enter date)?"
+			},
+			"applicable_to": [
+				"lcl_freight",
+				"fcl_freight",
+				"air_freight",
+				"lcl_customs",
+				"fcl_customs",
+				"air_customs",
+				"ltl_freight",
+				"ftl_freight",
+				"trailer_freight",
+				"haulage_freight"
+			]
+		},
+		"Space unavailable": {
+			"subreasons": [
+				"Different sailing date available on same carrier",
+				"Space available on same date with a different carrier"
+			],
+			"free_text": {
+				"required": false,
+				"mandatory": false
+			},
+			"applicable_to": [
+				"fcl_freight",
+				"air_freight",
+				"lcl_freight"]
+		},
+		"I have received a better quotation/offer": {
+			"subreasons": [],
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "Could you share with us the cost difference, and the name of the shipping line? (We'll try to get a better rate next time)"
+			},
+			"applicable_to": [
+				"lcl_freight",
+				"fcl_freight",
+				"air_freight",
+				"lcl_customs",
+				"fcl_customs",
+				"air_customs",
+				"ltl_freight",
+				"ftl_freight",
+				"trailer_freight",
+				"haulage_freight"
+			]
+		},
+		"I want to modify my booking": {
+			"subreasons": {
+				"fcl_freight": [
+					"Shipping line",
+					"Sailing date",
+					"Container numbers",
+					"Stuffing/Destuffing type",
+					"Cargo weight",
+					"Factory address",
+					"Billing address"
+				],
+				"air_freight": ["Want to change the schedule", "Want to change the service provider"],
+				"lcl_freight": ["Want to change the schedule", "Want to change the service provider"]
+			},
+			"condition": {
+				"type": "document",
+				"values": "booking_note",
+				"timing": "before_upload"
+			},
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "What would you like to modify?"
+			},
+			"applicable_to": [
+				"lcl_freight",
+				"fcl_freight",
+				"air_freight",
+				"lcl_customs",
+				"fcl_customs",
+				"air_customs",
+				"ltl_freight",
+				"ftl_freight",
+				"trailer_freight",
+				"haulage_freight"
+			]
+		},
+		"I was just exploring": {
+			"subreasons": [],
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "How can we help you better?"
+			},
+			"condition": {
+				"type": "document",
+				"values": "booking_note",
+				"timing": "before_upload"
+			},
+			"applicable_to": [
+				"lcl_freight",
+				"fcl_freight",
+				"air_freight",
+				"lcl_customs",
+				"fcl_customs",
+				"air_customs",
+				"ltl_freight",
+				"ftl_freight",
+				"trailer_freight",
+				"haulage_freight"
+			]
+		},
+		"Issue with container availability": {
+			"subreasons": ["They are unavailable at the yard", "The container was damaged"],
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "What is the problem with the containers?"
+			},
+			"condition": {
+				"type": "document",
+				"values": "booking_note",
+				"timing": "after_upload"
+			},
+			"applicable_to": ["fcl_freight", "fcl_customs"]
+		},
+		"There is an issue with my booking note": {
+			"subreasons": [
+				"Shipping line is different",
+				"Booking note not yet uploaded",
+				"Container quantity is different",
+				"Sailing date is different",
+				"Reefer settings are different",
+				"Transit time is different",
+				"Port of loading/discharge is different"
+			],
+			"condition": {
+				"type": "document",
+				"values": "booking_note",
+				"timing": "after_upload"
+			},
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "What's wrong with the booking note?"
+			},
+			"applicable_to": ["fcl_freight", "fcl_customs"]
+		},
+		"I have an issue with trucking/customs service": {
+			"subreasons": [
+				"Want to cancel transportation",
+				"Want to cancel customs",
+				"Haven't received a confirmation for this service yet",
+				"I have changed by mind",
+				"Want to change trailer/truck type",
+				"Want to change pickup/drop address",
+				"Other"
+			],
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "Could you tell us what the issue is?"
+			},
+			"condition": {
+				"type": "service",
+				"values": [
+					"lcl_customs_service",
+					"fcl_customs_service",
+					"air_customs_service",
+					"fcl_cfs_service",
+					"trailer_freight_service",
+					"ftl_freight_service"
+				]
+			},
+			"applicable_to": ["fcl_freight"]
+		},
+		"Have an issue with pickup or drop service": {
+			"subreasons": [
+				"Want to cancel transportation",
+				"Want to cancel customs",
+				"Haven't received a confirmation for this service yet",
+				"I got a better quotation/rate",
+				"Want to change pickup/drop address",
+				"Other"
+			],
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "Could you tell us what the issue is?"
+			},
+			"condition": {
+				"type": "service",
+				"values": [
+					"lcl_customs_service",
+					"air_customs_service",
+					"ftl_freight_service",
+					"ltl_freight_service"
+				]
+			},
+			"applicable_to": ["lcl_freight", "air_freight"]
+		}
+	},
+	"service_shipper": {
+		"Got a better offer": {
+			"subreasons": [],
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "Could you share with us the cost difference? (We'll try to get a better rate next time)"
+			},
+			"applicable_to": [
+				"fcl_freight_service",
+				"lcl_customs_service",
+				"air_customs_service",
+				"fcl_customs_service",
+				"fcl_freight_local_service",
+				"lcl_freight_local_service",
+				"air_freight_local_service",
+				"haulage_freight_service",
+				"lcl_freight_service",
+				"air_freight_service",
+				"trailer_freight_service",
+				"ftl_freight_service",
+				"ltl_freight_service",
+				"fcl_cfs_service"
+			]
+		},
+		"Have not received a confirmation for this service yet": {
+			"subreasons": [],
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "How can we help you better?"
+			},
+			"applicable_to": [
+				"fcl_freight_service",
+				"lcl_customs_service",
+				"air_customs_service",
+				"fcl_customs_service",
+				"fcl_freight_local_service",
+				"lcl_freight_local_service",
+				"air_freight_local_service",
+				"haulage_freight_service",
+				"lcl_freight_service",
+				"air_freight_service",
+				"trailer_freight_service",
+				"ftl_freight_service",
+				"ltl_freight_service",
+				"fcl_cfs_service"
+			]
+		},
+		"Want to change trailer/truck type": {
+			"subreasons": [],
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "How can we help you better?"
+			},
+			"condition": {
+				"type": "service_name",
+				"values": [
+					"trailer_freight_service",
+					"ftl_freight_service",
+					"ltl_freight_service"
+				]
+			},
+			"applicable_to": [
+				"fcl_freight_service",
+				"fcl_freight_local_service",
+				"lcl_freight_local_service",
+				"air_freight_local_service",
+				"haulage_freight_service",
+				"lcl_freight_service",
+				"air_freight_service",
+				"trailer_freight_service",
+				"ftl_freight_service",
+				"ltl_freight_service"
+			]
+		},
+		"I have changed by mind": {
+			"subreasons": [],
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "How can we help you better?"
+			},
+			"applicable_to": [
+				"fcl_freight_service",
+				"lcl_customs_service",
+				"air_customs_service",
+				"fcl_customs_service",
+				"fcl_freight_local_service",
+				"lcl_freight_local_service",
+				"air_freight_local_service",
+				"fcl_cfs_service",
+				"haulage_freight_service",
+				"lcl_freight_service",
+				"air_freight_service",
+				"trailer_freight_service",
+				"ftl_freight_service",
+				"ltl_freight_service"
+			]
+		},
+		"Want to change pickup/drop address": {
+			"subreasons": [],
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "How can we help you better?"
+			},
+			"condition": {
+				"type": "service_name",
+				"values": [
+					"trailer_freight_service",
+					"ftl_freight_service",
+					"ltl_freight_service"
+				]
+			},
+			"applicable_to": [
+				"fcl_freight_service",
+				"fcl_freight_local_service",
+				"lcl_freight_local_service",
+				"air_freight_local_service",
+				"haulage_freight_service",
+				"lcl_freight_service",
+				"air_freight_service",
+				"trailer_freight_service",
+				"ftl_freight_service",
+				"ltl_freight_service"
+			]
+		},
+		"Other issues": {
+			"subreasons": [],
+			"free_text": {
+				"required": true,
+				"mandatory": false,
+				"label": "How can we help you better?"
+			},
+			"applicable_to": [
+				"fcl_freight_service",
+				"lcl_customs_service",
+				"air_customs_service",
+				"fcl_customs_service",
+				"fcl_freight_local_service",
+				"lcl_freight_local_service",
+				"air_freight_local_service",
+				"fcl_cfs_service",
+				"haulage_freight_service",
+				"lcl_freight_service",
+				"air_freight_service",
+				"trailer_freight_service",
+				"ftl_freight_service",
+				"ltl_freight_service"
+			]
+		}
+	},
+	"service_supplier": {
+		"Customer unreachable": {
+			"subreasons": [],
+			"free_text": {
+				"required": false
+			},
+			"applicable_to": [
+				"fcl_freight_service",
+				"lcl_customs_service",
+				"air_customs_service",
+				"fcl_customs_service",
+				"fcl_freight_local_service",
+				"lcl_freight_local_service",
+				"air_freight_local_service",
+				"fcl_cfs_service",
+				"haulage_freight_service",
+				"lcl_freight_service",
+				"air_freight_service",
+				"trailer_freight_service",
+				"ftl_freight_service",
+				"ltl_freight_service"
+			]
+		},
+		"Customer did not pick the containers": {
+			"subreasons": [],
+			"free_text": {
+				"required": false
+			},
+			"applicable_to": [
+				"fcl_freight_service",
+				"fcl_customs_service",
+				"fcl_freight_local_service",
+				"lcl_freight_local_service",
+				"air_freight_local_service",
+				"fcl_cfs_service",
+				"haulage_freight_service",
+				"trailer_freight_service"
+			]
+		},
+		"Space unavailable": {
+			"subreasons": [
+				"Different sailing date available on same carrier",
+				"Space available on same date with a different carrier"
+			],
+			"free_text": {
+				"required": false
+			},
+			"applicable_to": [
+				"fcl_freight_service",
+				"fcl_freight_local_service",
+				"air_freight_service",				
+				"lcl_freight_local_service",
+				"air_freight_local_service"]
+		},
+		"Inventory issue at the yard(s)": {
+			"subreasons": [
+				"Partial inventory available for the selected carrier",
+				"Inventory available on different carrier",
+				"Inventory available on a later date"
+			],
+			"free_text": {
+				"required": false
+			},
+			"applicable_to": [
+				"fcl_freight_service", 
+				"fcl_freight_local_service",				
+				"lcl_freight_local_service",
+				"air_freight_local_service"]
+		},
+		"Quote has expired": {
+			"subreasons": [],
+			"free_text": {
+				"required": false
+			},
+			"applicable_to": [
+				"fcl_freight_service",
+				"lcl_customs_service",
+				"air_customs_service",
+				"fcl_customs_service",
+				"fcl_freight_local_service",
+				"lcl_freight_local_service",
+				"air_freight_local_service",
+				"fcl_cfs_service",
+				"haulage_freight_service",
+				"lcl_freight_service",
+				"air_freight_service",
+				"trailer_freight_service",
+				"ftl_freight_service",
+				"ltl_freight_service"
+			]
+		},
+		"Finance issues": {
+			"subreasons": ["Working capital Issue", "Past overdues not cleared"],
+			"free_text": {
+				"required": true,
+				"mandatory": true,
+				"label": "Tell us what went wrong?",
+				"subreasons": ["Working capital Issue"]
+			},
+			"applicable_to": [
+				"fcl_freight_service",
+				"lcl_customs_service",
+				"air_customs_service",
+				"fcl_customs_service",
+				"fcl_freight_local_service",
+				"lcl_freight_local_service",
+				"air_freight_local_service",
+				"fcl_cfs_service",
+				"haulage_freight_service",
+				"lcl_freight_service",
+				"air_freight_service",
+				"trailer_freight_service",
+				"ftl_freight_service",
+				"ltl_freight_service"
+			]
+		},
+		"Transportation unavailable on the selected date": {
+			"subreasons": ["Transportation unavailable indefinitely"],
+			"free_text": {
+				"required": true,
+				"mandatory": true,
+				"label": "Tell us what went wrong?"
+			},
+			"applicable_to": [
+				"trailer_freight_service",
+				"ftl_freight_service",
+				"ltl_freight_service"
+			]
+		},
+		"Unable to serve the location": {
+			"subreasons": [
+				"Cannot provide the service at the from / to the Factory location",
+				"Cannot provide the service at the selected Port"
+			],
+			"free_text": {
+				"required": true,
+				"mandatory": true,
+				"label": "Tell us what went wrong?"
+			},
+			"applicable_to": [
+				"lcl_customs_service",
+				"air_customs_service",
+				"fcl_customs_service",
+				"fcl_cfs_service",
+				"trailer_freight_service",
+				"ftl_freight_service",
+				"ltl_freight_service"
+			]
+		},
+		"Shipping line rejected the service": {
+			"subreasons": [
+				"Commodity is blacklisted/high risk",
+				"Importer/exporter or consignee is blacklisted"
+			],
+			"free_text": {
+				"required": true,
+				"mandatory": true,
+				"label": "Tell us what went wrong?"
+			},
+			"applicable_to": [
+				"fcl_freight_service", 
+				"fcl_freight_local_service",				
+				"lcl_freight_local_service",
+				"air_freight_local_service"
+			]
+		},
+		"Sailing cancelled by the line": {
+			"subreasons": [],
+			"free_text": {
+				"required": true,
+				"mandatory": true,
+				"label": "Tell us what went wrong?"
+			},
+			"applicable_to": [
+				"fcl_freight_service", 
+				"fcl_freight_local_service",			
+				"lcl_freight_local_service",
+				"air_freight_local_service"]
+		},
+		"BL type is not issued by the line": {
+			"subreasons": ["Seaway Original", "RFS Original"],
+			"free_text": {
+				"required": true,
+				"mandatory": true,
+				"label": "Tell us what went wrong?"
+			},
+			"applicable_to": [
+				"fcl_freight_service", 
+				"fcl_freight_local_service", 				
+				"lcl_freight_local_service",
+				"air_freight_local_service"]
+		}
+	}
+}

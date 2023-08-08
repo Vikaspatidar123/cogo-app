@@ -1,0 +1,88 @@
+.head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	.input {
+		width: 250px;
+		margin-right: 20px;
+
+		:global {
+			.ui_input_container {
+				height: 36px;
+			}
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+		align-items: flex-start;
+		width: 280px;
+	}
+}
+
+.container {
+	width: 100%;
+	padding: 30px 10px 10px;
+
+	@media screen and (max-width: 768px) {
+		padding: 24px 8px 8px;
+	}
+}
+
+.button_wrapper {
+	display: flex;
+	gap: 4px;
+	align-items: center;
+	justify-content: space-between;
+
+	.archived {
+		display: flex;
+		align-items: center;
+		margin-right: 10px;
+		margin-left: 10px;
+		cursor: pointer;
+	}
+}
+
+.flex_div {
+	display: flex;
+	align-items: center;
+
+	@media screen and (max-width: 768px) {
+		align-self: flex-end;
+		width: 100%;
+		padding: 16px 0;
+	}
+}
+
+.title_section {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-between;
+	padding-top: 10px;
+
+	.title {
+		margin: 0;
+	}
+
+	.flex {
+		display: flex;
+		flex-direction: row;
+	}
+}
+
+.line_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 81%;
+}
+
+.line {
+	flex-grow: 1;
+	height: 3px;
+	background-color: #f68b21;
+	border-width: 0;
+}

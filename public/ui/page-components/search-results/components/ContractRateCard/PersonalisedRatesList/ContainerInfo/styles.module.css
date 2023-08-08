@@ -1,0 +1,23 @@
+.container {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 16px;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.box {
+	display: flex;
+	flex-direction: row;
+	gap: 4px;
+	align-items: center;
+	justify-content: center;
+	padding: 4px;
+	color: #393f70;
+	background: #f6f5fe;
+	border-radius: 4px;
+
+	.transit_insurance {
+		background-color: #fff4d0;
+	}
+}

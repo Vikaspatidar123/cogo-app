@@ -1,0 +1,36 @@
+.heading {
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.box {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	padding: 10px;
+
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+	}
+}
+
+.search {
+	width: 55px;
+	height: 55px;
+	padding: 20px;
+	margin-right: 14px;
+	background: linear-gradient(180deg, #faf6ef 0%, #fff1d5 100%);
+	border-radius: 50%;
+}
+
+.text {
+	font-size: 16px;
+}
+
+.icon_box {
+	display: flex;
+}
+
+.title {
+	color: #828282;
+}

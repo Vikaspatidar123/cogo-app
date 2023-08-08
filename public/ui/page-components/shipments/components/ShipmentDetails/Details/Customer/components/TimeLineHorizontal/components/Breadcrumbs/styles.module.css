@@ -1,0 +1,14 @@
+.container {
+	display: flex;
+	align-items: center;
+}
+
+.shipment_bread_crumb {
+	margin-bottom: 8px;
+}
+
+.back_to_shipment {
+	> div {
+		cursor: pointer;
+	}
+}

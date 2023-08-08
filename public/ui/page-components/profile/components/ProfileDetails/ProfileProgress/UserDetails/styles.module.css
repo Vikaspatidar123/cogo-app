@@ -1,0 +1,77 @@
+.container {
+	display: flex;
+	align-items: center;
+}
+
+.business_name {
+	width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	@media (max-width: 768px) {
+		width: 150px;
+	}
+}
+
+.details {
+	display: flex;
+	flex-direction: column;
+	padding: 8px 0;
+	margin-right: 24px;
+}
+
+.id {
+	display: flex;
+	align-items: center;
+	font-size: 12px;
+	font-weight: 300;
+
+	.kyc_status {
+		margin-left: 4px;
+	}
+}
+
+.verified {
+	display: flex;
+	align-items: center;
+	margin: 0 0 0 8px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #67c676;
+}
+
+.rejected {
+	display: flex;
+	align-items: center;
+	margin: 0 0 0 8px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #cb6464;
+}
+
+.pending {
+	display: flex;
+	align-items: center;
+	margin: 0 0 1px 4px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #d99a3a;
+}
+
+.sub_text {
+	display: flex;
+	align-items: center;
+	margin-bottom: 4px;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.account_type {
+	margin-left: 4px;
+	font-weight: 400;
+}
+
+.border_right {
+	border-right: 1px solid #414258;
+}

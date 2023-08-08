@@ -1,0 +1,157 @@
+.main_container {
+	background: #fff;
+	border-radius: 4px;
+
+	@media (max-width: 768px) {
+		all: unset;
+		margin: 0 -12px;
+		background: #fff;
+	}
+}
+
+.header_container {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 0 16px;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	padding: 32px;
+
+	@media (max-width: 768px) {
+		padding: 12px 4px;
+	}
+}
+
+.header_text {
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.details_container {
+	display: flex;
+	width: 100%;
+	margin-bottom: 24px;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		margin-bottom: 0;
+	}
+}
+
+.label_text {
+	margin-bottom: 16px;
+	font-size: 14px;
+	font-weight: 600;
+
+	@media (max-width: 768px) {
+		margin-right: 24px;
+		margin-bottom: unset;
+	}
+}
+
+.value_text {
+	font-size: 16px;
+	font-weight: 500;
+	color: #221f20;
+}
+
+.sub_container {
+	display: flex;
+	flex-direction: column;
+	width: 25%;
+
+	@media (max-width: 768px) {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding: 0 12px 12px;
+		margin-bottom: 16px;
+		border-bottom: 1px solid #f2f2f2;
+	}
+}
+
+.language_tag {
+	width: fit-content;
+	padding: 2px 8px;
+	margin-right: 12px;
+	margin-bottom: 4px;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 14px;
+	color: #828282;
+	background: #f2f2f2;
+	border-radius: 4px;
+}
+
+.link_text {
+	align-self: self-end;
+	margin: 0 12px 0 0;
+	font-size: 14px;
+	font-weight: 600;
+	color: #436df4;
+	text-decoration-line: underline;
+	cursor: pointer;
+}
+
+.tag_container {
+	position: absolute;
+	top: -24px;
+	left: 0;
+	padding: 6px 16px;
+	font-size: 10px;
+	font-weight: 500;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	background: #356efd;
+}
+
+.verification_text {
+	margin-top: 8px;
+	font-size: 10px;
+	font-weight: 500;
+	line-height: 12px;
+	color: #034afd;
+	text-align: left;
+	text-decoration-line: underline;
+	cursor: pointer;
+}
+
+.text_icon_container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.flex {
+	display: flex;
+	justify-content: flex-end;
+
+	svg {
+		width: 16px;
+		height: 16px;
+		margin-right: 12px;
+		cursor: pointer;
+	}
+
+	@media (min-width: 768px) {
+		display: none;
+	}
+}
+
+.icon {
+	margin-top: 4px;
+	margin-left: 8px;
+}
+
+.edit_icon {
+	margin-left: 5px;
+}

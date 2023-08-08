@@ -1,0 +1,75 @@
+{
+	"name": "shipment",
+	"routeInfo": {
+		"origin_pickup": "origin_pickup",
+		"origin_port": "origin_airport",
+		"origin_main_port": "origin_main_port",
+		"destination_main_port": "destination_main_port",
+		"destination_port": "destination_airport",
+		"destination_drop": "destination_drop"
+	},
+	"possibleFullRoute": [
+		{
+			"service_types": ["ftl_freight_service", "ltl_freight_service"],
+			"display": "Transportation",
+			"origin": "origin_location",
+			"destination": "destination_location",
+			"trade_type": "export",
+			"iconType": "truck",
+			"upsell": "pickup",
+			"type": "land"
+		},
+		{
+			"service_types": ["air_freight_service"],
+			"display": "Air Freight",
+			"origin": "origin_airport",
+			"destination": "destination_airport",
+			"iconType": "air",
+			"type": "sea"
+		},
+		{
+			"service_types": ["ftl_freight_service", "ltl_freight_service"],
+			"display": "Transportation",
+			"trade_type": "import",
+			"origin": "origin_location",
+			"alternateOrigin": "destination_airport",
+			"destination": "destination_location",
+			"iconType": "truck",
+			"upsell": "drop",
+			"type": "land"
+		}
+	],
+	"refModal": { "action": "add_importer_exporter_reference_id" },
+	"details": [
+		{
+			"label": "Chargeable Wt.",
+			"key": "chargeable_weight"
+		},
+		{
+			"label": "Cargo Value",
+			"key": "cargo_value",
+			"specialCase":"concatCurrencyType"
+		},
+		{
+			"label": "Clearance Dt:",
+			"key": "cargo_clearance_date",
+			"type": "date"
+		},
+		{
+			"label": "No of Stop(s)",
+			"key": "number_of_stops",
+			"type": "stops"
+		},
+		{
+			"key": "payment_term",
+			"label": "Payment term"
+		},
+		{
+			"label": "Terms and Conditions",
+			"key": "terms_and_conditions",
+			"type": "terms_and_conditions",
+			"displayInColumn": true
+		}
+	],
+	"pending_tasks": {}
+}

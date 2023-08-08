@@ -1,0 +1,171 @@
+.main_container {
+	box-sizing: border-box;
+	background: #fdfbf6;
+	border: 1px solid #f2e3c3;
+	border-radius: 4px;
+}
+
+.desktop_view {
+	display: block;
+
+	@media screen and (max-width: 767px) {
+		display: none;
+	}
+}
+
+.mobile_view {
+	display: none;
+
+	@media screen and (max-width: 767px) {
+		display: block;
+	}
+}
+
+.container {
+	width: 400px;
+	padding: 7px 12px 10px;
+	margin: 5px 20px 5px 5px;
+	background: #fdfbf6;
+	border: 1px solid #fada29;
+	border-radius: 6px;
+
+	&:hover {
+		transition: transform 0.8s;
+		transform: scale(1.05, 1.05);
+
+		:global {
+			.ui_button_container {
+				background: #ee3425;
+			}
+		}
+	}
+
+	@media screen and (max-width: 767px) {
+		box-sizing: border-box;
+		width: 310px;
+		padding: 10px;
+		background: rgb(255 255 255) !important;
+		border: 1px solid rgb(209 209 225);
+		border-radius: 16px;
+		box-shadow: rgb(115 78 133 / 15%) 0 15px 25px;
+	}
+}
+
+.row {
+	display: flex;
+	align-items: center;
+
+	.port_detail {
+		margin-left: 10px;
+	}
+
+	&.info {
+		justify-content: space-between;
+		margin-top: 15px;
+	}
+}
+
+.icon_container {
+	position: relative;
+	top: -10px;
+	left: -12px;
+	display: flex;
+	align-items: center;
+	padding: 3px 8px;
+	text-align: center;
+	border-radius: 2px;
+	border-top-left-radius: 6px;
+
+	&.fcl {
+		background: #f2f3fa;
+	}
+
+	&.lcl {
+		background: #d7eaff;
+	}
+
+	&.air {
+		background: #fee;
+	}
+
+	&.ftl {
+		background: #f3fafa;
+	}
+
+	&.ltl {
+		background: #fee;
+	}
+
+	&.trailer_freight {
+		background: #d7eaff;
+	}
+
+	&.haulage_freight {
+		background: #f2f3fa;
+	}
+
+	.tag_icon {
+		svg {
+			width: 15px;
+			height: 15px;
+			margin-bottom: 3px;
+			vertical-align: middle;
+		}
+	}
+
+	.tag_text {
+		margin-left: 3px;
+		font-size: 11px;
+	}
+
+	@media screen and (max-width: 767px) {
+		position: static;
+
+		&.fcl {
+			background: transparent;
+		}
+
+		&.lcl {
+			background: transparent;
+		}
+
+		&.air {
+			background: transparent;
+		}
+	}
+}
+
+.port_details {
+	display: none;
+
+	@media screen and (max-width: 767px) {
+		display: block;
+	}
+}
+
+.container_info {
+	width: 80%;
+
+	@media screen and (max-width: 767px) {
+		margin-top: 11px;
+	}
+}
+
+.tag {
+	display: none;
+
+	@media screen and (max-width: 767px) {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 20px;
+	}
+}
+
+.tags {
+	display: flex;
+	justify-content: space-between;
+}
+
+.tag_name {
+	margin-left: 5px;
+}

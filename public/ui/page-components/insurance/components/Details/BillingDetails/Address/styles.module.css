@@ -1,0 +1,38 @@
+.insurance_buy_div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	justify-content: flex-start;
+	font-size: 15px;
+}
+
+.div_margin_left {
+	margin-left: 10px;
+}
+
+.side_wrapper {
+	display: flex;
+	width: 100%;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
+}
+
+.billing_details_header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 3px 12px;
+	cursor: pointer;
+}
+
+.change_address {
+	margin-left: 15px;
+}
+
+.underline {
+	font-size: 14px;
+	border-bottom: 2px dashed #f68b21;
+}

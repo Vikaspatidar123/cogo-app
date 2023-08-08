@@ -1,0 +1,16 @@
+[
+	{
+		"name": "import_fcl_freight_local" ,
+		"title": "Destination FCL Local",
+		"service_type": "fcl_freight_local",
+		"trade_type": "import",
+		"inco_terms": ["cif", "cfr", "cpt", "cip", "dat", "dap", "ddp", "exw", "fca", "fob", "fas"]
+	},
+	{
+		"name": "export_fcl_freight_local" ,
+		"title": "Origin FCL Local",
+		"service_type": "fcl_freight_local",
+		"trade_type": "export",
+		"inco_terms": ["cif", "cfr", "cpt", "cip", "dat", "dap", "ddp", "exw", "fca", "fob", "fas"]
+	}
+]

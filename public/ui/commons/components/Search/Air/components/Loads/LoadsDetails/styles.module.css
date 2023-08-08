@@ -1,0 +1,32 @@
+.container {
+	padding-top: 4px;
+}
+
+.segmented_control_container {
+	display: flex;
+	justify-content: flex-start;
+	width: fit-content;
+	padding: 4px;
+}
+
+.selected_weight_type {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	cursor: pointer;
+}
+
+.selected {
+	color: #00f;
+	text-decoration: underline;
+}
+
+.unSelected {
+	cursor: pointer;
+}
+
+.flex {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}

@@ -1,0 +1,12 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding: 20px;
+	margin-top: 28px;
+	background: #fafbfe;
+
+	@media (max-width: 760px) {
+		flex-direction: column;
+	}
+}

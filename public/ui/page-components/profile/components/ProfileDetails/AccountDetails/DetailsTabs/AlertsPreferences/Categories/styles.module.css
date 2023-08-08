@@ -1,0 +1,12 @@
+.container {
+	padding-bottom: 20px;
+
+	@media (max-width: 768px) {
+		padding-inline: 8px;
+	}
+}
+
+.save_button {
+	padding: 4px;
+	background-color: #3b536b;
+}

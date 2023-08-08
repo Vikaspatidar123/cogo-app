@@ -1,0 +1,17 @@
+.container {
+	display: none;
+
+	&.showForm {
+		display: unset;
+	}
+}
+
+.row {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.col {
+	width: 100%;
+	padding: 0 8px;
+}

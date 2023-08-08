@@ -1,0 +1,55 @@
+.flex_box {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.title {
+	font-size: 16px;
+	color: #e84855;
+}
+
+.info_container {
+	width: 75%;
+	margin: auto;
+}
+
+.location_icon {
+	margin: -4px -9px;
+}
+
+.line_container {
+	.dot {
+		bottom: 20.4px;
+		width: 8px;
+		height: 8px;
+		background: #cfeaed;
+		border-radius: 50%;
+	}
+
+	.line {
+		flex: 1;
+		border-bottom: 2px solid #cfeaed;
+	}
+}
+
+.port_name {
+	margin: 0 -18px;
+}
+
+.total_amount {
+	margin: 20px 12px;
+	text-align: center;
+
+	.value {
+		display: inline;
+		padding: 6px;
+		background: #e8ecec;
+		border-radius: 6px 6px 0 0;
+	}
+
+	.border {
+		margin-top: 5px;
+		border: 1px solid #e5e5e5;
+	}
+}

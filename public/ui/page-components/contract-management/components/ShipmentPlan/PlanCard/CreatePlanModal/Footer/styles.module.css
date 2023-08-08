@@ -1,0 +1,21 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 8px;
+}
+
+.message {
+	font-weight: 500;
+	color: #f68b21;
+}
+
+.actions {
+	display: flex;
+	align-items: center;
+}
+
+.cancel_btn {
+	margin-right: 10px;
+}

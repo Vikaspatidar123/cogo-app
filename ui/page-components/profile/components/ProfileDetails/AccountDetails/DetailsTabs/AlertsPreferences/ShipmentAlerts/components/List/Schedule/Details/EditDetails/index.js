@@ -11,12 +11,12 @@ function EditDetails(props) {
 		type, userIds, setType,
 	} = props || {};
 
-	const { control, formState: { errors }, reset } = formHooks || {};
+	const { control, formState: { errors } } = formHooks || {};
 
 	const { t } = useTranslation(['settings']);
 	return (
 		<div className={styles.conatiner}>
-			<ReprtTypeSelectOptions control={control} onChange={setType} value={type} reset={reset} />
+			<ReprtTypeSelectOptions control={control} onChange={setType} value={type} />
 			{type !== 'never' ? (
 				<div>
 					<TimeZoneSelectFilter control={control} value={type} reportData={reportData} errors={errors} />

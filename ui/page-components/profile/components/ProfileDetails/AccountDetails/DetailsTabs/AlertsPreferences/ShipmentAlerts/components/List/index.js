@@ -1,4 +1,5 @@
 import { Button } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 
 import useStatusReport from '../../hooks/useStatusReport';
@@ -8,7 +9,8 @@ import ReportList from './ReportList';
 import Schedule from './Schedule';
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { useRouter, Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function List(props) {
 	const { isEdit = false, setEdit } = props || {};
@@ -44,9 +46,23 @@ function List(props) {
 	};
 
 	const { handleSubmit } = formHooks || {};
+
 	const onCancel = () => {
 		setEdit(false);
 	};
+
+	if (isEmpty(reportData)) {
+		return (
+			<div className={styles.empty}>
+				<Image
+					src={GLOBAL_CONSTANTS.image_url.ocean_empty_state}
+					alt="empty"
+					width={600}
+					height={500}
+				/>
+			</div>
+		);
+	}
 	return (
 		<div className={styles.container}>
 

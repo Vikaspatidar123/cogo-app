@@ -18,6 +18,7 @@ const fields = {
 		required: true,
 	},
 };
+const Element = getField('file');
 
 function AgreementPreview({
 	getCreditRequestResponse = {}, refetch = () => {
@@ -38,7 +39,6 @@ function AgreementPreview({
 			refetch();
 		}
 	};
-	const Element = getField('file');
 
 	const handleUpload = async ({ url, type, section }) => {
 		const payload = {

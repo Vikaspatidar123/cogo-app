@@ -9,41 +9,41 @@ import styles from './styles.module.css';
 import UdcUpload from './UdcUpload';
 import UndatedCheques from './UndatedCheques';
 
+const common = {
+	title       : 'Select cheque type',
+	description : 'Learn More',
+	Component   : ChequeType,
+};
+
+const mapping = {
+	UDC: [
+		common,
+		{
+			title: 'Document Preview & Upload',
+			description:
+				'Go through the preview document carefully & upload the signed copy of the document',
+			Component: UdcUpload,
+		},
+		{
+			title       : 'Upload 5 Undated Cheques',
+			description : 'View Sample',
+			Component   : UndatedCheques,
+		},
+	],
+	PDC: [
+		common,
+		{
+			title: 'Document Preview & Upload',
+			description:
+				'Go through the preview document carefully & upload the signed copy of the document',
+			Component: PdcUploadCheque,
+		},
+	],
+};
+
 function OptUdcAndPdc({ getCreditRequestResponse, refetch, loading, active }) {
-	const [selectedType, setSelectedType] = useState();
+	const [selectedType, setSelectedType] = useState('');
 	const [udcCheque, setUdcCheque] = useState({});
-
-	const common = {
-		title       : 'Select cheque type',
-		description : 'Learn More',
-		Component   : ChequeType,
-	};
-
-	const mapping = {
-		UDC: [
-			common,
-			{
-				title: 'Document Preview & Upload',
-				description:
-					'Go through the preview document carefully & upload the signed copy of the document',
-				Component: UdcUpload,
-			},
-			{
-				title       : 'Upload 5 Undated Cheques',
-				description : 'View Sample',
-				Component   : UndatedCheques,
-			},
-		],
-		PDC: [
-			common,
-			{
-				title: 'Document Preview & Upload',
-				description:
-					'Go through the preview document carefully & upload the signed copy of the document',
-				Component: PdcUploadCheque,
-			},
-		],
-	};
 
 	const mappingComponent = mapping[selectedType] || [
 		common,

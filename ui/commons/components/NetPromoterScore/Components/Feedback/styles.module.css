@@ -1,0 +1,34 @@
+.text_1 {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.container {
+	padding-top: 20px;
+	margin-top: 10px;
+}
+
+.chips {
+	padding: 10px 0;
+
+	:global {
+		.ui_chips_container {
+			flex-wrap: wrap;
+		}
+
+		.ui_chip_container {
+			max-width: none;
+		}
+	}
+}
+
+.text_area {
+	margin-top: 10px;
+
+	:global {
+		.ui_text_area_control {
+			padding: 4px;
+			font-size: 16px;
+		}
+	}
+}

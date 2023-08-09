@@ -116,7 +116,7 @@ const IMAGE_URLS = {
 	cancel_svg                    : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/cancel.svg',
 	sorry_svg                     : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/sorry.svg',
 	claim_policy                  : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/claimpolicy.svg',
-
+	cogoport_water_mark           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/watermark.png',
 };
 
 export default IMAGE_URLS;

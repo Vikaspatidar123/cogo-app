@@ -1,15 +1,15 @@
 const statusOptions = [
 	{
 		label : 'Paid',
-		value : 'PAID',
+		value : 'paid',
 	},
 	{
 		label : 'Unpaid',
-		value : 'UNPAID',
+		value : 'unpaid',
 	},
 	{
 		label : 'Partial Paid',
-		value : 'PARTIAL_PAID',
+		value : 'partial_paid',
 	},
 ];
 

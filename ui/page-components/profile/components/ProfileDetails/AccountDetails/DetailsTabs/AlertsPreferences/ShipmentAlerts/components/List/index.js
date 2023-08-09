@@ -45,7 +45,7 @@ function List(props) {
 		reset,
 		type,
 		setType,
-		data,
+		tabelData: data,
 		shipmentLoading,
 	};
 	const { handleSubmit } = formHooks || {};

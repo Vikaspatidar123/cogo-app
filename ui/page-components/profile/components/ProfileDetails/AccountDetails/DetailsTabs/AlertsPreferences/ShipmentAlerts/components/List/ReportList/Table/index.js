@@ -9,11 +9,11 @@ export const SCROLL_VALUE = 220;
 function Table(props) {
 	const scrollRef = useRef({ header: {}, body: {} });
 
-	const { reportData = {}, data = {}, shipmentLoading = false } = props || {};
+	const { reportData = {}, tabelData = {}, shipmentLoading = false } = props || {};
 
 	const { service_wise_columns } = reportData || {};
 
-	const { data_points = {} } = data || {};
+	const { data_points = {} } = tabelData || {};
 
 	const services = Object.keys(data_points || {});
 
@@ -43,7 +43,7 @@ function Table(props) {
 				const info = data_points?.[item] || {};
 				const header = Object.values(info || {});
 				const headerKeys = Object.keys(info || {});
-				const values = data[`${item}_shipments`];
+				const values = tabelData[`${item}_shipments`];
 				const options = Object.keys(info).map((key) => ({
 					label     : info[key],
 					value     : key,

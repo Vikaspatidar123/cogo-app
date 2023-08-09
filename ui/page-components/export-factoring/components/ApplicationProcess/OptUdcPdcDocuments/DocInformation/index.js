@@ -37,6 +37,8 @@ function DocInformation({ infoType }) {
 			</div>
 		);
 	}
+
+	return null;
 }
 
 export default DocInformation;

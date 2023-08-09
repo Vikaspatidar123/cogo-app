@@ -59,30 +59,6 @@ function BasicDetails({ active = {}, getCreditRequestResponse = {}, refetch = ()
 					refetch={refetch}
 					loading={loading}
 				/>
-				{/* <div className={styles.terms_condition_div}>
-				<Checkbox />
-				<div className={styles.terms}>
-					I accept the Cogoport
-					{' '}
-					<a
-						href="https://www.cogoport.com/en-IN/terms-and-conditions"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Terms of Service
-					</a>
-					{' '}
-					and
-					{' '}
-					<a
-						href="https://www.cogoport.com/en-IN/privacy-policy"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Privacy Policy
-					</a>
-				</div>
-			</div> */}
 
 			</div>
 			<div className={styles.button_wrapper}>

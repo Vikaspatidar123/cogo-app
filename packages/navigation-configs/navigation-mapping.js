@@ -164,17 +164,6 @@ const navigationMappings = ({ t = () => { } }) => {
 
 					},
 					{
-						key              : 'saas_premium_services-export-factoring',
-						title            : t(`${translationKey}_premium_services_options_exportFactoring_label`),
-						href             : '/export-factoring',
-						as               : '/export-factoring',
-						icon             : <IcATradeFinance width={55} height={55} fill="#fbd221" />,
-						description      : t(`${translationKey}_premium_services_options_exportFactoring_description`),
-						supportedCountry : GLOBAL_CONSTANTS.feature_supported_service
-							.export_factoring.supported_countries,
-
-					},
-					{
 						key         : 'saas_premium_services-duties_and_taxes',
 						title       : t(`${translationKey}_premium_services_options_dutiesTaxes_label`),
 						href        : '/saas/premium-services/duties-taxes-calculator',
@@ -215,7 +204,16 @@ const navigationMappings = ({ t = () => { } }) => {
 						as          : '/saas/order-history',
 						icon        : <IcABookYourShipment width={55} height={55} />,
 						description : t(`${translationKey}_premium_services_options_orderHistory_description`),
-
+					},
+					{
+						key              : 'saas_premium_services-export-factoring',
+						title            : t(`${translationKey}_premium_services_options_exportFactoring_label`),
+						href             : '/export-factoring',
+						as               : '/export-factoring',
+						icon             : <IcATradeFinance width={55} height={55} fill="#fbd221" />,
+						description      : t(`${translationKey}_premium_services_options_exportFactoring_description`),
+						supportedCountry : GLOBAL_CONSTANTS.feature_supported_service
+							.export_factoring.supported_countries,
 					},
 				],
 			},

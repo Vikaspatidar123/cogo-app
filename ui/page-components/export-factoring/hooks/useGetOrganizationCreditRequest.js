@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useCallback, useState } from 'react';
 
 import { useRequest } from '@/packages/request';
@@ -42,7 +43,7 @@ const useGetOrganizationCreditRequest = () => {
 
 	useEffect(() => {
 		getOrganizationCreditRequest();
-	}, [getOrganizationCreditRequest]);
+	}, []);
 
 	return {
 		loading,

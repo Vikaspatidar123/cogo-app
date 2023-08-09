@@ -30,7 +30,7 @@ function Coupons({ getCreditRequestResponse = {} }) {
 	return (
 		<div className={styles.coupons}>
 			{(list || []).map((coupon) => (
-				<div className={styles.coupon_box} key={coupon.name}>
+				<div className={styles.coupon_box} key={coupon?.name}>
 					<Image
 						src={coupon?.thumbnail_image}
 						width={50}

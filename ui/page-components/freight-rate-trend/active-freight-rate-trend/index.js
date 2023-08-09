@@ -66,30 +66,31 @@ function ActiveFreightRateTrend() {
 			</div>
 			<CustomerSatisfaction serviceName="freight_rate_trends" position="flex-end" details={{ id }} />
 
-			<div className={styles.filter_web_view}>
-				<FilterForm
-					id={id}
-					filters={filters}
-					setFilters={setFilters}
-					refetch={refetch}
+			<div className={styles.filter_container}>
+				<Tabs
+					themeType="tertiary"
+					activeTab={activeTab}
+					onChange={setActiveTab}
+				>
+					{control.map((item) => (
+						<TabPanel
+							key={item.name}
+							name={item.name}
+							title={item.title}
+						/>
+					))}
 
-				/>
-			</div>
+				</Tabs>
 
-			<Tabs
-				themeType="tertiary"
-				activeTab={activeTab}
-				onChange={setActiveTab}
-			>
-				{control.map((item) => (
-					<TabPanel
-						key={item.name}
-						name={item.name}
-						title={item.title}
+				<div className={styles.filter_web_view}>
+					<FilterForm
+						id={id}
+						filters={filters}
+						setFilters={setFilters}
+						refetch={refetch}
 					/>
-				))}
-
-			</Tabs>
+				</div>
+			</div>
 
 			<div className={styles.container}>
 				<div className={styles.heading}>{t('frt:trend_chart_title')}</div>

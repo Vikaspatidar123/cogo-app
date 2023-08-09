@@ -9,7 +9,7 @@ import { useSelector } from '@/packages/store';
 const usePostTradeEngine = () => {
 	const tradeEngineInputId = useRef('');
 
-	const { profile } = useSelector((s) => s);
+	const { profile } = useSelector((state) => state);
 	const { id, organization } = profile || {};
 
 	const [{ loading }, trigger] = useRequestBf(

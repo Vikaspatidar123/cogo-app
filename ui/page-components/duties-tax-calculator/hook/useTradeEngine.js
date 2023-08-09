@@ -9,7 +9,7 @@ import { useSelector } from '@/packages/store';
 const useTradeEngine = () => {
 	const { t } = useTranslation(['dutiesTaxesCalculator']);
 
-	const { profile = {} } = useSelector((s) => s);
+	const { profile = {} } = useSelector((state) => state);
 	const tradeEngineInputId = useRef('');
 
 	const { organization = {} } = profile || {};

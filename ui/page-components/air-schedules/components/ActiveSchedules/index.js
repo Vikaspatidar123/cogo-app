@@ -83,13 +83,13 @@ function ActiveSchedules() {
 					onClick={handleBack}
 				/>
 				<div className={styles.header_text}>
-					{scheduleDetails?.origin_airport?.name || 'Origin'}
+					{scheduleDetails?.origin_airport?.name || t('airSchedule:origin_text')}
 				</div>
 				<div className={styles.icon_container}>
 					<IcMPortArrow fill="#88CAD1" width="1.5rem" height="1.5rem" />
 				</div>
 				<div className={styles.header_text}>
-					{scheduleDetails?.destination_airport?.name || 'Destination'}
+					{scheduleDetails?.destination_airport?.name || t('airSchedule:destination_text')}
 				</div>
 			</div>
 			<CustomerSatisfaction position="flex-end" details={{ id }} serviceName="air_schedules" />

@@ -20,7 +20,7 @@ function Shipments({ list }) {
 		return <CreateShipment />;
 	}
 	return (
-		<div>
+		<div className={styles.container}>
 			<div className={styles.head_box}>
 				<div className={styles.heading}>
 					{t('dashboard:onGoingShipments_text_1')}
@@ -42,9 +42,8 @@ function Shipments({ list }) {
 				slides={carouselData}
 				autoScroll
 				timeInterval={5000}
-				showDots
-				showArrow={false}
 				size="sm"
+				showDots={false}
 				className={styles.carousel}
 			/>
 

@@ -24,3 +24,15 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+.container {
+	:global {
+		.ui_carousel_prev {
+			left: -18px;
+		}
+
+		.ui_carousel_next {
+			right: -18px;
+		}
+	}
+}

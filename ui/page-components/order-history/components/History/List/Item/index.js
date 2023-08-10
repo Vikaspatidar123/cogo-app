@@ -9,10 +9,10 @@ import getValue from '@/ui/commons/utils/getValue';
 function Item({
 	item = {},
 	fields = [],
-	setDetailsModal,
+	setDetailsModal = () => {},
 	loading = false,
 }) {
-	const { newFunctions } = itemFunctions();
+	const { newFunctions = {} } = itemFunctions();
 
 	const clickHandler = ({ key }) => {
 		if (item.status !== 'DATA_GENERATED' || key === 'csat') return;

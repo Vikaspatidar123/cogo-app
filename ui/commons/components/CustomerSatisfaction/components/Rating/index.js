@@ -2,8 +2,10 @@ import { RatingComponent } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
-function Rating({ setFeedback, feedback }) {
-	const { rating } = feedback;
+const DEFAULT_RATING = 3;
+
+function Rating({ setFeedback = () => {}, feedback = {} }) {
+	const { rating = DEFAULT_RATING } = feedback || {};
 
 	return (
 		<div className={styles.stars_container}>

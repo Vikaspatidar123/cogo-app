@@ -23,7 +23,7 @@ function CustomerSatisfaction({ serviceName = '', position = '', details = {} })
 					{t('common:csat_rate_us')}
 				</div>
 			) : ''}
-			{show && (
+			{show ? (
 				<CustomerSatisfactionModal
 					show={show}
 					setShow={setShow}
@@ -32,7 +32,7 @@ function CustomerSatisfaction({ serviceName = '', position = '', details = {} })
 					setShowRateUs={setShowRateUs}
 					details={details}
 				/>
-			)}
+			) : null}
 		</>
 	);
 }

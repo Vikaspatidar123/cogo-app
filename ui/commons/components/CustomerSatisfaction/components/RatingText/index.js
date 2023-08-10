@@ -6,14 +6,16 @@ import { getFeedbackTitleMapping } from '../../constants/feedback-title-mapping'
 
 import styles from './styles.module.css';
 
+const DEFAULT_RATING = 3;
+
 function RatingText({ setFeedback, feedback }) {
-	const { rating, selectedOptions = [], reason = '' } = feedback || {};
+	const { rating = DEFAULT_RATING, selectedOptions = [], reason = '' } = feedback || {};
 
 	const { t } = useTranslation(['common']);
 
 	const FEEDBACK_TITLE_MAPPING = getFeedbackTitleMapping({ t });
 
-	const options = FEEDBACK_MAPPING[rating];
+	const options = FEEDBACK_MAPPING[rating] || [];
 	return (
 		<div className={styles.container}>
 

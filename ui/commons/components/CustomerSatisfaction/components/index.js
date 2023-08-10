@@ -27,7 +27,7 @@ function CustomerSatisfactionModal({
 		reason          : '',
 	});
 
-	const { submitCsat } = useSubmitCsat({ feedback, csatInfo, serviceName, details });
+	const { submitCsat = () => {} } = useSubmitCsat({ feedback, csatInfo, serviceName, details });
 
 	const handleSubmit = () => {
 		submitCsat();

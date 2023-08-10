@@ -61,7 +61,7 @@ function SuccessModal({ tradeEngineResp }) {
 		resultCurrency = 'INR',
 		totalDutiesAndTaxes = 0,
 		totalLandedCost = 0,
-		trade_engine_id,
+		trade_engine_id = '',
 	} = tradeEngineResp || {};
 
 	const { query } = useRouter();

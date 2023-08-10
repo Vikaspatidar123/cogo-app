@@ -62,8 +62,8 @@ function List({
 					/>
 				</div>
 			)}
-			{!loading && isEmpty(list) && <EmptyState />}
-			{detailsModal.show && <DetailsModal detailsModal={detailsModal} setDetailsModal={setDetailsModal} />}
+			{(!loading && isEmpty(list)) ? <EmptyState /> : null}
+			{detailsModal.show ? <DetailsModal detailsModal={detailsModal} setDetailsModal={setDetailsModal} /> : null}
 		</div>
 	);
 }

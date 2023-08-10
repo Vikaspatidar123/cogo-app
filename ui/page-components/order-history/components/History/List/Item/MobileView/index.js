@@ -6,7 +6,7 @@ import getValue from '@/ui/commons/utils/getValue';
 
 const LOADING_ARR = [...Array(4).keys()];
 
-function MobileView({ fields, itm, loading = false, newFunctions }) {
+function MobileView({ fields = [], itm = {}, loading = false, newFunctions = {} }) {
 	return (
 		<div className={styles.container}>
 			{loading ? (
@@ -21,7 +21,7 @@ function MobileView({ fields, itm, loading = false, newFunctions }) {
 					</div>
 				))
 			) : (
-				fields.map((config) => (
+				(fields || []).map((config) => (
 					<div className={styles.flex} key={config.key}>
 						<div className={styles.label}>{config?.label}</div>
 						<div className={styles.value}>

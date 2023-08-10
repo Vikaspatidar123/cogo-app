@@ -1,7 +1,6 @@
 import { useRequest } from '@/packages/request';
 
-const getSubmitCsatPayload = (props) => {
-	const { feedback = {}, serviceName = '', csatInfo = {}, details = {} } = props;
+const getSubmitCsatPayload = ({ feedback = {}, serviceName = '', csatInfo = {}, details = {} }) => {
 	const { selectedOptions = [], reason = '', rating } = feedback || {};
 
 	return {

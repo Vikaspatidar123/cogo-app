@@ -36,10 +36,10 @@ function DetailsModal({
 	setDetailsModal,
 }) {
 	const { t } = useTranslation(['orderHistory']);
-	const { show, requestType, tradeEngineInputId } = detailsModal || {};
+	const { show = false, requestType = '', tradeEngineInputId = '' } = detailsModal || {};
 
 	const TITLE_MAPPING = getTitle({ t });
-	const Component = COMPONENT_MAPPING?.[requestType];
+	const Component = COMPONENT_MAPPING?.[requestType] || null;
 
 	const { tradeEngineResponse, loading } =	useGetTradeEngine({ tradeEngineInputId });
 

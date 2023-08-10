@@ -55,7 +55,7 @@ function ShowConditions({
 		<>
 			{conditions.map((label, index) => (
 				<span style={{ fontSize: '12px' }}>
-					{`${label}`}
+					{label}
 					{' '}
 					{index !== conditions.length - 1 ? ', ' : ''}
 				</span>

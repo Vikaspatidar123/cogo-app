@@ -153,7 +153,7 @@ function MilestonesContainer({
 			{selectedMilestonesList?.length > 0 ? (
 				<div className={styles.tracking_details}>
 
-					<div className={`${track ? styles.shipping_main : styles.shipping_line}`}>
+					<div className={track ? styles.shipping_main : styles.shipping_line}>
 
 						<div className={styles.step_container}>
 

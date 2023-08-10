@@ -64,7 +64,7 @@ function ChargeDetails(props) {
 				{!isEmpty(charges)
 					&& charges?.map((charge, index) => (
 						<div
-							key={`${charge?.name}`}
+							key={charge?.name}
 							className={cl`${styles.row} ${index % 2 === 0 ? styles.row_bg : ''}`}
 						>
 							<p className={styles.text}>{charge?.name}</p>

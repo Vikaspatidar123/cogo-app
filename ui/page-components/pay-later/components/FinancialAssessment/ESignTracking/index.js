@@ -5,9 +5,10 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function ESignTracking({ getCreditRequestResponse = {} }) {
 	const {
-		credit_application_data: { signing_authority_email = {} },
+		credit_application_data,
 		is_sign_mode_digital = false,
 	} = getCreditRequestResponse || {};
+	console.log(getCreditRequestResponse, 'aaa');
 
 	return (
 		<div className={styles.container}>
@@ -24,7 +25,7 @@ function ESignTracking({ getCreditRequestResponse = {} }) {
 					<div className={styles.link}>
 						<div>
 							An e-sign link is sent to “
-							{signing_authority_email}
+							{credit_application_data.signing_authority_email || ''}
 							“
 						</div>
 					</div>

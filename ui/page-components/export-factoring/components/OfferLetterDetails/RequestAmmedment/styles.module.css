@@ -1,0 +1,25 @@
+.field {
+	width: 25%;
+	margin: 0 0 15px;
+}
+
+.field:last-child {
+	width: 100%;
+}
+
+.field_name {
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.form {
+	display: flex;
+	flex-flow: row wrap;
+	padding: 20px;
+}
+
+.error_text {
+	color: red;
+}

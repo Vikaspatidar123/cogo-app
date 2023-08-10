@@ -1,0 +1,44 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10vw;
+}
+
+.header {
+	padding: 10px 0;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 36px;
+	text-align: left;
+	letter-spacing: 0;
+}
+
+.button_wrapper {
+	position: fixed;
+	bottom: 0;
+	display: inline-flex;
+	justify-content: flex-end;
+	float: "row";
+	width: 100%;
+	padding: 20px 0;
+	margin-left: -50px;
+	background-color: #fff;
+	border-top: 1px solid #e4e4e4;
+}
+
+.terms_condition_div {
+	display: inline-flex;
+	align-items: center;
+}
+
+.terms {
+	span {
+		padding: 0 5px;
+		color: rgb(225 60 60 / 78.3%);
+		cursor: pointer;
+	}
+}
+
+.proceed_button {
+	margin-right: 7vw;
+}

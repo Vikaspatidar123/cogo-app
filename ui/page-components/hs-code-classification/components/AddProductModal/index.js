@@ -41,7 +41,7 @@ function AddProductModal({ data = {}, src = '' }) {
 				>
 					<div
 						role="presentation"
-						className={`${styles.fav_icon}`}
+						className={styles.fav_icon}
 						onClick={() => {
 							setShow(true);
 						}}

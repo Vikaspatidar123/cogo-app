@@ -1,0 +1,21 @@
+.turn_over_container {
+	width: 50%;
+	padding: 20px 0;
+}
+
+.btn_container {
+	position: fixed;
+	bottom: 0;
+	display: inline-flex;
+	justify-content: flex-end;
+	float: "row";
+	width: 100%;
+	padding: 20px 0;
+	margin-left: -50px;
+	background-color: #fff;
+	border-top: 1px solid #e4e4e4;
+}
+
+.proceed_button {
+	margin-right: 7vw;
+}

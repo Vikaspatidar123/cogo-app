@@ -43,7 +43,7 @@ function Table({
 
 					<div
 						style={{ maxHeight: maxHeight ?? '' }}
-						className={`${isScroll ? styles.scroll_container : ''}`}
+						className={isScroll ? styles.scroll_container : ''}
 					>
 						{newList.map((item) => (
 							<div

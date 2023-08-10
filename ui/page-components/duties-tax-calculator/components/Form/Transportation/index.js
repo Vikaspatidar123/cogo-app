@@ -94,7 +94,7 @@ function Transportation({
 				<div>{t('dutiesTaxesCalculator:form_transport_title')}</div>
 			</div>
 			<form>
-				<div className={`${styles.tabs}`}>
+				<div className={styles.tabs}>
 					{TRANSPORT_MODE_MAPPING.map((info) => (
 						<div
 							key={info.text}

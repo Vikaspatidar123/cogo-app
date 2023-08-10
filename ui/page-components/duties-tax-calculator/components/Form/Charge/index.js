@@ -119,7 +119,7 @@ function Charge({
 									size="sm"
 									themeType="linkUi"
 									onClick={() => setShowFreightModal(true)}
-									className={`${styles.get_rates}`}
+									className={styles.get_rates}
 								>
 									{t('dutiesTaxesCalculator:form_charge_rate')}
 								</Button>

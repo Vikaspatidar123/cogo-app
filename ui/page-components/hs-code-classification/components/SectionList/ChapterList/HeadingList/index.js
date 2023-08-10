@@ -72,7 +72,7 @@ function HeadingList({
 				<div className={`${styles.desc} ${headingToggle && styles.selected}`}>
 					{description()}
 				</div>
-				<div className={`${styles.dropdown_new3}`}>
+				<div className={styles.dropdown_new3}>
 					{headingLoading ? (
 						addLoader('30px', '100px')
 					) : (

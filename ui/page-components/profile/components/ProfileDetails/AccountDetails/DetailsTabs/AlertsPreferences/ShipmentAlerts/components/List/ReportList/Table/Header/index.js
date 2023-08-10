@@ -1,8 +1,12 @@
-import { Checkbox } from '@cogoport/components';
+import { Checkbox, cl, Placeholder } from '@cogoport/components';
 import { IcMArrowDoubleLeft, IcMArrowDoubleRight } from '@cogoport/icons-react';
 import { forwardRef } from 'react';
 
 import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
+
+const LOADER_ARRAY = [...Array(6).keys()];
 
 function Header({
 	header,
@@ -11,10 +15,27 @@ function Header({
 	scrollHandler,
 	scrollHandlerRight,
 	serviceName,
+	shipmentLoading,
 }, ref) {
+	const { query } = useRouter();
 	const onCheck = (value) => {
 		setColumns((prev) => ({ ...prev, [`${serviceName}_shipment`]: value }));
 	};
+
+	if (shipmentLoading) {
+		return (
+			<div className={cl`${styles.container} ${styles.loading}`}>
+				{LOADER_ARRAY.map((ele) => (
+					<Placeholder
+						className={styles.placeholder}
+						width={100}
+						height={20}
+						key={ele}
+					/>
+				))}
+			</div>
+		);
+	}
 
 	return (
 		<div className={styles.container}>
@@ -26,7 +47,7 @@ function Header({
 					onChange={(e) => onCheck(e.target.checked)}
 				/>
 			</div>
-			<div className={styles.list} ref={ref}>
+			<div className={cl`${styles.list} ${query.type === 'shipment' && styles.shipment}`} ref={ref}>
 				{
                     (header || []).map((item) => <div className={styles.text} key={item}>{item}</div>)
                 }

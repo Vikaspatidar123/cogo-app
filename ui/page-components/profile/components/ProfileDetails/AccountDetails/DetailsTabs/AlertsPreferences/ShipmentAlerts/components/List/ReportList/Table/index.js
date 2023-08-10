@@ -66,6 +66,7 @@ function Table(props) {
 							serviceName={item}
 							scrollHandler={scrollHandlerLeft(index)}
 							scrollHandlerRight={scrollHandlerRight(index)}
+							shipmentLoading={shipmentLoading}
 							{...props}
 							ref={(r) => {
 								scrollRef.current.header[index] = r;

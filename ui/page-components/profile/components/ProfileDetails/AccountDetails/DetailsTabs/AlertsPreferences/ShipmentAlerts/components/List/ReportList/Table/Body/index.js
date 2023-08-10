@@ -1,9 +1,11 @@
-import { Placeholder, Tooltip } from '@cogoport/components';
+import { Placeholder, Tooltip, cl } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
 import { forwardRef } from 'react';
 
 import styles from './styles.module.css';
+
+import { useRouter } from '@/packages/next';
 
 export const SCROLL_VALUE = 220;
 
@@ -29,7 +31,7 @@ function Body({ values, header, index, shipmentLoading }, ref) {
 	const { current } = ref;
 
 	current.body[index] = {};
-
+	const { query } = useRouter();
 	const { t } = useTranslation(['settings']);
 
 	if (shipmentLoading) {
@@ -61,7 +63,7 @@ function Body({ values, header, index, shipmentLoading }, ref) {
 				<div className={styles.container} key={item?.serial_id}>
 					<div className={styles.icon_check} />
 					<div
-						className={styles.list}
+						className={cl`${styles.list} ${query.type === 'shipment' && styles.shipment}`}
 						ref={(r) => {
 							current.body[index][i] = r;
 						}}

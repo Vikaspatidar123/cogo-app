@@ -54,7 +54,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	width: 7%;
+	width: 6%;
 
 	:global {
 		.ui_checkbox_container {

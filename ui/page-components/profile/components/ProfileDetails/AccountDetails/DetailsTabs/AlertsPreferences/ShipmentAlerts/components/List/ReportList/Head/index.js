@@ -12,7 +12,7 @@ function Head(props) {
 	const { refetch = () => {}, data } = useDownload();
 	const onClick = async () => {
 		await refetch();
-		window.open(data.file_url);
+		window.open(data?.file_url);
 	};
 	return (
 		<div className={styles.container}>

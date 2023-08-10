@@ -11,9 +11,9 @@ function Table(props) {
 
 	const { reportData = {}, tabelData = {}, shipmentLoading = false } = props || {};
 
-	const { service_wise_columns } = reportData || {};
+	const { service_wise_columns, data_points = {} } = reportData || {};
 
-	const { data_points = {} } = tabelData || {};
+	const { selected_data_points } = tabelData || {};
 
 	const services = Object.keys(data_points || {});
 
@@ -41,7 +41,8 @@ function Table(props) {
 		<div>
 			{(services || []).map((item, index) => {
 				const info = data_points?.[item] || {};
-				const header = Object.values(info || {});
+				const head = selected_data_points?.[`${item}_shipments`];
+				const header = Object.values(head || {});
 				const headerKeys = Object.keys(info || {});
 				const values = tabelData[`${item}_shipments`];
 				const options = Object.keys(info).map((key) => ({
@@ -51,7 +52,6 @@ function Table(props) {
 				}));
 				const checkPoint = service_wise_columns?.[item].length;
 				const totalPoint = header.length;
-
 				return (
 					<div key={`${index + 1}`}>
 						<Title

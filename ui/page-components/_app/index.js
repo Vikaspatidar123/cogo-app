@@ -94,7 +94,7 @@ function MyApp({ Component, pageProps, store, generalData }) {
 					{isBotVisible && <DynamicChatBot />}
 				</GlobalLayout>
 			</Provider>
-			{process.env.NODE_ENV === 'production' && <ReactQueryDevtools initialIsOpen={false} />}
+			{process.env.NODE_ENV !== 'production' && <ReactQueryDevtools initialIsOpen={false} />}
 		</QueryClientProvider>
 	);
 }

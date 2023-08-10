@@ -6,11 +6,13 @@ import styles from './styles.module.css';
 import UserTable from './UserTable';
 
 function SelectUserlist({
-	data, hookSetter, isLoading,
-	setUserIds,
-	userIds,
+	data = {},
+	hookSetter = {},
+	isLoading = false,
+	setUserIds = () => {},
+	userIds = [],
 }) {
-	const { setPageNumber, setQuery, query } = hookSetter || {};
+	const { setPageNumber = () => {}, setQuery = () => {}, query = '' } = hookSetter || {};
 
 	const { t } = useTranslation(['settings']);
 

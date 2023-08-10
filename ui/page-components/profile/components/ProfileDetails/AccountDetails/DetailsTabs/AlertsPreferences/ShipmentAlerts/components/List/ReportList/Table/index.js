@@ -18,20 +18,20 @@ function Table(props) {
 	const services = Object.keys(data_points || {});
 
 	const scrollHandlerLeft = (index) => () => {
-		if (scrollRef.current.header[index]) {
+		if (scrollRef?.current?.header[index]) {
 			scrollRef.current.header[index].scrollLeft += SCROLL_VALUE;
 
-			Object.keys(scrollRef.current.body[index] || {}).forEach((ele) => {
+			Object.keys(scrollRef?.current?.body[index] || {}).forEach((ele) => {
 				scrollRef.current.body[index][ele].scrollLeft += SCROLL_VALUE;
 			});
 		}
 	};
 
 	const scrollHandlerRight = (index) => () => {
-		if (scrollRef.current.header[index]) {
+		if (scrollRef?.current?.header[index]) {
 			scrollRef.current.header[index].scrollLeft -= SCROLL_VALUE;
 
-			Object.keys(scrollRef.current.body[index] || {}).forEach((ele) => {
+			Object.keys(scrollRef?.current?.body[index] || {}).forEach((ele) => {
 				scrollRef.current.body[index][ele].scrollLeft -= SCROLL_VALUE;
 			});
 		}

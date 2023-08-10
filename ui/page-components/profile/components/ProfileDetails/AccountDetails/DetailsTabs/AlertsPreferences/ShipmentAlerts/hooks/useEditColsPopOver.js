@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-const useEditColsPopOver = ({ colsList = [], serviceName, data }) => {
-	const { setColumns, reset } = data || {};
+const useEditColsPopOver = ({ colsList = [], serviceName, data = {} }) => {
+	const { setColumns = () => {}, reset } = data || {};
 
 	const [show, setShow] = useState(false);
 

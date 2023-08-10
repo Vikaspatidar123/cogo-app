@@ -9,7 +9,7 @@
 .title {
 	width: 5%;
 	padding: 5px;
-	color: var(--black-60, #828282);
+	color: #828282;
 	text-align: left;
 }
 
@@ -18,7 +18,7 @@
 	margin-left: 10px;
 	font-size: 14px;
 	font-weight: 500;
-	color: var(--black-80, #4f4f4f);
+	color: #4f4f4f;
 }
 
 .item {

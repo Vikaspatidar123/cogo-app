@@ -6,14 +6,16 @@ import useDownload from '../../../../hooks/useDownload';
 
 import styles from './styles.module.css';
 
-function Head(props) {
-	const { isEdit } = props || {};
+function Head({ isEdit = false }) {
 	const { t } = useTranslation(['settings']);
+
 	const { refetch = () => {}, data } = useDownload();
+
 	const onClick = async () => {
 		await refetch();
 		window.open(data?.file_url);
 	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.text}>{t('settings:shipment_alerts_text_10')}</div>

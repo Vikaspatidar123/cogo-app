@@ -1,6 +1,6 @@
 import { useQuery as query } from 'react-query';
 
-const useQuery = ({ queryKey, renderOption, payload, queryFn, options = {} }) => {
+const useQuery = ({ queryKey, renderOption, payload, queryFn = () => {}, options = {} }) => {
 	const data = query(
 		[queryKey, renderOption],
 		() => queryFn(payload),

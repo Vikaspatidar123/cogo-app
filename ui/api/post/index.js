@@ -5,5 +5,5 @@ export const updateShipmentReport = async (payload) => {
 		'/update_shipment_report_schedule',
 		payload,
 	);
-	return response.data;
+	return response?.data;
 };

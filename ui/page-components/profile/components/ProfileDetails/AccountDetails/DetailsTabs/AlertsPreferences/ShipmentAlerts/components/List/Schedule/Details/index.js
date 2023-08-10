@@ -10,8 +10,10 @@ import EditDetails from './EditDetails';
 import styles from './styles.module.css';
 
 function Details(props) {
-	const { isEdit, reportData = {}, loading = false } = props || {};
+	const { isEdit = false, reportData = {}, loading = false } = props || {};
+
 	const { schedule_time_zone = '', schedule_type = '', schedule_time = '' } = reportData || {};
+
 	const { t } = useTranslation(['settings']);
 
 	const { data, isLoading, hookSetter } = useListOrganisation({ isEdit, reportData });

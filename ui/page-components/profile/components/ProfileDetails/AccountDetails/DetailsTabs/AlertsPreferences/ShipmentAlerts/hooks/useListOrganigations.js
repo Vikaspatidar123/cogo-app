@@ -7,7 +7,7 @@ import { getListOrganisation } from '@/ui/api/get';
 const DEFAULT_PAGE_LIMIT = 5;
 const DEFAULT_PAGE_LIMIT_ACTIVE = 100;
 
-const useListOrganisation = ({ isEdit, reportData }) => {
+const useListOrganisation = ({ isEdit = false, reportData = {} }) => {
 	const { recipient_user_ids = [] } = reportData || {};
 	const [pageNumber, setPageNumber] = useState(1);
 

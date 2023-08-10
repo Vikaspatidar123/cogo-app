@@ -9,13 +9,13 @@ import { useRouter } from '@/packages/next';
 const LOADER_ARRAY = [...Array(6).keys()];
 
 function Header({
-	header,
-	isEdit,
-	setColumns,
-	scrollHandler,
-	scrollHandlerRight,
+	header = [],
+	isEdit = false,
+	setColumns = () => {},
+	scrollHandler = () => {},
+	scrollHandlerRight = () => {},
 	serviceName,
-	shipmentLoading,
+	shipmentLoading = false,
 }, ref) {
 	const { query } = useRouter();
 	const onCheck = (value) => {

@@ -7,22 +7,24 @@ import Header from './Header';
 import styles from './styles.module.css';
 
 function UserTable({
-	data, setPageNumber, isLoading,
-	setUserIds,
-	userIds,
+	data = {},
+	setPageNumber = () => {},
+	isLoading = false,
+	setUserIds = () => {},
+	userIds = [],
 }) {
 	const {
-		list = [], page = 1, total_count,
-		page_limit,
+		list = [], page = 1, total_count = 0,
+		page_limit = 5,
 	} = data || {};
 
 	const { t } = useTranslation(['settings']);
 
 	const onCheck = ({ item }) => {
-		if (!userIds.includes(item.user_id)) {
-			setUserIds((prev) => [...prev, item.user_id]);
+		if (!userIds.includes(item?.user_id)) {
+			setUserIds((prev) => [...prev, item?.user_id]);
 		} else {
-			setUserIds((prev) => prev.filter((info) => info !== item.user_id));
+			setUserIds((prev) => prev.filter((info) => info !== item?.user_id));
 		}
 	};
 
@@ -39,7 +41,7 @@ function UserTable({
 						<div className={styles.checkbox}>
 							<Checkbox
 								onChange={() => onCheck({ item })}
-								checked={userIds.includes(item.user_id)}
+								checked={userIds.includes(item?.user_id)}
 								loading={isLoading}
 							/>
 

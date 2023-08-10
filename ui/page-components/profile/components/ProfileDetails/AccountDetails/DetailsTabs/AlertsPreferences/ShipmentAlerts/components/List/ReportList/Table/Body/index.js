@@ -27,11 +27,13 @@ const renderItem = (name = '') => {
 	return name;
 };
 
-function Body({ values, header, index, shipmentLoading }, ref) {
+function Body({ values = [], header = [], index, shipmentLoading = false }, ref) {
 	const { current } = ref;
 
 	current.body[index] = {};
+
 	const { query } = useRouter();
+
 	const { t } = useTranslation(['settings']);
 
 	if (shipmentLoading) {

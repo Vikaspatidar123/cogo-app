@@ -5,12 +5,17 @@ import SelectUserlist from './SelectUserlist';
 import styles from './styles.module.css';
 import TimeZoneSelectFilter from './TimeZoneSelectFilter';
 
-function EditDetails(props) {
-	const {
-		data, hookSetter, isLoading, reportData, formHooks, setUserIds,
-		type, userIds, setType,
-	} = props || {};
-
+function EditDetails({
+	data = {},
+	hookSetter = {},
+	isLoading = false,
+	reportData = {},
+	formHooks = {},
+	setUserIds = () => {},
+	type = '',
+	userIds = [],
+	setType = () => {},
+}) {
 	const { control, formState: { errors } } = formHooks || {};
 
 	const { t } = useTranslation(['settings']);

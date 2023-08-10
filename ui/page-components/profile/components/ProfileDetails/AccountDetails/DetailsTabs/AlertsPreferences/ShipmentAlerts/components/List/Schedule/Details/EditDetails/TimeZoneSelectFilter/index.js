@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
 
-function TimeZoneSelectFilter({ control, value, reportData, errors }) {
+function TimeZoneSelectFilter({ control, value = '', reportData = {}, errors = {} }) {
 	const { t } = useTranslation(['settings']);
 
 	const controls = getControls({ value, t, reportData });

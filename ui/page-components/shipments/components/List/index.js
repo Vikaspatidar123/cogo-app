@@ -10,7 +10,7 @@ import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
 
-const viewAs = 'importer_exporter';
+const VIEW_AS = 'importer_exporter';
 
 function ShipmentList() {
 	const { push } = useRouter();
@@ -48,7 +48,7 @@ function ShipmentList() {
 		}
 
 		if (!loading && data.length === 0) {
-			return <EmptyState viewAs={viewAs} />;
+			return <EmptyState viewAs={VIEW_AS} />;
 		}
 		return (
 			<div>

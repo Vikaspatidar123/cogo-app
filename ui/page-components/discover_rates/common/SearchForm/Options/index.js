@@ -405,7 +405,7 @@ function Options({
 				<div style={{ width: '100%' }}>{handlePopover()}</div>
 			)}
 
-			<div className={`${styles.date_select_container}`}>
+			<div className={styles.date_select_container}>
 				<div className={styles.label}>VALIDITY DATE</div>
 				<DateRangeBox date={date} setDate={setDate} mobile={mobile} />
 				<div style={{ fontSize: '12px', color: '#CB6464' }}>

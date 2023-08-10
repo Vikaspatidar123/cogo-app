@@ -1,0 +1,49 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 35vh;
+	overflow: scroll;
+	border-top: 1px solid #d6def1;
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.container::-webkit-scrollbar {
+	display: none;
+}
+
+.header {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.label {
+	width: 25%;
+	padding: 15px;
+}
+
+.poc_container {
+	padding: 5px 0;
+	border-top: 1px dashed #d6def1;
+}
+
+.row {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.col {
+	align-self: center;
+	width: 25%;
+	padding: 10px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	:hover {
+		overflow: visible;
+		text-overflow: inherit;
+		word-wrap: break-word;
+		white-space: normal;
+	}
+}

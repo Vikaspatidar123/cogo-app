@@ -34,6 +34,7 @@ import {
 	IcMAppPayment,
 	IcATransactionHistory,
 	IcMUsersManageAccounts,
+	IcATradeFinance,
 } from '@cogoport/icons-react';
 
 // eslint-disable-next-line import/no-unresolved, import/extensions
@@ -197,13 +198,22 @@ const navigationMappings = ({ t = () => { } }) => {
 						description : t(`${translationKey}_premium_services_options_importExportControls_description`),
 					},
 					{
+						key              : 'saas_premium_services-export-factoring',
+						title            : t(`${translationKey}_premium_services_options_exportFactoring_label`),
+						href             : '/export-factoring',
+						as               : '/export-factoring',
+						icon             : <IcATradeFinance width={55} height={55} fill="#fbd221" />,
+						description      : t(`${translationKey}_premium_services_options_exportFactoring_description`),
+						supportedCountry : GLOBAL_CONSTANTS.feature_supported_service
+							.export_factoring.supported_countries,
+					},
+					{
 						key         : 'saas_premium_services-order_history',
 						title       : t(`${translationKey}_premium_services_options_orderHistory_label`),
 						href        : '/saas/order-history',
 						as          : '/saas/order-history',
 						icon        : <IcABookYourShipment width={55} height={55} />,
 						description : t(`${translationKey}_premium_services_options_orderHistory_description`),
-
 					},
 				],
 			},

@@ -1,0 +1,15 @@
+.horizontalLine {
+	border-top: 1px solid #d6def1;
+}
+
+.flexBox {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 21px 21px 21px 0;
+	margin-right: 20px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #221f20;
+}

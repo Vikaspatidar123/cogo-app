@@ -94,7 +94,7 @@ function InfoContainer({
 							options={getOptions({ containerDetails })}
 						/>
 					) : (
-						<Pill className={styles.pill_text} color="#fff">{`${container_no || airwayBillNo}`}</Pill>
+						<Pill className={styles.pill_text} color="#fff">{container_no || airwayBillNo}</Pill>
 					)}
 			</div>
 

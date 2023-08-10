@@ -10,7 +10,7 @@ function TableHeader({ serviceType = '' }) {
 	return (
 		<div className={styles.container}>
 			{(headers || []).map((item) => (
-				<div className={`${styles.column_name}`} style={{ width: getwidth(item?.span) }}>
+				<div className={styles.column_name} style={{ width: getwidth(item?.span) }}>
 					{item.name}
 				</div>
 			))}

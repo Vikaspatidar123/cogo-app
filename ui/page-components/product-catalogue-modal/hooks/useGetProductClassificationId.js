@@ -35,7 +35,7 @@ const useGetProductClassificationId = ({
 			setProductClassificationId(response?.data?.productClassificationId);
 			setProductDetailsfromApi(response?.data);
 		} catch (error) {
-			console.log(error?.error?.message || 'Something Went Wrong');
+			console.error(error?.error?.message || 'Something Went Wrong');
 		}
 	};
 	const addProduct = async (data, setShowProduct, pdId) => {

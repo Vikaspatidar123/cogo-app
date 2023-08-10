@@ -1,0 +1,85 @@
+.container {
+	padding: 13px 33px 13px 13px;
+	margin-top: 10px;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 0 4px rgb(0 0 0 / 25%);
+}
+
+.flexBox {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 50px;
+}
+
+.flexDiv {
+	display: flex;
+	flex-direction: column;
+}
+
+.buyerText {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-left: 16px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #221f20;
+}
+
+.labelText {
+	font-size: 14px;
+	color: #828282;
+}
+
+.horizontalLine {
+	width: 100%;
+	margin-top: 10px;
+	border: 1px solid #e0e0e0;
+}
+
+.step {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	padding: 0 10px;
+}
+
+.stepper {
+	position: relative;
+}
+
+.circle {
+	display: inline-block;
+	width: 11px;
+	height: 11px;
+	background-color: #0d47a1;
+	border: 1px solid #0d47a1;
+	border-radius: 50%;
+}
+
+.line {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	height: 100%;
+	border-left: 2px solid #0d47a1;
+}
+
+.content {
+	display: inline-block;
+	width: 100%;
+	margin-left: 20px;
+}
+
+.mainContent {
+	margin: 10px 0 20px;
+}
+
+.headerFlex {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}

@@ -74,7 +74,7 @@ const IMAGE_URLS = {
 	success_gif       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/success.gif',
 	validate          : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/validate.svg',
 	company_logo:
-	'https://cogoport-production.sgp1.digitaloceanspaces.com/92f7f7340ff071a93fcacfca9956b32a/company-info-icon.svg',
+		'https://cogoport-production.sgp1.digitaloceanspaces.com/92f7f7340ff071a93fcacfca9956b32a/company-info-icon.svg',
 	neo_background_image       : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/backgroundNeo.png',
 	vault_lock_image           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/lock 2.svg',
 	calendar_image             : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/date.png',
@@ -131,6 +131,9 @@ const IMAGE_URLS = {
 		'https://cogoport-production.sgp1.digitaloceanspaces.com/98432eb67e0dd4c09fcaca028fda3658/letter-of-undertaking-lut-%20%281%29.jpeg',
 	membership_certificate:
 		'https://cogoport-production.sgp1.digitaloceanspaces.com/ca59d74941869eb1ebd5ee85fd8d445d/RCMC%20%281%29%20%281%29.pdf',
+	cogoport_water_mark         : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/watermark.png',
+	ef_waiting_screen_image     : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ef_waiting.svg',
+	ef_offer_letter_email_image : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ef_email.svg',
 };
 
 export default IMAGE_URLS;

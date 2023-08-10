@@ -88,7 +88,7 @@ const hsColumn = ({
 						{record?.displayHsCode}
 
 					</div>
-					<div className={`${isMobile ? styles.hs_desc_mobile : styles.hs_desc}`}>
+					<div className={isMobile ? styles.hs_desc_mobile : styles.hs_desc}>
 						{record?.description}
 
 					</div>

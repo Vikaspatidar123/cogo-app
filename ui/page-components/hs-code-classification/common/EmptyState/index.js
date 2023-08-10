@@ -16,8 +16,8 @@ function EmptyState({ drillDwn }) {
 				width={300}
 				height={200}
 			/>
-			<div className={`${styles.h1}`}>{t('hsClassification:hs_code_classification_empty_state_text_1')}</div>
-			<div className={`${styles.h2}`}>{t('hsClassification:hs_code_classification_empty_state_text_2')}</div>
+			<div className={styles.h1}>{t('hsClassification:hs_code_classification_empty_state_text_1')}</div>
+			<div className={styles.h2}>{t('hsClassification:hs_code_classification_empty_state_text_2')}</div>
 		</div>
 	);
 }

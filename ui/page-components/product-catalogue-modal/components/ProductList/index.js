@@ -79,7 +79,7 @@ function ProductList({
 					</div>
 				)}
 				{loading && loaderArr.map((ele) => (
-					<div key={ele} className={`${styles.row}`}>
+					<div key={ele} className={styles.row}>
 						{listView.map(({ key, width, categoryWidth }) => (
 							<div
 								key={key}

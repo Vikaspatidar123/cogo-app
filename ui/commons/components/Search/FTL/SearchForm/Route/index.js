@@ -92,7 +92,7 @@ function Route(
 	useImperativeHandle(ref, imperativeHandle);
 	return (
 		<div className={styles.container} id="search_form_route_container">
-			<div className={`${styles[typeOfJourney]}${styles.section}`}>
+			<div className={cl`${styles[typeOfJourney]} ${styles.section}`}>
 				{handleLabel('origin')}
 
 				<AsyncSelectController
@@ -123,7 +123,7 @@ function Route(
 						organization_id : org_id,
 						service_type    : mode,
 					}}
-					className={`${isEdit && styles.edit}`}
+					className={isEdit && styles.edit}
 				/>
 				{errorMsg?.origin ? (
 					<div className={styles.error_msg}>Origin Port is required</div>
@@ -148,7 +148,7 @@ function Route(
 				/>
 			</div>
 
-			<div className={cl`${styles[typeOfJourney]}${styles.section}`}>
+			<div className={cl`${styles[typeOfJourney]} ${styles.section}`}>
 				{handleLabel('destination')}
 				<AsyncSelectController
 					id={`search_${destination.name}`}
@@ -180,7 +180,7 @@ function Route(
 						organization_id : org_id,
 						service_type    : mode,
 					}}
-					className={`${isEdit && styles.edit}`}
+					className={isEdit && styles.edit}
 
 				/>
 				{errorMsg?.destination ? (

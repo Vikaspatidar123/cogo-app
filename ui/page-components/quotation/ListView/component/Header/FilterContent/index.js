@@ -116,7 +116,7 @@ function FilterContent({ setGlobalFilter, globalFilter = {} }) {
 									<Icon
 										width={15}
 										height={15}
-										fill={`${filters.status === condition ? '#fff' : '#6B6D81'}`}
+										fill={filters.status === condition ? '#fff' : '#6B6D81'}
 									/>
 									<p className={styles.text}>{name}</p>
 								</div>

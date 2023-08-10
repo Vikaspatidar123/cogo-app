@@ -32,7 +32,7 @@ const useGetTermsConditions = ({
 				setTerms(res?.data);
 			}
 		} catch (error) {
-			console.log(error?.error?.message);
+			console.error(error?.error?.message);
 		}
 	}, [activeTab, countryCode, formDetails, trigger, type]);
 

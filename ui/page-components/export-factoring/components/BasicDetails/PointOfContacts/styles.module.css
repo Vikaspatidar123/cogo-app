@@ -1,0 +1,37 @@
+.field {
+	display: flex;
+	flex-direction: column;
+	padding: 0 0 15px;
+	padding-left: 10px;
+}
+
+.field_name {
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.error_text {
+	color: red;
+}
+
+.button_wrapper {
+	display: flex;
+	justify-content: flex-end;
+	margin: 20px 0;
+
+	button:first-child {
+		margin-right: 10px;
+	}
+}
+
+.checkboxContainer {
+	padding: 10px 0;
+}
+
+.pill_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}

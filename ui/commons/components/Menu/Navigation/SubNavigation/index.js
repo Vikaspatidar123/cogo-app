@@ -16,7 +16,7 @@ function SubNavigation({ setIsOpen, setShowPopover, item }) {
 		<div>
 			{options.map(({ title, href, as, icon }) => (
 				<div
-					className={`${styles.sub_nav}`}
+					className={styles.sub_nav}
 					onClick={() => handleClick(href, as)}
 					role="presentation"
 					key={title}

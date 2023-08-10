@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@cogoport/charts': ^1.0.1
   '@cogoport/components': ^1.0.437
-  '@cogoport/eslint-config': ^1.1.0
+  '@cogoport/eslint-config': ^1.1.1
   '@cogoport/icons-react': ^1.0.90
   '@cogoport/maps': ^1.0.3
   '@cogoport/stylelint-config': ^1.0.3
@@ -14,7 +14,7 @@ specifiers:
   '@stripe/stripe-js': ^1.21.2
   '@svgr/webpack': ^6.5.1
   accept-language: ^3.0.18
-  axios: ^1.3.4
+  axios: ^1.4.0
   axios-hooks: ^4.0.0
   cookies-next: ^2.1.2
   eslint: 8.35.0
@@ -22,27 +22,27 @@ specifiers:
   firebase: ^9.16.0
   firebase-admin: ^11.7.0
   frames-react: ^1.1.0
-  fs-extra: ^11.1.0
+  fs-extra: ^11.1.1
   i18next: ^22.4.10
   mjml: ^4.5.1
   nanoid: ^4.0.1
   next: 13.2.3
-  next-i18next: ^13.1.6
+  next-i18next: ^13.3.0
   nprogress: ^0.2.0
-  postcss: ^8.4.21
+  postcss: ^8.4.26
   postcss-flexbugs-fixes: ^5.0.2
   postcss-nested: ^6.0.1
   postcss-preset-env: ^8.0.1
-  qs: ^6.11.0
+  qs: ^6.11.2
   react: 18.2.0
   react-dom: 18.2.0
   react-draggable: ^4.0.3
   react-google-recaptcha: ^2.1.0
-  react-hook-form: ^7.43.2
-  react-i18next: ^12.2.0
+  react-hook-form: ^7.45.1
+  react-i18next: ^12.3.1
   react-query: ^3.39.3
   react-query-devtools: ^2.6.3
-  react-redux: ^8.0.5
+  react-redux: ^8.1.1
   react-slick: ^0.29.0
   redux: ^4.2.1
   redux-thunk: ^2.4.2

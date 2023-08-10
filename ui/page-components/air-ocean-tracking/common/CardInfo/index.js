@@ -32,7 +32,7 @@ function CardInfo({ activeTab, type = '', input, referenceNo = '', serialId = ''
 			)}
 
 			{serialId &&	(
-				<div className={`${styles.book_cogo_tag}`}>
+				<div className={styles.book_cogo_tag}>
 					<div className={cl`${styles.tag} ${styles.book_cogo}`}>
 						{t('airOceanTracking:air_ocean_tracking_card_info_text_1')}
 					</div>

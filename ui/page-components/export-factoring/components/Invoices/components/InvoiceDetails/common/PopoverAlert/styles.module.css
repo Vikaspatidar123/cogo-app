@@ -1,0 +1,26 @@
+.valueText {
+	padding: 10px 5px;
+	font-size: 16px;
+	font-weight: 550;
+	color: #221f20;
+}
+
+.deleteContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	:global {
+		.ui_button_container {
+			margin-left: 10px;
+		}
+	}
+}
+
+.editText {
+	padding-left: 12px;
+	font-size: 16px;
+	color: #356efd;
+	text-decoration-line: underline;
+	cursor: pointer;
+}

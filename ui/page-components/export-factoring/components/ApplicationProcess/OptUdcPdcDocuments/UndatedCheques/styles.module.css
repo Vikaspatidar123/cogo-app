@@ -1,0 +1,34 @@
+.container {
+	display: flex;
+	flex-direction: column;
+
+	div {
+		margin: 4px 0;
+	}
+}
+
+.field {
+	margin: 0 0 15px;
+}
+
+.field_name {
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.form_div {
+	display: flex;
+	padding: 20px 0;
+}
+
+.btn_container {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+.error_text {
+	color: red;
+}

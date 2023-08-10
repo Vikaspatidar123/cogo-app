@@ -116,7 +116,7 @@ function Quotation({
 	const basicFreight = data?.freight_price_discounted >= 0
         && details?.trade_type !== 'domestic'
 		&& details?.service_type !== 'cargo_insurance' ? (
-			<div className={`${styles.text}`}>
+			<div className={styles.text}>
 				{`Freight ${
 					data.service_type === 'air_freight' ? 'per kg' : ''
 				} `}
@@ -242,7 +242,7 @@ function Quotation({
 				}}
 				letterSpacing={1}
 			>
-				{`${formatAmount({
+				{formatAmount({
 					amount   : data?.total_price || 0,
 					currency : data?.total_price_currency,
 					options  : {
@@ -250,7 +250,7 @@ function Quotation({
 						currencyDisplay       : 'symbol',
 						maximumFractionDigits : 0,
 					},
-				})}`}
+				})}
 			</div>
 		)}
 		<Button
@@ -264,7 +264,7 @@ function Quotation({
 		>
 			Book at
 			<span style={{ marginLeft: '6px' }}>
-				{`${formatAmount({
+				{formatAmount({
 					amount   : data?.total_price_discounted || 0,
 					currency : data?.total_price_currency,
 					options  : {
@@ -272,7 +272,7 @@ function Quotation({
 						currencyDisplay       : 'symbol',
 						maximumFractionDigits : 0,
 					},
-				})}`}
+				})}
 			</span>
 		</Button>
 	</>

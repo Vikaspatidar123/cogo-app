@@ -29,7 +29,7 @@ function Footer({ lastUpdated = '', currentMilestone = {}, currentContainerActio
 
 				<div className={styles.severity_section}>
 					{SEVERITY_MAPPING?.[severity]?.icon}
-					<span className={`${styles?.[SEVERITY_MAPPING?.[severity]?.class]}`}>
+					<span className={styles?.[SEVERITY_MAPPING?.[severity]?.class]}>
 						{SEVERITY_MAPPING?.[severity]?.title}
 					</span>
 				</div>

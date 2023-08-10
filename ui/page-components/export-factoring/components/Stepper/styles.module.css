@@ -1,0 +1,7 @@
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	filter: drop-shadow(0 0 8px rgb(98 127 172 / 20%));
+	border-radius: 4px;
+}

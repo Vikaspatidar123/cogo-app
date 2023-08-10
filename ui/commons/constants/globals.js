@@ -127,6 +127,7 @@ const GLOBAL_CONSTANTS = {
 		'LU',
 		'VN',
 	],
+
 	image_url: IMAGE_URLS,
 
 	onboarding_specialist: {
@@ -173,6 +174,9 @@ const GLOBAL_CONSTANTS = {
 		},
 
 		whatsapp: {
+			supported_countries: ['IN'],
+		},
+		export_factoring: {
 			supported_countries: ['IN'],
 		},
 	},

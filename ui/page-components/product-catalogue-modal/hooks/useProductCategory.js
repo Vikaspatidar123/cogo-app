@@ -23,7 +23,7 @@ const useProductCategory = ({ labeledValue }) => {
 			});
 			setCategoryViewData(resp?.data);
 		} catch (error) {
-			console.log(error?.message);
+			console.error(error?.message);
 		}
 	};
 

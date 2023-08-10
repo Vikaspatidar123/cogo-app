@@ -1,0 +1,29 @@
+.heading {
+	margin: 10px 0;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 16px;
+	color: #221f20;
+}
+
+.labelText {
+	font-size: 14px;
+	color: #4f4f4f;
+}
+
+.valueText {
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 21px;
+	color: #221f20;
+	word-wrap: break-word;
+}
+
+.flexBox {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding: 5px 0;
+}

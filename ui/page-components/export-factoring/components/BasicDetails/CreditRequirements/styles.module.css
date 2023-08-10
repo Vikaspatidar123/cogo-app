@@ -1,0 +1,49 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.form_container {
+	display: inline;
+
+	:global {
+		.ui_accordion_content {
+			display: flex;
+			flex-flow: row wrap;
+		}
+	}
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+	margin: 0 0 15px;
+}
+
+.field:nth-child(odd) {
+	width: 18%;
+}
+
+.field:nth-child(even) {
+	width: 80%;
+}
+
+.field_name {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.button_wrapper {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+.error_text {
+	font-size: 12px;
+	color: red;
+}

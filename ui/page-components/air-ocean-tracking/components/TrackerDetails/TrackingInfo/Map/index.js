@@ -43,7 +43,7 @@ function Map({
 
 	return (
 		<div className={styles.container}>
-			<div className={`${isEmpty(points) ? styles.blur_screennnnn : ''}`}>
+			<div className={isEmpty(points) ? styles.blur_screennnnn : ''}>
 				<CogoMaps height={height} pointsArr={currentRoute} type={trackingType} />
 			</div>
 			{loading && (

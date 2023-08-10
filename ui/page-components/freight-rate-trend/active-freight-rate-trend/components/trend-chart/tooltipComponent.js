@@ -25,7 +25,7 @@ function ToolTipComponent({ point, data, currency }) {
 
 					return (
 						<div className={styles.line} key={className}>
-							<div className={`${styles?.[className]}`} />
+							<div className={styles?.[className]} />
 							<div className={styles.value}>
 								{formatAmount({
 									amount  : info?.[keys],

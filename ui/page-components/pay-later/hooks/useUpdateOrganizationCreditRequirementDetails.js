@@ -19,7 +19,7 @@ const useUpdateOrganizationCreditRequirementDetails = ({ getCreditRequestRespons
 			});
 			refetch();
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 		}
 	};
 

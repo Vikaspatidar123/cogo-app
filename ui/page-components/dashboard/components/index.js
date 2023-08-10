@@ -1,30 +1,43 @@
-import GetTracking from '../hooks/GetTracking';
+import { getCookie, isEmpty } from '@cogoport/utils';
+import { useState } from 'react';
+
+import useGetTracking from '../hooks/useGetTracking';
 
 import DiscoverRates from './DiscoverRates';
-import Elgibility from './Elgibility';
 import ExportFactoring from './ExportFactoring';
 import KYCPage from './KYCPage';
 import PayLaterWidgets from './PayLaterWidgets';
 import Promotion from './Promotion';
 import Schedule from './Schedule';
+import SetPassword from './SetPassword';
 import Shipments from './Shipments';
 import styles from './styles.module.css';
 import Tracking from './Tracking';
 import ActiveTracking from './Tracking/ActiveTracking';
 
-// import VerifyEmailMobile from '@/ui/commons/components/VerifyEmailMobile';
+import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
+const PAYLATER_SUPPORTED_COUNTRIES = GLOBAL_CONSTANTS.feature_supported_service.paylater.supported_countries;
+const KYC_PENDING_STATUS = 'pending_verification';
+
 function SassDashboard() {
-	const { airTracking, oceanTracking, query, country_id, kyc_status } = GetTracking();
+	const { general: { query: { mode = '' } } } = useSelector((state) => state);
+
+	const location = getCookie('location');
+
+	const { airTracking, oceanTracking, kyc_status } = useGetTracking();
+
+	const isSetPassword = mode === 'set_password';
+
+	const [showPasswordModal, setShowPasswordModal] = useState(isSetPassword);
 
 	return (
-		<div className={styles.main_class}>
+		<div className={`${styles.main_class} ${showPasswordModal ? styles.main_class_blur : ''}`}>
 			<div className={styles.main_class2}>
 				<div className={styles.part1}>
-					{/* <VerifyEmailMobile /> */}
 
-					{kyc_status !== 'pending_verification' && (
+					{kyc_status !== KYC_PENDING_STATUS && (
 						<div className={styles.top}>
 							<KYCPage />
 						</div>
@@ -37,8 +50,8 @@ function SassDashboard() {
 					</div>
 					<Schedule />
 					{
-						(Object.keys(airTracking?.data || {}).length > 0
-							|| Object.keys(oceanTracking?.data || {}).length > 0 ? (
+						(!isEmpty(Object.keys(airTracking?.data || {}))
+							|| !isEmpty(Object.keys(oceanTracking?.data || {})) ? (
 
 								<ActiveTracking
 									airTracking={airTracking}
@@ -51,14 +64,14 @@ function SassDashboard() {
 				</div>
 				<div className={styles.part2}>
 					<div className={styles.child2}>
-						{country_id === GLOBAL_CONSTANTS.country_ids.IN
-							&& query?.account_type === 'importer-exporter' && <PayLaterWidgets />}
-						<Elgibility />
+						{PAYLATER_SUPPORTED_COUNTRIES.includes(location) && <PayLaterWidgets />}
 						<ExportFactoring />
 						<Promotion />
 					</div>
 				</div>
 			</div>
+
+			<SetPassword showModal={showPasswordModal} setShowModal={setShowPasswordModal} />
 
 		</div>
 

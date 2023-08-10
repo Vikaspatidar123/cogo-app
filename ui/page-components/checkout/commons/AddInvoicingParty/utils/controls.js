@@ -7,6 +7,23 @@ import styles from '../styles.module.css';
 import { getPanHolderStatusOptions } from './getPanHolderStatus';
 
 import patterns from '@/ui/commons/configurations/patterns';
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
+const OPTION = [
+	{
+		label : 'Office',
+		value : 'office',
+	},
+	{
+		label : 'Factory Address',
+		value : 'factory',
+	},
+	{
+		label : 'Warehouse Address',
+		value : 'warehouse',
+	},
+];
 
 function TradePartyInstructions() {
 	return (
@@ -17,111 +34,107 @@ function TradePartyInstructions() {
 	);
 }
 
-const billingAddressControls = [
-	{
-		name  : 'billing_party_name',
-		label : 'Billing Party Name ',
-		type  : 'text',
-		span  : 5.8,
-		rules : { required: true },
-	},
-	{
-		name    : 'address_type',
-		label   : 'Address Type',
-		type    : 'select',
-		span    : 5.8,
-		options : [
-			{
-				label : 'Office',
-				value : 'office',
-			},
-			{
-				label : 'Factory Address',
-				value : 'factory',
-			},
-			{
-				label : 'Warehouse Address',
-				value : 'warehouse',
-			},
-		],
-		rules: { required: true },
-	},
-	{
-		label       : 'Country of Registration',
-		name        : 'country_id',
-		type        : 'async_select',
-		asyncKey    : 'locations',
-		params      : { filters: { type: ['country'] } },
-		initialCall : true,
-		span        : 5.8,
-		rules       : {
-			required: 'Country of Registration is Required',
-		},
-	},
-	{
-		name     : 'pincode',
-		label    : 'Pincode',
-		labelKey : 'postal_code',
-		valueKey : 'postal_code',
-		type     : 'async_select',
-		asyncKey : 'locations',
-		params   : { filters: { type: ['pincode'] } },
-		caret    : true,
-		span     : 5.8,
-		rules    : { required: true },
-	},
-	{
-		name      : 'tax_number',
-		label     : 'GST Number',
-		type      : 'text',
-		span      : 5.8,
-		maxLength : 15,
+const getBillingControls = () => {
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+	const REGISTRATION_PATTERN = geo.others.registration_number.pattern;
 
-		rules: {
-			required : true,
-			pattern  : {
-				value   : patterns.GST_NUMBER,
-				message : 'GST is invalid',
+	const ECO_ZONE_LABEL = getLocaleSpecificLabels({
+		accessorType : 'economic_zone',
+		accessor     : 'label',
+	});
+
+	return [
+		{
+			name  : 'billing_party_name',
+			label : 'Billing Party Name ',
+			type  : 'text',
+			span  : 5.8,
+			rules : { required: true },
+		},
+		{
+			name    : 'address_type',
+			label   : 'Address Type',
+			type    : 'select',
+			span    : 5.8,
+			options : OPTION,
+			rules   : { required: true },
+		},
+		{
+			label       : 'Country of Registration',
+			name        : 'country_id',
+			type        : 'async_select',
+			asyncKey    : 'locations',
+			params      : { filters: { type: ['country'] } },
+			initialCall : true,
+			span        : 5.8,
+			rules       : {
+				required: 'Country of Registration is Required',
 			},
 		},
-	},
-	{
-		name       : 'tax_number_document_url',
-		label      : 'GST Proof',
-		type       : 'file',
-		drag       : true,
-		uploadIcon : () => <IcMFileUploader />,
-		span       : 5.8,
-		uploadType : 'aws',
-		height     : 45,
-		rules      : { required: true },
-	},
-	{
-		name  : 'address',
-		label : 'Billing Address',
-		type  : 'textarea',
-		span  : 5.8,
-		rules : { required: true },
-	},
-	{
-		name     : 'is_sez',
-		type     : 'checkbox',
-		span     : 12,
-		options  : [{ value: 'addressIsSez', label: 'Is Sez' }],
-		multiple : true,
-	},
-	{
-		name       : 'sez_proof',
-		label      : 'SEZ Proof',
-		type       : 'file',
-		drag       : true,
-		span       : 12,
-		uploadType : 'aws',
-		height     : 45,
-		uploadIcon : () => <IcMFileUploader />,
-		rules      : { required: true },
-	},
-];
+		{
+			name     : 'pincode',
+			label    : 'Pincode',
+			labelKey : 'postal_code',
+			valueKey : 'postal_code',
+			type     : 'async_select',
+			asyncKey : 'locations',
+			params   : { filters: { type: ['pincode'] } },
+			caret    : true,
+			span     : 5.8,
+			rules    : { required: true },
+		},
+		{
+			name      : 'tax_number',
+			label     : `${REGISTRATION_LABEL} Number`,
+			type      : 'text',
+			span      : 5.8,
+			maxLength : 15,
+
+			rules: {
+				required : true,
+				pattern  : {
+					value   : REGISTRATION_PATTERN,
+					message : `${REGISTRATION_LABEL} is invalid`,
+				},
+			},
+		},
+		{
+			name       : 'tax_number_document_url',
+			label      : `${REGISTRATION_LABEL} Proof`,
+			type       : 'file',
+			drag       : true,
+			uploadIcon : () => <IcMFileUploader />,
+			span       : 5.8,
+			height     : 45,
+			rules      : { required: true },
+		},
+		{
+			name  : 'address',
+			label : 'Billing Address',
+			type  : 'textarea',
+			span  : 5.8,
+			rules : { required: true },
+		},
+		{
+			name     : 'is_sez',
+			type     : 'checkbox',
+			span     : 12,
+			options  : [{ value: 'addressIsSez', label: `Is ${ECO_ZONE_LABEL}` }],
+			multiple : true,
+		},
+		{
+			name       : 'sez_proof',
+			label      : `${ECO_ZONE_LABEL} Proof`,
+			type       : 'file',
+			drag       : true,
+			span       : 12,
+			height     : 45,
+			uploadIcon : () => <IcMFileUploader />,
+			rules      : { required: true },
+		},
+	];
+};
 
 const pocControls = [
 	{
@@ -248,9 +261,8 @@ const orgControls = [
 		drag       : true,
 		uploadIcon : () => <IcMFileUploader height={30} width={30} />,
 		span       : 5.8,
-		uploadType : 'aws',
 		height     : 45,
-		rules      : { required: 'Trade Party documen is Required' },
+		rules      : { required: 'Trade Party document is Required' },
 	},
 ];
 
@@ -583,15 +595,14 @@ const docControlsForTp = ({
 	});
 };
 
-export const getBillingAddressControls = ({ values = {} }) => billingAddressControls.map((control) => {
-	const { name } = control;
+export const getBillingAddressControls = ({ values = {} }) => {
+	const billingAddressControls = getBillingControls();
+	return billingAddressControls.map((control) => {
+		const { name } = control;
 
-	// if (name === 'is_sez') {
-	// 	return { ...control, value: values[name] ? ['jn'] : [] };
-	// }
-
-	return { ...control, value: values[name] || '' };
-});
+		return { ...control, value: values[name] || '' };
+	});
+};
 
 export const getOrgControls = ({ values = {} }) => orgControls.map((control) => {
 	const { name = '' } = control;

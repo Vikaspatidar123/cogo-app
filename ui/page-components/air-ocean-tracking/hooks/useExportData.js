@@ -18,7 +18,7 @@ const useExportData = () => {
 			const { file_url } = resp?.data || {};
 			window.open(file_url);
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 

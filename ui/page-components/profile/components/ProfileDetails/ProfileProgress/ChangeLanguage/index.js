@@ -23,7 +23,6 @@ function ChangeLanguage() {
 	return (
 		<div className={styles.container}>
 			<MultiSelect options={languages} value={value} onChange={(e) => onSelect(e)} style={{ width: '154px' }} />
-			{/* <div className={styles.label_text}><IcMCalendar />{birth_date || '---'}</div> */}
 		</div>
 	);
 }

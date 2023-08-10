@@ -1,14 +1,29 @@
 import { Modal } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
-import TITLE_MAPPING from '../../configurations/titleMapping';
+import getTitle from '../../configurations/titleMapping';
 import useGetTradeEngine from '../../hooks/useGetTradeEngine';
 import IEControlsModal from '../IEControlsModal';
 
-import DutiesTaxesModal from './DutiesTaxesModal';
 import IEDocumentsModal from './IEDocumentsModal';
 import styles from './styles.module.css';
-import TraderEligibilityModal from './TraderEligibilityModal';
+
+import { Image } from '@/packages/next';
+import DutiesTaxesModal from '@/ui/commons/components/DutiesTaxes';
+import TraderEligibilityModal from '@/ui/commons/components/TraderEligibility';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+function Title({ requestType, TITLE_MAPPING }) {
+	return (
+		<div className={styles.container}>
+			<div>{TITLE_MAPPING?.[requestType]}</div>
+			<div className={styles.line_wrapper}>
+				<div className={styles.line} />
+			</div>
+		</div>
+	);
+}
 
 const COMPONENT_MAPPING = {
 	DUTIES    : DutiesTaxesModal,
@@ -22,11 +37,16 @@ function DetailsModal({
 	modal = false,
 	setModal = () => { },
 }) {
-	const { tradeEngineResponse, tradeEngineResponseLoading, TradeEngineResponseFunc } = useGetTradeEngine({ itm });
+	const { t } = useTranslation(['orderHistory']);
+
+	const TITLE_MAPPING = getTitle({ t });
+
+	const { tradeEngineResponse, tradeEngineResponseLoading, tradeEngineResponseFunc } = useGetTradeEngine({ itm });
+
 	useEffect(() => {
-		TradeEngineResponseFunc();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+		tradeEngineResponseFunc();
+	}, [tradeEngineResponseFunc]);
+
 	const { requestType = '' } = itm || {};
 
 	const Component = COMPONENT_MAPPING?.[requestType];
@@ -37,29 +57,36 @@ function DetailsModal({
 			onClose={() => setModal(false)}
 			size="xl"
 		>
-			{!tradeEngineResponseLoading && (
-				<div className={styles.container}>
-					<div>
-						<Modal.Header className={styles.heading} title={TITLE_MAPPING?.[requestType]} />
-						<div className={styles.line_wrapper}>
-							<div className={styles.line} />
-						</div>
-					</div>
+			<Modal.Header
+				className={styles.heading}
+				title={(
+					<Title
+						requestType={requestType}
+						TITLE_MAPPING={TITLE_MAPPING}
+					/>
+				)}
+			/>
+
+			<Modal.Body>
+				{tradeEngineResponseLoading ? (
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.loading}
+						alt={t('orderHistory:loading')}
+						width={100}
+						height={100}
+						className={styles.loading_image}
+					/>
+				) : (
 					<div>
 
 						<Component
 							tradeEngineResponse={tradeEngineResponse}
 						/>
 					</div>
-				</div>
-			)}
-			{tradeEngineResponseLoading && (
-				<img
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/loading.svg"
-					alt="loading"
-					className={styles.loading_image}
-				/>
-			)}
+				)}
+			</Modal.Body>
+			<Modal.Footer />
+
 		</Modal>
 	);
 }

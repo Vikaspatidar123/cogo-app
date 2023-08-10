@@ -14,26 +14,21 @@ import getValue from '@/ui/commons/utils/getValue';
 function Item({
 	item,
 	fields,
-	handleClick,
 	loading,
-	functions,
 	sort,
 }) {
+	const [showDrill, setShowDrill] = useState(false);
+
 	const {
-		// refetchDrillDownData,
 		drillDownData,
 		drillDownLoading,
 	} = useGetDrillDownData();
-	const [showDrill, setShowDrill] = useState(false);
-	// const onOpen = (itm) => {
-	// 	setShowDrill(!showDrill);
-	// 	if (!showDrill) refetchDrillDownData(itm?.billId);
-	// };
+
 	useEffect(() => {
 		setShowDrill(false);
 	}, [sort]);
 
-	const { newFunctions } = itemFunctions({ functions });
+	const { newFunctions } = itemFunctions();
 	const infoData = (singleItem, itm) => {
 		if (singleItem?.toolTip) {
 			return (
@@ -65,7 +60,7 @@ function Item({
 				/>
 			</div>
 
-			<div className={styles.row} role="presentation" onClick={handleClick}>
+			<div className={styles.row}>
 				{(fields || []).map((singleItem) => (
 					<div
 						className={styles.col}

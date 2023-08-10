@@ -1,0 +1,44 @@
+.formDiv {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.field {
+	width: 50%;
+	padding-left: 20px;
+	margin: 0 0 15px;
+}
+
+.field_name {
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.error_text {
+	color: red;
+}
+
+.invoiceContent {
+	padding: 16px 20px;
+	margin: 0 20px;
+	background: #f9f9f9;
+}
+
+.textHead {
+	margin-right: 4px;
+	color: #828282;
+}
+
+.textInvoice {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: fit-content;
+	padding: 3px 6px;
+	margin: 15px 20px 0 0;
+	background: #cfeaed;
+	border-radius: 6px;
+}

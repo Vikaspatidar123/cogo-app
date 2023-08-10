@@ -5,19 +5,15 @@ import { useEffect, useCallback } from 'react';
 import { getPanHolderStatus } from '../utils/getPanHolderStatus';
 
 import { useRequest } from '@/packages/request';
+import { useSelector } from '@/packages/store';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import countriesHash from '@/ui/commons/utils/getCountryDetails';
 
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-
-const INDIA_COUNTRY_DETAILS = countriesHash({
-	country_id: INDIA_COUNTRY_ID,
-});
-
-const INDIA_COUNTRY_CODE = INDIA_COUNTRY_DETAILS?.country_code;
+const ZEROTH_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 
 const useGetBusiness = (props) => {
-	const [{ loading }, getBusinessApi] = useRequest({
+	const { organization } = useSelector((state) => state.profile);
+
+	const [{ loading }, trigger] = useRequest({
 		url    : 'get_business',
 		method : 'get',
 	}, { manual: true });
@@ -31,15 +27,16 @@ const useGetBusiness = (props) => {
 		watchBusinessName = '',
 		setValue = () => {},
 		registrationNumberType = '',
+		action = '',
 	} = props;
 
 	const getGstAddress = useCallback(async () => {
 		try {
-			const response = await getBusinessApi.trigger({
+			const response = await trigger({
 				params: {
 					identity_number : watchTaxNumber,
 					identity_type   : registrationNumberType,
-					country_code    : INDIA_COUNTRY_CODE,
+					country_code    : organization.country?.country_code,
 					provider_name   : 'cogoscore',
 				},
 			});
@@ -60,46 +57,45 @@ const useGetBusiness = (props) => {
 				setValue('company_type', companyBasedOnPanNumber);
 			} else if (watchTaxNumber.length === 15) {
 				setValue('tax_number', watchTaxNumber);
-				setValue('pincode', (!isEmpty(addresses) && (addresses[0] || {}).pincode) || '');
-				setValue('address', (!isEmpty(addresses) && (addresses[0] || {}).address) || '');
+				setValue('pincode', (!isEmpty(addresses) && (addresses[ZEROTH_INDEX] || {}).pincode) || '');
+				setValue('address', (!isEmpty(addresses) && (addresses[ZEROTH_INDEX] || {}).address) || '');
 				setValue('name', trade_name || business_name || '');
-			} else {
-				setValue('tax_number', '');
-				setValue('pincode', '');
-				setValue('address', '');
-				setValue('name', '');
-				setValue('business_name', '');
-				setValue('company_type', '');
 			}
 		} catch (error) {
-			console.log('error :: ', error);
+			console.error('error', error);
 		}
-	}, [getBusinessApi, registrationNumberType, setValue, watchBusinessName, watchTaxNumber]);
+	}, [trigger, organization, registrationNumberType, setValue, watchBusinessName, watchTaxNumber]);
 
-	const onBlurTaxPanGstinControl = useCallback(() => {
-		if (
-			registrationNumberType === ''
-			|| ![10, 15].includes(watchTaxNumber.length)
-		) {
+	const onBlurTaxPanGstinControl = () => {
+		if (registrationNumberType === '' || ![10, 15].includes(watchTaxNumber.length)) {
 			return;
 		}
 
 		getGstAddress();
-	}, [getGstAddress, registrationNumberType, watchTaxNumber.length]);
+	};
 
 	useEffect(() => {
+		if (action === 'edit') {
+			return;
+		}
+
 		if (registrationNumberType === 'tax') {
 			onBlurTaxPanGstinControl();
 		}
 		if (watchTaxNumber === 'GST_NOT_FOUND') {
-			getGstAddress();
+			setValue('tax_number', '');
+			setValue('pincode', '');
+			setValue('address', '');
+			setValue('name', '');
+			setValue('business_name', '');
+			setValue('company_type', '');
 		}
-	}, [getGstAddress, onBlurTaxPanGstinControl, registrationNumberType, watchTaxNumber]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [watchTaxNumber]);
 
 	return {
-		getBusinessApi,
 		onBlurTaxPanGstinControl,
-		loading,
+		getBusinessLoading: loading,
 	};
 };
 

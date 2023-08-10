@@ -1,54 +1,41 @@
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
-const customsModes = ['fcl_customs', 'lcl_customs', 'air_customs'];
-
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-
-const INDIA_COUNTRY_DETAILS = getCountryDetails({
-	country_id: INDIA_COUNTRY_ID,
-});
-
-const INDIA_COUNTRY_CODE = INDIA_COUNTRY_DETAILS?.country_code;
+const CUSTOMS_MODES = ['fcl_customs', 'lcl_customs', 'air_customs'];
+const CARGO_HANDLING_TYPE = 'cargo_handling_type';
 
 export const getControls = (controls, formValues, mode, location) => {
-	const newControls = [];
+	const geo = getGeoConstants();
+	const isExportTradeType = geo.others.navigations.search_form.is_export_tradeType;
 
-	controls.forEach((control) => {
+	const newControls = controls.map((control) => {
 		if (control.name === 'shipping_line_id') {
-			// if (formValues.haulage_type === 'carrier') {
-			newControls.push({
+			return {
 				...control,
 				showMessage: false,
-			});
-			// }
-		} else if (
-			customsModes.includes(mode)
-			&& control.name?.includes('cargo_handling_type')
-		) {
-			newControls.push({
+			};
+		}
+		if (CUSTOMS_MODES.includes(mode) && control.name?.includes(CARGO_HANDLING_TYPE)) {
+			return {
 				...control,
 				showMessage : false,
 				options     : (control.options || []).filter(
 					(option) => option.trade_type === location?.destination?.value,
 				),
-			});
-		} else if (control.type === 'inco-terms-select') {
-			newControls.push({
-				...control,
-				showMessage: false,
-				activeTradeType:
-					location?.origin?.country_code === INDIA_COUNTRY_CODE
-						? 'export'
-						: 'import',
-			});
-		} else {
-			newControls.push({
-				...control,
-				showMessage: false,
-			});
+			};
 		}
+		if (control.type === 'inco-terms-select') {
+			return {
+				...control,
+				showMessage     : false,
+				activeTradeType : isExportTradeType ? 'export' : 'import',
+			};
+		}
+		return {
+			...control,
+			showMessage: false,
+		};
 	});
+
 	return newControls;
 };
 

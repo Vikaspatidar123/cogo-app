@@ -9,10 +9,10 @@ import { useSelector } from '@/packages/store';
 
 const useGetShipmentList = (allParams = { isBookingDesk: false }) => {
 	const { isBookingDesk, ...params } = allParams || {};
-	const { branch_id } = useSelector(({ general }) => ({
-		branch_id : general?.query?.branch_id,
-		scope     : general?.scope,
+	const { importer_exporter_id } = useSelector(({ profile }) => ({
+		importer_exporter_id: profile?.id,
 	}));
+
 	const [currentTab, setCurrentTab] = useState('ongoing');
 
 	const { getshipment, loading } = getShipmentList();
@@ -30,8 +30,8 @@ const useGetShipmentList = (allParams = { isBookingDesk: false }) => {
 				pending_task: isBookingDesk
 					? 'upload_booking_note'
 					: restFilters?.task,
-				pending_task_status         : isBookingDesk ? 'pending' : undefined,
-				importer_exporter_branch_id : branch_id,
+				pending_task_status: isBookingDesk ? 'pending' : undefined,
+				importer_exporter_id,
 			},
 			global_state: config.list_states[currentTab],
 		},
@@ -75,6 +75,7 @@ const useGetShipmentList = (allParams = { isBookingDesk: false }) => {
 			...config,
 			filter_controls: [...defaultControls, ...restFilterControls],
 		},
+		refetchListShipment: getshipment,
 	};
 };
 

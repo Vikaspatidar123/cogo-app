@@ -1,5 +1,6 @@
 import { cl, Placeholder, Pagination } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 
 import itemFunction from '../../utils/itemFunction';
 
@@ -14,10 +15,12 @@ function Table({
 }) {
 	const { list: dataList = [], page = 0, page_limit = 0, total_count = 0 } = data || {};
 
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
 	const list = isEmpty(filteredList) ? dataList : filteredList;
 	const newList = loading ? [...Array(5).keys()] : list;
 
-	const newFunction = itemFunction({ ...itmFunction });
+	const newFunction = itemFunction({ ...itmFunction, t });
 
 	return (
 		<div className={styles.container}>
@@ -40,7 +43,7 @@ function Table({
 
 					<div
 						style={{ maxHeight: maxHeight ?? '' }}
-						className={`${isScroll ? styles.scroll_container : ''}`}
+						className={isScroll ? styles.scroll_container : ''}
 					>
 						{newList.map((item) => (
 							<div

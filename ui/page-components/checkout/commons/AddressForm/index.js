@@ -8,6 +8,8 @@ import useAddressForm from './hooks/useAddressForm';
 import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
+import getGeoConstants from '@/ui/commons/constants/geo';
+
 /**
  * @typedef  {Object} 		[props]
  * @property {string} 		[organizationId]
@@ -29,6 +31,10 @@ import getField from '@/packages/forms/Controlled';
  */
 function AddressForm(props) {
 	const { submitButtonLabel, optionalButtons, loading, organizationCountryId, ...restProps } = props;
+
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
+
 	const {
 		loading: apiLoading,
 		layouts,
@@ -58,19 +64,17 @@ function AddressForm(props) {
 		<div className={styles.container} key={`${watchPincode}_${watchGstList}`}>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Modal.Body>
-					<div style={{ minHeight: '48vh', display: 'flex', flexDirection: 'column', marginBottom: '8px' }}>
+					<div className={styles.form_flex_box}>
 						{Object.entries(layouts).map(([key, layout]) => {
 							const { title, controls, showElements = {} } = layout;
+
 							if (isEmpty(controls)) {
 								return null;
 							}
+
 							return (
-								<div style={{ display: 'flex', flexDirection: 'column' }} key={key}>
-									{title && (
-										<div style={{ color: '#393f70', fontWeight: 500, marginTop: '16px' }}>
-											{title}
-										</div>
-									)}
+								<div className={styles.flex_box} key={key}>
+									{title && <p className={styles.text}>{title}</p>}
 
 									<div className={styles.layout_container}>
 										<div className={styles.layout}>
@@ -86,9 +90,11 @@ function AddressForm(props) {
 														/>
 													);
 												}
+
 												const Controller = getField(item.type);
 												const show = !(item?.name in showElements)
 												|| showElements?.[item?.name];
+
 												const { span, name } = item || {};
 												return (
 													show && (
@@ -98,9 +104,11 @@ function AddressForm(props) {
 																{...item}
 																control={control}
 															/>
-															<div className={styles.errors}>
-																{errors?.[name]?.message}
-															</div>
+															{errors?.[name] ? (
+																<div className={styles.errors}>
+																	{errors?.[name]?.message}
+																</div>
+															) : null}
 														</div>
 													)
 												);
@@ -112,10 +120,20 @@ function AddressForm(props) {
 									{key === 'registeredUnderGst'
 									&& isAddressRegisteredUnderGstChecked && (
 										<div style={{ color: '#cb6464', fontSize: '12px', margin: '10px 0 0' }}>
-											Addresses not registered under GST will be added in
-											&quot;Other Addresses&quot; for the organisation and
+											Addresses not registered under
 											{' '}
-											<b>will not be available for GST Invoicing</b>
+											{REGISTRATION_LABEL}
+											{' '}
+											will be added in
+											&quot;Other Addresses&quot; for the organisation and
+
+											<b>
+												will not be available for
+												{' '}
+												{REGISTRATION_LABEL}
+												{' '}
+												Invoicing
+											</b>
 											.
 										</div>
 									)}

@@ -1,0 +1,104 @@
+.header {
+	margin-top: 20px;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.subHeader {
+	padding: 12px 16px;
+	margin: 10px 0;
+	background: #f0f2f4;
+	border-radius: 8px;
+}
+
+.flexDiv {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 30px;
+	margin: 20px 0;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.title {
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+	font-weight: 500;
+	color: #221f20;
+}
+
+.subtitle {
+	display: flex;
+	align-items: center;
+	font-size: 18px;
+	font-weight: 500;
+	color: #221f20;
+}
+
+.description {
+	font-size: 14px;
+	color: #828282;
+}
+
+.formDiv {
+	width: 60%;
+	padding: 0;
+}
+
+.field {
+	padding-left: 20px;
+	margin: 0 0 15px;
+}
+
+.field_name {
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.error_text {
+	color: red;
+}
+
+.button_wrapper {
+	position: fixed;
+	right: 50px;
+	bottom: 0;
+	display: inline-flex;
+	justify-content: flex-end;
+	float: "row";
+	width: 100%;
+	padding: 20px 0;
+	background-color: #fff;
+	border-top: 1px solid #e4e4e4;
+}
+
+.docContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 46px;
+	padding: 0 10px;
+	margin: 10px 0;
+	cursor: pointer;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+}
+
+.commentContainer {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 200px;
+	padding: 4px;
+}
+
+.textHead {
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.commentText {
+	font-size: 14px;
+}

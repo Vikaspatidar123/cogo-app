@@ -1,4 +1,5 @@
 import { IcMFtick } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 
 import { getCurrencyDetail } from '../../../utils/getCurrencyDetail';
 import logoMapping from '../../../utils/logoMapping';
@@ -7,9 +8,13 @@ import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
+const Mapping = logoMapping();
+
 function SubscriptionDetails({ plans = {}, query }) {
 	const { plan, pricing } = plans || {};
-	const Mapping = logoMapping();
+
+	const { t } = useTranslation(['subscriptions']);
+
 	let periods;
 	if (query?.period === 'monthly') {
 		periods = 'month';
@@ -25,7 +30,10 @@ function SubscriptionDetails({ plans = {}, query }) {
 	return (
 		<div>
 			<div className={styles.wrapper}>
-				<div className={styles.label}>Subscription Details</div>
+				<div className={styles.label}>
+					{t('subscriptions:subscription_details_text')}
+
+				</div>
 			</div>
 			<div className={styles.subscription_details}>
 				<div className={styles.styled_row}>
@@ -35,10 +43,12 @@ function SubscriptionDetails({ plans = {}, query }) {
 							<div className={styles.heading}>{plan?.description}</div>
 						</div>
 						<div className={styles.row2}>
-							<div className={styles.offer_tag}>
-								{Math.round(percentage)}
-								% off
-							</div>
+							{percentage ? (
+								<div className={styles.offer_tag}>
+									{Math.round(percentage)}
+									{t('subscriptions:off_text')}
+								</div>
+							) : null}
 						</div>
 					</div>
 				</div>
@@ -55,7 +65,7 @@ function SubscriptionDetails({ plans = {}, query }) {
 			</div>
 
 			<div className={styles.feature_row}>
-				Features Included
+				{t('subscriptions:features_included_text')}
 				<div className={styles.line_wrapper}>
 					<div className={styles.line} />
 				</div>

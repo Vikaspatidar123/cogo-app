@@ -4,6 +4,7 @@ import { isEmpty, startCase } from '@cogoport/utils';
 import Actions from './Actions';
 import styles from './styles.module.css';
 
+import getGeoConstants from '@/ui/commons/constants/geo';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
 function Header({ children, invoice = {}, shipmentData = {} }) {
@@ -15,6 +16,9 @@ function Header({ children, invoice = {}, shipmentData = {} }) {
 		payment_mode,
 		credit_option,
 	} = invoice;
+
+	const geo = getGeoConstants();
+	const REGISTRATION_LABEL = geo.others.registration_number.label;
 
 	const handleDownload = () => {
 		if (invoice?.status === 'reviewed') {
@@ -43,7 +47,7 @@ function Header({ children, invoice = {}, shipmentData = {} }) {
 					</div>
 
 					<div className={styles.gst}>
-						<div className={styles.label}>GST Number :</div>
+						<div className={styles.label}>{`${REGISTRATION_LABEL} Number `}</div>
 						<Popover
 							theme="light"
 							interactive

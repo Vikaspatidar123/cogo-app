@@ -162,7 +162,6 @@ function Route({
 						caret
 						placeholder={destination.placeholder || ''}
 						noOptionsMessage="Type to search..."
-						asyncKey="locations2"
 						disabled={
 							disabledFields?.destination
 							&& index !== 0

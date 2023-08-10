@@ -1,6 +1,7 @@
 import { Select } from '@cogoport/components';
 import { IcMPlusInCircle } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import React, { useState, useRef, useEffect } from 'react';
 
 import AddModal from '../AddAddressModal';
@@ -9,6 +10,7 @@ import addressOptions from '../AddressOptions';
 import styles from './styles.module.css';
 
 function SelectAddressComponent({ setAddress = () => {}, address = '' }) {
+	const { t } = useTranslation(['traderEligibilityCheck']);
 	const elementRef = useRef();
 	const [addAddressModal, setAddAddressModal] = useState(false);
 	const { options = [] } = addressOptions();
@@ -27,15 +29,14 @@ function SelectAddressComponent({ setAddress = () => {}, address = '' }) {
 				name="addressSelect"
 				options={options}
 				labelKey="name"
-				placeholder="Select Billing Address"
+				placeholder={t('traderEligibilityCheck:tec_select_address_placeholder')}
 				multiple={false}
 				onChange={setAddress}
-				noOptionsMessage="No options"
 			/>
 			<div className={styles.or_tag}>
 				<div className={styles.line} />
 				<div className={styles.text}>
-					OR
+					{t('traderEligibilityCheck:tec_or_label')}
 				</div>
 				<div className={styles.line} />
 			</div>
@@ -45,7 +46,7 @@ function SelectAddressComponent({ setAddress = () => {}, address = '' }) {
 				onClick={() => setAddAddressModal(true)}
 			>
 				<IcMPlusInCircle />
-				Add New Address
+				{t('traderEligibilityCheck:tec_add_new_address_label')}
 			</div>
 			{addAddressModal && (
 				<AddModal

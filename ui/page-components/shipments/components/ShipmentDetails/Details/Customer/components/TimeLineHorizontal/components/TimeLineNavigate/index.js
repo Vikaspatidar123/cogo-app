@@ -1,8 +1,8 @@
 import { Pagination } from '@cogoport/components';
 import { IcMTrailorFull } from '@cogoport/icons-react';
+import { isEmpty } from '@cogoport/utils';
 import { useState, Fragment, useEffect } from 'react';
 
-import ListSaasSubscriptions from '../../hooks/useListSaasSubscription';
 import { isPastOrPresentDay } from '../../utils/constants';
 import { UNSHADED_MILESTONES } from '../../utils/milestone';
 import { INCOTERM_TO_SHIPPERS_RESPONSIBILITY } from '../../utils/milestone_type';
@@ -36,8 +36,6 @@ function TimelineNavigate({
 	servicesForMap = false,
 	rest,
 }) {
-	const { data } = ListSaasSubscriptions();
-
 	const {
 		general: { isMobile = false },
 	} = useSelector((state) => state);
@@ -77,21 +75,22 @@ function TimelineNavigate({
 		setIncotermStep(newIncotermStep);
 	}, [incoterm, selectedMilestonesList]);
 
-	useEffect(() => {
-		let mostRecentPastOrPresentMilestoneId = null;
-		selectedMilestonesList.map((combinedMilestones) => {
-			const currentMilestone = combinedMilestones.slice(-1)[0];
-			if (isPastOrPresentDay(currentMilestone?.event_date)) {
-				mostRecentPastOrPresentMilestoneId = currentMilestone?.id;
-			}
-			return false;
-		});
+	// do not remove
+	// useEffect(() => {
+	// 	let mostRecentPastOrPresentMilestoneId = null;
+	// 	selectedMilestonesList.map((combinedMilestones) => {
+	// 		const currentMilestone = combinedMilestones.slice(-1)[0];
+	// 		if (isPastOrPresentDay(currentMilestone?.event_date)) {
+	// 			mostRecentPastOrPresentMilestoneId = currentMilestone?.id;
+	// 		}
+	// 		return false;
+	// 	});
 
-		const anchorTarget = document.getElementById(
-			mostRecentPastOrPresentMilestoneId,
-		);
-		anchorTarget?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
-	}, [selectedMilestonesList]);
+	// 	const anchorTarget = document.getElementById(
+	// 		mostRecentPastOrPresentMilestoneId,
+	// 	);
+	// 	anchorTarget?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
+	// }, [selectedMilestonesList]);
 
 	return servicesForMap ? (
 		<div className={styles.main_container}>
@@ -104,22 +103,25 @@ function TimelineNavigate({
 			{allContainers.length > 0 ? (
 				<div style={{ display: 'flex', flexDirection: 'column' }}>
 					<div className={styles.tag_title}>Tracking Information</div>
+
 					<div className={styles.container}>
-						{(data?.list || []).map((item) => (item?.container_details?.length !== 0 ? (
+						{(allContainers || []).map((item) => (!isEmpty(item?.container_details) ? (
 							<div
+								key={item?.input}
 								role="presentation"
 								className={`${styles.custom_tag} 
                                 ${currentSubscription?.id === item?.id ? styles.set_tracking : ''}`}
-								id={item.container_details[0]?.container_no}
+								id={item?.input}
 								onClick={(e) => handleSubscription(e)}
 								style={{
 									fontSize: '12px',
 								}}
 							>
-								{item.container_details[0]?.container_no}
+								{item?.input}
 							</div>
 						) : null))}
 					</div>
+
 					<div className={styles.pagination_container}>
 						<Pagination
 							type="compact"

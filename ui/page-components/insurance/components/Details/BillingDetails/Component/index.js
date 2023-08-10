@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import AddModal from '../../../../common/AddAddressModal';
 import addres from '../../../../common/AddressListPopover';
 import Loader from '../../../../common/Loader';
+import RenderField from '../../../../common/RenderField';
 import useGetAddresses from '../../../../hooks/useGetAddresses';
 import SavedAddressCards from '../SavedAddressCards';
 
@@ -12,7 +13,6 @@ import styles from './styles.module.css';
 
 function Component({
 	insuranceType = [],
-	returnField = () => {},
 	prosporerAddress = {},
 	setProsporerAddress = () => {},
 	addAddressModal = false,
@@ -24,7 +24,9 @@ function Component({
 	setChecked = () => {},
 	setValue = () => {},
 	control = [],
+	fields,
 	formDetails = {},
+	errors,
 }) {
 	const [showFilters, setShowFilters] = useState(false);
 	const { data = [], loading = false } = useGetAddresses({ uploadType });
@@ -52,14 +54,14 @@ function Component({
 						setAddAddressModal={setAddAddressModal}
 					/>
 					<div className={styles.row}>
-						{control.map((item, index) => {
+						{fields.map((item, index) => {
 							if (
 								index > 3
 								&& ((item.name === 'panNumber' && uploadType === 'CORPORATE')
 									|| (['panNumber', 'aadharNumber'].includes(item.name)
 										&& uploadType === 'INDIVIDUAL'))
 							) {
-								return returnField({ item });
+								return <RenderField key={item.name} item={item} control={control} errors={errors} />;
 							}
 							return null;
 						})}
@@ -69,14 +71,21 @@ function Component({
 				: (
 					<>
 						<div className={styles.row}>
-							{control.map((item, index) => {
+							{fields.map((item, index) => {
 								if (
 									index > 3
 								&& (!['aadharNumber', 'gstin'].includes(item.name)
 									|| (item.name === 'aadharNumber' && uploadType === 'INDIVIDUAL')
 									|| (item.name === 'gstin' && uploadType === 'CORPORATE'))
 								) {
-									return returnField({ item });
+									return (
+										<RenderField
+											key={item.name}
+											item={item}
+											control={control}
+											errors={errors}
+										/>
+									);
 								}
 								return null;
 							})}

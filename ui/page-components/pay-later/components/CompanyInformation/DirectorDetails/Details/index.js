@@ -1,10 +1,16 @@
-import { Button } from '@cogoport/components';
-import { IcMActivePlans, IcMArrowUp, IcMEdit } from '@cogoport/icons-react';
+// import { Button } from '@cogoport/components';
+import {
+	IcMActivePlans, IcMArrowUp,
+	// IcMEdit,
+} from '@cogoport/icons-react';
 import { useState } from 'react';
 
 import styles from './styles.module.css';
 
-function Details({ director = {}, setShowEdit = () => {} }) {
+function Details({
+	director = {},
+	// setShowEdit = () => {}
+}) {
 	const { name = '', registration_number = '', gender = '', date_of_birth = '', address = '' } = director || {};
 	const [show, setShow] = useState(false);
 	return (
@@ -19,7 +25,7 @@ function Details({ director = {}, setShowEdit = () => {} }) {
 					</div>
 				</div>
 				<div className={styles.company}>
-					<Button
+					{/* <Button
 						themeType="secondary"
 						onClick={() => setShowEdit({
 							type : 'director',
@@ -28,7 +34,7 @@ function Details({ director = {}, setShowEdit = () => {} }) {
 					>
 						<IcMEdit />
 						<div className="button_edit">Edit</div>
-					</Button>
+					</Button> */}
 					<IcMArrowUp className={styles.icon} onClick={() => setShow((prev) => !prev)} />
 				</div>
 			</div>

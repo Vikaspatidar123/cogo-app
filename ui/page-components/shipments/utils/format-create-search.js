@@ -6,6 +6,7 @@ import { FCL_CUSTOMS_CONTAINER_COMMODITY_MAPPING, HAZ_CLASSES } from '../constan
 
 import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import { getCountryCode } from '@/ui/commons/utils/getCountryDetails';
 
 const geo = getGeoConstants();
 
@@ -40,6 +41,9 @@ const formatDataForSingleService = ({
 	service = '',
 	checked = true,
 }) => {
+	const originCountryCode = getCountryCode({ country_id: rawParams?.origin_country_id });
+	const destinationCountryCode = getCountryCode({ country_id: rawParams?.destination_country_id });
+
 	if (mode === 'fcl_freight') {
 		const newValues = (values.containers || []).map((item) => ({
 			origin_port_id      : values.origin_port_id,
@@ -196,45 +200,51 @@ const formatDataForSingleService = ({
 		let cargo_value_currency = null;
 		let address = null;
 		let ad_code = null;
-		if (values?.trade_type === 'export' || type === 'export') {
-			if (
-				rawParams?.origin_country_id === GLOBAL_CONSTANTS.country_ids.VN
-				&& rawParams?.origin_port?.is_icd === true
+
+		const FCL_CUSTOMS_SUPPORTED_COUNTRY = GLOBAL_CONSTANTS.service_supported_countries
+			.fcl_customs.countries;
+
+		const isOriginCountrySupported = FCL_CUSTOMS_SUPPORTED_COUNTRY.includes(originCountryCode);
+		const isDestinationCountrySupported = FCL_CUSTOMS_SUPPORTED_COUNTRY.includes(destinationCountryCode);
+		const isExport = values?.trade_type === 'export' || type === 'export';
+		const isImport = values?.trade_type === 'import' || type === 'import';
+
+		if (isExport) {
+			if (isOriginCountrySupported && rawParams?.origin_port?.is_icd === true
 			) {
 				value.country_id = rawParams?.origin_port?.country_id;
 			} else {
 				value.port_id =					rawParams?.source === 'upsell'
-					&& rawParams?.origin_country_id === GLOBAL_CONSTANTS.country_ids.VN
+					&& isOriginCountrySupported
 					&& rawParams?.origin_main_port_id
 					? rawParams?.origin_main_port_id
 					: values?.port_id || values?.origin_port_id;
 			}
 
-			cargo_handling_type =				mode === 'fcl_cfs'
+			cargo_handling_type = mode === 'fcl_cfs'
 				? values?.export_fcl_cfs_cargo_handling_type
 					|| values?.cargo_handling_type
 				: values?.export_transportation_cargo_handling_type
 				|| values?.cargo_handling_type;
-			cargo_value =				mode === 'fcl_cfs'
+			cargo_value = mode === 'fcl_cfs'
 				? values?.export_fcl_cfs_cargo_value
 				: values?.export_transportation_cargo_value;
-			cargo_value_currency =				mode === 'fcl_cfs'
+			cargo_value_currency = mode === 'fcl_cfs'
 				? values?.export_fcl_cfs_cargo_value_currency
 				: values?.export_transportation_cargo_value_currency;
-			address =				mode === 'fcl_cfs'
+			address = mode === 'fcl_cfs'
 				? values?.export_fcl_cfs_address
 				: values?.export_fcl_customs;
 			ad_code = values?.export_fcl_customs_have_add_code || undefined;
-		} else if (values?.trade_type === 'import' || type === 'import') {
+		} else if (isImport) {
 			if (
-				rawParams?.destination_country_id === GLOBAL_CONSTANTS.country_ids.VN
+				isDestinationCountrySupported
 				&& rawParams?.destination_port?.is_icd === true
 			) {
 				value.country_id = rawParams?.destination_port?.country_id;
 			} else {
-				value.port_id =					rawParams?.source === 'upsell'
-					&& rawParams?.destination_country_id
-						=== GLOBAL_CONSTANTS.country_ids.VN
+				value.port_id = rawParams?.source === 'upsell'
+					&& isDestinationCountrySupported
 					&& rawParams?.destination_main_port_id
 					? rawParams?.destination_main_port_id
 					: values?.port_id || values?.destination_port_id;

@@ -26,6 +26,7 @@ const useFreightCharges = () => {
 			Toast.error(err?.message);
 		}
 	}, [triggerGetSpotSearch]);
+
 	const createSpotSearch = useCallback(async (payload) => {
 		try {
 			const resp = await trigger({

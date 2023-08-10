@@ -1,25 +1,36 @@
 import { IcMArrowBack } from '@cogoport/icons-react';
-
-import MapContainer from '../../../common/MapContainer';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { Image, useRouter } from '@/packages/next';
+import MapContainer from '@/ui/commons/components/CogoMaps2';
 
-function Info({ MAPPING, prefillData, localStorageData }) {
+const MAP_ZOOM = 4;
+const style = {
+	borderRadius: '18px',
+};
+
+const getMapping = ({ t }) => ({
+	exportCountry        : t('importExportDoc:document_control_export_label'),
+	importCountry        : t('importExportDoc:document_control_import_label'),
+	transportMode        : t('importExportDoc:document_control_transport_label'),
+	manufacturingCountry : t('importExportDoc:document_control_manufacture_label'),
+	hsCode               : t('importExportDoc:document_control_hscode_label'),
+});
+
+function Info({ prefillData, localStorageData }) {
 	const { push } = useRouter();
-	const {
-		transportMode = '',
-		exportCountry = {},
-		importCountry = {},
-	} = localStorageData || {};
+	const { t } = useTranslation(['importExportDoc']);
+
+	const MAPPING = getMapping({ t });
 
 	const renderDetails = (name) => {
 		if (['hsCode', 'transportMode'].includes(name)) return prefillData?.[name];
-
+		const flagUrl = localStorageData?.[name]?.flag_icon_url;
 		return (
 			<div className={styles.country_info}>
-				<img src={localStorageData?.[name]?.flag_icon_url} alt="" />
+				{flagUrl && <Image width={20} height={20} src={flagUrl} alt="" />}
 				<span>{prefillData?.[name]}</span>
 			</div>
 		);
@@ -36,13 +47,13 @@ function Info({ MAPPING, prefillData, localStorageData }) {
 						push('/saas/premium-services/import-export-doc');
 					}}
 				/>
-				<h2>Documents Details</h2>
+				<h2>{t('importExportDoc:checkout_info_title')}</h2>
 			</div>
 			<div className={styles.map_container}>
 				<MapContainer
-					transportMode={transportMode}
-					exportCountry={exportCountry}
-					importCountry={importCountry}
+					formInfo={localStorageData}
+					mapZoom={MAP_ZOOM}
+					style={style}
 				/>
 			</div>
 			<div className={styles.data_container}>

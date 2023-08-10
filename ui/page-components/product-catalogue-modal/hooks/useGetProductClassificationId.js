@@ -18,10 +18,10 @@ const useGetProductClassificationId = ({
 		method  : 'get',
 		authKey : 'get_saas_product_category',
 	}, { manual: true });
-	const [{ loading:addProductLoading }, addApi] = useRequestBf({
+	const [{ loading: addProductLoading }, addApi] = useRequestBf({
 		url     : '/saas/product',
 		method  : 'post',
-		authkey : 'post_saas_product',
+		authKey : 'post_saas_product',
 	}, { manual: true });
 
 	const getProductClassification = async () => {
@@ -35,11 +35,11 @@ const useGetProductClassificationId = ({
 			setProductClassificationId(response?.data?.productClassificationId);
 			setProductDetailsfromApi(response?.data);
 		} catch (error) {
-			console.log(error?.error?.message || 'Something Went Wrong');
+			console.error(error?.error?.message || 'Something Went Wrong');
 		}
 	};
 	const addProduct = async (data, setShowProduct, pdId) => {
-		const { prefiledValues:prefiled, pricingDetails, logoUrl = null } = data || {};
+		const { prefiledValues: prefiled, pricingDetails, logoUrl = null } = data || {};
 		try {
 			const resp = await addApi({
 				data: {

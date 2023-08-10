@@ -11,8 +11,6 @@
 
 .empty_state {
 	display: block;
-	width: 400px;
-	height: 400px;
 	margin: 100px auto;
 
 	@media screen and (max-width: 767px) {
@@ -27,4 +25,8 @@
 	@media screen and (max-width: 767px) {
 		justify-content: center;
 	}
+}
+
+.result_container {
+	padding: 15px;
 }

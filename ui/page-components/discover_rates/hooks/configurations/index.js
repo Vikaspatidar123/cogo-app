@@ -31,6 +31,8 @@ import {
 	FCLLocalsControls,
 	LCLLocalsControls,
 	AIRLocalsControls,
+	BargeControls,
+	BargeQuickSearchControls,
 } from '../../configurations';
 
 const getConfiguration = (
@@ -72,6 +74,8 @@ const getConfiguration = (
 		'air_customs_controls-quick-search'     : AirCustomsQuickSearchControls,
 		haulage_freight_controls                : FCLHaulageControls,
 		'haulage_freight_controls-quick-search' : FCLHaulageQuickSearchControls,
+		barge_freight_controls                  : BargeControls,
+		'barge_freight_controls-quick-search'   : BargeQuickSearchControls,
 		fcl_freight_local_controls              : FCLLocalsControls(
 			setOperatorName,
 			is_org_pass_through,

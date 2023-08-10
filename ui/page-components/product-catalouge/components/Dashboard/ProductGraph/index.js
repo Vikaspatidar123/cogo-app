@@ -45,7 +45,7 @@ function Product({ productList = [], loading }) {
 									<div className={styles.side_container}>
 										{x.productsSold?.toString().length > 3 ? (
 											<Tooltip theme="light" placement="top" content={x.productsSold}>
-												<div>{`${x?.productsSold?.toString().substring(0, 4)}`}</div>
+												<div>{x?.productsSold?.toString().substring(0, 4)}</div>
 											</Tooltip>
 										) : (
 											<div>{x.productsSold}</div>

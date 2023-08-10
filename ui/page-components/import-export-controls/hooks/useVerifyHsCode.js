@@ -1,4 +1,6 @@
 import { Toast } from '@cogoport/components';
+import { isEmpty } from '@cogoport/utils';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import { useRouter } from '@/packages/next';
@@ -7,6 +9,9 @@ import { useSelector } from '@/packages/store';
 
 const useVerifyHscode = () => {
 	const { query = {} } = useRouter();
+
+	const { t } = useTranslation(['importExportControls']);
+
 	const { profile } = useSelector((state) => state);
 
 	const [inputValue, setInputValue] = useState([]);
@@ -33,17 +38,11 @@ const useVerifyHscode = () => {
 				},
 			});
 			if (!resp?.data) {
-				Toast.error('Please enter valid Hs Code ', {
-					autoClose : 3000,
-					style     : { color: '#333', background: '#FFD9D4' },
-				});
+				Toast.error(t('importExportControls:api_hscode_error_2'));
 			}
 			return resp?.data;
 		} catch (err) {
-			Toast.error('Something went wrong! Please try again ', {
-				autoClose : 3000,
-				style     : { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error(t('importExportControls:api_hscode_error_1'));
 			return false;
 		}
 	};
@@ -69,22 +68,15 @@ const useVerifyHscode = () => {
 			const { data = {} } = resp || {};
 			const { status = false, recommendations = [] } = data || {};
 
-			if (!status && recommendations.length === 0) {
-				Toast.info(
-					'This hs code is not supported by us. Please provide another hs code',
-					{
-						style: { color: '#333', backgroundColor: '#e9faff' },
-					},
-				);
+			if (!status) {
 				setValidateInProgress(true);
-			}
-			if (!status && recommendations.length > 0) {
-				Toast.info('Invalid HS Code. Please select from dropdown', {
-					style: { color: '#333', backgroundColor: '#e9faff' },
-				});
-				setValidateInProgress(true);
-			}
-			if (status && recommendations.length === 0) {
+
+				if (isEmpty(recommendations)) {
+					Toast.info(t('importExportControls:api_hscode_error_3'));
+				} else {
+					Toast.info(t('importExportControls:api_hscode_error_4'));
+				}
+			} else if (recommendations.length === 0) {
 				const hsKey = isImport ? 'importHs' : 'exportHs';
 				setPrevHs((prev) => ({ ...prev, [hsKey]: hsCode }));
 			}
@@ -92,9 +84,7 @@ const useVerifyHscode = () => {
 			setStatus(status);
 			setInputValue(recommendations);
 		} catch (error) {
-			Toast.error('Something went wrong! Please try again ', {
-				style: { color: '#333', background: '#FFD9D4' },
-			});
+			Toast.error(t('importExportControls:api_hscode_error_1'));
 		}
 	};
 

@@ -2,10 +2,12 @@ import { Select, cl, Pill } from '@cogoport/components';
 import { isEmpty, startCase } from '@cogoport/utils';
 import Image from 'next/image';
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles.module.css';
 
-import GET_MAPPING from '@/ui/page-components/air-ocean-tracking/constant/card';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import getMappingObject from '@/ui/page-components/air-ocean-tracking/constant/card';
 
 const getOptions = ({ containerDetails = [] }) => containerDetails.map((item) => ({
 	label : item?.container_no,
@@ -17,23 +19,36 @@ const COLOR = {
 	consignee : 'orange',
 };
 
+const SINGLE_DETAIL_INDEX = 1;
+
 function InfoContainer({
 	containerDetails = [], currContainerDetails = {}, setCurrContainerDetails,
 	shipmentInfo = {}, trackingType, poc_details = [], airwayBillNo = '',
 }) {
 	const { container_no = '', container_length = '', container_description = '' } = currContainerDetails || {};
 
+	const { t } = useTranslation(['common', 'airOceanTracking']);
+
+	const GET_MAPPING = getMappingObject({ t });
+
 	const MAPPING = GET_MAPPING[trackingType];
 	const { CARD_TITLE, SHIPMENT_TITLE, SHIPMENT_INFO } = MAPPING;
 
-	const INFO_MAPPING = {
-		...SHIPMENT_INFO,
-	};
-
 	const { traderInfo, ...restInfo } = useMemo(() => {
 		const { commodity = '', hs_code = '', weight = '', piece = '' } = shipmentInfo || {};
-		const shipperDetails =	poc_details.filter((item) => item?.user_type === 'SHIPPER')[0] ?? {};
-		const consigneeDetails = poc_details.filter((item) => item?.user_type === 'CONSIGNEE')[0] ?? {};
+		const shipperArr = [];
+		const consigneeArr = [];
+
+		poc_details.forEach((detail) => {
+			if (detail?.user_type === 'SHIPPER') {
+				shipperArr.push(detail);
+			} else if (detail?.user_type === 'CONSIGNEE') {
+				consigneeArr.push(detail);
+			}
+		});
+
+		const shipperDetails =	shipperArr[GLOBAL_CONSTANTS.zeroth_index] || {};
+		const consigneeDetails = consigneeArr[GLOBAL_CONSTANTS.zeroth_index] || {};
 		const incoterm = shipmentInfo?.incoterm;
 
 		return {
@@ -63,13 +78,13 @@ function InfoContainer({
 			</div>
 
 			<div className={cl`${styles.info}
-				${containerDetails.length > 1 ? styles.without_info_field : styles.info_field}`}
+				${containerDetails?.length > SINGLE_DETAIL_INDEX ? styles.without_info_field : styles.info_field}`}
 			>
 				<p className={styles.info_text}>
 					{trackingType === 'ocean' ? CARD_TITLE.CONTAINER_NO : CARD_TITLE}
 				</p>
 
-				{containerDetails.length > 1
+				{containerDetails?.length > SINGLE_DETAIL_INDEX
 					? (
 						<Select
 							size="sm"
@@ -78,7 +93,9 @@ function InfoContainer({
 							onChange={setCurrContainerDetails}
 							options={getOptions({ containerDetails })}
 						/>
-					) : <p className={styles.info_text}>{`${container_no || airwayBillNo}`}</p>}
+					) : (
+						<Pill className={styles.pill_text} color="#fff">{container_no || airwayBillNo}</Pill>
+					)}
 			</div>
 
 			<div className={styles.data_container}>
@@ -97,12 +114,12 @@ function InfoContainer({
 					</div>
 				)}
 
-				{Object.keys(INFO_MAPPING).map((item) => {
+				{Object.keys(SHIPMENT_INFO).map((item) => {
 					const data = restInfo?.[item] || '--';
 					if (item === 'container_no') return <React.Fragment key={item} />;
 					return (
 						<div key={item} className={styles.row}>
-							<span className={styles.data_title}>{INFO_MAPPING[item]}</span>
+							<span className={styles.data_title}>{SHIPMENT_INFO[item]}</span>
 							<span className={styles.data_seperator}>:</span>
 							<span>{data}</span>
 						</div>

@@ -29,7 +29,11 @@ const PUBLIC_PATHS = [
 	'/accept-invite/[id]',
 	'/verify-sign-up-saas/[token]',
 	'/raise-cancellation-ticket',
+	'/create-ticket/[token]',
 	'/draft-airway-bill/[id]',
+	'/unsubscribe-container-update/[id]',
+	'/add-dunning-relevant-user-new/[token]',
+	'/url/[token]',
 ];
 const UNAUTHENTICATED = ['/login', '/signup'];
 export default { PUBLIC_PATHS, UNAUTHENTICATED, All };

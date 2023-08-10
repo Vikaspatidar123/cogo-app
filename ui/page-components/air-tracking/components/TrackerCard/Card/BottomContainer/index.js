@@ -24,7 +24,7 @@ function BottomContainer({
 	return (
 		<div className={styles.container}>
 			<div className={styles.bottom_text}>
-				<div className={`${type === 'success' ? styles.text1 : styles.text3}`}>
+				<div className={type === 'success' ? styles.text1 : styles.text3}>
 					<Icon fill={type === 'error' ? '#EE3425' : '#ABCD62'} width={17} height={17} />
 					<div className={styles.text}>
 						<strong>{heading}</strong>

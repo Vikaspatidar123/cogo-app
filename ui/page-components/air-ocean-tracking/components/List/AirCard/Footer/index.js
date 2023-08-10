@@ -1,4 +1,5 @@
 import { cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 import { useMemo } from 'react';
 
 import { SEVERITY_MAPPING } from '../../../../constant/card';
@@ -14,6 +15,7 @@ const renderTitle = ({ next_milestone = '' }) => {
 };
 
 function Footer({ lastUpdated = '', milestones = {}, action = {} }) {
+	const { t } = useTranslation(['common', 'airOceanTracking']);
 	const { next_milestone } = milestones || {};
 
 	const { severity = '' } = action || {};
@@ -38,7 +40,7 @@ function Footer({ lastUpdated = '', milestones = {}, action = {} }) {
 
 				<div className={styles.severity_section}>
 					{SEVERITY_MAPPING?.[severity]?.icon}
-					<span className={`${styles?.[SEVERITY_MAPPING?.[severity]?.class]}`}>
+					<span className={styles?.[SEVERITY_MAPPING?.[severity]?.class]}>
 						{SEVERITY_MAPPING?.[severity]?.title}
 					</span>
 				</div>
@@ -59,7 +61,7 @@ function Footer({ lastUpdated = '', milestones = {}, action = {} }) {
 			</div>
 
 			<div>
-				Last updated at:
+				{t('airOceanTracking:tracking_list_aircard_last_updated_at_text')}
 				{' '}
 				{formatDate({
 					date       : lastUpdated,

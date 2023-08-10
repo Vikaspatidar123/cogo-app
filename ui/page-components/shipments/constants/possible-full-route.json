@@ -59,13 +59,17 @@
 		},
 		{ "mainServices": [
 				{
+					"service_types": ["cargo_insurance_service"],
+					"display": "Cargo Insurance Service",
+					"trade_type": "export"
+				},
+				{
 					"service_types": ["fcl_freight_local_service"],
 					"display": "Origin FCL Locals",
 					"origin": "origin_main_port",
 					"alternateOrigin": "origin_port",
 					"destination": "destination_port",
 					"alternateDestination": "destination_port", 
-					
 					"trade_type": "export",
 					"iconType": "ship",
 					"type": "sea"
@@ -90,6 +94,11 @@
 					"trade_type": "import",
 					"iconType": "ship",
 					"type": "sea"
+				},
+				{
+					"service_types": ["cargo_insurance_service"],
+					"display": "Cargo Insurance Service",
+					"trade_type": "import"
 				}
 			]
 		},
@@ -327,6 +336,11 @@
 		{
 			"mainServices":[
 				{
+					"service_types": ["cargo_insurance_service"],
+					"display": "Cargo Insurance Service",
+					"trade_type": "export"
+				},
+				{
 					"service_types": ["lcl_freight_local_service"],
 					"display": "Origin LCL Locals",
 					"origin": "origin_main_port",
@@ -355,6 +369,11 @@
 					"iconType": "ship", 
 					"trade_type" : "import" ,
 					"type": "sea"
+				},
+				{
+					"service_types": ["cargo_insurance_service"],
+					"display": "Cargo Insurance Service",
+					"trade_type": "import"
 				}
 			]
 		},
@@ -547,12 +566,22 @@
 		{
 			"mainServices" : [
 				{
+					"service_types": ["cargo_insurance_service"],
+					"display": "Cargo Insurance Service",
+					"trade_type": "export"
+				},
+				{
 					"service_types": ["air_freight_service"],
 					"display": "Air Freight",
 					"origin": "origin_airport",
 					"destination": "destination_airport",
 					"iconType": "air",
 					"type": "sea"
+				},
+				{
+					"service_types": ["cargo_insurance_service"],
+					"display": "Cargo Insurance Service",
+					"trade_type": "import"
 				}
 			]
 		},

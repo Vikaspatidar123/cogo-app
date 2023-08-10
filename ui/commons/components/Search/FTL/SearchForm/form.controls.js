@@ -1,8 +1,8 @@
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+// do not remove
+// import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+// import { getCountryIds } from '@/ui/commons/utils/getCountryDetails';
 
-const { IN: INDIA_COUNTRY_ID, VN: VIETNAM_COUNTRY_ID } =	GLOBAL_CONSTANTS.country_ids;
-
-const countryIds = [INDIA_COUNTRY_ID, VIETNAM_COUNTRY_ID];
+// const SUPPORTED_COUNTRY_CODE = GLOBAL_CONSTANTS.service_supported_countries.ftl_freight.countries;
 
 const getControls = () => [
 	{
@@ -16,8 +16,8 @@ const getControls = () => [
 		params            : {
 			apply_sorting : false,
 			filters       : {
-				type       : ['seaport', 'airport', 'pincode', 'railway_terminal'],
-				country_id : countryIds,
+				type: ['seaport', 'airport', 'pincode', 'railway_terminal'],
+				// id   : getCountryIds({ countryCodes: SUPPORTED_COUNTRY_CODE }),
 			},
 		},
 		rules: { required: 'Origin Location is required' },
@@ -33,8 +33,8 @@ const getControls = () => [
 		params            : {
 			apply_sorting : false,
 			filters       : {
-				type       : ['seaport', 'airport', 'pincode', 'railway_terminal'],
-				country_id : countryIds,
+				type: ['seaport', 'airport', 'pincode', 'railway_terminal'],
+				// id   : getCountryIds({ countryCodes: SUPPORTED_COUNTRY_CODE }),
 			},
 		},
 		rules: { required: 'Destination Location is required' },

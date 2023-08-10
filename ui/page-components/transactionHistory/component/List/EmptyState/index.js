@@ -1,21 +1,26 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function EmptyState({ placement = 'center' }) {
+	const { t } = useTranslation(['transactionHistory']);
 	return (
 		<div className={styles.container}>
 			{placement === 'center' ? (
-				<img
+				<Image
 					height={300}
 					width={300}
-					alt=""
-					src="https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/empty_icon 1.svg"
+					alt={t('transactionHistory:empty_state_text_1')}
+					src={GLOBAL_CONSTANTS.image_url.empty_state}
 				/>
 			) : null}
 			<div className={styles.wrapper}>
-				<div className={styles.heading}>Looks like you do not have any transactions with us</div>
-				<div className={styles.content}>Try our products for hassle free shippings</div>
+				<div className={styles.heading}>{t('transactionHistory:empty_state_text_1')}</div>
+				<div className={styles.content}>{t('transactionHistory:empty_state_text_2')}</div>
 			</div>
 		</div>
 	);

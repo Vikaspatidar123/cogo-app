@@ -1,0 +1,46 @@
+.details_card {
+	display: flex;
+}
+
+.current_plan {
+	margin: 3px;
+	font-size: 16px;
+	color: #828282;
+}
+
+.display_name {
+	margin: 3px;
+	font-size: 20px;
+	font-weight: 700;
+	color: #221f20;
+}
+
+.price {
+	display: flex;
+	padding: 10px;
+	background: #f8f2e7;
+	border-radius: 6px;
+}
+
+.number {
+	display: flex;
+	align-content: flex-end;
+	align-items: flex-end;
+	margin: 0 5px;
+	font-size: 17px;
+	font-weight: 800;
+	color: #cfbc93;
+}
+
+.currency {
+	display: flex;
+	align-items: flex-end;
+	color: #cfbc93;
+}
+
+.plan {
+	display: flex;
+	flex-direction: column;
+	height: 80px;
+	margin: 0 30px 0 0;
+}

@@ -3,8 +3,7 @@ import React, { forwardRef, useImperativeHandle, useCallback } from 'react';
 
 import styles from './styles.module.css';
 
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-import getCountryDetails from '@/ui/commons/utils/getCountryDetails';
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
 const INTERNATIONAL_OPTIONS = [
 	{
@@ -36,14 +35,6 @@ const DOMESTIC_OPTIONS = [
 	},
 ];
 
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
-
-const INDIA_COUNTRY_DETAILS = getCountryDetails({
-	country_id: INDIA_COUNTRY_ID,
-});
-
-const INDIA_COUNTRY_CODE = INDIA_COUNTRY_DETAILS?.country_code;
-
 function TradeType(props, ref) {
 	const {
 		formError = {},
@@ -66,6 +57,12 @@ function TradeType(props, ref) {
 
 	useImperativeHandle(ref, imperativeHandle, [imperativeHandle]);
 
+	const { is_origin_country_code_in } = getCountrySpecificData({
+		country_code,
+		accessorType : 'navigations',
+		accessor     : 'spot_search_air',
+	});
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.title}>TRADE TYPES</div>
@@ -73,7 +70,7 @@ function TradeType(props, ref) {
 			<Select
 				type="select"
 				placeholder="Select"
-				options={country_code === INDIA_COUNTRY_CODE ? DOMESTIC_OPTIONS : INTERNATIONAL_OPTIONS}
+				options={is_origin_country_code_in ? DOMESTIC_OPTIONS : INTERNATIONAL_OPTIONS}
 				value={selectedTradeType}
 				onChange={setSelected}
 			/>

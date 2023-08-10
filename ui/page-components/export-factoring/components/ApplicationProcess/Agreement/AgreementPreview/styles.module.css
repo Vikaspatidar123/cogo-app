@@ -1,0 +1,15 @@
+.icon {
+	margin-right: 8px;
+}
+
+.download {
+	margin: 0 0 20px;
+	cursor: pointer;
+}
+
+.btn_container {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	width: 100%;
+}

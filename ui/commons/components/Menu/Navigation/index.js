@@ -7,10 +7,9 @@ import SubNavigation from './SubNavigation';
 import { useRouter } from '@/packages/next';
 
 function Navigation({
-	setShowPopover = () => {},
+	setShowPopover = () => { },
 	item,
 	setIsOpen,
-	isOpen,
 }) {
 	const { push } = useRouter();
 
@@ -30,20 +29,20 @@ function Navigation({
 			<Popover
 				placement="left"
 				content={renderBody()}
-				onClickOutside={() => setIsOpen(!isOpen)}
+				onClickOutside={() => setIsOpen((prev) => !prev)}
 				interactive
 				trigger="click"
 			>
 				<div className={styles.subscription_container}>
-					{item.icon && <div style={{ marginRight: '12px' }}>{item.icon}</div>}
-					<div className={styles.a_container} onClick={() => setIsOpen(!isOpen)} role="presentation">
+					{item?.icon && <div className={styles.icon}>{item.icon}</div>}
+					<div className={styles.a_container} onClick={() => setIsOpen((prev) => !prev)} role="presentation">
 						{item?.title}
 					</div>
 				</div>
 			</Popover>
 		) : (
 			<div className={styles.subscription_container}>
-				{item.icon && <div style={{ marginRight: '12px' }}>{item.icon}</div>}
+				{item?.icon && <div className={styles.icon}>{item.icon}</div>}
 				<div
 					className={styles.a_container}
 					onClick={() => handleClick(item?.href, item?.as)}

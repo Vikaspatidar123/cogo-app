@@ -9,9 +9,7 @@ import BankAccount from './BankAccount';
 import CompanyDetails from './CompanyDetails';
 import styles from './styles.module.css';
 
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
-
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
+import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
 
 const stepperContent = {
 	paying_party: {
@@ -126,6 +124,12 @@ function CreateNewInvoicingParty({
 		const { isAddressRegisteredUnderGst } = billingAddress;
 		const { registration_number: registrationNumber } = companyDetails;
 
+		const { invoicing_party_validate_gst } = getCountrySpecificData({
+			country_id,
+			accessorType : 'navigations',
+			accessor     : 'common',
+		});
+
 		renderCurrentStepControls = (
 			<AddressForm
 				organizationId={orgResponse.id}
@@ -151,7 +155,7 @@ function CreateNewInvoicingParty({
 				optionalButtons={optionalButtons}
 				loading={loading}
 				registrationNumber={registrationNumber}
-				validateGst={country_id === INDIA_COUNTRY_ID}
+				validateGst={invoicing_party_validate_gst}
 			/>
 		);
 	}

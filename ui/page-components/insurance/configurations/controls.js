@@ -1,6 +1,8 @@
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import { getCountryIds } from '@/ui/commons/utils/getCountryDetails';
 
 const get = (formObject = {}, key = '') => formObject[key] || null;
+const SUPPORTED_COUNTRY_CODE = GLOBAL_CONSTANTS.feature_supported_service.cargo_insurance.supported_countries;
 
 const controls = [
 	{
@@ -43,7 +45,7 @@ const controls = [
 		span        : 4,
 		rules       : {
 			pattern: {
-				value   : GLOBAL_CONSTANTS.country_specific_data.IN.registration_number.pattern,
+				value   : GLOBAL_CONSTANTS.patterns.GST_NUMBER,
 				message : 'Invalid GST',
 			},
 		},
@@ -76,10 +78,6 @@ const controls = [
 		valueKey    : 'postal_code',
 		labelKey    : 'postal_code',
 		params      : {
-			filters: {
-				type       : 'pincode',
-				country_id : GLOBAL_CONSTANTS.country_ids.IN,
-			},
 			includes: {
 				country                 : '',
 				region                  : '',
@@ -110,7 +108,7 @@ const controls = [
 		span        : 4,
 		rules       : {
 			pattern: {
-				value   : /^[A-Z]{5}[0-9]{4}[A-Z]{1}/g,
+				value   : GLOBAL_CONSTANTS.patterns.PAN_NUMBER,
 				message : 'Invalid PAN Number',
 			},
 		},
@@ -127,8 +125,16 @@ const getControls = (formDetails = {}, profile = {}, setCityState = () => {}) =>
 					state : e?.region?.name,
 				});
 			},
+			params: {
+				...control.params,
+				filters: {
+					type       : 'pincode',
+					country_id : getCountryIds({ countryCodes: SUPPORTED_COUNTRY_CODE }),
+				},
+			},
 		};
 	}
+
 	return {
 		...control,
 		value: get(formDetails, control.name) || profile[control?.profileKey],

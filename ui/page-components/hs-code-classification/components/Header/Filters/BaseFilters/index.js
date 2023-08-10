@@ -1,11 +1,12 @@
 import { Button } from '@cogoport/components';
-import { IcAIdea } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
 import getControls from '../../../../configurations/cardfilter';
 import styles from '../styles.module.css';
 
-import { SelectController, useForm, InputController, AsyncSelectController } from '@/packages/forms';
+import { useForm } from '@/packages/forms';
+import getField from '@/packages/forms/Controlled';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function BaseFilters({
@@ -14,8 +15,11 @@ function BaseFilters({
 	loading,
 	resetDrillDownHandler,
 	setSearchTag,
-	countryOptions,
 }) {
+	const { t } = useTranslation(['common', 'hsClassification']);
+
+	const { field, defaultValues } = getControls({ t });
+
 	const {
 		handleSubmit,
 		watch,
@@ -23,9 +27,10 @@ function BaseFilters({
 		setValue,
 		formState: { errors },
 		control,
-	} = useForm();
+	} = useForm({ defaultValues });
 
 	const watchCountry = watch('country');
+
 	const onSubmit = (data) => {
 		refetchSearch(data);
 		resetDrillDownHandler();
@@ -46,37 +51,29 @@ function BaseFilters({
 		resetDrillDownHandler();
 	}, [watchCountry, refetch, resetDrillDownHandler]);
 
-	const field = getControls({ countryOptions });
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className={`${styles.filter_container}`}>
-				<div className={`${styles.fields_container}`}>
-					<AsyncSelectController
-						{...field[0]}
-						control={control}
-						className={styles.select}
-					/>
-					<SelectController
-						{...field[1]}
-						control={control}
-						className={styles.select}
-					/>
-					<div>
-						<InputController
-							{...field[2]}
-							control={control}
-							className={styles.input_select}
-							prefix={<IcAIdea width={20} height={20} />}
-						/>
-						{errors.searchTerm && (
-							<div className={`${styles.errorMessage}`}>
-								{errors.searchTerm.type}
+			<div className={styles.filter_container}>
+				<div className={styles.fields_container}>
+
+					{field.map((config) => {
+						const { name, type, className } = config;
+						const Element = getField(type);
+						return (
+							<div key={name}>
+								<Element {...config} control={control} className={styles?.[className]} />
+								{errors?.[name] ? (
+									<p className={styles.error_message}>
+										{errors[name]?.type}
+									</p>
+								) : null}
 							</div>
-						)}
-					</div>
+						);
+					})}
+
 				</div>
 
-				<div className={`${styles.button_container}`}>
+				<div className={styles.button_container}>
 					<Button
 						themeType="secondary"
 						className="secondary sm"
@@ -84,7 +81,7 @@ function BaseFilters({
 						disabled={loading}
 						onClick={() => clearFilterHandler()}
 					>
-						Clear Filter
+						{t('hsClassification:hs_code_classification_clear_search_button_label')}
 					</Button>
 					<div>
 						<Button
@@ -94,7 +91,7 @@ function BaseFilters({
 							type="submit"
 							disabled={loading}
 						>
-							Search
+							{t('hsClassification:hs_code_classification_search_button_label')}
 						</Button>
 					</div>
 				</div>

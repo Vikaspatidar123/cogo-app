@@ -1,7 +1,5 @@
 .container {
-	max-height: 500px;
-	padding: 16px;
-	overflow: scroll;
+	padding: 0 16px;
 
 	:global {
 		.ui_modal_header_container {
@@ -33,8 +31,6 @@
 
 .loading_image {
 	display: block;
-	width: 100px !important;
-	height: 100px !important;
 	margin: auto;
 }
 

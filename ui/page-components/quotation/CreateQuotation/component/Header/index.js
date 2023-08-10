@@ -39,7 +39,7 @@ function Header(props, ref) {
 						{...fields[0]}
 						key={buyerId}
 						control={control}
-						className={`${errors?.[fields[0].name] && styles.error}`}
+						className={errors?.[fields[0].name] && styles.error}
 						disabled={editData?.sellerDetails}
 						handleChange={(data) => {
 							current.buyerDetails = data;

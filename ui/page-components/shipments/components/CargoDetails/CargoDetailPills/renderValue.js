@@ -1,10 +1,29 @@
 import { Popover } from '@cogoport/components';
 import { IcMOpenlink } from '@cogoport/icons-react';
-import { format, startCase, upperCase } from '@cogoport/utils';
+import { startCase, upperCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import formatDate from '@/ui/commons/utils/formatDate';
+
+const getFormattedDateTime = ({ date }) => (
+	formatDate({
+		date,
+		dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+		timeFormat : GLOBAL_CONSTANTS.formats.time['hh:mm aaa'],
+		formatType : 'dateTime',
+	})
+);
+
+const getFormattedDate = ({ date }) => {
+	formatDate({
+		date,
+		dateFormat : GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
+		formatType : 'date',
+
+	});
+};
 
 export const renderValue = (label, detail) => {
 	const { packages = [] } = detail || {};
@@ -228,55 +247,23 @@ export const renderValue = (label, detail) => {
 		case 'destination_location.display_name':
 			return detail.destination_location.display_name || '';
 		case 'schedule_departure':
-			return format(
-				detail?.schedule_departure || detail?.selected_schedule_departure,
-				GLOBAL_CONSTANTS.formats.date_time['dd MMM yyyy hh:mm aa'],
-			);
+			return getFormattedDateTime({ date: detail?.schedule_departure || detail?.selected_schedule_departure });
 		case 'schedule_arrival':
-			return format(
-				detail?.schedule_arrival || detail?.selected_schedule_arrival,
-				GLOBAL_CONSTANTS.formats.date_time['dd MMM yyyy hh:mm aa'],
-			);
+			return getFormattedDateTime({ date: detail?.schedule_arrival || detail?.selected_schedule_arrival });
 		case 'bn_expiry':
-			return format(
-				detail?.bn_expiry,
-				GLOBAL_CONSTANTS.formats.date_time['dd MMM yyyy hh:mm aa'],
-			);
+			return getFormattedDateTime({ date: detail?.bn_expiry });
 		case 'booking_note_deadline':
-			return format(
-				detail?.booking_note_deadline,
-				GLOBAL_CONSTANTS.formats.date_time['dd MMM yyyy hh:mm aa'],
-			);
+			return getFormattedDateTime({ date: detail?.booking_note_deadline });
 		case 'si_cutoff':
-			return format(
-				detail?.si_cutoff,
-				GLOBAL_CONSTANTS.formats.date_time['dd MMM yyyy hh:mm aa'],
-
-			);
+			return getFormattedDateTime({ date: detail?.si_cutoff });
 		case 'vgm_cutoff':
-			return format(
-				detail?.vgm_cutoff || '',
-				GLOBAL_CONSTANTS.formats.date_time['dd MMM yyyy hh:mm aa'],
-				// timeFormat : GLOBAL_CONSTANTS.formats.time['hh:mm aaa'],
-				// formatType : 'dateTime',
-				// separator  : ' - ',
-			);
+			return getFormattedDateTime({ date: detail?.vgm_cutoff || '' });
 		case 'gate_in_cutoff':
-			return format(
-				detail?.gate_in_cutoff,
-				GLOBAL_CONSTANTS.formats.date_time['dd MMM yyyy hh:mm aa'],
-
-			);
+			return getFormattedDateTime({ date: detail?.gate_in_cutoff });
 		case 'document_cutoff':
-			return format(
-				detail?.document_cutoff,
-				GLOBAL_CONSTANTS.formats.date_time['dd MMM yyyy hh:mm aa'],
-			);
+			return getFormattedDateTime({ date: detail?.document_cutoff });
 		case 'tr_cutoff':
-			return format(
-				detail?.tr_cutoff,
-				GLOBAL_CONSTANTS.formats.date_time['dd MMM yyyy hh:mm aa'],
-			);
+			return getFormattedDateTime({ date: detail?.tr_cutoff });
 		case 'iip_certificates':
 			return formatCertificate(detail?.iip_certificates || []);
 		case 'msds_certificates':
@@ -286,10 +273,7 @@ export const renderValue = (label, detail) => {
 		case 'bl_type':
 			return upperCase(detail.bl_type);
 		case 'cargo_readiness_date':
-			return format(
-				detail?.cargo_readiness_date,
-				GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-			);
+			return getFormattedDate({ date: detail?.cargo_readiness_date });
 		case 'supplier_poc':
 			return formatPocData(detail?.supplier_poc || {});
 		case 'origin_oversea_agent':
@@ -302,10 +286,7 @@ export const renderValue = (label, detail) => {
 			return `${detail?.hs_code?.hs_code} - ${detail?.hs_code?.name}`;
 
 		case 'delivery_date':
-			return format(
-				detail?.delivery_date,
-				GLOBAL_CONSTANTS.formats.date['dd MMM yyyy'],
-			);
+			return getFormattedDate({ date: detail?.delivery_date });
 
 		case 'container_load_type':
 			return startCase(detail?.container_load_type);

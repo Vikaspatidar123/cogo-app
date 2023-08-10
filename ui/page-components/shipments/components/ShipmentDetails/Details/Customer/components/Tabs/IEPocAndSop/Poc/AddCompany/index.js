@@ -98,6 +98,7 @@ function AddCompany({
 		compType,
 		loading,
 		newFields,
+		register,
 	} = useCreateAddCompany({
 		setTradeParties,
 		roleCheck,
@@ -117,7 +118,6 @@ function AddCompany({
 	const onSubmit = () => {
 		handleAddCompany();
 	};
-	console.log(newFields, 'newFields');
 
 	const renderAddCompany = () => {
 		const props = {
@@ -202,6 +202,7 @@ function AddCompany({
 						controls={newFields}
 						control={control}
 						errors={errors}
+						register={register}
 					/>
 				</Modal.Body>
 				<Modal.Footer>

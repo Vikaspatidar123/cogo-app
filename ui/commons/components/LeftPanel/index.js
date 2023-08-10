@@ -1,31 +1,32 @@
-/* eslint-disable max-len */
+import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
+
+import GLOBAL_CONSTANTS from '../../constants/globals';
 
 import styles from './styles.module.css';
 
 function LeftPanel() {
+	const { t } = useTranslation(['common']);
 	return (
 		<div className={styles.left_container}>
 			<div className={styles.cogo_icon_container}>
-				<img
-					width="150px"
-					height="100px"
-					src="https://cogoport-production.sgp1.digitaloceanspaces.com/e845419ea5eacebda858bad8b20d2797/cogoport-logo.svg"
+				<Image
+					width={150}
+					height={100}
+					src={GLOBAL_CONSTANTS.image_url.cogoport_logo}
 					alt="Cogo"
 				/>
 			</div>
 
 			<div className={styles.left_text_container}>
-				<span className={styles.span}>Login to the</span>
-				Cogoport App Platform!
-				<div className={styles.left_text_subheader}>
-					Deliver value to your customers
-				</div>
+				<span className={styles.span}>{t('common:login_to_the')}</span>
+				{t('common:cogoport_app_platform')}
 			</div>
 			<div className={styles.left_link_footer}>
-				Need any help?
+				{t('common:need_any_help')}
 				<a href="mailto:support@cogoport.com" className={styles.link_mail_text}>
-					support@cogoport.com
+					{t('common:support_email')}
 				</a>
 			</div>
 		</div>

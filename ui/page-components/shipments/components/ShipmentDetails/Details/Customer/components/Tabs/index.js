@@ -1,7 +1,9 @@
 import { TabPanel, Tabs } from '@cogoport/components';
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 
+import { ShipmentDetailContext } from '../../../../common/Context';
 import RelationshipManager from '../RelationshipManager';
+import Tracking from '../TimeLineHorizontal/components/Tracking';
 
 import IEDocuments from './IEDocuments';
 import IEPocAndSop from './IEPocAndSop';
@@ -17,6 +19,11 @@ function TabSections({
 	servicesLoading = false,
 	servicesList = [],
 }) {
+	const [{ shipment_data }] = useContext(ShipmentDetailContext);
+
+	const servicesForMap = ['fcl_freight', 'air_freight'].includes(
+		shipment_data?.shipment_type,
+	);
 	const handleTabChange = (tab) => {
 		setActiveTab(tab);
 	};
@@ -27,12 +34,11 @@ function TabSections({
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [quickAction]);
-
 	return (
-		<div className={styles.container} id="ie_tabs">
+		<main className={styles.container} id="ie_tabs">
 			<RelationshipManager />
 
-			<div className={styles.content}>
+			<section className={styles.content}>
 				<Tabs activeTab={activeTab} onChange={handleTabChange}>
 					<TabPanel name="services" title="SERVICES">
 						<Overview
@@ -59,9 +65,14 @@ function TabSections({
 							setQuickAction={setQuickAction}
 						/>
 					</TabPanel>
+					{servicesForMap ? (
+						<TabPanel name="tracking" title="TRACKING">
+							<Tracking />
+						</TabPanel>
+					) : null}
 				</Tabs>
-			</div>
-		</div>
+			</section>
+		</main>
 	);
 }
 

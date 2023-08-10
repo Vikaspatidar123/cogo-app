@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Toast } from '@cogoport/components';
+import { Button, Toast, cl } from '@cogoport/components';
 import { IcMArrowRight } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import getControls from '../../configurations/pricingcontrols';
 import useEdit from '../../hooks/useEdit';
@@ -10,6 +11,13 @@ import styles from './styles.module.css';
 
 import { useForm } from '@/packages/forms';
 import getField from '@/packages/forms/Controlled/index';
+
+const NumberController = getField('number');
+const TextController = getField('text');
+const TextAreaController = getField('textarea');
+const FileUploaderController = getField('file');
+
+const THRESHOLD_VALUE = 0;
 
 function Pricing({
 	productDetailsfromAPi,
@@ -27,7 +35,8 @@ function Pricing({
 	card = false,
 	setActiveTab = () => {},
 }) {
-	const controls = getControls();
+	const { t } = useTranslation(['common', 'productCatalogue']);
+	const controls = getControls({ t });
 	const {
 		handleSubmit,
 		watch,
@@ -50,7 +59,7 @@ function Pricing({
 		subCategoryCount,
 		setActiveTab,
 	});
-	const { categoryDisplayName = '', subCategoryDisplayName = '' } =		productDetailsfromAPi || {};
+	const { categoryDisplayName = '', subCategoryDisplayName = '' } = productDetailsfromAPi || {};
 	const { hscode = '' } = prefiledValues || {};
 
 	const [profitpercentage, setProfitPercentage] = useState(0);
@@ -88,19 +97,16 @@ function Pricing({
 		}
 	};
 
-	const NumberController = getField('number');
-	const TextController = getField('text');
-	const TextAreaController = getField('textarea');
-	const FileUploaderController = getField('file');
-
 	const renderProfit = () => {
-		if (profitpercentage > 0) {
-			return `Profit: ${Math.round(Math.abs(profitpercentage))}%`;
+		if (profitpercentage > THRESHOLD_VALUE) {
+			return `${t('productCatalogue:product_catalogue_add_product_modal_price_text_1')} 
+			${Math.round(Math.abs(profitpercentage))}%`;
 		}
-		if (profitpercentage === 0) {
-			return 'Loss: 0% ';
+		if (profitpercentage === THRESHOLD_VALUE) {
+			return `${t('productCatalogue:product_catalogue_add_product_modal_price_text_2')} 0% `;
 		}
-		return `Loss: ${Math.round(Math.abs(profitpercentage))}%`;
+		return `${t('productCatalogue:product_catalogue_add_product_modal_price_text_2')}
+		 ${Math.round(Math.abs(profitpercentage))}%`;
 	};
 
 	return (
@@ -108,23 +114,27 @@ function Pricing({
 			<form>
 				<div className={styles.header}>
 					<div className={styles.summary_tab}>
-						<div className="category">
-							<div className="heading">Category</div>
+						<div className={styles.category}>
+							<div className={styles.heading}>
+								{t('productCatalogue:product_catalogue_add_product_modal_price_text_3')}
+							</div>
 							{!isEdit ? (
-								<div className="subheading">{categoryDisplayName}</div>
+								<div className={styles.sub_heading}>{categoryDisplayName}</div>
 							) : (
-								<div className="subheading">{categoryName}</div>
+								<div className={styles.sub_heading}>{categoryName}</div>
 							)}
 						</div>
-						<div className="icn">
+						<div className={styles.icn}>
 							<IcMArrowRight />
 						</div>
-						<div className="subCategory">
-							<div className="heading">Sub-Category</div>
+						<div className={styles.sub_category}>
+							<div className={styles.heading}>
+								{t('productCatalogue:product_catalogue_add_product_modal_price_text_4')}
+							</div>
 							{!isEdit ? (
-								<div className="subheading">{subCategoryDisplayName}</div>
+								<div className={styles.sub_heading}>{subCategoryDisplayName}</div>
 							) : (
-								<div className="subheading">{subCategoryName}</div>
+								<div className={styles.sub_heading}>{subCategoryName}</div>
 							)}
 						</div>
 					</div>
@@ -152,14 +162,14 @@ function Pricing({
 
 							<TextController
 								{...controls[3]}
-								className={`${errors?.name && 'error'}`}
+								className={errors?.name && styles.error}
 								control={control}
 							/>
 						</div>
 					</div>
-					<div className={`${styles.form_row}`}>
+					<div className={styles.form_row}>
 						<div className={styles.form_col}>
-							<div className="labelRow">
+							<div className={styles.label_row}>
 								<div className={styles.form_label}>{controls[2].label}</div>
 								{errors.costPrice && (
 									<div className={styles.error_text}>
@@ -171,12 +181,12 @@ function Pricing({
 
 							<NumberController
 								{...controls[2]}
-								className={`${errors.costPrice && 'error'}`}
+								className={errors.costPrice && styles.error}
 								control={control}
 							/>
 						</div>
 						<div className={styles.form_col}>
-							<div className="labelRow">
+							<div className={styles.label_row}>
 								<div className={styles.form_label}>{controls[1].label}</div>
 								{errors.sellingPrice && (
 									<div className={styles.error_text}>
@@ -189,28 +199,33 @@ function Pricing({
 							<NumberController
 								{...controls[1]}
 								control={control}
-								className={`${errors.sellingPrice && 'error'}`}
+								className={errors.sellingPrice && styles.error}
 							/>
 						</div>
 					</div>
 					<div className={styles.form_row}>
-						<div className="desc">
+						<div className={styles.desc}>
 							<div className={styles.form_label}>{controls[4]?.label}</div>
 							<TextAreaController {...controls[4]} control={control} />
 						</div>
 						<div className={styles.form_col}>
-							<div className={styles.form_label}>Product Image</div>
+							<div className={styles.form_label}>
+								{t('productCatalogue:product_catalogue_add_product_modal_price_text_5')}
+							</div>
 							<FileUploaderController {...controls[5]} control={control} />
 						</div>
 					</div>
 				</div>
 				<div className={styles.btn_container}>
 					<Button
-						className={`submitBtn ${(addProductLoading || editLoading) && 'disableBtn'}`}
+						className={cl`${styles.submit_btn} 
+						${((addProductLoading || editLoading) && styles.disable_btn)}`}
 						disabled={addProductLoading || editLoading}
 						onClick={handleSubmit(onSubmit, onError)}
 					>
-						{!isEdit ? 'Submit' : 'Save'}
+						{!isEdit
+							? t('productCatalogue:product_catalogue_add_prodyuct_modal_submit_button_label')
+							: t('productCatalogue:product_catalogue_add_prodyuct_modal_save_button_label')}
 					</Button>
 				</div>
 			</form>

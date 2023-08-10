@@ -1,10 +1,10 @@
 import { Toast, Button, cl } from '@cogoport/components';
 import { IcMArrowNext, IcMArrowBack } from '@cogoport/icons-react';
+import { useTranslation } from 'next-i18next';
 import { useState, useEffect } from 'react';
 
 import getField from '../../../../../../packages/forms/Controlled';
-import { chargeControls as fields } from '../../../configuration/controls';
-import { ProductCartIcon } from '../../../configuration/icon-configuration';
+import { chargeControls } from '../../../configuration/controls';
 import useFreightCharges from '../../../hook/useFreightCharges';
 import style from '../styles.module.css';
 
@@ -12,11 +12,14 @@ import FreightModal from './FreightModal';
 import IncotermCharges from './IncotermCharges';
 import styles from './styles.module.css';
 
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 const SelectController = getField('select');
 const NumberSelector = getField('number');
 
-const errorHandler = () => {
-	Toast.error('Fill all mandatory details');
+const errorHandler = ({ t }) => {
+	Toast.error(t('dutiesTaxesCalculator:form_toast_err_msg'));
 };
 
 function Charge({
@@ -36,9 +39,12 @@ function Charge({
 	prevCurr,
 	formHook,
 }) {
+	const { t } = useTranslation(['common', 'dutiesTaxesCalculator']);
+
 	const [showFreightModal, setShowFreightModal] = useState(false);
 	const [spotCharge, setSpotCharge] = useState('');
 
+	const fields = chargeControls({ t });
 	const { control, watch, handleSubmit, setValue, formState:{ errors } } = formHook;
 	const { createSpotSearch, spotSearchLoading, spotSearchData } = useFreightCharges();
 
@@ -76,8 +82,14 @@ function Charge({
 		<div>
 			<div className={styles.title_container}>
 				<div className={style.title}>
-					<img src={ProductCartIcon} alt="" />
-					<div>Charges Details</div>
+					<Image
+						src={GLOBAL_CONSTANTS.image_url.product_cart_icon}
+						alt={t('dutiesTaxesCalculator:alt_product_cart_icon')}
+						width={20}
+						height={20}
+					/>
+
+					<div>{t('dutiesTaxesCalculator:form_charge_title')}</div>
 				</div>
 				<div className={cl`${styles.incoterm} ${style.col}`}>
 					<div className={style.label}>{fields[1]?.label}</div>
@@ -107,10 +119,9 @@ function Charge({
 									size="sm"
 									themeType="linkUi"
 									onClick={() => setShowFreightModal(true)}
-									className={`${styles.get_rates}`}
+									className={styles.get_rates}
 								>
-									Get Rates
-
+									{t('dutiesTaxesCalculator:form_charge_rate')}
 								</Button>
 								<div className={style.text}>{prevCurr}</div>
 							</div>
@@ -144,10 +155,10 @@ function Charge({
 					<Button
 						size="md"
 						type="button"
-						onClick={handleSubmit(submitHandler, errorHandler)}
+						onClick={handleSubmit(submitHandler, () => errorHandler({ t }))}
 						loading={serviceRatesLoading}
 					>
-						Continue
+						{t('common:continue')}
 						<IcMArrowNext />
 					</Button>
 				</div>

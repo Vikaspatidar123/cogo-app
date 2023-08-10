@@ -5,9 +5,10 @@ import { getOrgControls, getAdditionalOrgControls } from '../../utils/controls';
 
 import { useForm } from '@/packages/forms';
 import patterns from '@/ui/commons/configurations/patterns';
-import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+import { getCountrySpecificData, getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 
-const { IN: INDIA_COUNTRY_ID } = GLOBAL_CONSTANTS.country_ids;
+const ORG_INFO = ['business_name', 'company_type'];
+const MAX_LENGTH = 10;
 
 const useCompanyDetails = ({
 	filledDetails = {},
@@ -37,13 +38,22 @@ const useCompanyDetails = ({
 	const watchCountryId = watch('country_id');
 	const watchBusinessName = watch('business_name');
 
-	const isCountryIndia = watchCountryId === INDIA_COUNTRY_ID;
+	const { validate_registration_number } = getCountrySpecificData({
+		country_id   : watchCountryId,
+		accessorType : 'navigations',
+		accessor     : 'common',
+	});
 
-	const { getBusinessApi = {}, onBlurTaxPanGstinControl = () => {} } = useGetBusiness({
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
+
+	const { getBusinessLoading: businessApiLoading, onBlurTaxPanGstinControl = () => {} } = useGetBusiness({
 		watchTaxNumber         : watchPan?.toUpperCase(),
 		watchBusinessName,
 		setValues,
-		registrationNumberType : isCountryIndia ? 'registration' : '',
+		registrationNumberType : validate_registration_number ? 'registration' : '',
 	});
 
 	const onSubmit = (values = {}) => {
@@ -54,24 +64,24 @@ const useCompanyDetails = ({
 		setCurrentStep('billing_address');
 	};
 
-	const businessApiLoading = getBusinessApi.loading;
-
-	const newFields = {};
-	Object.entries(control).forEach(([controlName, field]) => {
-		let newField = { ...field };
-		if (controlName === 'registration_number') {
+	const newControlsField = {};
+	companyDetailsControls.forEach((config) => {
+		let newField = { ...config };
+		if (config.name === 'registration_number') {
 			newField = {
-				...newField,
+				...config,
 				onBlur: () => onBlurTaxPanGstinControl(),
 				...(businessApiLoading && {
 					suffix: <Loader themeType="primary" />,
 				}),
-				...(isCountryIndia && { maxLength: 10 }),
-				label : isCountryIndia ? 'PAN' : 'Registration Number',
-				rules : {
+
+				...(validate_registration_number && { maxLength: MAX_LENGTH }),
+				label: IDENTIFICAITON_LABEL,
+
+				rules: {
 					...(newField.rules || {}),
 					pattern: {},
-					...(isCountryIndia && {
+					...(validate_registration_number && {
 						pattern: {
 							value   : patterns.PAN_NUMBER,
 							message : 'PAN is invalid',
@@ -81,20 +91,20 @@ const useCompanyDetails = ({
 			};
 		}
 
-		if (['business_name', 'company_type'].includes(controlName)) {
+		if (ORG_INFO.includes(config.name)) {
 			newField = {
-				...newField,
+				...config,
 				disabled: businessApiLoading,
 			};
 		}
 
-		newFields[controlName] = newField;
+		newControlsField[config.name] = newField;
 	});
 
 	const newErrors = {};
 	Object.entries(errors).forEach(([key, value]) => {
 		if (key === 'registration_number') {
-			if (!isCountryIndia && value.type === 'pattern') {
+			if (!validate_registration_number && value.type === 'pattern') {
 				return;
 			}
 		}
@@ -109,7 +119,7 @@ const useCompanyDetails = ({
 		orgControls,
 		additionalOrgControls,
 		companyDetailsControls,
-		companyDetailsFormProps  : { ...companyDetailsFormProps },
+		companyDetailsFormProps  : { ...companyDetailsFormProps, fields: newControlsField },
 		control,
 	};
 };

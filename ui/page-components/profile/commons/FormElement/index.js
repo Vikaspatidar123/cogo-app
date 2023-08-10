@@ -4,7 +4,6 @@ import FieldArray from './FieldArray';
 import styles from './styles.module.css';
 
 import getField from '@/packages/forms/Controlled';
-// import { getStaticOptions } from '@/packages/forms';
 
 function SearchResultsServiceItemFormElement({
 	controls,
@@ -19,7 +18,7 @@ function SearchResultsServiceItemFormElement({
 				const controlStyle = controlItem?.style;
 				const Element = getField(type);
 
-				const show =					!(controlItem.name in showElements) || showElements[controlItem.name];
+				const show = !(controlItem.name in showElements) || showElements[controlItem.name];
 
 				if (!show || !Element) {
 					return null;
@@ -33,6 +32,7 @@ function SearchResultsServiceItemFormElement({
 							control={control}
 							showElements={showElements}
 							error={errors.controlItem}
+							key={name}
 						/>
 					);
 				}
@@ -58,6 +58,7 @@ function SearchResultsServiceItemFormElement({
 							...controlStyle,
 							...(name === 'is_sez' ? { margin: 'auto' } : null),
 						}}
+						key={name}
 					>
 						<div>
 							{name !== 'is_sez' ? (

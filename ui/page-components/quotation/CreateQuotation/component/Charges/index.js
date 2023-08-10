@@ -32,7 +32,11 @@ function Charges(props, ref) {
 
 	const { prevCurrency, currCurrency } = storeCurrency;
 	const { getExchangeRate } = useCurrencyConversion({});
-	const formHook = useForm();
+	const formHook = useForm({
+		defaultValues: {
+			incoterm: 'EXW',
+		},
+	});
 	const { control, watch, setValue, handleSubmit, formState:{ errors } } = formHook;
 
 	const watchCharges = watch();
@@ -149,6 +153,7 @@ function Charges(props, ref) {
 				formHook={formHook}
 				ref={quoteRef}
 				consignmentValue={consignmentValue}
+				editData={editData}
 				rest={rest}
 			/>
 
@@ -170,7 +175,7 @@ function Charges(props, ref) {
 					<span>Quotation Total:</span>
 					{formatAmount({
 						amount   : totalQuotation,
-						currency : 'INR',
+						currency : watchCurrency || rest.orgCurrency,
 						options  : {
 							style                 : 'currency',
 							currencyDisplay       : 'symbol',

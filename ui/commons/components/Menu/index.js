@@ -1,4 +1,8 @@
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
+
+import GLOBAL_CONSTANTS from '../../constants/globals';
+import NetPromoterScore from '../NetPromoterScore/Components';
 
 import Logout from './Logout';
 import MenuProfileHeader from './MenuProfileHeader';
@@ -10,15 +14,23 @@ import SwitchUser from './SwitchUser';
 import getSideBarConfigs from '@/packages/navigation-configs/side-bar';
 import { useSelector } from '@/packages/store';
 
-const SHOW_NAVIGATIONS = ['app_documents', 'saas_cogo_subscription', 'saas_finance'];
-
 function Menu({ setShowPopover, show, setShow }) {
-	const [isOpen, setIsOpen] = useState(false);
+	const { t } = useTranslation(['common']);
 
 	const { user_data } = useSelector(({ profile }) => ({
 		user_data: profile || {},
 	}));
+
+	const [isOpen, setIsOpen] = useState(false);
+
 	const { organization } = user_data || {};
+
+	const configs = getSideBarConfigs({ userData: user_data, t });
+	const { nav_items = {} } = configs || {};
+	const { organization: nav = [] } = nav_items || {};
+
+	const filterData = nav.filter((item) => GLOBAL_CONSTANTS.PROFILE_NAVIGATIONS.includes(item.key));
+
 	if (show) {
 		return (
 			<div className={styles.container}>
@@ -26,24 +38,21 @@ function Menu({ setShowPopover, show, setShow }) {
 			</div>
 		);
 	}
-	const configs = getSideBarConfigs(user_data);
-	const { nav_items = {} } = configs || {};
-	const { organization: nav = [] } = nav_items || {};
-
-	const filterData = nav.filter((item) => SHOW_NAVIGATIONS.includes(item.key));
 
 	return (
 		<div className={styles.container}>
 			<MenuProfileHeader setShow={setShow} />
-			{organization?.id && <Profile setShowPopover={setShowPopover} />}
+			{organization?.id ? <Profile setShowPopover={setShowPopover} /> : null}
 			{(filterData || []).map((item) => (
 				<Navigation
 					setShowPopover={setShowPopover}
 					item={item}
 					setIsOpen={setIsOpen}
 					isOpen={isOpen}
+					key={item.title}
 				/>
 			))}
+			<NetPromoterScore />
 
 			<Logout />
 		</div>

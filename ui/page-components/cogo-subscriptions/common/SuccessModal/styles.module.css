@@ -20,7 +20,9 @@
 }
 
 .click {
+	margin-left: 2px;
 	color: #f68b21;
+	text-decoration: underline;
 	cursor: pointer;
 }
 

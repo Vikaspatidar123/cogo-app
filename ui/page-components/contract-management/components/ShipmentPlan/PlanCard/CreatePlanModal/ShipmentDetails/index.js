@@ -4,21 +4,22 @@ import Layout from './Layout';
 import styles from './styles.module.css';
 import TableHeader from './TableHeader';
 
-function ShipmentDetails({
-	controls,
-	control,
-	errors,
-	schedule,
-	frequency,
-	getValues = () => { },
-	handleSubmit = () => { },
-	contractServiceId,
-	serviceType,
-	freqCount,
-	isEditPlan,
-}) {
+function ShipmentDetails(props) {
+	const {
+		controls,
+		control,
+		errors,
+		schedule,
+		frequency,
+		getValues = () => { },
+		handleSubmit = () => { },
+		contractServiceId,
+		serviceType,
+		freqCount,
+		isEditPlan,
+		vesselOptionsLength,
+	} = props;
 	return (
-
 		<div className={styles.container}>
 			<TableHeader serviceType={serviceType} />
 			<Layout
@@ -33,6 +34,7 @@ function ShipmentDetails({
 				serviceType={serviceType}
 				freqCount={freqCount}
 				isEditPlan={isEditPlan}
+				vesselOptionsLength={vesselOptionsLength}
 			/>
 		</div>
 	);

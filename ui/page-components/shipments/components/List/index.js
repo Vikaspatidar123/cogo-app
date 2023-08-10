@@ -68,7 +68,7 @@ function ShipmentList() {
 				) : null}
 
 				{(data || []).map((item) => (
-					<Item key={item.serial_id} data={item} viewAs={viewAs} />
+					<Item key={item.serial_id} data={item} viewAs={VIEW_AS} />
 				))}
 			</div>
 		);
@@ -82,7 +82,7 @@ function ShipmentList() {
 					hookSetters={hookSetters}
 					config={config}
 					setParams={setParams}
-					viewAs={viewAs}
+					viewAs={VIEW_AS}
 				/>
 				<div className={styles.flex}>
 					<Tabs activeTab={currentTab} onChange={handleTabChange}>

@@ -21,7 +21,7 @@ const payLoad = ({ value, columns, userIds, reportData }) => ({
 
 });
 
-const useUpdate = ({ reportData = {}, refetch = () => {}, setEdit = false }) => {
+const useUpdate = ({ reportData = {}, refetch = () => {}, setEdit = false, refetchList = () => {} }) => {
 	const {
 		schedule_time_zone = '', days = '', schedule_time = '',
 		dates, recipient_user_ids = [], schedule_type = 'never',
@@ -41,6 +41,7 @@ const useUpdate = ({ reportData = {}, refetch = () => {}, setEdit = false }) => 
 	const { mutate, isLoading } = useMutation(updateShipmentReport, {
 		onSuccess: () => {
 			refetch();
+			refetchList();
 			setEdit(false);
 		},
 		onError: (err) => {

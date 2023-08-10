@@ -56,7 +56,6 @@ function Body({ values, header, index, shipmentLoading }, ref) {
 	if (isEmpty(values)) {
 		return <div className={styles.empty}>{t('settings:shipment_alerts_text_15')}</div>;
 	}
-
 	return (
 		<div className={styles.main_container}>
 			{(values || []).map((item, i) => (

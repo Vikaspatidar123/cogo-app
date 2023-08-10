@@ -18,7 +18,7 @@ function List(props) {
 	const { query } = useRouter();
 	const { t } = useTranslation(['settings']);
 	const { reportData, refetch, loading } = useStatusReport();
-	const { data, shipmentLoading } = useGetShipmentList();
+	const { data, shipmentLoading, refetchList } = useGetShipmentList();
 	const {
 		onSubmit = () => {},
 		setColumns = () => {},
@@ -31,7 +31,7 @@ function List(props) {
 		type,
 		setType,
 		isLoading,
-	} = useUpdate({ reportData, refetch, setEdit, isEdit });
+	} = useUpdate({ reportData, refetch, setEdit, isEdit, refetchList });
 	const updateProps = {
 		...props,
 		setColumns,

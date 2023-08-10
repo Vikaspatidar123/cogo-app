@@ -43,7 +43,7 @@ function Table(props) {
 				const info = data_points?.[item] || {};
 				const head = selected_data_points?.[`${item}_shipments`];
 				const header = Object.values(head || {});
-				const headerKeys = Object.keys(info || {});
+				const headerKeys = Object.keys(head || {});
 				const values = tabelData[`${item}_shipments`];
 				const options = Object.keys(info).map((key) => ({
 					label     : info[key],

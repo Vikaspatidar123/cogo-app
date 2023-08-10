@@ -9,8 +9,11 @@ const useGetShipmentList = () => {
 	} =	useQuery({
 		queryKey : 'shipment_list',
 		queryFn  : getShipmentList,
+		options  : {
+			refetchOnMount: true,
+		},
 	});
 
-	return { data, refetch, shipmentLoading: isLoading };
+	return { data, refetchList: refetch, shipmentLoading: isLoading };
 };
 export default useGetShipmentList;

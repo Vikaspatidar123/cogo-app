@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 
 const DEFAULT_RATING = 3;
 
-function RatingText({ setFeedback, feedback }) {
+function RatingText({ setFeedback = () => {}, feedback = {} }) {
 	const { rating = DEFAULT_RATING, selectedOptions = [], reason = '' } = feedback || {};
 
 	const { t } = useTranslation(['common']);

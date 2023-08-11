@@ -243,5 +243,6 @@
     "schedule_table_option_1":"tên",
 	"schedule_table_option_2":"chỉ định",
 	"schedule_table_option_3":"ID email",
-	"schedule_table_option_4":"di động không."
+	"schedule_table_option_4":"di động không.",
+    "back_text":"Mặt sau"
 }

@@ -243,6 +243,7 @@
     "schedule_table_option_1":"name",
 	"schedule_table_option_2":"designation",
 	"schedule_table_option_3":"Email Id",
-	"schedule_table_option_4":"mobile no."
+	"schedule_table_option_4":"mobile no.",
+    "back_text":"Back"
 
 }

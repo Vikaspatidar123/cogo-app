@@ -1,4 +1,4 @@
-import { Placeholder, Pagination, Tabs, TabPanel, Button } from '@cogoport/components';
+import { Placeholder, Pagination, Tabs, TabPanel } from '@cogoport/components';
 import { useState } from 'react';
 
 import useGetShipmentList from '../../hooks/useGetShipmentList';
@@ -8,13 +8,9 @@ import Header from './Header';
 import Item from './Item';
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
-
 const VIEW_AS = 'importer_exporter';
 
 function ShipmentList() {
-	const { push } = useRouter();
-
 	const [params, setParams] = useState(null);
 
 	const {
@@ -89,14 +85,6 @@ function ShipmentList() {
 						<TabPanel name="ongoing" title="ONGOING SHIPMENTS" />
 						<TabPanel name="past" title="CLOSED SHIPMENTS" />
 					</Tabs>
-					<Button
-						size="md"
-						themeType="secondary"
-						type="button"
-						onClick={() => push('/shipment-report?type=shipment')}
-					>
-						View Shipment Status Report
-					</Button>
 				</div>
 				{renderTabPanel()}
 				<div />

@@ -6,7 +6,7 @@ import getControls from '../components/PendingFromUser/IEKycSection/controls';
 import { useForm } from '@/packages/forms';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { useRequest } from '@/packages/request';
-import { getCountrySpecificData } from '@/ui/commons/constants/CountrySpecificDetail';
+import { getCountrySpecificData, getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const PAN_REGEX = GLOBAL_CONSTANTS.patterns.PAN_NUMBER;
@@ -33,6 +33,11 @@ const useSubmitKyc = ({ onClose, organizationData = {} }) => {
 		accessor     : 'common',
 	});
 
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
+
 	const newControls = controls.map((control) => {
 		if (control.name === 'registration_number' && validate_registration_number) {
 			return {
@@ -42,7 +47,7 @@ const useSubmitKyc = ({ onClose, organizationData = {} }) => {
 					...control.rules,
 					pattern: {
 						value   : PAN_REGEX,
-						message : 'Please enter a valid PAN',
+						message : `Please enter a valid ${IDENTIFICAITON_LABEL}`,
 					},
 				},
 			};

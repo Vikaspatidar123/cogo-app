@@ -70,7 +70,7 @@ function ModalPage({ open, setOpen }) {
 	};
 	const head = () => (
 		<div>
-			<h3>Get Additional Spot Searches for free!</h3>
+			<h3>KYC Verification Form</h3>
 			<p className={styles.head}>
 				We just need some additional details from you
 			</p>

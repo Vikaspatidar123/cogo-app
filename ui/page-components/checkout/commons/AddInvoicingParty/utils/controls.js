@@ -213,7 +213,6 @@ const orgControls = [
 		span: 5.8,
 	},
 	{
-		label     : 'PAN/Registration Number',
 		name      : 'registration_number',
 		type      : 'text',
 		className : 'uppercase',
@@ -493,49 +492,56 @@ const otherAddressesControls = [
 	},
 ];
 
-const docControls = {
-	iec: [
-		{
-			label : 'IEC Code',
-			name  : 'identity_number',
-			type  : 'text',
-			span  : 6,
-			rules : { required: true },
-		},
-	],
-	pan: [
-		{
-			label : 'PAN',
-			name  : 'identity_number',
-			type  : 'text',
-			span  : 6,
-			rules : {
-				required : 'PAN is required',
-				pattern  : {
-					value   : patterns.PAN_NUMBER,
-					message : 'PAN is invalid',
+const getDocControls = () => {
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
+
+	return {
+		iec: [
+			{
+				label : 'IEC Code',
+				name  : 'identity_number',
+				type  : 'text',
+				span  : 6,
+				rules : { required: true },
+			},
+		],
+		pan: [
+			{
+				label : IDENTIFICAITON_LABEL,
+				name  : 'identity_number',
+				type  : 'text',
+				span  : 6,
+				rules : {
+					required : `${IDENTIFICAITON_LABEL} is required`,
+					pattern  : {
+						value   : patterns.PAN_NUMBER,
+						message : `${IDENTIFICAITON_LABEL} is invalid`,
+					},
 				},
 			},
-		},
-	],
-	wca: [
-		{
-			label : 'WCA License Number',
-			name  : 'identity_number',
-			type  : 'text',
-			span  : 6,
-			rules : { required: true },
-		},
-	],
-	iata: [
-		{
-			label : 'IATA License Code',
-			name  : 'identity_number',
-			type  : 'text',
-			span  : 6,
-			rules : { required: true },
-		},
-	],
+		],
+		wca: [
+			{
+				label : 'WCA License Number',
+				name  : 'identity_number',
+				type  : 'text',
+				span  : 6,
+				rules : { required: true },
+			},
+		],
+		iata: [
+			{
+				label : 'IATA License Code',
+				name  : 'identity_number',
+				type  : 'text',
+				span  : 6,
+				rules : { required: true },
+			},
+		],
+	};
 };
 
 const docs = {
@@ -554,6 +560,7 @@ const docControlsForTp = ({
 	setSelectedDocumentType = () => {},
 	editAdditionalTpDetails = {},
 }) => {
+	const docControls = getDocControls();
 	const controls = [
 		{
 			label   : 'Document Type',
@@ -606,6 +613,15 @@ export const getBillingAddressControls = ({ values = {} }) => {
 
 export const getOrgControls = ({ values = {} }) => orgControls.map((control) => {
 	const { name = '' } = control;
+
+	if (name === 'registration_number') {
+		const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+			accessorType : 'identification_number',
+			accessor     : 'label',
+		});
+
+		return { ...control, label: IDENTIFICAITON_LABEL, value: values[name] || '' };
+	}
 
 	return { ...control, value: values[name] || '' };
 });

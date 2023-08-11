@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 function SubContainer({ title, children }) {
@@ -21,6 +22,11 @@ function SubContainer({ title, children }) {
 
 function Details({ organizationData = {} }) {
 	const { t } = useTranslation(['settings']);
+
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
 
 	return (
 		<div className={styles.wrapper}>
@@ -42,7 +48,7 @@ function Details({ organizationData = {} }) {
 				</SubContainer>
 			</div>
 			<div className={styles.container}>
-				<SubContainer title={t('settings:organization_details_text_4')}>
+				<SubContainer title={IDENTIFICAITON_LABEL}>
 					{organizationData.registration_number || '-'}
 				</SubContainer>
 				<SubContainer title={t('settings:organization_details_text_5')}>

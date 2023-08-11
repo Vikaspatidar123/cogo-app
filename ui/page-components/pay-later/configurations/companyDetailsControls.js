@@ -1,6 +1,7 @@
 import { Pill } from '@cogoport/components';
 import { IcMCloudUpload } from '@cogoport/icons-react';
 
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 const getModifiedOptionsForGST = (options) => (options || []).map((x) => ({
@@ -17,13 +18,11 @@ const getModifiedOptionsForGST = (options) => (options || []).map((x) => ({
 
 export const COMPANY_DETAILS_CONTROLS = [
 	{
-		label       : 'PAN',
-		name        : 'pan',
-		type        : 'text',
-		placeholder : 'PAN',
-		showField   : true,
-		disabled    : true,
-		rules       : { required: true },
+		name      : 'pan',
+		type      : 'text',
+		showField : true,
+		disabled  : true,
+		rules     : { required: true },
 	},
 	{
 		name               : 'tax_number',
@@ -87,6 +86,14 @@ export const getCompanyControls = ({
 				suffix,
 				disabled : hasRequestedForCredit,
 			};
+		}
+		if (control.name === 'pan') {
+			const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+				accessorType : 'identification_number',
+				accessor     : 'label',
+			});
+
+			return { ...control, label: IDENTIFICAITON_LABEL, placeholder: IDENTIFICAITON_LABEL };
 		}
 		return control;
 	});

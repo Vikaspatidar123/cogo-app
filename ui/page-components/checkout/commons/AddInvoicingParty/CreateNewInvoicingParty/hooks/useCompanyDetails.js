@@ -84,7 +84,7 @@ const useCompanyDetails = ({
 					...(validate_registration_number && {
 						pattern: {
 							value   : patterns.PAN_NUMBER,
-							message : 'PAN is invalid',
+							message : `${IDENTIFICAITON_LABEL} is invalid`,
 						},
 					}),
 				},

@@ -9,7 +9,7 @@ import { useSelector } from '@/packages/store';
 function Header() {
 	return (
 		<div>
-			<div className={styles.head}>Get Additional Spot Searches for free!</div>
+			<div className={styles.head}>KYC Verification Form</div>
 			<text className={styles.text}>
 				We just need some additional details from you
 			</text>

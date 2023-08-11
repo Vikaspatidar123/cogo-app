@@ -19,6 +19,7 @@ import getCompanyControls from './shipAndConsControls';
 import styles from './styles.module.css';
 
 import { useDebounceQuery } from '@/packages/forms';
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 
 const getTradePartnersDetails = (shipment_data) => {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
@@ -156,6 +157,11 @@ function AddCompany({
 			);
 		}
 		if (compType === 'historical') {
+			const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+				accessorType : 'identification_number',
+				accessor     : 'label',
+			});
+
 			return (
 				<>
 					{shipment_data?.shipment_type === 'ftl_freight'
@@ -163,7 +169,7 @@ function AddCompany({
 						<div className={styles.search_container}>
 							<Input
 								suffix={<IcMSearchlight style={{ marginTop: '5px' }} />}
-								placeholder="Pincode, PAN, GSTIN, Name"
+								placeholder={`Pincode, GSTIN, Name, ${IDENTIFICAITON_LABEL}`}
 								type="text"
 								onChange={(e) => debounceQuery(e?.target?.value)}
 								style={{ width: '400px', marginRight: '20px' }}

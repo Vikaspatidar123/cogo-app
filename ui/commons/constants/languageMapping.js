@@ -1,17 +1,34 @@
-const { IcCCountryIndia, IcCCountryVietnam } = require('@cogoport/icons-react');
-
 module.exports = {
 	'en-IN': {
 		key      : 'en-IN',
 		label    : 'EN',
-		language : 'English (IN)',
-		icon     : IcCCountryIndia,
-	},
+		language : 'English',
 
+	},
+	'en-SG': {
+		key      : 'en-SG',
+		label    : 'EN',
+		language : 'English',
+	},
 	'vi-VN': {
 		key      : 'vi-VN',
 		label    : 'VI',
-		language : 'Vietnamese (VN)',
-		icon     : IcCCountryVietnam,
+		language : 'Vietnamese',
+
+	},
+	'th-TH': {
+		key      : 'th-TH',
+		label    : 'TH',
+		language : 'Thai',
+	},
+	'id-ID': {
+		key      : 'id-ID',
+		label    : 'ID',
+		language : 'Indonesian',
+	},
+	'zh-CN': {
+		key      : 'zh-CN',
+		label    : 'ZH',
+		language : 'Chinese',
 	},
 };

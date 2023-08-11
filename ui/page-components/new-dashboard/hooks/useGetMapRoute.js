@@ -2,10 +2,13 @@ import { isEmpty } from '@cogoport/utils';
 import { useCallback, useEffect, useState } from 'react';
 
 import { useRequest } from '@/packages/request';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const DEFAULT_LAT_INDEX = 0;
 const DEFAULT_LNG_INDEX = 1;
 const ROUNDED_NUMBER = 2;
+const LAST_INDEX = -1;
+
 const getUniqueArrElements = (arr) => arr.reduce((accumulator, current) => {
 	const found = accumulator.some(
 		(item) => JSON.stringify(item) === JSON.stringify(current),
@@ -57,7 +60,11 @@ const useGetMapRoute = ({ trackingInfo = [], type = 'ocean' }) => {
 
 			if (isEmpty(uniqueLatLngArr)) return undefined;
 			if (uniqueLatLngArr.length === 1) return uniqueLatLngArr;
-			const value = await getSeaRoute({ coordinates: uniqueLatLngArr });
+
+			const value = await getSeaRoute(
+				{ coordinates: [uniqueLatLngArr[GLOBAL_CONSTANTS.zeroth_index], ...uniqueLatLngArr.slice(LAST_INDEX)] },
+			);
+
 			return value;
 		});
 

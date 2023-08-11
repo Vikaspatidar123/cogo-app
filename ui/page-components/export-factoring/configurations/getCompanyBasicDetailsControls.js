@@ -1,8 +1,7 @@
+import { Pill } from '@cogoport/components';
 import { IcMCloudUpload } from '@cogoport/icons-react';
 
 import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
-
-const { Pill } = require('@cogoport/components');
 
 const getModifiedOptionsForGST = (options) => (options || []).map((x) => ({
 	...x,

@@ -9,11 +9,10 @@ import styles from './styles.module.css';
 function Head({ isEdit = false }) {
 	const { t } = useTranslation(['settings']);
 
-	const { refetch = () => {}, data } = useDownload();
+	const { refetch = () => {} } = useDownload();
 
-	const onClick = async () => {
-		await refetch();
-		window.open(data?.file_url);
+	const onClick = () => {
+		refetch();
 	};
 
 	return (

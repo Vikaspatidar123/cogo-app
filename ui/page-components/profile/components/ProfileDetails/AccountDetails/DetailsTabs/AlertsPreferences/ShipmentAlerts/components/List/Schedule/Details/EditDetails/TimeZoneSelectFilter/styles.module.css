@@ -5,6 +5,16 @@
 
 .box {
 	padding-right: 20px;
+
+	:global {
+		.ui_select_disable {
+			color: #000;
+		}
+
+		.ui_multiselect_disable {
+			color: #000;
+		}
+	}
 }
 
 .lable {

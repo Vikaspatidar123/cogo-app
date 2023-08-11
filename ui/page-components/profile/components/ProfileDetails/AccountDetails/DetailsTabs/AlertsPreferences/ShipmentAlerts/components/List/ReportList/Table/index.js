@@ -50,11 +50,10 @@ function Table(props) {
 					value     : key,
 					isChecked : service_wise_columns?.[item]?.includes(key),
 				}));
-
 				const checkKey = `is_${item.replace('_freight', '')}_selected`;
 
 				const checkPoint = service_wise_columns?.[item].length;
-				const totalPoint = header.length;
+				const totalPoint = Object.keys(info || {}).length;
 				return (
 					<div key={`${index + 1}`}>
 						<Title

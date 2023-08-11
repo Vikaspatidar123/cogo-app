@@ -1,9 +1,10 @@
 import { cl } from '@cogoport/components';
+import Link from 'next/link';
 import React from 'react';
 
 import styles from './styles.module.css';
 
-import { useRouter, Link } from '@/packages/next';
+import { useRouter } from '@/packages/next';
 import LANGUAGE_MAPPING from '@/ui/commons/constants/languageMapping';
 
 function Languages() {
@@ -15,6 +16,7 @@ function Languages() {
 		<div className={styles.main}>
 			{Object.values(LANGUAGE_MAPPING).map((lang) => {
 				const { language, key } = lang || {};
+
 				return (
 					<Link
 						key={lang.key}

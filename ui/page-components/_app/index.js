@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import { setCookie, getCookie } from '@cogoport/utils';
+import { useRouter } from 'next/router';
 import { appWithTranslation } from 'next-i18next';
 import pageProgessBar from 'nprogress';
 import { useEffect } from 'react';
@@ -17,8 +18,6 @@ import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
 import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
-
-const queryClient = new QueryClient();
 
 const KEY_MAPPING = {
 	COUNTRY: {
@@ -52,6 +51,11 @@ const DynamicChatBot = dynamic(() => import('@/ui/commons/components/CogoBot'), 
 function MyApp({ Component, pageProps, store, generalData }) {
 	const { profile } = store.getState() || {};
 	const { partner_id, id: organizationId } = profile.organization || {};
+	const queryClient = new QueryClient();
+
+	const router = useRouter();
+
+	const { locale } = router;
 
 	let countryCode = '';
 
@@ -70,8 +74,11 @@ function MyApp({ Component, pageProps, store, generalData }) {
 	const { isBotVisible = true } = botVisibility || {};
 
 	useEffect(() => {
+		setCookie('locale', locale);
+	}, [locale]);
+
+	useEffect(() => {
 		setCookie('parent_entity_id', partner_id);
-		setCookie('locale', Router.locale);
 		Router.events.on('routeChangeStart', () => {
 			pageProgessBar.start();
 			pageProgessBar.set(0.4);

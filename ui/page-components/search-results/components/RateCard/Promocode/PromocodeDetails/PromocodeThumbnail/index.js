@@ -1,5 +1,7 @@
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function PromocodeThumbnail({ promotion = {}, promotion_discount = [] }) {
 	return (
 		<div className={styles.container}>
@@ -25,7 +27,7 @@ function PromocodeThumbnail({ promotion = {}, promotion_discount = [] }) {
 				{promotion.thumbnail_description}
 			</div>
 
-			<div className={styles.promo_code_name}>{promotion.codes?.[0]?.promocode}</div>
+			<div className={styles.promo_code_name}>{promotion.codes?.[GLOBAL_CONSTANTS.zeroth_index]?.promocode}</div>
 
 		</div>
 	);

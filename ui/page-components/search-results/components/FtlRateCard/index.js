@@ -164,7 +164,7 @@ function FtlRateCard({
 							isDestinationHaulageRates={isDestinationHaulageRates}
 						/>
 
-						<Promocode promotion={getPromotion({ promocodes: data.promocode })} />
+						<Promocode promotion={getPromotion({ promocodes: data?.promocode })} />
 						{detailsToShow(data)?.length > 0 ? (
 							<>
 								<div className={`${styles.line_vrt} ${styles.horizontal}`} />

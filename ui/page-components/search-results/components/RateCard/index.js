@@ -278,7 +278,7 @@ function RateCard(props) {
 						isDestinationHaulageRates={isDestinationHaulageRates}
 					/>
 
-					<Promocode promotion={getPromotion({ promocodes: data.promocode })} />
+					<Promocode promotion={getPromotion({ promocodes: data?.promocode })} />
 
 					{detailsToShow(data, details)?.length > 0 ? (
 						<>

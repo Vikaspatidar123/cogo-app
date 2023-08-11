@@ -4,6 +4,8 @@ import { useState } from 'react';
 import PromocodeDetails from './PromocodeDetails';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function PromoCode({ promotion = {} }) {
 	const [showDetails, setShowDetails] = useState(false);
 
@@ -38,7 +40,7 @@ function PromoCode({ promotion = {} }) {
 				<div className={styles.text}>
 					Apply
 					{' '}
-					{promotion.codes?.[0]?.promocode}
+					{promotion.codes?.[GLOBAL_CONSTANTS.zeroth_index]?.promocode}
 					{' '}
 					to get
 					{' '}

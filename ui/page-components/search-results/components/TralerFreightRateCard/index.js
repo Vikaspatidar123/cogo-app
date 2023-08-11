@@ -111,7 +111,7 @@ function TrailerFreightRateCard({
 							</div>
 						</div>
 
-						<PromoCode promotion={getPromotion({ promocodes: data.promocode })} />
+						<PromoCode promotion={getPromotion({ promocodes: data?.promocode })} />
 
 					</div>
 

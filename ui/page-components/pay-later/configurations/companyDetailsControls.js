@@ -16,36 +16,45 @@ const getModifiedOptionsForGST = (options) => (options || []).map((x) => ({
 	</div>,
 }));
 
-export const COMPANY_DETAILS_CONTROLS = [
-	{
-		name      : 'pan',
-		type      : 'text',
-		showField : true,
-		disabled  : true,
-		rules     : { required: true },
-	},
-	{
-		name               : 'tax_number',
-		type               : 'async_select',
-		asyncKey           : 'tax_numbers',
-		getModifiedOptions : getModifiedOptionsForGST,
-		showField          : true,
-		valueKey           : 'tax_number',
-		labelKey           : 'label',
-		initialCall        : true,
-		rules              : { required: true },
-	},
-	{
-		name        : 'gst_proof',
-		type        : 'text',
-		placeholder : 'Only Image, pdf/doc...',
-		prefix      : <IcMCloudUpload width={18} height={18} />,
-		suffix      : <div style={{ margin: '0 8px' }}>Upload</div>,
-		readonly    : true,
-		showField   : true,
-		rules       : { required: true },
-	},
-];
+export const getCompanyDetailControls = () => {
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
+
+	return [
+		{
+			label       : IDENTIFICAITON_LABEL,
+			name        : 'pan',
+			type        : 'text',
+			placeholder : IDENTIFICAITON_LABEL,
+			showField   : true,
+			disabled    : true,
+			rules       : { required: true },
+		},
+		{
+			name               : 'tax_number',
+			type               : 'async_select',
+			asyncKey           : 'tax_numbers',
+			getModifiedOptions : getModifiedOptionsForGST,
+			showField          : true,
+			valueKey           : 'tax_number',
+			labelKey           : 'label',
+			initialCall        : true,
+			rules              : { required: true },
+		},
+		{
+			name        : 'gst_proof',
+			type        : 'text',
+			placeholder : 'Only Image, pdf/doc...',
+			prefix      : <IcMCloudUpload width={18} height={18} />,
+			suffix      : <div style={{ margin: '0 8px' }}>Upload</div>,
+			readonly    : true,
+			showField   : true,
+			rules       : { required: true },
+		},
+	];
+};
 
 export const getCompanyControls = ({
 	setSelectedGstDetails = () => { },
@@ -65,7 +74,7 @@ export const getCompanyControls = ({
 
 		</div>
 	);
-	return COMPANY_DETAILS_CONTROLS.map((control) => {
+	return getCompanyDetailControls().map((control) => {
 		if (control.name === 'tax_number') {
 			return ({
 				...control,
@@ -86,14 +95,6 @@ export const getCompanyControls = ({
 				suffix,
 				disabled : hasRequestedForCredit,
 			};
-		}
-		if (control.name === 'pan') {
-			const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
-				accessorType : 'identification_number',
-				accessor     : 'label',
-			});
-
-			return { ...control, label: IDENTIFICAITON_LABEL, placeholder: IDENTIFICAITON_LABEL };
 		}
 		return control;
 	});

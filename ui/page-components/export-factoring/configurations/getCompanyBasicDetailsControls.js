@@ -16,47 +16,56 @@ const getModifiedOptionsForGST = (options) => (options || []).map((x) => ({
 	</div>,
 }));
 
-export const COMPANY_DETAILS_CONTROLS = [
-	{
-		name      : 'pan',
-		type      : 'text',
-		showField : true,
-		disabled  : true,
-		rules     : { required: true },
-	},
-	{
-		label       : 'IEC',
-		name        : 'iec',
-		type        : 'text',
-		placeholder : 'IEC',
-		showField   : true,
-		rules       : { required: true },
-	},
-	{
-		label              : 'GST',
-		name               : 'tax_number',
-		type               : 'async_select',
-		placeholder        : 'GST',
-		asyncKey           : 'tax_numbers',
-		getModifiedOptions : getModifiedOptionsForGST,
-		showField          : true,
-		valueKey           : 'tax_number',
-		labelKey           : 'label',
-		initialCall        : true,
-		rules              : { required: true },
-	},
-	{
-		label       : 'Upload GST Proof',
-		name        : 'gst_proof',
-		type        : 'text',
-		placeholder : 'Only Image, pdf/doc...',
-		prefix      : <IcMCloudUpload width={18} height={18} />,
-		suffix      : <div style={{ margin: '0 8px' }}>Upload</div>,
-		readonly    : true,
-		showField   : true,
-		rules       : { required: true },
-	},
-];
+export const getCompanyDetailsControls = () => {
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
+
+	return [
+		{
+			name        : 'pan',
+			label       : IDENTIFICAITON_LABEL,
+			placeholder : IDENTIFICAITON_LABEL,
+			type        : 'text',
+			showField   : true,
+			disabled    : true,
+			rules       : { required: true },
+		},
+		{
+			label       : 'IEC',
+			name        : 'iec',
+			type        : 'text',
+			placeholder : 'IEC',
+			showField   : true,
+			rules       : { required: true },
+		},
+		{
+			label              : 'GST',
+			name               : 'tax_number',
+			type               : 'async_select',
+			placeholder        : 'GST',
+			asyncKey           : 'tax_numbers',
+			getModifiedOptions : getModifiedOptionsForGST,
+			showField          : true,
+			valueKey           : 'tax_number',
+			labelKey           : 'label',
+			initialCall        : true,
+			rules              : { required: true },
+		},
+		{
+			label       : 'Upload GST Proof',
+			name        : 'gst_proof',
+			type        : 'text',
+			placeholder : 'Only Image, pdf/doc...',
+			prefix      : <IcMCloudUpload width={18} height={18} />,
+			suffix      : <div style={{ margin: '0 8px' }}>Upload</div>,
+			readonly    : true,
+			showField   : true,
+			rules       : { required: true },
+		},
+	];
+};
 
 export const getCompanyControls = ({
 	setSelectedGstDetails = () => { },
@@ -64,7 +73,7 @@ export const getCompanyControls = ({
 	setShow = () => { },
 	hasRequestedForCredit = false,
 	setProofUrl = () => {},
-}) => COMPANY_DETAILS_CONTROLS.map((control) => {
+}) => getCompanyDetailsControls().map((control) => {
 	if (control.name === 'tax_number') {
 		return ({
 			...control,
@@ -86,12 +95,6 @@ export const getCompanyControls = ({
 			disabled : hasRequestedForCredit,
 		};
 	}
-	if (control.name === 'pan') {
-		const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
-			accessorType : 'identification_number',
-			accessor     : 'label',
-		});
-		return { ...control, label: IDENTIFICAITON_LABEL, placeholder: IDENTIFICAITON_LABEL };
-	}
+
 	return control;
 });

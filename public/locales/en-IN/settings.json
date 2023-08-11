@@ -239,6 +239,10 @@
     "shipment_text":"Shipments",
     "clear_all_text":"Clear all",
     "select_all_text":"Select all",
-    "empty_text":"empty"
+    "empty_text":"empty",
+    "schedule_table_option_1":"name",
+	"schedule_table_option_2":"designation",
+	"schedule_table_option_3":"Email Id",
+	"schedule_table_option_4":"mobile no."
 
 }

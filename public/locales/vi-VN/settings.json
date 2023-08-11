@@ -239,5 +239,9 @@
     "shipment_text":"Lô hàng",
     "clear_all_text":"Làm sạch tất cả",
     "select_all_text":"Chọn tất cả",
-    "empty_text":"trống"
+    "empty_text":"trống",
+    "schedule_table_option_1":"tên",
+	"schedule_table_option_2":"chỉ định",
+	"schedule_table_option_3":"ID email",
+	"schedule_table_option_4":"di động không."
 }

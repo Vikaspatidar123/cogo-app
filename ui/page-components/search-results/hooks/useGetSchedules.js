@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 
+import { useRouter } from '@/packages/next';
 import { useRequest } from '@/packages/request';
-import { useSelector } from '@/packages/store';
 
 const useGetSchedules = () => {
-	const { query } = useSelector(({ general }) => general);
+	const { query } = useRouter();
+
 	const [scheduleList, setScheduleList] = useState();
 
 	const [{ loading }, trigger] = useRequest(

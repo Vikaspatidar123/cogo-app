@@ -1,0 +1,9 @@
+{
+    "dt_total":"Total",
+    "dt_total_tax":"Total Duties and Tax",
+    "dt_landed_cost":"Total Landed Cost",
+    "dt_tooltip_title":"Breakdown of Total Landed Cost",
+    "dt_tooltip_freight":"Freight Charges",
+    "dt_tooltip_consignment":"Consignment Value",
+    "dt_tooltip_incoterm":"Applicable Charges"
+}

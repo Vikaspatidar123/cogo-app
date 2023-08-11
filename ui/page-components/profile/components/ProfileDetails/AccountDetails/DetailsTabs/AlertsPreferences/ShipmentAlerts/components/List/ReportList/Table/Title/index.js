@@ -9,7 +9,10 @@ import RenderPopOver from './RenderPopOver';
 import styles from './styles.module.css';
 
 function Title(props) {
-	const { serviceName, options, checkPoint, totalPoint, isEdit } = props || {};
+	const {
+		serviceName = '', options = [], checkPoint = '', totalPoint = '',
+		isEdit = false, fixedPoint = [], pointNotChnage = {},
+	} = props || {};
 
 	const { t } = useTranslation(['settings']);
 
@@ -23,6 +26,8 @@ function Title(props) {
 		colsList : options,
 		serviceName,
 		data     : props,
+		pointNotChnage,
+		fixedPoint,
 	});
 
 	const selectedShipmentColumns = (insideList || []).filter(
@@ -62,6 +67,8 @@ function Title(props) {
 									setShow={setShow}
 									setInsideList={setInsideList}
 									serviceName={serviceName}
+									fixedPoint={fixedPoint}
+									pointNotChnage={pointNotChnage}
 									{...props}
 								/>
 							)}

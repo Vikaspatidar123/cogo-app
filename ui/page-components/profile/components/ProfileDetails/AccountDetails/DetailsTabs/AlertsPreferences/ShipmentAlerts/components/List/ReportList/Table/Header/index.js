@@ -22,7 +22,6 @@ function Header({
 	const onCheck = (value) => {
 		setColumns((prev) => ({ ...prev, [checkKey]: value }));
 	};
-
 	if (shipmentLoading) {
 		return (
 			<div className={cl`${styles.container} ${styles.loading}`}>
@@ -46,7 +45,7 @@ function Header({
 				<Checkbox
 					disabled={!isEdit}
 					onChange={(e) => onCheck(e.target.checked)}
-					checked={columns?.[checkKey]}
+					checked={columns?.[checkKey] || fixedPoint.includes(checkKey)}
 				/>
 			</div>
 			<div className={cl`${styles.list} ${query.type === 'shipment' && styles.shipment}`} ref={ref}>

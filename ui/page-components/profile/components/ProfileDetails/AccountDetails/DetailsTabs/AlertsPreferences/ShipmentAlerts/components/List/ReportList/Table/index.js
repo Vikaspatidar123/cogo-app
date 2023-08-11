@@ -41,19 +41,28 @@ function Table(props) {
 		<div>
 			{(services || []).map((item, index) => {
 				const info = data_points?.[item] || {};
+
 				const head = selected_data_points?.[`${item}_shipments`];
+
 				const header = Object.values(head || {});
+
 				const headerKeys = Object.keys(head || {});
+
 				const values = tabelData[`${item}_shipments`];
-				const options = Object.keys(info).map((key) => ({
-					label     : info[key],
+
+				const options = Object.keys(info?.data_points).map((key) => ({
+					label     : info?.data_points?.[key],
 					value     : key,
 					isChecked : service_wise_columns?.[item]?.includes(key),
 				}));
 				const checkKey = `is_${item.replace('_freight', '')}_selected`;
 
+				const fixedPoint = info?.fixed_data_points;
+
 				const checkPoint = service_wise_columns?.[item].length;
-				const totalPoint = Object.keys(info || {}).length;
+
+				const totalPoint = Object.keys(info?.data_points || {}).length;
+				const pointNotChnage = { [item]: fixedPoint };
 				return (
 					<div key={`${index + 1}`}>
 						<Title
@@ -61,6 +70,8 @@ function Table(props) {
 							checkPoint={checkPoint}
 							serviceName={item}
 							options={options}
+							fixedPoint={fixedPoint}
+							pointNotChnage={pointNotChnage}
 							{...props}
 						/>
 						<Header

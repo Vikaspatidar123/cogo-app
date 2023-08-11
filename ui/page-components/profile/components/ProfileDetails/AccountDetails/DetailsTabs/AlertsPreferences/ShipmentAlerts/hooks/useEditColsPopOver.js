@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const useEditColsPopOver = ({ colsList = [], serviceName, data = {} }) => {
+const useEditColsPopOver = ({ colsList = [], serviceName, data = {}, fixedPoint }) => {
 	const { setColumns = () => {}, reset } = data || {};
 
 	const [show, setShow] = useState(false);
@@ -19,7 +19,7 @@ const useEditColsPopOver = ({ colsList = [], serviceName, data = {} }) => {
 
 		const checked = newList.filter((x) => x?.isChecked)?.map((item) => item.value);
 
-		setColumns((prev) => ({ ...prev, [serviceName]: checked }));
+		setColumns((prev) => ({ ...prev, [serviceName]: [...checked, ...fixedPoint?.[serviceName] || []] }));
 	};
 	useEffect(() => {
 		setInsideList([...colsList]);

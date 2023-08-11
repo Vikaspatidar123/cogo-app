@@ -14,12 +14,13 @@ function Header({
 	setColumns = () => {},
 	scrollHandler = () => {},
 	scrollHandlerRight = () => {},
-	serviceName,
 	shipmentLoading = false,
+	checkKey = '',
+	columns = '',
 }, ref) {
 	const { query } = useRouter();
 	const onCheck = (value) => {
-		setColumns((prev) => ({ ...prev, [`${serviceName}_shipment`]: value }));
+		setColumns((prev) => ({ ...prev, [checkKey]: value }));
 	};
 
 	if (shipmentLoading) {
@@ -45,6 +46,7 @@ function Header({
 				<Checkbox
 					disabled={!isEdit}
 					onChange={(e) => onCheck(e.target.checked)}
+					checked={columns?.[checkKey]}
 				/>
 			</div>
 			<div className={cl`${styles.list} ${query.type === 'shipment' && styles.shipment}`} ref={ref}>

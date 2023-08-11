@@ -50,6 +50,9 @@ function Table(props) {
 					value     : key,
 					isChecked : service_wise_columns?.[item]?.includes(key),
 				}));
+
+				const checkKey = `is_${item.replace('_freight', '')}_selected`;
+
 				const checkPoint = service_wise_columns?.[item].length;
 				const totalPoint = header.length;
 				return (
@@ -63,10 +66,10 @@ function Table(props) {
 						/>
 						<Header
 							header={header}
-							serviceName={item}
 							scrollHandler={scrollHandlerLeft(index)}
 							scrollHandlerRight={scrollHandlerRight(index)}
 							shipmentLoading={shipmentLoading}
+							checkKey={checkKey}
 							{...props}
 							ref={(r) => {
 								scrollRef.current.header[index] = r;

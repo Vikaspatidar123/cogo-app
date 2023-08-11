@@ -1,17 +1,13 @@
-import { format } from '@cogoport/utils';
-import { useTranslation } from 'next-i18next';
+import { format, startCase } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const ONE_INDEX = 1;
 const TWO_INDEX = 2;
 
 function ToolTipComponent({ point, data, currency }) {
-	const { t } = useTranslation(['frt']);
-
 	const date = format(point?.data?.x, 'yyyy-MM-dd');
 
 	const newData = (data || []).map((item) => ({
@@ -21,52 +17,30 @@ function ToolTipComponent({ point, data, currency }) {
 	return (
 		<div className={styles.styled_tip}>
 			<div className={styles.date}>{date}</div>
+
 			<div className={styles.data}>
-				<div className={styles.line}>
-					<div className={styles.horizontal1} />
-					<div className={styles.value}>
-						{formatAmount({
-							amount  : newData[GLOBAL_CONSTANTS.zeroth_index]?.Max,
-							currency,
-							options : {
-								notation              : 'standard',
-								style                 : 'currency',
-								maximumFractionDigits : 1,
-							},
-						})}
-					</div>
-					<div className={styles.text}>{t('frt:chart_max')}</div>
-				</div>
-				<div className={styles.line}>
-					<div className={styles.horizontal2} />
-					<div className={styles.value}>
-						{formatAmount({
-							amount  : newData[ONE_INDEX]?.Min,
-							currency,
-							options : {
-								notation              : 'standard',
-								style                 : 'currency',
-								maximumFractionDigits : 1,
-							},
-						})}
-					</div>
-					<div className={styles.text}>{t('frt:chart_min')}</div>
-				</div>
-				<div className={styles.line}>
-					<div className={styles.horizontal3} />
-					<div className={styles.value}>
-						{formatAmount({
-							amount  : newData[TWO_INDEX]?.Avg,
-							currency,
-							options : {
-								notation              : 'standard',
-								style                 : 'currency',
-								maximumFractionDigits : 1,
-							},
-						})}
-					</div>
-					<div className={styles.text}>{t('frt:chart_avg')}</div>
-				</div>
+				{newData.map((info, index) => {
+					const keys = Object.keys(info);
+					const className = `horizontal${index + 1}`;
+
+					return (
+						<div className={styles.line} key={className}>
+							<div className={styles?.[className]} />
+							<div className={styles.value}>
+								{formatAmount({
+									amount  : info?.[keys],
+									currency,
+									options : {
+										notation              : 'standard',
+										style                 : 'currency',
+										maximumFractionDigits : 1,
+									},
+								})}
+							</div>
+							<div className={styles.text}>{startCase(keys)}</div>
+						</div>
+					);
+				})}
 			</div>
 		</div>
 	);

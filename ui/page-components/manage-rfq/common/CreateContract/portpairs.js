@@ -173,7 +173,7 @@ function PortPairs({ formData, errors, fields, watch, control }) {
 	return (
 		<>
 			{Object.keys(freightPairs || {}).map((itm) => (
-				<div key={`${itm}`}>
+				<div key={itm}>
 					{(freightPairs?.[itm] || []).length > 0 ? (
 						<FreightMap
 							formData={freightPairs[itm]}

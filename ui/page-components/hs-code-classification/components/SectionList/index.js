@@ -77,7 +77,7 @@ function SectionList({
 				<div className={`${styles.desc}  ${sectionToggle && styles.selected}`}>
 					{description()}
 				</div>
-				<div className={`${styles.dropdown_symbol}`}>
+				<div className={styles.dropdown_symbol}>
 					{loading ? (
 						addLoader('30px', '100px')
 					) : (

@@ -23,7 +23,7 @@ function OptSelector({ control, fields = [], transportMode, setTransportMode, er
 							<Element
 								{...field}
 								control={control}
-								className={`${errors?.[field?.name] && styles.error}`}
+								className={errors?.[field?.name] && styles.error}
 							/>
 						</div>
 					);

@@ -11,7 +11,7 @@ function Actions({ invoice }) {
 
 	return (
 		<div className={styles.conatiner}>
-			<div className={`${styles.info_container}`}>
+			<div className={styles.info_container}>
 				{startCase(invoice.status) || 'Under Review'}
 			</div>
 

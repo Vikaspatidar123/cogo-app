@@ -59,7 +59,7 @@ function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 					<>
 						<div className={styles.header_container}>
 							<div className={styles.heading}>
-								<img src={`${csvImg}`} alt="csv img" height="20" width="30" />
+								<img src={csvImg} alt="csv img" height="20" width="30" />
 								Import .csv document
 							</div>
 							<Button onClick={downloadSample}>Sample File</Button>
@@ -96,14 +96,14 @@ function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 				<>
 					<div className={styles.succes_back_img}>
 						<img
-							src={`${successBackgroundImg}`}
+							src={successBackgroundImg}
 							width="550"
 							height="120"
 							alt="success"
 						/>
 					</div>
 					<div className={styles.tick_icon}>
-						<img src={`${tickIcon}`} width="100" height="45" alt="tick icon" />
+						<img src={tickIcon} width="100" height="45" alt="tick icon" />
 					</div>
 					<div className={styles.success_msg}>
 						Your document has been partially uploaded !
@@ -136,14 +136,14 @@ function UploadDocument({ uploadModal, setUploadModal, refetchProduct }) {
 				<div className={styles.success_modal}>
 					<div className={styles.success_back_img}>
 						<img
-							src={`${successBackgroundImg}`}
+							src={successBackgroundImg}
 							width="550"
 							height="140"
 							alt="success"
 						/>
 					</div>
 					<div className={styles.tick_icon}>
-						<img src={`${tickIcon}`} width="100" height="45" alt="tick icon" />
+						<img src={tickIcon} width="100" height="45" alt="tick icon" />
 					</div>
 					<div className={styles.success_msg}>
 						You have successfully uploaded the document!

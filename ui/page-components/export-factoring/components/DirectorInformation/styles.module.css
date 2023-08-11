@@ -1,0 +1,29 @@
+.heading {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.sub_heading {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	color: #828282;
+
+	button {
+		cursor: pointer;
+	}
+}
+
+.director_details {
+	margin-top: 15px;
+}
+
+.financial_div {
+	padding: 30px 0;
+}
+
+.btn_container {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+}

@@ -37,6 +37,7 @@ const GLOBAL_CONSTANTS = {
 			'yyyy-MM-dd'  : 'yyyy-MM-dd',
 			MMM           : 'MMM',
 			'dd MMM'      : 'dd MMM',
+			eee           : 'eee',
 		},
 		time: {
 			'hh:mm aaa' : 'hh:mm aaa',
@@ -126,6 +127,7 @@ const GLOBAL_CONSTANTS = {
 		'LU',
 		'VN',
 	],
+
 	image_url: IMAGE_URLS,
 
 	onboarding_specialist: {
@@ -172,6 +174,9 @@ const GLOBAL_CONSTANTS = {
 		},
 
 		whatsapp: {
+			supported_countries: ['IN'],
+		},
+		export_factoring: {
 			supported_countries: ['IN'],
 		},
 	},

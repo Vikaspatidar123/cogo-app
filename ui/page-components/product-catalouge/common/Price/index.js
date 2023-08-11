@@ -162,12 +162,12 @@ function Pricing({
 
 							<TextController
 								{...controls[3]}
-								className={`${errors?.name && styles.error}`}
+								className={errors?.name && styles.error}
 								control={control}
 							/>
 						</div>
 					</div>
-					<div className={`${styles.form_row}`}>
+					<div className={styles.form_row}>
 						<div className={styles.form_col}>
 							<div className={styles.label_row}>
 								<div className={styles.form_label}>{controls[2].label}</div>
@@ -181,7 +181,7 @@ function Pricing({
 
 							<NumberController
 								{...controls[2]}
-								className={`${errors.costPrice && styles.error}`}
+								className={errors.costPrice && styles.error}
 								control={control}
 							/>
 						</div>
@@ -199,7 +199,7 @@ function Pricing({
 							<NumberController
 								{...controls[1]}
 								control={control}
-								className={`${errors.sellingPrice && styles.error}`}
+								className={errors.sellingPrice && styles.error}
 							/>
 						</div>
 					</div>

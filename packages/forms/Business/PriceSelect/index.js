@@ -9,7 +9,7 @@ function PriceSelect({
 	const handleChange = (selectedVal) => {
 		onChange({
 			[currencyKey] : selectedVal,
-			[priceKey]    : value[priceKey],
+			[priceKey]    : value?.[priceKey],
 		});
 	};
 

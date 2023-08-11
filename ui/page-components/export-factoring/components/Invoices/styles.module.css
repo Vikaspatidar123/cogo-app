@@ -1,0 +1,18 @@
+.divFlex {
+	display: flex;
+	justify-content: flex-end;
+	margin: 10px 0;
+}
+
+.headFlex {
+	display: flex;
+	justify-content: flex-start;
+	margin: 20px 10px;
+}
+
+.tableHeader {
+	display: flex;
+	font-size: 14px;
+	font-weight: 600;
+	color: #828282;
+}

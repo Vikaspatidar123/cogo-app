@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import getMappingObject from '@/ui/page-components/air-ocean-tracking/constant/card';
 
 const getOptions = ({ containerDetails = [] }) => containerDetails.map((item) => ({
@@ -33,14 +34,21 @@ function InfoContainer({
 	const MAPPING = GET_MAPPING[trackingType];
 	const { CARD_TITLE, SHIPMENT_TITLE, SHIPMENT_INFO } = MAPPING;
 
-	const INFO_MAPPING = {
-		...SHIPMENT_INFO,
-	};
-
 	const { traderInfo, ...restInfo } = useMemo(() => {
 		const { commodity = '', hs_code = '', weight = '', piece = '' } = shipmentInfo || {};
-		const shipperDetails =	poc_details.filter((item) => item?.user_type === 'SHIPPER')[0] ?? {};
-		const consigneeDetails = poc_details.filter((item) => item?.user_type === 'CONSIGNEE')[0] ?? {};
+		const shipperArr = [];
+		const consigneeArr = [];
+
+		poc_details.forEach((detail) => {
+			if (detail?.user_type === 'SHIPPER') {
+				shipperArr.push(detail);
+			} else if (detail?.user_type === 'CONSIGNEE') {
+				consigneeArr.push(detail);
+			}
+		});
+
+		const shipperDetails =	shipperArr[GLOBAL_CONSTANTS.zeroth_index] || {};
+		const consigneeDetails = consigneeArr[GLOBAL_CONSTANTS.zeroth_index] || {};
 		const incoterm = shipmentInfo?.incoterm;
 
 		return {
@@ -85,7 +93,9 @@ function InfoContainer({
 							onChange={setCurrContainerDetails}
 							options={getOptions({ containerDetails })}
 						/>
-					) : <p className={styles.info_text}>{`${container_no || airwayBillNo}`}</p>}
+					) : (
+						<Pill className={styles.pill_text} color="#fff">{container_no || airwayBillNo}</Pill>
+					)}
 			</div>
 
 			<div className={styles.data_container}>
@@ -104,12 +114,12 @@ function InfoContainer({
 					</div>
 				)}
 
-				{Object.keys(INFO_MAPPING).map((item) => {
+				{Object.keys(SHIPMENT_INFO).map((item) => {
 					const data = restInfo?.[item] || '--';
 					if (item === 'container_no') return <React.Fragment key={item} />;
 					return (
 						<div key={item} className={styles.row}>
-							<span className={styles.data_title}>{INFO_MAPPING[item]}</span>
+							<span className={styles.data_title}>{SHIPMENT_INFO[item]}</span>
 							<span className={styles.data_seperator}>:</span>
 							<span>{data}</span>
 						</div>

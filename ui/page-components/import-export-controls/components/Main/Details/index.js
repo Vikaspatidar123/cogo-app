@@ -1,10 +1,14 @@
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
-import MapContainer from '../../../common/MapContainer';
-
 import InfoContainer from './InfoContainer';
 import styles from './styles.module.css';
+
+import MapContainer from '@/ui/commons/components/CogoMaps2';
+
+const style = {
+	borderRadius: '18px',
+};
 
 function Details() {
 	const { t } = useTranslation(['importExportControls']);
@@ -17,7 +21,7 @@ function Details() {
 					<InfoContainer formInfo={formInfo} setFormInfo={setFormInfo} />
 				</div>
 				<div className={styles.map}>
-					<MapContainer formInfo={formInfo} />
+					<MapContainer formInfo={formInfo} style={style} />
 				</div>
 			</div>
 		</div>

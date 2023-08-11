@@ -2,6 +2,7 @@ import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import GLOBAL_CONSTANTS from '../../constants/globals';
+import NetPromoterScore from '../NetPromoterScore/Components';
 
 import Logout from './Logout';
 import MenuProfileHeader from './MenuProfileHeader';
@@ -51,6 +52,7 @@ function Menu({ setShowPopover, show, setShow }) {
 					key={item.title}
 				/>
 			))}
+			<NetPromoterScore />
 
 			<Logout />
 		</div>

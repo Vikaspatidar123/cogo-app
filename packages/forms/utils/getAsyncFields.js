@@ -29,6 +29,22 @@ function asyncFieldsShippingLines() {
 		},
 	};
 }
+
+function asyncCurrencies() {
+	return {
+		valueKey    : 'id',
+		labelKey    : 'name',
+		endpoint    : 'currencies',
+		initialCall : true,
+		params      : {
+			filters    : { status: 'active' },
+			page_limit : 50,
+			sort_by    : 'name',
+			sort_type  : 'asc',
+		},
+	};
+}
+
 function asyncFieldsLocations(labelKey = 'name', valueKey = 'id') {
 	return {
 		valueKey,
@@ -367,6 +383,28 @@ function asyncFieldsShippingLineList() {
 		endpoint : 'get_saas_container_shipping_lines',
 	};
 }
+function asyncFieldsShipmentsSidList() {
+	return {
+		valueKey : 'serial_id',
+		labelKey : 'serial_id',
+		endpoint : 'list_shipments',
+		params   : {
+			page_limit : 100,
+			filters    : {
+				status : 'active',
+				state  : [
+					'in_progress',
+					'shipment_received',
+					'confirmed_by_importer_exporter',
+				],
+			},
+		},
+		initialCall    : true,
+		useQueryKey    : true,
+		defaultOptions : true,
+		isSearchable   : true,
+	};
+}
 function asyncFieldsTicketTypes() {
 	return {
 		labelKey    : 'TicketType',
@@ -377,6 +415,7 @@ function asyncFieldsTicketTypes() {
 		qFilterKey  : 'QFilter',
 		listKey     : 'items',
 		scope       : 'cogocare',
+		params      : { Audience: 'importer_exporter' },
 	};
 }
 
@@ -406,11 +445,13 @@ export {
 	asyncOrganizationBranches,
 	asyncTaxNumbers,
 	asyncTradeContacts,
+	asyncCurrencies,
 	asyncFieldsSixDigitHsCode,
 	asyncFieldsOceanPocDetails,
 	asyncFieldsAirPocDetails,
 	asyncFieldsAirLineList,
 	asyncFieldsShippingLineList,
 	asyncFieldsShippingLines,
+	asyncFieldsShipmentsSidList,
 	asyncFieldsTicketTypes,
 };

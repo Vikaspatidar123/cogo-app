@@ -26,9 +26,11 @@ import {
 	asyncTaxNumbers,
 	asyncOrganizationUsers,
 	asyncTradeContacts,
+	asyncCurrencies,
 	asyncFieldsAirPocDetails,
 	asyncFieldsAirLineList,
 	asyncFieldsShippingLineList,
+	asyncFieldsShipmentsSidList,
 } from '../../utils/getAsyncFields';
 
 const keyAsyncFieldsParamsMapping = {
@@ -53,11 +55,13 @@ const keyAsyncFieldsParamsMapping = {
 	tax_numbers                : asyncTaxNumbers,
 	organization_users         : asyncOrganizationUsers,
 	trade_contacts             : asyncTradeContacts,
+	currencies                 : asyncCurrencies,
 	six_digit_hs_code          : asyncFieldsSixDigitHsCode,
 	list_ocean_poc_details     : asyncFieldsOceanPocDetails,
 	list_air_poc_details       : asyncFieldsAirPocDetails,
 	airline_list               : asyncFieldsAirLineList,
 	shippingline_list          : asyncFieldsShippingLineList,
+	shipment_sid_list          : asyncFieldsShipmentsSidList,
 };
 
 function AsyncSelect(props) {

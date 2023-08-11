@@ -58,7 +58,8 @@
 	],
 	"list_states": {
 		"ongoing": ["shipment_received", "confirmed_by_importer_exporter", "in_progress"],
-		"past": ["completed", "cancelled", "aborted"]
+		"past": ["completed", "cancelled", "aborted"],
+		"shipper_consignee": ["shipment_received", "confirmed_by_importer_exporter", "in_progress"]
 	},
 	"routeInfo": {
 		"origin_pickup": "pickup",

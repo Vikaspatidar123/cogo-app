@@ -35,6 +35,7 @@ function ShipmentList() {
 		}
 		refetchListShipment();
 	};
+
 	const renderTabPanel = () => {
 		if (loading) {
 			return [...Array(3).keys()].map(() => (
@@ -85,6 +86,10 @@ function ShipmentList() {
 					</TabPanel>
 
 					<TabPanel name="past" title="CLOSED SHIPMENTS">
+						{renderTabPanel()}
+					</TabPanel>
+
+					<TabPanel name="shipper_consignee" title="SHIPPER/CONSIGNEE SHIPMENTS">
 						{renderTabPanel()}
 					</TabPanel>
 				</Tabs>

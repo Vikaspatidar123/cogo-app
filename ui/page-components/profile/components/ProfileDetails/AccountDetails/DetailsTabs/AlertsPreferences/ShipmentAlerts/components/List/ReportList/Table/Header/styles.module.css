@@ -27,7 +27,7 @@
 }
 
 .loading {
-	padding: 20px 30px;
+	justify-content: center;
 }
 
 .text {
@@ -54,4 +54,8 @@
 .icon {
 	width: 1%;
 	cursor: pointer;
+}
+
+.placeholder {
+	margin: 10px 40px;
 }

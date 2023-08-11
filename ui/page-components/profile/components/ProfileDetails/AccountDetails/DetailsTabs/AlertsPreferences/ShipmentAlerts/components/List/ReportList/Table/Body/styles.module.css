@@ -18,7 +18,7 @@
 
 .loading {
 	display: flex;
-	margin-left: 30;
+	justify-content: center;
 }
 
 .empty {

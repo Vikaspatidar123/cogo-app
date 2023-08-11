@@ -15,7 +15,7 @@ function Card({ data }) {
 		<>
 			<div className={styles.mobile_view}>
 				<div className={cl`${styles.container} ${expired ? styles.disabled : styles.enabled}`}>
-					<div className={`${styles.port_details}`}>
+					<div className={styles.port_details}>
 						<PortDetails data={data} />
 					</div>
 					<div className={styles.container_info}>
@@ -40,7 +40,7 @@ function Card({ data }) {
 							<span className={styles.tag_icon}>{mapped.icon}</span>
 							<div className={styles.tag_text}>{mapped.tag}</div>
 						</div>
-						<div className={`${styles.port_detail}`}>
+						<div className={styles.port_detail}>
 							<PortDetails data={data} />
 						</div>
 					</div>

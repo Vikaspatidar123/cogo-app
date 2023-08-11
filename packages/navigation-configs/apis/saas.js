@@ -1348,6 +1348,158 @@ const saas = {
 			feature     : 'order-history',
 		},
 	],
+	export_factoring: [
+		{
+			api          : 'get_credit',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'create_credit',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_credit',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'get_credit_application_fee',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'apply_credit_coupon_code',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'get_credit_tax_number_validity',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'get_tax_numbers_data',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'list_communications',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'get_credit_company_finance_data',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_credit_poc_details',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'create_export_factoring_buyer_details',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_credit_application',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'submit_credit_for_agreement_flow',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'submit_credit_for_documentation_flow',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'resubmit_credit_for_review',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'create_credit_application',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'get_credit_comments',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'list_organization_users',
+			access_type  : 'private',
+			service_name : 'organization',
+		},
+		{
+			api          : 'update_credit_requirement_details',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'list_coupons',
+			access_type  : 'private',
+			service_name : 'promotion',
+		},
+		{
+			api          : 'update_credit_promotion',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'add_buyer_poc',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'list_export_factoring_buyers',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'send_ef_document_details_to_cogowallet',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'get_ef_invoices',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'get_ef_invoice_details',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_ef_shipment_request',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'get_ef_invoice_funding_summary',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'update_credit_status',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+		{
+			api          : 'get_ef_agreement',
+			access_type  : 'private',
+			service_name : 'credit',
+		},
+	],
 	app_saas_air_ocean_tracking: [
 		{
 			api          : 'update_external_reference_number',

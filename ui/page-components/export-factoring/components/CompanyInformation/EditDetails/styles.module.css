@@ -1,0 +1,22 @@
+.field {
+	width: 45%;
+	margin: 0 10px 15px;
+}
+
+.field_name {
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.form {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	padding: 20px;
+}
+
+.error_text {
+	color: red;
+}

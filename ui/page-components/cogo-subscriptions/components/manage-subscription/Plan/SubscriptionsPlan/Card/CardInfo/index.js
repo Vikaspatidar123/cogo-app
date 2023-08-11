@@ -32,7 +32,7 @@ function CardInfo({
 	active,
 }) {
 	return (
-		<div className={`${prioritySequence !== MOST_POPPULAR_INDEX && styles.card}`}>
+		<div className={prioritySequence !== MOST_POPPULAR_INDEX && styles.card}>
 			<div className={`${styles.styled_row} ${styles.heading}`}>
 				<div className={styles.styled_col}>
 					<div className={`${styles.heading} ${active ? styles.head_text : styles.head_text}`}>

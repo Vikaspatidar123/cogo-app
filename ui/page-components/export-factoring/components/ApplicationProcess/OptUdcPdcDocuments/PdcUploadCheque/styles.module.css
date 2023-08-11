@@ -1,0 +1,20 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.field {
+	margin: 0 0 15px;
+}
+
+.field_name {
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.form_div {
+	display: flex;
+	padding: 20px 0;
+}

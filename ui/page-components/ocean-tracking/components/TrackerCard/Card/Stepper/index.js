@@ -13,9 +13,9 @@ function Stepper({ logo_url, containerStatus, shipping_line_name }) {
 			</div>
 			<div className={styles.combined_div}>
 				{containerStatus.map((item, index) => (
-					<div className={`${(index !== 3 || index === null) && styles.dot_line_style}`}>
-						<div className={`${item ? styles.active_dot : styles.dot}`} />
-						{index !== 3 && <div className={`${item ? styles.active_line : styles.line}`} />}
+					<div className={(index !== 3 || index === null) && styles.dot_line_style}>
+						<div className={item ? styles.active_dot : styles.dot} />
+						{index !== 3 && <div className={item ? styles.active_line : styles.line} />}
 					</div>
 				))}
 			</div>

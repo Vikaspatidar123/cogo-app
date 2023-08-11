@@ -159,7 +159,7 @@ function AllProducts({
 								</div>
 								<div className={cl`${styles.row}${styles.second}`}>
 									{!loading && (
-										<div className={`${styles.sub_category}`}>
+										<div className={styles.sub_category}>
 											{subCategoryDisplayName?.length > SUB_CATEGORY_STRING_MAX_LENGTH ? (
 												<Tooltip
 													theme="light"
@@ -185,14 +185,14 @@ function AllProducts({
 							</div>
 
 							<div className={styles.row}>
-								{!loading && <div className={`${styles.product}`}>{name}</div>}
+								{!loading && <div className={styles.product}>{name}</div>}
 								{loading && <Loader width="169px" />}
 							</div>
 						</div>
 					),
 				)}
 			</div>
-			<div className={`${styles.styled_filter_section}`}>
+			<div className={styles.styled_filter_section}>
 				<div className="btn" role="presentation" onClick={() => setHSCode(true)}>
 					<IcMPlus className={styles.plus_icon} fill="#ffffff" height={50} width={50} />
 				</div>

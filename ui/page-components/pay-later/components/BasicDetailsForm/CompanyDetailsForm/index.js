@@ -57,7 +57,8 @@ function CompanyDetailsForm({ getCreditRequestResponse = {}, refetch = () => { }
 	return (
 		<form type="submit">
 			{(companyDetailsControls || []).map((item) => {
-				const Element = getField(item.type); return (
+				const Element = getField(item.type);
+				return (
 					<div className={styles.field}>
 						{
 							item.name !== 'gst_proof' ? (

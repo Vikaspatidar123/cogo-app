@@ -8,6 +8,8 @@ import { useForm } from '@/packages/forms';
 import getApiErrorString from '@/packages/forms/utils/getApiError';
 import { updateShipmentReport } from '@/ui/api/post';
 
+const DEFAULT_DATE_DAYS = 1;
+
 const payLoad = ({ value, columns, userIds, reportData }) => ({
 	id                   : reportData?.id,
 	days                 : value?.days || undefined,
@@ -61,8 +63,8 @@ const useUpdate = ({ reportData = {}, refetch = () => {}, setEdit = false, refet
 			setColumns({
 				...reportData?.service_wise_columns,
 			});
-			setValue('dates', dates);
-			setValue('days', days);
+			setValue('dates', dates || [DEFAULT_DATE_DAYS]);
+			setValue('days', days || [DEFAULT_DATE_DAYS]);
 			setValue('schedule_time_zone', schedule_time_zone);
 			setValue('schedule_time', formatTime(schedule_time));
 			setValue('schedule_type', schedule_type);

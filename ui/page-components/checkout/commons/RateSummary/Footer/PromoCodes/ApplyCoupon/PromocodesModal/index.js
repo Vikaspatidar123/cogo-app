@@ -35,7 +35,7 @@ function PromocodeDetails({
 	const { data, loading, searchPromocode } = useGetCheckoutPromocodes();
 
 	const list = data?.list?.filter((promotion) => {
-		const { is_eligible, is_applicable } = promotion.eligibility_checks || {};
+		const { is_eligible, is_applicable } = promotion?.eligibility_checks || {};
 		return is_eligible && is_applicable;
 	}) || [];
 

@@ -10,6 +10,10 @@ import { updateShipmentReport } from '@/ui/api/post';
 
 const DEFAULT_DATE_DAYS = 1;
 
+const DEFAULT_TIME = '10:00';
+
+const DEFAULT_TIME_ZONE = 'Mumbai';
+
 const payLoad = ({ value, columns, userIds, reportData }) => ({
 	id                   : reportData?.id,
 	days                 : value?.days || undefined,
@@ -65,8 +69,8 @@ const useUpdate = ({ reportData = {}, refetch = () => {}, setEdit = false, refet
 			});
 			setValue('dates', dates || [DEFAULT_DATE_DAYS]);
 			setValue('days', days || [DEFAULT_DATE_DAYS]);
-			setValue('schedule_time_zone', schedule_time_zone);
-			setValue('schedule_time', formatTime(schedule_time));
+			setValue('schedule_time_zone', schedule_time_zone || DEFAULT_TIME_ZONE);
+			setValue('schedule_time', formatTime(schedule_time || DEFAULT_TIME));
 			setValue('schedule_type', schedule_type);
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps

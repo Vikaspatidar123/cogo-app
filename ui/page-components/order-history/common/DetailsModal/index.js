@@ -41,7 +41,7 @@ function DetailsModal({
 	const TITLE_MAPPING = getTitle({ t });
 	const Component = COMPONENT_MAPPING?.[requestType] || null;
 
-	const { tradeEngineResponse, loading } =	useGetTradeEngine({ tradeEngineInputId });
+	const { tradeEngineResponse = {}, loading = false } =	useGetTradeEngine({ tradeEngineInputId });
 
 	const closeModalHandler = () => {
 		setDetailsModal({

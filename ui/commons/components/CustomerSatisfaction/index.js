@@ -9,7 +9,7 @@ function CustomerSatisfaction({ serviceName = '', position = '', details = {} })
 	const { t } = useTranslation(['common']);
 	const [show, setShow] = useState(false);
 
-	const { data = {}, showRateUs, setShowRateUs } = useGetCsatScore({ serviceName });
+	const { data = {}, showRateUs = false, setShowRateUs = () => {} } = useGetCsatScore({ serviceName });
 
 	return (
 		<>

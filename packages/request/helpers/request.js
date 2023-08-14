@@ -61,7 +61,7 @@ request.interceptors.request.use((oldConfig) => {
 	const serviceName = microServices[apiPath];
 	const isDev = !process.env.NEXT_PUBLIC_APP_BASE_URL.includes('api.cogoport.com');
 
-	const peeweeSerializerRequierd = PEEWEE_SERVICES.includes(serviceName) || (serviceName === 'location' && !isDev);
+	const peeweeSerializerRequired = PEEWEE_SERVICES.includes(serviceName) || (serviceName === 'location' && !isDev);
 
 	if (serviceName) {
 		newConfig.url = `/${serviceName}/${apiPath}`;
@@ -69,7 +69,7 @@ request.interceptors.request.use((oldConfig) => {
 
 	return {
 		...newConfig,
-		paramsSerializer : { serialize: peeweeSerializerRequierd ? customPeeweeSerializer : customSerializer },
+		paramsSerializer : { serialize: peeweeSerializerRequired ? customPeeweeSerializer : customSerializer },
 		headers          : {
 			authorizationscope   : 'organization',
 			authorization        : `Bearer: ${token}`,

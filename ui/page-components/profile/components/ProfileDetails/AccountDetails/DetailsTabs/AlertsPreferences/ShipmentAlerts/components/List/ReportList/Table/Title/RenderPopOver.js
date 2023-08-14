@@ -22,7 +22,10 @@ function RenderPopOver({
 	const [checked, setChecked] = useState(false);
 
 	const selectAll = async (value) => {
-		const updateValue = (insideList || []).map((x) => ({ ...x, isChecked: fixedPoint.includes(x.value) || value }));
+		const updateValue = (insideList || []).map((x) => ({
+			...(x || {}),
+			isChecked: fixedPoint.includes(x.value) || value,
+		}));
 
 		const check = updateValue.filter((x) => x?.isChecked || fixedPoint[x?.value]).map((item) => item?.value);
 

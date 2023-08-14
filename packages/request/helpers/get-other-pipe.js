@@ -16,7 +16,7 @@ const getOtherApiPipe = (url, authorizationparameters, getStoreState) => {
 			const apiData = userNavigationPermissions?.[actualApi];
 			let defaultScope = null;
 			let defaultView = null;
-			const scopeMatchingGlobalApi = (apiData || []).find((scope) => scope?.type === globalDefaultScope
+			const scopeMatchingGlobalApi = (apiData || []).find((scope) => scope?.view_type === globalDefaultScope
 				&& scope?.through_criteria?.includes(globalDefaultView));
 
 			if (scopeMatchingGlobalApi) {
@@ -24,8 +24,8 @@ const getOtherApiPipe = (url, authorizationparameters, getStoreState) => {
 				defaultView = globalDefaultView;
 			} else {
 				(apiData || []).forEach((scope) => {
-					if (scope?.is_default && scope.type !== 'none') {
-						defaultScope = scope?.type;
+					if (scope?.is_default && scope.view_type !== 'none') {
+						defaultScope = scope?.view_type;
 						defaultView = scope?.through_criteria?.[0] || null;
 					}
 				});

@@ -17,6 +17,7 @@ function Header({
 	shipmentLoading = false,
 	checkKey = '',
 	columns = '',
+	fixedPoint = [],
 }, ref) {
 	const { query } = useRouter();
 	const onCheck = (value) => {
@@ -45,7 +46,7 @@ function Header({
 				<Checkbox
 					disabled={!isEdit}
 					onChange={(e) => onCheck(e.target.checked)}
-					checked={columns?.[checkKey] || fixedPoint.includes(checkKey)}
+					checked={columns?.[checkKey] || fixedPoint?.includes(checkKey)}
 				/>
 			</div>
 			<div className={cl`${styles.list} ${query.type === 'shipment' && styles.shipment}`} ref={ref}>

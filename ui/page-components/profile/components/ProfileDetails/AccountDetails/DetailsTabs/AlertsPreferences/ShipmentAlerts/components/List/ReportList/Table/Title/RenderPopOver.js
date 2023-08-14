@@ -13,26 +13,24 @@ function RenderPopOver({
 	serviceName = '',
 	setColumns = () => {},
 	fixedPoint = [],
-	pointNotChnage = {},
 }) {
 	const selectedShipmentColumns = (insideList || []).map(
 		(item) => item?.isChecked,
 	);
-
 	const { t } = useTranslation(['settings']);
 
 	const [checked, setChecked] = useState(false);
 
 	const selectAll = async (value) => {
-		const updateValue = insideList.map((x) => ({ ...x, isChecked: fixedPoint.includes(x.value) || value }));
+		const updateValue = (insideList || []).map((x) => ({ ...x, isChecked: fixedPoint.includes(x.value) || value }));
 
-		const check = updateValue.filter((x) => x.isChecked).map((item) => item.value);
+		const check = updateValue.filter((x) => x?.isChecked || fixedPoint[x?.value]).map((item) => item?.value);
 
 		await setChecked(value);
 
 		await setInsideList(updateValue);
 
-		setColumns((prev) => ({ ...prev, [serviceName]: [...check, ...pointNotChnage[serviceName] || []] }));
+		setColumns((prev) => ({ ...prev, [serviceName]: check }));
 	};
 
 	useEffect(() => {
@@ -56,7 +54,7 @@ function RenderPopOver({
 			<div className={styles.box}>
 				<Checkbox
 					checked={checked}
-					onChange={(value) => selectAll(value.target.checked)}
+					onChange={(value) => selectAll(value?.target?.checked)}
 				/>
 				<div className={styles.text}>
 					{t('settings:select_all_text')}
@@ -70,7 +68,7 @@ function RenderPopOver({
 					<div className={styles.box} key={item?.label}>
 						<Checkbox
 							checked={item?.isChecked || fixedPoint.includes(item?.value)}
-							onChange={() => onSelect(idx)}
+							onChange={() => { if (!fixedPoint.includes(item?.value)) { onSelect(idx); } }}
 						/>
 						<div className={styles.text}>{item?.label}</div>
 					</div>

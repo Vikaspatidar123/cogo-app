@@ -61,7 +61,7 @@ const useUpdate = ({ reportData = {}, refetch = () => {}, setEdit = false, refet
 	};
 	useEffect(() => {
 		if (reportData) {
-			setType(schedule_type);
+			setType(schedule_type || 'never');
 			refetch();
 			setUserIds([...recipient_user_ids]);
 			setColumns({
@@ -71,7 +71,6 @@ const useUpdate = ({ reportData = {}, refetch = () => {}, setEdit = false, refet
 			setValue('days', days || [DEFAULT_DATE_DAYS]);
 			setValue('schedule_time_zone', schedule_time_zone || DEFAULT_TIME_ZONE);
 			setValue('schedule_time', formatTime(schedule_time || DEFAULT_TIME));
-			setValue('schedule_type', schedule_type);
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [reset, schedule_type]);

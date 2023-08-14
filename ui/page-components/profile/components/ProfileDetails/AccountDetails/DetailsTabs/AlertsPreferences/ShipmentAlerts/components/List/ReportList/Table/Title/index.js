@@ -11,7 +11,7 @@ import styles from './styles.module.css';
 function Title(props) {
 	const {
 		serviceName = '', options = [], checkPoint = '', totalPoint = '',
-		isEdit = false, fixedPoint = [], pointNotChnage = {},
+		isEdit = false, fixedPoint = [],
 	} = props || {};
 
 	const { t } = useTranslation(['settings']);
@@ -26,7 +26,6 @@ function Title(props) {
 		colsList : options,
 		serviceName,
 		data     : props,
-		pointNotChnage,
 		fixedPoint,
 	});
 
@@ -68,7 +67,6 @@ function Title(props) {
 									setInsideList={setInsideList}
 									serviceName={serviceName}
 									fixedPoint={fixedPoint}
-									pointNotChnage={pointNotChnage}
 									{...props}
 								/>
 							)}

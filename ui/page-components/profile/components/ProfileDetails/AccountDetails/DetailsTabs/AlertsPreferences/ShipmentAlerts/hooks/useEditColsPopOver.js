@@ -6,7 +6,6 @@ const useEditColsPopOver = ({ colsList = [], serviceName, data = {}, fixedPoint 
 	const [show, setShow] = useState(false);
 
 	const [insideList, setInsideList] = useState([...colsList]);
-
 	const onSelect = (idx) => {
 		const newList = [...insideList];
 		if (!newList[idx].isChecked) {
@@ -17,9 +16,9 @@ const useEditColsPopOver = ({ colsList = [], serviceName, data = {}, fixedPoint 
 			setInsideList(newList);
 		}
 
-		const checked = newList.filter((x) => x?.isChecked)?.map((item) => item.value);
+		const checked = newList.filter((x) => x?.isChecked || fixedPoint[x?.value])?.map((item) => item.value);
 
-		setColumns((prev) => ({ ...prev, [serviceName]: [...checked, ...fixedPoint?.[serviceName] || []] }));
+		setColumns((prev) => ({ ...prev, [serviceName]: checked }));
 	};
 	useEffect(() => {
 		setInsideList([...colsList]);

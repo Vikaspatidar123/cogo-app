@@ -62,7 +62,7 @@ function Table(props) {
 				const checkPoint = service_wise_columns?.[item].length;
 
 				const totalPoint = Object.keys(info?.data_points || {}).length;
-				const pointNotChnage = { [item]: fixedPoint };
+
 				return (
 					<div key={`${index + 1}`}>
 						<Title
@@ -71,7 +71,6 @@ function Table(props) {
 							serviceName={item}
 							options={options}
 							fixedPoint={fixedPoint}
-							pointNotChnage={pointNotChnage}
 							{...props}
 						/>
 						<Header
@@ -80,6 +79,7 @@ function Table(props) {
 							scrollHandlerRight={scrollHandlerRight(index)}
 							shipmentLoading={shipmentLoading}
 							checkKey={checkKey}
+							fixedPoint={fixedPoint}
 							{...props}
 							ref={(r) => {
 								scrollRef.current.header[index] = r;

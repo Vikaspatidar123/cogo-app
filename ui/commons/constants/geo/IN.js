@@ -297,6 +297,9 @@ export default {
 			label: {
 				en : 'PAN Number',
 				vi : 'Mã Số Doanh Nghiệp',
+				id : 'PAN Number',
+				th : 'PAN Number',
+				zh : 'PAN Number',
 			},
 		},
 
@@ -308,6 +311,9 @@ export default {
 			label: {
 				en : 'SEZ',
 				vi : 'Khu Phi Thuế Quan',
+				id : 'SEZ',
+				th : 'SEZ',
+				zh : 'SEZ',
 			},
 		},
 

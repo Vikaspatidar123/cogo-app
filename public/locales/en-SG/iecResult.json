@@ -1,0 +1,11 @@
+{
+    "result_tab_1":"IMPORT",
+    "result_tab_2":"EXPORT",
+    "result_details_yes":"Yes",
+    "result_details_no":"No",
+    "result_details_may":"May be",
+    "result_details_import_title":"Import Control Summary",
+    "result_details_export_title":"Export Control Summary",
+    "result_details_title":"Control Type",
+    "result_title":"Result"
+}

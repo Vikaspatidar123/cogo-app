@@ -1,7 +1,7 @@
 import { IcMFileUploader } from '@cogoport/icons-react';
 
-const { getLocaleSpecificLabels } = require('@/ui/commons/constants/CountrySpecificDetail');
-const { default: getGeoConstants } = require('@/ui/commons/constants/geo');
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
+import getGeoConstants from '@/ui/commons/constants/geo';
 
 const OPTION = [
 	{

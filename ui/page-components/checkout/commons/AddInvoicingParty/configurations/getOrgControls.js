@@ -1,18 +1,9 @@
+import { Tooltip } from '@cogoport/components';
 import { IcMFileUploader, IcMInfo } from '@cogoport/icons-react';
 
 import styles from '../styles.module.css';
+import TradePartyInstructions from '../TradePartyInstructions';
 import { getPanHolderStatusOptions } from '../utils/getPanHolderStatus';
-
-const { Tooltip } = require('@cogoport/components');
-
-function TradePartyInstructions() {
-	return (
-		<div>
-			Please provide a proof of agreement that verifies the trade party&apos;s
-			authorization to make payment on behalf of the Booking party
-		</div>
-	);
-}
 
 const orgControls = [
 	{

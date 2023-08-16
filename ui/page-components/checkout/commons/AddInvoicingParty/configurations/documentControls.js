@@ -2,15 +2,7 @@ import { Tooltip } from '@cogoport/components';
 import { IcMFileUploader, IcMInfo } from '@cogoport/icons-react';
 
 import styles from '../styles.module.css';
-
-function TradePartyInstructions() {
-	return (
-		<div>
-			Please provide a proof of agreement that verifies the trade party&apos;s
-			authorization to make payment on behalf of the Booking party
-		</div>
-	);
-}
+import TradePartyInstructions from '../TradePartyInstructions';
 
 const documentsControls = [
 	{

@@ -1,9 +1,8 @@
+import { IcMCloudUpload } from '@cogoport/icons-react';
+import { startCase } from '@cogoport/utils';
+
 import patterns from '@/ui/commons/configurations/patterns';
-
-const { IcMCloudUpload } = require('@cogoport/icons-react');
-const { startCase } = require('@cogoport/utils');
-
-const { getLocaleSpecificLabels } = require('@/ui/commons/constants/CountrySpecificDetail');
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 
 const docs = {
 	org_documents: [

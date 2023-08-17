@@ -7,7 +7,7 @@ on:
 
 jobs:
   demo:
-    if: ${{ contains('ajeets585,Rajatuba-Cogoport',github.actor) }}
+    if: ${{ contains('ajeets585,Rajatuba-Cogoport,maytan-cogo',github.actor) }}
     permissions:
       # The "id-token: write" permission is required or Machine ID will not be able to authenticate with the cluster.
       id-token: write

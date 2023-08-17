@@ -262,6 +262,9 @@ export default {
 			label: {
 				en : 'VAT Number',
 				vi : 'Mã Số Thuế',
+				id : 'VAT Number',
+				th : 'VAT Number',
+				zh : 'VAT Number',
 			},
 		},
 
@@ -273,6 +276,9 @@ export default {
 			label: {
 				en : 'Non-Tariff Zone',
 				vi : 'Khu Phi Thuế Quan',
+				id : 'Non-Tariff Zone',
+				th : 'Non-Tariff Zone',
+				zh : 'Non-Tariff Zone',
 			},
 		},
 

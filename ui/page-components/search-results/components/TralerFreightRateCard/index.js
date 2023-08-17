@@ -2,6 +2,7 @@ import { cl } from '@cogoport/components';
 import { IcCFtick } from '@cogoport/icons-react';
 import React, { useState } from 'react';
 
+import getPromotion from '../../utils/getPromotion';
 import LocationDetails from '../Info/TrailerFreightInfo/LocationDetails';
 import PromoCode from '../RateCard/Promocode';
 import Quotation from '../RateCard/Quotation';
@@ -109,7 +110,9 @@ function TrailerFreightRateCard({
 								/>
 							</div>
 						</div>
-						<PromoCode promotion={data.promocode} />
+
+						<PromoCode promotion={getPromotion({ promocodes: data?.promocode })} />
+
 					</div>
 
 					<div className={styles.line_vertical} />

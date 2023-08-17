@@ -3,6 +3,8 @@ import { IcCFtick } from '@cogoport/icons-react';
 import { startCase } from '@cogoport/utils';
 import React, { useEffect, useState } from 'react';
 
+import getPromotion from '../../utils/getPromotion';
+
 import CogoAssuredSchedule from './CogoAssuredSchedule';
 import DetentionDemurrage from './DetentionDemurrage';
 import HaulageText from './HaulageText';
@@ -276,7 +278,7 @@ function RateCard(props) {
 						isDestinationHaulageRates={isDestinationHaulageRates}
 					/>
 
-					<Promocode promotion={data.promocode} />
+					<Promocode promotion={getPromotion({ promocodes: data?.promocode })} />
 
 					{detailsToShow(data, details)?.length > 0 ? (
 						<>

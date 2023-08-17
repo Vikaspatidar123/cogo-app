@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import getShipmentList from '../apis/useShipmentList';
+import useListShipmentList from '../apis/useShipmentList';
 import getConfigsShipper from '../configurations/ShipmentList/Shipper/get-config';
 
 import useGetFiniteList from './useGetFiniteList';
@@ -16,7 +16,7 @@ const useGetShipmentList = (allParams = { isBookingDesk: false }) => {
 
 	const [currentTab, setCurrentTab] = useState('ongoing');
 
-	const { getshipment, loading } = getShipmentList();
+	const { getshipment, loading } = useListShipmentList({ currentTab });
 
 	const config =	 getConfigsShipper();
 	const configFunc = getConfigsShipper;

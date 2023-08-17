@@ -2,9 +2,11 @@ import filterServiceMapping from '../configurations/common/filter-service-mappin
 
 import { useRequest } from '@/packages/request';
 
-const useListShipmentList = () => {
+const useListShipmentList = ({ currentTab }) => {
+	const apiName = currentTab === 'shipper_consignee' ? 'list_shipments_for_shipper_consignee' : 'list_shipments';
+
 	const [{ loading }, trigger] = useRequest({
-		url    : 'list_shipments',
+		url    : apiName,
 		method : 'get',
 	}, { manual: true });
 

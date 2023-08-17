@@ -39,7 +39,7 @@ function DetailsModal({
 	const { show = false, requestType = '', tradeEngineInputId = '' } = detailsModal || {};
 
 	const TITLE_MAPPING = getTitle({ t });
-	const Component = COMPONENT_MAPPING?.[requestType] || null;
+	const Component = COMPONENT_MAPPING?.[requestType] || <div />;
 
 	const { tradeEngineResponse = {}, loading = false } =	useGetTradeEngine({ tradeEngineInputId });
 

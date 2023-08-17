@@ -27,7 +27,8 @@ function ListPage() {
 	const [selected, setSelected] = useState({});
 
 	const {
-		createTradeEngine, tradeEngineResponse = {}, getTradeEngineListLoading, tradeEngineInputId = '',
+		createTradeEngine = () => {},
+		tradeEngineResponse = {}, getTradeEngineListLoading = false, tradeEngineInputId = '',
 	} = usePostTradeEngine();
 
 	const { checkPaymentStatus, checkLoading, stop, paymentStatus } = useCheckStatus({

@@ -39,7 +39,7 @@ const itemFunctions = () => {
 		),
 		renderHyperLink: (itemData, field) => (
 			(
-				<div className={`${itemData?.status === 'DATA_GENERATED' ? styles.hyper_link : ''}`}>
+				<div className={itemData?.status === 'DATA_GENERATED' ? styles.hyper_link : ''}>
 					{itemData[field.key]}
 				</div>
 			)

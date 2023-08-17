@@ -11,6 +11,7 @@ const PROD_PARAM = '?filters=%7B"type"%3A"country"%7D&includes=%7B"default_param
 const DEV_PARAM = '?filters%5Btype%5D%5B%5D=country&filters%5Bstatus%5D=active&page_limit=500';
 
 const getCountries = async (callBack, path, baseUrl) => {
+	console.log('BASEURL', baseUrl, '    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
 	const params = baseUrl?.includes('https://api.cogoport.com/') ? PROD_PARAM : DEV_PARAM;
 
 	const actualUrl = `${baseUrl}location/list_locations${params}`;

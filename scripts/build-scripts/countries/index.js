@@ -16,7 +16,7 @@ const setCountries = async () => {
 	await getCountries(
 		fs.writeFileSync,
 		countriesPath,
-		'https://api.cogoport.com/',
+		'https://api-meteora1.dev.cogoport.io/',
 	);
 	console.log('Successfully Built Countries ...');
 };

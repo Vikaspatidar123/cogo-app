@@ -32,8 +32,8 @@ const COMPONENT_MAPPING = {
 };
 
 function DetailsModal({
-	detailsModal,
-	setDetailsModal,
+	detailsModal = {},
+	setDetailsModal = () => {},
 }) {
 	const { t } = useTranslation(['orderHistory']);
 	const { show = false, requestType = '', tradeEngineInputId = '' } = detailsModal || {};

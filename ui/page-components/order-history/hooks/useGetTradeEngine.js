@@ -1,6 +1,6 @@
 import { useRequestBf } from '@/packages/request';
 
-const useGetTradeEngine = ({ tradeEngineInputId }) => {
+const useGetTradeEngine = ({ tradeEngineInputId = '' }) => {
 	const [{ loading, data }] = useRequestBf({
 		url     : '/saas/trade-engine',
 		authKey : 'get_saas_trade_engine',

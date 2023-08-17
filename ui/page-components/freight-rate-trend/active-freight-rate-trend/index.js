@@ -11,6 +11,7 @@ import useFetchTrendDetails from './hooks/useFetchTrendDetails';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
 
 function ActiveFreightRateTrend() {
 	const { back, query } = useRouter();
@@ -42,6 +43,7 @@ function ActiveFreightRateTrend() {
 	const control = TAB_CONTROL({ t });
 	return (
 		<>
+
 			<div className={styles.flex1}>
 				<Popover placement="top" trigger="mouseenter" render="Go Back">
 					<IcMArrowBack
@@ -62,6 +64,8 @@ function ActiveFreightRateTrend() {
 					<p className="origin">{destination_port?.name || t('frt:stepper_destination')}</p>
 				</div>
 			</div>
+			<CustomerSatisfaction serviceName="freight_rate_trends" position="flex-end" details={{ id }} />
+
 			<div className={styles.filter_container}>
 				<Tabs
 					themeType="tertiary"

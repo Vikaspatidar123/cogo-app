@@ -9,18 +9,14 @@ function IEControlsModal({ tradeEngineResponse = {} }) {
 	const { lineItem = [] } = tradeEngineResponse || {};
 	const { controls = [] } = lineItem[GLOBAL_CONSTANTS.zeroth_index] || {};
 
+	if (isEmpty(controls)) return <EmptyState />;
+
 	return (
-		<div>
-			{!isEmpty(controls) ? (
-				<ControlsResult
-					tradeEngineResponse={tradeEngineResponse}
-					EmptyState={EmptyState}
-					listClassName="list"
-				/>
-			) : (
-				<EmptyState />
-			)}
-		</div>
+		<ControlsResult
+			tradeEngineResponse={tradeEngineResponse}
+			EmptyState={EmptyState}
+			listClassName="list"
+		/>
 	);
 }
 export default IEControlsModal;

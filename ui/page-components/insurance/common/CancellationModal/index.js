@@ -4,9 +4,21 @@ import { startCase } from '@cogoport/utils';
 import { useState } from 'react';
 
 import useGetCancellation from '../../hooks/useGetCancelInsurance';
-import { claimPolicySvg, sorrySvg, cancelSvg, claimSvg } from '../constants';
 
 import styles from './styles.module.css';
+
+import { Image } from '@/packages/next';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const IMAGE_SRC = {
+	claim  : GLOBAL_CONSTANTS.image_url.claim_svg,
+	cancel : GLOBAL_CONSTANTS.image_url.cancel_svg,
+};
+
+const CONFIRM_MODAL_SRC = {
+	claim  : GLOBAL_CONSTANTS.image_url.claim_policy,
+	cancel : GLOBAL_CONSTANTS.image_url.sorry_svg,
+};
 
 function CancellationAndConfirmModal({
 	cancelModal = false,
@@ -37,11 +49,11 @@ function CancellationAndConfirmModal({
 				<>
 					<Modal.Body>
 						<div className={styles.wrapper}>
-							<img
-								src={click === 'cancel' ? { cancelSvg } : { claimSvg }}
-								height="150px"
-								width="150px"
-								alt=""
+							<Image
+								src={IMAGE_SRC[click]}
+								height={150}
+								width={150}
+								alt="claim"
 								className={styles.image}
 							/>
 							<div className={styles.text}>
@@ -72,11 +84,12 @@ function CancellationAndConfirmModal({
 				<>
 					<Modal.Body>
 						<div className={styles.wrapper}>
-							{click === 'cancel' ? (
-								<img src={sorrySvg} height="150px" width="150px" alt="" />
-							) : (
-								<img src={claimPolicySvg} alt="" />
-							)}
+							<Image
+								src={CONFIRM_MODAL_SRC[click]}
+								width={150}
+								height={150}
+								alt="sure"
+							/>
 							{click === 'cancel' && <div className={styles.text}>We are sorry to see you go!</div>}
 							<div className={styles.sub_text}>
 								Are you sure you want to

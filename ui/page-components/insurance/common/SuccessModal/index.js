@@ -6,6 +6,8 @@ import redirectUrl from '../redirectUrl';
 
 import styles from './styles.module.css';
 
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
+
 function SuccessModal({
 	showSuccessModal,
 	setModal,
@@ -63,6 +65,15 @@ function SuccessModal({
 								Go to Home Screen
 							</Button>
 						</div>
+
+						<div className={styles.csat}>
+							<CustomerSatisfaction
+								serviceName="insurance"
+								position="center"
+								details={{ id: policyIdDownload }}
+							/>
+						</div>
+
 					</>
 				)}
 				{!createInsuranceLoading && !policyIdDownload && (

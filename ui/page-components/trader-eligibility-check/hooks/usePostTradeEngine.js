@@ -1,5 +1,5 @@
 import { Toast } from '@cogoport/components';
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 
 import useGetTradeEngine from './useGetTradeEngine';
 
@@ -7,7 +7,9 @@ import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 
 const usePostTradeEngine = () => {
-	const { profile } = useSelector((s) => s);
+	const tradeEngineInputId = useRef('');
+
+	const { profile } = useSelector((state) => state);
 	const { id, organization } = profile || {};
 
 	const [{ loading }, trigger] = useRequestBf(
@@ -22,6 +24,8 @@ const usePostTradeEngine = () => {
 	const { getTradeEngineList, tradeEngineResponse, getTradeEngineListLoading } = useGetTradeEngine();
 
 	const createTradeEngine = useCallback(async ({ draftIdFromAddon, billId, draftId }) => {
+		tradeEngineInputId.current = draftIdFromAddon || draftId;
+
 		try {
 			const res = await trigger({
 				data: {
@@ -49,6 +53,7 @@ const usePostTradeEngine = () => {
 		createTradeEngine,
 		tradeEngineResponse,
 		getTradeEngineListLoading: loading || getTradeEngineListLoading,
+		tradeEngineInputId,
 	};
 };
 

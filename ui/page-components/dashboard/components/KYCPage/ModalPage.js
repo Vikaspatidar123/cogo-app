@@ -10,6 +10,17 @@ import { useRequest } from '@/packages/request';
 import { useSelector } from '@/packages/store';
 import FormItem from '@/ui/commons/components/FormItem';
 
+function Header() {
+	return (
+		<div>
+			<h3>KYC Verification Form</h3>
+			<p className={styles.head}>
+				We just need some additional details from you
+			</p>
+		</div>
+	);
+}
+
 function ModalPage({ open, setOpen }) {
 	const [{ loading }, otpVerifyAPI] = useRequest(
 		{
@@ -68,14 +79,7 @@ function ModalPage({ open, setOpen }) {
 			console.log(err);
 		}
 	};
-	const head = () => (
-		<div>
-			<h3>Get Additional Spot Searches for free!</h3>
-			<p className={styles.head}>
-				We just need some additional details from you
-			</p>
-		</div>
-	);
+
 	return (
 		<Modal
 			size="md"
@@ -85,7 +89,7 @@ function ModalPage({ open, setOpen }) {
 		>
 
 			<div style={{ padding: '8px' }}>
-				<Modal.Header title={head()} />
+				<Modal.Header title={<Header />} />
 				<div className={styles.main}>
 					{controls.map((itm) => {
 						const Element = getField(itm?.type);

@@ -16,7 +16,7 @@ const setCountries = async () => {
 	await getCountries(
 		fs.writeFileSync,
 		countriesPath,
-		'https://api.stage.cogoport.io/',
+		'https://api.cogoport.com/',
 	);
 	console.log('Successfully Built Countries ...');
 };

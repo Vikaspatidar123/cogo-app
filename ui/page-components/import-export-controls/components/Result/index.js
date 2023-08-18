@@ -9,6 +9,7 @@ import iconUrl from '../../utils/iconUrl.json';
 import styles from './styles.module.css';
 
 import { Image, useRouter } from '@/packages/next';
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
 import ControlResult from '@/ui/commons/components/ImportExportControls';
 
 function EmptyState() {
@@ -70,19 +71,26 @@ function Result() {
 					height={200}
 				/>
 			) : (
-				<>
-					<Header title={t('importExportControls:result_title')} redirect />
-					{!isEmpty(controls) ? (
-						<div className={styles.result_container}>
-							<ControlResult
-								tradeEngineResponse={tradeEngineResp}
-								EmptyState={EmptyState}
-							/>
-						</div>
-					) : (
-						<EmptyState />
-					)}
-				</>
+				<div className={styles.container}>
+					<div>
+						<Header title={t('importExportControls:result_title')} redirect />
+						{!isEmpty(controls) ? (
+							<div className={styles.result_container}>
+								<ControlResult
+									tradeEngineResponse={tradeEngineResp}
+									EmptyState={EmptyState}
+								/>
+							</div>
+						) : (
+							<EmptyState />
+						)}
+					</div>
+					<CustomerSatisfaction
+						position="center"
+						serviceName="import_export_controls"
+						details={{ id: trade_engine_id }}
+					/>
+				</div>
 			)}
 		</div>
 	);

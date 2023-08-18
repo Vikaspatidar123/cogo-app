@@ -18,6 +18,7 @@ import Navigation from './Navigation';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
 
 const PAGE_LIMIT = 6;
 
@@ -82,15 +83,16 @@ function ActiveSchedules() {
 					onClick={handleBack}
 				/>
 				<div className={styles.header_text}>
-					{scheduleDetails?.origin_airport?.name || 'Origin'}
+					{scheduleDetails?.origin_airport?.name || t('airSchedule:origin_text')}
 				</div>
 				<div className={styles.icon_container}>
 					<IcMPortArrow fill="#88CAD1" width="1.5rem" height="1.5rem" />
 				</div>
 				<div className={styles.header_text}>
-					{scheduleDetails?.destination_airport?.name || 'Destination'}
+					{scheduleDetails?.destination_airport?.name || t('airSchedule:destination_text')}
 				</div>
 			</div>
+			<CustomerSatisfaction position="flex-end" details={{ id }} serviceName="air_schedules" />
 			<div className={styles.map_container}>
 				<Map
 					mapPoints={mapPoints}

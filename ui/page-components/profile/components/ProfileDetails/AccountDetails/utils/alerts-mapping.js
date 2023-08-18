@@ -1,5 +1,5 @@
 import Categories from '../DetailsTabs/AlertsPreferences/Categories';
-import ShipmentAlerts from '../DetailsTabs/AlertsPreferences/ShipmentAlerts';
+// import ShipmentAlerts from '../DetailsTabs/AlertsPreferences/ShipmentAlerts';
 
 const getOptions = ({ t = () => { } }) => (
 	{

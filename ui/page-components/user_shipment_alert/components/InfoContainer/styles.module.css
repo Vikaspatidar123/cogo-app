@@ -1,0 +1,19 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+.data_table {
+	width: 80%;
+	padding: 10px;
+	margin-right: 5px;
+	background: #fff;
+	border: 1px solid #e4e4e4;
+	border-radius: 6px;
+	box-shadow: 0 0 4px 0 rgb(98 127 172 / 20%);
+}
+
+.tools {
+	width: 20%;
+}

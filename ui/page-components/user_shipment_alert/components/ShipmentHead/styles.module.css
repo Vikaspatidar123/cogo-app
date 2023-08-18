@@ -1,0 +1,24 @@
+.container {
+	display: flex;
+	justify-content: center;
+	padding: 20px;
+	background-color: #fbdc00;
+	background-image: url("https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/tracking_bg.png");
+	background-size: cover;
+	background-blend-mode: overlay;
+}
+
+.box {
+	text-align: center;
+}
+
+.button {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+}
+
+.heading {
+	font-size: 20px;
+	font-weight: 600;
+}

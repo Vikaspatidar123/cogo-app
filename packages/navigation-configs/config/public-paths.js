@@ -34,6 +34,7 @@ const PUBLIC_PATHS = [
 	'/unsubscribe-container-update/[id]',
 	'/add-dunning-relevant-user-new/[token]',
 	'/url/[token]',
+	'/user-shipment-alert',
 ];
 const UNAUTHENTICATED = ['/login', '/signup'];
 export default { PUBLIC_PATHS, UNAUTHENTICATED, All };

@@ -1,0 +1,26 @@
+.container {
+	padding: 16px;
+	margin-top: 10px;
+	background: #fff;
+	border: 1px solid #f8f2e7;
+	border-radius: 4px;
+}
+
+.text {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.box {
+	display: flex;
+}
+
+.text_box {
+	margin-left: 5px;
+}
+
+.main_box {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}

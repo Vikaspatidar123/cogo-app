@@ -25,5 +25,6 @@ const HIDE_LAYOUT = [
 	'/unsubscribe-container-update/[id]',
 	'/add-dunning-relevant-user-new/[id]',
 	'/url/[token]',
+	'/user-shipment-alert',
 ];
 export default HIDE_LAYOUT;

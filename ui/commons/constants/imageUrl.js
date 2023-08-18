@@ -119,6 +119,7 @@ const IMAGE_URLS = {
 	cogoport_water_mark           : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/watermark.png',
 	ef_waiting_screen_image       : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ef_waiting.svg',
 	ef_offer_letter_email_image   : 'https://cdn.cogoport.io/cms-prod/cogo_admin/vault/original/ef_email.svg',
+	logo_icon                     : 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/Logo_(1).png',
 };
 
 export default IMAGE_URLS;

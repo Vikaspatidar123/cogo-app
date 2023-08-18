@@ -1,0 +1,15 @@
+.container {
+	margin: 10px 0;
+}
+
+.box {
+	display: flex;
+	padding: 15px;
+	text-transform: uppercase;
+	background: #fdfbf6;
+	border-bottom: 1px solid #f8f2e7;
+}
+
+.head {
+	width: 185px;
+}

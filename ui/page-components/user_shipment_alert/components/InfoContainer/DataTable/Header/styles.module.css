@@ -1,0 +1,16 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.button_box {
+	display: flex;
+	align-items: center;
+}
+
+.download {
+	display: flex;
+	align-items: center;
+	margin-right: 15px;
+	cursor: pointer;
+}

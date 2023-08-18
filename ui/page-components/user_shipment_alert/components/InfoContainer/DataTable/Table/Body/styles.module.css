@@ -1,0 +1,22 @@
+.container {
+	margin: 10px 0;
+}
+
+.box {
+	display: flex;
+	padding: 15px;
+	border-bottom: 1px solid #f8f2e7;
+}
+
+.head {
+	width: 185px;
+	font-size: 12px;
+}
+
+.view {
+	font-size: 12px;
+	font-weight: 400;
+	text-decoration-line: underline;
+	text-transform: capitalize;
+	cursor: pointer;
+}

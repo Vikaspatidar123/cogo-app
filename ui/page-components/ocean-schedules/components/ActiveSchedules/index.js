@@ -16,6 +16,7 @@ import Navigation from './Navigation';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
 
 const PAGE_LIMIT = 6;
 const DEFAULT_CURRENT_PAGE = 0;
@@ -75,6 +76,7 @@ function ActiveSchedules() {
 					{destination_port?.name || 'Destination'}
 				</div>
 			</div>
+			<CustomerSatisfaction position="flex-end" details={{ id }} serviceName="ocean_schedules" />
 			<div className={styles.map_container}>
 				<Map
 					portDetails={scheduleDetails}

@@ -9,6 +9,8 @@ import {
 
 import styles from './styles.module.css';
 
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
+
 const renderFunctions = ({
 	redirectBuy = () => {},
 	downloadFunction = () => {},
@@ -90,6 +92,12 @@ const renderFunctions = ({
 					);
 				},
 				show: ['DRAFT', 'PAYMENT_INITIATED'].includes(status),
+			},
+			{
+				children: (
+					<CustomerSatisfaction serviceName="insurance" details={{ id: policyId }} />
+				),
+				show: status === 'POLICY_GENERATED',
 			},
 		];
 

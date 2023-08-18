@@ -11,7 +11,6 @@ function Map({
 	portDetails = {},
 	transportMode,
 	billId = '',
-	tradeEngineRespLength,
 }) {
 	const [curvePoints, setCurvePoints] = useState([]);
 
@@ -52,9 +51,8 @@ function Map({
 		<div>
 			<CogoMaps
 				plotPoints={curvePoints}
-				lengthDependency={tradeEngineRespLength}
 				transportMode="ocean"
-				height="46vh"
+				height="47vh"
 			/>
 			{routeDataLength && curvePoints.length === 0 && (
 				<div className={styles.loader}>

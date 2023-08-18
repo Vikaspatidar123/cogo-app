@@ -3,7 +3,7 @@ import bankAccountControls from '../configurations/bankAccountControls';
 import getBillingControls from '../configurations/billingControls';
 import docControlsForTp from '../configurations/docControls';
 import documentsControls from '../configurations/documentControls';
-import { orgControls, additionalOrgControls } from '../configurations/getOrgControls';
+import orgControls from '../configurations/getOrgControls';
 import { getPocControls, getPocFieldArray, getPocControlsFieldArray } from '../configurations/pocControls';
 
 import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
@@ -30,11 +30,6 @@ export const getOrgControls = ({ values = {} }) => orgControls.map((control) => 
 	}
 
 	return { ...control, value: values[name] || '' };
-});
-
-export const getAdditionalOrgControls = ({ values = {} }) => additionalOrgControls.map((control) => {
-	const value = values[control.name] || '';
-	return { ...control, value };
 });
 
 export const getBankAccountControls = ({ values = {} }) => bankAccountControls.map((control) => {

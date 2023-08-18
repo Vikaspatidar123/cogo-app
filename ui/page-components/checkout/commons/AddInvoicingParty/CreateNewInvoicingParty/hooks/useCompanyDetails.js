@@ -1,7 +1,7 @@
 import { Loader } from '@cogoport/components';
 
 import useGetBusiness from '../../hooks/useGetBusiness';
-import { getOrgControls, getAdditionalOrgControls } from '../../utils/controls';
+import { getOrgControls } from '../../utils/controls';
 
 import { useForm } from '@/packages/forms';
 import patterns from '@/ui/commons/configurations/patterns';
@@ -21,9 +21,7 @@ const useCompanyDetails = ({
 		values: company_details,
 	}) || [];
 
-	const additionalOrgControls = getAdditionalOrgControls({ values: company_details }) || [];
-
-	const companyDetailsControls = [...orgControls, ...additionalOrgControls];
+	const companyDetailsControls = [...orgControls];
 
 	const companyDetailsFormProps = useForm();
 
@@ -117,7 +115,6 @@ const useCompanyDetails = ({
 		errors                   : newErrors,
 		onSubmitOfCompanyDetails : onSubmit,
 		orgControls,
-		additionalOrgControls,
 		companyDetailsControls,
 		companyDetailsFormProps  : { ...companyDetailsFormProps, fields: newControlsField },
 		control,

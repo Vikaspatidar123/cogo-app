@@ -12,7 +12,7 @@ const useSendMessage = ({
 }) => {
 	const [{ loading }, trigger] = useRequest(
 		{ method: 'post', url: '/create_communication_platform_chat' },
-		{ autoCancel: false },
+		{ autoCancel: false, manual: true },
 	);
 
 	const sendMessage = async ({

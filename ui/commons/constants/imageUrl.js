@@ -115,6 +115,7 @@ const IMAGE_URLS = {
 		'https://cogoport-production.sgp1.digitaloceanspaces.com/98432eb67e0dd4c09fcaca028fda3658/letter-of-undertaking-lut-%20%281%29.jpeg',
 	membership_certificate:
 		'https://cogoport-production.sgp1.digitaloceanspaces.com/ca59d74941869eb1ebd5ee85fd8d445d/RCMC%20%281%29%20%281%29.pdf',
+	whatsapp_qr: 'https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/whatsapp-qr-1.png',
 };
 
 export default IMAGE_URLS;

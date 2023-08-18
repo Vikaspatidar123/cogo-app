@@ -13,6 +13,8 @@ import Header from './Header';
 import SectionList from './SectionList';
 import styles from './styles.module.css';
 
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
+
 function HsClassification() {
 	const { t } = useTranslation(['common', 'hsClassification']);
 
@@ -61,6 +63,7 @@ function HsClassification() {
 				</div>
 
 				<div className={styles.button_div}>
+					<CustomerSatisfaction serviceName="hscode_finder" />
 					<div
 						className={`${styles.styled_button} ${styles.secondary}`}
 						onClick={resetDrillDownHandler}

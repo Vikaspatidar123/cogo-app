@@ -1,12 +1,15 @@
+import { isEmpty } from '@cogoport/utils';
 import { useState } from 'react';
 
 import PromocodeDetails from './PromocodeDetails';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function PromoCode({ promotion = {} }) {
 	const [showDetails, setShowDetails] = useState(false);
 
-	if (promotion.promocodes === undefined) {
+	if (isEmpty(promotion.codes)) {
 		return null;
 	}
 
@@ -37,7 +40,7 @@ function PromoCode({ promotion = {} }) {
 				<div className={styles.text}>
 					Apply
 					{' '}
-					{promotion.promocodes[0]?.promocode}
+					{promotion.codes?.[GLOBAL_CONSTANTS.zeroth_index]?.promocode}
 					{' '}
 					to get
 					{' '}

@@ -33,7 +33,11 @@ function PromocodeDetails({
 	const { updateCheckoutPromotion } = useUpdateCheckoutPromotion();
 	const [promocode, setPromocode] = useState();
 	const { data, loading, searchPromocode } = useGetCheckoutPromocodes();
-	const { list = [] } = data || {};
+
+	const list = data?.list?.filter((promotion) => {
+		const { is_eligible, is_applicable } = promotion?.eligibility_checks || {};
+		return is_eligible && is_applicable;
+	}) || [];
 
 	const removeCoupon = async () => {
 		const applyRes = await updateCheckoutPromotion(

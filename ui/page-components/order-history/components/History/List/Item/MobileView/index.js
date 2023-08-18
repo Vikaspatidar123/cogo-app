@@ -2,11 +2,11 @@ import { Placeholder } from '@cogoport/components';
 
 import styles from './styles.module.css';
 
+import getValue from '@/ui/commons/utils/getValue';
+
 const LOADING_ARR = [...Array(4).keys()];
 
-function MobileView({
-	fields, infoData = () => {}, itm, loading = false,
-}) {
+function MobileView({ fields = [], itm = {}, loading = false, newFunctions = {} }) {
 	return (
 		<div className={styles.container}>
 			{loading ? (
@@ -21,10 +21,12 @@ function MobileView({
 					</div>
 				))
 			) : (
-				fields.map((config) => (
+				(fields || []).map((config) => (
 					<div className={styles.flex} key={config.key}>
 						<div className={styles.label}>{config?.label}</div>
-						<div className={styles.value}>{infoData(config, itm)}</div>
+						<div className={styles.value}>
+							{getValue(itm, config, newFunctions)}
+						</div>
 					</div>
 				)))}
 		</div>

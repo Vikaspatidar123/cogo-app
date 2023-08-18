@@ -3,6 +3,7 @@ const getConfig = ({ t }) => [
 		key   : 'orderNumber',
 		label : t('orderHistory:list_title_order_no'),
 		width : '20%',
+		func  : 'renderHyperLink',
 	},
 	{
 		key   : 'requestType',
@@ -29,9 +30,9 @@ const getConfig = ({ t }) => [
 		width : '15%',
 	},
 	{
-		key   : 'dot',
+		key   : 'csat',
 		label : '',
-		func  : 'renderDots',
+		func  : 'renderCsat',
 		width : '9%',
 	},
 ];

@@ -1,6 +1,8 @@
 import { Pagination } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
-import React from 'react';
+import React, { useState } from 'react';
+
+import DetailsModal from '../../../common/DetailsModal';
 
 import CardHeader from './CardHeader';
 import EmptyState from './EmptyState';
@@ -12,16 +14,17 @@ const LOADING_ARR = [...new Array(5).keys()];
 function List({
 	data = {},
 	config = [],
-	heading,
 	loading = false,
-	functions = {},
 	setGlobalFilters = () => {},
-	showPagination = true,
 	sort = '',
 	setSort = () => {},
 
 }) {
 	const { list = [], pageNo = 0, totalPages } = data || {};
+
+	const [detailsModal, setDetailsModal] = useState({
+		show: false,
+	});
 
 	const listNew = loading ? LOADING_ARR : list;
 
@@ -42,11 +45,11 @@ function List({
 					item={item}
 					fields={config}
 					loading={loading}
-					functions={functions}
+					setDetailsModal={setDetailsModal}
 				/>
 			))}
 
-			{showPagination && list?.length > 0 && (
+			{!isEmpty(list) && (
 				<div className={styles.pagination_div}>
 					<Pagination
 						type="number"
@@ -59,7 +62,8 @@ function List({
 					/>
 				</div>
 			)}
-			{!loading && !list?.length && <EmptyState heading={heading} />}
+			{(!loading && isEmpty(list)) ? <EmptyState /> : null}
+			{detailsModal.show ? <DetailsModal detailsModal={detailsModal} setDetailsModal={setDetailsModal} /> : null}
 		</div>
 	);
 }

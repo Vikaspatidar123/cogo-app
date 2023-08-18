@@ -1,12 +1,15 @@
 import { Placeholder, Pagination, Tabs, TabPanel } from '@cogoport/components';
 import { useState } from 'react';
 
+import CC from '../../constants/condition-constants';
 import useGetShipmentList from '../../hooks/useGetShipmentList';
 
 import EmptyState from './EmptyState';
 import Header from './Header';
 import Item from './Item';
 import styles from './styles.module.css';
+
+import useGetPermission from '@/packages/hooks/useGetPermission';
 
 function ShipmentList() {
 	const viewAs = 'importer_exporter';
@@ -22,6 +25,8 @@ function ShipmentList() {
 		config,
 		refetchListShipment,
 	} = useGetShipmentList(params);
+
+	const { isConditionMatches } = useGetPermission();
 
 	const handleTabChange = (val) => {
 		if (currentTab !== val) {
@@ -89,9 +94,11 @@ function ShipmentList() {
 						{renderTabPanel()}
 					</TabPanel>
 
-					<TabPanel name="shipper_consignee" title="SHIPPER/CONSIGNEE SHIPMENTS">
-						{renderTabPanel()}
-					</TabPanel>
+					{isConditionMatches(CC.SEE_SHIPPER_CONSIGNEE_TAB, 'or') && (
+						<TabPanel name="shipper_consignee" title="SHIPPER/CONSIGNEE SHIPMENTS">
+							{renderTabPanel()}
+						</TabPanel>
+					)}
 				</Tabs>
 			</div>
 		</div>

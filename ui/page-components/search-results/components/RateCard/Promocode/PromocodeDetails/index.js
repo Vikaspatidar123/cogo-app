@@ -3,6 +3,8 @@ import { Modal } from '@cogoport/components';
 import PromocodeThumbnail from './PromocodeThumbnail';
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function PromocodeDetails({ promotion = {}, setShowDetails = () => {} }) {
 	return (
 		<Modal onClose={() => setShowDetails(false)} show>
@@ -15,7 +17,10 @@ function PromocodeDetails({ promotion = {}, setShowDetails = () => {} }) {
 							promotion_discount={promotion_discount}
 						/>
 						<div className={styles.details}>
-							<div className={styles.details_title}>{promotion.promocodes[0]?.promocode}</div>
+							<div className={styles.details_title}>
+								{promotion.codes?.
+									[GLOBAL_CONSTANTS.zeroth_index]?.promocode}
+							</div>
 							<div className={styles.details_description}>{promotion?.description}</div>
 						</div>
 					</div>

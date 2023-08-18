@@ -1,12 +1,11 @@
 import styles from './styles.module.css';
 
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
 function PromocodeThumbnail({ promotion = {}, promotion_discount = [] }) {
 	return (
 		<div className={styles.container}>
 			<img className={styles.banner_image} src={promotion.thumbnail_image} alt="" />
-			<div>
-				<div className={styles.promo_code_name}>{promotion.promocodes[0]?.promocode}</div>
-			</div>
 
 			{promotion_discount.unit === 'percentage' ? (
 				<div className={styles.circle_icon}>
@@ -27,6 +26,9 @@ function PromocodeThumbnail({ promotion = {}, promotion_discount = [] }) {
 			<div className={styles.promo_code_description}>
 				{promotion.thumbnail_description}
 			</div>
+
+			<div className={styles.promo_code_name}>{promotion.codes?.[GLOBAL_CONSTANTS.zeroth_index]?.promocode}</div>
+
 		</div>
 	);
 }

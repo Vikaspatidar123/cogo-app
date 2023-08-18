@@ -6,7 +6,7 @@ import { request } from '@/packages/request/helpers/request';
 
 const logout = () => {
 	const token = getCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME);
-	request.delete('/delete_user_session', { params: { token } })
+	request.delete('auth/delete_user_session', { params: { token } })
 		.then((res) => {
 			if (!res.hasError) {
 				setCookie(process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME, 'expired', -1);

@@ -1,6 +1,7 @@
 import { Toast } from '@cogoport/components';
 import { isEmpty } from '@cogoport/utils';
 import { useTranslation } from 'next-i18next';
+import { useRef } from 'react';
 
 import { useRequestBf } from '@/packages/request';
 import { useSelector } from '@/packages/store';
@@ -8,7 +9,9 @@ import { useSelector } from '@/packages/store';
 const useTradeEngine = () => {
 	const { t } = useTranslation(['dutiesTaxesCalculator']);
 
-	const { profile = {} } = useSelector((s) => s);
+	const { profile = {} } = useSelector((state) => state);
+	const tradeEngineInputId = useRef('');
+
 	const { organization = {} } = profile || {};
 
 	const [{ loading: getTransactionLoading, data:tradeEngineResp }, triggerGetTransaction] = useRequestBf({
@@ -38,6 +41,7 @@ const useTradeEngine = () => {
 	};
 
 	const postTradeEngine = async (id, mode, saasBillId = '') => {
+		tradeEngineInputId.current = id;
 		try {
 			const resp = await triggerPostTransaction({
 				data: {
@@ -57,8 +61,8 @@ const useTradeEngine = () => {
 	};
 	return {
 		postTradeEngine,
-		tradeEngineResp,
-		tradeEngineLoading: postTransactionLoading || getTransactionLoading,
+		tradeEngineResp    : { ...tradeEngineResp, trade_engine_id: tradeEngineInputId.current },
+		tradeEngineLoading : postTransactionLoading || getTransactionLoading,
 		isTradeEngineRespEmpty,
 	};
 };

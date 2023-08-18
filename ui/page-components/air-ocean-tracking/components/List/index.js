@@ -12,6 +12,7 @@ import OceanCard from './OceanCard';
 import styles from './styles.module.css';
 
 import { Image } from '@/packages/next';
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const CARD_COMPONENT = {
@@ -82,6 +83,10 @@ function List() {
 					/>
 				</div>
 			)}
+
+			<div className={styles.csat}>
+				<CustomerSatisfaction serviceName="track_and_trace" position="center" />
+			</div>
 
 			<ModalList
 				modalInfo={modalInfo}

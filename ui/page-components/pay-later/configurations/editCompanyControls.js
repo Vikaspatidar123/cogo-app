@@ -1,8 +1,14 @@
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 export const getEditCompanyControls = () => {
 	const geo = getGeoConstants();
 	const REGISTRATION_LABEL = geo.others.registration_number.label;
+
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
 
 	return (
 		[
@@ -14,7 +20,7 @@ export const getEditCompanyControls = () => {
 			},
 			{
 				name     : 'pan',
-				label    : 'PAN',
+				label    : IDENTIFICAITON_LABEL,
 				type     : 'text',
 				disabled : true,
 			},

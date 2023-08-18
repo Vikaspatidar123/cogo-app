@@ -2,29 +2,32 @@ import { IcMAirport, IcMPort } from '@cogoport/icons-react';
 
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
-const FILTER_MAPPING = {
-	AIR: {
-		paramsKey         : 'airport',
-		prefixIcon        : <IcMAirport />,
-		originPlaceholder : 'Select Origin',
-		destPlaceholder   : 'Select Destination',
-	},
-	OCEAN: {
-		paramsKey         : 'seaport',
-		prefixIcon        : <IcMPort />,
-		originPlaceholder : 'Select Origin Port',
-		destPlaceholder   : 'Select Destination Port',
-	},
+const getFilterMapping = ({ t, transportMode }) => {
+	const FILTER_MAPPING = {
+		AIR: {
+			paramsKey         : 'airport',
+			prefixIcon        : <IcMAirport />,
+			originPlaceholder : t('dutiesTaxesCalculator:form_transport_origin_air_placeholder'),
+			destPlaceholder   : t('dutiesTaxesCalculator:form_transport_destination_air_placeholder'),
+		},
+		OCEAN: {
+			paramsKey         : 'seaport',
+			prefixIcon        : <IcMPort />,
+			originPlaceholder : t('dutiesTaxesCalculator:form_transport_origin_ocean_placeholder'),
+			destPlaceholder   : t('dutiesTaxesCalculator:form_transport_destination_ocean_placeholder'),
+		},
+	};
+	return FILTER_MAPPING[transportMode];
 };
 
-export const transportationControls = ({ transportMode }) => {
-	const { paramsKey, prefixIcon, originPlaceholder, destPlaceholder } = FILTER_MAPPING[transportMode];
+export const transportationControls = ({ transportMode, t }) => {
+	const { paramsKey, prefixIcon, originPlaceholder, destPlaceholder } = getFilterMapping({ transportMode, t });
 	return (
 		[
 			{
 				name        : 'originPort',
 				keyName     : 'origin',
-				label       : 'Origin Country',
+				label       : t('dutiesTaxesCalculator:form_transport_origin_label'),
 				placeholder : originPlaceholder,
 				params      : { filters: { type: paramsKey } },
 				type        : 'async_select',
@@ -37,7 +40,7 @@ export const transportationControls = ({ transportMode }) => {
 			{
 				name        : 'destinationPort',
 				keyName     : 'destination',
-				label       : 'Destination Country',
+				label       : t('dutiesTaxesCalculator:form_transport_destination_label'),
 				placeholder : destPlaceholder,
 				params      : { filters: { type: paramsKey } },
 				type        : 'async_select',
@@ -51,7 +54,7 @@ export const transportationControls = ({ transportMode }) => {
 	);
 };
 
-export const productControls = [
+export const productControls = ({ t }) => [
 	{
 		name : 'productName',
 		type : 'hidden',
@@ -59,30 +62,30 @@ export const productControls = [
 	{
 		name        : 'hsCode',
 		type        : 'number',
-		label       : 'HS Code',
-		placeholder : 'Search via Keywords',
+		label       : t('dutiesTaxesCalculator:form_product_controls_hscode_label'),
+		placeholder : t('dutiesTaxesCalculator:form_product_controls_hscode_placeholder'),
 		rules       : {
-			required  : 'Required',
+			required  : t('dutiesTaxesCalculator:form_product_controls_hscode_error'),
 			minLength : {
 				value   : 6,
-				message : 'minimum 6 digit is required',
+				message : t('dutiesTaxesCalculator:form_product_controls_hscode_error_minlength'),
 			},
 		},
 	},
 	{
 		name        : 'consignmentValue',
 		type        : 'number',
-		placeholder : '0.00',
-		label       : 'Consignment Value',
+		placeholder : t('dutiesTaxesCalculator:form_product_controls_value_placeholder'),
+		label       : t('dutiesTaxesCalculator:form_product_controls_value_label'),
 		rules       : {
 			required : true,
 			min      : {
 				value   : 0.001,
-				message : 'Should be greater than 0',
+				message : t('dutiesTaxesCalculator:form_product_controls_error_min'),
 			},
 			maxLength: {
 				value   : 10,
-				message : 'maximum 10 digits are allowed',
+				message : t('dutiesTaxesCalculator:form_product_controls_error_maxlength'),
 			},
 		},
 	},
@@ -90,27 +93,31 @@ export const productControls = [
 		name        : 'quantity',
 		type        : 'number',
 		placeholder : '0',
-		label       : 'Quantity (in Kgs)',
+		label       : t('dutiesTaxesCalculator:form_product_controls_quantity_label'),
 		rules       : {
 			required : true,
 			min      : {
 				value   : 0.1,
-				message : 'Should be greater than 0',
+				message : t('dutiesTaxesCalculator:form_product_controls_error_min'),
 			},
 			maxLength: {
 				value   : 10,
-				message : 'maximum 10 digits are allowed',
+				message : t('dutiesTaxesCalculator:form_product_controls_error_maxlength'),
 			},
 		},
 	},
 	{
 		name    : 'currency',
 		type    : 'select',
-		label   : 'Currency',
+		label   : t('dutiesTaxesCalculator:form_product_controls_currency_label'),
 		options : [
 			GLOBAL_CONSTANTS.currency_code.INR,
 			GLOBAL_CONSTANTS.currency_code.USD,
 			GLOBAL_CONSTANTS.currency_code.VND,
+			GLOBAL_CONSTANTS.currency_code.SGD,
+			GLOBAL_CONSTANTS.currency_code.THB,
+			GLOBAL_CONSTANTS.currency_code.IDR,
+			GLOBAL_CONSTANTS.currency_code.CNY,
 		].map((currencyCode) => ({
 			label : currencyCode,
 			value : currencyCode,
@@ -119,25 +126,25 @@ export const productControls = [
 	},
 ];
 
-export const chargeControls = [
+export const chargeControls = ({ t }) => [
 	{
 		name        : 'freightCharge',
 		type        : 'number',
-		label       : 'Freight Charge',
-		placeholder : 'Freight Charge',
+		label       : t('dutiesTaxesCalculator:form_charge_controls_freight_field'),
+		placeholder : t('dutiesTaxesCalculator:form_charge_controls_freight_field'),
 		rules       : {
 			required : true,
 			min      : {
 				value   : 0.001,
-				message : 'Should be greater than 0',
+				message : t('dutiesTaxesCalculator:form_charge_controls_err_msg'),
 			},
 		},
 	},
 	{
 		name        : 'incoterm',
 		type        : 'select',
-		label       : 'Incoterm',
-		placeholder : 'Select Placeholder',
+		label       : t('dutiesTaxesCalculator:form_charge_controls_incoterm_label'),
+		placeholder : t('dutiesTaxesCalculator:form_charge_controls_incoterm_placeholder'),
 		rules       : { required: true },
 		value       : 'CIF',
 		options     : [
@@ -160,19 +167,19 @@ export const chargeControls = [
 		controls : [
 			{
 				name        : 'name',
-				placeholder : 'Charges',
+				placeholder : t('dutiesTaxesCalculator:form_charge_controls_incoterm_array_placeholder_1'),
 				type        : 'text',
 				rules       : { required: true },
 			},
 			{
 				name        : 'value',
-				placeholder : 'value',
+				placeholder : t('dutiesTaxesCalculator:form_charge_controls_incoterm_array_placeholder_2'),
 				type        : 'number',
 				rules       : {
 					required : true,
 					min      : {
 						value   : 0.001,
-						message : 'Should be greater than 0',
+						message : t('dutiesTaxesCalculator:form_charge_controls_err_msg'),
 					},
 				},
 			},

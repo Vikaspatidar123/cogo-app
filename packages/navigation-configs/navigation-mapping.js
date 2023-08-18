@@ -9,7 +9,6 @@
 // isSubNavs is used to show sub navigations
 import {
 	IcMContractRates,
-	IcMFfreferigeratedCargoType,
 	IcADutiesTaxes,
 	IcAFormsAndCertificates,
 	IcAFinancial,
@@ -32,6 +31,10 @@ import {
 	IcATradePartner,
 	IcAPlanningTools,
 	IcARfq,
+	IcMAppPayment,
+	IcATransactionHistory,
+	IcMUsersManageAccounts,
+	IcATradeFinance,
 } from '@cogoport/icons-react';
 
 // eslint-disable-next-line import/no-unresolved, import/extensions
@@ -195,13 +198,22 @@ const navigationMappings = ({ t = () => { } }) => {
 						description : t(`${translationKey}_premium_services_options_importExportControls_description`),
 					},
 					{
+						key              : 'saas_premium_services-export-factoring',
+						title            : t(`${translationKey}_premium_services_options_exportFactoring_label`),
+						href             : '/export-factoring',
+						as               : '/export-factoring',
+						icon             : <IcATradeFinance width={55} height={55} fill="#fbd221" />,
+						description      : t(`${translationKey}_premium_services_options_exportFactoring_description`),
+						supportedCountry : GLOBAL_CONSTANTS.feature_supported_service
+							.export_factoring.supported_countries,
+					},
+					{
 						key         : 'saas_premium_services-order_history',
 						title       : t(`${translationKey}_premium_services_options_orderHistory_label`),
 						href        : '/saas/order-history',
 						as          : '/saas/order-history',
 						icon        : <IcABookYourShipment width={55} height={55} />,
 						description : t(`${translationKey}_premium_services_options_orderHistory_description`),
-
 					},
 				],
 			},
@@ -283,16 +295,16 @@ const navigationMappings = ({ t = () => { } }) => {
 					{
 						key   : 'saas_finance-transaction_history',
 						title : t(`${translationKey}_finance_options_transactionHistory_label`),
-						icon  : <IcMFfreferigeratedCargoType width={40} height={40} />,
 						href  : '/saas/transaction-history',
 						as    : '/saas/transaction-history',
+						icon  : <IcATransactionHistory width={20} height={20} />,
 					},
 					{
 						key   : 'saas_finance-payment_dashboard',
 						title : t(`${translationKey}_finance_options_paymentDashboard_label`),
-						icon  : <IcMFfreferigeratedCargoType width={40} height={40} />,
 						href  : '/payment-dashboard',
 						as    : '/payment-dashboard',
+						icon  : <IcMAppPayment width={20} height={20} />,
 					},
 				],
 			},
@@ -331,17 +343,17 @@ const navigationMappings = ({ t = () => { } }) => {
 					{
 						key   : 'saas_cogo_subscription-manage',
 						title : t(`${translationKey}_subscriptions_options_manageSubscription_label`),
-						icon  : 'nav-documents',
 						href  : '/saas/cogo-subscriptions/manage-subscription',
 						as    : '/saas/cogo-subscriptions/manage-subscription',
+						icon  : <IcMUsersManageAccounts width={20} height={20} />,
 					},
 					{
 						key   : 'saas_cogo_subscription-balance_history',
 						title : t(`${translationKey}_subscriptions_options_balanceAndHistory_label`),
 						type  : 'link',
-						icon  : 'nav-payments',
 						href  : '/saas/cogo-subscriptions/balance-history',
 						as    : '/saas/cogo-subscriptions/balance-history',
+						icon  : <IcATransactionHistory width={20} height={20} />,
 					},
 				],
 			},

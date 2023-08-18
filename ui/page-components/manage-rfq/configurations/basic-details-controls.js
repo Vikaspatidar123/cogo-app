@@ -3,6 +3,7 @@ import {
 	IcMBreakBulkCargoType,
 	IcMContractRates,
 	IcMTracking,
+	IcMCreditRequest,
 } from '@cogoport/icons-react';
 
 import CustomLabel from '../common/CustomLabel';
@@ -61,6 +62,16 @@ export const fields = [
 				),
 				value: 'multi_modal',
 			},
+			{
+				label: (
+					<CustomLabel
+						icon={IcMCreditRequest}
+						title="Bidding"
+						subTitle="Better Rates for Larger Volumes"
+					/>
+				),
+				value: 'bidding',
+			},
 		],
 		rules: { required: 'This field is Required' },
 	},
@@ -75,5 +86,17 @@ export const fields = [
 			{ label: 'Upload Request in any format', value: 'unstructured' },
 		],
 		rules: { required: 'This field is Required' },
+	},
+	{
+		label   : 'Bidding Date',
+		name    : 'bidding_date',
+		type    : 'datepicker',
+		minDate : new Date(),
+		rules   : {
+			required: {
+				value   : true,
+				message : 'Bidding Date is Required',
+			},
+		},
 	},
 ];

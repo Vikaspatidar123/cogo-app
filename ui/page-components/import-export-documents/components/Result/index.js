@@ -11,6 +11,7 @@ import useTradeEngine from '../../hooks/useTradeEngine';
 import styles from './styles.module.css';
 
 import { Image, useRouter } from '@/packages/next';
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
 import DocumentResult from '@/ui/commons/components/ImportExportDoc';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
@@ -130,6 +131,11 @@ function Result() {
 					<EmptyState />
 				)
 			}
+			<CustomerSatisfaction
+				serviceName="import_export_document"
+				position="center"
+				details={{ id: trade_engine_id }}
+			/>
 		</div>
 	);
 }

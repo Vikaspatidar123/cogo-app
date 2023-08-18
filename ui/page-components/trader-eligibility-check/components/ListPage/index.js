@@ -12,6 +12,7 @@ import Results from './Results';
 import styles from './styles.module.css';
 
 import { useRouter, dynamic, Image } from '@/packages/next';
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 
 const Map = dynamic(() => import('../Map'), { ssr: false });
@@ -25,7 +26,11 @@ function ListPage() {
 	const [paymentStatusModal, setPaymentStatusModal] = useState(false);
 	const [selected, setSelected] = useState({});
 
-	const { createTradeEngine, tradeEngineResponse, getTradeEngineListLoading } = usePostTradeEngine();
+	const {
+		createTradeEngine = () => {},
+		tradeEngineResponse = {}, getTradeEngineListLoading = false, tradeEngineInputId = '',
+	} = usePostTradeEngine();
+
 	const { checkPaymentStatus, checkLoading, stop, paymentStatus } = useCheckStatus({
 		query,
 		setPaymentStatusModal,
@@ -83,12 +88,22 @@ function ListPage() {
 			</div>
 			<div className={style2.content_wrapper}>
 				<div className={style1.wrapper}>
-					<div className={`${style1.list_column_mobile} ${style1.list_column}`}>
-						<Results
-							loading={getTradeEngineListLoading}
-							screeningRequestResponse={screeningRequestResponse}
-							screeningPartyName={screeningPartyName}
-						/>
+					<div style={{ width: '32%' }}>
+						<div className={`${style1.list_column_mobile} ${style1.list_column}`}>
+							<Results
+								loading={getTradeEngineListLoading}
+								screeningRequestResponse={screeningRequestResponse}
+								screeningPartyName={screeningPartyName}
+							/>
+						</div>
+
+						<div className={styles.csat}>
+							<CustomerSatisfaction
+								serviceName="trader_eligibility_check"
+								position="center"
+								details={{ id: tradeEngineInputId.current }}
+							/>
+						</div>
 					</div>
 
 					<div className={style1.map_column}>

@@ -1,6 +1,5 @@
-import { Modal, Popover, Button } from '@cogoport/components';
-import { IcMInfo } from '@cogoport/icons-react';
-import { format } from '@cogoport/utils';
+import { Modal, Button, cl, ButtonIcon } from '@cogoport/components';
+import { IcMCross } from '@cogoport/icons-react';
 import { useEffect, useState } from 'react';
 
 import airControls from '../../configurations/air-booking-controls';
@@ -9,7 +8,7 @@ import lclControls from '../../configurations/lcl-booking-controls';
 import { SERVICE_ICON_MAPPING } from '../../configurations/service-icon-mapping';
 import useCreateContractBooking from '../../hooks/useCreateContractBooking';
 import { formattedBookingPayload } from '../../utils/getFormattedBookingPayload';
-import { getUnit } from '../../utils/getUnit';
+import { getSubUnit } from '../../utils/getUnit';
 
 import styles from './styles.module.css';
 
@@ -19,35 +18,37 @@ import FormElement from '@/ui/page-components/discover_rates/common/FormElement'
 function InitiateBooking({
 	data = {},
 	showBookingModal,
-	setShowBookingModal = () => { },
-	readyForBooking,
+	setShowBookingModal = () => {},
+	primaryServicesDetails: primaryServicesDetailsArray = [],
+	contractId = '',
+	added_additional_services: additionalServices = [],
 }) {
 	const [departureDate, setDepartureDate] = useState('');
+	const [intialFormData, setIntialFormData] = useState({});
+
 	const {
 		service_type = 'fcl_freight',
 		upcoming_shipment_data: upcomingShipmentData = {},
-		additional_services: additionalServices = [],
 		contractStartDate,
 		contractEndDate,
 		source,
 		contract_type,
-		service_details,
 	} = data || {};
+
+	const { quantity = '1', start_date = '', end_date = '' } = upcomingShipmentData || {};
 
 	const contractValidity = {
 		contractStartDate,
 		contractEndDate,
 	};
-	const { createBooking, loading } = useCreateContractBooking();
 
-	const isFtlPresentInFcl = additionalServices.includes('ftl_freight')
-		&& service_type === 'fcl_freight';
+	const isFtlPresentInFcl = additionalServices.includes('ftl_freight') && service_type === 'fcl_freight';
 
-	const truckingServices = ['ftl_freight', 'ltl_freight'];
-	const isTruckingPresentInLcl = additionalServices.every((i) => truckingServices.includes(i))
-		&& service_type === 'lcl_freight';
+	const isTruckingPresentInLcl = additionalServices.includes('ftl_freight') && service_type === 'lcl_freight';
 
 	const contractWithCogoport = source === 'manual' && contract_type === 'with_cogoport';
+
+	const { createBooking, loading } = useCreateContractBooking();
 
 	const showElementsFunc = (controlItems, values) => {
 		const showElements = {};
@@ -73,27 +74,26 @@ function InitiateBooking({
 		});
 		return showElements;
 	};
-	const fclArray = service_details?.filter(
-		(item) => item.service_type === 'fcl_freight',
-	);
-	const attributes = (fclArray || []).map((item) => ({
-		container_size           : item.container_size,
-		commodity                : item.commodity,
-		container_type_commodity : {
-			container_type : item.container_type,
-			commodity      : item.commodity,
-		},
-		container_type             : item.container_type,
-		containers_count           : item.containers_count,
-		cargo_weight_per_container : item.cargo_weight_per_container,
-	}));
+
 	const SERVICE_CONTROLS_MAPPING = {
-		fcl_freight : fclControls({ contractValidity, departureDate, fclArray, attributes }),
-		lcl_freight : lclControls(contractValidity, departureDate),
-		air_freight : airControls(contractValidity, departureDate),
+		fcl_freight: fclControls({
+			contractValidity,
+			departureDate,
+			primaryServicesDetailsArray,
+		}),
+		lcl_freight: lclControls({
+			contractValidity,
+			departureDate,
+			primaryServicesDetailsArray,
+		}),
+		air_freight: airControls({
+			contractValidity,
+			departureDate,
+			primaryServicesDetailsArray,
+		}),
 	};
 
-	const controls = SERVICE_CONTROLS_MAPPING[service_type] || [];
+	const { defaultValues, fields } = SERVICE_CONTROLS_MAPPING[service_type] || [];
 
 	const {
 		handleSubmit,
@@ -101,30 +101,27 @@ function InitiateBooking({
 		setValue,
 		watch,
 		control,
-	} = useForm({
-		defaultValues: {
-			attributes,
-		},
-	});
+	} = useForm({ defaultValues });
 
 	const formValues = watch();
-	const showElements = showElementsFunc(controls, formValues);
+	const showElements = showElementsFunc(fields, formValues);
 	const shipmentStartDate = watch('departure');
+
+	const handleFormSubmit = (item) => {
+		const formattedData = formattedBookingPayload({ item, data, contractId });
+		createBooking(formattedData);
+	};
 
 	useEffect(() => {
 		setDepartureDate(shipmentStartDate);
 	}, [shipmentStartDate]);
 
-	const handleFormSubmit = async (item) => {
-		const formattedData = formattedBookingPayload({ item, data });
-		await createBooking(formattedData);
-	};
-
-	const {
-		quantity = '1',
-		start_date = '',
-		end_date = '',
-	} = upcomingShipmentData || {};
+	useEffect(() => {
+		if (service_type === 'fcl_freight') {
+			setIntialFormData(defaultValues?.attributes);
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	useEffect(() => {
 		setValue('containers_count', quantity);
@@ -136,68 +133,58 @@ function InitiateBooking({
 
 	return (
 		<Modal
+			size="xl"
 			show={showBookingModal}
-			className="primary md"
 			onClose={() => setShowBookingModal(false)}
 			onOuterClick={() => setShowBookingModal(false)}
 		>
 			<div>
-				<div>
-					<Modal.Header title={(
-						<div style={{ display: 'flex' }}>
+
+				<div className={cl`${styles.header} ${styles.modal_header}`}>
+					<div className={styles.header}>
+						{SERVICE_ICON_MAPPING[service_type]}
+						<h3 className={styles.title}>
+							{getSubUnit(service_type)}
 							{' '}
-							{SERVICE_ICON_MAPPING[service_type]}
-							<div className={styles.text}>
-								{getUnit(service_type)}
-								Details
-							</div>
-						</div>
-
-					)}
-					/>
-
-					{!readyForBooking && (
-						<Popover
-							placement="bottom"
-							content={(
-								<div className={styles.Content}>
-									You can initiate booking once contract validity begin which is
-									on
-									<span>
-										{format(contractStartDate, 'dd MMM yyyy')}
-									</span>
-								</div>
-							)}
-							interactive
-							theme="light-border"
-						>
-							<div>
-								<IcMInfo />
-							</div>
-						</Popover>
-					)}
+							Details
+						</h3>
+					</div>
+					<div className={styles.header}>
+						{service_type === 'fcl_freight' ? (
+							<Button
+								themeType="secondary"
+								type="button"
+								onClick={() => {
+									setValue('attributes', intialFormData);
+								}}
+							>
+								Get Contract Services
+							</Button>
+						) : null}
+						<ButtonIcon icon={<IcMCross />} onClick={() => setShowBookingModal(false)} />
+					</div>
 				</div>
 
 				<form>
 					<div className={styles.row}>
 						<FormElement
-							controls={controls}
+							controls={fields}
 							control={control}
 							showElements={showElements}
 							errors={errors}
 							noScroll
 						/>
 					</div>
-					<Modal.Footer>
-						<Button
-							disabled={loading || !readyForBooking}
-							onClick={handleSubmit(handleFormSubmit)}
-							style={{ float: 'right', margin: '10px' }}
-						>
-							create booking
-						</Button>
-					</Modal.Footer>
 				</form>
+				<Modal.Footer>
+					<Button
+						type="button"
+						disabled={loading}
+						onClick={handleSubmit(handleFormSubmit)}
+					>
+						Create booking
+					</Button>
+				</Modal.Footer>
 			</div>
 		</Modal>
 	);

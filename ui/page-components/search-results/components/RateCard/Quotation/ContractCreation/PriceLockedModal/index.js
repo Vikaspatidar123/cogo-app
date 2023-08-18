@@ -13,7 +13,7 @@ import formatDate from '@/ui/commons/utils/formatDate';
 
 function PriceLockedModal({
 	priceLocked,
-	// setPriceLocked,
+	setPriceLocked,
 	contractData,
 	details,
 }) {
@@ -46,7 +46,11 @@ function PriceLockedModal({
 		push('/contract-management?activetab=pending_approval');
 	};
 	return (
-		<Modal show={priceLocked}>
+		<Modal
+			show={priceLocked}
+			onClose={() => setPriceLocked(false)}
+			onOuterClick={() => setPriceLocked(false)}
+		>
 			<Modal.Header title="Price locked requested" />
 			<Modal.Body>
 				<div className={styles.port_pair}>

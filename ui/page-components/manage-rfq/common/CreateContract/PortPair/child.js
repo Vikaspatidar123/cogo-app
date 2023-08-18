@@ -9,47 +9,52 @@ import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
 
-const PER_PRICE_MAPPING = {
-	fcl_freight : '/Ctr',
-	lcl_freight : '/Wm',
-	air_freight : '/Kg',
-};
+const LAST_ELEMENT = -1;
 
-const portDetails = ({ item, locationType, portType }) => {
-	function PortContent({ classType }) {
-		return (
-			<>
-				<div className={cl`${styles.port_header} ${styles?.[classType]}`}>
-					<div className={styles.port_name}>
-						{item?.[`${locationType}_${portType}`]?.name}
-					</div>
-					<div className={styles.portcode}>
-						(
-						{item?.[`${locationType}_${portType}`]?.port_code}
-						)
-					</div>
+function PortContent({ classType, item, locationType, portType }) {
+	const {
+		name = '',
+		port_code = '',
+		display_name = '',
+	} = item[`${locationType}_${portType}`] || {};
+	return (
+		<>
+			<div className={cl`${styles.port_header} ${styles?.[classType]}`}>
+				<div className={styles.port_name}>{name}</div>
+				<div className={styles.portcode}>
+					(
+					{port_code}
+					)
 				</div>
-				<div className={styles.port_header}>
-					{(item?.[`${locationType}_${portType}`]?.display_name || '')
-						.split(',')
-						.at(-1)
-						.trim()}
-				</div>
-			</>
-		);
-	}
+			</div>
+			<div className={styles.port_header}>{display_name.split(',').at(LAST_ELEMENT).trim()}</div>
+		</>
+	);
+}
+function PortDetails({ item = {}, locationType = '', portType = '' }) {
 	return (
 		<Tooltip
-			content={<PortContent classType="tooltip" />}
-			maxWidth={300}
+			content={(
+				<PortContent
+					classType="tooltip"
+					item={item}
+					locationType={locationType}
+					portType={portType}
+				/>
+			)}
 			interactive
 		>
 			<div>
-				<PortContent classType="content" />
+				<PortContent
+					classType="content"
+					item={item}
+					locationType={locationType}
+					portType={portType}
+				/>
 			</div>
 		</Tooltip>
 	);
-};
+}
 
 function PortPairChild({
 	portType,
@@ -87,7 +92,7 @@ function PortPairChild({
 					className={cl` ${styles.port_col} ${styles.padding_req}`}
 					style={{ width: getwidth(2.1) }}
 				>
-					{portDetails({ item, locationType: 'origin', portType })}
+					<PortDetails item={item} locationType="origin" portType={portType} />
 				</div>
 
 				<div className={styles.port_col} style={{ width: getwidth(0.3) }}>
@@ -98,7 +103,7 @@ function PortPairChild({
 					className={cl`${styles.col} ${styles.port_col} ${styles.padding_req}`}
 					style={{ width: getwidth(2.1) }}
 				>
-					{portDetails({ item, locationType: 'destination', portType })}
+					<PortDetails item={item} locationType="destination" portType={portType} />
 				</div>
 
 				<div className={styles.port_col} style={{ width: getwidth(2.3) }}>
@@ -133,9 +138,6 @@ function PortPairChild({
 										maximumFractionDigits : 0,
 									},
 								})}
-								<span className={styles.per_price_mapping}>
-									{PER_PRICE_MAPPING[serviceType]}
-								</span>
 							</div>
 						</div>
 
@@ -151,9 +153,6 @@ function PortPairChild({
 										maximumFractionDigits : 0,
 									},
 								})}
-								<span className={styles.per_price_mapping}>
-									{PER_PRICE_MAPPING[serviceType]}
-								</span>
 							</div>
 						</div>
 					</div>

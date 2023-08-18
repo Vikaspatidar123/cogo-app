@@ -3,7 +3,7 @@ import { cl } from '@cogoport/components';
 import Card from './Card';
 import styles from './styles.module.css';
 
-import { isFutureDate } from '@/ui/page-components/air-ocean-tracking/utils/mergeMilestone';
+const isFutureDate = (inputDate) => new Date() < new Date(inputDate);
 
 function MilestoneStepper({ combineMileStoneList = [], trackingType = 'ocean' }) {
 	const combineMileStoneListLength = combineMileStoneList.length;

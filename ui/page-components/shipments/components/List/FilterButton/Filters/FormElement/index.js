@@ -10,7 +10,7 @@ function Options({ fields, controls }) {
 						key={item.name}
 						name={item.name}
 						fields={fields}
-						id={`${item.name}`}
+						id={item.name}
 					/>
 				))}
 			</div>

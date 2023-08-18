@@ -10,16 +10,18 @@ const useGetCheckoutPromocodes = () => {
 	} = useSelector(({ general }) => general);
 
 	const [{ loading, data }, trigger] = useRequest({
-		url    : '/list_checkout_applicable_promocodes',
+		url    : '/get_checkout_applicable_promocodes',
 		method : 'get',
 	}, { manual: true });
 
 	const getCheckoutPromocodes = useCallback(() => {
-		trigger({ params: { checkout_id, filters } });
+		trigger({
+			params: filters.q ? { checkout_id, filters } : { checkout_id },
+		});
 	}, [checkout_id, filters, trigger]);
 
 	useEffect(() => {
-		getCheckoutPromocodes({ params: { filters } });
+		getCheckoutPromocodes();
 	}, [filters, getCheckoutPromocodes]);
 
 	const searchPromocode = (v) => {

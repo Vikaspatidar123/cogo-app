@@ -36,7 +36,7 @@ function TableHeader({ setOrderBy }) {
 				{t('subscriptions:date_text')}
 				<div
 					role="presentation"
-					className={`${sortDate === 'asc' ? styles.asc : styles.desc}`}
+					className={sortDate === 'asc' ? styles.asc : styles.desc}
 					onClick={() => sortFn('date')}
 				>
 					<div className={styles.icon}>
@@ -48,7 +48,7 @@ function TableHeader({ setOrderBy }) {
 				{t('subscriptions:usage_text')}
 				<div
 					role="presentation"
-					className={`${sortUsage === 'asc' ? styles.asc : styles.desc}`}
+					className={sortUsage === 'asc' ? styles.asc : styles.desc}
 					onClick={() => sortFn('usage')}
 				>
 					<div className={styles.icon}>

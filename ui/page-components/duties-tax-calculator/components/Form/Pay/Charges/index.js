@@ -1,8 +1,11 @@
 import { cl } from '@cogoport/components';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
 import formatAmount from '@/ui/commons/utils/formatAmount';
+
+const QUOTA_DEDUCTED_VALUE = 1;
 
 function Charges({
 	formData = {},
@@ -14,15 +17,16 @@ function Charges({
 	totalAmount = 0,
 }) {
 	const { freightCharge = '', incotermCharges = [], currency = '' } = formData || {};
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
 
 	return (
 		<div className={styles.scroll_content}>
 			<div className={styles.container}>
 				<div>
-					<div className={styles.heading}>Charges</div>
+					<div className={styles.heading}>{t('dutiesTaxesCalculator:form_pay_charge_title')}</div>
 					{freightCharge > 0 && (
 						<div className={styles.service}>
-							<div className={styles.text}>Freight Charge</div>
+							<div className={styles.text}>{t('dutiesTaxesCalculator:form_pay_charge_freight')}</div>
 							<div className={styles.price}>
 								{formatAmount({
 									amount  : freightCharge,
@@ -57,11 +61,11 @@ function Charges({
 			</div>
 			<div className={styles.container}>
 				<div>
-					<div className={styles.heading}>Summary</div>
+					<div className={styles.heading}>{t('dutiesTaxesCalculator:form_pay_charge_summary')}</div>
 					{!isQuotaLeft && (
 						<>
 							<div className={styles.service}>
-								<div className={styles.text}>Services</div>
+								<div className={styles.text}>{t('dutiesTaxesCalculator:form_pay_charge_service')}</div>
 								<div className={styles.price}>
 									{formatAmount({
 										amount,
@@ -75,7 +79,7 @@ function Charges({
 								</div>
 							</div>
 							<div className={styles.service}>
-								<div className={styles.text}>Conviences Fee</div>
+								<div className={styles.text}>{t('dutiesTaxesCalculator:form_pay_charge_fee')}</div>
 								<div className={styles.price}>
 									{formatAmount({
 										amount   : gstAmount,
@@ -88,7 +92,7 @@ function Charges({
 								</div>
 							</div>
 							<div className={cl`${styles.service} ${styles.total}`}>
-								<div className={styles.text}>Total Amount</div>
+								<div className={styles.text}>{t('dutiesTaxesCalculator:form_pay_charge_amount')}</div>
 								<div className={styles.price}>
 									{formatAmount({
 										amount   : totalAmount,
@@ -105,19 +109,29 @@ function Charges({
 					{isQuotaLeft && (
 						<>
 							<div className={styles.service}>
-								<div className={styles.text}>Available Premium Services Quota</div>
+								<div className={styles.text}>
+									{t('dutiesTaxesCalculator:form_pay_charge_available_quota')}
+								</div>
 								<div className={styles.price}>{quotaValue}</div>
 							</div>
 							<div className={styles.border} />
 							<div className={styles.service}>
-								<div className={styles.text}>Quota deducted</div>
-								<div className={styles.price}>- 1</div>
+								<div className={styles.text}>
+									{t('dutiesTaxesCalculator:form_pay_charge_deduct_quota')}
+								</div>
+								<div className={styles.price}>
+									-
+									{' '}
+									{QUOTA_DEDUCTED_VALUE}
+								</div>
 							</div>
 							<div className={styles.border} />
 
 							<div className={styles.service}>
-								<div className={styles.total}>Remaining Quota</div>
-								<div className={styles.price}>{quotaValue - 1}</div>
+								<div className={styles.total}>
+									{t('dutiesTaxesCalculator:form_pay_charge_remain_quota')}
+								</div>
+								<div className={styles.price}>{quotaValue - QUOTA_DEDUCTED_VALUE}</div>
 							</div>
 						</>
 					)}

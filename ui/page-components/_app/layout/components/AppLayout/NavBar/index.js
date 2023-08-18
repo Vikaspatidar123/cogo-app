@@ -58,7 +58,7 @@ function NavBar() {
 								onClickOutside={() => setShowPopover(null)}
 							>
 								<div
-									className={`${isActive ? styles.active : styles.text}`}
+									className={isActive ? styles.active : styles.text}
 									onClick={() => setShowPopover(item.title)}
 									role="presentation"
 								>

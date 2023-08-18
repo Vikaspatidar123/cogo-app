@@ -9,6 +9,8 @@ import Duties from './Duties';
 import styles from './styles.module.css';
 import TraderCheck from './TraderCheck';
 
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
+
 function TransactionModal({
 	transactionModal, setTransactionModal, setValue,
 	transactionData = {}, tradeEngineLoading, setShowSuccessModal,
@@ -121,6 +123,7 @@ function TransactionModal({
 							</Tabs>
 						</div>
 					)}
+					<CustomerSatisfaction serviceName="quotations" position="center" />
 				</div>
 			)}
 

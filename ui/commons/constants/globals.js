@@ -6,6 +6,9 @@ const GLOBAL_CONSTANTS = {
 		IN : '6fd98605-9d5d-479d-9fac-cf905d292b88',
 		VN : 'b67d40b1-616c-4471-b77b-de52b4c9f2ff',
 		SG : '04bd1037-c110-4aad-8ecc-fc43e9d4069d',
+		TH : '6d92cf58-3392-44c3-8e1b-09192f98f8be',
+		ID : 'ef9a7145-b1b6-46ff-8de7-a348de635574',
+		CN : 'd39c9a59-93e3-4823-b85f-c72139cf138f',
 	},
 
 	hs_code_country_ids: {
@@ -18,12 +21,20 @@ const GLOBAL_CONSTANTS = {
 		EUR : 'EUR',
 		GBP : 'GBP',
 		AED : 'AED',
+		SGD : 'SGD',
+		THB : 'THB',
+		IDR : 'IDR',
+		CNY : 'CNY',
 		VND : 'VND',
 	},
 	currency_locale: {
 		INR : 'en-IN',
 		USD : 'en-US',
 		VND : 'vi-VN',
+		SGD : 'en-SG',
+		THB : 'th-TH',
+		IDR : 'id-ID',
+		CNY : 'zh-CN',
 	},
 
 	cargo_insurance: {
@@ -37,6 +48,7 @@ const GLOBAL_CONSTANTS = {
 			'yyyy-MM-dd'  : 'yyyy-MM-dd',
 			MMM           : 'MMM',
 			'dd MMM'      : 'dd MMM',
+			eee           : 'eee',
 		},
 		time: {
 			'hh:mm aaa' : 'hh:mm aaa',
@@ -126,6 +138,7 @@ const GLOBAL_CONSTANTS = {
 		'LU',
 		'VN',
 	],
+
 	image_url: IMAGE_URLS,
 
 	onboarding_specialist: {
@@ -146,7 +159,7 @@ const GLOBAL_CONSTANTS = {
 	},
 
 	zeroth_index : 0,
-	one_index    : 1,
+	first_index  : 1,
 
 	service_supported_countries: {
 		ftl_freight: {
@@ -172,6 +185,9 @@ const GLOBAL_CONSTANTS = {
 		},
 
 		whatsapp: {
+			supported_countries: ['IN'],
+		},
+		export_factoring: {
 			supported_countries: ['IN'],
 		},
 	},
@@ -215,7 +231,31 @@ const GLOBAL_CONSTANTS = {
 		image_extension: /\.(jpg|jpeg|png|gif|svg)$/i,
 
 	},
-	PROFILE_NAVIGATIONS: ['saas_cogo_subscription', 'saas_finance'],
+	PROFILE_NAVIGATIONS : ['saas_cogo_subscription', 'saas_finance'],
+	PUBLIC_PAGE_URL     : 'https://www.cogoport.com',
+
+	country_specific_data: {
+		IN: {
+			hidden_locales: ['en-SG'],
+		},
+		VN: {
+			hidden_locales: ['en-SG'],
+		},
+		SG: {
+			hidden_locales: ['en-IN'],
+		},
+		TH: {
+			hidden_locales: ['en-SG'],
+		},
+		ID: {
+			hidden_locales: ['en-SG'],
+		},
+		CN: {
+			hidden_locales: ['en-SG'],
+		},
+	},
+
+	default_hidden_locales: ['en-SG'],
 };
 
 export default GLOBAL_CONSTANTS;

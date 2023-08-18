@@ -71,7 +71,7 @@ function PromocodeThumbnail({
 			/>
 			<div className={styles.promo_code}>
 				<div className={styles.promo_code_name}>
-					{promotion.promocodes[0]?.promocode}
+					{promotion.codes?.[0]?.promocode}
 				</div>
 			</div>
 		</div>

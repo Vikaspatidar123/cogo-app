@@ -2,6 +2,7 @@ import book from './config/book';
 import contractManagement from './config/contract-management';
 import dashboard from './config/dashboard';
 import documents from './config/documents';
+import exportFactoring from './config/export-factoring';
 import manageRfq from './config/manage-rfq';
 import payLater from './config/pay-later';
 import route from './config/public-paths';
@@ -23,6 +24,7 @@ const routeConfig = withPrefix({
 	...book,
 	...documents,
 	...payLater,
+	...exportFactoring,
 });
 
 const routes = {

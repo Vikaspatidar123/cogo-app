@@ -23,5 +23,7 @@ const HIDE_LAYOUT = [
 	'/draft-airway-bill/[id]',
 	'/accept-invite/[id]',
 	'/unsubscribe-container-update/[id]',
+	'/add-dunning-relevant-user-new/[id]',
+	'/url/[token]',
 ];
 export default HIDE_LAYOUT;

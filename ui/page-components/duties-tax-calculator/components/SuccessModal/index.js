@@ -1,13 +1,15 @@
-/* eslint-disable no-restricted-globals */
 import { Tooltip, cl, Button } from '@cogoport/components';
 import { IcMInfo } from '@cogoport/icons-react';
-
-import { SuccessGif } from '../../configuration/icon-configuration';
+import { useTranslation } from 'next-i18next';
 
 import styles from './styles.module.css';
 
-import { useRouter } from '@/packages/next';
+import { Image, useRouter } from '@/packages/next';
+import CustomerSatisfaction from '@/ui/commons/components/CustomerSatisfaction';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import formatAmount from '@/ui/commons/utils/formatAmount';
+
+const ZERO_INDEX = GLOBAL_CONSTANTS.zeroth_index;
 
 const CHARGE_MAPPING = {
 	freightCharges      : 'Freight Charges',
@@ -24,12 +26,12 @@ const calculateTotalCharge = (arr) => {
 function TooltipContent({ tradeEngineResp }) {
 	const { resultCurrency, additionalChargesList } = tradeEngineResp || {};
 	const { incotermCharges: incotermArr = [] } = additionalChargesList || {};
-
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
 	const incotermAmmount = calculateTotalCharge(incotermArr);
 
 	return (
 		<div className={styles.tooltip_container}>
-			<div className={styles.tooltip_heading}>Breakdown of Total Landed Cost</div>
+			<div className={styles.tooltip_heading}>{t('dutiesTaxesCalculator:success_modal_tooltip_title')}</div>
 			{Object.keys(CHARGE_MAPPING).map((charge) => {
 				let chargeValue = tradeEngineResp?.[charge] || 0;
 				if (charge === 'incotermAmmount') chargeValue = incotermAmmount;
@@ -59,10 +61,13 @@ function SuccessModal({ tradeEngineResp }) {
 		resultCurrency = 'INR',
 		totalDutiesAndTaxes = 0,
 		totalLandedCost = 0,
+		trade_engine_id = '',
 	} = tradeEngineResp || {};
 
 	const { query } = useRouter();
 	const { branch_id, org_id } = query;
+
+	const { t } = useTranslation(['dutiesTaxesCalculator']);
 
 	const redirect = () => {
 		const redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}
@@ -74,15 +79,16 @@ function SuccessModal({ tradeEngineResp }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.icon_container_div}>
-				<img src={SuccessGif} alt="cogo" className={styles.icon_img} />
+				<Image src={GLOBAL_CONSTANTS.image_url.success_gif} alt="success" height={130} width={130} />
 			</div>
 			<div className={styles.header_container}>
-				<div className={styles.title}>Congratulations!</div>
+				<div className={styles.title}>{t('dutiesTaxesCalculator:success_modal_title')}</div>
 				<div className={styles.sub_title}>
-					Successfully calculated Duties and Taxes.
+					{t('dutiesTaxesCalculator:success_modal_subtitle_1')}
 					<br />
 					{' '}
-					Below given are the results
+					{t('dutiesTaxesCalculator:success_modal_subtitle_2')}
+
 				</div>
 			</div>
 			<div className={styles.scroll_container}>
@@ -90,10 +96,13 @@ function SuccessModal({ tradeEngineResp }) {
 				{(lineItem || []).map(({ landedCost = {}, hsNumber = '' }) => (
 					<div key={hsNumber}>
 						<div className={styles.section_heading}>
-							<div className={styles.title_div}>Duties & Taxes</div>
+							<div className={styles.title_div}>
+								{t('dutiesTaxesCalculator:success_modal_section_1_title')}
+							</div>
 							<div className={styles.line} />
 						</div>
-						{(landedCost?.[0]?.taxSet || []).map(
+
+						{(landedCost?.[ZERO_INDEX]?.taxSet || []).map(
 							({ groupName = '', taxSetResponse = [] }) => (
 								<div key={groupName} className={styles.charges}>
 									<div className={styles.heading_div}>{groupName}</div>
@@ -115,7 +124,7 @@ function SuccessModal({ tradeEngineResp }) {
 									))}
 									<div className={styles.dashed_line} />
 									<div className={cl`${styles.row} ${styles.total}`}>
-										<div>Total</div>
+										<div>{t('dutiesTaxesCalculator:success_modal_section_1_subtitle')}</div>
 										<div>
 											{formatAmount({
 												amount   : calculateTotalCharge(taxSetResponse),
@@ -133,7 +142,7 @@ function SuccessModal({ tradeEngineResp }) {
 					</div>
 				))}
 				<div className={cl`${styles.row} ${styles.final_total} ${styles.duties_total}`}>
-					<div>Total Duties and Tax</div>
+					<div>{t('dutiesTaxesCalculator:success_modal_section_2_title')}</div>
 					<div>
 						{formatAmount({
 							amount   : totalDutiesAndTaxes,
@@ -149,7 +158,7 @@ function SuccessModal({ tradeEngineResp }) {
 				<div className={cl`{styles.dashed_line}${styles.dashed_total}`} />
 				<div className={cl`${styles.row} ${styles.final_total}`}>
 					<div className={styles.flex}>
-						<div>Total Landed Cost</div>
+						<div>{t('dutiesTaxesCalculator:success_modal_section_3_title')}</div>
 						<Tooltip
 							placement="top"
 							content={<TooltipContent tradeEngineResp={tradeEngineResp} />}
@@ -174,11 +183,17 @@ function SuccessModal({ tradeEngineResp }) {
 					</div>
 				</div>
 			</div>
+			<CustomerSatisfaction
+				serviceName="duties_and_taxes"
+				position="center"
+				details={{ id: trade_engine_id }}
+			/>
 			<div className={styles.btn_container}>
 				<Button size="md" onClick={() => redirect()}>
-					Calculate More
+					{t('dutiesTaxesCalculator:success_modal_btn_text')}
 				</Button>
 			</div>
+
 		</div>
 	);
 }

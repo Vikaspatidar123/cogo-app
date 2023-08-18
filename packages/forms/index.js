@@ -3,6 +3,7 @@
 export * from 'react-hook-form';
 export { default as SelectController } from './Controlled/SelectController';
 export { default as MultiselectController } from './Controlled/MultiSelectController';
+export { default as CreatableMultiSelectController } from './Controlled/CreatableMultiSelectController';
 export { default as PillsController } from './Controlled/PillsController';
 export { default as DatepickerController } from './Controlled/DatepickerController';
 export { default as InputController } from './Controlled/InputController';
@@ -26,5 +27,7 @@ export { default as SliderController } from './Controlled/SliderController';
 export { default as ChipsController } from './Controlled/ChipController';
 export { default as PriceSelectContriller } from './Controlled/PriceSelectContriller';
 export { default as RadioController } from './Controlled/RadioController';
+export { default as TabsController } from './Controlled/TabsController';
+export { default as IncoTermSelectController } from './Controlled/IncoTermSelect';
 
 export * from './utils/getAsyncFields';

@@ -25,7 +25,6 @@ function Frequency({
 
 			<div className={styles.options}>
 				<RadioGroup
-					className="primary lg"
 					options={FREQUENCY_OPTIONS}
 					value={frequency}
 					onChange={(item) => setFrequency(item)}
@@ -38,10 +37,9 @@ function Frequency({
 							<div className={styles.label}>Frequency Count</div>
 							<Input
 								type="number"
-								className="primary md"
 								value={freqCount}
 								disabled={disableOptions}
-								onChange={(e) => setFreqCount(e.target.value)}
+								onChange={(e) => setFreqCount(e?.target?.value)}
 							/>
 						</div>
 					)}

@@ -1283,7 +1283,7 @@ const apis = [
 		service_name : 'location',
 	},
 	{
-		api          : 'list_shipments_for_shipper_consignee',
+		api          : 'list_trade_party_shipments',
 		access_type  : 'private',
 		service_name : 'shipment',
 	},

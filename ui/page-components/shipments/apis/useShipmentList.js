@@ -3,7 +3,7 @@ import filterServiceMapping from '../configurations/common/filter-service-mappin
 import { useRequest } from '@/packages/request';
 
 const useListShipmentList = ({ currentTab }) => {
-	const apiName = currentTab === 'shipper_consignee' ? 'list_shipments_for_shipper_consignee' : 'list_shipments';
+	const apiName = currentTab === 'shipper_consignee' ? 'list_trade_party_shipments' : 'list_shipments';
 
 	const [{ loading }, trigger] = useRequest({
 		url    : apiName,

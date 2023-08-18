@@ -7,12 +7,20 @@ import { useState } from 'react';
 
 import styles from './styles.module.css';
 
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
+
 function Details({
 	director = {},
 	// setShowEdit = () => {}
 }) {
 	const { name = '', registration_number = '', gender = '', date_of_birth = '', address = '' } = director || {};
 	const [show, setShow] = useState(false);
+
+	const 	IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
+
 	return (
 		<div className={styles.container}>
 			<div className={show ? styles.company_name : styles.company_wo_border}>
@@ -42,7 +50,7 @@ function Details({
 				<div className={styles.details}>
 					<div className={styles.description}>
 						<div className={styles.title}>
-							PAN
+							{IDENTIFICAITON_LABEL}
 						</div>
 						<div className={styles.value}>
 							{registration_number}

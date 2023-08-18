@@ -3,6 +3,8 @@ import { IcAAdd, IcMEdit } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
+
 function Details({ data = {}, setShowEdit = () => {},	updatedValues = {}, getCreditRequestResponse = {} }) {
 	const {
 		pan = '',
@@ -13,6 +15,11 @@ function Details({ data = {}, setShowEdit = () => {},	updatedValues = {}, getCre
 		constitution_of_business = '',
 
 	} = data || {};
+
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
 
 	const { org_iec_number = '' } = getCreditRequestResponse || {};
 	const { date_of_incorporation: update_date_of_incorporation = '', cin } = updatedValues;
@@ -43,7 +50,7 @@ function Details({ data = {}, setShowEdit = () => {},	updatedValues = {}, getCre
 			<div className={styles.details}>
 				<div className={styles.description}>
 					<div className={styles.title}>
-						PAN
+						{IDENTIFICAITON_LABEL}
 					</div>
 					<div className={styles.value}>
 						{pan}

@@ -39,3 +39,16 @@
 	font-size: 8px;
 	text-align: right;
 }
+
+.whatsapp_get_started_link {
+	display: flex;
+	align-items: center;
+	width: fit-content;
+	padding: 6px 10px;
+	margin: 0 17%;
+	cursor: pointer;
+	border-radius: 40px;
+	box-shadow:
+		rgb(50 50 105 / 10%) 0 2px 10px 0,
+		rgb(0 0 0 / 5%) 0 2px 8px 0;
+}

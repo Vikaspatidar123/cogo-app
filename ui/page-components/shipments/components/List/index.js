@@ -1,12 +1,15 @@
 import { Placeholder, Pagination, Tabs, TabPanel } from '@cogoport/components';
 import { useState } from 'react';
 
+import CC from '../../constants/condition-constants';
 import useGetShipmentList from '../../hooks/useGetShipmentList';
 
 import EmptyState from './EmptyState';
 import Header from './Header';
 import Item from './Item';
 import styles from './styles.module.css';
+
+import useGetPermission from '@/packages/hooks/useGetPermission';
 
 function ShipmentList() {
 	const viewAs = 'importer_exporter';
@@ -23,6 +26,8 @@ function ShipmentList() {
 		refetchListShipment,
 	} = useGetShipmentList(params);
 
+	const { isConditionMatches } = useGetPermission();
+
 	const handleTabChange = (val) => {
 		if (currentTab !== val) {
 			setCurrentTab(val);
@@ -35,6 +40,7 @@ function ShipmentList() {
 		}
 		refetchListShipment();
 	};
+
 	const renderTabPanel = () => {
 		if (loading) {
 			return [...Array(3).keys()].map(() => (
@@ -62,7 +68,7 @@ function ShipmentList() {
 				) : null}
 
 				{(data || []).map((item) => (
-					<Item key={item.serial_id} data={item} viewAs={viewAs} />
+					<Item key={item.serial_id} data={item} viewAs={viewAs} currentTab={currentTab} />
 				))}
 			</div>
 		);
@@ -87,6 +93,12 @@ function ShipmentList() {
 					<TabPanel name="past" title="CLOSED SHIPMENTS">
 						{renderTabPanel()}
 					</TabPanel>
+
+					{isConditionMatches(CC.SEE_SHIPPER_CONSIGNEE_TAB, 'or') && (
+						<TabPanel name="shipper_consignee" title="SHIPPER/CONSIGNEE SHIPMENTS">
+							{renderTabPanel()}
+						</TabPanel>
+					)}
 				</Tabs>
 			</div>
 		</div>

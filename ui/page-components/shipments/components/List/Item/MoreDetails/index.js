@@ -2,9 +2,14 @@ import { format } from '@cogoport/utils';
 
 import styles from './styles.module.css';
 
-function MoreDetails({ data }) {
+function MoreDetails({ data, currentTab = '' }) {
 	const handleDate = (item) => format(item, 'dd MMM yyyy');
 	const list = [
+		{
+			label : 'Shipper/Consignee',
+			value : currentTab === 'shipper_consignee'
+				? (data?.importer_exporter?.business_name) : (data?.shipper_consignee?.business_name),
+		},
 		{
 			label: 'ETD',
 			value:

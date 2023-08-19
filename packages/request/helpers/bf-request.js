@@ -35,6 +35,7 @@ bfRequest.interceptors.request.use((oldConfig) => {
 			authorizationscope : 'organization',
 			authorization      : `Bearer: ${token}`,
 			authorizationparameters,
+
 		},
 
 	};

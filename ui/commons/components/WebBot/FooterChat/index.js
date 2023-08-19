@@ -151,9 +151,7 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 							...data,
 							message: e || '',
 						}))}
-						onKeyPress={(e) => {
-							handleKeyPress(e);
-						}}
+						onKeyDown={handleKeyPress}
 						value={message}
 						rows="1"
 						cols="50"
@@ -163,18 +161,18 @@ function FooterChat({ sendMessageLoading, sendFirebaseMessage, toggleHeight }) {
 					{!sendMessageLoading ? (
 						<IcMSend
 							onClick={handleSend}
-							disable={!(message || !isEmpty(file))}
-							width={15}
-							height={15}
-							className={styles.send_icon}
+							width={20}
+							height={20}
+							style={{
+								cursor: (message || !isEmpty(file)) ? 'pointer' : 'not-allowed',
+							}}
 						/>
 					) : (
 						<Image
 							src={GLOBAL_CONSTANTS.image_url.loader}
 							alt="loading"
-							className={styles.loading}
-							width={25}
-							height={25}
+							width={20}
+							height={20}
 						/>
 					)}
 				</div>

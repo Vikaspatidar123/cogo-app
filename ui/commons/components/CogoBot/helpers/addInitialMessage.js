@@ -10,19 +10,6 @@ const getWelcomeMessage = (
 today? please do not hesitate to let us know if you have any questions
 or need help with anything.`;
 
-const USER_WHATSAPP_QR = {
-	conversation_type : 'received',
-	message_type      : 'image',
-	response          : {
-		whatsapp_get_started_link:
-			GLOBAL_CONSTANTS.urls.whatsapp_get_started_link,
-		message   : 'Scan using WhatsApp or click on button below',
-		media_url : GLOBAL_CONSTANTS.image_url.whatsapp_qr,
-	},
-	created_at : Date.now(),
-	agent_type : 'bot',
-};
-
 const WHATSAPP_QR_META_DATA = {
 	whatsapp_get_started_link : GLOBAL_CONSTANTS.urls.whatsapp_get_started_link,
 	message_type              : 'image',
@@ -51,6 +38,19 @@ const addInitialMessage = async ({ roomId, firestore, name, sendMessage }) => {
 	};
 
 	await addDoc(userMessageCollection, userChat);
+
+	const USER_WHATSAPP_QR = {
+		conversation_type : 'received',
+		message_type      : 'image',
+		response          : {
+			whatsapp_get_started_link:
+				GLOBAL_CONSTANTS.urls.whatsapp_get_started_link,
+			message   : 'Scan using WhatsApp or click on button below',
+			media_url : GLOBAL_CONSTANTS.image_url.whatsapp_qr,
+		},
+		created_at : Date.now(),
+		agent_type : 'bot',
+	};
 
 	await addDoc(userMessageCollection, USER_WHATSAPP_QR);
 

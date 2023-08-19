@@ -9,7 +9,7 @@ const FILE_TYPE_MAPPING = {
 			className={styles.styled_image}
 			src={mediaUrl}
 			width={204}
-			height={115}
+			height={200}
 			alt="attachment"
 		/>
 	),

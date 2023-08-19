@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import getShipmentList from '../apis/useShipmentList';
+import useListShipmentList from '../apis/useShipmentList';
 import getConfigsShipper from '../configurations/ShipmentList/Shipper/get-config';
 
 import useGetFiniteList from './useGetFiniteList';
@@ -9,13 +9,14 @@ import { useSelector } from '@/packages/store';
 
 const useGetShipmentList = (allParams = { isBookingDesk: false }) => {
 	const { isBookingDesk, ...params } = allParams || {};
-	const { importer_exporter_id } = useSelector(({ profile }) => ({
-		importer_exporter_id: profile?.id,
+	const { importer_exporter_id, organization_id } = useSelector(({ profile }) => ({
+		importer_exporter_id : profile?.id,
+		organization_id      : profile?.organization?.id,
 	}));
 
 	const [currentTab, setCurrentTab] = useState('ongoing');
 
-	const { getshipment, loading } = getShipmentList();
+	const { getshipment, loading } = useListShipmentList({ currentTab });
 
 	const config =	 getConfigsShipper();
 	const configFunc = getConfigsShipper;
@@ -30,8 +31,9 @@ const useGetShipmentList = (allParams = { isBookingDesk: false }) => {
 				pending_task: isBookingDesk
 					? 'upload_booking_note'
 					: restFilters?.task,
-				pending_task_status: isBookingDesk ? 'pending' : undefined,
-				importer_exporter_id,
+				pending_task_status  : isBookingDesk ? 'pending' : undefined,
+				importer_exporter_id : currentTab !== 'shipper_consignee' ? importer_exporter_id : undefined,
+				consignee_shipper_id : currentTab === 'shipper_consignee' ? organization_id : undefined,
 			},
 			global_state: config.list_states[currentTab],
 		},

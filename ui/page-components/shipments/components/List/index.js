@@ -1,12 +1,15 @@
 import { Placeholder, Pagination, Tabs, TabPanel } from '@cogoport/components';
 import { useState } from 'react';
 
+import CC from '../../constants/condition-constants';
 import useGetShipmentList from '../../hooks/useGetShipmentList';
 
 import EmptyState from './EmptyState';
 import Header from './Header';
 import Item from './Item';
 import styles from './styles.module.css';
+
+import useGetPermission from '@/packages/hooks/useGetPermission';
 
 const VIEW_AS = 'importer_exporter';
 
@@ -25,6 +28,8 @@ function ShipmentList() {
 		refetchListShipment,
 	} = useGetShipmentList(params);
 
+	const { isConditionMatches } = useGetPermission();
+
 	const handleTabChange = (val) => {
 		if (currentTab !== val) {
 			setCurrentTab(val);
@@ -37,6 +42,7 @@ function ShipmentList() {
 		}
 		refetchListShipment();
 	};
+
 	const renderTabPanel = () => {
 		if (loading) {
 			return [...Array(3).keys()].map(() => (
@@ -64,7 +70,7 @@ function ShipmentList() {
 				) : null}
 
 				{(data || []).map((item) => (
-					<Item key={item.serial_id} data={item} viewAs={VIEW_AS} />
+					<Item key={item.serial_id} data={item} viewAs={VIEW_AS} currentTab={currentTab} />
 				))}
 			</div>
 		);
@@ -80,14 +86,22 @@ function ShipmentList() {
 					setParams={setParams}
 					viewAs={VIEW_AS}
 				/>
-				<div className={styles.flex}>
-					<Tabs activeTab={currentTab} onChange={handleTabChange}>
-						<TabPanel name="ongoing" title="ONGOING SHIPMENTS" />
-						<TabPanel name="past" title="CLOSED SHIPMENTS" />
-					</Tabs>
-				</div>
-				{renderTabPanel()}
-				<div />
+
+				<Tabs activeTab={currentTab} onChange={handleTabChange}>
+					<TabPanel name="ongoing" title="ONGOING SHIPMENTS">
+						{renderTabPanel()}
+					</TabPanel>
+
+					<TabPanel name="past" title="CLOSED SHIPMENTS">
+						{renderTabPanel()}
+					</TabPanel>
+
+					{isConditionMatches(CC.SEE_SHIPPER_CONSIGNEE_TAB, 'or') && (
+						<TabPanel name="shipper_consignee" title="SHIPPER/CONSIGNEE SHIPMENTS">
+							{renderTabPanel()}
+						</TabPanel>
+					)}
+				</Tabs>
 			</div>
 		</div>
 	);

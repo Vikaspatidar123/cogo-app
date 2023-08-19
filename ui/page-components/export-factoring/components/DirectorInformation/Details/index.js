@@ -3,11 +3,19 @@ import { IcMActivePlans, IcMEdit } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
+
 function Details({ director = {}, setShowEdit = () => {}, showEdit, constitutionMapping = {}, updatedValues = {} }) {
 	const {
 		name = '', registration_number = '',
 		gender = '', din = '', date_of_birth = '', address = '',
 	} = director || {};
+
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
+
 	const updatedDirectors = updatedValues.director.find((x) => x.registration_number === director.registration_number);
 
 	return (
@@ -44,7 +52,7 @@ function Details({ director = {}, setShowEdit = () => {}, showEdit, constitution
 			<div className={styles.details}>
 				<div className={styles.description}>
 					<div className={styles.title}>
-						PAN
+						{IDENTIFICAITON_LABEL}
 					</div>
 					<div className={styles.value}>
 						{registration_number}

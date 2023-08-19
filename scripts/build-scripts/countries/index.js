@@ -1,5 +1,6 @@
 const path = require('path');
 
+require('dotenv').config();
 const fs = require('fs-extra');
 
 const getCountries = require('./getCountries');
@@ -16,7 +17,7 @@ const setCountries = async () => {
 	await getCountries(
 		fs.writeFileSync,
 		countriesPath,
-		'https://api.cogoport.com/',
+		`${process.env.NEXT_PUBLIC_APP_BASE_URL}/`,
 	);
 	console.log('Successfully Built Countries ...');
 };

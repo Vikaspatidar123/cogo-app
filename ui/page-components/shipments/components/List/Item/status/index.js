@@ -5,8 +5,11 @@ import getText from '../../../../utils/get-text';
 import styles from './styles.module.css';
 
 import { useRouter } from '@/packages/next';
+import { useSelector } from '@/packages/store';
 
-function Status({ data, viewAs, isBookingDesk = false }) {
+function Status({ data, viewAs, isBookingDesk = false, currentTab = '' }) {
+	const { organization } = useSelector(({ profile }) => profile);
+
 	const router = useRouter();
 	const { id } = data || {};
 
@@ -49,7 +52,11 @@ function Status({ data, viewAs, isBookingDesk = false }) {
 					{stateData.text}
 				</div>
 			</div>
-			<Button onClick={onBook} className={styles.show_button}>
+			<Button
+				onClick={onBook}
+				className={styles.show_button}
+				disabled={currentTab === 'shipper_consignee' && organization?.kyc_status !== 'verified'}
+			>
 				<div className={styles.action}>{buttonText}</div>
 			</Button>
 		</div>

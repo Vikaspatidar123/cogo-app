@@ -13,7 +13,7 @@ which pnpm
 which pm2
 
 # 4. Install dependencies and build the project
-pnpm install
+pnpm install --frozen-lockfile
 pnpm build
 
 # 5. Start/Restart the project

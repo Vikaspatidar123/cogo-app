@@ -15,17 +15,6 @@ const customSerializer = (params) => {
 	return paramsStringify;
 };
 
-const getOrganizationId = (storeKey, ctx) => {
-	if (typeof window !== 'undefined') {
-		const getStoreState = window?.[storeKey]?.getState;
-		if (typeof getStoreState === 'function') {
-			return getStoreState()?.general?.query?.org_id;
-		}
-		return null;
-	}
-	return ctx?.query?.org_id || null;
-};
-
 const bfRequest = Axios.create({ baseURL: process.env.NEXT_PUBLIC_BUSINESS_FINANCE_BASE_URL });
 
 bfRequest.interceptors.request.use((oldConfig) => {
@@ -43,10 +32,9 @@ bfRequest.interceptors.request.use((oldConfig) => {
 		...axiosConfig,
 		paramsSerializer : { serialize: customSerializer },
 		headers          : {
-			authorizationscope   : 'organization',
-			authorization        : `Bearer: ${token}`,
+			authorizationscope : 'organization',
+			authorization      : `Bearer: ${token}`,
 			authorizationparameters,
-			authorizationscopeid : getOrganizationId(storeKey, oldConfig.ctx),
 
 		},
 

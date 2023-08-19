@@ -68,7 +68,7 @@ function ShipmentList() {
 				) : null}
 
 				{(data || []).map((item) => (
-					<Item key={item.serial_id} data={item} viewAs={viewAs} />
+					<Item key={item.serial_id} data={item} viewAs={viewAs} currentTab={currentTab} />
 				))}
 			</div>
 		);

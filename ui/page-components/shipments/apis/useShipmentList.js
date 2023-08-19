@@ -30,7 +30,8 @@ const useListShipmentList = ({ currentTab }) => {
 		} = filterValues || {};
 
 		const filters = {
-			filters: {
+			get_shipper_consignee_data : currentTab !== 'shipper_consignee' ? true : undefined,
+			filters                    : {
 				q,
 				container_number,
 				[filterServiceMapping[shipment_type]]: shipment_type

@@ -12,7 +12,7 @@ import SearchType from './SearchType';
 import Status from './status';
 import styles from './styles.module.css';
 
-function Item({ data, viewAs, className: propClassName = '' }) {
+function Item({ data, viewAs, className: propClassName = '', currentTab = '' }) {
 	const config = viewAs === 'importer_exporter'
 		? getConfigsShipper(data.shipment_type)
 		: getConfigsSupplier(data.service_type);
@@ -45,7 +45,7 @@ function Item({ data, viewAs, className: propClassName = '' }) {
 				<Status data={data} viewAs={viewAs} isBookingDesk={isBookingDesk} />
 			</div>
 			<hr className={cl`${styles.line} ${styles.ropClassName}`} />
-			<MoreDetails data={data} viewAs={viewAs} />
+			<MoreDetails data={data} viewAs={viewAs} currentTab={currentTab} />
 		</div>
 	);
 }

@@ -42,7 +42,7 @@ function Item({ data, viewAs, className: propClassName = '', currentTab = '' }) 
 					<div className={cl`${styles.line} ${styles.propClassName}`} />
 					<Footer data={data} viewAs={viewAs} isBookingDesk={isBookingDesk} />
 				</div>
-				<Status data={data} viewAs={viewAs} isBookingDesk={isBookingDesk} />
+				<Status data={data} viewAs={viewAs} isBookingDesk={isBookingDesk} currentTab={currentTab} />
 			</div>
 			<hr className={cl`${styles.line} ${styles.ropClassName}`} />
 			<MoreDetails data={data} viewAs={viewAs} currentTab={currentTab} />

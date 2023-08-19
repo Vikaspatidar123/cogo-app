@@ -1,0 +1,37 @@
+.tab_container {
+	margin: 0 4px;
+
+	:global {
+		.ui_tab_list_container {
+			height: 35px;
+			padding: 0;
+			margin: 0 !important;
+			border-radius: 9px;
+			box-shadow: 0 0 3px 0 rgb(0 0 0 / 25%);
+		}
+
+		.ui_tabs_container {
+			left: 42px;
+		}
+
+		.ui_tab_container {
+			/* flex-direction: column; */
+			height: 100%;
+			padding: 0 14px !important;
+			border-radius: 9px;
+		}
+
+		.ui_tabs_list_title {
+			font-size: 12px !important;
+		}
+	}
+}
+
+.search_routes {
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	padding: 14px 0;
+	background-color: white;
+	box-shadow: 0 0 8px rgb(98 127 172 / 20%);
+}

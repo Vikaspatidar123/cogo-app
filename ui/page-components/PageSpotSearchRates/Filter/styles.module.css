@@ -1,0 +1,44 @@
+.filter_card {
+	/* height: 210px; */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	background: #fff;
+	border-radius: 9px;
+	box-shadow: 0 0 14px rgb(0 0 0 / 18%);
+
+	:global {
+		.ui_radiogroup_container {
+			flex-direction: column;
+		}
+
+		.ui_checkbox_group_container {
+			flex-direction: column;
+		}
+	}
+}
+
+.filter_body {
+	overflow: clip;
+
+	:global {
+		/* .ui_radio_container {
+			padding: 10px 16px;
+		} */
+
+		.ui_checkbox_group_container {
+			padding: 5px;
+		}
+	}
+}
+
+.filter_footer {
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 15px 14px 0;
+}
+
+.title {
+	padding: 8px 21px 0;
+	margin-bottom: 0;
+}

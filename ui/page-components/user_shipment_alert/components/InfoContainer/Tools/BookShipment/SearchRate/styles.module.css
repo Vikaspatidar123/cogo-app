@@ -1,0 +1,30 @@
+.title {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.container {
+	margin-top: 10px;
+
+	:global {
+		.ui_button_container {
+			min-width: fill-available;
+		}
+
+		.ui_tab_list_container {
+			height: 35px;
+			padding: 0;
+			margin: 0 !important;
+			border-radius: 9px;
+			box-shadow: 0 0 3px 0 rgb(0 0 0 / 25%);
+		}
+
+		/* .ui_tabs_container {
+			left: 42px;
+		} */
+
+		.ui_tabs_list_title {
+			font-size: 12px !important;
+		}
+	}
+}

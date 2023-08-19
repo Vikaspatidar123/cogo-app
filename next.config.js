@@ -40,8 +40,13 @@ module.exports = {
 				protocol : 'https',
 				hostname : 'cogoport-testing.sgp1.digitaloceanspaces.com',
 			},
+			{
+				protocol : 'https',
+				hostname : 'cdn.cogoport.io/cms-prod/cogo_public/vault/original',
+			},
 		],
 	},
+
 	webpack(config) {
 		const newConfig = { ...config };
 		newConfig.module.rules.push({

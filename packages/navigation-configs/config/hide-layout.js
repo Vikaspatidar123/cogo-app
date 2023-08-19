@@ -26,5 +26,6 @@ const HIDE_LAYOUT = [
 	'/add-dunning-relevant-user-new/[id]',
 	'/url/[token]',
 	'/user-shipment-alert',
+	'/discovery-rates/[id]/[origin]/[destination]',
 ];
 export default HIDE_LAYOUT;

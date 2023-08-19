@@ -12,6 +12,7 @@ function LoginTabs({
 	setMobileNumber = () => {},
 	setOtpId = () => {},
 	mobileNumber = {},
+	title,
 }) {
 	const { t } = useTranslation(['common']);
 	const translationKey = 'common:loginField';
@@ -20,7 +21,7 @@ function LoginTabs({
 
 	return (
 		<>
-			<h1 className={styles.card_heading}>{t(`${translationKey}_title`)}</h1>
+			{title || <h1 className={styles.card_heading}>{t(`${translationKey}_title`)}</h1>}
 
 			<Tabs
 				activeTab={activeTab}

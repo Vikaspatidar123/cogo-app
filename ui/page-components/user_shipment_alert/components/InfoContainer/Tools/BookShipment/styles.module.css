@@ -1,0 +1,11 @@
+.container {
+	padding: 30px;
+	background: linear-gradient(139deg, #fff 0%, #fff 0.01%, #fde74d 56.56%, #fde74d 86.68%);
+	border-radius: 6px;
+	box-shadow: 0 0 4px 0 rgb(98 127 172 / 20%);
+}
+
+.title {
+	font-size: 18px;
+	font-weight: 600;
+}

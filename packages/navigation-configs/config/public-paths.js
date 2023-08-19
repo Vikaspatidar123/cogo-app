@@ -35,6 +35,7 @@ const PUBLIC_PATHS = [
 	'/add-dunning-relevant-user-new/[token]',
 	'/url/[token]',
 	'/user-shipment-alert',
+	'/discovery-rates/[id]/[origin]/[destination]',
 ];
 const UNAUTHENTICATED = ['/login', '/signup'];
 export default { PUBLIC_PATHS, UNAUTHENTICATED, All };

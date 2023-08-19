@@ -1,0 +1,143 @@
+.price_break_up_container {
+	display: flex;
+	flex-direction: column;
+	background: #fffdef;
+}
+
+.price_title {
+	display: flex;
+	justify-content: space-between;
+	padding: 6px 30px;
+	background: rgb(241 241 241);
+
+	@media (max-width: 767px) {
+		padding: 6px 12px;
+		border-radius: 0 0 6px 6px;
+	}
+}
+
+.price_detail {
+	display: flex;
+	justify-content: space-between;
+	padding: 6px 60px 6px 36px;
+	background: none;
+}
+
+.main_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 20px;
+	background: #fffdef;
+
+	/* height: 30px; */
+
+	@media (max-width: 767px) {
+		/* margin-bottom: 32px; */
+	}
+
+	.active {
+		width: 300px;
+		width: 250px;
+		height: 22px;
+		margin-top: 2px;
+		color: #fff;
+		background-color: #ee3425;
+	}
+
+	.inactive {
+		width: 250px;
+		height: 22px;
+		margin-top: 2px;
+
+		/* padding: 5px; */
+		color: black;
+		background: transparent;
+	}
+
+	.gtp_container_button {
+		display: flex;
+		justify-content: center;
+		width: 180px;
+		height: 26px;
+
+		@media (max-width: 767px) {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			padding: 0;
+		}
+
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 120px;
+			font-size: 12px;
+			font-weight: 700;
+			cursor: pointer;
+			border: none;
+			border-radius: 8px;
+		}
+	}
+
+	@media (max-width: 767px) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.gtp_image {
+	width: 100%;
+}
+
+.border_button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 30px;
+	padding: 3px;
+	border: 1.5px solid #000;
+	border-radius: 10px;
+}
+
+.break {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 20px;
+	border-top: 0.79px solid #e0e0e0;
+	border-bottom: 0.79px solid #e0e0e0;
+}
+
+.main_container1 {
+	background: #fffdef;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	transition: all 0.3s ease-in-out;
+}
+
+.buttonicon1 {
+	display: flex;
+	justify-content: center;
+	padding-top: 10px;
+	background: #fff;
+}
+
+.sailing_schedules {
+	display: flex;
+	justify-content: flex-end;
+	margin: 5px;
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.sailing_schedules_bold {
+	font-size: 14px;
+	font-weight: 600;
+}

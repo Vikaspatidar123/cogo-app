@@ -1,0 +1,24 @@
+.marker_icon {
+	margin-top: -20px !important;
+	margin-left: -6px !important;
+	border: none;
+}
+
+.popup {
+	:global {
+		/* stylelint-disable-next-line selector-class-pattern */
+		.leaflet-popup-content p {
+			margin: 0 !important;
+		}
+	}
+}
+
+.no_map {
+	padding: 15px;
+}
+
+.marker {
+	position: relative;
+	width: 20px !important;
+	transform: translate(-25%, -80%);
+}

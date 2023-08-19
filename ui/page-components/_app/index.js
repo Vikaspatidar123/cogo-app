@@ -14,6 +14,7 @@ import { dynamic, Router } from '@/packages/next';
 import 'nprogress/nprogress.css';
 import { Provider } from '@/packages/store';
 import { setGeneralStoreState } from '@/packages/store/store/general';
+import { UserLocationContentContextProvider } from '@/ui/commons/components/UserLocationContentContext';
 import getGeoConstants from '@/ui/commons/constants/geo';
 import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
@@ -92,16 +93,19 @@ function MyApp({ Component, pageProps, store, generalData }) {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Provider store={store}>
-				<GlobalLayout
-					layout={pageProps.layout || 'authenticated'}
-					head={pageProps.head || ''}
-				>
-					<Component {...pageProps} />
-					{isBotVisible && <DynamicChatBot />}
-				</GlobalLayout>
-			</Provider>
-			{process.env.NODE_ENV !== 'production' && <ReactQueryDevtools initialIsOpen={false} />}
+			<UserLocationContentContextProvider>
+
+				<Provider store={store}>
+					<GlobalLayout
+						layout={pageProps.layout || 'authenticated'}
+						head={pageProps.head || ''}
+					>
+						<Component {...pageProps} />
+						{isBotVisible && <DynamicChatBot />}
+					</GlobalLayout>
+				</Provider>
+				{process.env.NODE_ENV !== 'production' && <ReactQueryDevtools initialIsOpen={false} />}
+			</UserLocationContentContextProvider>
 		</QueryClientProvider>
 	);
 }

@@ -1,11 +1,11 @@
 import Header from './Header';
 import Table from './Table';
 
-function DataTable() {
+function DataTable({ setShow, showTitleType }) {
 	return (
 		<div>
-			<Header />
-			<Table />
+			<Header setShow={setShow} showTitleType={showTitleType} />
+			<Table setShow={setShow} showTitleType={showTitleType} />
 		</div>
 	);
 }

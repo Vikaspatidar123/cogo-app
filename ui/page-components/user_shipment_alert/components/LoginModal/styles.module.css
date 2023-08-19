@@ -1,0 +1,25 @@
+.container {
+	display: flex;
+	justify-content: center;
+	height: 430px;
+	padding: 20px;
+	background-image: url("https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/MicrosoftTeams-image_(10).png");
+	background-repeat: no-repeat;
+}
+
+.main_container {
+	:global {
+		.ui_modal_dialog.ui_ps_size_md {
+			width: 484px !important;
+		}
+	}
+}
+
+.title {
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.head_box {
+	margin-bottom: 10px;
+}

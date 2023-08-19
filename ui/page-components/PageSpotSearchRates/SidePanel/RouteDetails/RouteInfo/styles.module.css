@@ -1,0 +1,27 @@
+.details_view {
+	padding: 10px 12px 14px;
+}
+
+.back_btn {
+	display: flex;
+	align-items: center;
+	padding: 8px 4px 0 0;
+	font-size: 12px;
+	font-weight: 400;
+	color: black;
+	cursor: pointer;
+	background: #fff;
+	border: none;
+
+	/* border-bottom: 1px solid #404e65; */
+
+	& > svg {
+		margin-right: 4px;
+	}
+}
+
+.route_info {
+	display: flex;
+	flex-direction: column;
+	margin: 14px 0 0;
+}

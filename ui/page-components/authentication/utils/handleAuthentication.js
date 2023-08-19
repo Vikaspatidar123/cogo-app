@@ -4,6 +4,7 @@ import getorganizationApi from '../hooks/getOrganisation';
 import getUserData from '../hooks/getUserData';
 
 import router from '@/packages/navigation-configs/config/public-paths';
+import routes from '@/packages/navigation-configs/route-config';
 import { getCookie } from '@/packages/request/helpers/getCookieFromCtx';
 import { setProfileStoreState } from '@/packages/store/store/profile';
 import redirect from '@/ui/commons/utils/redirect';
@@ -34,7 +35,6 @@ const handleAuthentication = async ({
 	}
 	const { PUBLIC_PATHS, UNAUTHENTICATED } = router || {};
 	const token = getCookie('cogo-auth-token', { req });
-
 	if (asPath.includes('/url/')) {
 		return { asPrefix };
 	}

@@ -1,0 +1,23 @@
+.price_break_up_container {
+	display: flex;
+	flex-direction: column;
+}
+
+.price_title {
+	display: flex;
+	justify-content: space-between;
+	padding: 6px 30px;
+	background: rgb(241 241 241);
+
+	@media (max-width: 767px) {
+		padding: 6px 12px;
+		border-radius: 0 0 6px 6px;
+	}
+}
+
+.price_detail {
+	display: flex;
+	justify-content: space-between;
+	padding: 6px 60px 6px 36px;
+	background: none;
+}

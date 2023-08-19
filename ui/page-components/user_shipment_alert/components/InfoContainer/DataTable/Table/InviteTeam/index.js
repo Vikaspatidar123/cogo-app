@@ -3,7 +3,7 @@ import { IcMAppAddAccount } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-function InviteTeam() {
+function InviteTeam({ setShow, showTitleType }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.main_box}>
@@ -15,7 +15,16 @@ function InviteTeam() {
 					</div>
 				</div>
 
-				<Button>Login to Invite</Button>
+				<Button
+					type="button"
+					onClick={() => {
+						showTitleType('Add User!');
+						setShow(true);
+					}}
+				>
+					Login to Invite
+
+				</Button>
 
 			</div>
 		</div>

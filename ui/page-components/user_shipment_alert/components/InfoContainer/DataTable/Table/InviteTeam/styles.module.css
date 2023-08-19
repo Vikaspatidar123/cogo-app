@@ -13,6 +13,7 @@
 
 .box {
 	display: flex;
+	align-items: baseline;
 }
 
 .text_box {

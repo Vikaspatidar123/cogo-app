@@ -13,7 +13,7 @@ const data = [{
 	header : ['shipment_id', 'quantity', 'origin_port', 'destination_port', 'current_status'],
 	data   : [{ shipment_id: '12', quantity: 'wdwee' }, { shipment_id: '12', quantity: 'wdwee' }],
 }];
-function Table() {
+function Table({ setShow, showTitleType }) {
 	return (
 		<div>
 			{data.map((item) => (
@@ -23,7 +23,7 @@ function Table() {
 
 				</div>
 			))}
-			<InviteTeam />
+			<InviteTeam setShow={setShow} showTitleType={showTitleType} />
 		</div>
 	);
 }

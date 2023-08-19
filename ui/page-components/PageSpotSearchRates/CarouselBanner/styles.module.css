@@ -1,0 +1,7 @@
+.carousel_container {
+	width: 225px;
+
+	@media (max-width: 767px) {
+		width: 100%;
+	}
+}

@@ -3,7 +3,7 @@ import { IcMAppSearch, IcMDownload } from '@cogoport/icons-react';
 
 import styles from './styles.module.css';
 
-function Header() {
+function Header({ setShow, showTitleType }) {
 	return (
 		<div className={styles.container}>
 			<Input
@@ -14,13 +14,27 @@ function Header() {
 				suffix={<IcMAppSearch style={{ marginRight: '10px' }} />}
 			/>
 			<div className={styles.button_box}>
-				<div className={styles.download}>
+				<div
+					role="presentation"
+					className={styles.download}
+					onClick={() => { setShow(true); showTitleType('Download SSR'); }}
+				>
 					<IcMDownload />
-					<div>
+					<div className={styles.down}>
 						Download
 					</div>
 				</div>
-				<Button size="md" themeType="secondary">Edit</Button>
+				<Button
+					size="md"
+					themeType="secondary"
+					onClick={() => {
+						setShow(true);
+						showTitleType('Edit Report');
+					}}
+				>
+					Edit
+
+				</Button>
 			</div>
 		</div>
 	);

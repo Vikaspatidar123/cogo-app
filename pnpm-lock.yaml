@@ -17,6 +17,7 @@ specifiers:
   axios: ^1.4.0
   axios-hooks: ^4.0.0
   cookies-next: ^2.1.2
+  dotenv: ^16.0.3
   eslint: 8.35.0
   file-saver: ^2.0.5
   firebase: ^9.16.0
@@ -51,7 +52,7 @@ specifiers:
 
 dependencies:
   '@cogoport/charts': 1.0.3_biqbaboplfbrettd7655fr4n2y
-  '@cogoport/components': 1.0.437_nq2dsfvf3xiy6kraqrhauunjoq
+  '@cogoport/components': 1.0.437_jbkdfmwn4pruupygfcv3deyn7u
   '@cogoport/icons-react': 1.0.90_biqbaboplfbrettd7655fr4n2y
   '@cogoport/maps': 1.0.3_jbkdfmwn4pruupygfcv3deyn7u
   '@cogoport/utils': 1.2.10
@@ -92,6 +93,7 @@ devDependencies:
   '@sentry/nextjs': 7.61.0_next@13.2.3+react@18.2.0
   '@sentry/tracing': 7.61.0
   '@svgr/webpack': 6.5.1
+  dotenv: 16.3.1
   eslint: 8.35.0
   fs-extra: 11.1.1
   postcss: 8.4.27
@@ -1431,10 +1433,11 @@ packages:
       - react-dom
     dev: false
 
-  /@cogoport/components/1.0.437_nq2dsfvf3xiy6kraqrhauunjoq:
+  /@cogoport/components/1.0.437_jbkdfmwn4pruupygfcv3deyn7u:
     resolution: {integrity: sha512-0qxiPbtbdkcVtBzZXP0ekSGbGBjoJx5wFUKvE7ufT/7a4ksyxFUVPeDnbtmSFF7lT8Uv0gI35e2Cqf2UKAOnOg==}
     peerDependencies:
       '@cogoport/icons-react': ^1.0.23
+      react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
       '@cogoport/icons-react': 1.0.90_biqbaboplfbrettd7655fr4n2y
@@ -5123,6 +5126,11 @@ packages:
       domelementtype: 2.3.0
       domhandler: 5.0.3
     dev: false
+
+  /dotenv/16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
+    engines: {node: '>=12'}
+    dev: true
 
   /draft-js-export-html/1.4.1_qnm4pu3vwlglikbjqrpcmxoiem:
     resolution: {integrity: sha512-G4VGBSalPowktIE4wp3rFbhjs+Ln9IZ2FhXeHjsZDSw0a2+h+BjKu5Enq+mcsyVb51RW740GBK8Xbf7Iic51tw==}

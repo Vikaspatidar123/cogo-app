@@ -1282,6 +1282,11 @@ const apis = [
 		access_type  : 'private',
 		service_name : 'location',
 	},
+	{
+		api          : 'list_trade_party_shipments',
+		access_type  : 'private',
+		service_name : 'shipment',
+	},
 ];
 
 export default apis;

@@ -6,6 +6,7 @@ import {
 
 import styles from './styles.module.css';
 
+import { getLocaleSpecificLabels } from '@/ui/commons/constants/CountrySpecificDetail';
 import getGeoConstants from '@/ui/commons/constants/geo';
 
 function Details({
@@ -24,6 +25,10 @@ function Details({
 	const geo = getGeoConstants();
 	const REGISTRATION_LABEL = geo.others.registration_number.label;
 
+	const IDENTIFICAITON_LABEL = getLocaleSpecificLabels({
+		accessorType : 'identification_number',
+		accessor     : 'label',
+	});
 	return (
 		<div className={styles.container}>
 			<div className={styles.company_name}>
@@ -46,7 +51,7 @@ function Details({
 			<div className={styles.details}>
 				<div className={styles.description}>
 					<div className={styles.title}>
-						PAN
+						{IDENTIFICAITON_LABEL}
 					</div>
 					<div className={styles.value}>
 						{pan}

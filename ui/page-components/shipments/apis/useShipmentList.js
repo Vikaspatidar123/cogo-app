@@ -2,9 +2,11 @@ import filterServiceMapping from '../configurations/common/filter-service-mappin
 
 import { useRequest } from '@/packages/request';
 
-const useListShipmentList = () => {
+const useListShipmentList = ({ currentTab }) => {
+	const apiName = currentTab === 'shipper_consignee' ? 'list_trade_party_shipments' : 'list_shipments';
+
 	const [{ loading }, trigger] = useRequest({
-		url    : 'list_shipments',
+		url    : apiName,
 		method : 'get',
 	}, { manual: true });
 
@@ -14,6 +16,7 @@ const useListShipmentList = () => {
 			serial_id,
 			global_state,
 			importer_exporter_id,
+			consignee_shipper_id,
 			color_code,
 			partner_id,
 			bl_number,
@@ -27,7 +30,8 @@ const useListShipmentList = () => {
 		} = filterValues || {};
 
 		const filters = {
-			filters: {
+			get_shipper_consignee_data : currentTab !== 'shipper_consignee' ? true : undefined,
+			filters                    : {
 				q,
 				container_number,
 				[filterServiceMapping[shipment_type]]: shipment_type
@@ -36,6 +40,7 @@ const useListShipmentList = () => {
 				serial_id,
 				state     : global_state,
 				importer_exporter_id,
+				consignee_shipper_id,
 				partner_id,
 				shipment_type,
 				color_code,

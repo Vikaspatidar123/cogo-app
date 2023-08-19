@@ -77,7 +77,9 @@ const getRoomHelpers = ({
 
 		const newUserRoom = await addDoc(platformChatCollection, roomInfo);
 		const { id = '' } = newUserRoom || {};
-		if (!id) return;
+		if (!id) {
+			return;
+		}
 
 		setCogoBotState((p) => ({ ...p, roomId: id }));
 		await addInitialMessage({

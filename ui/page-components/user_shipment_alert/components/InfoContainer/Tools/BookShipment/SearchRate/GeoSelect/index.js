@@ -1,14 +1,13 @@
 import { Button } from '@cogoport/components';
-import { IcALocation, IcMAppSearch, IcMPort, IcMArrowBack, IcMArrowNext } from '@cogoport/icons-react';
+import { IcMAppSearch, IcMPort } from '@cogoport/icons-react';
 import { isEmpty } from '@cogoport/utils';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import styles from './styles.module.css';
 
 import { AsyncSelectController } from '@/packages/forms';
-import { useRequest } from '@/packages/request';
 
 function GeoSelect({ tab }) {
 	const router = useRouter();
@@ -25,6 +24,12 @@ function GeoSelect({ tab }) {
 
 	const originPortCode = watch('origin_port_code');
 	const destinationPortCode = watch('destination_port_code');
+
+	const MAPING = {
+		sea : 'seaport',
+		air : 'airport',
+	};
+	const params = { filters: { type: [MAPING[tab]] } };
 
 	const onSubmit = async () => {
 		router.push({
@@ -52,9 +57,10 @@ function GeoSelect({ tab }) {
 							placeholder="Origin Of Shipment"
 							className={styles.location_search}
 							isClearable
-							// valueKey="port_code"
+							valueKey="port_code"
 							rules={{ required: 'Please select origin' }}
 							status="all"
+							params={params}
 						/>
 						{errors.origin_port_code && (
 							<p
@@ -72,9 +78,10 @@ function GeoSelect({ tab }) {
 							placeholder="Destination Of Shipment"
 							className={styles.location_search}
 							isClearable
-							// valueKey="port_code"
+							valueKey="port_code"
 							rules={{ required: 'Please select destination' }}
 							status="all"
+							params={params}
 						/>
 						{errors.destination_port_code && (
 							<p

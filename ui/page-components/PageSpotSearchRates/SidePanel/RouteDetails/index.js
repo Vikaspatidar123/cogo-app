@@ -111,19 +111,6 @@ function RouteDetails({
 		destination : journeyData?.[1] || '',
 	};
 
-	// const heading = {
-	// 	sea: {
-	// 		label : t('sea_routes'),
-	// 		icon  : iconMappings.sea,
-	// 		color : '#1867d2',
-	// 	},
-	// 	air: {
-	// 		label : t('air_routes'),
-	// 		icon  : iconMappings.air,
-	// 		color : '#f37166',
-	// 	},
-	// };
-
 	const newTab = tab === 'sea' ? 'ocean' : tab;
 	const allRoutes = data?.all_routes?.filter(({ main_service }) => main_service === newTab);
 	const routes = allRoutes?.[0]?.routes;
@@ -153,44 +140,22 @@ function RouteDetails({
 		setShowDetails(status);
 	};
 
-	// const getLabel = (key) => {
-	// 	const { icon, label, color } = heading[key];
-
-	// 	return (
-	// 		<p className={styles.sub_label}>
-	// 			<span style={{ color }}>{icon}</span>
-	// 			<span>{label}</span>
-	// 		</p>
-	// 	);
-	// };
-
 	if (!showRoutes) {
 		return (
 			<div className={styles.no_routes}>
 				<p className={styles.header}>
-					search_routes
+					Search for any ports
 				</p>
-				<p className={styles.description}>to_see_results</p>
+				<p className={styles.description}>to see results here</p>
 			</div>
 		);
 	}
-
-	// if (isEmpty(allRoutes)) {
-	// 	return (
-	// 		<div className={styles.no_routes}>
-	// 			<p className={styles.header}>
-	// 				{t('no_data_found')}
-	// 			</p>
-	// 			<p className={styles.description}>{t('search_routes')}</p>
-	// 		</div>
-	// 	);
-	// }
 
 	return (
 		<>
 			<div className={styles.route_details}>
 				<p className={styles.route_text}>
-					route_details
+					Suggested Routes
 				</p>
 				{loading ? (
 					<>

@@ -255,7 +255,12 @@ const GLOBAL_CONSTANTS = {
 		},
 	},
 
-	default_hidden_locales: ['en-SG'],
+	default_hidden_locales : ['en-SG'],
+	cogo_entity_country    : ['IN', 'NL', 'SG', 'VN', 'TH', 'ID', 'CN'],
+	SCOPE_DOMAIN_MAPPING   : {
+		app      : 'https://app.cogoport.com',
+		partners : 'https://partners.cogoport.com',
+	},
 };
 
 export default GLOBAL_CONSTANTS;

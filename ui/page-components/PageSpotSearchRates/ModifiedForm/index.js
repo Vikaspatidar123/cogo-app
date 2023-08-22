@@ -1,4 +1,4 @@
-import { Button } from '@cogoport/components';
+import { Button, cl } from '@cogoport/components';
 import {
 	IcAInternational, IcALocation, IcAShipAmber, IcMArrowBack, IcMArrowNext, IcMEdit,
 } from '@cogoport/icons-react';
@@ -7,8 +7,6 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import styles from './styles.module.css';
-
-import { useMobileView } from '@/ui/hooks/useMobileView';
 
 function ModifiedForm({
 	data = [],
@@ -22,7 +20,6 @@ function ModifiedForm({
 		'40HC' : '40 FT HC',
 		'45HC' : '45 FT HC',
 	};
-	const { isMobile } = useMobileView();
 
 	return (
 		<div className={styles.container}>
@@ -52,12 +49,10 @@ function ModifiedForm({
 							</p>
 						</div>
 					</div>
-					{!isMobile ? (
-						<div className={styles.arrows}>
-							<IcMArrowNext />
-							<IcMArrowBack style={{ marginTop: '-6px' }} />
-						</div>
-					) : null}
+					<div className={cl`${styles.arrows} ${styles.web_view}`}>
+						<IcMArrowNext />
+						<IcMArrowBack style={{ marginTop: '-6px' }} />
+					</div>
 					<div className={styles.destination}>
 						<IcALocation width={28} height={28} />
 						<div className={styles.detail}>
@@ -74,12 +69,10 @@ function ModifiedForm({
 						</div>
 					</div>
 				</div>
-				{isMobile ? (
-					<div className={styles.mobile_arrows}>
-						<IcMArrowNext />
-						<IcMArrowBack style={{ marginTop: '-6px' }} />
-					</div>
-				) : null}
+				<div className={cl`${styles.mobile_arrows} ${styles.mobile_view}`}>
+					<IcMArrowNext />
+					<IcMArrowBack style={{ marginTop: '-6px' }} />
+				</div>
 			</div>
 			<div className={styles.divider} />
 			<div className={styles.container_inner}>

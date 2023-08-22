@@ -1,24 +1,27 @@
 import { Modal, Button } from '@cogoport/components';
-import { IcMFtick, IcMCross } from '@cogoport/icons-react';
+import { IcMArrowNext, IcMFtick, IcMCross } from '@cogoport/icons-react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import useInviteUserOnSpotSearch from '../hooks/useInviteUserOnSpotSearch';
+
 import styles from './styles.module.css';
 
+import countryCodes from '@/.data-store/constants/countries.json';
 import { InputController, SelectController } from '@/packages/forms';
 import { Image } from '@/packages/next';
+import ExternalLink from '@/ui/commons/components/ExternalLink';
 import { useGetUserLocationContent } from '@/ui/commons/components/UserLocationContentContext';
-// import ExternalLink from '@/ui/components/ExternalLink';
-// import { EMAIL_PATTERN } from '@/ui/constants';
-// import useInviteUserOnSpotSearch from '@/ui/hooks/useInviteUserOnSpotSearch';
+import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
+
+const terms_url = 'https://www.cogoport.com/en-IN/terms-and-conditions';
+const policy_url = 'https://www.cogoport.com/en-IN/privacy-policy';
 
 function PopupModal({
-	show, onClose, searchIds, countriesOptions, defaultValue = '+91',
+	show, onClose, searchIds, defaultValue = '+91',
 }) {
 	const router = useRouter();
-	const { locale } = router;
-
 	const [status, setStatus] = useState(false);
 
 	const methods = useForm();
@@ -28,15 +31,20 @@ function PopupModal({
 		spotSearch_popupModal_img1,
 	} = useGetUserLocationContent();
 
-	// const {
-	// 	inviteUser = () => { },
-	// 	loading = false,
-	// } = useInviteUserOnSpotSearch({ reset, searchIds, setStatus });
+	const countriesOptions = countryCodes.map((item) => ({
+		label : item?.mobile_country_code,
+		value : item?.mobile_country_code,
+	}));
+
+	const {
+		inviteUser = () => { },
+		loading = false,
+	} = useInviteUserOnSpotSearch({ reset, searchIds, setStatus });
 
 	const onSubmit = (form) => {
-		// if (!loading) {
-		// 	inviteUser(form);
-		// }
+		if (!loading) {
+			inviteUser(form);
+		}
 	};
 
 	return (
@@ -70,14 +78,14 @@ function PopupModal({
 													<span style={{ color: '#ee3425' }}>*</span>
 												</div>
 												<InputController
-													placeholder=""
+													placeholder="Enter your name"
 													className={styles.controller_input}
 													{...register('full_name', { required: true })}
 												/>
 												{errors.full_name && errors.full_name.type === 'required'
 													&& (
 														<span className={styles.errors}>
-															error
+															Please Enter Name
 														</span>
 													)}
 											</div>
@@ -87,14 +95,14 @@ function PopupModal({
 													<span style={{ color: '#ee3425' }}>*</span>
 												</div>
 												<InputController
-													placeholder=""
+													placeholder="Enter your Email id"
 													className={styles.controller_input}
 													{...register('email', {
-														required: true,
-														// pattern  : {
-														// 	value   : EMAIL_PATTERN,
-														// 	message : t('email_error_msg'),
-														// },
+														required : true,
+														pattern  : {
+															value   : GLOBAL_CONSTANTS.patterns.EMAIL,
+															message : 'email',
+														},
 													})}
 												/>
 												{errors.email && errors.email.type === 'required' && (
@@ -102,7 +110,7 @@ function PopupModal({
 														className={styles.errors}
 													>
 
-														error
+														Please Enter Email
 
 													</span>
 												)}
@@ -137,7 +145,7 @@ function PopupModal({
 														<InputController
 															className={styles.input}
 															type="number"
-															placeholder=""
+															placeholder="Enter your number"
 															name="whatsapp_number"
 															id="number"
 															{...register('mobile_number', { required: true })}
@@ -147,18 +155,19 @@ function PopupModal({
 												{errors.mobile_number && errors.mobile_number.type === 'required'
 													&& (
 														<span className={styles.errors}>
-
-															error
-
+															Please Enter Number
 														</span>
 													)}
 
 											</div>
 											<p className={styles.terms_and_conditions}>
-												Submit
+												By clicking on submit, you are accepting the
+												{' '}
 												<span
 													role="presentation"
-													onClick={() => router.push('https://www.cogoport.com/en-IN/terms-and-conditions')}
+													onClick={() => {
+														router.push(terms_url);
+													}}
 												>
 
 													Terms of use
@@ -169,10 +178,10 @@ function PopupModal({
 												{' '}
 												<span
 													role="presentation"
-													onClick={() => router.push('https://www.cogoport.com/en-IN/privacy-policy')}
+													onClick={() => router.push(policy_url)}
 												>
 
-													privacy_policy
+													Privacy Policy.
 
 												</span>
 												.
@@ -201,15 +210,15 @@ function PopupModal({
 							<div className={styles.right_container}>
 								<p className={styles.heading_2}>Get Access</p>
 								<p className={styles.sub_heading_2}>Sign Now</p>
-								{/* <ExternalLink
+								<ExternalLink
 									className={styles.link_to}
 									scope="app"
 									label={(
 										<>
 											<div className={styles.left_text}>
-												<span>{t('shipper')}</span>
+												<span>Shippers</span>
 												<span>
-													{t('shipper_description')}
+													I'm looking to move my goods
 												</span>
 											</div>
 											<IcMArrowNext fill="#EE3425" className={styles.arrow_right_icon} />
@@ -225,9 +234,9 @@ function PopupModal({
 									label={(
 										<>
 											<div className={styles.left_text}>
-												<span>{t('carrier')}</span>
+												<span>Carriers / Partners</span>
 												<span>
-													{t('carrier_description')}
+													I'm looking for loads to haul
 												</span>
 											</div>
 											<IcMArrowNext fill="#EE3425" className={styles.arrow_right_icon} />
@@ -236,7 +245,7 @@ function PopupModal({
 									)}
 									page="signup"
 									section="rate_discovery"
-								/> */}
+								/>
 
 								<Image
 									src={spotSearch_popupModal_img1}
@@ -246,101 +255,6 @@ function PopupModal({
 								/>
 							</div>
 						)}
-						{/* {!status && (
-							<div className={styles.right_container}>
-								<div
-									className={cl`
-								${styles.ports}
-								${data ? '' : styles.ports_no_data}
-							`}
-								>
-									<div className={styles.port}>
-										<IcALocationwhite className={styles.location_icon} />
-										<div
-											className={styles.port_detail}
-										>
-											<p
-												className={styles.heading}
-											>
-												{origin_name}
-											</p>
-											<p className={styles.subheading}>{origin}</p>
-										</div>
-									</div>
-									<div className={styles.arrow_container}>
-										<IcMArrowNext className={styles.arrow_icon} />
-									</div>
-									<div className={styles.port}>
-										<IcALocationwhite className={styles.location_icon} />
-										<div className={styles.port_detail}>
-											<p
-												className={styles.heading}
-											>
-												{destination_name}
-											</p>
-											<p className={styles.subheading}>{destination}</p>
-										</div>
-									</div>
-								</div>
-								{data ? (
-									<div className={styles.trade_details}>
-										<div className={styles.feature_container}>
-											<div className={styles.feature}>
-												<div className={styles.email1}>
-													<span className={styles.title}>
-														{t('containers')}
-													</span>
-													<strong className={styles.strong}>
-														{data?.detail.containers_count}
-													</strong>
-												</div>
-											</div>
-											<div className={styles.line} />
-											<div className={styles.feature}>
-												<div className={styles.email1}>
-													<span className={styles.title}>
-														{t('type')}
-													</span>
-													<strong className={styles.strong}>
-														{data?.detail?.container_size}
-														{' '}
-														<span>{data?.detail?.container_type}</span>
-													</strong>
-
-												</div>
-											</div>
-										</div>
-										<div className={styles.line} />
-										<div className={styles.price_container}>
-											<div className={styles.email1}>
-												<span className={styles.title}>
-													{t('rate')}
-												</span>
-												<strong className={styles.strong}>
-													<span className={styles.currency}>
-														{data?.rates[0].freight_price_currency}
-													</span>
-													{' '}
-													<span className={styles.price}>
-														{Math.ceil(data?.rates[0].freight_price)}
-													</span>
-
-												</strong>
-											</div>
-										</div>
-
-									</div>
-								) : null}
-								<div className={styles.right_container_image}>
-									<Image
-										src={spotSearch_popupModal_img1}
-										width={100}
-										height={100}
-										alt="truck_at_cogoport"
-									/>
-								</div>
-							</div>
-						)} */}
 					</div>
 				</div>
 			</Modal>

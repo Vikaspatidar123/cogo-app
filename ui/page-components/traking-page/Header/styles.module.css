@@ -1,0 +1,96 @@
+.container {
+	padding: 20px;
+	background-color: #fbdc00;
+	background-image: url("https://cdn.cogoport.io/cms-prod/cogo_app/vault/original/tracking_bg.png");
+	background-size: cover;
+	background-blend-mode: overlay;
+}
+
+.text_box {
+	display: flex;
+	justify-content: center;
+}
+
+.title {
+	padding-left: 5px;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.text {
+	font-size: 20px;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+
+	@media screen and (max-width: 767px) {
+		flex-flow: column wrap;
+
+		>div {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+	}
+}
+
+.col {
+	position: relative;
+	padding: 0 8px;
+
+	:global {
+		.ui_select_options_container {
+			z-index: 9999;
+		}
+	}
+
+	&.form_col {
+		width: 20%;
+	}
+
+	&.or_tag {
+		width: 7%;
+	}
+
+	@media screen and (max-width: 767px) {
+		padding: 0;
+
+		&.form_col,
+		&.or_tag {
+			width: 100%;
+		}
+
+		.heading_btn {
+			margin: auto;
+		}
+	}
+}
+
+.select_container {
+	:global {
+		.ui_select_options_container {
+			z-index: 9999;
+		}
+	}
+}
+
+.options_container {
+	display: flex;
+
+	.option_text {
+		margin-left: 5px;
+	}
+}
+
+.errors {
+	position: absolute;
+	font-size: 12px;
+	color: #f33;
+}
+
+.form_container {
+	padding: 10px;
+}

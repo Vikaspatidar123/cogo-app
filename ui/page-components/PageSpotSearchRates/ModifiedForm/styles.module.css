@@ -232,3 +232,19 @@
 		}
 	}
 }
+
+.web_view {
+	display: block;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}
+
+.mobile_view {
+	display: none;
+
+	@media (max-width: 768px) {
+		display: block;
+	}
+}

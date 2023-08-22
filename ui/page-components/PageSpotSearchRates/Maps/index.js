@@ -8,7 +8,7 @@ import { tooltip } from '../styles.module.css';
 import Routes from './Routes';
 import styles from './styles.module.css';
 
-// import { useGetUserLocationContent } from '@/ui/components/UserLocationContentContext';
+// import { useGetUserLocationContent } from '@/ui/commons/components/UserLocationContentContext';
 
 const baseLayer = [
 	{

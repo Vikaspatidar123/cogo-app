@@ -36,6 +36,7 @@ const PUBLIC_PATHS = [
 	'/url/[token]',
 	'/user-shipment-alert',
 	'/discovery-rates/[id]/[origin]/[destination]',
+	'/traking/[trackingType]/[trackingId]',
 ];
 const UNAUTHENTICATED = ['/login', '/signup'];
 export default { PUBLIC_PATHS, UNAUTHENTICATED, All };

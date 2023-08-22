@@ -13,17 +13,17 @@ function ServiePopupModal({ show, onClose }) {
 
 	return (
 		<div>
-			<Modal size="xl" show={show} onClose={onClose} className={styles.modal}>
+			<Modal size="sm" show={show} onClose={onClose} className={styles.modal}>
 				<IcMCross onClick={onClose} height={24} width={24} className={styles.cross_btn} />
 				<div className={styles.email}>
 					<div className={styles.register_heading_container}>
 						<p className={styles.register_heading}>
-							<span>access</span>
+							<span>Get access to all our services</span>
 						</p>
 					</div>
 					<div className={styles.main}>
 						<div className={styles.right_container}>
-							<p className={styles.sub_heading_2}>Sign Now</p>
+							<p className={styles.sub_heading_2}>Sign Up Now</p>
 							<a
 								className={styles.link_to}
 								target="_blank"

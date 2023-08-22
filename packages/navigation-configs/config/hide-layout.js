@@ -27,5 +27,6 @@ const HIDE_LAYOUT = [
 	'/url/[token]',
 	'/user-shipment-alert',
 	'/discovery-rates/[id]/[origin]/[destination]',
+	'/traking/[trackingType]/[trackingId]',
 ];
 export default HIDE_LAYOUT;

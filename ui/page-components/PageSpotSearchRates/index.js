@@ -6,8 +6,8 @@ import RoutePlanner from './RoutePlanner';
 import styles from './styles.module.css';
 
 function PageSpotSearchRates({ rateData, data, location }) {
-	console.log(rateData, 'rateData', data, location);
 	const router = useRouter();
+
 	const {
 		id,
 		origin: origin_port,
@@ -40,20 +40,6 @@ function PageSpotSearchRates({ rateData, data, location }) {
 	return (
 		<div className={styles.container}>
 
-			{/* <div className={styles.header}>
-				{data && !data.error ? (
-					<h1>
-						{origin.display_name}
-						{' '}
-						To
-						{' '}
-						{destination.display_name}
-					</h1>
-				) : null}
-				<p>
-					subtitle
-				</p>
-			</div> */}
 			<RoutePlanner
 				rateData={rateData}
 				data={data}

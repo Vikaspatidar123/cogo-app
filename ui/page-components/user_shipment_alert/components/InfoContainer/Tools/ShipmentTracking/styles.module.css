@@ -20,13 +20,19 @@
 	flex-direction: column;
 	justify-content: center;
 	width: 100%;
-	padding: 20px 30px;
+	padding: 20px 12px;
 	background-blend-mode: multiply;
 	backdrop-filter: blur(8px);
+
+	:global {
+		.ui_tab_container {
+			margin: 0 !important;
+		}
+	}
 }
 
 .input {
-	width: 220px;
+	width: 250px;
 	margin: 5px 0;
 }
 
@@ -34,4 +40,13 @@
 	display: flex;
 	justify-content: flex-end;
 	margin-top: 10px;
+}
+
+.errors {
+	font-size: 12px;
+	color: #f33;
+}
+
+.box {
+	margin-top: 6px;
 }

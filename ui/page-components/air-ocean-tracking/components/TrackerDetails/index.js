@@ -12,7 +12,7 @@ function TrackerDetails() {
 	const { query } = useRouter();
 	const { t } = useTranslation(['common', 'airOceanTracking']);
 	const { trackingType = 'ocean', fromDashBoard = 'false' } = query;
-
+	console.log(query, 'query');
 	const { redirectToList, redirectToDashboard } = useRedirectFn();
 
 	const backHandler = () => {
@@ -24,10 +24,12 @@ function TrackerDetails() {
 	};
 	return (
 		<div className={styles.container}>
-			<div className={styles.title_container}>
-				<IcMArrowBack width={15} height={15} onClick={backHandler} />
-				<h2>{t('airOceanTracking:tracking_title')}</h2>
-			</div>
+			{!query?.public ? (
+				<div className={styles.title_container}>
+					<IcMArrowBack width={15} height={15} onClick={backHandler} />
+					<h2>{t('airOceanTracking:tracking_title')}</h2>
+				</div>
+			) : null}
 			<TrackingInfo />
 		</div>
 	);

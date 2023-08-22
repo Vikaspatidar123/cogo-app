@@ -11,9 +11,11 @@ import styles from './styles.module.css';
 
 import useGetPermission from '@/packages/hooks/useGetPermission';
 
+const VIEW_AS = 'importer_exporter';
+
 function ShipmentList() {
-	const viewAs = 'importer_exporter';
 	const [params, setParams] = useState(null);
+
 	const {
 		loading,
 		page,
@@ -48,7 +50,7 @@ function ShipmentList() {
 		}
 
 		if (!loading && data.length === 0) {
-			return <EmptyState viewAs={viewAs} />;
+			return <EmptyState viewAs={VIEW_AS} />;
 		}
 		return (
 			<div>
@@ -68,7 +70,7 @@ function ShipmentList() {
 				) : null}
 
 				{(data || []).map((item) => (
-					<Item key={item.serial_id} data={item} viewAs={viewAs} currentTab={currentTab} />
+					<Item key={item.serial_id} data={item} viewAs={VIEW_AS} currentTab={currentTab} />
 				))}
 			</div>
 		);
@@ -82,7 +84,7 @@ function ShipmentList() {
 					hookSetters={hookSetters}
 					config={config}
 					setParams={setParams}
-					viewAs={viewAs}
+					viewAs={VIEW_AS}
 				/>
 
 				<Tabs activeTab={currentTab} onChange={handleTabChange}>

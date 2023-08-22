@@ -1,0 +1,25 @@
+.container {
+	margin-top: 20px;
+}
+
+.line_item {
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+	background: #fff;
+	border-bottom: 1px solid  #f8f2e7;
+}
+
+.checkbox {
+	width: 10%;
+}
+
+.box {
+	width: 25%;
+}
+
+.pagination {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 10px;
+}

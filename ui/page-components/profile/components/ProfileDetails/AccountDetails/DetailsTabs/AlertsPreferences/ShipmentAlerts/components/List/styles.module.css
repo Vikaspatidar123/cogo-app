@@ -1,0 +1,17 @@
+.container {
+	margin: 12px 0;
+}
+
+.button {
+	display: flex;
+	justify-content: end;
+
+	> button {
+		margin: 20px 10px 0;
+	}
+}
+
+.empty {
+	display: flex;
+	justify-content: center;
+}

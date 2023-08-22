@@ -1,0 +1,13 @@
+.container {
+	padding: 10px;
+	margin-top: 10px;
+	background: #fdfbf6;
+	border-radius: 6px;
+}
+
+.icon {
+	display: flex;
+	align-items: center;
+	margin-top: 10px;
+	cursor: pointer;
+}

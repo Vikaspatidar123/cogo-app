@@ -1,8 +1,11 @@
 /* eslint-disable no-undef */
 import { setCookie, getCookie } from '@cogoport/utils';
+import { useRouter } from 'next/router';
 import { appWithTranslation } from 'next-i18next';
 import pageProgessBar from 'nprogress';
 import { useEffect } from 'react';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import withStore from './store';
 
@@ -48,6 +51,11 @@ const DynamicChatBot = dynamic(() => import('@/ui/commons/components/CogoBot'), 
 function MyApp({ Component, pageProps, store, generalData }) {
 	const { profile } = store.getState() || {};
 	const { partner_id, id: organizationId } = profile.organization || {};
+	const queryClient = new QueryClient();
+
+	const router = useRouter();
+
+	const { locale } = router;
 
 	let countryCode = '';
 
@@ -66,8 +74,11 @@ function MyApp({ Component, pageProps, store, generalData }) {
 	const { isBotVisible = true } = botVisibility || {};
 
 	useEffect(() => {
+		setCookie('locale', locale);
+	}, [locale]);
+
+	useEffect(() => {
 		setCookie('parent_entity_id', partner_id);
-		setCookie('locale', Router.locale);
 		Router.events.on('routeChangeStart', () => {
 			pageProgessBar.start();
 			pageProgessBar.set(0.4);
@@ -80,15 +91,18 @@ function MyApp({ Component, pageProps, store, generalData }) {
 	}, [generalData, store, partner_id]);
 
 	return (
-		<Provider store={store}>
-			<GlobalLayout
-				layout={pageProps.layout || 'authenticated'}
-				head={pageProps.head || ''}
-			>
-				<Component {...pageProps} />
-				{isBotVisible && <DynamicChatBot />}
-			</GlobalLayout>
-		</Provider>
+		<QueryClientProvider client={queryClient}>
+			<Provider store={store}>
+				<GlobalLayout
+					layout={pageProps.layout || 'authenticated'}
+					head={pageProps.head || ''}
+				>
+					<Component {...pageProps} />
+					{isBotVisible && <DynamicChatBot />}
+				</GlobalLayout>
+			</Provider>
+			{process.env.NODE_ENV !== 'production' && <ReactQueryDevtools initialIsOpen={false} />}
+		</QueryClientProvider>
 	);
 }
 

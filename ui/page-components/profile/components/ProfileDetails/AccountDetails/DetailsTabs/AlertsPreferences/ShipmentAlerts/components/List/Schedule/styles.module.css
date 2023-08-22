@@ -1,0 +1,13 @@
+.container {
+	padding: 15px;
+	margin-top: 20px;
+	background: #fff;
+	border: 1px solid #e4e4e4;
+	border-radius: 10px 6px;
+}
+
+.text {
+	margin-top: 10px;
+	font-size: 16px;
+	font-weight: 600;
+}

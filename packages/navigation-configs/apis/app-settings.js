@@ -309,6 +309,21 @@ const app_settings = [
 		access_type  : 'private',
 		service_name : 'organization',
 	},
+	{
+		api          : 'get_shipment_report_schedule',
+		access_type  : 'private',
+		service_name : 'shipment',
+	},
+	{
+		api          : 'update_shipment_report_schedule',
+		access_type  : 'private',
+		service_name : 'shipment',
+	},
+	{
+		api          : 'list_shipments_for_report',
+		access_type  : 'private',
+		service_name : 'shipment',
+	},
 ];
 
 export default app_settings;

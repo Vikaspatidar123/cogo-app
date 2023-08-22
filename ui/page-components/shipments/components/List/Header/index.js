@@ -1,4 +1,4 @@
-import { Input, Button } from '@cogoport/components';
+import { Input } from '@cogoport/components';
 import { useEffect } from 'react';
 
 import FilterButton from '../FilterButton';
@@ -6,11 +6,11 @@ import FilterButton from '../FilterButton';
 import styles from './styles.module.css';
 
 import { useDebounceQuery } from '@/packages/forms';
-import { useRouter } from '@/packages/next';
+// import { useRouter } from '@/packages/next';
 
 function Header({ filters, hookSetters, config, viewAs }) {
 	const { serial_id, ...restFilters } = filters || {};
-	const { push } = useRouter();
+	// const { push } = useRouter();
 
 	const renderFilters = (
 		<FilterButton
@@ -55,14 +55,14 @@ function Header({ filters, hookSetters, config, viewAs }) {
 					className={styles.input}
 				/>
 
-				<Button
+				{/* <Button
 					size="md"
 					themeType="secondary"
 					type="button"
 					onClick={() => push('/shipment-report?type=shipment')}
 				>
 					View Shipment Status Report
-				</Button>
+				</Button> */}
 			</div>
 		</div>
 	);

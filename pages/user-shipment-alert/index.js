@@ -10,7 +10,7 @@ export async function getServerSideProps(ctx) {
 	const translationData = await serverSideTranslations(locale, ['common', 'dashboard']);
 	return {
 		props: {
-			translationData,
+			...translationData,
 			location,
 		},
 	};

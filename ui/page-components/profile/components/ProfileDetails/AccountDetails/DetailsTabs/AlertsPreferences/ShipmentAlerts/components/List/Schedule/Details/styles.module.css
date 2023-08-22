@@ -1,0 +1,30 @@
+.conatiner {
+	margin-top: 20px;
+}
+
+.line_item {
+	display: flex;
+}
+
+.title {
+	width: 5%;
+	padding: 5px;
+	color: #828282;
+	text-align: left;
+}
+
+.values {
+	padding: 5px;
+	margin-left: 10px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #4f4f4f;
+}
+
+.item {
+	padding: 2px 0;
+}
+
+.text {
+	padding: 0 5px;
+}

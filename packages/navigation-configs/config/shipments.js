@@ -23,6 +23,10 @@ const shipments = {
 		navigation : 'app_discover_rates',
 		isMainNav  : true,
 	},
+	'/shipment-report': {
+		navigation : 'app_settings',
+		isMainNav  : true,
+	},
 };
 
 module.exports = shipments;

@@ -24,7 +24,7 @@ const useMyProfile = () => {
 			url    : '/list_organization_users',
 			method : 'get',
 		},
-		{ manual: true },
+		{ autoCancel: false, manual: true },
 	);
 
 	const getOrganization = async () => {

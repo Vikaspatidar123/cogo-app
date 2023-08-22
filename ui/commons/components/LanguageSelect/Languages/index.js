@@ -33,6 +33,7 @@ function Languages() {
 		<div className={styles.main}>
 			{Object.values(filteredList).map((lang) => {
 				const { language, key } = lang || {};
+
 				return (
 					<Link
 						key={lang.key}

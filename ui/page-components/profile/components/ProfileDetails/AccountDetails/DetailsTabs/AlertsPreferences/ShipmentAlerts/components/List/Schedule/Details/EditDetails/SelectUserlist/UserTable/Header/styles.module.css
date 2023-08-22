@@ -1,0 +1,20 @@
+.container {
+	background: #fdfbf6;
+	border-bottom: 1px solid #f8f2e7;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+}
+
+.box {
+	width: 25%;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.checkbox {
+	width: 10%;
+}

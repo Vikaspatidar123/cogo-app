@@ -16,7 +16,7 @@ function AccountDetails() {
 	const {
 		title: activeTitle,
 		containerComponent: ActiveContainerComponent = null,
-	} = OPTIONS_MAPPING[activeTab];
+	} = OPTIONS_MAPPING[activeTab] || {};
 
 	return (
 		<div>
@@ -43,10 +43,12 @@ function AccountDetails() {
 						})}
 					</Tabs>
 				</div>
-
-				<div className={styles.tab_panel_container}>
-					<ActiveContainerComponent title={activeTitle} />
-				</div>
+				{ActiveContainerComponent ? (
+					<div className={styles.tab_panel_container}>
+						<ActiveContainerComponent title={activeTitle} />
+					</div>
+				)
+					: null}
 			</div>
 		</div>
 	);

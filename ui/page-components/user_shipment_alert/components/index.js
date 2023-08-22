@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 import { useRouter } from '@/packages/next';
 import PublicHeader from '@/ui/commons/components/PublicHeader';
 
-function UserShipmentAlert() {
+function UserShipmentAlert({ location }) {
 	const { push } = useRouter();
 	const [show, setShow] = useState(false);
 	const [titleType, showTitleType] = useState('');
@@ -19,7 +19,7 @@ function UserShipmentAlert() {
 			<PublicHeader renderFunction={renderFunction} />
 			<div className={styles.box}>
 				<ShipmentHead setShow={setShow} showTitleType={showTitleType} />
-				<InfoContainer setShow={setShow} showTitleType={showTitleType} />
+				<InfoContainer setShow={setShow} showTitleType={showTitleType} location={location} />
 			</div>
 			<LoginModal setShow={setShow} show={show} titleType={titleType} />
 		</div>

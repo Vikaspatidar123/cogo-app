@@ -1,5 +1,3 @@
-import { getCookie } from '@cogoport/utils';
-
 import BookShipment from './BookShipment';
 import ShipmentTracking from './ShipmentTracking';
 
@@ -10,10 +8,8 @@ const MAPPING = {
 	false : ShipmentTracking,
 };
 
-function Tools() {
-	const local = 'IN' || getCookie('location');
-
-	const Components = MAPPING[!GLOBAL_CONSTANTS.cogo_entity_country.includes(local)];
+function Tools({ location }) {
+	const Components = MAPPING[GLOBAL_CONSTANTS.cogo_entity_country.includes(location)];
 
 	return (
 		<div>

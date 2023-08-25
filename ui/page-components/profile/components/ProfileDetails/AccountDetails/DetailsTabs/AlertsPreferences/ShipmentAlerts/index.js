@@ -23,7 +23,6 @@ function ShipmentAlerts() {
 					onClick={() => push('/shipments')}
 				>
 					<IcMArrowBack width={20} height={20} />
-					{' '}
 					{t('settings:back_text')}
 				</div>
 			) : null}

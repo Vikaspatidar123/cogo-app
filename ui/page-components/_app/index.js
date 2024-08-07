@@ -125,6 +125,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 	const unPrefixedPath = `/${pathname.replace('/[org_id]/[branch_id]/', '')}`;
 	const { asPrefix, query: qError } = await handleAuthentication(ctxParams);
 
+	
 	const generalData = {
 		pathname,
 		asPath,

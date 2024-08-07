@@ -20,6 +20,7 @@ import GLOBAL_CONSTANTS from '@/ui/commons/constants/globals';
 import GlobalLayout from '@/ui/page-components/_app/layout/components/GlobalLayout';
 import handleAuthentication from '@/ui/page-components/authentication/utils/handleAuthentication';
 
+
 const KEY_MAPPING = {
 	COUNTRY: {
 		IN: {
